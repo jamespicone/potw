@@ -66,20 +66,39 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Mod\DeckLists\**\*.json">
-		<LogicalName>Jp.ParahumansOfTheWormverse.DeckLists.%(EmbeddedResource.FileName).json</LogicalName>
-	</EmbeddedResource>
+      <LogicalName>Jp.ParahumansOfTheWormverse.DeckLists.%(EmbeddedResource.FileName).json</LogicalName>
+    </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Compile Include="Mod\Heroes\Bitch\Cards\BastardCardController.cs" />
+    <Compile Include="Mod\Heroes\Bitch\Cards\FindCardController.cs" />
+    <Compile Include="Mod\Heroes\Bitch\Cards\FetchCardController.cs" />
+    <Compile Include="Mod\Heroes\Bitch\Cards\HaveARideCardController.cs" />
+    <Compile Include="Mod\Heroes\Bitch\Cards\BaseDogCardController.cs" />
+    <Compile Include="Mod\Heroes\Bitch\Cards\JudasCardController.cs" />
+    <Compile Include="Mod\Heroes\Bitch\Cards\AngelicaCardController.cs" />
+    <Compile Include="Mod\Heroes\Bitch\Cards\BrutusCardController.cs" />
+    <Compile Include="Mod\Heroes\Bitch\Cards\BulletCardController.cs" />
+    <Compile Include="Mod\Heroes\Bitch\Cards\GingerCardController.cs" />
+    <Compile Include="Mod\Heroes\Bitch\Cards\AxelCardController.cs" />
+    <Compile Include="Mod\Heroes\Bitch\Cards\StumpyCardController.cs" />
+    <Compile Include="Mod\Heroes\Bitch\Cards\MilkCardController.cs" />
+    <Compile Include="Mod\Heroes\Bitch\Cards\KuroCardController.cs" />
+    <Compile Include="Mod\Heroes\Bitch\Cards\TheHuntCardController.cs" />
+    <Compile Include="Mod\Heroes\Bitch\Cards\WhistleCardController.cs" />
+    <Compile Include="Mod\Heroes\Bitch\Cards\VeterinaryCareCardController.cs" />
+    <Compile Include="Mod\Heroes\Bitch\Cards\KillCardController.cs" />
+    <Compile Include="Mod\Heroes\Bitch\Cards\HoldCardController.cs" />
+    <Compile Include="Mod\Heroes\Bitch\Cards\GuardCardController.cs" />
+    <Compile Include="Mod\Heroes\Bitch\Cards\HeelCardController.cs" />
+    <Compile Include="Mod\Heroes\Bitch\Characters\BitchCharacterCardController.cs" />
+  </ItemGroup>
   <ItemGroup>
     <None Include="Mod\manifest.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
   <ItemGroup />
-  <ItemGroup>
-    <Compile Include="Mod\Heroes\Bitch\Cards\BastardCardController.cs" />
-    <Compile Include="Mod\Heroes\Bitch\Characters\BitchCharacterCardController.cs" />
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions />
 </Project>
