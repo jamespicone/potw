@@ -1,0 +1,35 @@
+﻿{
+  "name": "Bitch",
+  "kind": "Hero",
+  "initialCardIdentifiers": [ "BitchCharacter" ],
+  "cards": [
+    {
+      "identifier": "BitchCharacter",
+      "title": "Bitch",
+      "count": 1,
+      "body": "Attack!",
+      "icons": [ "DealDamageMelee" ],
+      "hitpoints": 30,
+      "powers": [ "Do something" ],
+      "character": true,
+      "backgroundColor": "ffffff",
+      "openingLines": {
+        "default": "blargh"
+      },
+      "complexity": 1,
+      "incapacitatedAbilities": [
+        "do a thing",
+        "do a different thing",
+        "thing 3"
+      ]
+    },
+    {
+      "identifier": "Bastard",
+      "title": "Bastard",
+      "count": 40,
+      "body": "woof",
+      "hitpoints": 8
+    }
+  ]
+
+}

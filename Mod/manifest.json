@@ -1,0 +1,16 @@
+{
+  "title": "Parahumans of the Wormverse",
+  "author": "James Picone",
+  "description": "Mod based on characters from JC McCrae's (Wildbow's) Parahumans universe",
+  "version": "0.1",
+  "credits": "basically like all my friends",
+  
+  "dll": "ParahumansOfTheWormverse.dll",
+  "namespace": "Jp.ParahumansOfTheWormverse",
+
+  "decks": {
+    "heroes": [
+      "Bitch"
+    ]
+  }
+}
