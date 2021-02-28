@@ -16,5 +16,10 @@ namespace Jp.ParahumansOfTheWormverse.Bitch
         {
             yield break;
         }
+
+        public override void AddTriggers()
+        {
+            this.AddDealDamageAtEndOfTurnTrigger(this.TurnTaker, this.Card, card => card == this.Card, TargetType.SelectTarget, 1, DamageType.Psychic);
+        }
     }
 }

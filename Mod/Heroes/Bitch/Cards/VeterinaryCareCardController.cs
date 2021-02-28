@@ -14,7 +14,42 @@ namespace Jp.ParahumansOfTheWormverse.Bitch
 
         public override System.Collections.IEnumerator Play()
         {
-            yield break;
+            var cards = GameController.FindCardsWhere(card => card.IsInPlay && card.DoKeywordsContain("dog"), true, GetCardSource());
+            foreach (var card in cards)
+            {
+                if (card.MaximumHitPoints is int hp)
+                {
+                    var e2 = GameController.SetHP(card, hp, GetCardSource());
+                    if (UseUnityCoroutines)
+                    {
+                        yield return GameController.StartCoroutine(e2);
+                    }
+                    else
+                    {
+                        GameController.ExhaustCoroutine(e2);
+                    }
+                }
+            }
+
+            var e = DrawCard(HeroTurnTaker, optional: true);
+            if (UseUnityCoroutines)
+            {
+                yield return GameController.StartCoroutine(e);
+            }
+            else
+            {
+                GameController.ExhaustCoroutine(e);
+            }
+
+            e = SelectAndPlayCardFromHand(HeroTurnTakerController);
+            if (UseUnityCoroutines)
+            {
+                yield return GameController.StartCoroutine(e);
+            }
+            else
+            {
+                GameController.ExhaustCoroutine(e);
+            }
         }
     }
 }
