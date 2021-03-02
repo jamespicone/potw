@@ -12,9 +12,17 @@ namespace Jp.ParahumansOfTheWormverse.Bitch
         public WhistleCardController(Card card, TurnTakerController controller) : base(card, controller)
         { }
 
-        public override System.Collections.IEnumerator Play()
+        public override void AddTriggers()
         {
-            yield break;
+            AddStartOfTurnTrigger(tt => tt == TurnTaker, action => DrawCard(HeroTurnTaker, optional: true), TriggerType.DrawCard);
+            AddEndOfTurnTrigger(
+                tt => tt == TurnTaker,
+                action => SelectAndPlayCardFromHand(
+                    HeroTurnTakerController,
+                    cardCriteria: new LinqCardCriteria(card => card.DoKeywordsContain("order"))
+                ),
+                TriggerType.DrawCard
+            );
         }
     }
 }

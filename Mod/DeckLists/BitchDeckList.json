@@ -29,7 +29,7 @@
 		"keywords": [ "order", "one-shot" ],
 		"body": [
 			"Reveal cards from the top of either your deck or your trash until you reveal a Dog. Put it into play. Return the other cards and shuffle your deck.",
-			"Draw a card"
+			"You may draw a card"
 		],
 		"flavorText": "Master only asks for dogs to come to the front stairs{BR}if it is time for walkies!",
 		"flavorReference": "Interlude 4",
@@ -54,7 +54,7 @@
 		"keywords": [ "order", "one-shot" ],
 		"body": [
 			"Select up to X targets, where X = the number of Dog cards in play. Reduce damage dealt to those targets by 2 until the start of your next turn.",
-			"Draw a card."
+			"You may draw a card."
 		],
 		"flavorText": "\"Sirius, guard!\" she pointed toward the front door of the building. \"Bentley! Guard!\"",
 		"flavorReference": "Bitch, Interlude 11a",
@@ -66,7 +66,7 @@
 		"keywords": [ "order", "one-shot" ],
 		"body": [
 			"Destroy a target with up to X HP, where X = the number of Dog cards in play * 2.",
-			"Draw a card."
+			"You may draw a card."
 		],
 		"flavorText": "The dog lurched forward and placed both front paws on Mannequin's body, pinning his arm and chest.",
 		"flavorReference": "Snare 13.3",

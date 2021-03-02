@@ -20,7 +20,53 @@ namespace Jp.ParahumansOfTheWormverse.Bitch
 
         public override IEnumerator UsePower(int index = 0)
         {
-            yield break;
+            // Each Dog in play may deal 2 melee damage to a target
+            var cards = GameController.FindCardsWhere(card => card.IsInPlay && card.DoKeywordsContain("dog"), true, GetCardSource()).ToList();
+
+            while (cards.Count > 0)
+            {
+                var storedResults = new List<SelectCardDecision>();
+                var e = GameController.SelectCardAndStoreResults(
+                    HeroTurnTakerController,
+                    SelectionType.CardToDealDamage,
+                    new LinqCardCriteria(c => cards.Contains(c)),
+                    storedResults,
+                    optional: false,
+                    cardSource: GetCardSource()
+                );
+                if (UseUnityCoroutines)
+                {
+                    yield return GameController.StartCoroutine(e);
+                }
+                else
+                {
+                    GameController.ExhaustCoroutine(e);
+                }
+
+                var selectedDog = storedResults.FirstOrDefault();
+                if (selectedDog == null) { break; }
+
+                cards.Remove(selectedDog.SelectedCard);
+
+                e = GameController.SelectTargetsAndDealDamage(
+                    HeroTurnTakerController,
+                    new DamageSource(GameController, selectedDog.SelectedCard),
+                    GetPowerNumeral(0, 2),
+                    DamageType.Melee,
+                    1,
+                    optional: false,
+                    requiredTargets: 0,
+                    cardSource: GetCardSource()
+                );
+                if (UseUnityCoroutines)
+                {
+                    yield return GameController.StartCoroutine(e);
+                }
+                else
+                {
+                    GameController.ExhaustCoroutine(e);
+                }
+            }
         }
     }
 }

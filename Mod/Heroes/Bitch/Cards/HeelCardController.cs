@@ -14,7 +14,34 @@ namespace Jp.ParahumansOfTheWormverse.Bitch
 
         public override System.Collections.IEnumerator Play()
         {
-            yield break;
+            var e = RevealCards_SelectSome_MoveThem_ReturnTheRest(
+                HeroTurnTakerController,
+                TurnTakerController,
+                HeroTurnTaker.Deck,
+                c => c.DoKeywordsContain("dog"),
+                1, 1, false, true, true, "Dog"
+            );
+            if (UseUnityCoroutines)
+            {
+                yield return GameController.StartCoroutine(e);
+            }
+            else
+            {
+                GameController.ExhaustCoroutine(e);
+            }
+
+            e = DrawCard(HeroTurnTaker, optional: true);
+            if (UseUnityCoroutines)
+            {
+                yield return GameController.StartCoroutine(e);
+            }
+            else
+            {
+                GameController.ExhaustCoroutine(e);
+            }
+
+            // TODO: Dog count in deck informational window
+            // TODO: Does this shuffle?
         }
     }
 }

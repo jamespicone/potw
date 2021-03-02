@@ -11,10 +11,5 @@ namespace Jp.ParahumansOfTheWormverse.Bitch
     {
         public JudasCardController(Card card, TurnTakerController controller) : base(card, controller)
         { }
-
-        public override System.Collections.IEnumerator Play()
-        {
-            yield break;
-        }
     }
 }
