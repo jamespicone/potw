@@ -14,12 +14,19 @@ namespace Jp.ParahumansOfTheWormverse.Bitch
 
         public override System.Collections.IEnumerator Play()
         {
-            var e = RevealCards_SelectSome_MoveThem_ReturnTheRest(
-                HeroTurnTakerController,
+            // "Reveal cards from the top of either your deck or your trash until you reveal a Dog. Put it into play. Return the other cards and shuffle your deck.",
+            // "You may draw a card"
+            var e = RevealCards_MoveMatching_ReturnNonMatchingCards(
                 TurnTakerController,
                 HeroTurnTaker.Deck,
-                c => c.DoKeywordsContain("dog"),
-                1, 1, false, true, true, "Dog"
+                false,
+                true,
+                false,
+                new LinqCardCriteria(c => c.DoKeywordsContain("dog")),
+                1,
+                null,
+                revealedCardDisplay: RevealedCardDisplay.ShowMatchingCards,
+                shuffleReturnedCards: true
             );
             if (UseUnityCoroutines)
             {

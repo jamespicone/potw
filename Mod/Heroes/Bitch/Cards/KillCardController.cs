@@ -14,7 +14,21 @@ namespace Jp.ParahumansOfTheWormverse.Bitch
 
         public override System.Collections.IEnumerator Play()
         {
-            yield break;
+            // Deal a target X melee damage, where X = the number of Dog cards in play * 3
+            // TODO: Make a dog do the damage
+
+            var cards = GameController.FindCardsWhere(card => card.IsInPlay && card.DoKeywordsContain("dog"), true, GetCardSource());
+            var dogCount = cards.Count();
+
+            var e = GameController.SelectTargetsAndDealDamage(HeroTurnTakerController, new DamageSource(GameController, CharacterCard), 3 * dogCount, DamageType.Melee, 1, false, 1, cardSource: GetCardSource());
+            if (UseUnityCoroutines)
+            {
+                yield return GameController.StartCoroutine(e);
+            }
+            else
+            {
+                GameController.ExhaustCoroutine(e);
+            }
         }
     }
 }
