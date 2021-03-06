@@ -15,7 +15,52 @@ namespace Jp.ParahumansOfTheWormverse.Bitch
 
         public override IEnumerator UseIncapacitatedAbility(int index)
         {
-            yield break;
+            // "One target regains 2 HP",
+            // "One player may take a card from their trash into their hand",
+            // "Reduce damage dealt by environment targets by 2 until the start of your next turn"
+
+            IEnumerator e;
+            switch (index)
+            {
+                case 0:
+                    e = GameController.SelectAndGainHP(HeroTurnTakerController, 2, cardSource: GetCardSource());
+                    if (UseUnityCoroutines)
+                    {
+                        yield return GameController.StartCoroutine(e);
+                    }
+                    else
+                    {
+                        GameController.ExhaustCoroutine(e);
+                    }
+                    break;
+
+                case 1:
+                    e = GameController.SelectHeroToMoveCardFromTrash(HeroTurnTakerController, c => c.HeroTurnTaker.Hand, cardSource: GetCardSource());
+                    if (UseUnityCoroutines)
+                    {
+                        yield return GameController.StartCoroutine(e);
+                    }
+                    else
+                    {
+                        GameController.ExhaustCoroutine(e);
+                    }
+                    break;
+
+                case 2:
+                    ReduceDamageStatusEffect status = new ReduceDamageStatusEffect(2);
+                    status.UntilStartOfNextTurn(TurnTaker);
+                    status.SourceCriteria.IsEnvironment = true;
+                    e = GameController.AddStatusEffect(status, true, GetCardSource());
+                    if (UseUnityCoroutines)
+                    {
+                        yield return GameController.StartCoroutine(e);
+                    }
+                    else
+                    {
+                        GameController.ExhaustCoroutine(e);
+                    }
+                    break;
+            }
         }
 
         public override IEnumerator UsePower(int index = 0)
