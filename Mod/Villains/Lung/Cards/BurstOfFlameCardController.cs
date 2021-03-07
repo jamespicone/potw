@@ -15,7 +15,16 @@ namespace Jp.ParahumansOfTheWormverse.Lung
         public override System.Collections.IEnumerator Play()
         {
             // Lung deals the hero target with the highest HP X fire damage, where X = 1 + the number of cards in the villain trash / 2
-            yield break;
+            int damage = 1 + TurnTaker.Trash.NumberOfCards / 2;
+            var e = DealDamageToHighestHP(TurnTaker.CharacterCard, 1, c => c.IsHero && c.IsTarget && c.IsInPlay, c => damage, DamageType.Fire);
+            if (UseUnityCoroutines)
+            {
+                yield return GameController.StartCoroutine(e);
+            }
+            else
+            {
+                GameController.ExhaustCoroutine(e);
+            }
         }
     }
 }

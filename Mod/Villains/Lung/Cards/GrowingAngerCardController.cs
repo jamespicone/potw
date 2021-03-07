@@ -15,7 +15,25 @@ namespace Jp.ParahumansOfTheWormverse.Lung
         public override System.Collections.IEnumerator Play()
         {
             // Discard the top 3 cards of the villain deck. Play the top card of the villain deck
-            yield break;
+            var e = DiscardCardsFromTopOfDeck(TurnTakerController, 3);
+            if (UseUnityCoroutines)
+            {
+                yield return GameController.StartCoroutine(e);
+            }
+            else
+            {
+                GameController.ExhaustCoroutine(e);
+            }
+
+            e = GameController.PlayTopCard(null, TurnTakerController, cardSource: GetCardSource());
+            if (UseUnityCoroutines)
+            {
+                yield return GameController.StartCoroutine(e);
+            }
+            else
+            {
+                GameController.ExhaustCoroutine(e);
+            }
         }
     }
 }

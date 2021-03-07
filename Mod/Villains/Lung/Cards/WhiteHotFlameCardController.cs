@@ -11,11 +11,11 @@ namespace Jp.ParahumansOfTheWormverse.Lung
     {
         public WhiteHotFlameCardController(Card card, TurnTakerController controller) : base(card, controller)
         { }
-
-        public override System.Collections.IEnumerator Play()
+        public override void AddTriggers()
         {
             // Fire damage dealt by {Lung} is irreducible
-            yield break;
+            // TODO: Should I be checking identifiers?
+            AddMakeDamageIrreducibleTrigger(dda => dda.DamageType == DamageType.Fire && dda.CardSource.Card == TurnTaker.CharacterCard);
         }
     }
 }

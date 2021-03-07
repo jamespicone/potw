@@ -1,9 +1,5 @@
 ﻿using Handelabra.Sentinels.Engine.Controller;
 using Handelabra.Sentinels.Engine.Model;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace Jp.ParahumansOfTheWormverse.Lung
 {
@@ -11,6 +7,11 @@ namespace Jp.ParahumansOfTheWormverse.Lung
     {
         public ABBThugsCardController(Card card, TurnTakerController controller) : base(card, controller)
         { }
+
+        public override void AddTriggers()
+        {
+            AddDealDamageAtEndOfTurnTrigger(TurnTaker, Card, c => c.IsHero && c.IsTarget && c.IsInPlay, TargetType.LowestHP, 2, DamageType.Projectile);
+        }
 
         public override System.Collections.IEnumerator Play()
         {

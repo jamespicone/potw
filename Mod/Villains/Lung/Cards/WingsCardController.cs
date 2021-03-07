@@ -12,10 +12,11 @@ namespace Jp.ParahumansOfTheWormverse.Lung
         public WingsCardController(Card card, TurnTakerController controller) : base(card, controller)
         { }
 
-        public override System.Collections.IEnumerator Play()
+        public override void AddTriggers()
         {
             // {Lung} is immune to damage from Environment cards
-            yield break;
+            // TODO: Should I be checking identifiers?
+            AddImmuneToDamageTrigger(dda => dda.DamageSource.IsEnvironmentSource && dda.Target == TurnTaker.CharacterCard);
         }
     }
 }

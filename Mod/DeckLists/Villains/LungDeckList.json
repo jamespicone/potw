@@ -13,8 +13,8 @@
       "hitpoints": 80,
       "nemesisIdentifiers": [ "Skitter" ],
       "backgroundColor": "ffffff",
-      "setup": [ "At the start of the game {Lung} enters play Gang Leader side up. Put {Brute} into play, Gang Leader side up." ],
-      "gameplay": [ "When the villain trash is shuffled into the villain deck, flip {Brute}, and flip {Lung}." ],
+      "setup": [ "At the start of the game {Lung} enters play Gang Leader side up. Put {BruteInstructions} into play, Gang Leader side up." ],
+      "gameplay": [ "When the villain trash is shuffled into the villain deck, flip {BruteInstructions}, and flip {Lung}." ],
       "flippedIcons": [],
       "openingLines": {
         "default": "blargh"
@@ -141,7 +141,7 @@
     {
       "identifier": "OniLee",
       "title": "Oni Lee",
-      "hitpoint": 3,
+      "hitpoints": 3,
       "keywords": [ "parahuman" ],
       "count": 1,
       "body": [
