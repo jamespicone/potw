@@ -33,7 +33,7 @@
       "flippedNemesisIdentifiers": [ "Skitter" ]
     },
     {
-      "identifier": "Brute",
+      "identifier": "BruteInstructions",
       "title": "Brute",
       "count": 1,
       "isReal": false,
@@ -50,6 +50,120 @@
       ],
       "icons": [],
       "flippedIcons": []
+    },
+    {
+      "identifier": "BurstOfFlame",
+      "title": "Burst of Flame",
+      "count": 4,
+      "keywords": [ "one-shot" ],
+      "body": "{Lung} deals the hero target with the highest HP X fire damage, where X = 1 + the number of cards in the villain trash / 2",
+      "flavorText": "Lung exploded. No metaphor there.",
+      "flavorReference": "Gestation 1.4"
+    },
+    {
+      "identifier": "Smash",
+      "title": "Smash",
+      "count": 4,
+      "keywords": [ "one-shot" ],
+      "body": [
+        "{Lung} deals the hero target with the lowest HP 2 melee damage.",
+        "Destroy 1 hero ongoing or equipment card"
+      ],
+      "flavorText": "You don't properly appreciate what{BR}superhuman strength means until you see{BR}someone leap from the sidewalk to the{BR}second floor of a building",
+      "flavorReference": "Gestation 1.5"
+    },
+    {
+      "identifier": "GrowingAnger",
+      "title": "Growing Anger",
+      "count": 2,
+      "keywords": [ "one-shot" ],
+      "body": "Discard the top 3 cards of the villain deck. Play the top card of the villain deck",
+      "flavorQuotes": [
+        {
+          "identifier": "Skitter",
+          "text": "You know how this works, right?{BR}He only gets stronger the longer you{BR}fight him. If you haven't finished him off{BR}by now, you're probably not going to."
+        }
+      ],
+      "flavorReference": "Skitter, Hive 5.9"
+    },
+    {
+      "identifier": "Wings",
+      "title": "Wings",
+      "count": 2,
+      "keywords": [ "ongoing" ],
+      "body": "{Lung} is immune to damage from Environment cards",
+      "flavorText": "Spearlike growths stuck out of his{BR}shoulders in what I realized were{BR}the beginnings of wings.",
+      "flavorReference": "Hive 5.8"
+    },
+    {
+      "identifier": "WhiteHotFlame",
+      "title": "White-Hot Flame",
+      "count": 2,
+      "keywords": [ "ongoing" ],
+      "body": "Fire damage dealt by {Lung} is irreducible",
+      "flavorText": "...the steel-like flesh just beneath{BR}Leviathan's skin was blackening and{BR}charring to ash by proximity alone.",
+      "flavorReference": "Interlude 22"
+    },
+    {
+      "identifier": "Pyrokinesis",
+      "title": "Pyrokinesis",
+      "count": 3,
+      "keywords": [ "ongoing" ],
+      "body": "Whenever {Lung} deals melee damage to a target, {Lung} deals 2 fire damage to that target",
+      "flavorText": "Lung blasted her with a{BR}torrent of roaring flame.",
+      "flavorReference": "Hive 5.9"
+    },
+    {
+      "identifier": "TerribleBurns",
+      "title": "Terrible Burns",
+      "count": 3,
+      "keywords": [ "ongoing" ],
+      "body": [
+        "Whenever a hero is dealt fire damage by {Lung}, destroy 1 hero ongoing or equipment card.",
+        "At the end of the villain turn, {Lung} deals the hero target with the highest HP {H - 2} fire damage"
+      ],
+      "flavorText": "He lit his hand on fire.{BR}My mangled arm went up in flames.",
+      "flavorReference": "Venom 29.8"
+    },
+    {
+      "identifier": "Bakuda",
+      "title": "Bakuda",
+      "hitpoints": 6,
+      "keywords": [ "parahuman" ],
+      "count": 1,
+      "body": [
+        "At the start of the villain turn, reveal the top card of the villain deck:{BR}- If it is a One-Shot, {Bakuda} deals 5 fire damage to all non-villain targets.{BR}- If it is an Ongoing, each hero discards 1 card.{BR}- If it is a target, the hero with the most cards in play destroys all of them",
+        "Shuffle the revealed card back into the villain deck"
+      ],
+      "flavorText": "Behind their assembled group,{BR}an altered grenade launcher danging{BR}from one strap around her shoulders,{BR}was Bakuda.",
+      "flavorReference": "Shell 4.7"
+    },
+    {
+      "identifier": "OniLee",
+      "title": "Oni Lee",
+      "hitpoint": 3,
+      "keywords": [ "parahuman" ],
+      "count": 1,
+      "body": [
+        "At the end of the villain turn, {OniLee} deals the hero target with the lowest HP 3 melee damage.",
+        "Whenever {OniLee} would take damage, reveal the top card of the villain deck. If it is a one-shot prevent the damage. Shuffle the revealed card back into the villain deck"
+      ],
+      "flavorText": "He could teleport, but when he did,{BR}he left a body behind that could act{BR}autonomously for a few seconds.",
+      "flavorReference": "Hive 5.7"
+    },
+    {
+      "identifier": "ABBThugs",
+      "title": "ABB Thugs",
+      "hitpoints": 4,
+      "count": 3,
+      "body": "At the end of the villain turn, {ABBThugs} deal the hero target with the lowest HP 2 projectile damage",
+      "flavorQuotes": [
+        {
+          "identifier": "Bakuda",
+          "text": "The 'Azn Bad Boys' is a shit name"
+        }
+      ],
+      "flavorReference": "Bakuda, Interlude 22"
     }
   ]
 }

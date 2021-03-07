@@ -94,7 +94,17 @@
     <Compile Include="Heroes\Bitch\Cards\GuardCardController.cs" />
     <Compile Include="Heroes\Bitch\Cards\HeelCardController.cs" />
     <Compile Include="Heroes\Bitch\Characters\BitchCharacterCardController.cs" />
-    <Compile Include="Villains\Lung\Cards\BruteCardController.cs" />
+    <Compile Include="Villains\Lung\Cards\BakudaCardController.cs" />
+    <Compile Include="Villains\Lung\Cards\ABBThugsCardController.cs" />
+    <Compile Include="Villains\Lung\Cards\PyrokinesisCardController.cs" />
+    <Compile Include="Villains\Lung\Cards\OniLeeCardController.cs" />
+    <Compile Include="Villains\Lung\Cards\TerribleBurnsCardController.cs" />
+    <Compile Include="Villains\Lung\Cards\WhiteHotFlameCardController.cs" />
+    <Compile Include="Villains\Lung\Cards\WingsCardController.cs" />
+    <Compile Include="Villains\Lung\Cards\GrowingAngerCardController.cs" />
+    <Compile Include="Villains\Lung\Cards\SmashCardController.cs" />
+    <Compile Include="Villains\Lung\Cards\BurstOfFlameCardController.cs" />
+    <Compile Include="Villains\Lung\Characters\BruteInstructionsCardController.cs" />
     <Compile Include="Villains\Lung\Characters\LungCharacterCardController.cs" />
     <Compile Include="Villains\Lung\Characters\LungTurnTakerController.cs" />
   </ItemGroup>

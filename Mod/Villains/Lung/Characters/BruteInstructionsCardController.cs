@@ -8,9 +8,9 @@ using System.Text;
 
 namespace Jp.ParahumansOfTheWormverse.Lung
 {
-    public class BruteCardController : CardController
+    public class BruteInstructionsCardController : VillainCharacterCardController
     {
-        public BruteCardController(Card card, TurnTakerController controller) : base(card, controller)
+        public BruteInstructionsCardController(Card card, TurnTakerController controller) : base(card, controller)
         { }
     }
 }
