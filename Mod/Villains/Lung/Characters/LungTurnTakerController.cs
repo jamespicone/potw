@@ -11,7 +11,16 @@ namespace Jp.ParahumansOfTheWormverse.Lung
 
         public override IEnumerator StartGame()
         {
-            return base.StartGame();
+            var brute = TurnTaker.GetCardByIdentifier("BruteInstructions");
+            var e = GameController.MoveIntoPlay(this, brute, TurnTaker);
+            if (UseUnityCoroutines)
+            {
+                yield return GameController.StartCoroutine(e);
+            }
+            else
+            {
+                GameController.ExhaustCoroutine(e);
+            }
         }
     }
 }

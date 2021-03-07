@@ -4,6 +4,25 @@
   "initialCardIdentifiers": [ "LungCharacter" ],
   "cards": [
     {
+      "identifier": "BruteInstructions",
+      "title": "Brute",
+      "count": 1,
+      "isReal": false,
+      "character": true,
+      "body": "Gang Leader",
+      "flippedBody": "Dragon Awoken",
+      "gameplay": [
+        "If there are 10 or more cards in the villain trash, the first time {Lung} is dealt damage each round, reduce the damage by 1.",
+        "At the end of the villain turn play the top card of the villain deck then:{BR}- {Lung} deals X melee damage to all hero targets, where X = 1 + the number of cards in the villain trash / 5, then,{BR}- If there are 5 or more cards in the villain trash, {Lung} regains 1 HP, then,{BR}- If there are 15 or more cards in the villain trash, {Lung} regains 1 HP."
+      ],
+      "flippedGameplay": [
+        "{Lung} is immune to damage dealt by Environment cards.",
+        "At the end of the villain turn {Lung} deals 6 melee and 2 irreducible fire damage to all hero targets then:{BR}- Lung regains 3 HP, then,{BR}- Destroy {H - 1} hero ongoing or equipment cards."
+      ],
+      "icons": [],
+      "flippedIcons": []
+    },
+    {
       "identifier": "LungCharacter",
       "title": "Lung",
       "body": "Gang Leader",
@@ -31,25 +50,6 @@
       "flippedAdvanced": "When flipped to this side, the heroes lose the game",
       "flippedAdvancedIcons": [],
       "flippedNemesisIdentifiers": [ "Skitter" ]
-    },
-    {
-      "identifier": "BruteInstructions",
-      "title": "Brute",
-      "count": 1,
-      "isReal": false,
-      "character": true,
-      "body": "Gang Leader",
-      "flippedBody": "Dragon Awoken",
-      "gameplay": [
-        "If there are 10 or more cards in the villain trash, the first time {Lung} is dealt damage each round, reduce the damage by 1.",
-        "At the end of the villain turn play the top card of the villain deck then:{BR}- {Lung} deals X melee damage to all hero targets, where X = 1 + the number of cards in the villain trash / 5, then,{BR}- If there are 5 or more cards in the villain trash, {Lung} regains 1 HP, then,{BR}- If there are 15 or more cards in the villain trash, {Lung} regains 1 HP."
-      ],
-      "flippedGameplay": [
-        "{Lung} is immune to damage dealt by Environment cards.",
-        "At the end of the villain turn {Lung} deals 6 melee and 2 irreducible fire damage to all hero targets then:{BR}- Lung regains 3 HP, then,{BR}- Destroy {H - 1} hero ongoing or equipment cards."
-      ],
-      "icons": [],
-      "flippedIcons": []
     },
     {
       "identifier": "BurstOfFlame",

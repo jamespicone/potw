@@ -1,9 +1,8 @@
 ﻿using Handelabra.Sentinels.Engine.Controller;
 using Handelabra.Sentinels.Engine.Model;
-using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace Jp.ParahumansOfTheWormverse.Lung
 {
@@ -12,11 +11,59 @@ namespace Jp.ParahumansOfTheWormverse.Lung
         public OniLeeCardController(Card card, TurnTakerController controller) : base(card, controller)
         { }
 
-        public override System.Collections.IEnumerator Play()
+        public override void AddTriggers()
         {
             // "At the end of the villain turn, {Oni Lee} deals the hero target with the lowest HP 3 melee damage.",
             // "Whenever {Oni Lee} would take damage, reveal the top card of the villain deck. If it is a one-shot prevent the damage. Shuffle the revealed card back into the villain deck"
-            yield break;
+
+            AddDealDamageAtEndOfTurnTrigger(TurnTaker, Card, c => c.IsHero && c.IsTarget, TargetType.LowestHP, 3, DamageType.Projectile);
+            AddTrigger<DealDamageAction>(
+                dda => dda.Target == Card,
+                dda => RevealAndPreventResponse(dda),
+                new TriggerType[]{
+                    TriggerType.RevealCard,
+                    TriggerType.CancelAction
+                },
+                TriggerTiming.Before
+            );
+        }
+
+        public IEnumerator RevealAndPreventResponse(DealDamageAction dda)
+        {
+            var storedResults = new List<Card>();
+            var e = GameController.RevealCards(TurnTakerController, TurnTaker.Deck, 1, storedResults, revealedCardDisplay: RevealedCardDisplay.ShowRevealedCards, cardSource: GetCardSource());
+            if (UseUnityCoroutines)
+            {
+                yield return GameController.StartCoroutine(e);
+            }
+            else
+            {
+                GameController.ExhaustCoroutine(e);
+            }
+
+            var card = storedResults.FirstOrDefault();
+            if (card != null && card.IsOneShot)
+            {
+                e = CancelAction(dda, isPreventEffect: true);
+                if (UseUnityCoroutines)
+                {
+                    yield return GameController.StartCoroutine(e);
+                }
+                else
+                {
+                    GameController.ExhaustCoroutine(e);
+                }
+            }
+
+            e = CleanupRevealedCards(TurnTaker.Revealed, TurnTaker.Deck, shuffleAfterwards: true);
+            if (UseUnityCoroutines)
+            {
+                yield return GameController.StartCoroutine(e);
+            }
+            else
+            {
+                GameController.ExhaustCoroutine(e);
+            }
         }
     }
 }
