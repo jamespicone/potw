@@ -4,6 +4,35 @@
   "initialCardIdentifiers": [ "LungCharacter" ],
   "cards": [
     {
+      "identifier": "LungCharacter",
+      "title": "Lung",
+      "body": "Gang Leader",
+      "count": 1,
+      "character": true,
+      "icons": [],
+      "hitpoints": 80,
+      "nemesisIdentifiers": [ "Skitter" ],
+      "backgroundColor": "ffffff",
+      "setup": [ "At the start of the game {Lung} enters play Gang Leader side up. Put [i]Brute[/i] into play, Gang Leader side up." ],
+      "gameplay": [ "When the villain trash is shuffled into the villain deck, flip [i]Brute[/i], and flip {Lung}." ],
+      "flippedIcons": [],
+      "openingLines": {
+        "default": "blargh"
+      },
+      "difficulty": 2,
+      "advanced": "At the end of the villain turn, discard the top card of the villain deck",
+      "advancedIcons": "",
+      "flippedBody": "Dragon Awoken",
+      "flippedGameplay": [
+        "When flipped to this side, destroy all villain cards in play and put all cards in the villain deck into the villain trash.",
+        "Villain cards cannot be played.",
+        "Reduce damage dealt to Lung by 1."
+      ],
+      "flippedAdvanced": "When flipped to this side, the heroes lose the game",
+      "flippedAdvancedIcons": [],
+      "flippedNemesisIdentifiers": [ "Skitter" ]
+    },
+    {
       "identifier": "BruteInstructions",
       "title": "Brute",
       "count": 1,
@@ -23,40 +52,11 @@
       "flippedIcons": []
     },
     {
-      "identifier": "LungCharacter",
-      "title": "Lung",
-      "body": "Gang Leader",
-      "count": 1,
-      "character": true,
-      "icons": [],
-      "hitpoints": 80,
-      "nemesisIdentifiers": [ "Skitter" ],
-      "backgroundColor": "ffffff",
-      "setup": [ "At the start of the game {Lung} enters play Gang Leader side up. Put {BruteInstructions} into play, Gang Leader side up." ],
-      "gameplay": [ "When the villain trash is shuffled into the villain deck, flip {BruteInstructions}, and flip {Lung}." ],
-      "flippedIcons": [],
-      "openingLines": {
-        "default": "blargh"
-      },
-      "difficulty": 2,
-      "advanced": "At the end of the villain turn, discard the top card of the villain deck",
-      "advancedIcons": "",
-      "flippedBody": "Dragon Awoken",
-      "flippedGameplay": [
-        "When flipped to this side, destroy all villain cards in play and put all cards in the villain deck into the villain trash.",
-        "Villain cards cannot be played.",
-        "Reduce damage dealt to Lung by 1."
-      ],
-      "flippedAdvanced": "When flipped to this side, the heroes lose the game",
-      "flippedAdvancedIcons": [],
-      "flippedNemesisIdentifiers": [ "Skitter" ]
-    },
-    {
       "identifier": "BurstOfFlame",
       "title": "Burst of Flame",
       "count": 4,
       "keywords": [ "one-shot" ],
-      "body": "{Lung} deals the hero target with the highest HP X fire damage, where X = 1 + the number of cards in the villain trash / 2",
+      "body": "{LungCharacter} deals the hero target with the highest HP X fire damage, where X = 1 + the number of cards in the villain trash / 2",
       "flavorText": "Lung exploded. No metaphor there.",
       "flavorReference": "Gestation 1.4"
     },
