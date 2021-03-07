@@ -8,10 +8,10 @@ This project is a mod for the [digital version](https://sentinelsdigital.com/) o
 Links
 ---
 
-	* [Discord](https://discord.gg/XEkafByx2J)
-	* [Mod Trello](https://trello.com/b/msx5e8SA/parahumans-of-the-wormverse-mod)
-	* [SOTM digital modding Trello](https://trello.com/b/vYBMImbg/sotm-workshop)
-	* [SOTM digital](https://store.steampowered.com/app/337150/Sentinels_of_the_Multiverse/)
+* [Discord](https://discord.gg/XEkafByx2J)
+* [Mod Trello](https://trello.com/b/msx5e8SA/parahumans-of-the-wormverse-mod)
+* [SOTM digital modding Trello](https://trello.com/b/vYBMImbg/sotm-workshop)
+* [SOTM digital](https://store.steampowered.com/app/337150/Sentinels_of_the_Multiverse/)
 
 How do I play this?
 ---
