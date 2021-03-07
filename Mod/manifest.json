@@ -2,8 +2,8 @@
   "title": "Parahumans of the Wormverse",
   "author": "James Picone",
   "description": "Mod based on characters from JC McCrae's (Wildbow's) Parahumans universe",
-  "version": "0.1",
-  "credits": "basically like all my friends",
+  "version": "0.1.0",
+  "credits": "",
   
   "dll": "ParahumansOfTheWormverse.dll",
   "namespace": "Jp.ParahumansOfTheWormverse",

@@ -100,4 +100,9 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions />
+  <PropertyGroup>
+    <PostBuildEvent>mkdir $(SolutionDir)\ParahumansOfTheWormverse
+copy $(TargetPath) $(SolutionDir)\ParahumansOfTheWormverse
+copy $(ProjectDir)\manifest.json $(SolutionDir)\ParahumansOfTheWormverse</PostBuildEvent>
+  </PropertyGroup>
 </Project>
