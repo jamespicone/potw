@@ -16,6 +16,7 @@ using Troschuetz.Random.Generators;
 using Handelabra;
 using Boomlagoon.JSON;
 using System.Xml.XPath;
+using Jp.ParahumansOfTheWormverse.Bitch;
 
 namespace Handelabra.MyModConsole // this has to be this way to work around an EngineCommon issue, will be fixed soon.
 {
@@ -43,6 +44,12 @@ namespace Handelabra.MyModConsole // this has to be this way to work around an E
     {
         public static string GameNameToLoad = null;
 
+        public MainClass()
+        {
+            var a = Assembly.GetAssembly(typeof(BitchCharacterCardController)); // replace with your own type
+            ModHelper.AddAssembly("Jp.ParahumansOfTheWormverse", a); // replace with your own namespace
+        }
+
         private static Game ConfigureGameForTesting()
         {
             Game game = null;
@@ -51,7 +58,7 @@ namespace Handelabra.MyModConsole // this has to be this way to work around an E
             Dictionary<string, string> promos = new Dictionary<string, string>();
 
             // Set up a game how you want, stack decks, etc.
-            game = new Game(new string[] { "BaronBlade", "Bunker", "Legacy", "TheWraith", "PikeIndustrialComplex" }, advanced, promos, isChallenge: challenge);
+            game = new Game(new string[] { "Jp.ParahumansOfTheWormverse.Lung", "Bunker", "Legacy", "TheWraith", "PikeIndustrialComplex" }, advanced, promos, isChallenge: challenge);
 
             return game;
         }

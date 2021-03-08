@@ -13,7 +13,7 @@ namespace Jp.ParahumansOfTheWormverse.Lung
         {
             // "Whenever a hero is dealt fire damage by {Lung}, destroy 1 hero ongoing or equipment card.",
             AddTrigger<DealDamageAction>(
-                dda => dda.DamageType == DamageType.Fire && dda.Target.IsHeroCharacterCard && dda.CardSource.Card == CharacterCard,
+                dda => dda.DamageType == DamageType.Fire && dda.Target.IsHeroCharacterCard && dda.DamageSource.Card == CharacterCard,
                 dda => RespondToFireDamage(), 
                 TriggerType.AddStatusEffectToDamage,
                 TriggerTiming.After,

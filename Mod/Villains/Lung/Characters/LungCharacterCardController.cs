@@ -29,13 +29,12 @@ namespace Jp.ParahumansOfTheWormverse.Lung
             if (Card.IsFlipped)
             {
                 AddSideTrigger(AddReduceDamageTrigger(c => c == Card, 1));
+                AddSideTrigger(AddTrigger<PhaseChangeAction>(pca => pca.ToPhase.Phase == Phase.PlayCard && pca.ToPhase.TurnTaker.IsVillain, pca => GameController.SetPhaseActionCount(pca.ToPhase, null, GetCardSource()), TriggerType.SetPhaseActionCount, TriggerTiming.After));
                 AddSideTrigger(AddTrigger<PlayCardAction>(pca => pca.CardToPlay.IsVillain && !pca.IsPutIntoPlay, pca => PreventVillainPlays(pca), TriggerType.CancelAction, TriggerTiming.Before));
             }
             else
             {
-                // TODO: Does this actually respond to the trash being shuffled into the deck?
-                // Is that possible to listen to? Akash-buta just looks for shuffles.
-                AddSideTrigger(AddTrigger<ShuffleCardsAction>(sca => sca.Location == TurnTaker.Deck && sca.WillDrawCards, sca => FlipThisCharacterCardResponse(sca), TriggerType.FlipCard, TriggerTiming.After));
+                AddSideTrigger(AddTrigger<ShuffleTrashIntoDeckAction>(sta => sta.TurnTakerController == TurnTakerController && sta.NecessaryToPlayCard, sta => FlipLungAndBrute(sta), TriggerType.FlipCard, TriggerTiming.After));
                 
                 if (IsGameAdvanced)
                 {
@@ -44,8 +43,38 @@ namespace Jp.ParahumansOfTheWormverse.Lung
             }
         }
 
+        public IEnumerator FlipLungAndBrute(ShuffleTrashIntoDeckAction sta)
+        {
+            var e = CancelAction(sta);
+            if (UseUnityCoroutines)
+            {
+                yield return GameController.StartCoroutine(e);
+            }
+            else
+            {
+                GameController.ExhaustCoroutine(e);
+            }
+
+            var flipCards = new List<CardController>();
+            flipCards.Add(FindCardController(FindCard("BruteInstructions", realCardsOnly: false)));
+            flipCards.Add(this);
+
+            e = GameController.FlipCards(flipCards, GetCardSource());
+            if (UseUnityCoroutines)
+            {
+                yield return GameController.StartCoroutine(e);
+            }
+            else
+            {
+                GameController.ExhaustCoroutine(e);
+            }
+        }
+
         public override IEnumerator AfterFlipCardImmediateResponse()
         {
+            // yuck
+            base.AfterFlipCardImmediateResponse();
+
             if (IsGameAdvanced)
             {
                 var e2 = GameController.GameOver(EndingResult.AlternateDefeat, "Lung flipped", cardSource: GetCardSource());

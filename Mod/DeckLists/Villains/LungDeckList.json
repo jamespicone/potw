@@ -14,7 +14,7 @@
       "nemesisIdentifiers": [ "Skitter" ],
       "backgroundColor": "ffffff",
       "setup": [ "At the start of the game {Lung} enters play Gang Leader side up. Put [i]Brute[/i] into play, Gang Leader side up." ],
-      "gameplay": [ "When the villain trash is shuffled into the villain deck, flip [i]Brute[/i], and flip {Lung}." ],
+      "gameplay": [ "When the villain deck is empty and a villain card would be played, flip [i]Brute[/i], and flip {Lung}." ],
       "flippedIcons": [],
       "openingLines": {
         "default": "blargh"
@@ -24,7 +24,7 @@
       "advancedIcons": "",
       "flippedBody": "Dragon Awoken",
       "flippedGameplay": [
-        "When flipped to this side, destroy all villain cards in play and put all cards in the villain deck into the villain trash.",
+        "When flipped to this side, destroy all noncharacter villain cards in play and put all cards in the villain deck into the villain trash.",
         "Villain cards cannot be played.",
         "Reduce damage dealt to Lung by 1."
       ],
@@ -132,7 +132,7 @@
       "keywords": [ "parahuman" ],
       "count": 1,
       "body": [
-        "At the start of the villain turn, reveal the top card of the villain deck:{BR}- If it is a One-Shot, {Bakuda} deals 5 fire damage to all non-villain targets.{BR}- If it is an Ongoing, each hero discards 1 card.{BR}- If it is a target, the hero with the most cards in play destroys all of them",
+        "At the start of the villain turn, reveal the top card of the villain deck:{BR}- If it is a One-Shot, {Bakuda} deals 5 fire damage to all non-villain targets.{BR}- If it is an Ongoing, each hero discards 1 card.{BR}- If it is a target, the hero with the most cards in play destroys all their noncharacter cards",
         "Shuffle the revealed card back into the villain deck"
       ],
       "flavorText": "Behind their assembled group,{BR}an altered grenade launcher danging{BR}from one strap around her shoulders,{BR}was Bakuda.",

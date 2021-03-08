@@ -10,6 +10,10 @@ namespace Jp.ParahumansOfTheWormverse.Lung
     {
         public BakudaCardController(Card card, TurnTakerController controller) : base(card, controller)
         {
+        }
+
+        public override void AddTriggers()
+        {
             /*
                 "At the start of the villain turn, reveal the top card of the villain deck.",
                 "If it is a One-Shot, {Bakuda} deals 5 fire damage to all non-villain targets.",

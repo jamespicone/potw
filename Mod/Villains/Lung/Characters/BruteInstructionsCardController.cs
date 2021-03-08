@@ -78,6 +78,16 @@ namespace Jp.ParahumansOfTheWormverse.Lung
             }
             else
             {
+                e = GameController.PlayTopCard(DecisionMaker, TurnTakerController, cardSource: GetCardSource());
+                if (UseUnityCoroutines)
+                {
+                    yield return GameController.StartCoroutine(e);
+                }
+                else
+                {
+                    GameController.ExhaustCoroutine(e);
+                }
+
                 /*
                   {Lung} deals X melee damage to all hero targets, where X = 1 + the number of cards in the villain trash / 5, then,
                     - If there are 5 or more cards in the villain trash, {Lung} regains 1 HP, then,
@@ -130,12 +140,11 @@ namespace Jp.ParahumansOfTheWormverse.Lung
                 yield break;
             }
 
-            if (! (GetCardPropertyJournalEntryBoolean("DamagePrevented") ?? false))
+            if (Journal.DealDamageEntriesThisRound().Where(j => j.TargetCard == TurnTaker.CharacterCard).Count() > 0)
             {
                 yield break;
             }
 
-            SetCardPropertyToTrueIfRealAction("DamagePrevented");
             var e = GameController.ReduceDamage(action, 1, damageReduceTrigger, cardSource: GetCardSource());
             if (UseUnityCoroutines)
             {

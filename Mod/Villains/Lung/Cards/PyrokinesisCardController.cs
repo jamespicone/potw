@@ -13,7 +13,7 @@ namespace Jp.ParahumansOfTheWormverse.Lung
         {
             // Whenever {Lung} deals melee damage to a target, {Lung} deals 2 fire damage to that target
             AddTrigger<DealDamageAction>(
-                dda => dda.DamageType == DamageType.Melee && dda.CardSource.Card == CharacterCard,
+                dda => dda.DamageType == DamageType.Melee && dda.DamageSource.Card == CharacterCard,
                 dda => RespondToMeleeDamage(dda),
                 TriggerType.DealDamage,
                 TriggerTiming.After,

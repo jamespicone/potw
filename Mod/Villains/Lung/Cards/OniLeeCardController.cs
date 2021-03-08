@@ -30,8 +30,25 @@ namespace Jp.ParahumansOfTheWormverse.Lung
 
         public IEnumerator RevealAndPreventResponse(DealDamageAction dda)
         {
+            IEnumerator e;
+
+            // TODO: If the DDA is pretend we want to show up in the preview as unsure
+            if (dda.IsPretend)
+            {
+                e = CancelAction(dda, isPreventEffect: true);
+                if (UseUnityCoroutines)
+                {
+                    yield return GameController.StartCoroutine(e);
+                }
+                else
+                {
+                    GameController.ExhaustCoroutine(e);
+                }
+                yield break;
+            }
+
             var storedResults = new List<Card>();
-            var e = GameController.RevealCards(TurnTakerController, TurnTaker.Deck, 1, storedResults, revealedCardDisplay: RevealedCardDisplay.ShowRevealedCards, cardSource: GetCardSource());
+            e = GameController.RevealCards(TurnTakerController, TurnTaker.Deck, 1, storedResults, revealedCardDisplay: RevealedCardDisplay.ShowRevealedCards, cardSource: GetCardSource());
             if (UseUnityCoroutines)
             {
                 yield return GameController.StartCoroutine(e);

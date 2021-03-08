@@ -15,7 +15,7 @@ namespace Jp.ParahumansOfTheWormverse.Lung
         {
             // Fire damage dealt by {Lung} is irreducible
             // TODO: Should I be checking identifiers?
-            AddMakeDamageIrreducibleTrigger(dda => dda.DamageType == DamageType.Fire && dda.CardSource.Card == TurnTaker.CharacterCard);
+            AddMakeDamageIrreducibleTrigger(dda => dda.DamageType == DamageType.Fire && dda.DamageSource.Card == TurnTaker.CharacterCard);
         }
     }
 }

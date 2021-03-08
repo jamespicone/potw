@@ -74,7 +74,7 @@ namespace Jp.ParahumansOfTheWormverse.Bitch
                 }
             }
 
-            e = CleanupRevealedCards(TurnTaker.Revealed, deck.SelectedLocation.Location, shuffleAfterwards: true);
+            e = CleanupRevealedCards(deck.SelectedLocation.Location.OwnerTurnTaker.Revealed, deck.SelectedLocation.Location, shuffleAfterwards: true);
             if (UseUnityCoroutines)
             {
                 yield return GameController.StartCoroutine(e);
