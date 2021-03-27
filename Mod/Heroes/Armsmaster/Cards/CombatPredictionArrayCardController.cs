@@ -27,8 +27,10 @@ namespace Jp.ParahumansOfTheWormverse.Armsmaster
             }
 
             var selectedLocation = GetSelectedLocation(storedLocation);
-            if (selectedLocation == null) { yield break;  }
+            if (selectedLocation == null) { yield break; }
 
+            // TODO: This repeatedly asks what card you want to put "on top of the deck" which is a bit confusing
+            // Ideally should ask for top/second from top
             e = RevealThreeCardsFromTopOfDeck_DetermineTheirLocation(
                 HeroTurnTakerController,
                 TurnTakerController,
@@ -64,7 +66,7 @@ namespace Jp.ParahumansOfTheWormverse.Armsmaster
             // Until the start of your next turn reduce damage dealt to Armsmaster by villain cards by 1
             ReduceDamageStatusEffect status = new ReduceDamageStatusEffect(1);
             status.SourceCriteria.IsVillain = true;
-            status.TargetCriteria.IsSpecificCard = Card;
+            status.TargetCriteria.IsSpecificCard = CharacterCard;
             status.UntilStartOfNextTurn(TurnTaker);
 
             var e = AddStatusEffect(status);

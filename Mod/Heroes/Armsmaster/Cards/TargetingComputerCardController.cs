@@ -70,13 +70,105 @@ namespace Jp.ParahumansOfTheWormverse.Armsmaster
             else
             {
                 GameController.ExhaustCoroutine(e);
-            }            
+            }
+        }
+
+        public IEnumerator HandleSecondaryStatus(PhaseChangeAction unused, OnPhaseChangeStatusEffect sourceEffect)
+        {
+            Debug.Log("HandleSecondaryStatus top");
+
+            var target = sourceEffect.TargetLeavesPlayExpiryCriteria.IsOneOfTheseCards.FirstOrDefault();
+            if (target == null) { yield break; }
+            if (CharacterCard.IsIncapacitatedOrOutOfGame || !target.IsTarget || !target.IsInPlayAndNotUnderCard) { yield break; }
+            if (GameController.IsCardVisibleToCardSource(target, GetCardSource(sourceEffect)))
+            {
+                var e = GameController.DealDamageToTarget(
+                    new DamageSource(GameController, CharacterCard),
+                    target,
+                    4,
+                    DamageType.Projectile
+                );
+                if (UseUnityCoroutines)
+                {
+                    yield return GameController.StartCoroutine(e);
+                }
+                else
+                {
+                    GameController.ExhaustCoroutine(e);
+                }
+            }
+            else
+            {
+                var e = GameController.SendMessageAction(
+                    $"{target.Title} is no longer visible",
+                    Priority.Medium,
+                    GetCardSource(),
+                    new[] { target },
+                    showCardSource: true
+                );
+                if (UseUnityCoroutines)
+                {
+                    yield return GameController.StartCoroutine(e);
+                }
+                else
+                {
+                    GameController.ExhaustCoroutine(e);
+                }
+            }
         }
 
         public override IEnumerator DoSecondary()
         {
             // Select a target. At the start of Armsmaster's next turn, he deals that target 4 projectile damage
-            yield break;
+            var targets = GameController.FindTargetsInPlay();
+            var storedTargets = new List<SelectTargetDecision>();
+            var e = GameController.SelectTargetAndStoreResults(
+                HeroTurnTakerController,
+                targets,
+                storedTargets,
+                damageSource: CharacterCard,
+                damageAmount: c => 4,
+                damageType: DamageType.Projectile,
+                cardSource: GetCardSource()
+            );
+            if (UseUnityCoroutines)
+            {
+                yield return GameController.StartCoroutine(e);
+            }
+            else
+            {
+                GameController.ExhaustCoroutine(e);
+            }
+
+            Card target = storedTargets.FirstOrDefault()?.SelectedCard;
+            if (target == null) { yield break; }
+
+            var effect = new OnPhaseChangeStatusEffect(
+                Card,
+                nameof(HandleSecondaryStatus),
+                $"At the start of {CharacterCard.Title}'s next turn, he deals 4 projectile damage to {target.Title}",
+                new[] { TriggerType.DealDamage },
+                Card
+            );
+            effect.UntilEndOfNextTurn(HeroTurnTaker);
+            effect.TurnTakerCriteria.IsSpecificTurnTaker = HeroTurnTaker;
+            effect.UntilTargetLeavesPlay(target);
+            effect.TurnPhaseCriteria.Phase = Phase.Start;
+            effect.BeforeOrAfter = BeforeOrAfter.After;
+            effect.CanEffectStack = true;
+            effect.CardSource = Card;
+            effect.NumberOfUses = 1;
+            effect.DoesDealDamage = true;
+
+            e = AddStatusEffect(effect);
+            if (UseUnityCoroutines)
+            {
+                yield return GameController.StartCoroutine(e);
+            }
+            else
+            {
+                GameController.ExhaustCoroutine(e);
+            }
         }
     }
 }

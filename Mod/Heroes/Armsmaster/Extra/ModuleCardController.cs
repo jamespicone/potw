@@ -55,6 +55,7 @@ namespace Jp.ParahumansOfTheWormverse.Armsmaster
             {
                 foreach (var c in ownerCard.GetAllNextToCards(false))
                 {
+                    if (c == Card) { continue; }
                     if (IsPrimaryModule(GameController, c))
                     {
                         primaryAllowed = false;
