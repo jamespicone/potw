@@ -14,7 +14,24 @@ namespace Jp.ParahumansOfTheWormverse.Armsmaster
 
         public override IEnumerator UsePower(int index = 0)
         {
-            var e = this.DoHalberdAction();
+            // You may destroy an environment card.
+            var e = GameController.SelectAndDestroyCard(
+                HeroTurnTakerController,
+                new LinqCardCriteria(c => c.IsEnvironment, "Environment"),
+                optional: true,
+                responsibleCard: Card,
+                cardSource: GetCardSource()
+            );
+            if (UseUnityCoroutines)
+            {
+                yield return GameController.StartCoroutine(e);
+            }
+            else
+            {
+                GameController.ExhaustCoroutine(e);
+            }
+
+            e = this.DoHalberdAction();
             if (UseUnityCoroutines)
             {
                 yield return GameController.StartCoroutine(e);

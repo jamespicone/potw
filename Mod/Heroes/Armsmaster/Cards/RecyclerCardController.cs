@@ -28,8 +28,24 @@ namespace Jp.ParahumansOfTheWormverse.Armsmaster
 
         public override IEnumerator DoSecondary()
         {
-            // Activate the [u]Secondary[/u] text of another Module attached to the card this card is attached to
-            yield break;
+            // Activate the [u]Secondary[/u] text of another Module attached to the card this card is attached tos
+            var ownerCard = Card.Location.OwnerCard;
+            if (ownerCard == null) { yield break; }
+
+            var e = GameController.SelectAndActivateAbility(
+                HeroTurnTakerController,
+                "secondary",
+                new LinqCardCriteria(c => c.DoKeywordsContain("module") && ownerCard.GetAllNextToCards(false).Contains(c) && c != Card),
+                cardSource: GetCardSource()
+            );
+            if (UseUnityCoroutines)
+            {
+                yield return GameController.StartCoroutine(e);
+            }
+            else
+            {
+                GameController.ExhaustCoroutine(e);
+            }
         }
     }
 }

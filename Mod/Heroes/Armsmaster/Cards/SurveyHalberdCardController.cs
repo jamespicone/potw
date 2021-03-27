@@ -14,7 +14,18 @@ namespace Jp.ParahumansOfTheWormverse.Armsmaster
 
         public override IEnumerator UsePower(int index = 0)
         {
-            var e = this.DoHalberdAction();
+            // Draw a card.
+            var e = DrawCard(HeroTurnTaker);
+            if (UseUnityCoroutines)
+            {
+                yield return GameController.StartCoroutine(e);
+            }
+            else
+            {
+                GameController.ExhaustCoroutine(e);
+            }
+
+            e = this.DoHalberdAction();
             if (UseUnityCoroutines)
             {
                 yield return GameController.StartCoroutine(e);

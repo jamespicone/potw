@@ -14,7 +14,27 @@ namespace Jp.ParahumansOfTheWormverse.Armsmaster
 
         public override IEnumerator UsePower(int index = 0)
         {
-            var e = this.DoHalberdAction();
+            // Armsmaster may deal 2 melee damage to a target.
+            var e = GameController.SelectTargetsAndDealDamage(
+                HeroTurnTakerController,
+                new DamageSource(GameController, CharacterCard),
+                2,
+                DamageType.Melee,
+                1,
+                optional: false,
+                0,
+                cardSource: GetCardSource()
+            );
+            if (UseUnityCoroutines)
+            {
+                yield return GameController.StartCoroutine(e);
+            }
+            else
+            {
+                GameController.ExhaustCoroutine(e);
+            }
+
+            e = this.DoHalberdAction();
             if (UseUnityCoroutines)
             {
                 yield return GameController.StartCoroutine(e);

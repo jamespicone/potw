@@ -15,7 +15,48 @@ namespace Jp.ParahumansOfTheWormverse.Armsmaster
         public override IEnumerator DoPrimary()
         {
             // Reveal the top 3 cards of the villain deck and put them back in any order
-            yield break;
+            var storedLocation = new List<SelectLocationDecision>();
+            var e = FindVillainDeck(HeroTurnTakerController, SelectionType.RevealCardsFromDeck, storedLocation, l => l.IsVillain);
+            if (UseUnityCoroutines)
+            {
+                yield return GameController.StartCoroutine(e);
+            }
+            else
+            {
+                GameController.ExhaustCoroutine(e);
+            }
+
+            var selectedLocation = GetSelectedLocation(storedLocation);
+            if (selectedLocation == null) { yield break;  }
+
+            e = RevealThreeCardsFromTopOfDeck_DetermineTheirLocation(
+                HeroTurnTakerController,
+                TurnTakerController,
+                selectedLocation,
+                selectedLocation,
+                selectedLocation,
+                firstOnBottom: false,
+                secondAndThirdToBottom: false,
+                responsibleTurnTaker: TurnTaker
+            );
+            if (UseUnityCoroutines)
+            {
+                yield return GameController.StartCoroutine(e);
+            }
+            else
+            {
+                GameController.ExhaustCoroutine(e);
+            }
+
+            e = CleanupRevealedCards(selectedLocation.OwnerTurnTaker.Revealed, selectedLocation);
+            if (UseUnityCoroutines)
+            {
+                yield return GameController.StartCoroutine(e);
+            }
+            else
+            {
+                GameController.ExhaustCoroutine(e);
+            }
         }
 
         public override IEnumerator DoSecondary()
