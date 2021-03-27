@@ -41,20 +41,19 @@ namespace Jp.ParahumansOfTheWormverse.Armsmaster
             {
                 GameController.ExhaustCoroutine(e);
             }
+        }
 
-            if (storedResults.Count <= 0 || ! storedResults.First().Location.IsNextToCard)
-            {
-                yield break;
-            }
-
-            var targetCard = storedResults.First().Location.TopCard;
-
+        public override IEnumerator Play()
+        {
+            var ownerCard = Card.Location.OwnerCard;
+            if (ownerCard == null) { yield break; }
+            
             bool primaryAllowed = true;
             bool secondaryAllowed = true;
 
-            if (targetCard != CharacterCard)
+            if (ownerCard != CharacterCard)
             {
-                foreach(var c in targetCard.GetAllNextToCards(false))
+                foreach (var c in ownerCard.GetAllNextToCards(false))
                 {
                     if (IsPrimaryModule(GameController, c))
                     {
@@ -71,7 +70,7 @@ namespace Jp.ParahumansOfTheWormverse.Armsmaster
             if (primaryAllowed && secondaryAllowed)
             {
                 var primarySecondary = new List<SelectWordDecision>();
-                e = GameController.SelectWord(
+                var e = GameController.SelectWord(
                     HeroTurnTakerController,
                     new string[] { "Primary", "Secondary" },
                     SelectionType.MakeDecision,

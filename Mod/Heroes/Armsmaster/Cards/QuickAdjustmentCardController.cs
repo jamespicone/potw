@@ -27,7 +27,7 @@ namespace Jp.ParahumansOfTheWormverse.Armsmaster
             var e = GameController.SelectCardAndStoreResults(
                 HeroTurnTakerController,
                 SelectionType.ReturnToHand,
-                new LinqCardCriteria(c => c.DoKeywordsContain("module"), "Module"),
+                new LinqCardCriteria(c => c.IsInPlayAndHasGameText && c.DoKeywordsContain("module"), "Module"),
                 storedCard,
                 optional: false,
                 cardSource: GetCardSource()
