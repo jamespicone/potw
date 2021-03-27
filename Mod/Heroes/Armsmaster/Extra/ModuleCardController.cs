@@ -73,7 +73,7 @@ namespace Jp.ParahumansOfTheWormverse.Armsmaster
                 var e = GameController.SelectWord(
                     HeroTurnTakerController,
                     new string[] { "Primary", "Secondary" },
-                    SelectionType.MakeDecision,
+                    SelectionType.Custom,
                     primarySecondary,
                     optional: false,
                     new Card[] { Card },
@@ -102,6 +102,16 @@ namespace Jp.ParahumansOfTheWormverse.Armsmaster
             {
                 SetCardProperty(PrimarySecondaryKey, primaryAllowed);
             }
+        }
+
+        public override CustomDecisionText GetCustomDecisionText(IDecision decision)
+        {
+            return new CustomDecisionText(
+                "Attach module as Primary or Secondary?",
+                HeroTurnTaker.NameRespectingVariant + " is selecting module type",
+                "Vote for attaching the module as Primary or Secondary",
+                "Attach module as Primary or Secondary?"
+            );
         }
 
         public abstract IEnumerator DoPrimary();
