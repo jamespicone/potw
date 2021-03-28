@@ -31,8 +31,8 @@
         "Armsmaster may deal 2 melee damage to a target. You may activate a [u]Primary[/u] text on a Module attached to this card as Primary. You may activate a [u]Secondary[/u] text on a Module attached to this card as Secondary"
       ],
       "body": "Modules may be attached to this card; one primary and one secondary",
-      "flavorText": "",
-      "flavorReference": "",
+      "flavorText": "His trademark and weapon was{BR}his Halberd, which was basically a spear{BR}with an axe head on the end",
+      "flavorReference": "Gestation 1.6",
       "count": 1
     },
     {
@@ -43,8 +43,13 @@
         "Draw a card. You may activate a [u]Primary[/u] text on a Module attached to this card as Primary. You may activate a [u]Secondary[/u] text on a Module attached to this card as Secondary"
       ],
       "body": "Modules may be attached to this card; one primary and one secondary",
-      "flavorText": "",
-      "flavorReference": "",
+      "flavorQuotes": [
+        {
+          "identifier": "Tattletale",
+          "text": "Let's see... to deal with my buddy Grue, you've made that thing a fancy tuning stick"
+        }
+      ],
+      "flavorReference": "Tattletale, Tangle 6.6",
       "count": 1
     },
     {
@@ -55,8 +60,8 @@
         "Armsmaster may deal 1 irreducible energy damage to a target. You may activate a [u]Primary[/u] text on a Module attached to this card as Primary. You may activate a [u]Secondary[/u] text on a Module attached to this card as Secondary"
       ],
       "body": "Modules may be attached to this card; one primary and one secondary",
-      "flavorText": "",
-      "flavorReference": "",
+      "flavorText": "The head was surrounded by a strange{BR}blur that seemed static, unmoving{BR}around the blade and point",
+      "flavorReference": "Extermination 8.4",
       "count": 1
     },
     {
@@ -67,8 +72,8 @@
         "You may destroy an environment card. You may activate a [u]Primary[/u] text on a Module attached to this card as Primary. You may activate a [u]Secondary[/u] text on a Module attached to this card as Secondary"
       ],
       "body": "Modules may be attached to this card; one primary and one secondary",
-      "flavorText": "",
-      "flavorReference": "",
+      "flavorText": "It looked as though he flew up onto{BR}the roof, but the six-foot long weapon{BR}the man held kind of jerked as he landed.",
+      "flavorReference": "Gestation 1.6",
       "count": 1
     },
     {
@@ -78,9 +83,8 @@
       "body": [
         "Reveal cards from the top of your deck or your trash until you reveal a Halberd. Either put it into play or into your hand. Return the other cards and shuffle your deck."
       ],
-      "flavorQuotes": [
-      ],
-      "flavorReference": "",
+      "flavorText": "It disappeared into a storm of glowing{BR}blue lines as it reached the peak of{BR}its ascent, simultaneously rematerializing{BR}in his hand.",
+      "flavorReference": "Tangle 6.7",
       "count": 4
     },
     {
@@ -90,9 +94,8 @@
       "body": [
         "Search your deck for an Equipment card and either put it into play or into your hand. Shuffle your deck."
       ],
-      "flavorQuotes": [
-      ],
-      "flavorReference": "",
+      "flavorText": "A set of Halberds were placed on a {BR}rack behind Armsmaster's desk, one{BR}shattered in pieces.",
+      "flavorReference": "Interlude 7",
       "count": 4
     },
     {
@@ -102,8 +105,8 @@
       "body": [
         "Use a power on a Halberd"
       ],
-      "flavorText": "",
-      "flavorReference": "",
+      "flavorText": "Armsmaster fighting toe to toe with{BR}Leviathan, a Halberd in each hand",
+      "flavorReference": "Extermination 8.4",
       "count": 4
     },
     {
@@ -115,8 +118,12 @@
         "Whenever an Equipment card would be destroyed you may destroy this card instead"
       ],
       "flavorQuotes": [
+        {
+          "identifier": "Tattletale",
+          "text": "Armsmaster told him to wear ear buds,{BR}so Dauntless can't hear anyone but him.{BR}That's both brilliant{BR}and incredibly depressing."
+        }
       ],
-      "flavorReference": "",
+      "flavorReference": "Tattletale, Tangle 6.7",
       "count": 4
     },
     {
@@ -136,8 +143,8 @@
           "text": "Destroy an Environment card"
         }
       ],
-      "flavorText": "",
-      "flavorReference": "",
+      "flavorText": "The system used light for its circuits,{BR}rather than electricity, and it generated{BR}a lot of heat as a byproduct",
+      "flavorReference": "Teneral e.3",
       "count": 2
     },
     {
@@ -157,8 +164,13 @@
           "text": "Until the start of your next turn reduce damage dealt to Armsmaster by villain cards by 1"
         }
       ],
-      "flavorText": "",
-      "flavorReference": "",
+      "flavorQuotes": [
+        {
+          "identifier": "Armsmaster",
+          "text": "I know exactly what you're going to do{BR}next. You're going to try to catch me{BR}from behind with a wave."
+        }
+      ],
+      "flavorReference": "Armsmaster, Extermination 8.4",
       "count": 2
     },
     {
@@ -178,8 +190,8 @@
           "text": "Activate the [u]Secondary[/u] text of another Module attached to the card this card is attached to"
         }
       ],
-      "flavorText": "",
-      "flavorReference": "",
+      "flavorText": "Efficiency, detail and effective use{BR}of waste were critical aspects of{BR}his particular brand of tinkering",
+      "flavorReference": "Teneral e.3",
       "count": 2
     },
     {
@@ -199,8 +211,13 @@
           "text": "Armsmaster regains 2 HP"
         }
       ],
-      "flavorText": "",
-      "flavorReference": "",
+      "flavorQuotes": [
+        {
+          "identifier": "Skitter",
+          "text": "What I think is that the tranquilizers{BR}that you pumped into his system{BR}knocked out his ability to heal"
+        }
+      ],
+      "flavorReference": "Skitter, Agitation 3.5",
       "count": 2
     },
     {
@@ -220,8 +237,8 @@
           "text": "Destroy an Ongoing card"
         }
       ],
-      "flavorText": "",
-      "flavorReference": "",
+      "flavorText": "He whipped the chain to shift the sphere's{BR}trajectory, and simultaneously opened it{BR}into its oversized grappling hook form.",
+      "flavorReference": "Tangle 6.6",
       "count": 2
     },
     {
@@ -241,8 +258,13 @@
           "text": "A hero other than Armsmaster may play a card"
         }
       ],
-      "flavorText": "",
-      "flavorReference": "",
+      "flavorQuotes": [
+        {
+          "identifier": "Armsmaster",
+          "text": "Let's see how quickly you respond to {BR}classical conditioning. Every time you try{BR}to run, I'll do something like that."
+        }
+      ],
+      "flavorReference": "Armsmaster, Extermination 8.4",
       "count": 2
     },
     {
@@ -262,8 +284,13 @@
           "text": "Destroy a target with 4 or less HP"
         }
       ],
-      "flavorText": "",
-      "flavorReference": "",
+      "flavorQuotes": [
+        {
+          "identifier": "Armsmaster",
+          "text": "For the record, that last trick was a temporal stasis trigger"
+        }
+      ],
+      "flavorReference": "Armsmaster, Extermination 8.4",
       "count": 2
     },
     {
@@ -283,8 +310,8 @@
           "text": "Select a target. At the start of Armsmaster's next turn, he deals that target 4 projectile damage"
         }
       ],
-      "flavorText": "",
-      "flavorReference": "",
+      "flavorText": "The lens of his right eye clicked through{BR}multiple frequencies and resolutions,{BR}until the scene stood out in high detail.",
+      "flavorReference": "Interlude 16",
       "count": 2
     },
     {
@@ -304,8 +331,8 @@
           "text": "Armsmaster deals 1 lightning damage to all targets with 3 or less HP"
         }
       ],
-      "flavorText": "",
-      "flavorReference": "",
+      "flavorText": "The entire cafeteria flinched at{BR}the crackle of electricity{BR}that ripped through the air{BR}around him",
+      "flavorReference": "Chrysalis 20.5",
       "count": 2
     },
     {
@@ -325,8 +352,8 @@
           "text": "A hero other than Armsmaster may play a card"
         }
       ],
-      "flavorText": "",
-      "flavorReference": "",
+      "flavorText": "They could communicate without talking.{BR}Some kind of system built into their masks.",
+      "flavorReference": "Cell 22.5",
       "count": 2
     }
   ]
