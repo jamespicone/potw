@@ -58,6 +58,12 @@
       <HintPath>C:\Program Files (x86)\Steam\steamapps\common\Sentinels of the Multiverse\Sentinels_Data\Managed\SentinelsEngine.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="UnityEngine">
+      <HintPath>C:\Program Files (x86)\Steam\steamapps\common\Sentinels of the Multiverse\Sentinels_Data\Managed\UnityEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.CoreModule">
+      <HintPath>C:\Program Files (x86)\Steam\steamapps\common\Sentinels of the Multiverse\Sentinels_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
@@ -72,6 +78,27 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Heroes\Armsmaster\Cards\CommunicatorCardController.cs" />
+    <Compile Include="Heroes\Armsmaster\Cards\StaticFieldGeneratorCardController.cs" />
+    <Compile Include="Heroes\Armsmaster\Cards\TargetingComputerCardController.cs" />
+    <Compile Include="Heroes\Armsmaster\Cards\StasisEffectorCardController.cs" />
+    <Compile Include="Heroes\Armsmaster\Cards\AcceleratorCardController.cs" />
+    <Compile Include="Heroes\Armsmaster\Cards\GrappleCardController.cs" />
+    <Compile Include="Heroes\Armsmaster\Cards\MedicatorCardController.cs" />
+    <Compile Include="Heroes\Armsmaster\Cards\RecyclerCardController.cs" />
+    <Compile Include="Heroes\Armsmaster\Cards\CombatPredictionArrayCardController.cs" />
+    <Compile Include="Heroes\Armsmaster\Cards\FlamethrowerCardController.cs" />
+    <Compile Include="Heroes\Armsmaster\Cards\QuickAdjustmentCardController.cs" />
+    <Compile Include="Heroes\Armsmaster\Cards\DualWieldingCardController.cs" />
+    <Compile Include="Heroes\Armsmaster\Cards\EquipmentStashCardController.cs" />
+    <Compile Include="Heroes\Armsmaster\Cards\ReturnInAFlashCardController.cs" />
+    <Compile Include="Heroes\Armsmaster\Cards\GrappleHalberdCardController.cs" />
+    <Compile Include="Heroes\Armsmaster\Cards\ExperimentalHalberdCardController.cs" />
+    <Compile Include="Heroes\Armsmaster\Cards\SurveyHalberdCardController.cs" />
+    <Compile Include="Heroes\Armsmaster\Cards\OriginalHalberdCardController.cs" />
+    <Compile Include="Heroes\Armsmaster\Characters\ArmsmasterCharacterCardController.cs" />
+    <Compile Include="Heroes\Armsmaster\Extra\HalberdExtensions.cs" />
+    <Compile Include="Heroes\Armsmaster\Extra\ModuleCardController.cs" />
     <Compile Include="Heroes\Bitch\Cards\BastardCardController.cs" />
     <Compile Include="Heroes\Bitch\Cards\FindCardController.cs" />
     <Compile Include="Heroes\Bitch\Cards\FetchCardController.cs" />
@@ -109,7 +136,6 @@
     <Compile Include="Villains\Lung\Characters\LungTurnTakerController.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="DeckLists\Villains\LungDeckList.json" />
     <None Include="manifest.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
