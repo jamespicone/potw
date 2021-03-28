@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using UnityEngine;
 
 namespace Jp.ParahumansOfTheWormverse.Armsmaster
 {
@@ -33,12 +34,18 @@ namespace Jp.ParahumansOfTheWormverse.Armsmaster
 
             if (GetNumberOfCardsDiscarded(discardResults) < 2) { yield break; }
 
-            var cannotPlayCardsEffect = new CannotPlayCardsStatusEffect();
-            // TODO: This doesn't work. CannotPlayCards status effects don't subtract from NumberOfUses
-            // Might have to change the wording.
-            cannotPlayCardsEffect.NumberOfUses = 1;
+            var cannotPlayCardsEffect = new OnPhaseChangeStatusEffect(
+                Card,
+                nameof(HandlePreventVillainCards),
+                $"Skip the next villain play phase",
+                new[] { TriggerType.PreventPhaseAction },
+                Card
+            );
             cannotPlayCardsEffect.TurnTakerCriteria.IsVillain = true;
+            cannotPlayCardsEffect.TurnPhaseCriteria.Phase = Phase.PlayCard;
+            cannotPlayCardsEffect.CanEffectStack = true;
             cannotPlayCardsEffect.CardSource = Card;
+            cannotPlayCardsEffect.NumberOfUses = 1;
 
             e = AddStatusEffect(cannotPlayCardsEffect);
             if (UseUnityCoroutines)
@@ -71,6 +78,41 @@ namespace Jp.ParahumansOfTheWormverse.Armsmaster
         {
             // Destroy a target with 4 or less HP
             var e = GameController.SelectAndDestroyCard(HeroTurnTakerController, new LinqCardCriteria(c => c.IsTarget && c.HitPoints <= 4), optional: false, responsibleCard: Card, cardSource: GetCardSource());
+            if (UseUnityCoroutines)
+            {
+                yield return GameController.StartCoroutine(e);
+            }
+            else
+            {
+                GameController.ExhaustCoroutine(e);
+            }
+        }
+
+        public IEnumerator HandlePreventVillainCards(PhaseChangeAction phase, OnPhaseChangeStatusEffect sourceEffect)
+        {
+            // TODO: This seems to fire even if some other effect has cancelled the turn,
+            // even if it's another instance of the status effect (or at least it expires).
+            //
+            // Not sure why.
+            //
+            if (!phase.ToPhase.IsVillain) { yield break; }
+            if (!phase.ToPhase.IsPlayCard) { yield break; }
+            if (!phase.ToPhase.CanPerformAction) { yield break; }
+            if (phase.ToPhase.WasSkipped) { yield break; }
+            if (phase.ToPhase.PhaseActionCountRoot == null) { yield break; }
+
+            var turnsLeft = (phase.ToPhase.PhaseActionCountRoot ?? 0) + (phase.ToPhase.PhaseActionCountModifiers ?? 0);
+            if (turnsLeft <= 0) { yield break; }
+
+            sourceEffect.NumberOfUses--;
+
+            if (sourceEffect.NumberOfUses < 0)
+            {
+                sourceEffect.UntilEndOfPhase(phase.ToPhase.TurnTaker, phase.ToPhase.Phase);
+            }
+
+            Debug.Log("HandlePreventVillainCards Preventing phase action");
+            var e = GameController.PreventPhaseAction(phase.ToPhase, cardSource: GetCardSource());
             if (UseUnityCoroutines)
             {
                 yield return GameController.StartCoroutine(e);

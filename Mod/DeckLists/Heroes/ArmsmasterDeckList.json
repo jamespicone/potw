@@ -255,7 +255,7 @@
       "activatableAbilities": [
         {
           "name": "primary",
-          "text": "Discard 2 cards. If you do, the next time a villain card would be played prevent it; and until the start of your next turn all villain character cards are immune to damage"
+          "text": "Discard 2 cards. If you do, skip the next villain play phase; and until the start of your next turn all villain character cards are immune to damage"
         },
         {
           "name": "secondary",

@@ -75,8 +75,6 @@ namespace Jp.ParahumansOfTheWormverse.Armsmaster
 
         public IEnumerator HandleSecondaryStatus(PhaseChangeAction unused, OnPhaseChangeStatusEffect sourceEffect)
         {
-            Debug.Log("HandleSecondaryStatus top");
-
             var target = sourceEffect.TargetLeavesPlayExpiryCriteria.IsOneOfTheseCards.FirstOrDefault();
             if (target == null) { yield break; }
             if (CharacterCard.IsIncapacitatedOrOutOfGame || !target.IsTarget || !target.IsInPlayAndNotUnderCard) { yield break; }
