@@ -73,8 +73,14 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="DeckLists\**\*.json">
-      <LogicalName>Jp.ParahumansOfTheWormverse.DeckLists.%(EmbeddedResource.FileName).json</LogicalName>
+    <EmbeddedResource Include="DeckLists\Heroes\ArmsmasterDeckList.json">
+      <LogicalName>Jp.ParahumansOfTheWormverse.DeckLists.ArmsmasterDeckList.json</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DeckLists\Heroes\BitchDeckList.json">
+      <LogicalName>Jp.ParahumansOfTheWormverse.DeckLists.BitchDeckList.json</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DeckLists\Villains\LungDeckList.json">
+      <LogicalName>Jp.ParahumansOfTheWormverse.DeckLists.LungDeckList.json</LogicalName>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
@@ -136,6 +142,9 @@
     <Compile Include="Villains\Lung\Characters\LungTurnTakerController.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="DeckLists\Heroes\BatteryDeckList.json" />
+    <None Include="DeckLists\Villains\LeviathanDeckList.json" />
+    <None Include="DeckLists\Villains\TheSimurghDeckList.json" />
     <None Include="manifest.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

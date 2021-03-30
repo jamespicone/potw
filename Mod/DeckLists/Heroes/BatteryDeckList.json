@@ -1,0 +1,341 @@
+﻿{
+ "name": "Battery",
+ "kind": "Hero",
+ "initialCardIdentifiers": [
+  "BatteryCharacter"
+ ],
+ "cards": [
+  {
+   "identifier": "BatteryCharacter",
+   "count": 1,
+   "title": "Battery",
+   "body": "Charge // Discharge",
+   "character": true,
+   "powers": [
+	"If {BatteryCharacter} is {Discharged}, {Charge} {BatteryCharacter} and draw a card.",
+	"If {BatteryCharacter} is {Charged}, {Discharge} {BatteryCharacter} and you may play a card."
+   ],
+   "icons": [
+	"HasPower",
+	"Manipulate",
+	"DrawCardNow",
+	"PlayCardNow"
+   ],
+   "hitpoints": 26,
+   "nemesisIdentifiers": [
+	"Battery"
+   ],
+   "incapacitatedAbilities": [
+	"One player may play a card now.",
+	"One hero target deals 1 target 2 lightning damage.",
+	"Put an Equipment card from a player's trash into their hand."
+   ],
+   "flippedIcons": [
+	"PlayCardNow",
+	"DealDamageLightning",
+	"Manipulate"
+   ],
+   "openingLines": [
+	"default": ""
+   ],
+   "complexity": 2
+  },
+  {
+   "identifier": "CoolToys",
+   "count": 3,
+   "title": "Cool Toys",
+   "keywords": [
+    "one-shot"
+   ],
+   "body": [
+	"If {BatteryCharacter} is {Charged}, she deals 1 target X lightning damage, where X is the total number of Equipment and Device cards in play.",
+	"{Discharge} {BatteryCharacter}."
+   ],
+   "icons": [
+	"DealDamageLightning",
+	"Manipulate"
+   ],
+   "flavorText": "'You have access to our channel,' Battery growled, interrupting Tattletale's spiel of numbers.",
+   "flavorReference": "Prey 14.4"
+  },
+  {
+   "identifier": "GlowingThreads",
+   "count": 2,
+   "title": "Glowing Threads",
+   "keywords": [
+    "equipment",
+	"limited"
+   ],
+   "body": [
+	"Whenever {BatteryCharacter} uses her 'Discharge' power, reduce damage dealt to {BatteryCharacter} by 2 until the start of your next turn."
+   ],
+   "icons": [
+	"ReduceDamageTaken"
+   ],
+   "flavorText": "Battery was charging again, taking advantage of us being off balance to build up a store of power again.",
+   "flavorReference": ""
+  },
+  {
+   "identifier": "KnockEmDown",
+   "count": 4,
+   "title": "Knock 'Em Down",
+   "keywords": [
+    "one-shot"
+   ],
+   "body": [
+	"{BatteryCharacter} deals 1 non-hero target 2 melee damage.",
+	"If {BatteryCharacter} is {Charged}, she deals each non-hero target 2 melee damage."
+   ],
+   "icons": [
+	"DealDamageMelee"
+   ],
+   "flavorText": "She threw the table like an oversize frisbee, and I pushed Tattletale in one direction as I flung myself in the other.",
+   "flavorReference": "Tangle 6.5"
+  },
+  {
+   "identifier": "KnockoutPunch",
+   "count": 3,
+   "title": "Knockout Punch",
+   "keywords": [
+    "one-shot"
+   ],
+   "body": [
+	"{BatteryCharacter} deals 1 target 2 lightning damage.",
+	"If {BatteryCharacter} is {Charged}, a non-character card target dealt damage this way loses all text until the start of your next turn."
+   ],
+   "icons": [
+	"DealDamageLightning"
+   ],
+   "flavorText": "She leaped to one side, kicked Assault square in the middle of the chest with both feet, and then careened off in the opposite direction.",
+   "flavorReference": "Tangle 6.5"
+  },
+  {
+   "identifier": "Magnetism",
+   "count": 3,
+   "title": "Magnetism",
+   "keywords": [
+    "ongoing"
+   ],
+   "powers": [
+	"If {BatteryCharacter} is {Charged}, destroy a non-character card Equipment or Device card. If {BatteryCharacter} is {Discharged}, put an Equipment card from a hero trash into play."
+   ],
+   "icons": [
+	"HasPower",
+	"Destroy",
+	"Search"
+   ],
+   "flavorText": "Instead, she spent the rest of her accumulated power in a single burst, pulling at the metal of a nearby chair. It fell over, sliding into Madcap's path.",
+   "flavorReference": "Interlude 12.5"
+  },
+  {
+   "identifier": "NoTimeToRest",
+   "count": 2,
+   "title": "No Time to Rest",
+   "keywords": [
+    "ongoing"
+   ],
+   "body": [
+	"Whenever {BatteryCharacter} destroys a target, you may draw a card and you may play a card."
+   ],
+   "icons": [
+	"DrawCardNow",
+	"PlayCardNow"
+   ],
+   "flavorText": "It took a certain amount of bravery to be willing to get close to an Endbringer when you weren't invincible.",
+   "flavorReference": "Extermination 8.2"
+  },
+  {
+   "identifier": "Pow",
+   "count": 3,
+   "title": "Pow!",
+   "keywords": [
+    "one-shot"
+   ],
+   "body": [
+	"If {BatteryCharacter} is {Charged}, you may move a non-character target in play back on top of its deck.",
+	"If you moved a card this way, {BatteryCharacter} deals 1 non-hero target 3 melee damage. Otherwise, {Battery} deals 1 non-hero target 2 melee damage."
+   ],
+   "icons": [
+	"Manipulate",
+	"DealDamageMelee"
+   ],
+   "flavorText": "Battery used up her charge and swept it away before it could strike home and finish off the heroine.",
+   "flavorReference": "Prey 14.6"
+  },
+  {
+   "identifier": "PushingTheLimits",
+   "count": 3,
+   "title": "Pushing the Limits",
+   "keywords": [
+    "one-shot"
+   ],
+   "body": [
+	"If {BatteryCharacter} is {Charged}, you may play up to 2 cards.",
+	"If {BatteryCharacter} is {Discharged}, draw 3 cards."
+   ],
+   "icons": [
+	"PlayCardNow",
+	"DrawCardNow"
+   ],
+   "flavorQuotes": [
+	{
+	 "identifier": "Battery",
+	 "text": "I want to stop him. And not just him. I want to help things make sense again, even if it means playing unfair because they're playing unfair. Crime should have consequences."
+	}
+   ],
+   "flavorReference": "Battery, Interlude 12.5"
+  },
+  {
+   "identifier": "RapidRecon",
+   "count": 3,
+   "title": "Rapid Recon",
+   "keywords": [
+    "one-shot"
+   ],
+   "body": [
+	"If {BatteryCharacter} is {Discharged}, each player may draw a card.",
+	"Draw a card. You may play a card."
+   ],
+   "icons": [
+	"DrawCardNow",
+	"PlayCardNow"
+   ],
+   "flavorQuotes": [
+	{
+	 "identifier": "Battery",
+	 "text": "I'm going by the book, and I'm walking away. But I'll be keeping an eye on you, on this."
+	}
+   ],
+   "flavorReference": "Battery, Infestation 11.2"
+  },
+  {
+   "identifier": "ShockAndAwe",
+   "count": 4,
+   "title": "Shock and Awe",
+   "keywords": [
+    "one-shot"
+   ],
+   "body": [
+	"{BatteryCharacter} deals 1 target 2 lightning damage.",
+	"If {BatteryCharacter} is {Charged}, she deals up to 3 other targets 3 lightning damage each."
+   ],
+   "icons": [
+	"DealDamageLightning"
+   ],
+   "flavorQuotes": [
+	{
+	 "identifier": "Battery",
+	 "text": "I hit pretty hard myself."
+	}
+   ],
+   "flavorReference": "Battery, Interlude 12.5"
+  },
+  {
+   "identifier": "StaticCharge",
+   "count": 3,
+   "title": "Static Charge",
+   "keywords": [
+    "ongoing",
+	"limited"
+   ],
+   "body": [
+	"At the start of your turn, if {BatteryCharacter} has used her 'Discharge' power since the start of your last turn, {BatteryCharacter} deals each non-hero target 2 lightning damage."
+   ],
+   "icons": [
+	"StartOfTurnAction",
+	"DealDamageLightning"
+   ],
+   "flavorText": "Between one heartbeat and the next, everything seemed to click. She felt as though she were floating in slow motion rather than falling, her body thrumming.",
+   "flavorReference": "Interlude 12.5"
+  },
+  {
+   "identifier": "Strength",
+   "count": 4,
+   "title": "Strength",
+   "keywords": [
+    "one-shot"
+   ],
+   "body": [
+	"{BatteryCharacter} deals 1 target 3 melee damage.",
+	"If {BatteryCharacter} is {Charged}, she deals the same target 2 more melee damage."
+   ],
+   "icons": [
+	"DealDamageMelee"
+   ],
+   "flavorText": "She went from fighting like an ordinary individual to moving at high speeds and throwing crushing punches, then back again.",
+   "flavorReference": "Prey 14.9"
+  },
+  {
+   "identifier": "ThenPushingBeyond",
+   "count": 3,
+   "title": "... Then Pushing Beyond",
+   "keywords": [
+    "one-shot"
+   ],
+   "body": [
+	"{BatteryCharacter} deals herself 2 psychic damage.",
+	"You may play a card.",
+	"You may use a power."
+   ],
+   "icons": [
+	"DealDamagePsychic",
+	"PlayCardNow",
+	"UsePowerNow"
+   ],
+   "flavorText": "Whatever those favors were, all she could do was hope she could do enough good to counterbalance any wrongs she'd have to commit.",
+   "flavorReference": "Interlude 12.5"
+  },
+  {
+   "identifier": "ChargedIndicator",
+   "count": 1,
+   "title": "Charged",
+   "keywords": [
+    "indicator"
+   ],
+   "isReal": false,
+   "body": [
+	"The character this is next to is {Charged}."
+   ]
+  }
+ ],
+ "promoCards": [
+  {
+   "identifier": "BatteryCharacter",
+   "promoIdentifier": "BatteryCauldronCapeCharacter",
+   "count": 1,
+   "title": "Battery",
+   "promoTitle": "Battery: Cauldron Cape",
+   "body": "Prepare // Discharge",
+   "icons": [
+	"HasPower",
+	"FlipFaceDown",
+	"Manipulate",
+	"FlipFaceUp"
+   ],
+   "character": true,
+   "powers": [
+	"Put the top card of your deck into play face down.",
+	"{Charge} {BatteryCharacter} until the start of your next turn. Flip each face-down card in your play area, treating them as just put into play."
+   ],
+   "hitpoints": 28,
+   "nemesisIdentifiers": [
+	"Battery"
+   ],
+   "incapacitatedAbilities": [
+	"One player may draw a card now.",
+	"One hero target deals 1 target 2 melee damage.",
+	"Destroy a non-character card Equipment or Device card."
+   ],
+   "flippedIcons": [
+	"DrawCardNow",
+	"DealDamageMelee",
+	"DestroyEquipment",
+	"DestroyTarget"
+   ],
+   "complexity": 3,
+   "openingLines": [
+	"default": ""
+   ]
+  }
+ ]
+}
