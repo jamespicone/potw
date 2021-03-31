@@ -373,7 +373,7 @@
 			"tokenPools": [
 				{
 					"identifier": "TattletaleHunterOfSecretsPool",
-					"name": "Tattletale, Hunter of Secrets's Token Pool",
+					"name": "Tattletale, Hunter of Secrets's Info Pool",
 					"initialValue": 0,
 					"minimumValue": 0,
 					"color": "BAA6D9"
@@ -381,7 +381,7 @@
 			],
 			"powers": [
 				"Reveal the top card of your deck. If it's not an Ongoing card, discard it. If it's an Ongoing card and no other cards with that name are in play, put it into play and put a token on this card. Otherwise, {TattletaleCharacter} deals herself X psychic damage and remove all tokens from this card.",
-				"If X is at least 1, {Tattletale} deals 1 target X psychic damage, then remove a token from this card."
+				"If there are any tokens on this card, {Tattletale} may deal a target X psychic damage, then remove a token from this card."
 			],
 			"icons": [
 				"HasPower",

@@ -58,6 +58,7 @@
       <HintPath>C:\Program Files (x86)\Steam\steamapps\common\Sentinels of the Multiverse\Sentinels_Data\Managed\SentinelsEngine.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="System" />
     <Reference Include="UnityEngine">
       <HintPath>C:\Program Files (x86)\Steam\steamapps\common\Sentinels of the Multiverse\Sentinels_Data\Managed\UnityEngine.dll</HintPath>
     </Reference>
@@ -127,6 +128,21 @@
     <Compile Include="Heroes\Bitch\Cards\GuardCardController.cs" />
     <Compile Include="Heroes\Bitch\Cards\HeelCardController.cs" />
     <Compile Include="Heroes\Bitch\Characters\BitchCharacterCardController.cs" />
+    <Compile Include="Heroes\Tattletale\Cards\ConfidenceCardController.cs" />
+    <Compile Include="Heroes\Tattletale\Cards\ConstantSmileCardController.cs" />
+    <Compile Include="Heroes\Tattletale\Cards\DominoMaskCardController.cs" />
+    <Compile Include="Heroes\Tattletale\Cards\FollowsAllTheThreadsCardController.cs" />
+    <Compile Include="Heroes\Tattletale\Cards\ItsAlwaysInTheFirstPlaceILookCardController.cs" />
+    <Compile Include="Heroes\Tattletale\Cards\MyEyeOnYouCardController.cs" />
+    <Compile Include="Heroes\Tattletale\Cards\OutOfCommissionCardController.cs" />
+    <Compile Include="Heroes\Tattletale\Cards\QuickInsightCardController.cs" />
+    <Compile Include="Heroes\Tattletale\Cards\ReadingCardController.cs" />
+    <Compile Include="Heroes\Tattletale\Cards\SpotTheFlawCardController.cs" />
+    <Compile Include="Heroes\Tattletale\Cards\TakingARiskCardController.cs" />
+    <Compile Include="Heroes\Tattletale\Cards\TheReasonYouSuckCardController.cs" />
+    <Compile Include="Heroes\Tattletale\Cards\WittyDeflectionCardController.cs" />
+    <Compile Include="Heroes\Tattletale\Characters\TattletaleCharacterCardController.cs" />
+    <Compile Include="Heroes\Tattletale\Characters\TattletaleRulerOfBrocktonBayCharacterCardController.cs" />
     <Compile Include="Villains\Lung\Cards\BakudaCardController.cs" />
     <Compile Include="Villains\Lung\Cards\ABBThugsCardController.cs" />
     <Compile Include="Villains\Lung\Cards\PyrokinesisCardController.cs" />
