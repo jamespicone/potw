@@ -74,14 +74,8 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="DeckLists\Heroes\ArmsmasterDeckList.json">
-      <LogicalName>Jp.ParahumansOfTheWormverse.DeckLists.ArmsmasterDeckList.json</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="DeckLists\Heroes\BitchDeckList.json">
-      <LogicalName>Jp.ParahumansOfTheWormverse.DeckLists.BitchDeckList.json</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="DeckLists\Villains\LungDeckList.json">
-      <LogicalName>Jp.ParahumansOfTheWormverse.DeckLists.LungDeckList.json</LogicalName>
+    <EmbeddedResource Include="DeckLists\**\*.json">
+      <LogicalName>Jp.ParahumansOfTheWormverse.DeckLists.%(EmbeddedResource.FileName).json</LogicalName>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
@@ -160,15 +154,14 @@
     <Compile Include="Villains\Lung\Characters\LungTurnTakerController.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="DeckLists\Heroes\BatteryDeckList.json" />
-    <EmbeddedResource Include="DeckLists\Heroes\TattletaleDeckList.json" />
-    <EmbeddedResource Include="DeckLists\Villains\LeviathanDeckList.json" />
-    <EmbeddedResource Include="DeckLists\Villains\TheSimurghDeckList.json" />
     <None Include="manifest.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Villains\TheSimurgh\Cards\" />
+    <Folder Include="Villains\TheSimurgh\Characters\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions />
   <PropertyGroup>
