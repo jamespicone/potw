@@ -132,6 +132,7 @@
     <Compile Include="Heroes\Tattletale\Cards\ConstantSmileCardController.cs" />
     <Compile Include="Heroes\Tattletale\Cards\DominoMaskCardController.cs" />
     <Compile Include="Heroes\Tattletale\Cards\FollowsAllTheThreadsCardController.cs" />
+    <Compile Include="Heroes\Tattletale\Cards\InformationOverloadCardController.cs" />
     <Compile Include="Heroes\Tattletale\Cards\ItsAlwaysInTheFirstPlaceILookCardController.cs" />
     <Compile Include="Heroes\Tattletale\Cards\MyEyeOnYouCardController.cs" />
     <Compile Include="Heroes\Tattletale\Cards\OutOfCommissionCardController.cs" />
@@ -142,6 +143,7 @@
     <Compile Include="Heroes\Tattletale\Cards\TheReasonYouSuckCardController.cs" />
     <Compile Include="Heroes\Tattletale\Cards\WittyDeflectionCardController.cs" />
     <Compile Include="Heroes\Tattletale\Characters\TattletaleCharacterCardController.cs" />
+    <Compile Include="Heroes\Tattletale\Characters\TattletaleHunterOfSecretsCharacterCardController.cs" />
     <Compile Include="Heroes\Tattletale\Characters\TattletaleRulerOfBrocktonBayCharacterCardController.cs" />
     <Compile Include="Villains\Lung\Cards\BakudaCardController.cs" />
     <Compile Include="Villains\Lung\Cards\ABBThugsCardController.cs" />
