@@ -8,7 +8,7 @@
       "title": "Bitch",
       "count": 1,
       "body": "Attack!",
-      "icons": [ "DealDamageMelee" ],
+      "icons": [ "HasPower", "DealDamageMelee" ],
       "hitpoints": 28,
       "powers": [ "Each Dog in play may deal 2 melee damage to a target." ],
       "icons": [

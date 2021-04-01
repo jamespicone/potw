@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Jp.ParahumansOfTheWormverse.Heroes.Tattletale.Cards
+namespace Jp.ParahumansOfTheWormverse.Tattletale
 {
     public class InformationOverloadCardController : CardController
     {

@@ -102,7 +102,7 @@ namespace Jp.ParahumansOfTheWormverse.Tattletale
         {
             // "Reveal the top card of a deck, then replace it."
             List<SelectLocationDecision> chosen = new List<SelectLocationDecision>();
-            IEnumerator chooseDeckCoroutine = base.GameController.SelectADeck(base.HeroTurnTakerController, SelectionType.RevealBottomCardOfDeck, (Location l) => l.HasCards, chosen, cardSource: GetCardSource());
+            IEnumerator chooseDeckCoroutine = base.GameController.SelectADeck(base.HeroTurnTakerController, SelectionType.RevealTopCardOfDeck, (Location l) => l.HasCards, chosen, cardSource: GetCardSource());
             if (UseUnityCoroutines)
             {
                 yield return GameController.StartCoroutine(chooseDeckCoroutine);

@@ -33,7 +33,7 @@ namespace Jp.ParahumansOfTheWormverse.Tattletale
             // Select a deck
             // Choose a deck
             List<SelectLocationDecision> chosen = new List<SelectLocationDecision>();
-            IEnumerator chooseDeckCoroutine = base.GameController.SelectADeck(base.HeroTurnTakerController, SelectionType.RevealCardsFromDeck, (Location l) => true, chosen, cardSource: GetCardSource());
+            IEnumerator chooseDeckCoroutine = base.GameController.SelectADeck(base.HeroTurnTakerController, SelectionType.PlayTopCard, (Location l) => true, chosen, cardSource: GetCardSource());
             if (UseUnityCoroutines)
             {
                 yield return GameController.StartCoroutine(chooseDeckCoroutine);

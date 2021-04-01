@@ -14,7 +14,7 @@ namespace Jp.ParahumansOfTheWormverse.Tattletale
         public TattletaleHunterOfSecretsCharacterCardController(Card card, TurnTakerController turnTakerController)
             : base(card, turnTakerController)
         {
-
+            SpecialStringMaker.ShowTokenPool(base.Card.Identifier, "TattletaleHunterOfSecretsPool");
         }
 
         public override IEnumerator UsePower(int index = 0)
@@ -119,7 +119,7 @@ namespace Jp.ParahumansOfTheWormverse.Tattletale
                     if (infoPool.CurrentValue > 0)
                     {
                         // "... {TattletaleCharacter} may deal a target X psychic damage..."
-                        IEnumerator damageCoroutine = base.GameController.SelectTargetsAndDealDamage(base.HeroTurnTakerController, new DamageSource(base.GameController, base.CharacterCard), infoPool.CurrentValue, DamageType.Psychic, 1, true, 0, cardSource: GetCardSource());
+                        IEnumerator damageCoroutine = base.GameController.SelectTargetsAndDealDamage(base.HeroTurnTakerController, new DamageSource(base.GameController, base.CharacterCard), infoPool.CurrentValue, DamageType.Psychic, 1, false, 0, cardSource: GetCardSource());
                         if (UseUnityCoroutines)
                         {
                             yield return GameController.StartCoroutine(damageCoroutine);
@@ -205,7 +205,7 @@ namespace Jp.ParahumansOfTheWormverse.Tattletale
         {
             // "Reveal the top card of a deck, then replace it."
             List<SelectLocationDecision> chosen = new List<SelectLocationDecision>();
-            IEnumerator chooseDeckCoroutine = base.GameController.SelectADeck(base.HeroTurnTakerController, SelectionType.RevealBottomCardOfDeck, (Location l) => l.HasCards, chosen, cardSource: GetCardSource());
+            IEnumerator chooseDeckCoroutine = base.GameController.SelectADeck(base.HeroTurnTakerController, SelectionType.RevealTopCardOfDeck, (Location l) => l.HasCards, chosen, cardSource: GetCardSource());
             if (UseUnityCoroutines)
             {
                 yield return GameController.StartCoroutine(chooseDeckCoroutine);
