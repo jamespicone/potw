@@ -74,8 +74,23 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="DeckLists\**\*.json">
-      <LogicalName>Jp.ParahumansOfTheWormverse.DeckLists.%(EmbeddedResource.FileName).json</LogicalName>
+    <EmbeddedResource Include="DeckLists\Heroes\ArmsmasterDeckList.json">
+      <LogicalName>Jp.ParahumansOfTheWormverse.DeckLists.ArmsmasterDeckList.json</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DeckLists\Heroes\BatteryDeckList.json">
+      <LogicalName>Jp.ParahumansOfTheWormverse.DeckLists.BatteryDeckList.json</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DeckLists\Heroes\BitchDeckList.json">
+      <LogicalName>Jp.ParahumansOfTheWormverse.DeckLists.BitchDeckList.json</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DeckLists\Heroes\TattletaleDeckList.json">
+      <LogicalName>Jp.ParahumansOfTheWormverse.DeckLists.TattletaleDeckList.json</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DeckLists\Villains\LungDeckList.json">
+      <LogicalName>Jp.ParahumansOfTheWormverse.DeckLists.LungDeckList.json</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DeckLists\Villains\TheSimurghDeckList.json">
+      <LogicalName>Jp.ParahumansOfTheWormverse.DeckLists.TheSimurghDeckList.json</LogicalName>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
