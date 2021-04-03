@@ -58,6 +58,7 @@
       <HintPath>C:\Program Files (x86)\Steam\steamapps\common\Sentinels of the Multiverse\Sentinels_Data\Managed\SentinelsEngine.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="System" />
     <Reference Include="UnityEngine">
       <HintPath>C:\Program Files (x86)\Steam\steamapps\common\Sentinels of the Multiverse\Sentinels_Data\Managed\UnityEngine.dll</HintPath>
     </Reference>
@@ -103,6 +104,7 @@
     <Compile Include="Heroes\Battery\Cards\CoolToysCardController.cs" />
     <Compile Include="Heroes\Battery\Cards\GlowingThreadsCardController.cs" />
     <Compile Include="Heroes\Battery\Cards\KnockEmDownCardController.cs" />
+    <Compile Include="Heroes\Battery\Cards\KnockoutPunchCardController.cs" />
     <Compile Include="Heroes\Battery\Cards\MagnetismCardController.cs" />
     <Compile Include="Heroes\Battery\Cards\NoTimeToRestCardController.cs" />
     <Compile Include="Heroes\Battery\Cards\PowCardController.cs" />
