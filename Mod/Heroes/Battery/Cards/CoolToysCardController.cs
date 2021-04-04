@@ -15,6 +15,7 @@ namespace Jp.ParahumansOfTheWormverse.Battery
             : base(card, turnTakerController)
         {
             ShowBatteryChargedStatus();
+            SpecialStringMaker.ShowNumberOfCardsInPlay(new LinqCardCriteria((Card c) => c.IsInPlayAndHasGameText && (c.DoKeywordsContain("equipment") || c.DoKeywordsContain("Device")), "Equipment or Device"));
         }
 
         public override IEnumerator Play()
