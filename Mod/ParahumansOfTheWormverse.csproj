@@ -116,6 +116,7 @@
     <Compile Include="Heroes\Battery\Cards\ThenPushingBeyondCardController.cs" />
     <Compile Include="Heroes\Battery\Characters\BatteryCauldronCapeCharacterCardController.cs" />
     <Compile Include="Heroes\Battery\Characters\BatteryCharacterCardController.cs" />
+    <Compile Include="Heroes\Battery\Extra\BatteryTurnTakerController.cs" />
     <Compile Include="Heroes\Battery\Extra\BatteryUtilityCardController.cs" />
     <Compile Include="Heroes\Battery\Extra\BatteryUtilityCharacterCardController.cs" />
     <Compile Include="Heroes\Bitch\Cards\BastardCardController.cs" />

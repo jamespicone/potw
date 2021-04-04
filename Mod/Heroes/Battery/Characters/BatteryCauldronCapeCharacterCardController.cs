@@ -14,7 +14,7 @@ namespace Jp.ParahumansOfTheWormverse.Battery
         public BatteryCauldronCapeCharacterCardController(Card card, TurnTakerController turnTakerController)
             : base(card, turnTakerController)
         {
-
+            DischargePowerIndex = 1;
         }
 
         public override IEnumerator UsePower(int index = 0)
@@ -102,7 +102,7 @@ namespace Jp.ParahumansOfTheWormverse.Battery
                         base.GameController.ExhaustCoroutine(chargeCoroutine);
                     }
                     // "... until the start of your next turn."
-                    OnPhaseChangeStatusEffect chargeExpiration = new OnPhaseChangeStatusEffect(base.Card, nameof(ChargeExpiresResponse), "At the start of " + base.HeroTurnTakerController.Name + "'s next turn, {Discharge} " + base.Card.Title, new TriggerType[] { TriggerType.MoveCard }, base.Card);
+                    OnPhaseChangeStatusEffect chargeExpiration = new OnPhaseChangeStatusEffect(base.Card, nameof(ChargeExpiresResponse), "At the start of " + base.HeroTurnTakerController.Name + "'s next turn, {Discharge} " + base.Card.Title + ".", new TriggerType[] { TriggerType.MoveCard }, base.Card);
                     chargeExpiration.NumberOfUses = 1;
                     chargeExpiration.BeforeOrAfter = BeforeOrAfter.After;
                     chargeExpiration.TurnTakerCriteria.IsSpecificTurnTaker = base.TurnTaker;
@@ -119,7 +119,7 @@ namespace Jp.ParahumansOfTheWormverse.Battery
                         base.GameController.ExhaustCoroutine(expireCoroutine);
                     }
                     // "Flip each face-down card in your play area, treating them as just put into play."
-                    IEnumerator flipCoroutine = base.GameController.SelectAndFlipCards(base.HeroTurnTakerController, new LinqCardCriteria((Card c) => c.Location == base.TurnTaker.PlayArea && c.IsFaceDownNonCharacter && !c.IsMissionCard, "face-down cards in " + base.TurnTaker.Name + "'s play area", false, false, "face-down card in " + base.TurnTaker.Name + "'s play area", "face-down cards in " + base.TurnTaker.Name + "'s play area"), toFaceDown: false, optional: false, treatAsPutIntoPlay: true, choiceOrdering: (Card c) => c.PlayIndex.Value, cardSource: GetCardSource());
+                    IEnumerator flipCoroutine = base.GameController.SelectAndFlipCards(base.HeroTurnTakerController, new LinqCardCriteria((Card c) => c.Location == base.TurnTaker.PlayArea && c.IsFaceDownNonCharacter && !c.IsMissionCard, "face-down cards in " + base.TurnTaker.Name + "'s play area", false, false, "face-down card in " + base.TurnTaker.Name + "'s play area", "face-down cards in " + base.TurnTaker.Name + "'s play area"), null, toFaceDown: false, optional: false, treatAsPutIntoPlay: true, choiceOrdering: (Card c) => c.PlayIndex.Value, cardSource: GetCardSource());
                     if (base.UseUnityCoroutines)
                     {
                         yield return base.GameController.StartCoroutine(flipCoroutine);
@@ -133,9 +133,10 @@ namespace Jp.ParahumansOfTheWormverse.Battery
             yield break;
         }
 
-        public IEnumerator ChargeExpiresResponse(PhaseChangeAction pca)
+        public IEnumerator ChargeExpiresResponse(PhaseChangeAction pca, OnPhaseChangeStatusEffect effect)
         {
             // It's the start of Battery's next turn, so remove Battery's Charge
+            //Log.Debug("ChargeExpiresResponse activated");
             IEnumerator removeCoroutine = base.RemoveCharge(base.Card);
             if (base.UseUnityCoroutines)
             {

@@ -23,7 +23,7 @@ namespace Jp.ParahumansOfTheWormverse.Battery
         {
             if (c.IsInPlay && (c.IsActive || !c.IsCharacter))
             {
-                SpecialStringMaker.ShowIfElseSpecialString(() => IsCharged(c), () => c.Identifier + " is Charged.", () => c.Identifier + " is Discharged.");
+                SpecialStringMaker.ShowIfElseSpecialString(() => IsCharged(c), () => c.Title + " is {Charged}.", () => c.Title + " is {Discharged}.");
             }
         }
 

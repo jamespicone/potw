@@ -24,11 +24,20 @@ namespace Jp.ParahumansOfTheWormverse.Battery
             ShowBatteryChargedStatus();
         }
 
+        public override void AddStartOfGameTriggers()
+        {
+            if (TurnTakerController is BatteryTurnTakerController ttc)
+            {
+                ttc.SetAsideIndicators();
+            }
+            base.AddStartOfGameTriggers();
+        }
+
         protected void ShowChargedStatus(Card c)
         {
             if (c.IsInPlay && (c.IsActive || !c.IsCharacter))
             {
-                SpecialStringMaker.ShowIfElseSpecialString(() => IsCharged(c), () => c.Identifier + " is Charged.", () => c.Identifier + " is Discharged.");
+                SpecialStringMaker.ShowIfElseSpecialString(() => IsCharged(c), () => c.Title + " is {Charged}.", () => c.Title + " is {Discharged}.");
             }
         }
 

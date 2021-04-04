@@ -30,7 +30,7 @@ namespace Jp.ParahumansOfTheWormverse.Battery
             // "If {BatteryCharacter} is {Charged}, destroy a non-character card Equipment or Device card."
             if (IsBatteryCharged())
             {
-                IEnumerator destroyCoroutine = base.GameController.SelectAndDestroyCard(base.HeroTurnTakerController, new LinqCardCriteria((Card c) => !c.IsCharacter && (c.DoKeywordsContain("equipment") || c.DoKeywordsContain("Device")), "non-character Equipment or Device"), false, responsibleCard: base.Card, cardSource: GetCardSource());
+                IEnumerator destroyCoroutine = base.GameController.SelectAndDestroyCard(base.HeroTurnTakerController, new LinqCardCriteria((Card c) => !c.IsCharacter && (c.DoKeywordsContain("equipment") || c.DoKeywordsContain("device")), "non-character Equipment or Device"), false, responsibleCard: base.Card, cardSource: GetCardSource());
                 if (base.UseUnityCoroutines)
                 {
                     yield return base.GameController.StartCoroutine(destroyCoroutine);

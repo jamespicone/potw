@@ -22,7 +22,7 @@ namespace Jp.ParahumansOfTheWormverse.Battery
             // "If {BatteryCharacter} is {Charged}, you may play up to 2 cards."
             if (IsBatteryCharged())
             {
-                IEnumerator playCoroutine = base.GameController.SelectAndPlayCardsFromHand(base.HeroTurnTakerController, 2, true, 0, cardSource: GetCardSource());
+                IEnumerator playCoroutine = base.GameController.SelectAndPlayCardsFromHand(base.HeroTurnTakerController, 2, false, 0, cardSource: GetCardSource());
                 if (base.UseUnityCoroutines)
                 {
                     yield return base.GameController.StartCoroutine(playCoroutine);

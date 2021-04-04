@@ -37,19 +37,7 @@ namespace Jp.ParahumansOfTheWormverse.Battery
                 if (firstChoice != null && firstChoice.SelectedCard != null)
                 {
                     Card chosen = firstChoice.SelectedCard;
-                    if (firstChoice.Choices.Count() == 1)
-                    {
-                        IEnumerator messageCoroutine = base.GameController.SendMessageAction(chosen.Identifier + " is the only non-character target in play.", Priority.Low, GetCardSource(), showCardSource: true);
-                        if (base.UseUnityCoroutines)
-                        {
-                            yield return base.GameController.StartCoroutine(messageCoroutine);
-                        }
-                        else
-                        {
-                            base.GameController.ExhaustCoroutine(messageCoroutine);
-                        }
-                    }
-                    IEnumerator moveCoroutine = base.GameController.MoveCard(base.TurnTakerController, chosen, chosen.NativeDeck, cardSource: GetCardSource());
+                    IEnumerator moveCoroutine = base.GameController.MoveCard(base.TurnTakerController, chosen, chosen.NativeDeck, storedResults: moves, cardSource: GetCardSource());
                     if (base.UseUnityCoroutines)
                     {
                         yield return base.GameController.StartCoroutine(moveCoroutine);
@@ -65,11 +53,28 @@ namespace Jp.ParahumansOfTheWormverse.Battery
             int meleeAmount = 2;
             if (moves != null)
             {
+                Log.Debug("moves != null; updating firstMove");
                 firstMove = moves.FirstOrDefault();
             }
             if (firstMove != null && firstMove.CardToMove != null && firstMove.WasCardMoved)
             {
+                Log.Debug("firstMove != null, firstMove.CardToMove != null, firstMove.WasCardMoved; updating meleeAmount to 3");
                 meleeAmount = 3;
+            }
+            else
+            {
+                if (firstMove == null)
+                {
+                    Log.Debug("firstMove == null; only 2 damage");
+                }
+                else if (firstMove.CardToMove == null)
+                {
+                    Log.Debug("firstMove.CardToMove == null; only 2 damage");
+                }
+                else if (!firstMove.WasCardMoved)
+                {
+                    Log.Debug("firstMove.WasCardMoved == false; only 2 damage");
+                }
             }
             IEnumerator meleeCoroutine = base.GameController.SelectTargetsAndDealDamage(base.HeroTurnTakerController, new DamageSource(base.GameController, base.CharacterCard), meleeAmount, DamageType.Melee, 1, false, 1, cardSource: GetCardSource());
             if (base.UseUnityCoroutines)

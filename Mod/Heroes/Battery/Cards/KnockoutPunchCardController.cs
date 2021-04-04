@@ -30,11 +30,52 @@ namespace Jp.ParahumansOfTheWormverse.Battery
             {
                 base.GameController.ExhaustCoroutine(damageCoroutine);
             }
-            // "If {BatteryCharacter} is {Charged}, a non-character card target dealt damage this way loses all text until the start of your next turn."
+            // "If {BatteryCharacter} is {Charged}, a non-character card target dealt damage this way loses all 'start of turn' and 'end of turn' effects on its card until the start of your next turn."
             if (IsBatteryCharged())
             {
                 IEnumerable<Card> validChoices = (from dda in damageActions where dda.DidDealDamage && dda.Target != null select dda.Target).Distinct();
-                // ...
+                Card chosen = validChoices.FirstOrDefault();
+                if (validChoices.Count() > 0)
+                {
+                    List<SelectCardDecision> selected = new List<SelectCardDecision>();
+                    IEnumerator selectCoroutine = base.GameController.SelectCardAndStoreResults(base.HeroTurnTakerController, SelectionType.None, new LinqCardCriteria((Card c) => validChoices.Contains(c)), selected, false, cardSource: GetCardSource());
+                    if (base.UseUnityCoroutines)
+                    {
+                        yield return base.GameController.StartCoroutine(selectCoroutine);
+                    }
+                    else
+                    {
+                        base.GameController.ExhaustCoroutine(selectCoroutine);
+                    }
+                    if (selected != null && selected.Count() > 0)
+                    {
+                        if (selected.FirstOrDefault() != null && selected.FirstOrDefault().SelectedCard != null)
+                        {
+                            chosen = selected.FirstOrDefault().SelectedCard;
+                        }
+                    }
+                }
+                if (chosen != null)
+                {
+                    PreventPhaseEffectStatusEffect preventStart = new PreventPhaseEffectStatusEffect(Phase.Start);
+                    preventStart.UntilStartOfNextTurn(base.TurnTaker);
+                    preventStart.CardCriteria.IsSpecificCard = chosen;
+                    IEnumerator preventStartCoroutine = base.GameController.AddStatusEffect(preventStart, true, GetCardSource());
+                    PreventPhaseEffectStatusEffect preventEnd = new PreventPhaseEffectStatusEffect(Phase.End);
+                    preventEnd.UntilStartOfNextTurn(base.TurnTaker);
+                    preventEnd.CardCriteria.IsSpecificCard = chosen;
+                    IEnumerator preventEndCoroutine = base.GameController.AddStatusEffect(preventEnd, true, GetCardSource());
+                    if (base.UseUnityCoroutines)
+                    {
+                        yield return base.GameController.StartCoroutine(preventStartCoroutine);
+                        yield return base.GameController.StartCoroutine(preventEndCoroutine);
+                    }
+                    else
+                    {
+                        base.GameController.ExhaustCoroutine(preventStartCoroutine);
+                        base.GameController.ExhaustCoroutine(preventEndCoroutine);
+                    }
+                }
             }
             yield break;
         }

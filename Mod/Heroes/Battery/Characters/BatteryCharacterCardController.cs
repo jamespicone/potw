@@ -44,6 +44,18 @@ namespace Jp.ParahumansOfTheWormverse.Battery
                             base.GameController.ExhaustCoroutine(drawCoroutine);
                         }
                     }
+                    else
+                    {
+                        IEnumerator messageCoroutine = base.GameController.SendMessageAction(base.Card.Title + " is already {Charged}, so her Charge power has no effect.", Priority.Medium, GetCardSource(), showCardSource: true);
+                        if (base.UseUnityCoroutines)
+                        {
+                            yield return base.GameController.StartCoroutine(messageCoroutine);
+                        }
+                        else
+                        {
+                            base.GameController.ExhaustCoroutine(messageCoroutine);
+                        }
+                    }
                     break;
                 case 1:
                     // "If {BatteryCharacter} is {Charged}, {Discharge} {BatteryCharacter} and you may play a card."
@@ -66,6 +78,18 @@ namespace Jp.ParahumansOfTheWormverse.Battery
                         else
                         {
                             base.GameController.ExhaustCoroutine(playCoroutine);
+                        }
+                    }
+                    else
+                    {
+                        IEnumerator messageCoroutine = base.GameController.SendMessageAction(base.Card.Title + " is already {Discharged}, so her Discharge power has no effect.", Priority.Medium, GetCardSource(), showCardSource: true);
+                        if (base.UseUnityCoroutines)
+                        {
+                            yield return base.GameController.StartCoroutine(messageCoroutine);
+                        }
+                        else
+                        {
+                            base.GameController.ExhaustCoroutine(messageCoroutine);
                         }
                     }
                     break;
