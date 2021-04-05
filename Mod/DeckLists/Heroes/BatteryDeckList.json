@@ -10,6 +10,7 @@
    "count": 1,
    "title": "Battery",
    "body": "Charge // Discharge",
+   "backgroundColor": "99B0CF",
    "character": true,
    "powers": [
 	"If {BatteryCharacter} is {Discharged}, {Charge} {BatteryCharacter} and draw a card.",
@@ -35,9 +36,10 @@
 	"DealDamageLightning",
 	"Manipulate"
    ],
-   "openingLines": [
+
+   "openingLines": {
 	"default": ""
-   ],
+   },
    "complexity": 2
   },
   {
@@ -55,7 +57,7 @@
 	"DealDamageLightning",
 	"Manipulate"
    ],
-   "flavorText": "'You have access to our channel,' Battery growled, interrupting Tattletale's spiel of numbers.",
+   "flavorText": "'You have access to our{BR}channel,' Battery growled, interrupting{BR}Tattletale's spiel of numbers.",
    "flavorReference": "Prey 14.4"
   },
   {
@@ -72,8 +74,8 @@
    "icons": [
 	"ReduceDamageTaken"
    ],
-   "flavorText": "Battery was charging again, taking advantage of us being off balance to build up a store of power again.",
-   "flavorReference": ""
+   "flavorText": "Battery was charging again, taking{BR}advantage of us being off balance to{BR}build up a store of power again.",
+   "flavorReference": "Tangle 6.5"
   },
   {
    "identifier": "KnockEmDown",
@@ -89,7 +91,7 @@
    "icons": [
 	"DealDamageMelee"
    ],
-   "flavorText": "She threw the table like an oversize frisbee, and I pushed Tattletale in one direction as I flung myself in the other.",
+   "flavorText": "She threw the table like an oversize{BR}frisbee, and I pushed Tattletale in one{BR}direction as I flung myself in the other.",
    "flavorReference": "Tangle 6.5"
   },
   {
@@ -101,12 +103,12 @@
    ],
    "body": [
 	"{BatteryCharacter} deals 1 target 2 lightning damage.",
-	"If {BatteryCharacter} is {Charged}, a non-character card target dealt damage this way loses all text until the start of your next turn."
+	"If {BatteryCharacter} is {Charged}, a non-character card target dealt damage this way loses all 'start of turn' and 'end of turn' effects on its card until the start of your next turn."
    ],
    "icons": [
 	"DealDamageLightning"
    ],
-   "flavorText": "She leaped to one side, kicked Assault square in the middle of the chest with both feet, and then careened off in the opposite direction.",
+   "flavorText": "She leaped to one side, kicked Assault{BR}square in the middle of the chest with both feet,{BR}and then careened off in the opposite direction.",
    "flavorReference": "Tangle 6.5"
   },
   {
@@ -122,9 +124,10 @@
    "icons": [
 	"HasPower",
 	"Destroy",
-	"Search"
+	"Search",
+	"PlayCardNow"
    ],
-   "flavorText": "Instead, she spent the rest of her accumulated power in a single burst, pulling at the metal of a nearby chair. It fell over, sliding into Madcap's path.",
+   "flavorText": "Instead, she spent the rest{BR}of her accumulated power in a single burst,{BR}pulling at the metal of a nearby chair. It fell{BR}over, sliding into Madcap's path.",
    "flavorReference": "Interlude 12.5"
   },
   {
@@ -141,7 +144,7 @@
 	"DrawCardNow",
 	"PlayCardNow"
    ],
-   "flavorText": "It took a certain amount of bravery to be willing to get close to an Endbringer when you weren't invincible.",
+   "flavorText": "It took a certain amount of{BR}bravery to be willing to get close to an{BR}Endbringer when you weren't invincible.",
    "flavorReference": "Extermination 8.2"
   },
   {
@@ -153,13 +156,13 @@
    ],
    "body": [
 	"If {BatteryCharacter} is {Charged}, you may move a non-character target in play back on top of its deck.",
-	"If you moved a card this way, {BatteryCharacter} deals 1 non-hero target 3 melee damage. Otherwise, {Battery} deals 1 non-hero target 2 melee damage."
+	"If you moved a card this way, {BatteryCharacter} deals 1 non-hero target 3 melee damage. Otherwise, {BatteryCharacter} deals 1 non-hero target 2 melee damage."
    ],
    "icons": [
 	"Manipulate",
 	"DealDamageMelee"
    ],
-   "flavorText": "Battery used up her charge and swept it away before it could strike home and finish off the heroine.",
+   "flavorText": "Battery used up her charge{BR}and swept it away before it could strike{BR}home and finish off the heroine.",
    "flavorReference": "Prey 14.6"
   },
   {
@@ -180,7 +183,7 @@
    "flavorQuotes": [
 	{
 	 "identifier": "Battery",
-	 "text": "I want to stop him. And not just him. I want to help things make sense again, even if it means playing unfair because they're playing unfair. Crime should have consequences."
+	 "text": "I want to stop him.{BR}And not just him. I want to help things{BR}make sense again, even if it means playing unfair{BR}because they're playing unfair. Crime should have{BR}consequences."
 	}
    ],
    "flavorReference": "Battery, Interlude 12.5"
@@ -203,7 +206,7 @@
    "flavorQuotes": [
 	{
 	 "identifier": "Battery",
-	 "text": "I'm going by the book, and I'm walking away. But I'll be keeping an eye on you, on this."
+	 "text": "I'm going by the book,{BR}and I'm walking away. But I'll be keeping{BR}an eye on you, on this."
 	}
    ],
    "flavorReference": "Battery, Infestation 11.2"
@@ -245,7 +248,7 @@
 	"StartOfTurnAction",
 	"DealDamageLightning"
    ],
-   "flavorText": "Between one heartbeat and the next, everything seemed to click. She felt as though she were floating in slow motion rather than falling, her body thrumming.",
+   "flavorText": "Between one heartbeat and{BR}the next, everything seemed to click. She felt{BR}as though she were floating in slow motion{BR}rather than falling, her body thrumming.",
    "flavorReference": "Interlude 12.5"
   },
   {
@@ -262,7 +265,7 @@
    "icons": [
 	"DealDamageMelee"
    ],
-   "flavorText": "She went from fighting like an ordinary individual to moving at high speeds and throwing crushing punches, then back again.",
+   "flavorText": "She went from fighting like an{BR}ordinary individual to moving at high speeds and{BR}throwing crushing punches, then back again.",
    "flavorReference": "Prey 14.9"
   },
   {
@@ -282,12 +285,12 @@
 	"PlayCardNow",
 	"UsePowerNow"
    ],
-   "flavorText": "Whatever those favors were, all she could do was hope she could do enough good to counterbalance any wrongs she'd have to commit.",
+   "flavorText": "Whatever those favors{BR}were, all she could do was hope she could{BR}do enough good to counterbalance any wrongs{BR}she'd have to commit.",
    "flavorReference": "Interlude 12.5"
   },
   {
    "identifier": "ChargedIndicator",
-   "count": 1,
+   "count": 10,
    "title": "Charged",
    "keywords": [
     "indicator"
@@ -306,6 +309,7 @@
    "title": "Battery",
    "promoTitle": "Battery: Cauldron Cape",
    "body": "Prepare // Discharge",
+   "backgroundColor": "6169BD",
    "icons": [
 	"HasPower",
 	"FlipFaceDown",
@@ -333,9 +337,9 @@
 	"DestroyTarget"
    ],
    "complexity": 3,
-   "openingLines": [
+   "openingLines": {
 	"default": ""
-   ]
+   }
   }
  ]
 }
