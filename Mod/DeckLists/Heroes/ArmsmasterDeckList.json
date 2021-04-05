@@ -8,7 +8,6 @@
       "title": "Armsmaster",
       "count": 1,
       "body": "Tinker",
-      "icons": [],
       "hitpoints": 30,
       "powers": [ "Reveal the top card of your deck. If it's an Equipment card, put it in your hand; otherwise shuffle it back." ],
       "icons": [

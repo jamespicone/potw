@@ -1,412 +1,412 @@
 {
-	"name": "Tattletale",
-	"kind": "Hero",
-	"initialCardIdentifiers": [
-		"TattletaleCharacter"
-	],
-	"cards": [
-		{
-			"identifier": "TattletaleCharacter",
-			"count": 1,
-			"title": "Tattletale",
-			"body": "Insight",
-			"backgroundColor": "C9ABF0",
-			"character": true,
-			"powers": [
-				"1 player draws 2 cards, then discards 1 card."
-			],
-			"icons": [
-				"HasPower",
-				"DrawCardNow",
-				"Discard"
-			],
-			"hitpoints": 26,
-			"nemesisIdentifiers": [
-				"Tattletale"
-			],
-			"incapacitatedAbilities": [
-				"One player draws a card.",
-				"One player plays a card.",
-				"Destroy an Ongoing card."
-			],
-			"flippedIcons": [
-				"DrawCardNow",
-				"PlayCardNow",
-				"DestroyOngoing"
-			],
-			"complexity": 2,
-			"openingLines": {
-				"default": "Quit embarrassing yourself."
-			}
-		},
-		{
-			"identifier": "Confidence",
-			"count": 3,
-			"title": "Confidence",
-			"keywords": [
-				"ongoing",
-				"limited"
-			],
-			"body": [
-				"At the start of your turn, each hero regains 1 HP."
-			],
-			"icons": [
-				"StartOfTurnAction",
-				"GainHP"
-			],
-			"flavorQuotes": [
-				{
-					"identifier": "Cherish",
-					"text": "You're trying something. I feel smugness from you, too much confidence for where you're standing."
-				}
-			],
-			"flavorReference": "Cherish, Plague 12.4"
-		},
-		{
-			"identifier": "ConstantSmile",
-			"count": 3,
-			"title": "Constant Smile",
-			"keywords": [
-				"ongoing",
-				"limited"
-			],
-			"body": [
-				"At the start of your turn, {TattletaleCharacter} deals each non-hero target 1 psychic damage."
-			],
-			"icons": [
-				"StartOfTurnAction",
-				"DealDamagePsychic"
-			],
-			"flavorText": "The girl turned her head, pretending to examine a jacket, so she could hide a vulpine smile that spread across her face.",
-			"flavorReference": "Interlude 8"
-		},
-		{
-			"identifier": "DominoMask",
-			"count": 2,
-			"title": "Domino Mask",
-			"keywords": [
-				"equipment",
-				"limited"
-			],
-			"body": [
-				"You may use an additional power during your power phase."
-			],
-			"icons": [
-				"UsePowerExtra"
-			],
-			"flavorText": "Behind her simple black domino style mask, her eyes were glittering with mischief.",
-			"flavorReference": "Gestation 1.5"
-		},
-		{
-			"identifier": "FollowsAllTheThreads",
-			"count": 2,
-			"title": "Follows All the Threads",
-			"keywords": [
-				"ongoing",
-				"limited"
-			],
-			"body": [
-				"Play with the top card of each deck face up.",
-				"At the start of your turn, {TattletaleCharacter} deals herself 1 psychic damage."
-			],
-			"powers": [
-				"Destroy this card."
-			],
-			"icons": [
-				"Manipulate",
-				"StartOfTurnAction",
-				"DealDamagePsychic",
-				"HasPower",
-				"DestroySelf"
-			],
-			"flavorText": "The details on the bulletin boards became clear. They were color coded by subject, but there were threads connecting elements, pieces of yarn tacked into place or held in spots with magnets.",
-			"flavorReference": "Imago 21.7"
-		},
-		{
-			"identifier": "InformationOverload",
-			"count": 3,
-			"title": "Information Overload",
-			"keywords": [
-				"one-shot"
-			],
-			"body": [
-				"{TattletaleCharacter} may use any number of powers this turn.",
-				"Whenever {TattletaleCharacter} uses a power this turn, she deals herself 1 psychic damage."
-			],
-			"icons": [
-				"UsePowerExtra",
-				"DealDamagePsychic"
-			],
-			"flavorText": "Using her power wasn't a switch she turned on. It was letting the walls come down, letting the information start pouring in.",
-			"flavorReference": "Interlude 8"
-		},
-		{
-			"identifier": "ItsAlwaysInTheFirstPlaceILook",
-			"count": 3,
-			"title": "It's Always in the First Place I Look",
-			"keywords": [
-				"one-shot"
-			],
-			"body": [
-				"A player may search their deck for a card and put it into their hand, then shuffle their deck."
-			],
-			"icons": [
-				"Search"
-			],
-			"flavorQuotes": [
-				{
-					"identifier": "Tattletale",
-					"text": "Sorry, Aidan, to squabble in front of you, but Charlotte needs to remember I don't tend to miss stuff like that."
-				}
-			],
-			"flavorReference": "Tattletale, Interlude 26"
-		},
-		{
-			"identifier": "MyEyeOnYou",
-			"count": 3,
-			"title": "My Eye On You",
-			"keywords": [
-				"ongoing"
-			],
-			"powers": [
-				"One hero target regains 3 HP."
-			],
-			"icons": [
-				"HasPower",
-				"GainHP"
-			],
-			"flavorQuotes": [
-				{
-					"identifier": "Tattletale",
-					"text": "I figured you would be. What I want to know is if you're okay."
-				}
-			],
-			"flavorReference": "Tattletale, Extermination 8.8"
-		},
-		{
-			"identifier": "OutOfCommission",
-			"count": 4,
-			"title": "Out of Commission",
-			"keywords": [
-				"one-shot"
-			],
-			"body": [
-				"{TattletaleCharacter} regains 5 HP.",
-				"Immediately end your turn."
-			],
-			"icons": [
-				"GainHP",
-				"SkipTurn"
-			],
-			"flavorQuotes": [
-				{
-					"identifier": "Skitter",
-					"text": "'Sorry,' I said, keeping my voice low. 'Thought you'd have recovered more.'"
-				}
-			],
-			"flavorReference": "Skitter, Imago 21.7"
-		},
-		{
-			"identifier": "QuickInsight",
-			"count": 2,
-			"title": "Quick Insight",
-			"keywords": [
-				"ongoing",
-				"limited"
-			],
-			"body": [
-				"Whenever a target enters play, you may reveal the bottom card of a deck. If you do, put the revealed card on the top or bottom of that deck and {TattletaleCharacter} deals herself 1 psychic damage."
-			],
-			"icons": [
-				"Manipulate",
-				"DealDamagePsychic"
-			],
-			"flavorText": "I knew she read me ten times as well. The little shifts in her expression as she glanced at my hands, at my face. There was no doubt in my mind that she was reading me like a book. She knew every train of thought that had just crossed my mind, the worries, the anxieties",
-			"flavorReference": "Cockroaches 28.6"
-		},
-		{
-			"identifier": "Reading",
-			"count": 3,
-			"title": "Reading",
-			"keywords": [
-				"ongoing"
-			],
-			"powers": [
-				"Reveal the top 3 cards of a deck. Put 1 on the top and 2 on the bottom."
-			],
-			"icons": [
-				"HasPower",
-				"Manipulate"
-			],
-			"flavorText": "Even logged in as a guest, I could see vestiges of the programs she'd installed on her main accounts: a stock ticker, a news ticker, weather, time, trending topics, social media feeds, several alert boxes for when pages relating to certain topics were updated or created. Even the background was a series of four video feeds from cameras that overlooked Brockton Bay.",
-			"flavorReference": "Imago 21.7"
-		},
-		{
-			"identifier": "SpotTheFlaw",
-			"count": 3,
-			"title": "Spot the Flaw",
-			"keywords": [
-				"ongoing"
-			],
-			"body": [
-				"When this card enters play, {TattletaleCharacter} deals herself 2 psychic damage.",
-				"Damage dealt by hero targets is irreducible.",
-				"At the start of your turn, destroy this card."
-			],
-			"icons": [
-				"DealDamagePsychic",
-				"MakeDamageIrreducible",
-				"StartOfTurnAction",
-				"DestroySelf"
-			],
-			"flavorText": "No vulnerable organs, hyperdurable tissues: simple organs exist at core of torso, where there is highest amount of surrounding tissues. Optimal thickness of layer and narrowness of body part at upper arms, just before shoulder joint, and upper thighs, just below hip joint.",
-			"flavorReference": "Interlude 8"
-		},
-		{
-			"identifier": "TakingARisk",
-			"count": 2,
-			"title": "Taking a Risk",
-			"keywords": [
-				"ongoing"
-			],
-			"powers": [
-				"Put the top card of a deck into play."
-			],
-			"icons": [
-				"HasPower",
-				"PlayCardNow"
-			],
-			"flavorQuotes": [
-				{
-					"identifier": "Tattletale",
-					"text": "We've always been the sort to go for the long odds. You have to do what your enemy won't predict."
-				}
-			],
-			"flavorReference": "Tattletale, Cockroaches 28.3"
-		},
-		{
-			"identifier": "TheReasonYouSuck",
-			"count": 4,
-			"title": "The Reason You Suck",
-			"keywords": [
-				"one-shot"
-			],
-			"body": [
-				"{TattletaleCharacter} deals a target 4 psychic damage."
-			],
-			"icons": [
-				"DealDamagePsychic"
-			],
-			"flavorQuotes": [
-				{
-					"identifier": "Tattletale",
-					"text": "We're sinking down to base insults? Trust me, I'm way better than you at that, Dr. Mengele."
-				}
-			],
-			"flavorReference": "Tattletale, Cockroaches 28.1"
-		},
-		{
-			"identifier": "WittyDeflection",
-			"count": 3,
-			"title": "Witty Deflection",
-			"keywords": [
-				"ongoing"
-			],
-			"powers": [
-				"Select a hero target. Until the start of your next turn, whenever that target would be dealt damage, you may redirect that damage to another hero target."
-			],
-			"icons": [
-				"HasPower",
-				"RedirectDamage"
-			],
-			"flavorQuotes": "Lisa ignored Brian's question and winked at me, 'Girl's gotta have her secrets.'",
-			"flavorReference": "Insinuation 2.6"
-		}
-	],
-	"promoCards": [
-		{
-			"identifier": "TattletaleCharacter",
-			"promoIdentifier": "TattletaleRulerOfBrocktonBayCharacter",
-			"count": 1,
-			"title": "Tattletale",
-			"promoTitle": "Tattletale, Ruler of Brockton Bay",
-			"body": "Overworked",
-			"backgroundColor": "B570D4",
-			"character": true,
-			"powers": [
-				"You may use a power.{BR}You may use a power."
-			],
-			"icons": [
-				"HasPower",
-				"UsePowerNow"
-			],
-			"hitpoints": 26,
-			"nemesisIdentifiers": [
-				"Tattletale"
-			],
-			"incapacitatedAbilities": [
-				"One hero may use a power.",
-				"Reveal the top card of a deck, then replace it.",
-				"Reveal the bottom card of a deck, then replace or discard it."
-			],
-			"flippedIcons": [
-				"UsePowerNow",
-				"Manipulate"
-			],
-			"complexity": 2,
-			"openingLines": {
-				"default": "Can you take this somewhere else?"
-			}
-		},
-		{
-			"identifier": "TattletaleCharacter",
-			"promoIdentifier": "TattletaleHunterOfSecretsCharacter",
-			"count": 1,
-			"title": "Tattletale",
-			"promoTitle": "Tattletale, Hunter of Secrets",
-			"body": "Lead // Big Reveal",
-			"backgroundColor": "BAA6D9",
-			"character": true,
-			"gameplay": [
-				"X on this card = the number of tokens on this card."
-			],
-			"tokenPools": [
-				{
-					"identifier": "TattletaleHunterOfSecretsPool",
-					"name": "Tattletale, Hunter of Secrets's Info Pool",
-					"initialValue": 0,
-					"minimumValue": 0,
-					"color": "BAA6D9"
-				}
-			],
-			"powers": [
-				"Reveal the top card of your deck. If it's not an Ongoing card, discard it. If it's an Ongoing card and no other cards with that name are in play, put it into play and put a token on this card. Otherwise, {TattletaleCharacter} deals herself X psychic damage and remove all tokens from this card.",
-				"If there are any tokens on this card, {TattletaleCharacter} may deal a target X psychic damage, then remove a token from this card."
-			],
-			"icons": [
-				"HasPower",
-				"Manipulate",
-				"PlayCardNow",
-				"AddOrRemoveTokens",
-				"DealDamagePsychic"
-			],
-			"hitpoints": 26,
-			"nemesisIdentifiers": [
-				"Tattletale"
-			],
-			"incapacitatedAbilities": [
-				"One hero may use a power.",
-				"Reveal the top card of a deck, then replace it.",
-				"Reveal the bottom card of a deck, then replace or discard it."
-			],
-			"flippedIcons": [
-				"UsePowerNow",
-				"Manipulate"
-			],
-			"complexity": 2,
-			"openingLines": {
-				"default": "Nothing gets past me."
-			}
-		}
-	]
+  "name": "Tattletale",
+  "kind": "Hero",
+  "initialCardIdentifiers": [
+    "TattletaleCharacter"
+  ],
+  "cards": [
+    {
+      "identifier": "TattletaleCharacter",
+      "count": 1,
+      "title": "Tattletale",
+      "body": "Insight",
+      "backgroundColor": "C9ABF0",
+      "character": true,
+      "powers": [
+        "1 player draws 2 cards, then discards 1 card."
+      ],
+      "icons": [
+        "HasPower",
+        "DrawCardNow",
+        "Discard"
+      ],
+      "hitpoints": 26,
+      "nemesisIdentifiers": [
+        "Tattletale"
+      ],
+      "incapacitatedAbilities": [
+        "One player draws a card.",
+        "One player plays a card.",
+        "Destroy an Ongoing card."
+      ],
+      "flippedIcons": [
+        "DrawCardNow",
+        "PlayCardNow",
+        "DestroyOngoing"
+      ],
+      "complexity": 2,
+      "openingLines": {
+        "default": "Quit embarrassing yourself."
+      }
+    },
+    {
+      "identifier": "Confidence",
+      "count": 3,
+      "title": "Confidence",
+      "keywords": [
+        "ongoing",
+        "limited"
+      ],
+      "body": [
+        "At the start of your turn, each hero regains 1 HP."
+      ],
+      "icons": [
+        "StartOfTurnAction",
+        "GainHP"
+      ],
+      "flavorQuotes": [
+        {
+          "identifier": "Cherish",
+          "text": "You're trying something. I feel smugness from you, too much confidence for where you're standing."
+        }
+      ],
+      "flavorReference": "Cherish, Plague 12.4"
+    },
+    {
+      "identifier": "ConstantSmile",
+      "count": 3,
+      "title": "Constant Smile",
+      "keywords": [
+        "ongoing",
+        "limited"
+      ],
+      "body": [
+        "At the start of your turn, {TattletaleCharacter} deals each non-hero target 1 psychic damage."
+      ],
+      "icons": [
+        "StartOfTurnAction",
+        "DealDamagePsychic"
+      ],
+      "flavorText": "The girl turned her head, pretending to examine a jacket, so she could hide a vulpine smile that spread across her face.",
+      "flavorReference": "Interlude 8"
+    },
+    {
+      "identifier": "DominoMask",
+      "count": 2,
+      "title": "Domino Mask",
+      "keywords": [
+        "equipment",
+        "limited"
+      ],
+      "body": [
+        "You may use an additional power during your power phase."
+      ],
+      "icons": [
+        "UsePowerExtra"
+      ],
+      "flavorText": "Behind her simple black domino style mask, her eyes were glittering with mischief.",
+      "flavorReference": "Gestation 1.5"
+    },
+    {
+      "identifier": "FollowsAllTheThreads",
+      "count": 2,
+      "title": "Follows All the Threads",
+      "keywords": [
+        "ongoing",
+        "limited"
+      ],
+      "body": [
+        "Play with the top card of each deck face up.",
+        "At the start of your turn, {TattletaleCharacter} deals herself 1 psychic damage."
+      ],
+      "powers": [
+        "Destroy this card."
+      ],
+      "icons": [
+        "Manipulate",
+        "StartOfTurnAction",
+        "DealDamagePsychic",
+        "HasPower",
+        "DestroySelf"
+      ],
+      "flavorText": "The details on the bulletin boards became clear. They were color coded by subject, but there were threads connecting elements, pieces of yarn tacked into place or held in spots with magnets.",
+      "flavorReference": "Imago 21.7"
+    },
+    {
+      "identifier": "InformationOverload",
+      "count": 3,
+      "title": "Information Overload",
+      "keywords": [
+        "one-shot"
+      ],
+      "body": [
+        "{TattletaleCharacter} may use any number of powers this turn.",
+        "Whenever {TattletaleCharacter} uses a power this turn, she deals herself 1 psychic damage."
+      ],
+      "icons": [
+        "UsePowerExtra",
+        "DealDamagePsychic"
+      ],
+      "flavorText": "Using her power wasn't a switch she turned on. It was letting the walls come down, letting the information start pouring in.",
+      "flavorReference": "Interlude 8"
+    },
+    {
+      "identifier": "ItsAlwaysInTheFirstPlaceILook",
+      "count": 3,
+      "title": "It's Always in the First Place I Look",
+      "keywords": [
+        "one-shot"
+      ],
+      "body": [
+        "A player may search their deck for a card and put it into their hand, then shuffle their deck."
+      ],
+      "icons": [
+        "Search"
+      ],
+      "flavorQuotes": [
+        {
+          "identifier": "Tattletale",
+          "text": "Sorry, Aidan, to squabble in front of you, but Charlotte needs to remember I don't tend to miss stuff like that."
+        }
+      ],
+      "flavorReference": "Tattletale, Interlude 26"
+    },
+    {
+      "identifier": "MyEyeOnYou",
+      "count": 3,
+      "title": "My Eye On You",
+      "keywords": [
+        "ongoing"
+      ],
+      "powers": [
+        "One hero target regains 3 HP."
+      ],
+      "icons": [
+        "HasPower",
+        "GainHP"
+      ],
+      "flavorQuotes": [
+        {
+          "identifier": "Tattletale",
+          "text": "I figured you would be. What I want to know is if you're okay."
+        }
+      ],
+      "flavorReference": "Tattletale, Extermination 8.8"
+    },
+    {
+      "identifier": "OutOfCommission",
+      "count": 4,
+      "title": "Out of Commission",
+      "keywords": [
+        "one-shot"
+      ],
+      "body": [
+        "{TattletaleCharacter} regains 5 HP.",
+        "Immediately end your turn."
+      ],
+      "icons": [
+        "GainHP",
+        "SkipTurn"
+      ],
+      "flavorQuotes": [
+        {
+          "identifier": "Skitter",
+          "text": "'Sorry,' I said, keeping my voice low. 'Thought you'd have recovered more.'"
+        }
+      ],
+      "flavorReference": "Skitter, Imago 21.7"
+    },
+    {
+      "identifier": "QuickInsight",
+      "count": 2,
+      "title": "Quick Insight",
+      "keywords": [
+        "ongoing",
+        "limited"
+      ],
+      "body": [
+        "Whenever a target enters play, you may reveal the bottom card of a deck. If you do, put the revealed card on the top or bottom of that deck and {TattletaleCharacter} deals herself 1 psychic damage."
+      ],
+      "icons": [
+        "Manipulate",
+        "DealDamagePsychic"
+      ],
+      "flavorText": "I knew she read me ten times as well. The little shifts in her expression as she glanced at my hands, at my face. There was no doubt in my mind that she was reading me like a book. She knew every train of thought that had just crossed my mind, the worries, the anxieties",
+      "flavorReference": "Cockroaches 28.6"
+    },
+    {
+      "identifier": "Reading",
+      "count": 3,
+      "title": "Reading",
+      "keywords": [
+        "ongoing"
+      ],
+      "powers": [
+        "Reveal the top 3 cards of a deck. Put 1 on the top and 2 on the bottom."
+      ],
+      "icons": [
+        "HasPower",
+        "Manipulate"
+      ],
+      "flavorText": "Even logged in as a guest, I could see vestiges of the programs she'd installed on her main accounts: a stock ticker, a news ticker, weather, time, trending topics, social media feeds, several alert boxes for when pages relating to certain topics were updated or created. Even the background was a series of four video feeds from cameras that overlooked Brockton Bay.",
+      "flavorReference": "Imago 21.7"
+    },
+    {
+      "identifier": "SpotTheFlaw",
+      "count": 3,
+      "title": "Spot the Flaw",
+      "keywords": [
+        "ongoing"
+      ],
+      "body": [
+        "When this card enters play, {TattletaleCharacter} deals herself 2 psychic damage.",
+        "Damage dealt by hero targets is irreducible.",
+        "At the start of your turn, destroy this card."
+      ],
+      "icons": [
+        "DealDamagePsychic",
+        "MakeDamageIrreducible",
+        "StartOfTurnAction",
+        "DestroySelf"
+      ],
+      "flavorText": "No vulnerable organs, hyperdurable tissues: simple organs exist at core of torso, where there is highest amount of surrounding tissues. Optimal thickness of layer and narrowness of body part at upper arms, just before shoulder joint, and upper thighs, just below hip joint.",
+      "flavorReference": "Interlude 8"
+    },
+    {
+      "identifier": "TakingARisk",
+      "count": 2,
+      "title": "Taking a Risk",
+      "keywords": [
+        "ongoing"
+      ],
+      "powers": [
+        "Put the top card of a deck into play."
+      ],
+      "icons": [
+        "HasPower",
+        "PlayCardNow"
+      ],
+      "flavorQuotes": [
+        {
+          "identifier": "Tattletale",
+          "text": "We've always been the sort to go for the long odds. You have to do what your enemy won't predict."
+        }
+      ],
+      "flavorReference": "Tattletale, Cockroaches 28.3"
+    },
+    {
+      "identifier": "TheReasonYouSuck",
+      "count": 4,
+      "title": "The Reason You Suck",
+      "keywords": [
+        "one-shot"
+      ],
+      "body": [
+        "{TattletaleCharacter} deals a target 4 psychic damage."
+      ],
+      "icons": [
+        "DealDamagePsychic"
+      ],
+      "flavorQuotes": [
+        {
+          "identifier": "Tattletale",
+          "text": "We're sinking down to base insults? Trust me, I'm way better than you at that, Dr. Mengele."
+        }
+      ],
+      "flavorReference": "Tattletale, Cockroaches 28.1"
+    },
+    {
+      "identifier": "WittyDeflection",
+      "count": 3,
+      "title": "Witty Deflection",
+      "keywords": [
+        "ongoing"
+      ],
+      "powers": [
+        "Select a hero target. Until the start of your next turn, whenever that target would be dealt damage, you may redirect that damage to another hero target."
+      ],
+      "icons": [
+        "HasPower",
+        "RedirectDamage"
+      ],
+      "flavorQuotes": "Lisa ignored Brian's question and winked at me, 'Girl's gotta have her secrets.'",
+      "flavorReference": "Insinuation 2.6"
+    }
+  ],
+  "promoCards": [
+    {
+      "identifier": "TattletaleCharacter",
+      "promoIdentifier": "TattletaleRulerOfBrocktonBayCharacter",
+      "count": 1,
+      "title": "Tattletale",
+      "promoTitle": "Tattletale, Ruler of Brockton Bay",
+      "body": "Overworked",
+      "backgroundColor": "B570D4",
+      "character": true,
+      "powers": [
+        "You may use a power.{BR}You may use a power."
+      ],
+      "icons": [
+        "HasPower",
+        "UsePowerNow"
+      ],
+      "hitpoints": 26,
+      "nemesisIdentifiers": [
+        "Tattletale"
+      ],
+      "incapacitatedAbilities": [
+        "One hero may use a power.",
+        "Reveal the top card of a deck, then replace it.",
+        "Reveal the bottom card of a deck, then replace or discard it."
+      ],
+      "flippedIcons": [
+        "UsePowerNow",
+        "Manipulate"
+      ],
+      "complexity": 2,
+      "openingLines": {
+        "default": "Can you take this somewhere else?"
+      }
+    },
+    {
+      "identifier": "TattletaleCharacter",
+      "promoIdentifier": "TattletaleHunterOfSecretsCharacter",
+      "count": 1,
+      "title": "Tattletale",
+      "promoTitle": "Tattletale, Hunter of Secrets",
+      "body": "Lead // Big Reveal",
+      "backgroundColor": "BAA6D9",
+      "character": true,
+      "gameplay": [
+        "X on this card = the number of tokens on this card."
+      ],
+      "tokenPools": [
+        {
+          "identifier": "TattletaleHunterOfSecretsPool",
+          "name": "Tattletale, Hunter of Secrets's Info Pool",
+          "initialValue": 0,
+          "minimumValue": 0,
+          "color": "BAA6D9"
+        }
+      ],
+      "powers": [
+        "Reveal the top card of your deck. If it's not an Ongoing card, discard it. If it's an Ongoing card and no other cards with that name are in play, put it into play and put a token on this card. Otherwise, {TattletaleCharacter} deals herself X psychic damage and remove all tokens from this card.",
+        "If there are any tokens on this card, {TattletaleCharacter} may deal a target X psychic damage, then remove a token from this card."
+      ],
+      "icons": [
+        "HasPower",
+        "Manipulate",
+        "PlayCardNow",
+        "AddOrRemoveTokens",
+        "DealDamagePsychic"
+      ],
+      "hitpoints": 26,
+      "nemesisIdentifiers": [
+        "Tattletale"
+      ],
+      "incapacitatedAbilities": [
+        "One hero may use a power.",
+        "Reveal the top card of a deck, then replace it.",
+        "Reveal the bottom card of a deck, then replace or discard it."
+      ],
+      "flippedIcons": [
+        "UsePowerNow",
+        "Manipulate"
+      ],
+      "complexity": 2,
+      "openingLines": {
+        "default": "Nothing gets past me."
+      }
+    }
+  ]
 }

@@ -26,6 +26,9 @@ namespace Jp.ParahumansOfTheWormverse.Lung
 
         public override void AddSideTriggers()
         {
+            AddDefeatedIfDestroyedTriggers();
+            AddDefeatedIfMovedOutOfGameTriggers();
+
             if (Card.IsFlipped)
             {
                 AddSideTrigger(AddReduceDamageTrigger(c => c == Card, 1));
