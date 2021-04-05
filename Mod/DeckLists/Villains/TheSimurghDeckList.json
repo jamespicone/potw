@@ -12,7 +12,7 @@
 			"keywords": [
 				"villain"
 			],
-			"body": "Endbringer Strategist",
+			"body": "The Strategist",
 			"backgroundColor": "",
 			"character": true,
 			"hitpoints": 50,
@@ -20,7 +20,7 @@
 				"Trickster"
 			],
 			"setup": [
-				"Put {TheSimurghCharacter} into play, 'Endbringer Strategist' side up. Set all Condition cards aside as the Condition deck. Shuffle all Trap cards and put the top {H} into play face down. Remove the other Trap cards from the game."
+				"Put {TheSimurghCharacter} into play, 'The Strategist' side up. Set all Condition cards aside as the Condition deck. Shuffle all Trap cards and put the top {H} into play face down. Remove the other Trap cards from the game."
 			],
 			"gameplay": [
 				"Reduce damage dealt to {TheSimurghCharacter} by 1.",
