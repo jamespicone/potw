@@ -36,6 +36,7 @@
 	"DealDamageLightning",
 	"Manipulate"
    ],
+
    "openingLines": {
 	"default": ""
    },

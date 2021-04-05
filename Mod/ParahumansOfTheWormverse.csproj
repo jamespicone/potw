@@ -74,8 +74,23 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="DeckLists\**\*.json">
-      <LogicalName>Jp.ParahumansOfTheWormverse.DeckLists.%(EmbeddedResource.FileName).json</LogicalName>
+    <EmbeddedResource Include="DeckLists\Heroes\ArmsmasterDeckList.json">
+      <LogicalName>Jp.ParahumansOfTheWormverse.DeckLists.ArmsmasterDeckList.json</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DeckLists\Heroes\BatteryDeckList.json">
+      <LogicalName>Jp.ParahumansOfTheWormverse.DeckLists.BatteryDeckList.json</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DeckLists\Heroes\BitchDeckList.json">
+      <LogicalName>Jp.ParahumansOfTheWormverse.DeckLists.BitchDeckList.json</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DeckLists\Heroes\TattletaleDeckList.json">
+      <LogicalName>Jp.ParahumansOfTheWormverse.DeckLists.TattletaleDeckList.json</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DeckLists\Villains\LungDeckList.json">
+      <LogicalName>Jp.ParahumansOfTheWormverse.DeckLists.LungDeckList.json</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DeckLists\Villains\TheSimurghDeckList.json">
+      <LogicalName>Jp.ParahumansOfTheWormverse.DeckLists.TheSimurghDeckList.json</LogicalName>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
@@ -141,6 +156,23 @@
     <Compile Include="Heroes\Bitch\Cards\GuardCardController.cs" />
     <Compile Include="Heroes\Bitch\Cards\HeelCardController.cs" />
     <Compile Include="Heroes\Bitch\Characters\BitchCharacterCardController.cs" />
+    <Compile Include="Heroes\Tattletale\Cards\ConfidenceCardController.cs" />
+    <Compile Include="Heroes\Tattletale\Cards\ConstantSmileCardController.cs" />
+    <Compile Include="Heroes\Tattletale\Cards\DominoMaskCardController.cs" />
+    <Compile Include="Heroes\Tattletale\Cards\FollowsAllTheThreadsCardController.cs" />
+    <Compile Include="Heroes\Tattletale\Cards\InformationOverloadCardController.cs" />
+    <Compile Include="Heroes\Tattletale\Cards\ItsAlwaysInTheFirstPlaceILookCardController.cs" />
+    <Compile Include="Heroes\Tattletale\Cards\MyEyeOnYouCardController.cs" />
+    <Compile Include="Heroes\Tattletale\Cards\OutOfCommissionCardController.cs" />
+    <Compile Include="Heroes\Tattletale\Cards\QuickInsightCardController.cs" />
+    <Compile Include="Heroes\Tattletale\Cards\ReadingCardController.cs" />
+    <Compile Include="Heroes\Tattletale\Cards\SpotTheFlawCardController.cs" />
+    <Compile Include="Heroes\Tattletale\Cards\TakingARiskCardController.cs" />
+    <Compile Include="Heroes\Tattletale\Cards\TheReasonYouSuckCardController.cs" />
+    <Compile Include="Heroes\Tattletale\Cards\WittyDeflectionCardController.cs" />
+    <Compile Include="Heroes\Tattletale\Characters\TattletaleCharacterCardController.cs" />
+    <Compile Include="Heroes\Tattletale\Characters\TattletaleHunterOfSecretsCharacterCardController.cs" />
+    <Compile Include="Heroes\Tattletale\Characters\TattletaleRulerOfBrocktonBayCharacterCardController.cs" />
     <Compile Include="Villains\Lung\Cards\BakudaCardController.cs" />
     <Compile Include="Villains\Lung\Cards\ABBThugsCardController.cs" />
     <Compile Include="Villains\Lung\Cards\PyrokinesisCardController.cs" />
@@ -160,7 +192,10 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Villains\TheSimurgh\Cards\" />
+    <Folder Include="Villains\TheSimurgh\Characters\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions />
   <PropertyGroup>
