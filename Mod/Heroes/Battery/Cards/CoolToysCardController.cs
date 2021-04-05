@@ -15,7 +15,7 @@ namespace Jp.ParahumansOfTheWormverse.Battery
             : base(card, turnTakerController)
         {
             ShowBatteryChargedStatus();
-            SpecialStringMaker.ShowNumberOfCardsInPlay(new LinqCardCriteria((Card c) => c.IsInPlayAndHasGameText && (c.DoKeywordsContain("equipment") || c.DoKeywordsContain("Device")), "Equipment or Device"));
+            SpecialStringMaker.ShowNumberOfCardsInPlay(new LinqCardCriteria((Card c) => c.IsInPlayAndHasGameText && (c.DoKeywordsContain("equipment") || c.DoKeywordsContain("device")), "Equipment or Device"));
         }
 
         public override IEnumerator Play()
@@ -23,7 +23,7 @@ namespace Jp.ParahumansOfTheWormverse.Battery
             // "If {BatteryCharacter} is {Charged}, she deals 1 target X lightning damage, where X is the total number of Equipment and Device cards in play."
             if (IsCharged(base.CharacterCard))
             {
-                IEnumerator damageCoroutine = base.GameController.SelectTargetsAndDealDamage(base.HeroTurnTakerController, new DamageSource(base.GameController, base.CharacterCard), FindCardsWhere(new LinqCardCriteria((Card c) => c.IsInPlayAndHasGameText && (c.DoKeywordsContain("equipment") || c.DoKeywordsContain("Device")), "Equipment or Device"), GetCardSource()).Count(), DamageType.Lightning, 1, false, 1, cardSource: GetCardSource());
+                IEnumerator damageCoroutine = base.GameController.SelectTargetsAndDealDamage(base.HeroTurnTakerController, new DamageSource(base.GameController, base.CharacterCard), FindCardsWhere(new LinqCardCriteria((Card c) => c.IsInPlayAndHasGameText && (c.DoKeywordsContain("equipment") || c.DoKeywordsContain("device")), "Equipment or Device"), GetCardSource()).Count(), DamageType.Lightning, 1, false, 1, cardSource: GetCardSource());
                 if (base.UseUnityCoroutines)
                 {
                     yield return base.GameController.StartCoroutine(damageCoroutine);

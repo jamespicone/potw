@@ -65,7 +65,6 @@ namespace Jp.ParahumansOfTheWormverse.Tattletale
 
                 redirectOptionStatus.UntilTargetLeavesPlay(chosenTarget);
                 redirectOptionStatus.BeforeOrAfter = BeforeOrAfter.Before;
-                redirectOptionStatus.CanEffectStack = true;
 
                 IEnumerator statusCoroutine = base.GameController.AddStatusEffect(redirectOptionStatus, true, GetCardSource());
                 if (UseUnityCoroutines)

@@ -11,10 +11,6 @@
       "icons": [ "HasPower", "DealDamageMelee" ],
       "hitpoints": 28,
       "powers": [ "Each Dog in play may deal 2 melee damage to a target." ],
-      "icons": [
-	   "HasPower",
-	   "DealDamageMelee"
-	  ],
       "character": true,
       "backgroundColor": "ffffff",
       "openingLines": {

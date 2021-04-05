@@ -19,8 +19,8 @@ namespace Jp.ParahumansOfTheWormverse.Battery
 
         public override IEnumerator Play()
         {
-            // "{BatteryCharacter} deals herself 2 psychic damage."
-            IEnumerator damageCoroutine = base.GameController.DealDamage(base.HeroTurnTakerController, base.CharacterCard, (Card c) => c == base.CharacterCard, 2, DamageType.Psychic, cardSource: GetCardSource());
+            // "{BatteryCharacter} deals herself 3 psychic damage."
+            IEnumerator damageCoroutine = base.GameController.DealDamage(base.HeroTurnTakerController, base.CharacterCard, (Card c) => c == base.CharacterCard, 3, DamageType.Psychic, cardSource: GetCardSource());
             if (base.UseUnityCoroutines)
             {
                 yield return base.GameController.StartCoroutine(damageCoroutine);
