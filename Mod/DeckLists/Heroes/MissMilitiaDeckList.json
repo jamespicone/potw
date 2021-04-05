@@ -1,0 +1,334 @@
+{
+	"name": "Miss Militia",
+	"kind": "Hero",
+	"initialCardIdentifiers": [
+		"MissMilitiaCharacter"
+	],
+	"cards": [
+		{
+			"identifier": "MissMilitiaCharacter",
+			"count": 1,
+			"title": "Miss Militia",
+			"body": "Armory",
+			"backgroundColor": "04BF00",
+			"character": true,
+			"powers": [
+				"Reveal the top 2 cards of your deck. Put any revealed Weapon cards into play and discard the rest. You may use a power on a Weapon card now."
+			],
+			"icons": [
+				"HasPower",
+				"PlayCardNow",
+				"Discard",
+				"UsePowerNow"
+			],
+			"hitpoints": 26,
+			"nemesisIdentifiers": [
+				"MissMilitia"
+			],
+			"incapacitatedAbilities": [
+				"One hero target deals 1 target 2 projectile damage.",
+				"One hero destroys one of their Equipment cards. If they do, they deal 1 target 4 projectile damage.",
+				"One player may play a card."
+			],
+			"flippedIcons": [
+				"DealDamageProjectile",
+				"DestroyEquipment",
+				"PlayCardNow"
+			],
+			"complexity": 2,
+			"openingLines": {
+				"default": ""
+			}
+		},
+		{
+			"identifier": "Machete",
+			"count": 3,
+			"title": "Machete",
+			"keywords": [
+				"equipment",
+				"weapon"
+			],
+			"powers": [
+				"{MissMilitiaCharacter} deals a non-hero target 2 melee damage. Until the end of your next turn, you may activate {machete} effects.{BR}{smg}{MissMilitiaCharacter} deals that target 3 melee damage."
+			],
+			"icons": [
+				"HasPower",
+				"DealDamageMelee",
+				"MissMilitiaActivateMachete",
+				"MissMilitiaSmg"
+			],
+			"flavorText": "Regent stopped his{BR}struggles the second she rested{BR}the point of the bladed weapon against{BR}the side of his throat.",
+			"flavorReference": "Tangle 6.6"
+		},
+		{
+			"identifier": "Pistol",
+			"count": 3,
+			"title": "Pistol",
+			"keywords": [
+				"equipment",
+				"weapon"
+			],
+			"powers": [
+				"{MissMilitiaCharacter} deals a non-hero target 2 projectile damage. Until the end of your next turn, you may activate {pistol} effects.{BR}{smg}You may play a card."
+			],
+			"icons": [
+				"HasPower",
+				"MissMilitiaActivatePistol",
+				"DealDamageProjectile",
+				"MissMilitiaSmg",
+				"PlayCardNow"
+			],
+			"flavorText": "Her hand automatically closed around it,{BR}feeling the warmth of it. It felt almost like when{BR}she pet a friendly dog. An odd thought.",
+			"flavorReference": "Interlude 7"
+		},
+		{
+			"identifier": "SubmachineGun",
+			"count": 3,
+			"title": "Submachine Gun",
+			"keywords": [
+				"equipment",
+				"weapon"
+			],
+			"powers": [
+				"{MissMilitiaCharacter} deals up to 3 non-hero targets 1 projectile damage each. Until the end of your next turn, you may activate {smg} effects.{BR}{machete}You may destroy an Ongoing or environment card.{BR}{sniper}You may put a non-hero non-character target in play on top of its deck."
+			],
+			"icons": [
+				"HasPower",
+				"DealDamageProjectile",
+				"MissMilitiaActivateSmg",
+				"MissMilitiaMachete",
+				"DestroyOngoing",
+				"DestroyEnvironment",
+				"MissMilitiaSniper",
+				"Manipulate"
+			],
+			"flavorText": "She'd killed the{BR}soldiers that held the other children{BR}of her village hostage. After the first,{BR}she had feigned fear... then...",
+			"flavorReference": "Interlude 7"
+		},
+		{
+			"identifier": "SniperRifle",
+			"count": 3,
+			"title": "Sniper Rifle",
+			"keywords": [
+				"equipment",
+				"weapon"
+			],
+			"powers": [
+				"Discard a card. Select a target. At the start of your next turn, {MissMilitiaCharacter} deals that target 4 projectile damage. Until the end of your next turn, you may activate {sniper} effects.{BR}{pistol}Draw 3 cards."
+			],
+			"icons": [
+				"HasPower",
+				"Discard",
+				"StartOfTurnAction",
+				"DealDamageProjectile",
+				"MissMilitiaActivateSniper",
+				"MissMilitiaPistol",
+				"DrawCardNow"
+			],
+			"flavorText": "Miss Militia turned a sniper rifle{BR}on me. I caught her before she could{BR}fire.",
+			"flavorReference": "30.4"
+		},
+		{
+			"identifier": "Overdrive",
+			"count": 2,
+			"title": "Overdrive",
+			"keywords": [
+				"one-shot"
+			],
+			"body": [
+				"Count the number of your unique Weapon cards in play. You may use that many powers this turn.",
+				"At the end of this turn, destroy each Weapon card whose power you used this turn."
+			],
+			"icons": [
+				"UsePowerExtra",
+				"EndOfTurnAction",
+				"DestroyEquipment"
+			],
+			"flavorText": "Miss Militia stepped up to the plate,{BR}a cape flanking her. Her power, to create{BR}the bomb. Ten and a half feet long.",
+			"flavorReference": "Venom 29.2"
+		},
+		{
+			"identifier": "CoverFire",
+			"count": 4,
+			"title": "Cover Fire",
+			"keywords": [
+				"one-shot"
+			],
+			"body": [
+				"{MissMilitiaCharacter} deals a non-hero target 2 projectile damage. 1 hero target regains 2 HP."
+			],
+			"icons": [
+				"DealDamageProjectile",
+				"GainHP"
+			],
+			"flavorText": "A red dot appeared on{BR}the tendril that gripped her. Another{BR}distant gunshot, and it was severed. Ooze{BR}splashed onto the rooftop.",
+			"flavorReference": "Teneral e.4"
+		},
+		{
+			"identifier": "Grenade",
+			"count": 3,
+			"title": "Grenade",
+			"keywords": [
+				"one-shot"
+			],
+			"body": [
+				"{MissMilitiaCharacter} deals a non-hero target 2 fire damage and 2 melee damage. If she dealt damage this way, you may destroy an Ongoing card."
+			],
+			"icons": [
+				"DealDamageFire",
+				"DealDamageMelee",
+				"DestroyOngoing"
+			],
+			"flavorText": "Miss Militia was climbing{BR}up out of the lead truck's passenger door{BR}in an instant, hefting a grenade launcher to{BR}blast Menja three times in quick succession.",
+			"flavorReference": "Sentinel 9.6"
+		},
+		{
+			"identifier": "IHaveMore",
+			"count": 3,
+			"title": "I Have More",
+			"keywords": [
+				"one-shot"
+			],
+			"body": [
+				"Destroy a Weapon card. Destroy up to 2 Ongoing and/or environment cards."
+			],
+			"icons": [
+				"DestroyEquipment",
+				"DestroyOngoing",
+				"DestroyEnvironment"
+			],
+			"flavorText": "She could reform the gun in{BR}a second if a gun jammed.",
+			"flavorReference": "Sentinel 9.6"
+		},
+		{
+			"identifier": "HailOfBullets",
+			"count": 4,
+			"title": "Hail of Bullets",
+			"keywords": [
+				"one-shot"
+			],
+			"body": [
+				"{MissMilitiaCharacter} deals each non-hero target 2 projectile damage."
+			],
+			"icons": [
+				"DealDamageProjectile"
+			],
+			"flavorText": "She unloaded clip after clip into{BR}the enemy ranks; rubber bullets, most{BR}likely.",
+			"flavorReference": "Sentinel 9.6"
+		},
+		{
+			"identifier": "Armour",
+			"count": 2,
+			"title": "Armour",
+			"keywords": [
+				"equipment",
+				"limited"
+			],
+			"body": [
+				"If {MissMilitiaCharacter} would be dealt 5 or more damage from a single source, prevent that damage and destroy this card."
+			],
+			"icons": [
+				"CancelledDamageGreen",
+				"DestroySelf"
+			],
+			"flavorText": "She'd grown to love{BR}this country. Truly love it, for what{BR}it stood for. She'd had to fight to wear{BR}the flag as part of her costume.",
+			"flavorReference": "Interlude 7"
+		},
+		{
+			"identifier": "IDontSleep",
+			"count": 3,
+			"title": "I Don't Sleep",
+			"keywords": [
+				"ongoing",
+				"limited"
+			],
+			"body": [
+				"At the end of your turn, draw a card."
+			],
+			"icons": [
+				"EndOfTurnAction",
+				"DrawCardNow"
+			],
+			"flavorText": "Hannah's eyes snapped open. This is why I don't sleep.",
+			"flavorReference": "Interlude 7"
+		},
+		{
+			"identifier": "NonlethalMeasures",
+			"count": 3,
+			"title": "Nonlethal Measures",
+			"keywords": [
+				"ongoing"
+			],
+			"body": [
+				"Whenever {MissMilitiaCharacter} destroys a non-character card target, you may put that target on the bottom of its deck."
+			],
+			"icons": [
+				"Manipulate"
+			],
+			"flavorText": "'Taylor!' she called out, as if she could reach me that way. 'I'm not going to shoot, but you have to stop!'",
+			"flavorReference": "Cell 22.4"
+		},
+		{
+			"identifier": "Weaponry",
+			"count": 4,
+			"title": "Weaponry",
+			"keywords": [
+				"one-shot"
+			],
+			"body": [
+				"{smg}Increase damage dealt by {MissMilitiaCharacter} this turn by 1.",
+				"{machete}{MissMilitiaCharacter} may deal a non-hero target 1 irreducible melee damage.",
+				"{pistol}Draw a card.",
+				"{sniper}You may destroy a non-character card non-hero target."
+			],
+			"icons": [
+				"MissMilitiaAll",
+				"IncreaseDamageDealt",
+				"DealDamageMelee",
+				"DrawCardNow",
+				"DestroyTarget"
+			],
+			"flavorText": "She harbored her suspicions about{BR}her gift: her powers had taken a part of{BR}her psyche and given it concrete form.",
+			"flavorReference": "Interlude 7.x"
+		}
+	],
+	"promoCards": [
+		{
+			"identifier": "MissMilitiaCharacter",
+			"promoIdentifier": "MissMilitiaProtectorateCaptainCharacter",
+			"count": 1,
+			"title": "Miss Militia",
+			"promoTitle": "Miss Militia: Protectorate Captain",
+			"body": "Weaponsense",
+			"backgroundColor": "96FF9C",
+			"character": true,
+			"powers": [
+				"You may use a power on a Weapon card, activating all of its {sniper}{machete}{smg}{pistol} effects. Return that card to your hand. You may play a Weapon card."
+			],
+			"icons": [
+				"HasPower",
+				"UsePowerNow",
+				"MissMilitiaActivateAll",
+				"PlayCardNow"
+			],
+			"hitpoints": 28,
+			"nemesisIdentifiers": [
+				"MissMilitia"
+			],
+			"incapacitatedAbilities": [
+				"One hero may use a power.",
+				"One hero deals 1 target 2 melee damage.",
+				"One hero regains 2 HP."
+			],
+			"flippedIcons": [
+				"UsePowerNow",
+				"DealDamageMelee",
+				"GainHP"
+			],
+			"complexity": 2,
+			"openingLines": {
+				"default": ""
+			}
+		}
+	]
+}
