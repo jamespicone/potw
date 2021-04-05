@@ -1,0 +1,472 @@
+{
+	"name": "The Simurgh",
+	"kind": "Villain",
+	"initialCardIdentifiers": [
+		"TheSimurghCharacter"
+	],
+	"cards": [
+		{
+			"identifier": "TheSimurghCharacter",
+			"count": 1,
+			"title": "The Simurgh",
+			"keywords": [
+				"villain"
+			],
+			"body": "Endbringer Strategist",
+			"backgroundColor": "",
+			"character": true,
+			"hitpoints": 50,
+			"nemesisIdentifiers": [
+				"Trickster"
+			],
+			"setup": [
+				"Put {TheSimurghCharacter} into play, 'Endbringer Strategist' side up. Set all Condition cards aside as the Condition deck. Shuffle all Trap cards and put the top {H} into play face down. Remove the other Trap cards from the game."
+			],
+			"gameplay": [
+				"Reduce damage dealt to {TheSimurghCharacter} by 1.",
+				"Face-down villain cards are indestructible.",
+				"At the start of the villain turn, play the top card of the Condition deck. Then, reveal the top {H - 1} cards of the villain deck. Put the revealed cards back in ascending order of {SimurghDanger}.",
+				"At the end of the villain turn, {TheSimurghCharacter} deals the hero with the highest HP {H - 1} projectile damage. Then, if there are no face-down villain cards, flip this card."
+			],
+			"advanced": [
+				"At the start of the villain turn, play the top card of the Condition deck."
+			],
+			"icons": [
+				"ReduceDamageTaken",
+				"Indestructible",
+				"StartAndEndOfTurnAction",
+				"PlayCardNow",
+				"Manipulate",
+				"DealDamageProjectile"
+			],
+			"advancedIcons": [
+				"StartOfTurnAction",
+				"PlayCardNow"
+			],
+			"flippedBody": "Wings Unfurled",
+			"flippedHitpoints": 50,
+			"flippedGameplay": [
+				"Reduce damage dealt to {TheSimurghCharacter} by 2.",
+				"At the start of the villain turn, reveal the top {H + 1} cards of the villain deck. Put the revealed cards back in ascending order of {SimurghDanger}.",
+				"At the end of the villain turn, put a token on this card. Then, each hero target deals itself X psychic damage, where X is the number of tokens on this card."
+			],
+			"flippedAdvanced": [
+				"Players may not discuss strategy or tactics."
+			],
+			"flippedIcons": [
+				"ReduceDamageTaken",
+				"StartAndEndOfTurnAction",
+				"Manipulate",
+				"AddTokens",
+				"DealDamagePsychic"
+			],
+			"flippedAdvancedIcons": [
+				""
+			],
+			"difficulty": 2,
+			"openingLines": {
+				"default": "AAAAA"
+			},
+			"tokenPools":[
+				{
+					"identifier": "TheSimurghTokenPool",
+					"name": "The Simurgh Pool",
+					"initialValue": 0,
+					"minimumValue": 0,
+					"color": ""
+				}
+			]
+		},
+		{
+			"identifier": "ABackupSabotaged",
+			"count": 1,
+			"title": "A Backup Sabotaged",
+			"keywords": [
+				"condition"
+			],
+			"body": [
+				"If any hero has 2 cards in hand with the same name, flip a face-down villain card and remove this card from the game.",
+				"Otherwise, shuffle this card into the Condition deck."
+			],
+			"icons": [
+				"FlipFaceUp"
+			],
+			"flavorText": "The heroes had cut the power, and the Simurgh was still managing to activate the thing.",
+			"flavorReference": "Migration 17.2"
+		},
+		{
+			"identifier": "ACapabilityRevealed",
+			"count": 2,
+			"title": "A Capability Revealed",
+			"keywords": [
+				"one-shot"
+			],
+			"body": [
+				"Destroy all Equipment cards. Reveal the top X cards of the villain deck, where X is the number of cards destroyed this way. Put the revealed cards back in ascending order of {SimurghDanger}."
+			],
+			"icons": [
+				"DestroyEquipment",
+				"Manipulate"
+			],
+			"flavorText": "Pieces of machinery began to flow out of a gaping hole in the side of the building nearest where she'd landed, stopping when they reached her immediate vicinity.",
+			"flavorReference": "Migration 17.2"
+		},
+		{
+			"identifier": "ACountermeasureDefeated",
+			"count": 4,
+			"title": "A Countermeasure Defeated",
+			"keywords": [
+				"one-shot"
+			],
+			"body": [
+				"Reveal the top {H} cards of the villain trash. Play the revealed card with the lowest {SimurghDanger}."
+			],
+			"icons": [
+				"PlayCardNow"
+			],
+			"flavorText": "Telekinesis. She'd created a false image of herself out of snow and ice, baiting Scion away.",
+			"flavorReference": "Migration 17.2"
+		},
+		{
+			"identifier": "ACrucialHesitation",
+			"count": 1,
+			"title": "A Crucial Hesitation",
+			"keywords": [
+				"trap"
+			],
+			"body": [
+				"When this card is flipped face up, put {8 - H} tokens on it. If this card ever has no tokens on it, the heroes lose the game.",
+				"At the end of the villain turn, remove a token from this card.",
+				"Whenever a hero skips 2 phases of the same turn, put a token on this card.",
+				"This card is indestructible."
+			],
+			"icons": [
+				"EndOfTurnAction",
+				"RemoveTokens",
+				"AddTokens",
+				"Indestructible"
+			],
+			"tokenPools": [
+				{
+					"identifier": "ACrucialHesitationPool",
+					"name": "A Crucial Hesitation Pool",
+					"initialValue": 8,
+					"minimumValue" 0,
+					"color": ""
+				}
+			],
+			"flavorText": "The bubble-man formed another shield around himself, but he left his companion out of it.",
+			"flavorReference": "Migration 17.2"
+		},
+		{
+			"identifier": "ADefensePenetrated",
+			"count": 1,
+			"title": "A Defense Penetrated",
+			"keywords": [
+				"trap"
+			],
+			"body": [
+				"Damage that would be dealt to hero targets cannot be redirected.",
+				"This card is indestructible."
+			],
+			"icons": [
+				"MakeDamageUnredirectable",
+				"Indestructible"
+			],
+			"flavorText": "The resulting shards and flakes of crystal turned around in the air and condensed in a thick shell around the force field.",
+			"flavorReference": "Migration 17.2"
+		},
+		{
+			"identifier": "AFateSelected",
+			"count": 3,
+			"title": "A Fate Selected",
+			"keywords": [
+				"one-shot"
+			],
+			"body": [
+				"{TheSimurghCharacter} deals the hero with the fewest cards in play {H} sonic damage."
+			],
+			"icons": [
+				"DealDamageSonic"
+			],
+			"flavorText": "The result is hallucinations, momentary or sustained. Hearing sounds, seeing things, smelling something, where none truly exist.",
+			"flavorReference": "Interlude 28"
+		},
+		{
+			"identifier": "AMillionCoincidences",
+			"count": 3,
+			"title": "A Million Coincidences",
+			"keywords": [
+				"one-shot"
+			],
+			"body": [
+				"The environment deals 1 hero target 1 projectile damage. Repeat this effect [3/5/7] times for {H} = [3/4/5].",
+				"The environment deals 1 hero target 1 irreducible projectile damage. Repeat this effect [3/8/15] times for {H} = [3/4/5]."
+			],
+			"icons": [
+				"DealDamageProjectile"
+			],
+			"flavorQuotes": "Not one second after the barrier was in place, a pair of heroes flew around the corner.",
+			"flavorReference": "Migration 17.2"
+		},
+		{
+			"identifier": "APlanEnacted",
+			"count": 1,
+			"title": "A Plan Enacted",
+			"keywords": [
+				"one-shot"
+			],
+			"body": [
+				"If there are {H} face-up Trap cards, play the top card of the villain deck.",
+				"Otherwise, flip a face-down villain card, then shuffle this card into the villain deck."
+			],
+			"icons": [
+				"PlayCardNow",
+				"FlipFaceUp"
+			],
+			"flavorText": "He glanced over his shoulder, saw the various components of the circle crackling with current as it rose behind the Simurgh, like a gargantuan halo.",
+			"flavorReference": "Migration 17.2"
+		},
+		{
+			"identifier": "AReckoningLongDelayed",
+			"count": 1,
+			"title": "A Reckoning Long Delayed",
+			"keywords": [
+				"trap"
+			],
+			"body": [
+				"When this card is flipped face up, each player secretly chooses a hero, then all players reveal their choices simultaneously. If one hero has more votes than any other, that hero deals themself 5 psychic damage. Otherwise, each hero deals themself 5 psychic damage.",
+				"This card is indestructible."
+			],
+			"icons": [
+				"DealDamagePsychic",
+				"Indestructible"
+			],
+			"flavorText": "An obstacle must be removed. This is critical, but she is blind to it. This is the greatest problem she faces.",
+			"flavorReference": "Interlude 28"
+		},
+		{
+			"identifier": "AResponsePrepared",
+			"count": 2,
+			"title": "A Response Prepared",
+			"keywords": [
+				"one-shot"
+			],
+			"body": [
+				"When this card is revealed, play it.",
+				"Destroy all hero Ongoing cards."
+			],
+			"icons": [
+				"PlayCardNow",
+				"DestroyOngoing"
+			],
+			"flavorText": "Pretercognition. Spread out over several targets at once. Each target is conceptualized in the context of twelve to eighty years of history.",
+			"flavorReference": "Interlude 28"
+		},
+		{
+			"identifier": "AStrengthTurnedToWeakness",
+			"count": 1,
+			"title": "A Strength Turned to Weakness",
+			"keywords": [
+				"trap"
+			],
+			"body": [
+				"Whenever a hero target would deal more than {8 - H} damage, that target first deals itself 1 melee damage.",
+				"This card is indestructible."
+			],
+			"icons": [
+				"CounterDamage",
+				"DealDamageMelee",
+				"Indestructible"
+			],
+			"flavorQuotes": [
+				{
+					"identifier": "Myrddin",
+					"text": "It's going to backfire. I've said it before, I'll say it now, and I'll remind you all I said it with every chance I get until the day I die. It's going to backfire."
+				}
+			],
+			"flavorReference": "Myrddin, Migration 17.4"
+		},
+		{
+			"identifier": "ASurfeitOfOptions",
+			"count": 1,
+			"title": "A Surfeit of Options",
+			"keywords": [
+				"condition"
+			],
+			"body": [
+				"If there are at least {H} Ongoing cards in play, flip a face-down villain card and remove this card from the game.",
+				"Otherwise, shuffle this card into the Condition deck."
+			],
+			"icons": [
+				"FlipFaceUp"
+			],
+			"flavorText": "She requires resources. This requires patience.",
+			"flavorReference": "Interlude 28"
+		},
+		{
+			"identifier": "ATerribleDefeat",
+			"count": 1,
+			"title": "A Terrible Defeat",
+			"keywords": [
+				"trap"
+			],
+			"body": [
+				"When this card is flipped face up, each player secretly chooses a hero, then all players reveal their choices simultaneously. If one hero has more votes than any other, destroy all of that hero's non-character cards. Otherwise, destroy all hero non-character cards.",
+				"This card is indestructible."
+			],
+			"icons": [
+				"DestroyHero",
+				"Indestructible"
+			],
+			"flavorText": "The indistinct and distant noises of the heroes firing on the Simurgh had stopped all at once, as the heroes were killed or left reeling from the aftershock.",
+			"flavorReference": "Migration 17.2"
+		},
+		{
+			"identifier": "AThreatForeseen",
+			"count": 2,
+			"title": "A Threat Foreseen",
+			"keywords": [
+				"ongoing"
+			],
+			"body": [
+				"The first time {TheSimurghCharacter} would be dealt damage each round, redirect that damage to the hero with the lowest HP."
+			],
+			"icons": [
+				"RedirectDamage"
+			],
+			"flavorQuotes": "Possibilities, as another jumble of images. These clarify as the others do, as eventualities are discarded, the targets around her coming into focus.",
+			"flavorReference": "Interlude 28"
+		},
+		{
+			"identifier": "ATragicEnd",
+			"count": 1,
+			"title": "A Tragic End",
+			"keywords": [
+				"trap"
+			],
+			"body": [
+				"When this card is flipped face up, destroy all non-character card targets. {TheSimurghCharacter} deals each hero target X projectile damage, where X is the number of targets destroyed this way.",
+				"This card is indestructible."
+			],
+			"icons": [
+				"DestroyTarget",
+				"DealDamageProjectile",
+				"Indestructible"
+			],
+			"flavorText": "A tide of snow and ice hit him like a truck, driving him into the ragged edge of the building.",
+			"flavorReference": "Migration 17.2"
+		},
+		{
+			"identifier": "AWealthOfTargets",
+			"count": 1,
+			"title": "A Wealth of Targets",
+			"keywords": [
+				"condition"
+			],
+			"body": [
+				"If there are at least {H} non-character card targets in play, flip a face-down villain card and remove this card from the game.",
+				"Otherwise, shuffle this card into the Condition deck."
+			],
+			"icons": [
+				"FlipFaceUp"
+			],
+			"flavorText": "With study and precision, each ball can find its pocket. Spheres of resin meet a ledge covered by wool, perching on the edge as they spend their momentum.",
+			"flavorReference": "Interlude 28"
+		},
+		{
+			"identifier": "AnAmbushLaid",
+			"count": 4,
+			"title": "An Ambush Laid",
+			"keywords": [
+				"one-shot"
+			],
+			"body": [
+				"When this card is revealed, play it.",
+				"{TheSimurghCharacter} deals each hero target X fire damage, where X is the number of face-up Trap cards plus 1."
+			],
+			"icons": [
+				"PlayCardNow",
+				"DealDamageFire"
+			],
+			"flavorText": "The various fragments, the little things, the bodies and pieces of furniture, they became part of a protective maelstrom around the Simurgh.",
+			"flavorReference": "Migration 17.2"
+		},
+		{
+			"identifier": "AnAttackExpected",
+			"count": 1,
+			"title": "An Attack Expected",
+			"keywords": [
+				"condition"
+			],
+			"body": [
+				"If {TheSimurghCharacter} was dealt damage last round, flip a face-down villain card and remove this card from the game.",
+				"Otherwise, shuffle this card into the Condition deck."
+			],
+			"icons": [
+				"FlipFaceUp"
+			],
+			"flavorText": "She must be unmolested. This is given freely to her.",
+			"flavorReference": "Interlude 28"
+		},
+		{
+			"identifier": "AnEnvironmentChosen",
+			"count": 4,
+			"title": "An Environment Chosen",
+			"keywords": [
+				"one-shot"
+			],
+			"body": [
+				"Play the top {H} cards of the environment deck."
+			],
+			"icons": [
+				"PlayCardNow"
+			],
+			"flavorText": "Frame a situation to put a target under optimal fear and stress. Hormone secretions increase.",
+			"flavorReference": "Interlude 28"
+		},
+		{
+			"identifier": "AnUnfortunateMalfunction",
+			"count": 1,
+			"title": "An Unfortunate Malfunction",
+			"keywords": [
+				"condition"
+			],
+			"body": [
+				"If there are at least {H} Equipment cards in play, flip a face-down villain card and remove this card from the game.",
+				"Otherwise, shuffle this card into the Condition deck."
+			],
+			"icons": [
+				"FlipFaceUp"
+			],
+			"flavorText": "She requires access to particular information. This can be arranged by positioning targets carefully.",
+			"flavorReference": "Interlude 28"
+		},
+		{
+			"identifier": "AnUnpleasantDiscovery",
+			"count": 1,
+			"title": "An Unpleasant Discovery",
+			"keywords": [
+				"trap"
+			],
+			"body": [
+				"At the start of the villain turn, name a keyword. Reveal the top 2 cards of each hero deck. Replace each card with the named keyword and discard the rest.",
+				"Whenever a hero card is discarded, that hero deals themself 1 psychic damage.",
+				"This card is indestructible."
+			],
+			"icons": [
+				"StartOfTurnAction",
+				"Manipulate",
+				"DealDamagePsychic",
+				"Indestructible"
+			],
+			"flavorQuotes": [
+				{
+					"identifier": "Myrddin",
+					"text": "If she's answering questions for us, we don't want to know."
+				}
+			],
+			"flavorReference": "Myrddin, Migration 17.4"
+		}
+	]
+}

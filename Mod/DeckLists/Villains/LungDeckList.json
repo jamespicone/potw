@@ -13,23 +13,24 @@
       "hitpoints": 80,
       "nemesisIdentifiers": [ "Skitter" ],
       "backgroundColor": "ffffff",
-      "setup": [ "At the start of the game {Lung} enters play Gang Leader side up. Put [i]Brute[/i] into play, Gang Leader side up." ],
-      "gameplay": [ "When the villain deck is empty and a villain card would be played, flip [i]Brute[/i], and flip {Lung}." ],
-      "flippedIcons": [],
+      "setup": [ "At the start of the game {LungCharacter} enters play Gang Leader side up. Put [i]Brute[/i] into play, Gang Leader side up." ],
+      "gameplay": [ "When the villain deck is empty and a villain card would be played, flip [i]Brute[/i], and flip {LungCharacter}." ],
+      "icons": [],
       "openingLines": {
         "default": "blargh"
       },
       "difficulty": 2,
-      "advanced": "At the end of the villain turn, discard the top card of the villain deck",
-      "advancedIcons": "",
+      "advanced": "At the end of the villain turn, discard the top card of the villain deck.",
+      "advancedIcons": ["Discard"],
       "flippedBody": "Dragon Awoken",
       "flippedGameplay": [
         "When flipped to this side, destroy all noncharacter villain cards in play and put all cards in the villain deck into the villain trash.",
         "Villain cards cannot be played.",
         "Reduce damage dealt to Lung by 1."
       ],
+      "flippedIcons": ["Destroy", "CannotPlayCards", "ReduceDamageTaken"],
       "flippedAdvanced": "When flipped to this side, the heroes lose the game",
-      "flippedAdvancedIcons": [],
+      "flippedAdvancedIcons": ["LoseTheGame"],
       "flippedNemesisIdentifiers": [ "Skitter" ]
     },
     {
@@ -41,15 +42,15 @@
       "body": "Gang Leader",
       "flippedBody": "Dragon Awoken",
       "gameplay": [
-        "If there are 10 or more cards in the villain trash, the first time {Lung} is dealt damage each round, reduce the damage by 1.",
-        "At the end of the villain turn play the top card of the villain deck then:{BR}- {Lung} deals X melee damage to all hero targets, where X = 1 + the number of cards in the villain trash / 5, then,{BR}- If there are 5 or more cards in the villain trash, {Lung} regains 1 HP, then,{BR}- If there are 15 or more cards in the villain trash, {Lung} regains 1 HP."
+        "If there are 10 or more cards in the villain trash, the first time {LungCharacter} is dealt damage each round, reduce the damage by 1.",
+        "At the end of the villain turn, play the top card of the villain deck, then:{BR}- {LungCharacter} deals X melee damage to all hero targets, where X = 1 + the number of cards in the villain trash / 5, then,{BR}- If there are 5 or more cards in the villain trash, {LungCharacter} regains 1 HP, then,{BR}- If there are 15 or more cards in the villain trash, {LungCharacter} regains 1 HP."
       ],
       "flippedGameplay": [
-        "{Lung} is immune to damage dealt by Environment cards.",
-        "At the end of the villain turn {Lung} deals 6 melee and 2 irreducible fire damage to all hero targets then:{BR}- Lung regains 3 HP, then,{BR}- Destroy {H - 1} hero ongoing or equipment cards."
+        "{LungCharacter} is immune to damage dealt by Environment cards.",
+        "At the end of the villain turn {LungCharacter} deals 6 melee and 2 irreducible fire damage to all hero targets then:{BR}- Lung regains 3 HP, then,{BR}- Destroy {H - 1} hero ongoing or equipment cards."
       ],
-      "icons": [],
-      "flippedIcons": []
+      "icons": ["ReduceDamageTaken", "EndOfTurnAction", "PlayCardNow", "DealDamageMelee", "GainHP"],
+      "flippedIcons": ["ImmuneToDamage", "EndOfTurnAction", "DealDamageMelee", "DealDamageFire", "GainHP", "DestroyEquipment", "DestroyOngoing"]
     },
     {
       "identifier": "BurstOfFlame",
@@ -57,6 +58,7 @@
       "count": 4,
       "keywords": [ "one-shot" ],
       "body": "{LungCharacter} deals the hero target with the highest HP X fire damage, where X = 1 + the number of cards in the villain trash / 2",
+      "icons": ["DealDamageFire"],
       "flavorText": "Lung exploded. No metaphor there.",
       "flavorReference": "Gestation 1.4"
     },
@@ -66,8 +68,13 @@
       "count": 4,
       "keywords": [ "one-shot" ],
       "body": [
-        "{Lung} deals the hero target with the lowest HP 2 melee damage.",
+        "{LungCharacter} deals the hero target with the lowest HP 2 melee damage.",
         "Destroy 1 hero ongoing or equipment card"
+      ],
+      "icons": [
+        "DealDamageMelee",
+        "DestroyEquipment",
+        "DestroyOngoing"
       ],
       "flavorText": "You don't properly appreciate what{BR}superhuman strength means until you see{BR}someone leap from the sidewalk to the{BR}second floor of a building",
       "flavorReference": "Gestation 1.5"
@@ -78,6 +85,10 @@
       "count": 2,
       "keywords": [ "one-shot" ],
       "body": "Discard the top 3 cards of the villain deck. Play the top card of the villain deck",
+      "icons": [
+       "Discard",
+       "PlayCardNow"
+      ],
       "flavorQuotes": [
         {
           "identifier": "Skitter",
@@ -91,7 +102,8 @@
       "title": "Wings",
       "count": 2,
       "keywords": [ "ongoing" ],
-      "body": "{Lung} is immune to damage from Environment cards",
+      "body": "{LungCharacter} is immune to damage from Environment cards",
+      "icons": ["ImmuneToDamage"],
       "flavorText": "Spearlike growths stuck out of his{BR}shoulders in what I realized were{BR}the beginnings of wings.",
       "flavorReference": "Hive 5.8"
     },
@@ -100,7 +112,8 @@
       "title": "White-Hot Flame",
       "count": 2,
       "keywords": [ "ongoing" ],
-      "body": "Fire damage dealt by {Lung} is irreducible",
+      "body": "Fire damage dealt by {LungCharacter} is irreducible",
+      "icons": ["MakeDamageIrreducible"],
       "flavorText": "...the steel-like flesh just beneath{BR}Leviathan's skin was blackening and{BR}charring to ash by proximity alone.",
       "flavorReference": "Interlude 22"
     },
@@ -109,7 +122,8 @@
       "title": "Pyrokinesis",
       "count": 3,
       "keywords": [ "ongoing" ],
-      "body": "Whenever {Lung} deals melee damage to a target, {Lung} deals 2 fire damage to that target",
+      "body": "Whenever {LungCharacter} deals melee damage to a target, {LungCharacter} deals 2 fire damage to that target.",
+      "icons": ["DealDamageFire"],
       "flavorText": "Lung blasted her with a{BR}torrent of roaring flame.",
       "flavorReference": "Hive 5.9"
     },
@@ -119,8 +133,14 @@
       "count": 3,
       "keywords": [ "ongoing" ],
       "body": [
-        "Whenever a hero is dealt fire damage by {Lung}, destroy 1 hero ongoing or equipment card.",
-        "At the end of the villain turn, {Lung} deals the hero target with the highest HP {H - 2} fire damage"
+        "Whenever a hero is dealt fire damage by {LungCharacter}, destroy 1 hero ongoing or equipment card.",
+        "At the end of the villain turn, {LungCharacter} deals the hero target with the highest HP {H - 2} fire damage"
+      ],
+      "icons": [
+        "DestroyEquipment",
+        "DestroyOngoing",
+        "EndOfTurnAction",
+        "DealDamageFire"
       ],
       "flavorText": "He lit his hand on fire.{BR}My mangled arm went up in flames.",
       "flavorReference": "Venom 29.8"
@@ -135,6 +155,12 @@
         "At the start of the villain turn, reveal the top card of the villain deck:{BR}- If it is a One-Shot, {Bakuda} deals 5 fire damage to all non-villain targets.{BR}- If it is an Ongoing, each hero discards 1 card.{BR}- If it is a target, the hero with the most cards in play destroys all their noncharacter cards",
         "Shuffle the revealed card back into the villain deck"
       ],
+      "icons": [
+        "StartOfTurnAction",
+        "DealDamageFire",
+        "Discard",
+        "DestroyHero"
+      ],
       "flavorText": "Behind their assembled group,{BR}an altered grenade launcher danging{BR}from one strap around her shoulders,{BR}was Bakuda.",
       "flavorReference": "Shell 4.7"
     },
@@ -146,7 +172,12 @@
       "count": 1,
       "body": [
         "At the end of the villain turn, {OniLee} deals the hero target with the lowest HP 3 melee damage.",
-        "Whenever {OniLee} would take damage, reveal the top card of the villain deck. If it is a one-shot prevent the damage. Shuffle the revealed card back into the villain deck"
+        "Whenever {OniLee} would take damage, reveal the top card of the villain deck. If it is a one-shot, prevent the damage. Shuffle the revealed card back into the villain deck."
+      ],
+      "icons": [
+        "EndOfTurnAction",
+        "DealDamageMelee",
+        "CancelledDamageRed"
       ],
       "flavorText": "He could teleport, but when he did,{BR}he left a body behind that could act{BR}autonomously for a few seconds.",
       "flavorReference": "Hive 5.7"
@@ -156,11 +187,15 @@
       "title": "ABB Thugs",
       "hitpoints": 4,
       "count": 3,
-      "body": "At the end of the villain turn, {ABBThugs} deal the hero target with the lowest HP 2 projectile damage",
+      "body": "At the end of the villain turn, {ABBThugs} deal the hero target with the lowest HP 2 projectile damage.",
+      "icons": [
+        "EndOfTurnAction",
+        "DealDamageProjectile"
+      ],
       "flavorQuotes": [
         {
           "identifier": "Bakuda",
-          "text": "The 'Azn Bad Boys' is a shit name"
+          "text": "The 'Azn Bad Boys' is a shit name."
         }
       ],
       "flavorReference": "Bakuda, Interlude 22"
