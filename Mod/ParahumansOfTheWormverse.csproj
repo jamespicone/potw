@@ -79,6 +79,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="HelperMethods.cs" />
     <Compile Include="Heroes\Armsmaster\Cards\CommunicatorCardController.cs" />
     <Compile Include="Heroes\Armsmaster\Cards\StaticFieldGeneratorCardController.cs" />
     <Compile Include="Heroes\Armsmaster\Cards\TargetingComputerCardController.cs" />
@@ -141,6 +142,24 @@
     <Compile Include="Heroes\Bitch\Cards\GuardCardController.cs" />
     <Compile Include="Heroes\Bitch\Cards\HeelCardController.cs" />
     <Compile Include="Heroes\Bitch\Characters\BitchCharacterCardController.cs" />
+    <Compile Include="Heroes\MissMilitia\Cards\ArmourCardController.cs" />
+    <Compile Include="Heroes\MissMilitia\Cards\CoverFireCardController.cs" />
+    <Compile Include="Heroes\MissMilitia\Cards\GrenadeCardController.cs" />
+    <Compile Include="Heroes\MissMilitia\Cards\HailOfBulletsCardController.cs" />
+    <Compile Include="Heroes\MissMilitia\Cards\IDontSleepCardController.cs" />
+    <Compile Include="Heroes\MissMilitia\Cards\IHaveMoreCardController.cs" />
+    <Compile Include="Heroes\MissMilitia\Cards\MacheteCardController.cs" />
+    <Compile Include="Heroes\MissMilitia\Cards\NonlethalMeasuresCardController.cs" />
+    <Compile Include="Heroes\MissMilitia\Cards\OverdriveCardController.cs" />
+    <Compile Include="Heroes\MissMilitia\Cards\PistolCardController.cs" />
+    <Compile Include="Heroes\MissMilitia\Cards\SniperRifleCardController.cs" />
+    <Compile Include="Heroes\MissMilitia\Cards\SubmachineGunCardController.cs" />
+    <Compile Include="Heroes\MissMilitia\Cards\WeaponryCardController.cs" />
+    <Compile Include="Heroes\MissMilitia\Characters\MissMilitiaCharacterCardController.cs" />
+    <Compile Include="Heroes\MissMilitia\Characters\MissMilitiaProtectorateCaptainCharacterCardController.cs" />
+    <Compile Include="Heroes\MissMilitia\Extra\MissMilitiaUtilityCardController.cs" />
+    <Compile Include="Heroes\MissMilitia\Extra\MissMilitiaUtilityCharacterCardController.cs" />
+    <Compile Include="Heroes\MissMilitia\Extra\WeaponCardController.cs" />
     <Compile Include="Heroes\Tattletale\Cards\ConfidenceCardController.cs" />
     <Compile Include="Heroes\Tattletale\Cards\ConstantSmileCardController.cs" />
     <Compile Include="Heroes\Tattletale\Cards\DominoMaskCardController.cs" />
