@@ -14,8 +14,8 @@ namespace Jp.ParahumansOfTheWormverse.MissMilitia
         public SubmachineGunCardController(Card card, TurnTakerController turnTakerController)
             : base(card, turnTakerController, "{smg}")
         {
-            ShowIconStatusIfActive(MacheteIcon);
-            ShowIconStatusIfActive(SniperIcon);
+            ShowWeaponStatusIfActive(MacheteKey);
+            ShowWeaponStatusIfActive(SniperRifleKey);
         }
 
         public override IEnumerator UsePower(int index = 0)
@@ -32,20 +32,8 @@ namespace Jp.ParahumansOfTheWormverse.MissMilitia
             {
                 base.GameController.ExhaustCoroutine(damageCoroutine);
             }
-            // "Until the end of your next turn, you may activate {smg} effects."
-            ActivateEffectStatusEffect activateSmg = new ActivateEffectStatusEffect(base.TurnTaker, null, EffectIcon);
-            activateSmg.UntilEndOfNextTurn(base.TurnTaker);
-            IEnumerator statusCoroutine = base.GameController.AddStatusEffect(activateSmg, true, GetCardSource());
-            if (base.UseUnityCoroutines)
-            {
-                yield return base.GameController.StartCoroutine(statusCoroutine);
-            }
-            else
-            {
-                base.GameController.ExhaustCoroutine(statusCoroutine);
-            }
             // "{machete} You may destroy an Ongoing or environment card."
-            if (MacheteActive)
+            if (ActivateWeaponEffectForPower(MacheteKey))
             {
                 IEnumerator destroyCoroutine = base.GameController.SelectAndDestroyCard(base.HeroTurnTakerController, new LinqCardCriteria((Card c) => c.DoKeywordsContain("ongoing") || c.IsEnvironment, "Ongoing or environment"), true, responsibleCard: base.Card, cardSource: GetCardSource());
                 if (base.UseUnityCoroutines)
@@ -58,7 +46,7 @@ namespace Jp.ParahumansOfTheWormverse.MissMilitia
                 }
             }
             // "{sniper} You may put a non-hero non-character target in play on top of its deck."
-            if (SniperActive)
+            if (ActivateWeaponEffectForPower(SniperRifleKey))
             {
                 List<SelectCardDecision> cardChoices = new List<SelectCardDecision>();
                 IEnumerator chooseCoroutine = base.GameController.SelectCardAndStoreResults(base.HeroTurnTakerController, SelectionType.MoveCardOnDeck, new LinqCardCriteria((Card c) => c.IsInPlayAndHasGameText && c.IsTarget && !c.IsHero && !c.IsCharacter && base.GameController.IsCardVisibleToCardSource(c, GetCardSource()), "non-hero non-character targets", false, singular: "non-hero non-character target", plural: "non-hero non-character targets"), cardChoices, true, cardSource: GetCardSource());

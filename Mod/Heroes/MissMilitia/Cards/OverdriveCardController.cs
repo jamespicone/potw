@@ -42,22 +42,35 @@ namespace Jp.ParahumansOfTheWormverse.MissMilitia
                     base.GameController.ExhaustCoroutine(messageCoroutine);
                 }
             }
-            // Note: basing implementation on Mr. Fixer's Overdrive, rather than Expatriette's Unload, because Unload is implemented using CardCriteria which doesn't have a way of checking uniqueness
+            // Note: basing implementation on cards like Flame Spike or Smite the Transgressor but with variable amount of powers, because Unload is implemented using CardCriteria which doesn't have a way of checking uniqueness
             if (base.GameController.ActiveTurnTaker == base.TurnTaker)
             {
-                AllowSetNumberOfPowerUseStatusEffect overdriveStatus = new AllowSetNumberOfPowerUseStatusEffect(NumberOfUniqueWeaponsInPlay());
-                overdriveStatus.UsePowerCriteria.CardSource = base.CharacterCard;
-                overdriveStatus.UntilThisTurnIsOver(base.GameController.Game);
-                overdriveStatus.CardDestroyedExpiryCriteria.Card = base.CharacterCard;
-                overdriveStatus.NumberOfUses = 1;
-                IEnumerator statusCoroutine = base.GameController.AddStatusEffect(overdriveStatus, true, GetCardSource());
+                TurnPhase powerPhase = (from TurnPhase phase in GameController.ActiveTurnTaker.ToHero().TurnPhases where phase.IsUsePower select phase).FirstOrDefault();
+                int additionalPowers = NumberOfUniqueWeaponsInPlay();
+                Log.Debug(base.TurnTaker.Name + " has " + NumberOfUniqueWeaponsInPlay().ToString() + " unique Weapons in play.");
+                if (powerPhase == null)
+                {
+                    Log.Debug("Couldn't find power phase from ActiveTurnTaker.");
+                }
+                else if (!powerPhase.GetPhaseActionCount().HasValue)
+                {
+                    Log.Debug("Found power phase from ActiveTurnTaker, but GetPhaseActionCount() returned " + powerPhase.GetPhaseActionCount().ToString());
+                }
+                if (powerPhase != null && powerPhase.GetPhaseActionCount().HasValue)
+                {
+                    Log.Debug("Current number of powers this turn: " + powerPhase.GetPhaseActionCount().Value.ToString());
+                    additionalPowers -= powerPhase.GetPhaseActionCount().Value;
+                    int totalPowers = additionalPowers + powerPhase.GetPhaseActionCount().Value;
+                    Log.Debug("Granting " + additionalPowers.ToString() + " bonus powers for a total of " + totalPowers.ToString() + ".");
+                }
+                IEnumerator powersCoroutine = AdditionalPhaseActionThisTurn(base.TurnTaker, Phase.UsePower, additionalPowers);
                 if (base.UseUnityCoroutines)
                 {
-                    yield return base.GameController.StartCoroutine(statusCoroutine);
+                    yield return base.GameController.StartCoroutine(powersCoroutine);
                 }
                 else
                 {
-                    base.GameController.ExhaustCoroutine(statusCoroutine);
+                    base.GameController.ExhaustCoroutine(powersCoroutine);
                 }
             }
             else

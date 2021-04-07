@@ -36,9 +36,9 @@ namespace Jp.ParahumansOfTheWormverse.MissMilitia
             return result;
         }
 
-        new public bool MacheteActive => CanActivateEffect(base.TurnTakerController, MacheteIcon) || Journal.GetCardPropertiesBoolean(base.Card, ActivateAllIcons) == true;
-        new public bool PistolActive => CanActivateEffect(base.TurnTakerController, PistolIcon) || Journal.GetCardPropertiesBoolean(base.Card, ActivateAllIcons) == true;
-        new public bool SmgActive => CanActivateEffect(base.TurnTakerController, SmgIcon) || Journal.GetCardPropertiesBoolean(base.Card, ActivateAllIcons) == true;
-        new public bool SniperActive => CanActivateEffect(base.TurnTakerController, SniperIcon) || Journal.GetCardPropertiesBoolean(base.Card, ActivateAllIcons) == true;
+        public bool ActivateWeaponEffectForPower(string weaponKey)
+        {
+            return HasUsedWeaponSinceStartOfLastTurn(weaponKey) || Journal.GetCardPropertiesBoolean(base.Card, ActivateAllIcons) == true;
+        }
     }
 }

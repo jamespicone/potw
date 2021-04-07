@@ -11,16 +11,11 @@ namespace Jp.ParahumansOfTheWormverse.MissMilitia
 {
     public class MissMilitiaUtilityCardController : CardController
     {
-        public const string MacheteIcon = "{machete}";
-        public const string PistolIcon = "{pistol}";
-        public const string SmgIcon = "{smg}";
-        public const string SniperIcon = "{sniper}";
-        public string[] AllIcons = { MacheteIcon, PistolIcon, SmgIcon, SniperIcon };
-
-        public bool MacheteActive => CanActivateEffect(base.TurnTakerController, MacheteIcon);
-        public bool PistolActive => CanActivateEffect(base.TurnTakerController, PistolIcon);
-        public bool SmgActive => CanActivateEffect(base.TurnTakerController, SmgIcon);
-        public bool SniperActive => CanActivateEffect(base.TurnTakerController, SniperIcon);
+        public const string MacheteKey = "Machete";
+        public const string PistolKey = "Pistol";
+        public const string SubmachineGunKey = "Submachine Gun";
+        public const string SniperRifleKey = "Sniper Rifle";
+        public string[] AllWeapons = { MacheteKey, PistolKey, SubmachineGunKey, SniperRifleKey };
 
         public MissMilitiaUtilityCardController(Card card, TurnTakerController turnTakerController)
             : base(card, turnTakerController)
@@ -28,79 +23,86 @@ namespace Jp.ParahumansOfTheWormverse.MissMilitia
 
         }
 
-        public bool IconStatus(string iconKey)
+        public bool HasMissMilitiaStartedMoreThanOneTurnThisGame()
         {
-            if (AllIcons.Contains(iconKey))
+            return (from pcje in Journal.PhaseChangeEntries() where pcje.ToPhase != null && pcje.ToPhase.TurnTaker == base.TurnTaker && pcje.ToPhase.IsStart select pcje).Count() > 1;
+        }
+
+        public bool IsMissMilitiaUsingWeaponPower(UsePowerJournalEntry upje, string weaponKey)
+        {
+            return upje.PowerUser == base.HeroTurnTaker && upje.CardWithPower.Title == weaponKey && upje.CardWithPower.Owner == base.TurnTaker;
+        }
+
+        public bool HasUsedWeaponSinceStartOfLastTurn(string weaponKey)
+        {
+            if (AllWeapons.Contains(weaponKey))
             {
-                if (iconKey == MacheteIcon)
+                if (HasMissMilitiaStartedMoreThanOneTurnThisGame())
                 {
-                    return MacheteActive;
-                }
-                if (iconKey == PistolIcon)
-                {
-                    return PistolActive;
-                }
-                if (iconKey == SmgIcon)
-                {
-                    return SmgActive;
-                }
-                if (iconKey == SniperIcon)
-                {
-                    return SniperActive;
+                    // Find the last time Miss Militia started her turn that wasn't the start of the current turn...
+                    PhaseChangeJournalEntry startOfThisTurn = Journal.PhaseChangeEntries().Where((PhaseChangeJournalEntry pcje) => pcje.ToPhase.IsStart).LastOrDefault();
+                    PhaseChangeJournalEntry startOfMissMilitiasLastTurn = Journal.PhaseChangeEntries().Where((PhaseChangeJournalEntry pcje) => pcje.ToPhase.IsStart && pcje.ToPhase.TurnTaker == base.TurnTaker && pcje != startOfThisTurn).LastOrDefault();
+                    // Find all UsePowerJournalEntries that match IsMissMilitiaUsingWeaponPower(weaponKey) and take place between startOfMissMilitiasLastTurn and now
+                    IEnumerable<UsePowerJournalEntry> matchingPowersSinceStartOfLastTurn = Journal.QueryJournalEntries<UsePowerJournalEntry>((UsePowerJournalEntry upje) => Journal.GetEntryIndex(upje) > Journal.GetEntryIndex(startOfMissMilitiasLastTurn) && IsMissMilitiaUsingWeaponPower(upje, weaponKey));
+                    // If there's at least 1, return true
+                    if (matchingPowersSinceStartOfLastTurn != null && matchingPowersSinceStartOfLastTurn.Count() > 0)
+                    {
+                        return true;
+                    }
                 }
             }
             return false;
         }
 
-        public string ShowIconStatus(string iconKey)
+        public string ShowWeaponStatus(string weaponKey)
         {
-            if (AllIcons.Contains(iconKey))
+            if (AllWeapons.Contains(weaponKey))
             {
-                bool active = IconStatus(iconKey);
+                if (!HasMissMilitiaStartedMoreThanOneTurnThisGame())
+                {
+                    return base.TurnTaker.Name + " has not used the power on " + weaponKey + " since " + base.TurnTaker.Name + " has not had a previous start of turn this game.";
+                }
+                bool active = HasUsedWeaponSinceStartOfLastTurn(weaponKey);
                 if (active)
                 {
-                    return iconKey + " is active.";
+                    return base.TurnTaker.Name + " has used the power on " + weaponKey + " since the start of her last turn.";
                 }
                 else
                 {
-                    return iconKey + " is not active.";
+                    return base.TurnTaker.Name + " has not used the power on " + weaponKey + " since the start of her last turn.";
                 }
             }
             return "";
         }
 
-        public void ShowIconStatusIfActive(string iconKey)
+        public void ShowWeaponStatusIfActive(string iconKey)
         {
-            SpecialStringMaker.ShowSpecialString(() => ShowIconStatus(iconKey)).Condition = () => IconStatus(iconKey);
+            SpecialStringMaker.ShowSpecialString(() => ShowWeaponStatus(iconKey)).Condition = () => HasUsedWeaponSinceStartOfLastTurn(iconKey);
         }
 
-        public string ActiveIconList()
+        public string UsedWeaponList()
         {
-            List<string> icons = new List<string>();
-            if (MacheteActive)
+            if (!HasMissMilitiaStartedMoreThanOneTurnThisGame())
             {
-                icons.Add(MacheteIcon);
-            }
-            if (PistolActive)
-            {
-                icons.Add(PistolIcon);
-            }
-            if (SmgActive)
-            {
-                icons.Add(SmgIcon);
-            }
-            if (SniperActive)
-            {
-                icons.Add(SniperIcon);
+                return base.TurnTaker.Name + " has not had a previous start of turn this game.";
             }
 
-            if (icons.Count() > 0)
+            List<string> usedWeapons = new List<string>();
+            foreach(string key in AllWeapons)
             {
-                return base.TurnTaker.Name + "'s current active Weapon " + icons.Count().ToString_SingularOrPlural("effect", "effects") + ": " + icons.ToCommaList() + ".";
+                if (HasUsedWeaponSinceStartOfLastTurn(key))
+                {
+                    usedWeapons.Add(key);
+                }
+            }
+
+            if (usedWeapons.Count() > 0)
+            {
+                return base.TurnTaker.Name + "'s " + usedWeapons.Count().ToString_SingularOrPlural("Weapon", "Weapons") + " used since the start of her last turn: " + usedWeapons.ToCommaList() + ".";
             }
             else
             {
-                return base.TurnTaker.Name + " does not have any active Weapon effects.";
+                return base.TurnTaker.Name + " has not used any Weapon powers since the start of her last turn.";
             }
         }
     }

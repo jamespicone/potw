@@ -23,7 +23,7 @@ namespace Jp.ParahumansOfTheWormverse.MissMilitia
         {
             // "You may use a power on a Weapon card, activating all of its {sniper}{machete}{smg}{pistol} effects."
             List<SelectCardDecision> chosen = new List<SelectCardDecision>();
-            IEnumerator selectWeaponCoroutine = base.GameController.SelectCardAndStoreResults(base.HeroTurnTakerController, SelectionType.UsePowerOnCard, new LinqCardCriteria((Card c) => c.IsInPlayAndHasGameText && c.DoKeywordsContain("weapon"), "Weapon"), chosen, true, cardSource: GetCardSource());
+            IEnumerator selectWeaponCoroutine = base.GameController.SelectCardAndStoreResults(base.HeroTurnTakerController, SelectionType.UsePower, new LinqCardCriteria((Card c) => c.IsInPlayAndHasGameText && c.DoKeywordsContain("weapon"), "Weapon"), chosen, true, cardSource: GetCardSource());
             if (base.UseUnityCoroutines)
             {
                 yield return base.GameController.StartCoroutine(selectWeaponCoroutine);

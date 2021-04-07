@@ -35,7 +35,7 @@ namespace Jp.ParahumansOfTheWormverse.MissMilitia
                 base.GameController.ExhaustCoroutine(destroyWeaponCoroutine);
             }
             // "Destroy up to 2 Ongoing and/or environment cards."
-            IEnumerator destroyOngEnvCoroutine = base.GameController.SelectAndDestroyCards(base.HeroTurnTakerController, new LinqCardCriteria((Card c) => c.IsOngoing || c.IsEnvironment, "ongoing or environment"), 2, true, 0, responsibleCard: base.Card, cardSource: GetCardSource());
+            IEnumerator destroyOngEnvCoroutine = base.GameController.SelectAndDestroyCards(base.HeroTurnTakerController, new LinqCardCriteria((Card c) => c.IsOngoing || c.IsEnvironment, "ongoing or environment"), 2, false, 0, responsibleCard: base.Card, cardSource: GetCardSource());
             if (base.UseUnityCoroutines)
             {
                 yield return base.GameController.StartCoroutine(destroyOngEnvCoroutine);

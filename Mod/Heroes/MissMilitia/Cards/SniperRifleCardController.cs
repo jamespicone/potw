@@ -14,7 +14,7 @@ namespace Jp.ParahumansOfTheWormverse.MissMilitia
         public SniperRifleCardController(Card card, TurnTakerController turnTakerController)
             : base(card, turnTakerController, "{sniper}")
         {
-            ShowIconStatusIfActive(PistolIcon);
+            ShowWeaponStatusIfActive(PistolKey);
         }
 
         public override IEnumerator UsePower(int index = 0)
@@ -67,20 +67,8 @@ namespace Jp.ParahumansOfTheWormverse.MissMilitia
                     base.GameController.ExhaustCoroutine(shootCoroutine);
                 }
             }
-            // "Until the end of your next turn, you may activate {sniper} effects."
-            ActivateEffectStatusEffect activateSniper = new ActivateEffectStatusEffect(base.TurnTaker, null, EffectIcon);
-            activateSniper.UntilEndOfNextTurn(base.TurnTaker);
-            IEnumerator statusCoroutine = base.GameController.AddStatusEffect(activateSniper, true, GetCardSource());
-            if (base.UseUnityCoroutines)
-            {
-                yield return base.GameController.StartCoroutine(statusCoroutine);
-            }
-            else
-            {
-                base.GameController.ExhaustCoroutine(statusCoroutine);
-            }
             // "{pistol} Draw 3 cards."
-            if (PistolActive)
+            if (ActivateWeaponEffectForPower(PistolKey))
             {
                 IEnumerator drawCoroutine = base.GameController.DrawCards(base.HeroTurnTakerController, draws, cardSource: GetCardSource());
                 if (base.UseUnityCoroutines)

@@ -14,7 +14,7 @@ namespace Jp.ParahumansOfTheWormverse.MissMilitia
         public PistolCardController(Card card, TurnTakerController turnTakerController)
             : base(card, turnTakerController, "{pistol}")
         {
-            ShowIconStatusIfActive(SmgIcon);
+            ShowWeaponStatusIfActive(SubmachineGunKey);
         }
 
         public override void AddTriggers()
@@ -35,20 +35,8 @@ namespace Jp.ParahumansOfTheWormverse.MissMilitia
             {
                 base.GameController.ExhaustCoroutine(damageCoroutine);
             }
-            // "Until the end of your next turn, you may activate {pistol} effects."
-            ActivateEffectStatusEffect activatePistol = new ActivateEffectStatusEffect(base.TurnTaker, null, EffectIcon);
-            activatePistol.UntilEndOfNextTurn(base.TurnTaker);
-            IEnumerator statusCoroutine = base.GameController.AddStatusEffect(activatePistol, true, GetCardSource());
-            if (base.UseUnityCoroutines)
-            {
-                yield return base.GameController.StartCoroutine(statusCoroutine);
-            }
-            else
-            {
-                base.GameController.ExhaustCoroutine(statusCoroutine);
-            }
             // "{smg} You may play a card."
-            if (base.SmgActive)
+            if (ActivateWeaponEffectForPower(SubmachineGunKey))
             {
                 IEnumerator playCoroutine = base.GameController.SelectAndPlayCardFromHand(base.HeroTurnTakerController, true, cardSource: GetCardSource());
                 if (base.UseUnityCoroutines)
