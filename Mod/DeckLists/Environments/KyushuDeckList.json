@@ -1,0 +1,171 @@
+{
+	"name": "Kyushu",
+	"kind": "Environment",
+	"backgroundColor": "005D7F",
+	"difficulty": 1,
+	"cards": [
+		{
+			"identifier": "BlackKaze",
+			"count": 1,
+			"title": "Black Kaze",
+			"keywords": [
+				"parahuman"
+			],
+			"hitpoints": 6,
+			"body": [
+				"At the end of the environment turn, move this card next to the character card target other than the target this card is already next to with the lowest HP. Then, this card deals the target it is next to 3 irreducible melee damage.",
+				"The first time this card would be dealt damage each round, redirect that damage to the target this card is next to."
+			],
+			"icons": [
+				"EndOfTurnAction",
+				"DealDamageMelee",
+				"RedirectDamage"
+			],
+			"flavorText": "She'd roamed the remains of the landscape,{BR}killing survivors, killing rescuers, boarding{BR}the ships that approached too close to the{BR}ruined area and killing the crews, and{BR}rendering a widespread area devoid of life."
+		},
+		{
+			"identifier": "CollapsingBuilding",
+			"count": 2,
+			"title": "Collapsing Building",
+			"body": [
+				"When this card enters play, 1 player may discard 2 cards. If they do, destroy this card.",
+				"At the end of the environment turn, deal 4 irreducible melee damage to the target with the second highest HP, then destroy this card."
+			],
+			"icons": [
+				"Discard",
+				"DestroySelf",
+				"EndOfTurnAction",
+				"DealDamageMelee"
+			],
+			"flavorText": "[i]Depart from the rooftops, buildings may come{BR}down imminently.[/i]"
+		},
+		{
+			"identifier": "FatalismAndDespair",
+			"count": 2,
+			"title": "Fatalism and Despair",
+			"body": [
+				"When this card enters play, each hero target deals itself 2 psychic damage.",
+				"At the end of the environment turn, destroy this card."
+			],
+			"icons": [
+				"DealDamagePsychic",
+				"EndOfTurnAction",
+				"DestroySelf"
+			],
+			"flavorText": "“You're going to die!” the Sentai in black and{BR}yellow shouted.",
+			"flavorQuotes": [
+				{
+					"identifier": "Sentai",
+					"text": "You're going to die!"
+				}
+			]
+		},
+		{
+			"identifier": "Kyushu_Lung",
+			"count": 1,
+			"title": "Lung",
+			"keywords": [
+				"parahuman"
+			],
+			"hitpoints": 12,
+			"body": [
+				"Reduce damage dealt to this card by 1.",
+				"At the end of the environment turn, this card deals each target other than itself 3 fire damage.",
+				"At the start of the environment turn, this card regains 2 HP."
+			],
+			"icons": [
+				"ReduceDamageTaken",
+				"StartAndEndOfTurnAction",
+				"DealDamageFire",
+				"GainHP"
+			],
+			"flavorText": "Lung roared, burned head to toe as he{BR}clawed deeper still. If Leviathan's muscle was{BR}as hard as steel, Lung would burn hot{BR}enough to melt steel."
+		},
+		{
+			"identifier": "OnlyTheIndomitableRemain",
+			"count": 1,
+			"title": "Only the Indomitable Remain",
+			"body": [
+				"Reduce all damage by 1.",
+				"At the end of the environment turn, each target regains 1 HP.",
+				"When a target is destroyed, destroy this card."
+			],
+			"icons": [
+				"ReduceDamageDealt",
+				"EndOfTurnAction",
+				"GainHP",
+				"DestroySelf"
+			],
+			"flavorText": "The only ones left were the indomitable, and{BR}for now, Lung was among them."
+		},
+		{
+			"identifier": "ParahumanBackup",
+			"count": 2,
+			"title": "Parahuman Backup",
+			"body": [
+				"When this card enters play, each player may draw a card.",
+				"At the end of the environment turn, destroy this card."
+			],
+			"icons": [
+				"DrawCardNow",
+				"EndOfTurnAction",
+				"DestroySelf"
+			],
+			"flavorText": "A pre-battle speech from Legend. It almost{BR}made the lousiest, most painful and{BR}dangerous situations I'd put up with since{BR}putting on my costume worth it."
+		},
+		{
+			"identifier": "SentaiElite",
+			"count": 3,
+			"title": "Sentai Elite",
+			"hitpoints": 4,
+			"body": [
+				"At the end of the environment turn, this card deals the non-environment target with the highest HP X energy damage, where X is 2 times the number of Sentai Elite in play."
+			],
+			"icons": [
+				"EndOfTurnAction",
+				"DealDamageEnergy"
+			],
+			"flavorText": "Leviathan couldn't attack from range, and{BR}couldn't get close without getting{BR}pummelled. He attempted to run, only for{BR}Japan's foremost team, the Sentai Elite, to{BR}step into his way, blocking his progress."
+		},
+		{
+			"identifier": "SlideIntoTheSea",
+			"count": 1,
+			"title": "Slide into the Sea",
+			"body": [
+				"At the end of the environment turn, play the top card of the environment deck, shuffle the top 2 cards of the environment trash into the environment deck, then remove the top card of the environment deck from the game.",
+				"At the start of the environment turn, if there are no cards in the environment deck, the island sinks. [b]GAME OVER.[/b]",
+				"If this card would be destroyed while another environment card is in play, destroy that card instead."
+			],
+			"icons": [
+				"StartAndEndOfTurnAction",
+				"PlayCardNow",
+				"Manipulate",
+				"LoseTheGame",
+				"DestroyEnvironment"
+			],
+			"flavorText": "May ninth, 2005. Nearly half a million dead. The{BR}Canadian island simply gone, after the shelf{BR}of land holding it up cracked in the face of{BR}what we now understand were incredible{BR}pressures beneath the water level.",
+			"flavorQuotes": [
+				{
+					"identifier": "Legend",
+					"text": "May ninth, 2005. Nearly half a million dead. The Canadian island{BR}simply gone, after the shelf of land{BR}holding it up cracked in the face of{BR}what we now understand were incredible pressures beneath the water level."
+				}
+			]
+		},
+		{
+			"identifier": "Kyushu_TidalWave",
+			"count": 2,
+			"title": "Tidal Wave",
+			"body": [
+				"When this card enters play, deal each hero target 2 melee damage. Each player whose hero was dealt damage this way discards 1 card.",
+				"At the end of the environment turn, destroy this card."
+			],
+			"icons": [
+				"DealDamageMelee",
+				"Discard",
+				"EndOfTurnAction",
+				"DestroySelf"
+			],
+			"flavorText": "It was my armband. The screen was{BR}ringed by a square of yellow, a yellow{BR}triangle with a black exclamation mark{BR}pointing in Leviathan's general direction."
+		}
+	]
+}
