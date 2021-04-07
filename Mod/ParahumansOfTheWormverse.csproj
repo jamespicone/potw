@@ -83,8 +83,8 @@
     <Compile Include="Environments\Kyushu\CollapsingBuildingCardController.cs" />
     <Compile Include="Environments\Kyushu\FatalismAndDespairCardController.cs" />
     <Compile Include="Environments\Kyushu\KyushuOneShotCardController.cs" />
-    <Compile Include="Environments\Kyushu\Kyushu_LungCardController.cs" />
-    <Compile Include="Environments\Kyushu\Kyushu_TidalWaveCardController.cs" />
+    <Compile Include="Environments\Kyushu\LungKyushuCardController.cs" />
+    <Compile Include="Environments\Kyushu\TidalWaveKyushuCardController.cs" />
     <Compile Include="Environments\Kyushu\OnlyTheIndomitableRemainCardController.cs" />
     <Compile Include="Environments\Kyushu\ParahumanBackupCardController.cs" />
     <Compile Include="Environments\Kyushu\SentaiEliteCardController.cs" />

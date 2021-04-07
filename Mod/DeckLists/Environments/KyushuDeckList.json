@@ -61,7 +61,7 @@
 			]
 		},
 		{
-			"identifier": "Kyushu_Lung",
+			"identifier": "LungKyushu",
 			"count": 1,
 			"title": "Lung",
 			"keywords": [
@@ -152,7 +152,7 @@
 			]
 		},
 		{
-			"identifier": "Kyushu_TidalWave",
+			"identifier": "TidalWaveKyushu",
 			"count": 2,
 			"title": "Tidal Wave",
 			"body": [

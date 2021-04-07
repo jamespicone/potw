@@ -9,9 +9,9 @@ using System.Text;
 
 namespace Jp.ParahumansOfTheWormverse.Kyushu
 {
-    public class Kyushu_TidalWaveCardController : KyushuOneShotCardController
+    public class TidalWaveKyushuCardController : KyushuOneShotCardController
     {
-        public Kyushu_TidalWaveCardController(Card card, TurnTakerController turnTakerController)
+        public TidalWaveKyushuCardController(Card card, TurnTakerController turnTakerController)
             : base(card, turnTakerController)
         {
 

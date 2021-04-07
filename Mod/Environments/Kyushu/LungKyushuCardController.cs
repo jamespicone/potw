@@ -9,9 +9,9 @@ using System.Text;
 
 namespace Jp.ParahumansOfTheWormverse.Kyushu
 {
-    public class Kyushu_LungCardController : CardController
+    public class LungKyushuCardController : CardController
     {
-        public Kyushu_LungCardController(Card card, TurnTakerController turnTakerController)
+        public LungKyushuCardController(Card card, TurnTakerController turnTakerController)
             : base(card, turnTakerController)
         {
 
