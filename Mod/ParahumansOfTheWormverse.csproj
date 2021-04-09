@@ -94,6 +94,16 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Environments\Kyushu\BlackKazeCardController.cs" />
+    <Compile Include="Environments\Kyushu\CollapsingBuildingCardController.cs" />
+    <Compile Include="Environments\Kyushu\FatalismAndDespairCardController.cs" />
+    <Compile Include="Environments\Kyushu\KyushuOneShotCardController.cs" />
+    <Compile Include="Environments\Kyushu\LungKyushuCardController.cs" />
+    <Compile Include="Environments\Kyushu\TidalWaveKyushuCardController.cs" />
+    <Compile Include="Environments\Kyushu\OnlyTheIndomitableRemainCardController.cs" />
+    <Compile Include="Environments\Kyushu\ParahumanBackupCardController.cs" />
+    <Compile Include="Environments\Kyushu\SentaiEliteCardController.cs" />
+    <Compile Include="Environments\Kyushu\SlideIntoTheSeaCardController.cs" />
     <Compile Include="Heroes\Armsmaster\Cards\CommunicatorCardController.cs" />
     <Compile Include="Heroes\Armsmaster\Cards\StaticFieldGeneratorCardController.cs" />
     <Compile Include="Heroes\Armsmaster\Cards\TargetingComputerCardController.cs" />
