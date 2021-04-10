@@ -89,6 +89,22 @@
     <Compile Include="Environments\Kyushu\ParahumanBackupCardController.cs" />
     <Compile Include="Environments\Kyushu\SentaiEliteCardController.cs" />
     <Compile Include="Environments\Kyushu\SlideIntoTheSeaCardController.cs" />
+    <Compile Include="Environments\NewDelhi\AccordsPlanCardController.cs" />
+    <Compile Include="Environments\NewDelhi\AChaoticEnvironmentCardController.cs" />
+    <Compile Include="Environments\NewDelhi\ChevalierNewDelhiCardController.cs" />
+    <Compile Include="Environments\NewDelhi\CracklingLightningCardController.cs" />
+    <Compile Include="Environments\NewDelhi\DevastationCardController.cs" />
+    <Compile Include="Environments\NewDelhi\HeroicSacrificeCardController.cs" />
+    <Compile Include="Environments\NewDelhi\IrradiatedCardController.cs" />
+    <Compile Include="Environments\NewDelhi\LightningRodCardController.cs" />
+    <Compile Include="Environments\NewDelhi\NewDelhiOneShotCardController.cs" />
+    <Compile Include="Environments\NewDelhi\PerditionCardController.cs" />
+    <Compile Include="Environments\NewDelhi\PhirSeCardController.cs" />
+    <Compile Include="Environments\NewDelhi\ScionNewDelhiCardController.cs" />
+    <Compile Include="Environments\NewDelhi\ThandaCardController.cs" />
+    <Compile Include="Environments\NewDelhi\UnstoppableCardController.cs" />
+    <Compile Include="Environments\NewDelhi\WildfiresCardController.cs" />
+    <Compile Include="Environments\NewDelhi\YangbanNewDelhiCardController.cs" />
     <Compile Include="Heroes\Armsmaster\Cards\CommunicatorCardController.cs" />
     <Compile Include="Heroes\Armsmaster\Cards\StaticFieldGeneratorCardController.cs" />
     <Compile Include="Heroes\Armsmaster\Cards\TargetingComputerCardController.cs" />
@@ -183,6 +199,7 @@
     <Compile Include="Villains\Lung\Characters\LungTurnTakerController.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="DeckLists\Environments\NewDelhiDeckList.json" />
     <None Include="manifest.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
