@@ -94,6 +94,18 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Environments\BrocktonBay\AttentionCardController.cs" />
+    <Compile Include="Environments\BrocktonBay\CiviliansCardController.cs" />
+    <Compile Include="Environments\BrocktonBay\DuoCardController.cs" />
+    <Compile Include="Environments\BrocktonBay\LeetCardController.cs" />
+    <Compile Include="Environments\BrocktonBay\PRTSquadCardController.cs" />
+    <Compile Include="Environments\BrocktonBay\RooftopsCardController.cs" />
+    <Compile Include="Environments\BrocktonBay\ScumCardController.cs" />
+    <Compile Include="Environments\BrocktonBay\SuburbCardController.cs" />
+    <Compile Include="Environments\BrocktonBay\TheBoardwalkCardController.cs" />
+    <Compile Include="Environments\BrocktonBay\TheDocksCardController.cs" />
+    <Compile Include="Environments\BrocktonBay\TheOutskirtsCardController.cs" />
+    <Compile Include="Environments\BrocktonBay\UberCardController.cs" />
     <Compile Include="Environments\Kyushu\BlackKazeCardController.cs" />
     <Compile Include="Environments\Kyushu\CollapsingBuildingCardController.cs" />
     <Compile Include="Environments\Kyushu\FatalismAndDespairCardController.cs" />
@@ -104,6 +116,22 @@
     <Compile Include="Environments\Kyushu\ParahumanBackupCardController.cs" />
     <Compile Include="Environments\Kyushu\SentaiEliteCardController.cs" />
     <Compile Include="Environments\Kyushu\SlideIntoTheSeaCardController.cs" />
+    <Compile Include="Environments\NewDelhi\AccordsPlanCardController.cs" />
+    <Compile Include="Environments\NewDelhi\AChaoticEnvironmentCardController.cs" />
+    <Compile Include="Environments\NewDelhi\ChevalierNewDelhiCardController.cs" />
+    <Compile Include="Environments\NewDelhi\CracklingLightningCardController.cs" />
+    <Compile Include="Environments\NewDelhi\DevastationCardController.cs" />
+    <Compile Include="Environments\NewDelhi\HeroicSacrificeCardController.cs" />
+    <Compile Include="Environments\NewDelhi\IrradiatedCardController.cs" />
+    <Compile Include="Environments\NewDelhi\LightningRodCardController.cs" />
+    <Compile Include="Environments\NewDelhi\NewDelhiOneShotCardController.cs" />
+    <Compile Include="Environments\NewDelhi\PerditionCardController.cs" />
+    <Compile Include="Environments\NewDelhi\PhirSeCardController.cs" />
+    <Compile Include="Environments\NewDelhi\ScionNewDelhiCardController.cs" />
+    <Compile Include="Environments\NewDelhi\ThandaCardController.cs" />
+    <Compile Include="Environments\NewDelhi\UnstoppableCardController.cs" />
+    <Compile Include="Environments\NewDelhi\WildfiresCardController.cs" />
+    <Compile Include="Environments\NewDelhi\YangbanNewDelhiCardController.cs" />
     <Compile Include="Heroes\Armsmaster\Cards\CommunicatorCardController.cs" />
     <Compile Include="Heroes\Armsmaster\Cards\StaticFieldGeneratorCardController.cs" />
     <Compile Include="Heroes\Armsmaster\Cards\TargetingComputerCardController.cs" />
@@ -166,6 +194,20 @@
     <Compile Include="Heroes\Bitch\Cards\GuardCardController.cs" />
     <Compile Include="Heroes\Bitch\Cards\HeelCardController.cs" />
     <Compile Include="Heroes\Bitch\Characters\BitchCharacterCardController.cs" />
+    <Compile Include="Heroes\JessicaYamada\Cards\StrategyAndSuggestionCardController.cs" />
+    <Compile Include="Heroes\JessicaYamada\Cards\ResilienceAndRespectCardController.cs" />
+    <Compile Include="Heroes\JessicaYamada\Cards\NothingIsLostCardController.cs" />
+    <Compile Include="Heroes\JessicaYamada\Cards\ClarityCardController.cs" />
+    <Compile Include="Heroes\JessicaYamada\Cards\SupportAndStabilityCardController.cs" />
+    <Compile Include="Heroes\JessicaYamada\Cards\HelpNoMatterTheCostCardController.cs" />
+    <Compile Include="Heroes\JessicaYamada\Cards\ComfortableOfficeCardController.cs" />
+    <Compile Include="Heroes\JessicaYamada\Cards\TimeToThinkCardController.cs" />
+    <Compile Include="Heroes\JessicaYamada\Cards\PsychologicalTrainingCardController.cs" />
+    <Compile Include="Heroes\JessicaYamada\Cards\AHelpfulSuggestionCardController.cs" />
+    <Compile Include="Heroes\JessicaYamada\Cards\AMomentOfReflectionCardController.cs" />
+    <Compile Include="Heroes\JessicaYamada\Characters\JessicaYamadaInstructionsCardController.cs" />
+    <Compile Include="Heroes\JessicaYamada\Characters\JessicaYamadaCharacterCardController.cs" />
+    <Compile Include="Heroes\JessicaYamada\Characters\JessicaYamadaTurnTakerController.cs" />
     <Compile Include="Heroes\Tattletale\Cards\ConfidenceCardController.cs" />
     <Compile Include="Heroes\Tattletale\Cards\ConstantSmileCardController.cs" />
     <Compile Include="Heroes\Tattletale\Cards\DominoMaskCardController.cs" />
