@@ -79,6 +79,18 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Environments\BrocktonBay\AttentionCardController.cs" />
+    <Compile Include="Environments\BrocktonBay\CiviliansCardController.cs" />
+    <Compile Include="Environments\BrocktonBay\DuoCardController.cs" />
+    <Compile Include="Environments\BrocktonBay\LeetCardController.cs" />
+    <Compile Include="Environments\BrocktonBay\PRTSquadCardController.cs" />
+    <Compile Include="Environments\BrocktonBay\RooftopsCardController.cs" />
+    <Compile Include="Environments\BrocktonBay\ScumCardController.cs" />
+    <Compile Include="Environments\BrocktonBay\SuburbCardController.cs" />
+    <Compile Include="Environments\BrocktonBay\TheBoardwalkCardController.cs" />
+    <Compile Include="Environments\BrocktonBay\TheDocksCardController.cs" />
+    <Compile Include="Environments\BrocktonBay\TheOutskirtsCardController.cs" />
+    <Compile Include="Environments\BrocktonBay\UberCardController.cs" />
     <Compile Include="Environments\Kyushu\BlackKazeCardController.cs" />
     <Compile Include="Environments\Kyushu\CollapsingBuildingCardController.cs" />
     <Compile Include="Environments\Kyushu\FatalismAndDespairCardController.cs" />
@@ -183,6 +195,7 @@
     <Compile Include="Villains\Lung\Characters\LungTurnTakerController.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="DeckLists\Environments\BrocktonBayDeckList.json" />
     <None Include="manifest.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
