@@ -1,0 +1,326 @@
+{
+	"name": "New Delhi",
+	"kind": "Environment",
+	"backgroundColor": "",
+	"difficulty": 2,
+	"cards": [
+		{
+			"identifier": "AChaoticEnvironment",
+			"count": 1,
+			"title": "A Chaotic Environment",
+			"body": [
+				"At the end of the environment turn, play the top card of the environment deck.",
+				"At the start of the environment turn, if this is the only environment card in play, destroy it."
+			],
+			"icons": [
+				"StartAndEndOfTurnAction",
+				"PlayCardNow",
+				"DestroySelf"
+			],
+			"flavorText": "We don't have the organization. Our command{BR}structure is down. Tattletale is gone, either{BR}dead or too hurt to fight."
+		},
+		{
+			"identifier": "AccordsPlan",
+			"count": 1,
+			"title": "Accord's Plan",
+			"body": [
+				"When this card enters play, reveal the top card of each deck in turn order, starting with the villain deck. If the revealed card is an Ongoing, Equipment, or Device, put it into play. Otherwise, shuffle it back into the deck.",
+				"At the end of the environment turn, destroy this card."
+			],
+			"icons": [
+				"PlayCardNow",
+				"Manipulate",
+				"EndOfTurnAction",
+				"DestroySelf"
+			],
+			"flavorText": "He'd drafted a document in the nine hours that{BR}followed, doing little more than typing and{BR}tracking down exact numbers. A hundred and{BR}fifty pages, formatted and clear."
+		},
+		{
+			"identifier": "ChevalierNewDelhi",
+			"count": 1,
+			"title": "Chevalier",
+			"keywords": [
+				"parahuman"
+			],
+			"hitpoints": 8,
+			"body": [
+				"Reduce damage dealt to this card by 1.",
+				"Whenever damage would be dealt to a hero, redirect it to this card."
+			],
+			"icons": [
+				"ReduceDamageTaken",
+				"RedirectDamage"
+			],
+			"flavorText": "He tried to move, to raise his blade, only to{BR}find his armor refusing to cooperate. It had{BR}melted, the joints and joins flowing into one{BR}another. His sword wasn't much better."
+		},
+		{
+			"identifier": "CracklingLightning",
+			"count": 1,
+			"title": "Crackling Lightning",
+			"body": [
+				"When this card enters play, deal each hero target 3 lightning damage.",
+				"At the end of the environment turn, destroy this card."
+			],
+			"icons": [
+				"DealDamageLightning",
+				"EndOfTurnAction",
+				"DestroySelf"
+			],
+			"flavorText": "More lightning was unleashed, each doing{BR}successively more damage to the craft. By the{BR}fourth blast, it wasn't operational. The fifth{BR}split it down the middle. Insulation was little use against a dynakinetic.{BR}"
+		},
+		{
+			"identifier": "Devastation",
+			"count": 1,
+			"title": "Devastation",
+			"body": [
+				"When this card enters play, destroy all non-character cards in play except this card.",
+				"At the end of the environment turn, destroy this card."
+			],
+			"icons": [
+				"Destroy",
+				"EndOfTurnAction",
+				"DestroySelf"
+			],
+			"flavorText": "The temple was the one building that stood.{BR}Everywhere else, there was devastation."
+		},
+		{
+			"identifier": "HeroicSacrifice",
+			"count": 1,
+			"title": "Heroic Sacrifice",
+			"body": [
+				"Whenever damage is redirected from one hero target to another, increase that damage by 2.",
+				"When a hero target deals damage to another hero target, destroy this card."
+			],
+			"icons": [
+				"IncreaseDamageTaken",
+				"DestroySelf"
+			],
+			"flavorText": "“Fuck it,” Regent said, his voice almost inaudible.{BR}He was looking at Imp.",
+			"flavorQuotes": [
+				{
+					"identifier": "Regent",
+					"text": "Fuck it."
+				}
+			]
+		},
+		{
+			"identifier": "Irradiated",
+			"count": 1,
+			"title": "Irradiated",
+			"tokenPools": [
+				{
+					"identifier": "IrradiatedPool",
+					"name": "Irradiated Pool",
+					"initialValue": 0,
+					"minimumValue": 0,
+					"color": ""
+				}
+			],
+			"body": [
+				"At the end of the environment turn, put a token on this card.",
+				"At the start of the environment turn, deal each target X energy damage, where X is the number of tokens on this card. If there are no tokens on this card, destroy it.",
+				"Whenever a target regains HP, remove a token from this card."
+			],
+			"icons": [
+				"StartAndEndOfTurnAction",
+				"AddTokens",
+				"DealDamageEnergy",
+				"DestroySelf",
+				"RemoveTokens"
+			],
+			"flavorText": "The radiation was generally observed to be{BR}concentrated, limited to a certain range,{BR}manipulated to strike only those within{BR}a hundred feet or so of Behemoth."
+		},
+		{
+			"identifier": "LightningRod",
+			"count": 1,
+			"title": "Lightning Rod",
+			"keywords": [
+				"structure"
+			],
+			"hitpoints": 10,
+			"body": [
+				"Whenever a target would be dealt lightning damage, redirect it to this card."
+			],
+			"icons": [
+				"RedirectDamageLightning"
+			],
+			"flavorText": "“His lightning doesn't follow regular channels.{BR}We're all lightning rods to him.”",
+			"flavorQuotes": [
+				{
+					"identifier": "Skitter",
+					"text": "His lightning doesn't follow regular channels. We're all lightning rods to him."
+				}
+			]
+		},
+		{
+			"identifier": "Perdition",
+			"count": 1,
+			"title": "Perdition",
+			"keywords": [
+				"parahuman"
+			],
+			"hitpoints": 6,
+			"body": [
+				"At the start of the environment turn, play the top card of the villain trash."
+			],
+			"icons": [
+				"StartOfTurnAction",
+				"PlayCardNow"
+			],
+			"flavorText": "“Directed time travel, anyways. Backwards only,{BR}a few seconds at a time. You teleport away, I{BR}set you back to where you were, then kick{BR}you in the balls for being an asshole.”",
+			"flavorQuotes": [
+				{
+					"identifier": "Perdition",
+					"text": "Directed time travel, anyways. Backwards only, a few seconds at a time. You teleport away, I set you back to where you were, then kick you in the balls for being an asshole."
+				}
+			]
+		},
+		{
+			"identifier": "PhirSe",
+			"count": 1,
+			"title": "Phir Se",
+			"keywords": [
+				"parahuman"
+			],
+			"hitpoints": 5,
+			"tokenPools": [
+				{
+					"identifier": "PhirSePool",
+					"name": "Phir Se Pool",
+					"initialValue": 0,
+					"minimumValue": 0,
+					"color": ""
+				}
+			],
+			"body": [
+				"At the end of the environment turn, move this card next to the target with the highest HP.",
+				"At the start of the environment turn, put 2 tokens on this card.",
+				"When this card is destroyed, it deals X energy damage to the target it is next to, where X is the number of tokens on this card."
+			],
+			"icons": [
+				"StartAndEndOfTurnAction",
+				"AddTokens",
+				"DealDamageEnergy"
+			],
+			"flavorText": "“A weapon, A... how do you Americans say it?{BR}Time bomb? Only this is joke.”",
+			"flavorQuotes": [
+				{
+					"identifier": "Phir Se",
+					"text": "A weapon, A... how do you Americans say it? Time bomb? Only this is joke."
+				}
+			]
+		},
+		{
+			"identifier": "ScionNewDelhi",
+			"count": 1,
+			"title": "Scion",
+			"keywords": [
+				"entity"
+			],
+			"body": [
+				"All cards are indestructible.",
+				"All targets are immune to damage.",
+				"At the start of the environment turn, remove this card from the game (even if it's indestructible)."
+			],
+			"icons": [
+				"Indestructible",
+				"ImmuneToDamage",
+				"StartOfTurnAction",
+				"RemoveFromGame"
+			],
+			"flavorText": "Liquid as far as the eye could see was being{BR}flattened out into a disquieting stillness by{BR}the ripples of Scion's footsteps, like a great{BR}pane of glass."
+		},
+		{
+			"identifier": "Thanda",
+			"count": 1,
+			"title": "Thanda",
+			"tokenPools": [
+				{
+					"identifier": "ThandaPool",
+					"name": "Thanda Pool",
+					"initialValue": 3,
+					"minimumValue": 0,
+					"color": ""
+				}
+			],
+			"body": [
+				"When this card enters play, put three tokens on it. If it ever has no tokens on it, remove it from the game.",
+				"At the end of the environment turn, remove the non-character card Parahuman with the lowest HP from the game. If a card was removed from the game this way, remove a token from this card."
+			],
+			"icons": [
+				"RemoveFromGame",
+				"EndOfTurnAction",
+				"RemoveTokens"
+			],
+			"flavorText": "“We need the ones with killer instinct, the ones{BR}who fight for real, not for play. The cold capes.”",
+			"flavorQuotes": [
+				{
+					"identifier": "Defiant",
+					"text": "We need the ones with killer instinct, the ones who fight for real, not for play. The cold capes."
+				}
+			]
+		},
+		{
+			"identifier": "Unstoppable",
+			"count": 1,
+			"title": "Unstoppable",
+			"body": [
+				"Reduce damage dealt to the villain target with the highest HP by 1.",
+				"When the villain target with the highest HP is dealt 4 or more damage at once, destroy this card."
+			],
+			"icons": [
+				"ReduceDamageTaken",
+				"DestroySelf"
+			],
+			"flavorText": "[i]hes here. defenses crumbled in a minute. rime{BR}dead. melted off more than half his outer{BR}body and he still fighting. last stand to{BR}protect hosp'l and he cutting them down.[/i]",
+			"flavorQuotes": [
+				{
+					"identifier": "Tattletale",
+					"text": "hes here. defenses crumbled in a minute. rime dead. melted off more than half his outer body and he still fighting. last stand to protect hosp'l and he cutting them down"
+				}
+			]
+		},
+		{
+			"identifier": "Wildfires",
+			"count": 1,
+			"title": "Wildfires",
+			"body": [
+				"At the end of the environment turn, deal each target 2 fire damage.",
+				"When a target is dealt cold damage, destroy this card."
+			],
+			"icons": [
+				"EndOfTurnAction",
+				"DealDamageFire",
+				"DestroySelf"
+			],
+			"flavorText": "They were getting roasted, by hot air and{BR}scorching smoke if not the fires themselves."
+		},
+		{
+			"identifier": "YangbanNewDelhi",
+			"count": 1,
+			"title": "Yangban",
+			"keywords": [
+				"parahuman"
+			],
+			"hitpoints": 10,
+			"body": [
+				"At the end of the environment turn...",
+				"... This card deals the target with the highest HP 1 fire damage.{BR}... This card deals the target with the highest HP 1 cold damage.{BR}... This card deals the target with the highest HP 1 lightning damage.{BR}... This card deals the target with the highest HP 1 energy damage."
+			],
+			"icons": [
+				"EndOfTurnAction",
+				"DealDamageFire",
+				"DealDamageCold",
+				"DealDamageLightning",
+				"DealDamageEnergy"
+			],
+			"flavorText": "“For years, we have boasted of the strength{BR}the Yangban offers the world. But we are{BR}small, and too many citizens with powers flee{BR}or fight rather than cooperate.”",
+			"flavorQuotes": [
+				{
+					"identifier": "Thirty-two",
+					"text": "For years, we have boasted of the strength the Yangban offers the world. But we are small, and too many citizens with powers flee or fight rather than cooperate."
+				}
+			]
+		}
+	]
+}
