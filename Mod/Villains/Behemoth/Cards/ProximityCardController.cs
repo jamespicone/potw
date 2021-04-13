@@ -60,6 +60,7 @@ namespace Jp.ParahumansOfTheWormverse.Behemoth
         {
             // "When you have no non-incapacitated heroes, remove all tokens from this card and remove this card from the game."
             AddTrigger<TargetLeavesPlayAction>((TargetLeavesPlayAction tlpa) => tlpa.TargetLeavingPlay.Owner == AssociatedTurnTaker() && AssociatedTurnTaker().IsIncapacitatedOrOutOfGame, RemoveResponse, new TriggerType[] { TriggerType.ModifyTokens, TriggerType.RemoveFromGame }, TriggerTiming.After);
+            AddTrigger<GameAction>((GameAction ga) => AssociatedTurnTaker().IsIncapacitatedOrOutOfGame, RemoveResponse, new TriggerType[] { TriggerType.ModifyTokens, TriggerType.RemoveFromGame }, TriggerTiming.After);
             base.AddTriggers();
         }
 
