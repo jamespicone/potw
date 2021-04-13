@@ -266,26 +266,34 @@ namespace Jp.ParahumansOfTheWormverse.Behemoth
                 {
                     if (numAdded == 1)
                     {
-                        message = numAdded.ToString() + " token was added to " + tt.NameRespectingVariant + "'s proximity pool";
+                        message = numAdded.ToString() + " token was added to ";
                     }
                     else
                     {
-                        message = numAdded.ToString() + " tokens were added to " + tt.NameRespectingVariant + "'s proximity pool.";
+                        message = numAdded.ToString() + " tokens were added to ";
                     }
                 }
                 else
                 {
                     if (numAdded == 1)
                     {
-                        message = cardSource.Card.Title + " added " + numAdded.ToString() + " token to " + tt.NameRespectingVariant + "'s proximity pool";
+                        message = cardSource.Card.Title + " added " + numAdded.ToString() + " token to ";
                     }
                     else
                     {
-                        message = cardSource.Card.Title + " added " + numAdded.ToString() + " tokens to " + tt.NameRespectingVariant + "'s proximity pool";
+                        message = cardSource.Card.Title + " added " + numAdded.ToString() + " tokens to ";
                     }
                 }
                 if (message != "")
                 {
+                    if (tt.IsMultiCharacterTurnTaker && tt.NameRespectingVariant.EndsWith("s"))
+                    {
+                        message = message + tt.NameRespectingVariant + "' proximity pool";
+                    }
+                    else
+                    {
+                        message = message + tt.NameRespectingVariant + "'s proximity pool";
+                    }
                     if (showUpdatedValue && ProximityPool(tt) != null)
                     {
                         message = message + ", making a total of " + ProximityPool(tt).CurrentValue.ToString() + ".";
@@ -319,13 +327,21 @@ namespace Jp.ParahumansOfTheWormverse.Behemoth
             string message = "";
             if (ProximityPool(tt).CurrentValue <= 0)
             {
-                if (cardSource == null || cardSource.Card == null)
+                if (tt.IsMultiCharacterTurnTaker && tt.NameRespectingVariant.EndsWith("s"))
                 {
-                    message = "There are no tokens in " + tt.NameRespectingVariant + "'s proximity pool to remove.";
+                    message = "There are no tokens in " + tt.NameRespectingVariant + "' proximity pool";
                 }
                 else
                 {
-                    message = "There are no tokens in " + tt.NameRespectingVariant + "'s proximity pool for " + cardSource.Card.Title + " to remove.";
+                    message = "There are no tokens in " + tt.NameRespectingVariant + "'s proximity pool";
+                }
+                if (cardSource == null || cardSource.Card == null)
+                {
+                    message = message + " to remove.";
+                }
+                else
+                {
+                    message = message + " for " + cardSource.Card.Title + " to remove.";
                 }
             }
             else
@@ -351,28 +367,36 @@ namespace Jp.ParahumansOfTheWormverse.Behemoth
                     {
                         if (numRemoved == 1)
                         {
-                            message = numRemoved.ToString() + " token was removed from " + tt.NameRespectingVariant + "'s proximity pool";
+                            message = numRemoved.ToString() + " token was removed from ";
                         }
                         else
                         {
-                            message = numRemoved.ToString() + " tokens were removed from " + tt.NameRespectingVariant + "'s proximity pool";
+                            message = numRemoved.ToString() + " tokens were removed from ";
                         }
                     }
                     else
                     {
                         if (numRemoved == 1)
                         {
-                            message = cardSource.Card.Title + " removed " + numRemoved.ToString() + " token from " + tt.NameRespectingVariant + "'s proximity pool";
+                            message = cardSource.Card.Title + " removed " + numRemoved.ToString() + " token from ";
                         }
                         else
                         {
-                            message = cardSource.Card.Title + " removed " + numRemoved.ToString() + " tokens from " + tt.NameRespectingVariant + "'s proximity pool";
+                            message = cardSource.Card.Title + " removed " + numRemoved.ToString() + " tokens from ";
 
                         }
                     }
                 }
                 if (message != "")
                 {
+                    if (tt.IsMultiCharacterTurnTaker && tt.NameRespectingVariant.EndsWith("s"))
+                    {
+                        message = message + tt.NameRespectingVariant + "' proximity pool";
+                    }
+                    else
+                    {
+                        message = message + tt.NameRespectingVariant + "'s proximity pool";
+                    }
                     if (showUpdatedValue && ProximityPool(tt) != null)
                     {
                         message = message + ", leaving " + ProximityPool(tt).CurrentValue.ToString() + ".";
