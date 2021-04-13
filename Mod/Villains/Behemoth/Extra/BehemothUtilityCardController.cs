@@ -137,33 +137,24 @@ namespace Jp.ParahumansOfTheWormverse.Behemoth
             TokenPool passingPool = ProximityPool(passingTT);
             if (passingPool != null && passingPool.CurrentValue > 0)
             {
-                List<YesNoCardDecision> answer = new List<YesNoCardDecision>();
-                IEnumerator askCoroutine = base.GameController.MakeYesNoCardDecision(base.GameController.FindHeroTurnTakerController(passingTT.ToHero()), SelectionType.Custom, base.Card, storedResults: answer, cardSource: GetCardSource());
+                List<SelectTurnTakerDecision> choice = new List<SelectTurnTakerDecision>();
+                IEnumerator chooseCoroutine = base.GameController.SelectTurnTaker(base.GameController.FindHeroTurnTakerController(passingTT.ToHero()), SelectionType.AddTokens, choice, optional: true, additionalCriteria: (TurnTaker tt) => tt.IsHero && !tt.IsIncapacitatedOrOutOfGame && tt != passingTT, numberOfCards: 1, cardSource: GetCardSource());
                 if (UseUnityCoroutines)
                 {
-                    yield return GameController.StartCoroutine(askCoroutine);
+                    yield return GameController.StartCoroutine(chooseCoroutine);
                 }
                 else
                 {
-                    GameController.ExhaustCoroutine(askCoroutine);
+                    GameController.ExhaustCoroutine(chooseCoroutine);
                 }
-                if (DidPlayerAnswerYes(answer))
+                // If passingTT chose a recipient, move one of passingTT's tokens to the recipient
+                if (DidSelectTurnTaker(choice))
                 {
-                    List<SelectTurnTakerDecision> choice = new List<SelectTurnTakerDecision>();
-                    IEnumerator chooseCoroutine = base.GameController.SelectTurnTaker(base.GameController.FindHeroTurnTakerController(passingTT.ToHero()), SelectionType.AddTokens, choice, optional: true, additionalCriteria: (TurnTaker tt) => tt.IsHero && !tt.IsIncapacitatedOrOutOfGame && tt != passingTT, numberOfCards: 1, cardSource: GetCardSource());
-                    if (UseUnityCoroutines)
+                    TurnTaker receivingTT = choice.FirstOrDefault().SelectedTurnTaker;
+                    if (receivingTT != null)
                     {
-                        yield return GameController.StartCoroutine(chooseCoroutine);
-                    }
-                    else
-                    {
-                        GameController.ExhaustCoroutine(chooseCoroutine);
-                    }
-                    // If passingTT chose a recipient, move one of passingTT's tokens to the recipient
-                    if (DidSelectTurnTaker(choice))
-                    {
-                        TurnTaker receivingTT = choice.FirstOrDefault().SelectedTurnTaker;
-                        if (receivingTT != null)
+                        TokenPool receivingPool = ProximityPool(receivingTT);
+                        if (receivingPool != null)
                         {
                             IEnumerator passCoroutine = PassProximityTokens(passingTT, receivingTT, 1);
                             if (UseUnityCoroutines)
@@ -295,7 +286,7 @@ namespace Jp.ParahumansOfTheWormverse.Behemoth
                 }
                 if (message != "")
                 {
-                    if (showUpdatedValue)
+                    if (showUpdatedValue && ProximityPool(tt) != null)
                     {
                         message = message + ", making a total of " + ProximityPool(tt).CurrentValue.ToString() + ".";
                     }
@@ -382,9 +373,13 @@ namespace Jp.ParahumansOfTheWormverse.Behemoth
                 }
                 if (message != "")
                 {
-                    if (showUpdatedValue)
+                    if (showUpdatedValue && ProximityPool(tt) != null)
                     {
                         message = message + ", leaving " + ProximityPool(tt).CurrentValue.ToString() + ".";
+                    }
+                    else
+                    {
+                        message = message + ".";
                     }
                 }
             }

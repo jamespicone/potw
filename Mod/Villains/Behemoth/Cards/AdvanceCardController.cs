@@ -20,7 +20,7 @@ namespace Jp.ParahumansOfTheWormverse.Behemoth
         public override IEnumerator Play()
         {
             // "Each player with an active hero puts a proximity token on their hero."
-            IEnumerator addCoroutine = base.GameController.SelectTurnTakersAndDoAction(DecisionMaker, new LinqTurnTakerCriteria((TurnTaker tt) => tt.IsHero && !tt.IsIncapacitatedOrOutOfGame), SelectionType.AddTokens, (TurnTaker tt) => base.GameController.AddTokensToPool(ProximityPool(tt), 1, GetCardSource()), associatedCards: base.Card.ToEnumerable(), numberOfCards: 1, allowAutoDecide: true, cardSource: GetCardSource());
+            IEnumerator addCoroutine = base.GameController.SelectTurnTakersAndDoAction(DecisionMaker, new LinqTurnTakerCriteria((TurnTaker tt) => tt.IsHero && !tt.IsIncapacitatedOrOutOfGame), SelectionType.AddTokens, (TurnTaker tt) => AddProximityTokens(tt, 1, GetCardSource(), true), associatedCards: base.Card.ToEnumerable(), numberOfCards: 1, allowAutoDecide: true, cardSource: GetCardSource());
             if (UseUnityCoroutines)
             {
                 yield return GameController.StartCoroutine(addCoroutine);

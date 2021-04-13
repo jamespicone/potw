@@ -77,7 +77,7 @@ namespace Jp.ParahumansOfTheWormverse.Behemoth
                 if (base.IsGameAdvanced)
                 {
                     // "Whenever a hero has 6 proximity tokens, incapacitate that hero."
-                    base.AddSideTrigger(AddTrigger<ModifyTokensAction>((ModifyTokensAction mta) => mta.TokenPool.CardWithTokenPool.Owner == base.TurnTaker && mta.TokenPool.Identifier == ProximityPoolIdentifier && mta.TokenPool.CurrentValue >= 6, (ModifyTokensAction mta) => base.GameController.DestroyCards(DecisionMaker, new LinqCardCriteria((Card c) => c.IsHeroCharacterCard && c.Owner == mta.TokenPool.CardWithTokenPool.Location.HighestRecursiveLocation.OwnerTurnTaker && c.Owner.IsHero && !c.IsIncapacitatedOrOutOfGame), selectionType: SelectionType.IncapacitateHero, cardSource: GetCardSource()), TriggerType.DestroyCard, TriggerTiming.After));
+                    base.AddSideTrigger(AddTrigger<ModifyTokensAction>((ModifyTokensAction mta) => mta.TokenPool.CardWithTokenPool.Owner == base.TurnTaker && mta.TokenPool.Identifier == ProximityPoolIdentifier && mta.TokenPool.CurrentValue >= 6, KillAuraResponse, TriggerType.DestroyCard, TriggerTiming.After));
                 }
             }
             else
@@ -97,7 +97,7 @@ namespace Jp.ParahumansOfTheWormverse.Behemoth
                 if (base.IsGameAdvanced)
                 {
                     // "Whenever a hero has 6 proximity tokens, incapacitate that hero."
-                    base.AddSideTrigger(AddTrigger<ModifyTokensAction>((ModifyTokensAction mta) => mta.TokenPool.CardWithTokenPool.Owner == base.TurnTaker && mta.TokenPool.Identifier == ProximityPoolIdentifier && mta.TokenPool.CurrentValue >= 6, (ModifyTokensAction mta) => base.GameController.DestroyCards(DecisionMaker, new LinqCardCriteria((Card c) => c.IsHeroCharacterCard && c.Owner == mta.TokenPool.CardWithTokenPool.Location.HighestRecursiveLocation.OwnerTurnTaker && c.Owner.IsHero && !c.IsIncapacitatedOrOutOfGame), selectionType: SelectionType.IncapacitateHero, cardSource: GetCardSource()), TriggerType.DestroyCard, TriggerTiming.After));
+                    base.AddSideTrigger(AddTrigger<ModifyTokensAction>((ModifyTokensAction mta) => mta.TokenPool.CardWithTokenPool.Owner == base.TurnTaker && mta.TokenPool.Identifier == ProximityPoolIdentifier && mta.TokenPool.CurrentValue >= 6, KillAuraResponse, TriggerType.DestroyCard, TriggerTiming.After));
                 }
             }
 
@@ -273,6 +273,40 @@ namespace Jp.ParahumansOfTheWormverse.Behemoth
                 {
                     GameController.ExhaustCoroutine(flipCoroutine);
                 }
+            }
+            yield break;
+        }
+
+        public IEnumerator KillAuraResponse(ModifyTokensAction mta)
+        {
+            // "... incapacitate that hero."
+            TurnTaker player = mta.TokenPool.CardWithTokenPool.Location.HighestRecursiveLocation.OwnerTurnTaker;
+            string message1 = "";
+            string message2 = "";
+            if (player.IsMultiCharacterTurnTaker)
+            {
+                message1 = player.NameRespectingVariant + " have " + ProximityPool(player).CurrentValue + " proximity tokens!";
+                message2 = base.Card.Title + " has caught " + player.NameRespectingVariant + " within his instant kill aura! " + player.NameRespectingVariant + " are out of the fight!";
+            }
+            else
+            {
+                message1 = player.NameRespectingVariant + " has " + ProximityPool(player).CurrentValue + " proximity tokens!";
+                message2 = base.Card.Title + " has caught " + player.NameRespectingVariant + " within his instant kill aura! " + player.NameRespectingVariant + " is out of the fight!";
+            }
+            IEnumerator messageCoroutine1 = base.GameController.SendMessageAction(message1, Priority.High, GetCardSource(), associatedCards: base.GameController.FindCardsWhere(new LinqCardCriteria((Card c) => c.IsHeroCharacterCard && c.Owner == player)), showCardSource: true);
+            IEnumerator messageCoroutine2 = base.GameController.SendMessageAction(message2, Priority.High, GetCardSource(), associatedCards: base.GameController.FindCardsWhere(new LinqCardCriteria((Card c) => c.IsHeroCharacterCard && c.Owner == player)), showCardSource: true);
+            IEnumerator incapCoroutine = base.GameController.DestroyCards(DecisionMaker, new LinqCardCriteria((Card c) => c.IsHeroCharacterCard && c.Owner == mta.TokenPool.CardWithTokenPool.Location.HighestRecursiveLocation.OwnerTurnTaker && c.Owner.IsHero && !c.IsIncapacitatedOrOutOfGame), selectionType: SelectionType.IncapacitateHero, cardSource: GetCardSource());
+            if (UseUnityCoroutines)
+            {
+                yield return GameController.StartCoroutine(messageCoroutine1);
+                yield return GameController.StartCoroutine(messageCoroutine2);
+                yield return GameController.StartCoroutine(incapCoroutine);
+            }
+            else
+            {
+                GameController.ExhaustCoroutine(messageCoroutine1);
+                GameController.ExhaustCoroutine(messageCoroutine2);
+                GameController.ExhaustCoroutine(incapCoroutine);
             }
             yield break;
         }

@@ -192,7 +192,7 @@ namespace Jp.ParahumansOfTheWormverse.Behemoth
         {
             // "One player may move 2 proximity tokens from their hero to the active hero after them in the turn order."
             List<SelectTurnTakerDecision> choice = new List<SelectTurnTakerDecision>();
-            IEnumerator selectCoroutine = base.GameController.SelectTurnTaker(DecisionMaker, SelectionType.RemoveTokens, choice, additionalCriteria: (TurnTaker tt) => ProximityPool(tt) != null && ProximityPool(tt).CurrentValue > 0, cardSource: GetCardSource());
+            IEnumerator selectCoroutine = base.GameController.SelectTurnTaker(DecisionMaker, SelectionType.RemoveTokens, choice, optional: true, additionalCriteria: (TurnTaker tt) => ProximityPool(tt) != null && ProximityPool(tt).CurrentValue > 0, cardSource: GetCardSource());
             if (UseUnityCoroutines)
             {
                 yield return GameController.StartCoroutine(selectCoroutine);
@@ -248,7 +248,7 @@ namespace Jp.ParahumansOfTheWormverse.Behemoth
         {
             // "One player may remove a proximity token from their hero."
             List<SelectTurnTakerDecision> choice = new List<SelectTurnTakerDecision>();
-            IEnumerator selectCoroutine = base.GameController.SelectTurnTaker(DecisionMaker, SelectionType.RemoveTokens, choice, additionalCriteria: (TurnTaker tt) => ProximityPool(tt) != null && ProximityPool(tt).CurrentValue > 0, cardSource: GetCardSource());
+            IEnumerator selectCoroutine = base.GameController.SelectTurnTaker(DecisionMaker, SelectionType.RemoveTokens, choice, optional: true, additionalCriteria: (TurnTaker tt) => ProximityPool(tt) != null && ProximityPool(tt).CurrentValue > 0, cardSource: GetCardSource());
             if (UseUnityCoroutines)
             {
                 yield return GameController.StartCoroutine(selectCoroutine);
@@ -358,7 +358,7 @@ namespace Jp.ParahumansOfTheWormverse.Behemoth
                 }
                 if (message != "")
                 {
-                    if (showUpdatedValue)
+                    if (showUpdatedValue && ProximityPool(tt) != null)
                     {
                         message = message + ", making a total of " + ProximityPool(tt).CurrentValue.ToString() + ".";
                     }
@@ -445,9 +445,13 @@ namespace Jp.ParahumansOfTheWormverse.Behemoth
                 }
                 if (message != "")
                 {
-                    if (showUpdatedValue)
+                    if (showUpdatedValue && ProximityPool(tt) != null)
                     {
                         message = message + ", leaving " + ProximityPool(tt).CurrentValue.ToString() + ".";
+                    }
+                    else
+                    {
+                        message = message + ".";
                     }
                 }
             }
