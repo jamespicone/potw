@@ -31,27 +31,27 @@ namespace Jp.ParahumansOfTheWormverse.Behemoth
 
         public override void AddSideTriggers()
         {
+            base.AddSideTriggers();
             if (!base.Card.IsFlipped)
             {
                 // Standard Protocols
                 // "At the start of a player's turn, that player may skip the rest of their turn to remove 2 proximity tokens from their hero."
-                AddStartOfTurnTrigger((TurnTaker tt) => tt.IsHero && !tt.IsIncapacitatedOrOutOfGame, SkipTurnOptionResponse, new TriggerType[] { TriggerType.SkipTurn, TriggerType.ModifyTokens });
+                base.AddSideTrigger(AddStartOfTurnTrigger((TurnTaker tt) => tt.IsHero && !tt.IsIncapacitatedOrOutOfGame, SkipTurnOptionResponse, new TriggerType[] { TriggerType.SkipTurn, TriggerType.ModifyTokens }));
                 // "At the end of the environment turn, choose one:{BR}* Each player may move a proximity token from their hero to another active hero.{BR}* One player may move 2 proximity tokens from their hero to the active hero after them in the turn order.{BR}* One player may remove a proximity token from their hero."
-                AddEndOfTurnTrigger((TurnTaker tt) => tt.IsEnvironment, StandardHeroMovementResponse, TriggerType.ModifyTokens);
+                base.AddSideTrigger(AddEndOfTurnTrigger((TurnTaker tt) => tt.IsEnvironment, StandardHeroMovementResponse, TriggerType.ModifyTokens));
             }
             else
             {
                 // Panicked
                 // "At the end of the environment turn, choose one:{BR}* Each player may move a proximity token from their hero to another active hero.{BR}* One player may move 2 proximity tokens from their hero to the active hero after them in the turn order."
-                AddEndOfTurnTrigger((TurnTaker tt) => tt.IsEnvironment, PanickedHeroMovementResponse, TriggerType.ModifyTokens);
+                base.AddSideTrigger(AddEndOfTurnTrigger((TurnTaker tt) => tt.IsEnvironment, PanickedHeroMovementResponse, TriggerType.ModifyTokens));
             }
-            base.AddSideTriggers();
         }
 
         public IEnumerator SkipTurnOptionResponse(PhaseChangeAction pca)
         {
             // "... that player may skip the rest of their turn to remove 2 proximity tokens from their hero."
-            List<Card> associated = FindCardsWhere((Card c) => c.Identifier == ProximityMarkerIdentifier && c.Location.HighestRecursiveLocation.OwnerTurnTaker == pca.ToPhase.TurnTaker).ToList();
+            List<Card> associated = base.GameController.FindCardsWhere((Card c) => c.Identifier == ProximityMarkerIdentifier && c.Location.HighestRecursiveLocation.OwnerTurnTaker == pca.ToPhase.TurnTaker, realCardsOnly: false).ToList();
             YesNoAmountDecision answer = new YesNoAmountDecision(base.GameController, base.GameController.FindTurnTakerController(pca.ToPhase.TurnTaker).ToHero(), SelectionType.SkipTurn, 1, associatedCards: associated, cardSource: GetCardSource());
             IEnumerator decideCoroutine = base.GameController.MakeDecisionAction(answer);
             if (UseUnityCoroutines)
@@ -134,7 +134,7 @@ namespace Jp.ParahumansOfTheWormverse.Behemoth
         public IEnumerator EachPlayerMayMoveOneToken()
         {
             // "Each player may move a proximity token from their hero to another active hero."
-            IEnumerator selectCoroutine = base.GameController.SelectTurnTakersAndDoAction(DecisionMaker, new LinqTurnTakerCriteria((TurnTaker tt) => tt.IsHero && !tt.IsIncapacitatedOrOutOfGame), SelectionType.RemoveTokens, MayMoveOneTokenResponse, requiredDecisions: 0, cardSource: GetCardSource());
+            IEnumerator selectCoroutine = base.GameController.SelectTurnTakersAndDoAction(DecisionMaker, new LinqTurnTakerCriteria((TurnTaker tt) => tt.IsHero && !tt.IsIncapacitatedOrOutOfGame), SelectionType.RemoveTokens, MayMoveOneTokenResponse, requiredDecisions: 0, allowAutoDecide: true, numberOfCards: 1, cardSource: GetCardSource());
             if (UseUnityCoroutines)
             {
                 yield return GameController.StartCoroutine(selectCoroutine);

@@ -9,7 +9,7 @@ using System.Text;
 
 namespace Jp.ParahumansOfTheWormverse.Behemoth
 {
-    public class ShiftCardController : BehemothUtilityCardController
+    public class ShiftCardController : MovementCardController
     {
         public ShiftCardController(Card card, TurnTakerController turnTakerController)
             : base(card, turnTakerController)
@@ -64,7 +64,7 @@ namespace Jp.ParahumansOfTheWormverse.Behemoth
                     GameController.ExhaustCoroutine(fillCoroutine);
                 }
             }
-            yield break;
+            yield return base.Play();
         }
     }
 }

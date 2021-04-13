@@ -18,6 +18,7 @@ namespace Jp.ParahumansOfTheWormverse.Behemoth
 
         public override IEnumerator StartGame()
         {
+            Log.Debug("BehemothTurnTakerController.StartGame activated.");
             /*// Put Hero Tactics into play
             Card heroTactics = base.TurnTaker.FindCard(HeroTacticsIdentifier);
             IEnumerator playCoroutine = base.GameController.PlayCard(this, heroTactics, isPutIntoPlay: true, responsibleTurnTaker: base.TurnTaker, cardSource: new CardSource(base.CharacterCardController));
@@ -29,11 +30,25 @@ namespace Jp.ParahumansOfTheWormverse.Behemoth
             {
                 GameController.ExhaustCoroutine(playCoroutine);
             }*/
+            // Put all Movement cards under Behemoth and shuffle them
+            IEnumerable<Card> movements = base.GameController.FindCardsWhere(new LinqCardCriteria((Card c) => c.Owner == base.TurnTaker && c.DoKeywordsContain("movement"), "movement"));
+            IEnumerator deckCoroutine = base.GameController.BulkMoveCards(this, movements, base.CharacterCard.UnderLocation, responsibleTurnTaker: base.TurnTaker, cardSource: CharacterCardController.GetCardSource());
+            if (UseUnityCoroutines)
+            {
+                yield return GameController.StartCoroutine(deckCoroutine);
+            }
+            else
+            {
+                GameController.ExhaustCoroutine(deckCoroutine);
+            }
             // Put a Proximity marker in each hero play area
             IEnumerable<HeroTurnTakerController> heroControllers = base.GameController.FindHeroTurnTakerControllers();
             foreach(HeroTurnTakerController player in heroControllers)
             {
-                Card marker = FindCardsWhere((Card c) => c.Owner == base.TurnTaker && c.Identifier == ProximityMarkerIdentifier && c.IsOffToTheSide && !c.IsRealCard).FirstOrDefault();
+                Log.Debug("Finding a marker to move...");
+                IEnumerable<Card> unassignedMarkers = base.GameController.FindCardsWhere((Card c) => c.Owner == base.TurnTaker && c.Identifier == ProximityMarkerIdentifier && c.IsOffToTheSide, realCardsOnly: false);
+                Log.Debug("unassignedMarkers.Count(): " + unassignedMarkers.Count().ToString());
+                Card marker = unassignedMarkers.FirstOrDefault();
                 Log.Debug("Trying to move " + marker.Title + " to " + player.Name + "'s play area...");
                 IEnumerator assignCoroutine = base.GameController.PlayCard(this, marker, isPutIntoPlay: true, overridePlayLocation: player.TurnTaker.PlayArea, responsibleTurnTaker: base.TurnTaker, canBeCancelled: false, cardSource: CharacterCardController.GetCardSource());
                 if (UseUnityCoroutines)
@@ -46,7 +61,7 @@ namespace Jp.ParahumansOfTheWormverse.Behemoth
                 }
             }
             // Shuffle Movement deck
-            IEnumerator shuffleMovementCoroutine = base.GameController.ShuffleLocation(base.TurnTaker.FindSubDeck(MovementDeckIdentifier), cardSource: new CardSource(base.CharacterCardController));
+            IEnumerator shuffleMovementCoroutine = base.GameController.ShuffleLocation(base.CharacterCard.UnderLocation, cardSource: CharacterCardController.GetCardSource());
             if (UseUnityCoroutines)
             {
                 yield return GameController.StartCoroutine(shuffleMovementCoroutine);
@@ -56,7 +71,7 @@ namespace Jp.ParahumansOfTheWormverse.Behemoth
                 GameController.ExhaustCoroutine(shuffleMovementCoroutine);
             }
             // Shuffle villain deck
-            IEnumerator shuffleCoroutine = base.GameController.ShuffleLocation(base.TurnTaker.Deck, cardSource: new CardSource(base.CharacterCardController));
+            IEnumerator shuffleCoroutine = base.GameController.ShuffleLocation(base.TurnTaker.Deck, cardSource: CharacterCardController.GetCardSource());
             if (UseUnityCoroutines)
             {
                 yield return GameController.StartCoroutine(shuffleCoroutine);
@@ -65,8 +80,9 @@ namespace Jp.ParahumansOfTheWormverse.Behemoth
             {
                 GameController.ExhaustCoroutine(shuffleCoroutine);
             }
+            Log.Debug("BehemothTurnTakerController.StartGame: shuffleCoroutine completed");
             // Make sure Behemoth has a damage type, even if it'll get changed before it's used
-            BehemothCharacterCardController behemoth = (FindCardController(base.CharacterCard) as BehemothCharacterCardController);
+            BehemothCharacterCardController behemoth = (CharacterCardController as BehemothCharacterCardController);
             IEnumerator psychicCoroutine = behemoth.SetDamageType(null, DamageType.Psychic);
             if (UseUnityCoroutines)
             {
@@ -76,6 +92,7 @@ namespace Jp.ParahumansOfTheWormverse.Behemoth
             {
                 GameController.ExhaustCoroutine(psychicCoroutine);
             }
+            Log.Debug("BehemothTurnTakerController.StartGame completed");
             yield break;
         }
 

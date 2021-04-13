@@ -219,6 +219,7 @@
     <Compile Include="Villains\Behemoth\Cards\JuggernautCardController.cs" />
     <Compile Include="Villains\Behemoth\Cards\LeapCardController.cs" />
     <Compile Include="Villains\Behemoth\Cards\LightningBoltCardController.cs" />
+    <Compile Include="Villains\Behemoth\Cards\MovementTrashCardController.cs" />
     <Compile Include="Villains\Behemoth\Cards\NoSafetyCardController.cs" />
     <Compile Include="Villains\Behemoth\Cards\ProximityCardController.cs" />
     <Compile Include="Villains\Behemoth\Cards\RoarCardController.cs" />
@@ -232,6 +233,7 @@
     <Compile Include="Villains\Behemoth\Cards\DischargeCardController.cs" />
     <Compile Include="Villains\Behemoth\Extra\BehemothUtilityCardController.cs" />
     <Compile Include="Villains\Behemoth\Extra\BehemothUtilityCharacterCardController.cs" />
+    <Compile Include="Villains\Behemoth\Extra\MovementCardController.cs" />
     <Compile Include="Villains\Lung\Cards\BakudaCardController.cs" />
     <Compile Include="Villains\Lung\Cards\ABBThugsCardController.cs" />
     <Compile Include="Villains\Lung\Cards\PyrokinesisCardController.cs" />

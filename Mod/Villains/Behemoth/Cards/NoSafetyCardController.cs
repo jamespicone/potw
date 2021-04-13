@@ -9,7 +9,7 @@ using System.Text;
 
 namespace Jp.ParahumansOfTheWormverse.Behemoth
 {
-    public class NoSafetyCardController : BehemothUtilityCardController
+    public class NoSafetyCardController : MovementCardController
     {
         public NoSafetyCardController(Card card, TurnTakerController turnTakerController)
             : base(card, turnTakerController)
@@ -39,7 +39,7 @@ namespace Jp.ParahumansOfTheWormverse.Behemoth
                 IEnumerable<TokenPool> tiedProximities = descendingProximities.Where((TokenPool tp) => tp.CurrentValue == lowestValue);
                 IEnumerable<TurnTaker> tiedTurnTakers = (from TokenPool tp in tiedProximities select TurnTakerForPool(tp));
                 List<SelectTurnTakerDecision> choice = new List<SelectTurnTakerDecision>();
-                IEnumerator selectCoroutine = base.GameController.SelectTurnTaker(DecisionMaker, SelectionType.RemoveTokens, choice, additionalCriteria: (TurnTaker tt) => tiedTurnTakers.Contains(tt), cardSource: GetCardSource());
+                IEnumerator selectCoroutine = base.GameController.SelectTurnTaker(DecisionMaker, SelectionType.RemoveTokens, choice, additionalCriteria: (TurnTaker tt) => tiedTurnTakers.Contains(tt), allowAutoDecide: true, cardSource: GetCardSource());
                 if (UseUnityCoroutines)
                 {
                     yield return GameController.StartCoroutine(selectCoroutine);
@@ -55,7 +55,7 @@ namespace Jp.ParahumansOfTheWormverse.Behemoth
             }
             // Each other player with at least 1 token passes a token to addingTT
             IEnumerable<TurnTaker> removingTurnTakers = base.GameController.FindTurnTakersWhere((TurnTaker tt) => tt.IsHero && !tt.IsIncapacitatedOrOutOfGame && tt != addingTT && ProximityPool(tt).CurrentValue > 0);
-            IEnumerator passCoroutine = base.GameController.SelectTurnTakersAndDoAction(DecisionMaker, new LinqTurnTakerCriteria((TurnTaker tt) => removingTurnTakers.Contains(tt)), SelectionType.RemoveTokens, (TurnTaker tt) => PassProximityTokens(tt, addingTT, 1), cardSource: GetCardSource());
+            IEnumerator passCoroutine = base.GameController.SelectTurnTakersAndDoAction(DecisionMaker, new LinqTurnTakerCriteria((TurnTaker tt) => removingTurnTakers.Contains(tt)), SelectionType.RemoveTokens, (TurnTaker tt) => PassProximityTokens(tt, addingTT, 1), allowAutoDecide: true, numberOfCards: 1, cardSource: GetCardSource());
             if (UseUnityCoroutines)
             {
                 yield return GameController.StartCoroutine(passCoroutine);
@@ -64,7 +64,7 @@ namespace Jp.ParahumansOfTheWormverse.Behemoth
             {
                 GameController.ExhaustCoroutine(passCoroutine);
             }
-            yield break;
+            yield return base.Play();
         }
     }
 }

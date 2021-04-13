@@ -1,4 +1,5 @@
-﻿using Handelabra.Sentinels.Engine.Controller;
+﻿using Handelabra;
+using Handelabra.Sentinels.Engine.Controller;
 using Handelabra.Sentinels.Engine.Model;
 using System;
 using System.Collections;
@@ -10,6 +11,8 @@ namespace Jp.ParahumansOfTheWormverse.Behemoth
 {
     public class BehemothCharacterCardController : BehemothUtilityCharacterCardController
     {
+        public const string MovementTrashIdentifier = "MovementTrash";
+
         public BehemothCharacterCardController(Card card, TurnTakerController turnTakerController) : base(card, turnTakerController)
         {
             List<string> damageRelevantIdentifiers = new List<string>(){ "BehemothCharacter", "ContinuousCrackle", "Discharge", "Earthquake", "LightningBolt", "Roar", "Wildfire"};
@@ -45,9 +48,15 @@ namespace Jp.ParahumansOfTheWormverse.Behemoth
             int? currentIndex = base.GetCardPropertyJournalEntryInteger(LastSetType);
             if (currentIndex.HasValue)
             {
+                //Log.Debug("BehemothCharacterCardController.CurrentDamageType(): got index " + currentIndex.Value.ToString() + " from the journal");
+                //Log.Debug("BehemothCharacterCardController.CurrentDamageType(): damage type: " + typeOptions[currentIndex.Value].ToString());
                 return typeOptions[currentIndex.Value];
             }
-            return DamageType.Psychic;
+            else
+            {
+                Log.Debug("BehemothCharacterCardController.CurrentDamageType(): Couldn't get the currentIndex from the journal");
+            }
+            return DamageType.Radiant;
         }
 
         public override void AddSideTriggers()
@@ -57,38 +66,38 @@ namespace Jp.ParahumansOfTheWormverse.Behemoth
             {
                 // Herokiller
                 // "All damage dealt by {BehemothCharacter} is of {BehemothCharacter}'s current damage type."
-                AddChangeDamageTypeTrigger((DealDamageAction dda) => dda.DamageSource != null && dda.DamageSource.Card == base.Card, CurrentDamageType());
-                // "At the start of the villain turn, if {BehemothCharacter} has less than 30 HP, flip {BehemothCharacter} and {HeroTacticsCharacter}."
-                AddStartOfTurnTrigger((TurnTaker tt) => tt == base.TurnTaker && base.Card.HitPoints.Value < 30, FlipBothCharactersResponse, TriggerType.FlipCard);
+                base.AddSideTrigger(AddTrigger<DealDamageAction>((DealDamageAction dda) => dda.DamageSource != null && dda.DamageSource.Card == base.Card, MatchTypeResponse, TriggerType.ChangeDamageType, TriggerTiming.Before));
+                // "At the start of the villain turn, if {BehemothCharacter} has less than 30 HP, flip {HeroTacticsCharacter} and {BehemothCharacter}."
+                base.AddSideTrigger(AddStartOfTurnTrigger((TurnTaker tt) => tt == base.TurnTaker && base.Card.HitPoints.Value < 30, FlipBothCharactersResponse, TriggerType.FlipCard));
                 // "At the start of the villain turn, play the top card of the Movement deck."
-                AddStartOfTurnTrigger((TurnTaker tt) => tt == base.TurnTaker, (PhaseChangeAction pca) => base.GameController.PlayTopCardOfLocation(null, base.TurnTaker.FindSubDeck(MovementDeckIdentifier), responsibleTurnTaker: base.TurnTaker, cardSource: GetCardSource()), TriggerType.PlayCard);
+                base.AddSideTrigger(AddStartOfTurnTrigger((TurnTaker tt) => tt == base.TurnTaker, PlayMovementResponse, TriggerType.PlayCard));
                 // "At the end of the villain turn, {BehemothCharacter} deals each hero X damage, where X is the number of proximity tokens on that hero."
-                AddEndOfTurnTrigger((TurnTaker tt) => tt == base.TurnTaker, ProximityBasedDamageResponse, TriggerType.DealDamage);
+                base.AddSideTrigger(AddEndOfTurnTrigger((TurnTaker tt) => tt == base.TurnTaker, ProximityBasedDamageResponse, TriggerType.DealDamage));
 
                 if (base.IsGameAdvanced)
                 {
                     // "Whenever a hero has 6 proximity tokens, incapacitate that hero."
-                    AddTrigger<ModifyTokensAction>((ModifyTokensAction mta) => mta.TokenPool.CardWithTokenPool.Owner == base.TurnTaker && mta.TokenPool.Identifier == ProximityPoolIdentifier && mta.TokenPool.CurrentValue >= 6, (ModifyTokensAction mta) => base.GameController.DestroyCards(DecisionMaker, new LinqCardCriteria((Card c) => c.IsHeroCharacterCard && c.Owner == mta.TokenPool.CardWithTokenPool.Location.HighestRecursiveLocation.OwnerTurnTaker && c.Owner.IsHero && !c.IsIncapacitatedOrOutOfGame), selectionType: SelectionType.IncapacitateHero, cardSource: GetCardSource()), TriggerType.DestroyCard, TriggerTiming.After);
+                    base.AddSideTrigger(AddTrigger<ModifyTokensAction>((ModifyTokensAction mta) => mta.TokenPool.CardWithTokenPool.Owner == base.TurnTaker && mta.TokenPool.Identifier == ProximityPoolIdentifier && mta.TokenPool.CurrentValue >= 6, (ModifyTokensAction mta) => base.GameController.DestroyCards(DecisionMaker, new LinqCardCriteria((Card c) => c.IsHeroCharacterCard && c.Owner == mta.TokenPool.CardWithTokenPool.Location.HighestRecursiveLocation.OwnerTurnTaker && c.Owner.IsHero && !c.IsIncapacitatedOrOutOfGame), selectionType: SelectionType.IncapacitateHero, cardSource: GetCardSource()), TriggerType.DestroyCard, TriggerTiming.After));
                 }
             }
             else
             {
                 // Herokiller, Desperate
                 // "All damage dealt by {BehemothCharacter} is of {BehemothCharacter}'s current damage type."
-                AddChangeDamageTypeTrigger((DealDamageAction dda) => dda.DamageSource != null && dda.DamageSource.Card == base.Card, CurrentDamageType());
+                base.AddSideTrigger(AddTrigger<DealDamageAction>((DealDamageAction dda) => dda.DamageSource != null && dda.DamageSource.Card == base.Card, MatchTypeResponse, TriggerType.ChangeDamageType, TriggerTiming.Before));
                 // "Whenever {BehemothCharacter} would be dealt damage of his current damage type, redirect that damage to the hero target with the lowest HP."
-                AddTrigger((DealDamageAction dda) => dda.Target == base.Card && dda.DamageType == CurrentDamageType(), RedirectToLowestHeroTargetResponse, TriggerType.RedirectDamage, TriggerTiming.Before);
+                base.AddSideTrigger(AddTrigger((DealDamageAction dda) => dda.Target == base.Card && dda.DamageType == CurrentDamageType(), RedirectToLowestHeroTargetResponse, TriggerType.RedirectDamage, TriggerTiming.Before));
                 // "At the start of the villain turn, play the top card of the Movement deck."
-                AddStartOfTurnTrigger((TurnTaker tt) => tt == base.TurnTaker, (PhaseChangeAction pca) => base.GameController.PlayTopCardOfLocation(base.TurnTakerController, base.TurnTaker.FindSubDeck(MovementDeckIdentifier), responsibleTurnTaker: base.TurnTaker, cardSource: GetCardSource()), TriggerType.PlayCard);
+                base.AddSideTrigger(AddStartOfTurnTrigger((TurnTaker tt) => tt == base.TurnTaker, PlayMovementResponse, TriggerType.PlayCard));
                 // "At the end of the villain turn, {BehemothCharacter} deals each hero X damage, where X is the number of proximity tokens on that hero."
-                AddEndOfTurnTrigger((TurnTaker tt) => tt == base.TurnTaker, ProximityBasedDamageResponse, TriggerType.DealDamage);
+                base.AddSideTrigger(AddEndOfTurnTrigger((TurnTaker tt) => tt == base.TurnTaker, ProximityBasedDamageResponse, TriggerType.DealDamage));
                 // "At the end of the villain turn, play the top card of the villain deck."
-                AddEndOfTurnTrigger((TurnTaker tt) => tt == base.TurnTaker, PlayTheTopCardOfTheVillainDeckResponse, TriggerType.PlayCard);
+                base.AddSideTrigger(AddEndOfTurnTrigger((TurnTaker tt) => tt == base.TurnTaker, PlayTheTopCardOfTheVillainDeckResponse, TriggerType.PlayCard));
 
                 if (base.IsGameAdvanced)
                 {
                     // "Whenever a hero has 6 proximity tokens, incapacitate that hero."
-                    AddTrigger<ModifyTokensAction>((ModifyTokensAction mta) => mta.TokenPool.CardWithTokenPool.Owner == base.TurnTaker && mta.TokenPool.Identifier == ProximityPoolIdentifier && mta.TokenPool.CurrentValue >= 6, (ModifyTokensAction mta) => base.GameController.DestroyCards(DecisionMaker, new LinqCardCriteria((Card c) => c.IsHeroCharacterCard && c.Owner == mta.TokenPool.CardWithTokenPool.Location.HighestRecursiveLocation.OwnerTurnTaker && c.Owner.IsHero && !c.IsIncapacitatedOrOutOfGame), selectionType: SelectionType.IncapacitateHero, cardSource: GetCardSource()), TriggerType.DestroyCard, TriggerTiming.After);
+                    base.AddSideTrigger(AddTrigger<ModifyTokensAction>((ModifyTokensAction mta) => mta.TokenPool.CardWithTokenPool.Owner == base.TurnTaker && mta.TokenPool.Identifier == ProximityPoolIdentifier && mta.TokenPool.CurrentValue >= 6, (ModifyTokensAction mta) => base.GameController.DestroyCards(DecisionMaker, new LinqCardCriteria((Card c) => c.IsHeroCharacterCard && c.Owner == mta.TokenPool.CardWithTokenPool.Location.HighestRecursiveLocation.OwnerTurnTaker && c.Owner.IsHero && !c.IsIncapacitatedOrOutOfGame), selectionType: SelectionType.IncapacitateHero, cardSource: GetCardSource()), TriggerType.DestroyCard, TriggerTiming.After));
                 }
             }
 
@@ -101,7 +110,10 @@ namespace Jp.ParahumansOfTheWormverse.Behemoth
         {
             base.SetCardProperty(LastSetType, Array.IndexOf(typeOptions, newType));
             List<Card> associated = new List<Card>();
-            associated.Add(responsibleCard);
+            if (responsibleCard != null)
+            {
+                associated.Add(responsibleCard);
+            }
             string message = base.Card.Title + "'s damage type is now " + CurrentDamageType().ToString() + ".";
             IEnumerator messageCoroutine = base.GameController.SendMessageAction(message, Priority.Medium, GetCardSource(), associatedCards: associated);
             if (UseUnityCoroutines)
@@ -115,16 +127,69 @@ namespace Jp.ParahumansOfTheWormverse.Behemoth
             yield break;
         }
 
+        public IEnumerator MatchTypeResponse(DealDamageAction dda)
+        {
+            // "All damage dealt by {BehemothCharacter} is of {BehemothCharacter}'s current damage type."
+            if (dda.DamageType != CurrentDamageType())
+            {
+                IEnumerator typeCoroutine = base.GameController.ChangeDamageType(dda, CurrentDamageType(), cardSource: GetCardSource());
+                if (UseUnityCoroutines)
+                {
+                    yield return GameController.StartCoroutine(typeCoroutine);
+                }
+                else
+                {
+                    GameController.ExhaustCoroutine(typeCoroutine);
+                }
+            }
+            yield break;
+        }
+
+        public IEnumerator PlayMovementResponse(PhaseChangeAction pca)
+        {
+            Log.Debug("BehemothCharacterCardController.PlayMovementResponse activated");
+            Log.Debug("Activated by PhaseChangeAction: " + pca.ToString());
+            // If the Movement deck is empty, refill it from the Movement trash and shuffle
+            if (!base.Card.UnderLocation.HasCards)
+            {
+                IEnumerable<Card> movementTrashPile = base.TurnTaker.FindCard(MovementTrashIdentifier, realCardsOnly: false).UnderLocation.Cards;
+                IEnumerator shuffleCoroutine = base.GameController.ShuffleCardsIntoLocation(DecisionMaker, movementTrashPile, base.Card.UnderLocation, cardSource: GetCardSource());
+                if (UseUnityCoroutines)
+                {
+                    yield return GameController.StartCoroutine(shuffleCoroutine);
+                }
+                else
+                {
+                    GameController.ExhaustCoroutine(shuffleCoroutine);
+                }
+            }
+            // Play the top card of the Movement deck
+            IEnumerator playCoroutine = base.GameController.PlayTopCardOfLocation(base.TurnTakerController, base.Card.UnderLocation, responsibleTurnTaker: base.TurnTaker, cardSource: GetCardSource());
+            if (UseUnityCoroutines)
+            {
+                yield return GameController.StartCoroutine(playCoroutine);
+            }
+            else
+            {
+                GameController.ExhaustCoroutine(playCoroutine);
+            }
+            yield break;
+        }
+
         public IEnumerator ProximityBasedDamageResponse(PhaseChangeAction pca)
         {
+            //Log.Debug("BehemothCharacterCardController.ProximityBasedDamageResponse activated.");
             // "... {BehemothCharacter} deals each hero X damage, where X is the number of proximity tokens on that hero."
             IEnumerable<HeroTurnTakerController> heroControllers = FindActiveHeroTurnTakerControllers();
+            //Log.Debug("heroControllers.Count(): " + heroControllers.Count().ToString());
             List<Card> targets = new List<Card>();
             foreach(HeroTurnTakerController player in heroControllers)
             {
+                TokenPool playerProximity = ProximityPool(player.TurnTaker);
+                Log.Debug(player.Name + "'s proximity pool has " + playerProximity.CurrentValue.ToString() + " tokens.");
+                //Log.Debug("Finding hero character card for " + player.Name + "...");
                 if (player.HasMultipleCharacterCards)
                 {
-                    TokenPool playerProximity = ProximityPool(player.TurnTaker);
                     List<Card> charResults = new List<Card>();
                     IEnumerator findCoroutine = FindCharacterCardToTakeDamage(player.TurnTaker, charResults, base.Card, playerProximity.CurrentValue, CurrentDamageType());
                     if (UseUnityCoroutines)
@@ -135,13 +200,18 @@ namespace Jp.ParahumansOfTheWormverse.Behemoth
                     {
                         GameController.ExhaustCoroutine(findCoroutine);
                     }
+                    string targetNames = (from Card c in charResults select c.Title).ToCommaList(useWordAnd: true);
+                    Log.Debug("Adding " + targetNames + " to list of targets");
                     targets.AddRange(charResults);
                 }
                 else
                 {
+                    Log.Debug("Adding " + player.CharacterCard.Title + " to list of targets");
                     targets.Add(player.CharacterCard);
                 }
             }
+            //Log.Debug("Target list complete. Assigning damage...");
+            Log.Debug("CurrentDamageType: " + CurrentDamageType().ToString());
             IEnumerator damageCoroutine = DealDamage(base.Card, (Card c) => targets.Contains(c), ProximityTokens, CurrentDamageType());
             if (UseUnityCoroutines)
             {
@@ -185,18 +255,21 @@ namespace Jp.ParahumansOfTheWormverse.Behemoth
 
         public IEnumerator FlipBothCharactersResponse(PhaseChangeAction pca)
         {
-            // "... flip {BehemothCharacter} and {HeroTacticsCharacter}."
+            // "... flip {HeroTacticsCharacter} and {BehemothCharacter}."
             List<CardController> cardsToFlip = new List<CardController>();
-            cardsToFlip.Add(this);
             cardsToFlip.Add(base.GameController.FindCardController(base.TurnTaker.FindCard(HeroTacticsIdentifier)));
-            IEnumerator flipCoroutine = base.GameController.FlipCards(cardsToFlip, GetCardSource());
-            if (UseUnityCoroutines)
+            cardsToFlip.Add(this);
+            foreach(CardController cc in cardsToFlip)
             {
-                yield return GameController.StartCoroutine(flipCoroutine);
-            }
-            else
-            {
-                GameController.ExhaustCoroutine(flipCoroutine);
+                IEnumerator flipCoroutine = base.GameController.FlipCard(cc, actionSource: pca, cardSource: GetCardSource());
+                if (UseUnityCoroutines)
+                {
+                    yield return GameController.StartCoroutine(flipCoroutine);
+                }
+                else
+                {
+                    GameController.ExhaustCoroutine(flipCoroutine);
+                }
             }
             yield break;
         }

@@ -52,7 +52,7 @@ namespace Jp.ParahumansOfTheWormverse.Behemoth
                     {
                         // Let players choose who moves a token
                         List<SelectTurnTakerDecision> passChoice = new List<SelectTurnTakerDecision>();
-                        IEnumerator selectCoroutine = base.GameController.SelectTurnTaker(DecisionMaker, SelectionType.RemoveTokens, passChoice, cardSource: GetCardSource());
+                        IEnumerator selectCoroutine = base.GameController.SelectTurnTaker(DecisionMaker, SelectionType.RemoveTokens, passChoice, additionalCriteria: (TurnTaker tt) => destroyedAndCanPass.Contains(tt), cardSource: GetCardSource());
                         if (UseUnityCoroutines)
                         {
                             yield return GameController.StartCoroutine(selectCoroutine);

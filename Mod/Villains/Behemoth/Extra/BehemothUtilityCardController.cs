@@ -137,30 +137,43 @@ namespace Jp.ParahumansOfTheWormverse.Behemoth
             TokenPool passingPool = ProximityPool(passingTT);
             if (passingPool != null && passingPool.CurrentValue > 0)
             {
-                List<SelectTurnTakerDecision> choice = new List<SelectTurnTakerDecision>();
-                IEnumerator chooseCoroutine = base.GameController.SelectTurnTaker(base.GameController.FindHeroTurnTakerController(passingTT.ToHero()), SelectionType.AddTokens, choice, optional: true, additionalCriteria: (TurnTaker tt) => tt.IsHero && !tt.IsIncapacitatedOrOutOfGame && tt != passingTT, numberOfCards: 1, cardSource: GetCardSource());
+                List<YesNoCardDecision> answer = new List<YesNoCardDecision>();
+                IEnumerator askCoroutine = base.GameController.MakeYesNoCardDecision(base.GameController.FindHeroTurnTakerController(passingTT.ToHero()), SelectionType.Custom, base.Card, storedResults: answer, cardSource: GetCardSource());
                 if (UseUnityCoroutines)
                 {
-                    yield return GameController.StartCoroutine(chooseCoroutine);
+                    yield return GameController.StartCoroutine(askCoroutine);
                 }
                 else
                 {
-                    GameController.ExhaustCoroutine(chooseCoroutine);
+                    GameController.ExhaustCoroutine(askCoroutine);
                 }
-                // If passingTT chose a recipient, move one of passingTT's tokens to the recipient
-                if (DidSelectTurnTaker(choice))
+                if (DidPlayerAnswerYes(answer))
                 {
-                    TurnTaker receivingTT = choice.FirstOrDefault().SelectedTurnTaker;
-                    if (receivingTT != null)
+                    List<SelectTurnTakerDecision> choice = new List<SelectTurnTakerDecision>();
+                    IEnumerator chooseCoroutine = base.GameController.SelectTurnTaker(base.GameController.FindHeroTurnTakerController(passingTT.ToHero()), SelectionType.AddTokens, choice, optional: true, additionalCriteria: (TurnTaker tt) => tt.IsHero && !tt.IsIncapacitatedOrOutOfGame && tt != passingTT, numberOfCards: 1, cardSource: GetCardSource());
+                    if (UseUnityCoroutines)
                     {
-                        IEnumerator passCoroutine = PassProximityTokens(passingTT, receivingTT, 1);
-                        if (UseUnityCoroutines)
+                        yield return GameController.StartCoroutine(chooseCoroutine);
+                    }
+                    else
+                    {
+                        GameController.ExhaustCoroutine(chooseCoroutine);
+                    }
+                    // If passingTT chose a recipient, move one of passingTT's tokens to the recipient
+                    if (DidSelectTurnTaker(choice))
+                    {
+                        TurnTaker receivingTT = choice.FirstOrDefault().SelectedTurnTaker;
+                        if (receivingTT != null)
                         {
-                            yield return GameController.StartCoroutine(passCoroutine);
-                        }
-                        else
-                        {
-                            GameController.ExhaustCoroutine(passCoroutine);
+                            IEnumerator passCoroutine = PassProximityTokens(passingTT, receivingTT, 1);
+                            if (UseUnityCoroutines)
+                            {
+                                yield return GameController.StartCoroutine(passCoroutine);
+                            }
+                            else
+                            {
+                                GameController.ExhaustCoroutine(passCoroutine);
+                            }
                         }
                     }
                 }
@@ -231,6 +244,11 @@ namespace Jp.ParahumansOfTheWormverse.Behemoth
         {
             BehemothCharacterCardController behemoth = (FindCardController(base.CharacterCard) as BehemothCharacterCardController);
             return behemoth.CurrentDamageType();
+        }
+
+        public override CustomDecisionText GetCustomDecisionText(IDecision decision)
+        {
+            return new CustomDecisionText("Do you want to move a token to another hero?", "Should they move a token to another hero?", "Vote for whether they should move a token to another hero", "moving a token to another hero", true);
         }
     }
 }

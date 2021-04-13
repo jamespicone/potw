@@ -1,4 +1,5 @@
-﻿using Handelabra.Sentinels.Engine.Controller;
+﻿using Handelabra;
+using Handelabra.Sentinels.Engine.Controller;
 using Handelabra.Sentinels.Engine.Model;
 using System;
 using System.Collections;
@@ -23,9 +24,9 @@ namespace Jp.ParahumansOfTheWormverse.Behemoth
 
         public TokenPool ProximityPool(TurnTaker tt)
         {
-            if (tt.IsHero && !tt.IsIncapacitatedOrOutOfGame)
+            if (tt != null && tt.IsHero && !tt.IsIncapacitatedOrOutOfGame)
             {
-                Card proximityMarker = base.GameController.FindCardsWhere(new LinqCardCriteria((Card c) => c.Identifier == ProximityMarkerIdentifier && c.Location == tt.PlayArea)).FirstOrDefault();
+                Card proximityMarker = base.GameController.FindCardsWhere(new LinqCardCriteria((Card c) => c.Identifier == ProximityMarkerIdentifier && c.Location == tt.PlayArea), realCardsOnly: false).FirstOrDefault();
                 if (proximityMarker != null)
                 {
                     TokenPool proximityPool = proximityMarker.FindTokenPool(ProximityPoolIdentifier);
@@ -50,7 +51,7 @@ namespace Jp.ParahumansOfTheWormverse.Behemoth
 
         public int? ProximityTokens(Card c)
         {
-            if (c.IsHero)
+            if (c != null && c.IsHero)
             {
                 TurnTaker player = c.Owner;
                 TokenPool proximity = ProximityPool(player);

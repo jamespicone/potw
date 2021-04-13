@@ -9,7 +9,7 @@ using System.Text;
 
 namespace Jp.ParahumansOfTheWormverse.Behemoth
 {
-    public class LeapCardController : BehemothUtilityCardController
+    public class LeapCardController : MovementCardController
     {
         public LeapCardController(Card card, TurnTakerController turnTakerController)
             : base(card, turnTakerController)
@@ -54,7 +54,7 @@ namespace Jp.ParahumansOfTheWormverse.Behemoth
                 List<TurnTaker> neighbors = new List<TurnTaker>();
                 neighbors.Add(prevTT);
                 neighbors.Add(nextTT);
-                IEnumerator addOneCoroutine = base.GameController.SelectTurnTakersAndDoAction(DecisionMaker, new LinqTurnTakerCriteria((TurnTaker tt) => neighbors.Contains(tt)), SelectionType.AddTokens, (TurnTaker tt) => base.GameController.AddTokensToPool(ProximityPool(tt), 1, GetCardSource()), cardSource: GetCardSource());
+                IEnumerator addOneCoroutine = base.GameController.SelectTurnTakersAndDoAction(DecisionMaker, new LinqTurnTakerCriteria((TurnTaker tt) => neighbors.Contains(tt)), SelectionType.AddTokens, (TurnTaker tt) => base.GameController.AddTokensToPool(ProximityPool(tt), 1, GetCardSource()), allowAutoDecide: true, numberOfCards: 1, cardSource: GetCardSource());
                 if (UseUnityCoroutines)
                 {
                     yield return GameController.StartCoroutine(addOneCoroutine);
@@ -64,7 +64,7 @@ namespace Jp.ParahumansOfTheWormverse.Behemoth
                     GameController.ExhaustCoroutine(addOneCoroutine);
                 }
             }
-            yield break;
+            yield return base.Play();
         }
     }
 }
