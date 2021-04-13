@@ -101,6 +101,9 @@ namespace Jp.ParahumansOfTheWormverse.Behemoth
                 }
             }
 
+            // The Movement Deck is a deck, it's not in play
+            base.Card.UnderLocation.OverrideIsInPlay = false;
+
             // If Behemoth is destroyed, the heroes win
             base.AddDefeatedIfDestroyedTriggers();
             base.AddDefeatedIfMovedOutOfGameTriggers();
@@ -147,8 +150,8 @@ namespace Jp.ParahumansOfTheWormverse.Behemoth
 
         public IEnumerator PlayMovementResponse(PhaseChangeAction pca)
         {
-            Log.Debug("BehemothCharacterCardController.PlayMovementResponse activated");
-            Log.Debug("Activated by PhaseChangeAction: " + pca.ToString());
+            //Log.Debug("BehemothCharacterCardController.PlayMovementResponse activated");
+            //Log.Debug("Activated by PhaseChangeAction: " + pca.ToString());
             // If the Movement deck is empty, refill it from the Movement trash and shuffle
             if (!base.Card.UnderLocation.HasCards)
             {

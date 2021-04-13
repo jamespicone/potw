@@ -22,6 +22,7 @@ namespace Jp.ParahumansOfTheWormverse.Behemoth
         public override IEnumerator Play()
         {
             // After card is played, move it under MovementTrash
+            Log.Debug("MovementCardController.Play() activated");
             IEnumerator trashCoroutine = base.GameController.MoveCard(base.TurnTakerController, base.Card, base.TurnTaker.FindCard(MovementTrashIdentifier, realCardsOnly: false).UnderLocation, playCardIfMovingToPlayArea: false, responsibleTurnTaker: base.TurnTaker, doesNotEnterPlay: true, cardSource: GetCardSource());
             if (UseUnityCoroutines)
             {

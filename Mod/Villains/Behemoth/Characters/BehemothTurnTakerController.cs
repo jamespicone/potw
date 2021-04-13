@@ -45,11 +45,11 @@ namespace Jp.ParahumansOfTheWormverse.Behemoth
             IEnumerable<HeroTurnTakerController> heroControllers = base.GameController.FindHeroTurnTakerControllers();
             foreach(HeroTurnTakerController player in heroControllers)
             {
-                Log.Debug("Finding a marker to move...");
+                //Log.Debug("Finding a marker to move...");
                 IEnumerable<Card> unassignedMarkers = base.GameController.FindCardsWhere((Card c) => c.Owner == base.TurnTaker && c.Identifier == ProximityMarkerIdentifier && c.IsOffToTheSide, realCardsOnly: false);
-                Log.Debug("unassignedMarkers.Count(): " + unassignedMarkers.Count().ToString());
+                //Log.Debug("unassignedMarkers.Count(): " + unassignedMarkers.Count().ToString());
                 Card marker = unassignedMarkers.FirstOrDefault();
-                Log.Debug("Trying to move " + marker.Title + " to " + player.Name + "'s play area...");
+                //Log.Debug("Trying to move " + marker.Title + " to " + player.Name + "'s play area...");
                 IEnumerator assignCoroutine = base.GameController.PlayCard(this, marker, isPutIntoPlay: true, overridePlayLocation: player.TurnTaker.PlayArea, responsibleTurnTaker: base.TurnTaker, canBeCancelled: false, cardSource: CharacterCardController.GetCardSource());
                 if (UseUnityCoroutines)
                 {

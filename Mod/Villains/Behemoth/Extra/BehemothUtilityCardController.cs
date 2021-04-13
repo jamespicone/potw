@@ -105,7 +105,7 @@ namespace Jp.ParahumansOfTheWormverse.Behemoth
             if (removingPool != null && addingPool != null && removingPool.CurrentValue > 0 && numToPass > 0)
             {
                 List<RemoveTokensFromPoolAction> removal = new List<RemoveTokensFromPoolAction>();
-                IEnumerator removeCoroutine = base.GameController.RemoveTokensFromPool(removingPool, numToPass, storedResults: removal, cardSource: GetCardSource());
+                IEnumerator removeCoroutine = RemoveProximityTokens(removingTT, numToPass, GetCardSource(), true, removal);
                 if (UseUnityCoroutines)
                 {
                     yield return GameController.StartCoroutine(removeCoroutine);
@@ -117,7 +117,7 @@ namespace Jp.ParahumansOfTheWormverse.Behemoth
                 if (DidRemoveTokens(removal))
                 {
                     int numRemoved = GetNumberOfTokensRemoved(removal);
-                    IEnumerator addCoroutine = base.GameController.AddTokensToPool(addingPool, numRemoved, GetCardSource());
+                    IEnumerator addCoroutine = AddProximityTokens(addingTT, numRemoved, GetCardSource(), true);
                     if (UseUnityCoroutines)
                     {
                         yield return GameController.StartCoroutine(addCoroutine);
@@ -249,6 +249,159 @@ namespace Jp.ParahumansOfTheWormverse.Behemoth
         public override CustomDecisionText GetCustomDecisionText(IDecision decision)
         {
             return new CustomDecisionText("Do you want to move a token to another hero?", "Should they move a token to another hero?", "Vote for whether they should move a token to another hero", "moving a token to another hero", true);
+        }
+
+        public IEnumerator AddProximityTokens(TurnTaker tt, int numTokens, CardSource cardSource = null, bool showUpdatedValue = false)
+        {
+            if (tt == null || !tt.IsHero || tt.IsIncapacitatedOrOutOfGame)
+            {
+                yield break;
+            }
+            // Add [numTokens] tokens to tt's proximity pool, accompanied by announcement message
+            IEnumerator addCoroutine = base.GameController.AddTokensToPool(ProximityPool(tt), numTokens, cardSource);
+            if (UseUnityCoroutines)
+            {
+                yield return GameController.StartCoroutine(addCoroutine);
+            }
+            else
+            {
+                GameController.ExhaustCoroutine(addCoroutine);
+            }
+            int numAdded = numTokens;
+            if (numAdded > 0)
+            {
+                string message = "";
+                if (cardSource == null || cardSource.Card == null)
+                {
+                    if (numAdded == 1)
+                    {
+                        message = numAdded.ToString() + " token was added to " + tt.NameRespectingVariant + "'s proximity pool";
+                    }
+                    else
+                    {
+                        message = numAdded.ToString() + " tokens were added to " + tt.NameRespectingVariant + "'s proximity pool.";
+                    }
+                }
+                else
+                {
+                    if (numAdded == 1)
+                    {
+                        message = cardSource.Card.Title + " added " + numAdded.ToString() + " token to " + tt.NameRespectingVariant + "'s proximity pool";
+                    }
+                    else
+                    {
+                        message = cardSource.Card.Title + " added " + numAdded.ToString() + " tokens to " + tt.NameRespectingVariant + "'s proximity pool";
+                    }
+                }
+                if (message != "")
+                {
+                    if (showUpdatedValue)
+                    {
+                        message = message + ", making a total of " + ProximityPool(tt).CurrentValue.ToString() + ".";
+                    }
+                    else
+                    {
+                        message = message + ".";
+                    }
+                    Log.Debug(message);
+                    IEnumerator announceCoroutine = base.GameController.SendMessageAction(message, Priority.Medium, cardSource);
+                    if (UseUnityCoroutines)
+                    {
+                        yield return GameController.StartCoroutine(announceCoroutine);
+                    }
+                    else
+                    {
+                        GameController.ExhaustCoroutine(announceCoroutine);
+                    }
+                }
+            }
+            yield break;
+        }
+
+        public IEnumerator RemoveProximityTokens(TurnTaker tt, int numTokens, CardSource cardSource = null, bool showUpdatedValue = false, List<RemoveTokensFromPoolAction> storedResults = null)
+        {
+            if (tt == null || !tt.IsHero || tt.IsIncapacitatedOrOutOfGame)
+            {
+                yield break;
+            }
+            // Remove [numTokens] tokens from tt's proximity pool, accompanied by announcement message
+            string message = "";
+            if (ProximityPool(tt).CurrentValue <= 0)
+            {
+                if (cardSource == null || cardSource.Card == null)
+                {
+                    message = "There are no tokens in " + tt.NameRespectingVariant + "'s proximity pool to remove.";
+                }
+                else
+                {
+                    message = "There are no tokens in " + tt.NameRespectingVariant + "'s proximity pool for " + cardSource.Card.Title + " to remove.";
+                }
+            }
+            else
+            {
+                List<RemoveTokensFromPoolAction> results = new List<RemoveTokensFromPoolAction>();
+                IEnumerator removeCoroutine = base.GameController.RemoveTokensFromPool(ProximityPool(tt), numTokens, storedResults: results, cardSource: cardSource);
+                if (UseUnityCoroutines)
+                {
+                    yield return GameController.StartCoroutine(removeCoroutine);
+                }
+                else
+                {
+                    GameController.ExhaustCoroutine(removeCoroutine);
+                }
+                if (storedResults != null)
+                {
+                    storedResults.AddRange(results);
+                }
+                int numRemoved = GetNumberOfTokensRemoved(results);
+                if (numRemoved > 0)
+                {
+                    if (cardSource == null || cardSource.Card == null)
+                    {
+                        if (numRemoved == 1)
+                        {
+                            message = numRemoved.ToString() + " token was removed from " + tt.NameRespectingVariant + "'s proximity pool";
+                        }
+                        else
+                        {
+                            message = numRemoved.ToString() + " tokens were removed from " + tt.NameRespectingVariant + "'s proximity pool";
+                        }
+                    }
+                    else
+                    {
+                        if (numRemoved == 1)
+                        {
+                            message = cardSource.Card.Title + " removed " + numRemoved.ToString() + " token from " + tt.NameRespectingVariant + "'s proximity pool";
+                        }
+                        else
+                        {
+                            message = cardSource.Card.Title + " removed " + numRemoved.ToString() + " tokens from " + tt.NameRespectingVariant + "'s proximity pool";
+
+                        }
+                    }
+                }
+                if (message != "")
+                {
+                    if (showUpdatedValue)
+                    {
+                        message = message + ", leaving " + ProximityPool(tt).CurrentValue.ToString() + ".";
+                    }
+                }
+            }
+            if (message != "")
+            {
+                Log.Debug(message);
+                IEnumerator announceCoroutine = base.GameController.SendMessageAction(message, Priority.Medium, cardSource);
+                if (UseUnityCoroutines)
+                {
+                    yield return GameController.StartCoroutine(announceCoroutine);
+                }
+                else
+                {
+                    GameController.ExhaustCoroutine(announceCoroutine);
+                }
+            }
+            yield break;
         }
     }
 }

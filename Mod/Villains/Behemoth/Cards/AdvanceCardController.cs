@@ -29,6 +29,7 @@ namespace Jp.ParahumansOfTheWormverse.Behemoth
             {
                 GameController.ExhaustCoroutine(addCoroutine);
             }
+            //Log.Debug("AdvanceCardController.Play() finished, passing to base.Play()");
             yield return base.Play();
         }
     }

@@ -24,46 +24,46 @@ namespace Jp.ParahumansOfTheWormverse.Behemoth
             TurnTaker addingTT = null;
             IOrderedEnumerable<TokenPool> descendingProximities = OrderPoolsByHighestValue();
             int lastIndex = descendingProximities.Count() - 1;
-            if (descendingProximities.Count() <= 1 || AllProximityPoolsEmpty())
+            if (descendingProximities.Count() > 1 && !AllProximityPoolsEmpty())
             {
-                yield break;
-            }
-            if (descendingProximities.ElementAt(lastIndex).CurrentValue < descendingProximities.ElementAt(lastIndex - 1).CurrentValue)
-            {
-                addingTT = TurnTakerForPool(descendingProximities.ElementAt(lastIndex));
-            }
-            else
-            {
-                // There's a tie, figure it out
-                int lowestValue = descendingProximities.ElementAt(lastIndex).CurrentValue;
-                IEnumerable<TokenPool> tiedProximities = descendingProximities.Where((TokenPool tp) => tp.CurrentValue == lowestValue);
-                IEnumerable<TurnTaker> tiedTurnTakers = (from TokenPool tp in tiedProximities select TurnTakerForPool(tp));
-                List<SelectTurnTakerDecision> choice = new List<SelectTurnTakerDecision>();
-                IEnumerator selectCoroutine = base.GameController.SelectTurnTaker(DecisionMaker, SelectionType.RemoveTokens, choice, additionalCriteria: (TurnTaker tt) => tiedTurnTakers.Contains(tt), allowAutoDecide: true, cardSource: GetCardSource());
-                if (UseUnityCoroutines)
+                if (descendingProximities.ElementAt(lastIndex).CurrentValue < descendingProximities.ElementAt(lastIndex - 1).CurrentValue)
                 {
-                    yield return GameController.StartCoroutine(selectCoroutine);
+                    addingTT = TurnTakerForPool(descendingProximities.ElementAt(lastIndex));
                 }
                 else
                 {
-                    GameController.ExhaustCoroutine(selectCoroutine);
+                    // There's a tie, figure it out
+                    int lowestValue = descendingProximities.ElementAt(lastIndex).CurrentValue;
+                    IEnumerable<TokenPool> tiedProximities = descendingProximities.Where((TokenPool tp) => tp.CurrentValue == lowestValue);
+                    IEnumerable<TurnTaker> tiedTurnTakers = (from TokenPool tp in tiedProximities select TurnTakerForPool(tp));
+                    List<SelectTurnTakerDecision> choice = new List<SelectTurnTakerDecision>();
+                    IEnumerator selectCoroutine = base.GameController.SelectTurnTaker(DecisionMaker, SelectionType.RemoveTokens, choice, additionalCriteria: (TurnTaker tt) => tiedTurnTakers.Contains(tt), allowAutoDecide: true, cardSource: GetCardSource());
+                    if (UseUnityCoroutines)
+                    {
+                        yield return GameController.StartCoroutine(selectCoroutine);
+                    }
+                    else
+                    {
+                        GameController.ExhaustCoroutine(selectCoroutine);
+                    }
+                    if (DidSelectTurnTaker(choice))
+                    {
+                        addingTT = choice.FirstOrDefault().SelectedTurnTaker;
+                    }
                 }
-                if (DidSelectTurnTaker(choice))
+                // Each other player with at least 1 token passes a token to addingTT
+                IEnumerable<TurnTaker> removingTurnTakers = base.GameController.FindTurnTakersWhere((TurnTaker tt) => tt.IsHero && !tt.IsIncapacitatedOrOutOfGame && tt != addingTT && ProximityPool(tt).CurrentValue > 0);
+                IEnumerator passCoroutine = base.GameController.SelectTurnTakersAndDoAction(DecisionMaker, new LinqTurnTakerCriteria((TurnTaker tt) => removingTurnTakers.Contains(tt)), SelectionType.RemoveTokens, (TurnTaker tt) => PassProximityTokens(tt, addingTT, 1), allowAutoDecide: true, numberOfCards: 1, cardSource: GetCardSource());
+                if (UseUnityCoroutines)
                 {
-                    addingTT = choice.FirstOrDefault().SelectedTurnTaker;
+                    yield return GameController.StartCoroutine(passCoroutine);
+                }
+                else
+                {
+                    GameController.ExhaustCoroutine(passCoroutine);
                 }
             }
-            // Each other player with at least 1 token passes a token to addingTT
-            IEnumerable<TurnTaker> removingTurnTakers = base.GameController.FindTurnTakersWhere((TurnTaker tt) => tt.IsHero && !tt.IsIncapacitatedOrOutOfGame && tt != addingTT && ProximityPool(tt).CurrentValue > 0);
-            IEnumerator passCoroutine = base.GameController.SelectTurnTakersAndDoAction(DecisionMaker, new LinqTurnTakerCriteria((TurnTaker tt) => removingTurnTakers.Contains(tt)), SelectionType.RemoveTokens, (TurnTaker tt) => PassProximityTokens(tt, addingTT, 1), allowAutoDecide: true, numberOfCards: 1, cardSource: GetCardSource());
-            if (UseUnityCoroutines)
-            {
-                yield return GameController.StartCoroutine(passCoroutine);
-            }
-            else
-            {
-                GameController.ExhaustCoroutine(passCoroutine);
-            }
+            //Log.Debug("NoSafetyCardController.Play() finished, passing to base.Play()");
             yield return base.Play();
         }
     }

@@ -31,7 +31,7 @@ namespace Jp.ParahumansOfTheWormverse.Behemoth
                 GameController.ExhaustCoroutine(findCoroutine);
             }
             TurnTaker highestTT = highest.FirstOrDefault().Owner;
-            IEnumerator addCoroutine = base.GameController.AddTokensToPool(ProximityPool(highestTT), 1, GetCardSource());
+            IEnumerator addCoroutine = AddProximityTokens(highestTT, 1, GetCardSource(), true);
             if (UseUnityCoroutines)
             {
                 yield return GameController.StartCoroutine(addCoroutine);
@@ -40,6 +40,7 @@ namespace Jp.ParahumansOfTheWormverse.Behemoth
             {
                 GameController.ExhaustCoroutine(addCoroutine);
             }
+            //Log.Debug("FocusCardController.Play() finished, passing to base.Play()");
             yield return base.Play();
         }
     }

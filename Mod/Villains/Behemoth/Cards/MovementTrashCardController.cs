@@ -28,5 +28,12 @@ namespace Jp.ParahumansOfTheWormverse.Behemoth
                 return false;
             }
         }
+
+        public override void AddTriggers()
+        {
+            // The Movement trash is a trash, it's not in play
+            base.Card.UnderLocation.OverrideIsInPlay = false;
+            base.AddTriggers();
+        }
     }
 }

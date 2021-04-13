@@ -16,7 +16,44 @@ namespace Jp.ParahumansOfTheWormverse.Behemoth
         {
             AddThisCardControllerToList(CardControllerListType.MakesIndestructible);
             SpecialStringMaker.ShowLocationOfCards(new LinqCardCriteria((Card c) => c == base.Card, base.Card.Title, useCardsSuffix: false), specifyPlayAreas: true).Condition = () => base.Card.IsInPlayAndHasGameText;
-            SpecialStringMaker.ShowTokenPool(base.Card.Identifier, ProximityPoolIdentifier);
+            SpecialStringMaker.ShowSpecialString(PoolDisplay, () => base.Card.IsInPlayAndHasGameText, RelevantCharacters);
+        }
+
+        public string PoolDisplay()
+        {
+            string summary = "";
+            int numTokens = base.Card.FindTokenPool(ProximityPoolIdentifier).CurrentValue;
+            TurnTaker tt = base.Card.Location.HighestRecursiveLocation.OwnerTurnTaker;
+            if (tt != null && tt.IsHero && !tt.IsIncapacitatedOrOutOfGame)
+            {
+                string ttName = tt.NameRespectingVariant;
+                if (numTokens == 1)
+                {
+                    summary = "There is " + numTokens.ToString() + " token in " + ttName + "'s proximity pool.";
+                }
+                else
+                {
+                    summary = "There are " + numTokens.ToString() + " tokens in " + ttName + "'s proximity pool.";
+                }
+            }
+            else
+            {
+                if (numTokens == 1)
+                {
+                    summary = "There is " + numTokens.ToString() + " token in this unassigned proximity pool.";
+                }
+                else
+                {
+                    summary = "There are " + numTokens.ToString() + " tokens in this unassigned proximity pool.";
+                }
+            }
+            return summary;
+        }
+
+        public IEnumerable<Card> RelevantCharacters()
+        {
+            IEnumerable<Card> relevant = base.GameController.FindCardsWhere(new LinqCardCriteria((Card c) => c.IsHeroCharacterCard && c.Owner == base.Card.Location.HighestRecursiveLocation.OwnerTurnTaker), false);
+            return relevant;
         }
 
         public override void AddTriggers()

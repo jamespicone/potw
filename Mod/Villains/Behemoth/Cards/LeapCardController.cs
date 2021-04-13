@@ -41,7 +41,7 @@ namespace Jp.ParahumansOfTheWormverse.Behemoth
                 TurnTaker prevTT = activeHeroTurnOrder.ElementAt(prevIndex);
                 TurnTaker nextTT = activeHeroTurnOrder.ElementAt(nextIndex);
                 // Add 2 tokens to mostCardsTT's pool
-                IEnumerator addTwoCoroutine = base.GameController.AddTokensToPool(ProximityPool(mostCardsTT), 2, GetCardSource());
+                IEnumerator addTwoCoroutine = AddProximityTokens(mostCardsTT, 2, GetCardSource(), true);
                 if (UseUnityCoroutines)
                 {
                     yield return GameController.StartCoroutine(addTwoCoroutine);
@@ -54,7 +54,7 @@ namespace Jp.ParahumansOfTheWormverse.Behemoth
                 List<TurnTaker> neighbors = new List<TurnTaker>();
                 neighbors.Add(prevTT);
                 neighbors.Add(nextTT);
-                IEnumerator addOneCoroutine = base.GameController.SelectTurnTakersAndDoAction(DecisionMaker, new LinqTurnTakerCriteria((TurnTaker tt) => neighbors.Contains(tt)), SelectionType.AddTokens, (TurnTaker tt) => base.GameController.AddTokensToPool(ProximityPool(tt), 1, GetCardSource()), allowAutoDecide: true, numberOfCards: 1, cardSource: GetCardSource());
+                IEnumerator addOneCoroutine = base.GameController.SelectTurnTakersAndDoAction(DecisionMaker, new LinqTurnTakerCriteria((TurnTaker tt) => neighbors.Contains(tt)), SelectionType.AddTokens, (TurnTaker tt) => AddProximityTokens(tt, 1, GetCardSource(), true), allowAutoDecide: true, numberOfCards: 1, cardSource: GetCardSource());
                 if (UseUnityCoroutines)
                 {
                     yield return GameController.StartCoroutine(addOneCoroutine);
@@ -64,6 +64,7 @@ namespace Jp.ParahumansOfTheWormverse.Behemoth
                     GameController.ExhaustCoroutine(addOneCoroutine);
                 }
             }
+            //Log.Debug("LeapCardController.Play() finished, passing to base.Play()");
             yield return base.Play();
         }
     }
