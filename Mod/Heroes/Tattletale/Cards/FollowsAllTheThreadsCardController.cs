@@ -27,7 +27,7 @@ namespace Jp.ParahumansOfTheWormverse.Tattletale
         private void BuildTopDeckSpecialStrings()
         {
             //this needs to be all turntakers in all zones.
-            IEnumerable<TurnTaker> activeTurnTakers = FindTurnTakersWhere((TurnTaker tt) => !tt.IsIncapacitatedOrOutOfGame && !tt.IsEnvironment, true);
+            IEnumerable<TurnTaker> activeTurnTakers = FindTurnTakersWhere((TurnTaker tt) => !tt.IsIncapacitatedOrOutOfGame, true);
             foreach (TurnTaker tt in activeTurnTakers)
             {
                 foreach (Location deck in tt.Decks.Where(deck => deck.IsRealDeck))
