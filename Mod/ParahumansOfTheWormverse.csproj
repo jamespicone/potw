@@ -223,8 +223,23 @@
     <Compile Include="Villains\Lung\Characters\BruteInstructionsCardController.cs" />
     <Compile Include="Villains\Lung\Characters\LungCharacterCardController.cs" />
     <Compile Include="Villains\Lung\Characters\LungTurnTakerController.cs" />
+    <Compile Include="Villains\TheMerchants\Cards\FestivalOfBloodCardController.cs" />
+    <Compile Include="Villains\TheMerchants\Cards\FestivalOfExcessCardController.cs" />
+    <Compile Include="Villains\TheMerchants\Cards\FestivalOfLoveCardController.cs" />
+    <Compile Include="Villains\TheMerchants\Cards\HelicopterCardController.cs" />
+    <Compile Include="Villains\TheMerchants\Cards\MushCardController.cs" />
+    <Compile Include="Villains\TheMerchants\Cards\NotExactlySanitaryCardController.cs" />
+    <Compile Include="Villains\TheMerchants\Cards\RevellerCardController.cs" />
+    <Compile Include="Villains\TheMerchants\Cards\SadistCardController.cs" />
+    <Compile Include="Villains\TheMerchants\Cards\ScrubCardController.cs" />
+    <Compile Include="Villains\TheMerchants\Cards\SquealerCardController.cs" />
+    <Compile Include="Villains\TheMerchants\Cards\ToughCardController.cs" />
+    <Compile Include="Villains\TheMerchants\Characters\SkidmarkCharacterCardController.cs" />
+    <Compile Include="Villains\TheMerchants\Characters\TheMerchantsTurnTakerController.cs" />
+    <Compile Include="Villains\TheMerchants\Extra\TheMerchantsUtilityCardController.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="DeckLists\Villains\TheMerchantsDeckList.json" />
     <None Include="manifest.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

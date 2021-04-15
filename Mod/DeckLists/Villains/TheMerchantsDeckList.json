@@ -1,0 +1,271 @@
+{
+	"name": "The Merchants",
+	"kind": "Villain",
+	"initialCardIdentifiers": [
+		"SkidmarkCharacter"
+	],
+	"cards": [
+		{
+			"identifier": "SkidmarkCharacter",
+			"count": 1,
+			"title": "Skidmark",
+			"keywords": [
+				"villain"
+			],
+			"body": "Superpowered Drug Lord",
+			"backgroundColor": "",
+			"character": true,
+			"hitpoints": 45,
+			"nemesisIdentifiers": [
+				"MissMilitia"
+			],
+			"setup": [
+				"Put {SkidmarkCharacter} into play, 'Superpowered Drug Lord' side up. Shuffle all Thug cards and put them face down under this one as the Thug deck."
+			],
+			"gameplay": [
+				"At the start of the villain turn, if the Thug deck is empty, the Merchants have grown out of control. [b]GAME OVER.[/b]",
+				"At the end of the villain turn, play the top {H - 1} cards of the Thug deck.",
+				"When {SkidmarkCharacter} would be destroyed, flip {SkidmarkCharacter}'s villain character cards instead."
+			],
+			"advanced": "Reduce damage dealt to villain targets by 1.",
+			"icons": [
+				"StartAndEndOfTurnAction",
+				"LoseTheGame",
+				"PlayCardNow"
+			],
+			"advancedIcons": [
+				"ReduceDamageTaken"
+			],
+			"flippedBody": "Defeated Drug Lord",
+			"flippedShowHitpoints": false,
+			"flippedGameplay": [
+				"[b]The heroes cannot win the game as long as there is a villain target in play.[/b]",
+				"At the start of the villain turn, if the Thug deck is empty, the Merchants have grown out of control. [b]GAME OVER.[/b]",
+				"At the end of the villain turn, play the top card of the Thug deck."
+			],
+			"flippedIcons": [
+				"CannotWinTheGame",
+				"StartAndEndOfTurnAction",
+				"LoseTheGame",
+				"PlayCardNow"
+			],
+			"difficulty": 2,
+			"openingLines": {
+				"default": ""
+			}
+		},
+		{
+			"identifier": "FestivalOfBlood",
+			"count": 3,
+			"title": "Festival of Blood",
+			"keywords": [
+				"ongoing"
+			],
+			"body": [
+				"Increase damage dealt by villain targets by 1."
+			],
+			"icons": [
+				"IncreaseDamageDealt"
+			],
+			"flavorQuotes": [
+				{
+					"identifier": "Skidmark",
+					"text": "You piss-licking losers know what the{BR}red armband means! Bloodshed! Violence!{BR}We've got ourselves a free for all brawl!"
+				}
+			],
+			"flavorReference": "Skidmark, Infestation 11.5"
+		},
+		{
+			"identifier": "FestivalOfExcess",
+			"count": 3,
+			"title": "Festival of Excess",
+			"keywords": [
+				"ongoing"
+			],
+			"body": [
+				"Reduce damage dealt to villain targets by 1."
+			],
+			"icons": [
+				"ReduceDamageTaken"
+			],
+			"flavorQuotes": [
+				{
+					"identifier": "Skidmark",
+					"text": "Green armband means poison,{BR}and this is a poison half of you wastes{BR}of air have already tasted! We're gonna{BR}make it as bad as it gets! The worst of{BR}bad trips!"
+				}
+			],
+			"flavorReference": "Skidmark, Interlude 12"
+		},
+		{
+			"identifier": "FestivalOfLove",
+			"count": 3,
+			"title": "Festival of Love",
+			"keywords": [
+				"ongoing"
+			],
+			"body": [
+				"At the start of the villain turn, play the top card of the Thug deck."
+			],
+			"icons": [
+				"StartOfTurnAction",
+				"PlayCardNow"
+			],
+			"flavorText": "They smiled as they posed provocatively{BR}and hugged the mannequins, showing off{BR}the clothes.",
+			"flavorReference": "Infestation 11.5"
+		},
+		{
+			"identifier": "Helicopter",
+			"count": 1,
+			"title": "Helicopter",
+			"keywords": [
+				"device"
+			],
+			"hitpoints": 16,
+			"body": [
+				"{SkidmarkCharacter} is immune to melee damage.",
+				"At the end of the villain turn, play the top card of the Thug deck."
+			],
+			"icons": [
+				"ImmuneToDamageMelee",
+				"EndOfTurnAction",
+				"PlayCardNow"
+			],
+			"flavorText": "Squealer's vehicle was like a{BR}helicopter made by someone who had{BR}never seen a helicopter before, who'd{BR}decided to add their own improvements.",
+			"flavorReference": "Interlude 12"
+		},
+		{
+			"identifier": "Mush",
+			"count": 1,
+			"title": "Mush",
+			"keywords": [
+				"parahuman"
+			],
+			"hitpoints": 10,
+			"body": [
+				"This card is immune to melee and projectile damage.",
+				"At the end of the villain turn, this card deals each hero target 1 melee damage."
+			],
+			"icons": [
+				"ImmuneToDamageMelee",
+				"ImmuneToDamageProjectile",
+				"EndOfTurnAction",
+				"DealDamageMelee"
+			],
+			"flavorText": "His other arm and much of his lower{BR}body had already gathered some garbage{BR}around it, letting him stand several feet{BR}taller than he had before.",
+			"flavorReference": "Infestation 11.7"
+		},
+		{
+			"identifier": "NotExactlySanitary",
+			"count": 2,
+			"title": "Not Exactly Sanitary",
+			"keywords": [
+				"ongoing"
+			],
+			"body": [
+				"Whenever a villain target deals non-toxic damage to another target, that villain target also deals that target 1 toxic damage."
+			],
+			"icons": [
+				"DealDamageToxic"
+			],
+			"flavorText": "One man helped by a kid who might{BR}have been his son upended a trash can on{BR}the glowing ground to send rotted food{BR}and other rubbish flying into the ring.",
+			"flavorReference": "Infestation 11.6"
+		},
+		{
+			"identifier": "Reveller",
+			"count": 4,
+			"title": "Reveller",
+			"keywords": [
+				"thug"
+			],
+			"hitpoints": 2,
+			"body": [
+				"When this card would be put into the villain trash or villain deck, shuffle it into the Thug deck instead.",
+				"At the end of the villain turn, this card deals the hero target with the highest HP 1 melee damage."
+			],
+			"icons": [
+				"Manipulate",
+				"EndOfTurnAction",
+				"DealDamageMelee"
+			],
+			"flavorText": "Countless Merchants had{BR}gathered, some perching on piles{BR}of trash or rubble as lookouts, and it{BR}seemed like everyone was striving to be{BR}heard over the music.",
+			"flavorReference": "Infestation 11.5"
+		},
+		{
+			"identifier": "Sadist",
+			"count": 2,
+			"title": "Sadist",
+			"keywords": [
+				"thug"
+			],
+			"hitpoints": 2,
+			"body": [
+				"When this card would be put into the villain trash or villain deck, shuffle it into the Thug deck instead.",
+				"At the end of the villain turn, this card deals the hero target with the lowest HP 2 melee damage."
+			],
+			"icons": [
+				"Manipulate",
+				"EndOfTurnAction",
+				"DealDamageMelee"
+			],
+			"flavorText": "A man who stood outside the{BR}ring grabbed a piece of rubble and{BR}threw it, striking a man who was crouching{BR}and trying to avoid the{BR}worst of the fighting.",
+			"flavorReference": "Infestation 11.6"
+		},
+		{
+			"identifier": "Scrub",
+			"count": 1,
+			"title": "Scrub",
+			"keywords": [
+				"parahuman"
+			],
+			"hitpoints": 10,
+			"body": [
+				"At the start of the villain turn, this card deals 5 energy damage to each target other than itself whose HP is evenly divisible by 3."
+			],
+			"icons": [
+				"StartOfTurnAction",
+				"DealDamageEnergy"
+			],
+			"flavorText": "White smoke poured from{BR}his eyes, nose, ears and mouth, with{BR}smaller traces flowing from his scalp,{BR}stirring his hair.",
+			"flavorReference": "Infestation 11.5"
+		},
+		{
+			"identifier": "Squealer",
+			"count": 1,
+			"title": "Squealer",
+			"keywords": [
+				"parahuman"
+			],
+			"hitpoints": 8,
+			"body": [
+				"Environment cards ignore villain targets when dealing damage.",
+				"At the start of the villain turn, play the top card of the environment deck."
+			],
+			"icons": [
+				"StartOfTurnAction",
+				"PlayCardNow"
+			],
+			"flavorText": "Squealer had apparently never{BR}grasped the concept of elegance in{BR}design. She went for size, augmentations{BR}and additions when she built her vehicles.",
+			"flavorReference": "Plague 12.2"
+		},
+		{
+			"identifier": "Tough",
+			"count": 4,
+			"title": "Tough",
+			"keywords": [
+				"thug"
+			],
+			"hitpoints": 2,
+			"body": [
+				"When this card would be put into the villain trash or villain deck, shuffle it into the Thug deck instead.",
+				"At the end of the villain turn, this card deals the 2 hero targets with the highest HP 2 melee damage each."
+			],
+			"icons": [
+				"Manipulate",
+				"EndOfTurnAction",
+				"DealDamageMelee"
+			],
+			"flavorText": "One of the Merchants in the ring had{BR}just bludgeoned someone with a length{BR}of pipe.",
+			"flavorReference": "Infestation 11.5"
+		}
+	]
+}
