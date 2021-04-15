@@ -1,0 +1,463 @@
+{
+	"name": "Behemoth",
+	"kind": "Villain",
+	"initialCardIdentifiers": [
+		"BehemothCharacter",
+		"HeroTacticsCharacter",
+		"MovementTrash"
+	],
+	"initialOffToTheSideCardIdentifiers": [
+		"Proximity"
+	],
+	"cards": [
+		{
+			"identifier": "BehemothCharacter",
+			"count": 1,
+			"title": "Behemoth",
+			"keywords": [
+				"villain"
+			],
+			"body": "Herokiller",
+			"backgroundColor": "DA513F",
+			"character": true,
+			"hitpoints": 100,
+			"nemesisIdentifiers": [
+				"Alexandria"
+			],
+			"setup": [
+				"Put {BehemothCharacter} into play, 'Herokiller' side up. Put {HeroTacticsCharacter} into play, 'Standard Protocols' side up. Shuffle all Movement cards and put them face down under this one as the Movement deck."
+			],
+			"gameplay": [
+				"All damage dealt by {BehemothCharacter} is of {BehemothCharacter}'s current damage type.",
+				"At the start of the villain turn, if {BehemothCharacter} has less than 30 HP, flip {HeroTacticsCharacter} and {BehemothCharacter}.",
+				"At the start of the villain turn, play the top card of the Movement deck.",
+				"At the end of the villain turn, {BehemothCharacter} deals each hero X damage, where X is the number of proximity tokens on that hero."
+			],
+			"advanced": "Whenever a hero has 6 proximity tokens, incapacitate that hero.",
+			"icons": [
+				"StartAndEndOfTurnAction",
+				"PlayCardNow",
+				"DealDamage"
+			],
+			"advancedIcons": [
+				""
+			],
+			"flippedBody": "Herokiller, Desperate",
+			"flippedGameplay": [
+				"All damage dealt by {BehemothCharacter} is of {BehemothCharacter}'s current damage type.",
+				"Whenever {BehemothCharacter} would be dealt damage of his current damage type, redirect that damage to the hero target with the lowest HP.",
+				"At the start of the villain turn, play the top card of the Movement deck.",
+				"At the end of the villain turn, {BehemothCharacter} deals each hero X damage, where X is the number of proximity tokens on that hero.",
+				"At the end of the villain turn, play the top card of the villain deck."
+			],
+			"flippedAdvanced": "Whenever a hero has 6 proximity tokens, incapacitate that hero.",
+			"flippedIcons": [
+				"RedirectDamage",
+				"StartAndEndOfTurnAction",
+				"PlayCardNow",
+				"DealDamage"
+			],
+			"flippedAdvancedIcons": [
+				""
+			],
+			"difficulty": 2,
+			"openingLines": {
+				"default": ""
+			}
+		},
+		{
+			"identifier": "HeroTacticsCharacter",
+			"count": 1,
+			"title": "Hero Tactics",
+			"body": "Standard Protocols",
+			"character": true,
+			"gameplay": [
+				"This card is indestructible.",
+				"At the start of a player's turn, that player may skip the rest of their turn to remove 2 proximity tokens from their hero.",
+				"At the end of the environment turn, choose one:{BR}* Each player may move a proximity token from their hero to another active hero.{BR}* One player may move 2 proximity tokens from their hero to the active hero after them in the turn order.{BR}* One player may remove a proximity token from their hero."
+			],
+			"icons": [
+				"Indestructible",
+				"StartAndEndOfTurnAction",
+				"SkipTurn",
+				"AddOrRemoveTokens"
+			],
+			"flippedBody": "Panicked",
+			"flippedGameplay": [
+				"This card is indestructible.",
+				"At the end of the environment turn, choose one:{BR}* Each player may move a proximity token from their hero to another active hero.{BR}* One player may move 2 proximity tokens from their hero to the active hero after them in the turn order."
+			],
+			"flippedIcons": [
+				"Indestructible",
+				"EndOfTurnAction",
+				"AddOrRemoveTokens"
+			]
+		},
+		{
+			"identifier": "MovementTrash",
+			"count": 1,
+			"title": "Movement Trash",
+			"isReal": false,
+			"keywords": [
+				"trash pile"
+			],
+			"body": [
+				"Until subdecks are implemented properly, we need this to mark where Movement cards go after they're used.",
+				"This card is indestructible. Cards under this card are not in play.",
+				"If you would play a card from the Movement deck but there are none, first shuffle the cards under this one into the Movement deck."
+			],
+			"flavorQuotes": [
+				{
+					"identifier": "Chevalier",
+					"text": "I’m not going to make any big speeches. Better we get out there and save lives."
+				}
+			],
+			"flavorReference": "Chevalier, Drone 23.5"
+		},
+		{
+			"identifier": "Proximity",
+			"count": 10,
+			"title": "Proximity",
+			"isReal": false,
+			"tokenPools": [
+				{
+					"identifier": "ProximityPool",
+					"name": "Proximity Pool",
+					"initialValue": 0,
+					"minimumValue": 0,
+					"color": ""
+				}
+			],
+			"keywords": [
+				"token pool marker"
+			],
+			"body": [
+				"This card exists to mark your hero's proximity token pool. It's indestructible as long as you have an active hero.",
+				"When you have no non-incapacitated heroes, remove all tokens from this card and remove this card from the game."
+			],
+			"flavorQuotes": [
+				{
+					"identifier": "Chevalier",
+					"text": "Keep moving and [i]move smart.[/i]"
+				}
+			],
+			"flavorReference": "Chevalier, Drone 23.5"
+		},
+		{
+			"identifier": "ContinuousCrackle",
+			"count": 1,
+			"title": "Continuous Crackle",
+			"keywords": [
+				"ongoing"
+			],
+			"body": [
+				"When this card enters play, change {BehemothCharacter}'s damage type to lightning.",
+				"Whenever a hero Ongoing or Equipment card enters play, {BehemothCharacter} deals the associated hero 2 damage."
+			],
+			"icons": [
+				"DealDamageLightning"
+			],
+			"flavorText": "I took off. Again, I tried my armband.{BR}Static. Better than nothing, but not ideal.",
+			"flavorReference": "Crushed 24.4"
+		},
+		{
+			"identifier": "Discharge",
+			"count": 2,
+			"title": "Discharge",
+			"keywords": [
+				"one-shot"
+			],
+			"body": [
+				"Change {BehemothCharacter}'s damage type to energy.",
+				"{BehemothCharacter} deals each hero target 2 damage. Each player may move 1 proximity token from their hero to another active hero."
+			],
+			"icons": [
+				"DealDamageEnergy",
+				"AddOrRemoveTokens"
+			],
+			"flavorQuotes": [
+				{
+					"identifier": "Alexandria",
+					"text": "He's a dynakinetic! He manipulates{BR}energy! No Manton limitation!"
+				}
+			],
+			"flavorReference": "Alexandria, Interlude 15"
+		},
+		{
+			"identifier": "Earthquake",
+			"count": 1,
+			"title": "Earthquake",
+			"keywords": [
+				"one-shot"
+			],
+			"body": [
+				"Change {BehemothCharacter}'s damage type to melee.",
+				"Destroy all environment cards.{BR}Destroy all Ongoing cards.{BR}Destroy all Equipment cards.",
+				"{BehemothCharacter} deals each hero target 2 damage."
+			],
+			"icons": [
+				"DestroyEnvironment",
+				"DestroyOngoing",
+				"DestroyEquipment",
+				"DealDamageMelee"
+			],
+			"flavorText": "As far as the eye could see in every{BR}direction, terrain shifted. Hillsides{BR}abruptly tilted, standing structures fell{BR}like collapsing houses of cards.",
+			"flavorReference": "Crushed 24.5"
+		},
+		{
+			"identifier": "Incinerate",
+			"count": 2,
+			"title": "Incinerate",
+			"keywords": [
+				"one-shot"
+			],
+			"body": [
+				"Change {BehemothCharacter}'s damage type to fire.",
+				"Destroy 2 hero Ongoing cards.",
+				"Move 1 proximity token from 1 hero whose card was destroyed this way to another active hero."
+			],
+			"icons": [
+				"DestroyOngoing",
+				"AddOrRemoveTokens"
+			],
+			"flavorText": "The man ignited from the{BR}inside out, flame and smoke pouring{BR}from every orifice as he was turned into{BR}a burned-out husk in a matter of{BR}seconds.",
+			"flavorReference": "Interlude 15"
+		},
+		{
+			"identifier": "Juggernaut",
+			"count": 1,
+			"title": "Juggernaut",
+			"keywords": [
+				"ongoing"
+			],
+			"body": [
+				"When this card enters play, change {BehemothCharacter}'s damage type to sonic.",
+				"Reduce damage dealt to {BehemothCharacter} by 1.",
+				"Whenever a hero deals damage to {BehemothCharacter}, move a proximity token from another hero to that hero."
+			],
+			"icons": [
+				"ReduceDamageTaken",
+				"AddOrRemoveTokens"
+			],
+			"flavorText": "Forty-five feet tall at the very{BR}least, he climbed forth from{BR}underground. His skin was crusted with{BR}black stone that might have been obsidian.",
+			"flavorReference": "Interlude 15"
+		},
+		{
+			"identifier": "LightningBolt",
+			"count": 2,
+			"title": "Lightning Bolt",
+			"keywords": [
+				"one-shot"
+			],
+			"body": [
+				"Change {BehemothCharacter}'s damage type to lightning.",
+				"{BehemothCharacter} deals 1 hero 5 damage. That hero's player may move 1 proximity token from their hero to another active hero."
+			],
+			"icons": [
+				"DealDamageLightning",
+				"AddOrRemoveTokens"
+			],
+			"flavorText": "A lightning bolt flashed{BR}from the tip of Behemoth's claw, arcing{BR}around her and striking one of her{BR}subordinates in a single heartbeat, before{BR}leaving only the smell of ozone.",
+			"flavorReference": "Interlude 15"
+		},
+		{
+			"identifier": "Roar",
+			"count": 2,
+			"title": "Roar",
+			"keywords": [
+				"one-shot"
+			],
+			"body": [
+				"Change {BehemothCharacter}'s damage type to Sonic.",
+				"{BehemothCharacter} deals each non-villain target 2 damage."
+			],
+			"icons": [
+				"DealDamageSonic"
+			],
+			"flavorText": "The creature roared, and as{BR}invulnerable as she was, it almost hurt.",
+			"flavorReference": "Interlude 15"
+		},
+		{
+			"identifier": "TwistedWreckage",
+			"count": 2,
+			"title": "Twisted Wreckage",
+			"keywords": [
+				"one-shot"
+			],
+			"body": [
+				"Change {BehemothCharacter}'s damage type to lightning.",
+				"Destroy 2 non-character hero cards. Remove 1 of them from the game. Move 1 proximity token from another hero to a hero whose card was destroyed this way."
+			],
+			"icons": [
+				"DestroyHero",
+				"RemoveFromGame",
+				"AddOrRemoveTokens"
+			],
+			"flavorText": "The Endbringer's path of{BR}destruction had continued more or less{BR}in one general direction, but beyond that,{BR}the damage was indiscriminate.",
+			"flavorReference": "Crushed 24.2"
+		},
+		{
+			"identifier": "UnstoppableAdvance",
+			"count": 1,
+			"title": "Unstoppable Advance",
+			"keywords": [
+				"ongoing"
+			],
+			"body": [
+				"When this card enters play, change {BehemothCharacter}'s damage type to melee.",
+				"At the end of the villain turn, move 1 proximity token from another hero to the hero with the most proximity tokens."
+			],
+			"icons": [
+				"EndOfTurnAction",
+				"AddOrRemoveTokens"
+			],
+			"flavorText": "Cryogenic beams,{BR}containment foam and more served to{BR}slow him down. Not stopping him. No, that{BR}was too much to hope for.",
+			"flavorReference": "Drone 23.5"
+		},
+		{
+			"identifier": "Wildfire",
+			"count": 1,
+			"title": "Wildfire",
+			"keywords": [
+				"one-shot"
+			],
+			"body": [
+				"Change {BehemothCharacter}'s damage type to fire.",
+				"{BehemothCharacter} deals each hero with 3 or more proximity tokens {H} damage.",
+				"{BehemothCharacter} deals each non-character card hero target {H} damage."
+			],
+			"icons": [
+				"DealDamageFire"
+			],
+			"flavorText": "When I looked back at the{BR}screen, nearly half of the city was on{BR}fire. Black smoke choked the skies.",
+			"flavorReference": "Drone 23.5"
+		},
+		{
+			"identifier": "Advance",
+			"count": 2,
+			"title": "Advance",
+			"keywords": [
+				"one-shot",
+				"movement"
+			],
+			"body": [
+				"Each player with an active hero puts a proximity token on their hero."
+			],
+			"icons": [
+				"AddTokens"
+			],
+			"flavorQuotes": [
+				{
+					"identifier": "Chevalier",
+					"text": "Maintain a distance of at least a{BR}hundred feet from Behemoth at the very minimum."
+				}
+			],
+			"flavorReference": "Chevalier, Drone 23.5"
+		},
+		{
+			"identifier": "AShiftOfAttention",
+			"count": 2,
+			"title": "A Shift of Attention",
+			"keywords": [
+				"one-shot",
+				"movement"
+			],
+			"body": [
+				"The player whose hero has the most proximity tokens removes all proximity tokens from their hero.",
+				"The player with an active hero 2 turns before them in the turn order puts that many proximity tokens on their hero."
+			],
+			"icons": [
+				"RemoveTokens",
+				"AddTokens"
+			],
+			"flavorText": "This was his new tactic,{BR}burrowing, surfacing. But where was the{BR}retaliation? Their whole damn pattern{BR}centered around repaying us twice over for{BR}any abuse we inflicted on them.",
+			"flavorReference": "Crushed 24.5"
+		},
+		{
+			"identifier": "Focus",
+			"count": 2,
+			"title": "Focus",
+			"keywords": [
+				"one-shot",
+				"movement"
+			],
+			"body": [
+				"The player whose hero has the highest HP puts 1 proximity token on their hero."
+			],
+			"icons": [
+				"AddTokens"
+			],
+			"flavorQuotes": [
+				{
+					"identifier": "Chevalier",
+					"text": "...Be mindful of line of{BR}sight, because he can and will tag you{BR}with a lightning bolt, and it's not{BR}something you can dodge..."
+				}
+			],
+			"flavorReference": "Chevalier, Drone 23.5"
+		},
+		{
+			"identifier": "Leap",
+			"count": 2,
+			"title": "Leap",
+			"keywords": [
+				"one-shot",
+				"movement"
+			],
+			"body": [
+				"The player with the most cards in play puts 2 proximity tokens on their hero.",
+				"The players with active heroes immediately before and after that player in the turn order each put 1 proximity token on their hero."
+			],
+			"icons": [
+				"AddTokens"
+			],
+			"flavorText": "With his claws and feet now on{BR}firm ground, he leaped. The shockwave of{BR}his departure toppled the slipshod buildings{BR}around him in his wake.",
+			"flavorReference": "Drone 23.5"
+		},
+		{
+			"identifier": "NoSafety",
+			"count": 1,
+			"title": "No Safety",
+			"keywords": [
+				"one-shot",
+				"movement"
+			],
+			"body": [
+				"The player whose active hero has the fewest proximity tokens moves 1 proximity token from each other player's hero to their hero."
+			],
+			"icons": [
+				"RemoveTokens",
+				"AddTokens"
+			],
+			"flavorQuotes": [
+				{
+					"identifier": "Chevalier",
+					"text": "...Assume every{BR}structure will fall down in a heartbeat,{BR}and know that there's no good place to{BR}hide and wait for this to be over."
+				}
+			],
+			"flavorReference": "Chevalier, Drone 23.5"
+		},
+		{
+			"identifier": "Shift",
+			"count": 1,
+			"title": "Shift",
+			"keywords": [
+				"one-shot",
+				"movement"
+			],
+			"body": [
+				"Each player moves all proximity tokens from their hero to the hero of the player with an active hero immediately to their right."
+			],
+			"icons": [
+				"RemoveTokens",
+				"AddTokens"
+			],
+			"flavorQuotes": [
+				{
+					"identifier": "Chevalier",
+					"text": "...Get any closer, you probably{BR}won't have a chance of escaping if he{BR}decides to close the gap..."
+				}
+			],
+			"flavorReference": "Chevalier, Drone 23.5"
+		}
+	]
+}
