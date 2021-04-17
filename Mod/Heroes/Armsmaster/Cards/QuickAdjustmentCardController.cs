@@ -29,7 +29,7 @@ namespace Jp.ParahumansOfTheWormverse.Armsmaster
                 SelectionType.ReturnToHand,
                 new LinqCardCriteria(c => c.IsInPlayAndHasGameText && c.DoKeywordsContain("module"), "Module"),
                 storedCard,
-                optional: false,
+                optional: true,
                 cardSource: GetCardSource()
             );
             if (UseUnityCoroutines)

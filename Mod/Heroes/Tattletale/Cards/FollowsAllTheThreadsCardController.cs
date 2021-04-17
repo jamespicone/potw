@@ -16,7 +16,26 @@ namespace Jp.ParahumansOfTheWormverse.Tattletale
         {
             // "Play with the top card of each deck face up."
             // Going to approximate this as "you may look at the top card of any deck at any time" to minimize weird interactions with, say, Ambuscade's Traps.
-            SpecialStringMaker.ShowListOfCards(new LinqCardCriteria((Card c) => c.Location.IsDeck && c == c.Location.TopCard && base.GameController.IsLocationVisibleToSource(c.Location, GetCardSource()), "top cards of decks", false, false, "top card of deck", "top cards of decks"), () => base.Card.IsInPlayAndHasGameText).Condition = () => base.Card.IsInPlayAndHasGameText;
+            SpecialStringMaker.ShowSpecialString(() => $"The top card of {TurnTaker.Deck.GetFriendlyName()} is {TurnTaker.Deck.TopCard.Title}.").Condition = () => Card.IsInPlayAndHasGameText && TurnTaker.Deck.HasCards;
+        }
+
+        public override void AddStartOfGameTriggers()
+        {
+            BuildTopDeckSpecialStrings();
+        }
+
+        private void BuildTopDeckSpecialStrings()
+        {
+            //this needs to be all turntakers in all zones.
+            IEnumerable<TurnTaker> activeTurnTakers = FindTurnTakersWhere((TurnTaker tt) => !tt.IsIncapacitatedOrOutOfGame, true);
+            foreach (TurnTaker tt in activeTurnTakers)
+            {
+                foreach (Location deck in tt.Decks.Where(deck => deck.IsRealDeck))
+                {
+                    var ss = SpecialStringMaker.ShowSpecialString(() => $"The top card of {deck.GetFriendlyName()} is {deck.TopCard.Title}.", relatedCards: () => tt.CharacterCards.Where(c => c.IsInPlayAndHasGameText));
+                    ss.Condition = () => Card.IsInPlayAndHasGameText && deck.HasCards && GameController.IsLocationVisibleToSource(deck, GetCardSource());
+                }
+            }
         }
 
         public override void AddTriggers()
@@ -38,7 +57,6 @@ namespace Jp.ParahumansOfTheWormverse.Tattletale
             {
                 GameController.ExhaustCoroutine(destroyCoroutine);
             }
-            // ...
             yield break;
         }
     }
