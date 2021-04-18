@@ -263,7 +263,6 @@
     <Compile Include="Villains\TheMerchants\Extra\TheMerchantsUtilityCardController.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="DeckLists\Villains\TheMerchantsDeckList.json" />
     <None Include="manifest.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
