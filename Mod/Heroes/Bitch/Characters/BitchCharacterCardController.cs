@@ -11,7 +11,9 @@ namespace Jp.ParahumansOfTheWormverse.Bitch
     public class BitchCharacterCardController : HeroCharacterCardController
     {
         public BitchCharacterCardController(Card card, TurnTakerController controller) : base(card, controller)
-        { }
+        {
+            SpecialStringMaker.ShowNumberOfCardsInPlay(new LinqCardCriteria((Card c) => c.DoKeywordsContain("dog"), "dog"));
+        }
 
         public override IEnumerator UseIncapacitatedAbility(int index)
         {

@@ -10,7 +10,9 @@ namespace Jp.ParahumansOfTheWormverse.Armsmaster
     public class StaticFieldGeneratorCardController : ModuleCardController
     {
         public StaticFieldGeneratorCardController(Card card, TurnTakerController controller) : base(card, controller)
-        { }
+        {
+            SpecialStringMaker.ShowListOfCardsInPlay(new LinqCardCriteria((Card c) => c.IsTarget && c.HitPoints.HasValue && c.HitPoints.Value <= 3, "targets with 3 or fewer HP", false, false, "target with 3 or fewer HP", "targets with 3 or fewer HP"));
+        }
 
         public override IEnumerator DoPrimary()
         {

@@ -21,9 +21,9 @@
       },
       "complexity": 2,
       "incapacitatedAbilities": [
-        "One target regains 2 HP",
-        "{ArmsmasterCharacter} deals 1 irreducible melee damage to a target",
-        "One player may search their trash for an Equipment card and put it in their hand"
+        "One target regains 2 HP.",
+        "{ArmsmasterCharacter} deals 1 irreducible melee damage to a target.",
+        "One player may search their trash for an Equipment card and put it in their hand."
       ],
       "flippedIcons": [
             "GainHP",
@@ -32,141 +32,8 @@
       ]
     },
     {
-      "identifier": "OriginalHalberd",
-      "title": "Original Halberd",
-      "keywords": [ "equipment", "halberd" ],
-      "powers": [
-        "Armsmaster may deal 2 melee damage to a target. You may activate a [u]Primary[/u] text on a Module attached to this card as Primary. You may activate a [u]Secondary[/u] text on a Module attached to this card as Secondary."
-      ],
-      "body": "Modules may be attached to this card; one primary and one secondary.",
-      "icons": [
-       "HasPower",
-       "DealDamageMelee"
-      ],
-      "flavorText": "His trademark and weapon was{BR}his Halberd, which was basically a spear{BR}with an axe head on the end.",
-      "flavorReference": "Gestation 1.6",
-      "count": 1
-    },
-    {
-      "identifier": "SurveyHalberd",
-      "title": "Survey Halberd",
-      "keywords": [ "equipment", "halberd" ],
-      "powers": [
-        "Draw a card. You may activate a [u]Primary[/u] text on a Module attached to this card as Primary. You may activate a [u]Secondary[/u] text on a Module attached to this card as Secondary."
-      ],
-      "body": "Modules may be attached to this card; one primary and one secondary.",
-      "icons": [
-       "HasPower",
-       "DrawCardNow"
-      ],
-      "flavorQuotes": [
-        {
-          "identifier": "Tattletale",
-          "text": "Let's see... to deal with my buddy Grue, you've made that thing a fancy tuning stick."
-        }
-      ],
-      "flavorReference": "Tattletale, Tangle 6.6",
-      "count": 1
-    },
-    {
-      "identifier": "ExperimentalHalberd",
-      "title": "Experimental Halberd",
-      "keywords": [ "equipment", "halberd" ],
-      "powers": [
-        "{ArmsmasterCharacter} may deal 1 irreducible energy damage to a target. You may activate a [u]Primary[/u] text on a Module attached to this card as Primary. You may activate a [u]Secondary[/u] text on a Module attached to this card as Secondary."
-      ],
-      "body": "Modules may be attached to this card; one primary and one secondary.",
-      "icons": [
-       "HasPower",
-       "DealDamageEnergy"
-      ],
-      "flavorText": "The head was surrounded by a strange{BR}blur that seemed static, unmoving{BR}around the blade and point.",
-      "flavorReference": "Extermination 8.4",
-      "count": 1
-    },
-    {
-      "identifier": "GrappleHalberd",
-      "title": "Grapple Halberd",
-      "keywords": [ "equipment", "halberd" ],
-      "powers": [
-        "You may destroy an environment card. You may activate a [u]Primary[/u] text on a Module attached to this card as Primary. You may activate a [u]Secondary[/u] text on a Module attached to this card as Secondary."
-      ],
-      "body": "Modules may be attached to this card; one primary and one secondary.",
-      "icons": [
-       "HasPower",
-       "DestroyEnvironment"
-      ],
-      "flavorText": "It looked as though he flew up onto{BR}the roof, but the six-foot long weapon{BR}the man held kind of jerked as he landed.",
-      "flavorReference": "Gestation 1.6",
-      "count": 1
-    },
-    {
-      "identifier": "ReturnInAFlash",
-      "title": "Return In A Flash",
-      "keywords": [ "one-shot" ],
-      "body": [
-        "Reveal cards from the top of your deck or your trash until you reveal a Halberd. Either put it into play or into your hand. Return the other cards and shuffle your deck."
-      ],
-      "icons": [
-       "Search"
-      ],
-      "flavorText": "It disappeared into a storm of glowing{BR}blue lines as it reached the peak of{BR}its ascent, simultaneously rematerializing{BR}in his hand.",
-      "flavorReference": "Tangle 6.7",
-      "count": 4
-    },
-    {
-      "identifier": "EquipmentStash",
-      "title": "Equipment Stash",
-      "keywords": [ "one-shot" ],
-      "body": [
-        "Search your deck for an Equipment card and either put it into play or into your hand. Shuffle your deck."
-      ],
-      "icons": [
-        "Search"
-      ],
-      "flavorText": "A set of Halberds were placed on a {BR}rack behind Armsmaster's desk, one{BR}shattered in pieces.",
-      "flavorReference": "Interlude 7",
-      "count": 4
-    },
-    {
-      "identifier": "DualWielding",
-      "title": "Dual Wielding",
-      "keywords": [ "one-shot" ],
-      "body": [
-        "Use a power on a Halberd."
-      ],
-      "icons": [
-        "UsePowerNow"
-      ],
-      "flavorText": "Armsmaster fighting toe to toe with{BR}Leviathan, a Halberd in each hand.",
-      "flavorReference": "Extermination 8.4",
-      "count": 4
-    },
-    {
-      "identifier": "QuickAdjustment",
-      "title": "Quick Adjustment",
-      "keywords": [ "ongoing" ],
-      "body": [
-        "At the end of your turn you may return a Module in play to your hand. If you do, you may play a Module.",
-        "Whenever an Equipment card would be destroyed you may destroy this card instead."
-      ],
-      "icons": [
-        "EndOfTurnAction",
-        "PlayCardNow",
-        "DestroySelf"
-      ],
-      "flavorQuotes": [
-        {
-          "identifier": "Tattletale",
-          "text": "Armsmaster told him to wear ear buds,{BR}so Dauntless can't hear anyone but him.{BR}That's both brilliant{BR}and incredibly depressing."
-        }
-      ],
-      "flavorReference": "Tattletale, Tangle 6.7",
-      "count": 4
-    },
-    {
-      "identifier": "Flamethrower",
-      "title": "Flamethrower",
+      "identifier": "Accelerator",
+      "title": "Accelerator",
       "keywords": [ "equipment", "module" ],
       "body": [
         "Attach this card to a Halberd, either as Primary or Secondary."
@@ -174,19 +41,24 @@
       "activatableAbilities": [
         {
           "name": "primary",
-          "text": "{ArmsmasterCharacter} deals 2 fire damage to a non-hero target."
+          "text": "All heroes may draw a card."
         },
         {
           "name": "secondary",
-          "text": "Destroy an Environment card."
+          "text": "A hero other than Armsmaster may play a card."
         }
       ],
       "icons": [
-        "DealDamageFire",
-        "DestroyEnvironment"
+        "DrawCardNow",
+        "PlayCardNow"
       ],
-      "flavorText": "The system used light for its circuits,{BR}rather than electricity, and it generated{BR}a lot of heat as a byproduct.",
-      "flavorReference": "Teneral e.3",
+      "flavorQuotes": [
+        {
+          "identifier": "Armsmaster",
+          "text": "Let's see how quickly you respond to {BR}classical conditioning. Every time you try{BR}to run, I'll do something like that."
+        }
+      ],
+      "flavorReference": "Armsmaster, Extermination 8.4",
       "count": 2
     },
     {
@@ -220,8 +92,8 @@
       "count": 2
     },
     {
-      "identifier": "Recycler",
-      "title": "Recycler",
+      "identifier": "Communicator",
+      "title": "Communicator",
       "keywords": [ "equipment", "module" ],
       "body": [
         "Attach this card to a Halberd, either as Primary or Secondary."
@@ -229,19 +101,130 @@
       "activatableAbilities": [
         {
           "name": "primary",
-          "text": "Draw a card."
+          "text": "A hero other than Armsmaster may use a power."
         },
         {
           "name": "secondary",
-          "text": "Activate the [u]Secondary[/u] text of another Module attached to the card this card is attached to."
+          "text": "A hero other than Armsmaster may play a card."
         }
       ],
       "icons": [
-        "DrawCardNow"
+        "UsePowerNow",
+        "PlayCardNow"
       ],
-      "flavorText": "Efficiency, detail and effective use{BR}of waste were critical aspects of{BR}his particular brand of tinkering.",
+      "flavorText": "They could communicate without talking.{BR}Some kind of system built into their masks.",
+      "flavorReference": "Cell 22.5",
+      "count": 2
+    },
+    {
+      "identifier": "DualWielding",
+      "title": "Dual Wielding",
+      "keywords": [ "one-shot" ],
+      "body": [
+        "Use a power on a Halberd."
+      ],
+      "icons": [
+        "UsePowerNow"
+      ],
+      "flavorText": "Armsmaster fighting toe to toe with{BR}Leviathan, a Halberd in each hand.",
+      "flavorReference": "Extermination 8.4",
+      "count": 4
+    },
+    {
+      "identifier": "EquipmentStash",
+      "title": "Equipment Stash",
+      "keywords": [ "one-shot" ],
+      "body": [
+        "Search your deck for an Equipment card and either put it into play or into your hand. Shuffle your deck."
+      ],
+      "icons": [
+        "Search"
+      ],
+      "flavorText": "A set of Halberds were placed on a {BR}rack behind Armsmaster's desk, one{BR}shattered in pieces.",
+      "flavorReference": "Interlude 7",
+      "count": 4
+    },
+    {
+      "identifier": "ExperimentalHalberd",
+      "title": "Experimental Halberd",
+      "keywords": [ "equipment", "halberd" ],
+      "powers": [
+        "{ArmsmasterCharacter} may deal 1 irreducible energy damage to a target. You may activate a [u]Primary[/u] text on a Module attached to this card as Primary. You may activate a [u]Secondary[/u] text on a Module attached to this card as Secondary."
+      ],
+      "body": "Modules may be attached to this card; one primary and one secondary.",
+      "icons": [
+       "HasPower",
+       "DealDamageEnergy"
+      ],
+      "flavorText": "The head was surrounded by a strange{BR}blur that seemed static, unmoving{BR}around the blade and point.",
+      "flavorReference": "Extermination 8.4",
+      "count": 1
+    },
+    {
+      "identifier": "Flamethrower",
+      "title": "Flamethrower",
+      "keywords": [ "equipment", "module" ],
+      "body": [
+        "Attach this card to a Halberd, either as Primary or Secondary."
+      ],
+      "activatableAbilities": [
+        {
+          "name": "primary",
+          "text": "{ArmsmasterCharacter} deals 2 fire damage to a non-hero target."
+        },
+        {
+          "name": "secondary",
+          "text": "Destroy an Environment card."
+        }
+      ],
+      "icons": [
+        "DealDamageFire",
+        "DestroyEnvironment"
+      ],
+      "flavorText": "The system used light for its circuits,{BR}rather than electricity, and it generated{BR}a lot of heat as a byproduct.",
       "flavorReference": "Teneral e.3",
       "count": 2
+    },
+    {
+      "identifier": "Grapple",
+      "title": "Grapple",
+      "keywords": [ "equipment", "module" ],
+      "body": [
+        "Attach this card to a Halberd, either as Primary or Secondary."
+      ],
+      "activatableAbilities": [
+        {
+          "name": "primary",
+          "text": "{ArmsmasterCharacter} deals 1 projectile damage to up to 2 non-hero targets."
+        },
+        {
+          "name": "secondary",
+          "text": "Destroy an Ongoing card."
+        }
+      ],
+      "icons": [
+        "DealDamageProjectile",
+        "DestroyOngoing"
+      ],
+      "flavorText": "He whipped the chain to shift the sphere's{BR}trajectory, and simultaneously opened it{BR}into its oversized grappling hook form.",
+      "flavorReference": "Tangle 6.6",
+      "count": 2
+    },
+    {
+      "identifier": "GrappleHalberd",
+      "title": "Grapple Halberd",
+      "keywords": [ "equipment", "halberd" ],
+      "powers": [
+        "You may destroy an environment card. You may activate a [u]Primary[/u] text on a Module attached to this card as Primary. You may activate a [u]Secondary[/u] text on a Module attached to this card as Secondary."
+      ],
+      "body": "Modules may be attached to this card; one primary and one secondary.",
+      "icons": [
+       "HasPower",
+       "DestroyEnvironment"
+      ],
+      "flavorText": "It looked as though he flew up onto{BR}the roof, but the six-foot long weapon{BR}the man held kind of jerked as he landed.",
+      "flavorReference": "Gestation 1.6",
+      "count": 1
     },
     {
       "identifier": "Medicator",
@@ -273,59 +256,80 @@
       "count": 2
     },
     {
-      "identifier": "Grapple",
-      "title": "Grapple",
-      "keywords": [ "equipment", "module" ],
-      "body": [
-        "Attach this card to a Halberd, either as Primary or Secondary."
+      "identifier": "OriginalHalberd",
+      "title": "Original Halberd",
+      "keywords": [ "equipment", "halberd" ],
+      "powers": [
+        "Armsmaster may deal 2 melee damage to a target. You may activate a [u]Primary[/u] text on a Module attached to this card as Primary. You may activate a [u]Secondary[/u] text on a Module attached to this card as Secondary."
       ],
-      "activatableAbilities": [
-        {
-          "name": "primary",
-          "text": "{ArmsmasterCharacter} deals 1 projectile damage to up to 2 non-hero targets."
-        },
-        {
-          "name": "secondary",
-          "text": "Destroy an Ongoing card."
-        }
-      ],
+      "body": "Modules may be attached to this card; one primary and one secondary.",
       "icons": [
-        "DealDamageProjectile",
-        "DestroyOngoing"
+       "HasPower",
+       "DealDamageMelee"
       ],
-      "flavorText": "He whipped the chain to shift the sphere's{BR}trajectory, and simultaneously opened it{BR}into its oversized grappling hook form.",
-      "flavorReference": "Tangle 6.6",
-      "count": 2
+      "flavorText": "His trademark and weapon was{BR}his Halberd, which was basically a spear{BR}with an axe head on the end.",
+      "flavorReference": "Gestation 1.6",
+      "count": 1
     },
     {
-      "identifier": "Accelerator",
-      "title": "Accelerator",
-      "keywords": [ "equipment", "module" ],
+      "identifier": "QuickAdjustment",
+      "title": "Quick Adjustment",
+      "keywords": [ "ongoing" ],
       "body": [
-        "Attach this card to a Halberd, either as Primary or Secondary."
-      ],
-      "activatableAbilities": [
-        {
-          "name": "primary",
-          "text": "All heroes may draw a card."
-        },
-        {
-          "name": "secondary",
-          "text": "A hero other than Armsmaster may play a card."
-        }
+        "At the end of your turn you may return a Module in play to your hand. If you do, you may play a Module.",
+        "Whenever an Equipment card would be destroyed you may destroy this card instead."
       ],
       "icons": [
-        "DrawCardNow",
-        "PlayCardNow"
+        "EndOfTurnAction",
+        "PlayCardNow",
+        "DestroySelf"
       ],
       "flavorQuotes": [
         {
-          "identifier": "Armsmaster",
-          "text": "Let's see how quickly you respond to {BR}classical conditioning. Every time you try{BR}to run, I'll do something like that."
+          "identifier": "Tattletale",
+          "text": "Armsmaster told him to wear ear{BR}buds, so Dauntless can't hear anyone{BR}but him. That's both brilliant and{BR}incredibly depressing."
         }
       ],
-      "flavorReference": "Armsmaster, Extermination 8.4",
+      "flavorReference": "Tattletale, Tangle 6.7",
+      "count": 4
+    },
+    {
+      "identifier": "Recycler",
+      "title": "Recycler",
+      "keywords": [ "equipment", "module" ],
+      "body": [
+        "Attach this card to a Halberd, either as Primary or Secondary."
+      ],
+      "activatableAbilities": [
+        {
+          "name": "primary",
+          "text": "Draw a card."
+        },
+        {
+          "name": "secondary",
+          "text": "Activate the [u]Secondary[/u] text of another Module attached to the card this card is attached to."
+        }
+      ],
+      "icons": [
+        "DrawCardNow"
+      ],
+      "flavorText": "Efficiency, detail and effective use{BR}of waste were critical aspects of{BR}his particular brand of tinkering.",
+      "flavorReference": "Teneral e.3",
       "count": 2
+    },
+    {
+      "identifier": "ReturnInAFlash",
+      "title": "Return In A Flash",
+      "keywords": [ "one-shot" ],
+      "body": [
+        "Reveal cards from the top of your deck or your trash until you reveal a Halberd. Either put it into play or into your hand. Return the other cards and shuffle your deck."
+      ],
+      "icons": [
+       "Search"
+      ],
+      "flavorText": "It disappeared into a storm of{BR}glowing blue lines as it reached the{BR}peak of its ascent, simultaneously{BR}rematerializing in his hand.",
+      "flavorReference": "Tangle 6.7",
+      "count": 4
     },
     {
       "identifier": "StasisEffector",
@@ -353,11 +357,56 @@
       "flavorQuotes": [
         {
           "identifier": "Armsmaster",
-          "text": "For the record, that last trick was a temporal stasis trigger."
+          "text": "For the record, that last trick was{BR}a temporal stasis trigger."
         }
       ],
       "flavorReference": "Armsmaster, Extermination 8.4",
       "count": 2
+    },
+    {
+      "identifier": "StaticFieldGenerator",
+      "title": "Static Field Generator",
+      "keywords": [ "equipment", "module" ],
+      "body": [
+        "Attach this card to a Halberd, either as Primary or Secondary."
+      ],
+      "activatableAbilities": [
+        {
+          "name": "primary",
+          "text": "{ArmsmasterCharacter} deals 2 lightning damage to a non-hero target."
+        },
+        {
+          "name": "secondary",
+          "text": "{ArmsmasterCharacter} deals 1 lightning damage to all targets with 3 or less HP."
+        }
+      ],
+      "icons": [
+        "DealDamageLightning"
+      ],
+      "flavorText": "The entire cafeteria flinched at{BR}the crackle of electricity that ripped{BR}through the air around him.",
+      "flavorReference": "Chrysalis 20.5",
+      "count": 2
+    },
+    {
+      "identifier": "SurveyHalberd",
+      "title": "Survey Halberd",
+      "keywords": [ "equipment", "halberd" ],
+      "powers": [
+        "Draw a card. You may activate a [u]Primary[/u] text on a Module attached to this card as Primary. You may activate a [u]Secondary[/u] text on a Module attached to this card as Secondary."
+      ],
+      "body": "Modules may be attached to this card; one primary and one secondary.",
+      "icons": [
+       "HasPower",
+       "DrawCardNow"
+      ],
+      "flavorQuotes": [
+        {
+          "identifier": "Tattletale",
+          "text": "Let's see... to deal with my buddy{BR}Grue, you've made that thing a fancy{BR}tuning stick."
+        }
+      ],
+      "flavorReference": "Tattletale, Tangle 6.6",
+      "count": 1
     },
     {
       "identifier": "TargetingComputer",
@@ -383,55 +432,6 @@
       ],
       "flavorText": "The lens of his right eye clicked through{BR}multiple frequencies and resolutions,{BR}until the scene stood out in high detail.",
       "flavorReference": "Interlude 16",
-      "count": 2
-    },
-    {
-      "identifier": "StaticFieldGenerator",
-      "title": "Static Field Generator",
-      "keywords": [ "equipment", "module" ],
-      "body": [
-        "Attach this card to a Halberd, either as Primary or Secondary."
-      ],
-      "activatableAbilities": [
-        {
-          "name": "primary",
-          "text": "{ArmsmasterCharacter} deals 2 lightning damage to a non-hero target."
-        },
-        {
-          "name": "secondary",
-          "text": "{ArmsmasterCharacter} deals 1 lightning damage to all targets with 3 or less HP."
-        }
-      ],
-      "icons": [
-        "DealDamageLightning"
-      ],
-      "flavorText": "The entire cafeteria flinched at{BR}the crackle of electricity{BR}that ripped through the air{BR}around him",
-      "flavorReference": "Chrysalis 20.5",
-      "count": 2
-    },
-    {
-      "identifier": "Communicator",
-      "title": "Communicator",
-      "keywords": [ "equipment", "module" ],
-      "body": [
-        "Attach this card to a Halberd, either as Primary or Secondary."
-      ],
-      "activatableAbilities": [
-        {
-          "name": "primary",
-          "text": "A hero other than Armsmaster may use a power."
-        },
-        {
-          "name": "secondary",
-          "text": "A hero other than Armsmaster may play a card."
-        }
-      ],
-      "icons": [
-        "UsePowerNow",
-        "PlayCardNow"
-      ],
-      "flavorText": "They could communicate without talking.{BR}Some kind of system built into their masks.",
-      "flavorReference": "Cell 22.5",
       "count": 2
     }
   ]

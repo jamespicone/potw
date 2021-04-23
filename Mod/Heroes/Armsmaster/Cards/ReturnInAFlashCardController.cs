@@ -10,7 +10,10 @@ namespace Jp.ParahumansOfTheWormverse.Armsmaster
     public class ReturnInAFlashCardController : CardController
     {
         public ReturnInAFlashCardController(Card card, TurnTakerController controller) : base(card, controller)
-        {}
+        {
+            LinqCardCriteria halberdCriteria = new LinqCardCriteria((Card c) => c.DoKeywordsContain("halberd"), "halberd");
+            SpecialStringMaker.ShowListOfCardsAtLocation(base.TurnTaker.Deck, halberdCriteria);
+        }
 
         public override IEnumerator Play()
         {

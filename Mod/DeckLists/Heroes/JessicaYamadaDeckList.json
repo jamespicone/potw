@@ -10,7 +10,7 @@
       "count": 1,
       "body": "Therapy",
       "gameplay": "If every other hero is incapacitated, incapacitate Jessica Yamada",
-      "icons": [],
+      "icons": [ "HasPower", "GainHP", "DrawCardNow" ],
       "powers": [ "Another player either regains 2 HP or draws a card" ],
       "character": true,
       "backgroundColor": "ffffff",
@@ -22,6 +22,11 @@
         "1 player draws 1 card",
         "1 player plays 1 card",
         "1 player regains 2 HP"
+      ],
+      "flippedIcons": [
+        "DrawCardNow",
+        "PlayCardNow",
+        "GainHP"
       ]
     },
     {
@@ -40,85 +45,54 @@
       "flippedIcons": []
     },
     {
-      "identifier": "AMomentOfReflection",
-      "title": "A Moment of Reflection",
-      "keywords": [ "one-shot" ],
-      "body": [
-        "Another player may search their deck for a card, put it into their hand, and then shuffle their deck"
-      ],
-      "flavorQuotes": [
-        {
-          "identifier": "Weaver",
-          "text": "I got a chance to talk stuff through. More of a sense of why they were putting obstacles in my way."
-        }
-      ],
-      "flavorReference": "Weaver, Drone 23.4",
-      "count": 4
-    },
-    {
       "identifier": "AHelpfulSuggestion",
       "title": "A Helpful Suggestion",
       "keywords": [ "one-shot" ],
       "body": [
-        "Another player may play a card and use a power, in any order"
+        "Another player may play a card and use a power, in any order."
       ],
+      "icons": ["PlayCardNow", "UsePower"],
       "flavorQuotes": [
         {
           "identifier": "Jessica",
-          "text": "I could, for example, talk to the warden about you getting a chance to run in the mornings, testifying that it'd be a good, healthy release."
+          "text": "I could, for example, talk to the{BR}warden about you getting a chance to{BR}run in the mornings, testifying that it'd be{BR}a good, healthy release."
         }
       ],
       "flavorReference": "Jessica, Drone 23.4",
       "count": 4
     },
     {
-      "identifier": "PsychologicalTraining",
-      "title": "Psychological Training",
-      "keywords": [ "ongoing" ],
+      "identifier": "AMomentOfReflection",
+      "title": "A Moment of Reflection",
+      "keywords": [ "one-shot" ],
       "body": [
-        "At the end of your turn, reveal the top card of your deck. If it's a One-Shot, put it into your hand. Otherwise, return it to the top of the deck"
+        "Another player may search their deck for a card, put it into their hand, and then shuffle their deck."
       ],
-      "flavorQuotes": [
-        {
-          "identifier": "Jessica",
-          "text": "Give it a try. It's sometimes easiest if you start with the underlying emotion. I feel, followed by the emotion, then talk about why."
-        }
-      ],
-      "flavorReference": "Jessica, Drone 23.4",
-      "count": 4
-    },
-    {
-      "identifier": "TimeToThink",
-      "title": "Time to Think",
-      "keywords": [ "ongoing", "limited" ],
-      "body": [
-        "Whenever a player plays no cards during their play phase, they may draw a card",
-        "Whenever a player uses no powers during their power phase, they may draw a card",
-        "Whenever a player skips a phase, they may draw a card"
-      ],
+      "icons": ["Search"],
       "flavorQuotes": [
         {
           "identifier": "Weaver",
-          "text": "A break can be nice, whether it's from school or saving the world."
+          "text": "I got a chance to talk stuff{BR}through. More of a sense of why they{BR}were putting obstacles in my way."
         }
       ],
       "flavorReference": "Weaver, Drone 23.4",
       "count": 4
     },
     {
-      "identifier": "HelpNoMatterTheCost",
-      "title": "Help, No Matter the Cost",
-      "keywords": [ "one-shot" ],
+      "identifier": "Clarity",
+      "title": "Clarity",
       "body": [
-        "Discard any number of cards. Another player draws X cards, where X is the number of cards discarded + 2"
+        "Each player reveals the top card of their deck. They may either discard it or return it to the top of their deck."
       ],
+      "icons": ["Manipulate"],
+      "keywords": [ "one-shot" ],
       "flavorQuotes": [
         {
           "identifier": "Jessica",
-          "text": "I'm here because I was invited, and because I want to help people. I'd like to help you."
+          "text": "I almost always recommend{BR}relaxation exercises and meditation to my{BR}patients with control issues. There's almost{BR}always a degree of improvement."
         }
       ],
-      "flavorReference": "Jessica, Teneral e.1",
+      "flavorReference": "Jessica, Drone 23.4",
       "count": 4
     },
     {
@@ -126,71 +100,76 @@
       "title": "Comfortable Office",
       "keywords": [ "equipment", "limited" ],
       "body": [
-        "At the start of your turn, a player regains 3 HP"
+        "At the start of your turn, a player regains 3 HP."
       ],
-      "flavorText": "Weld closed the door and settled in the reinforced chair she'd brought into her office in anticipation of the appointment.",
+      "icons": ["StartOfTurnAction", "GainHP"],
+      "flavorText": "Weld closed the door and settled in the{BR}reinforced chair she'd brought into her{BR}office in anticipation of the appointment.",
       "flavorReference": "Interlude 18",
       "count": 2
     },
     {
-      "identifier": "SupportAndStability",
-      "title": "Support and Stability",
+      "identifier": "HelpNoMatterTheCost",
+      "title": "Help, No Matter the Cost",
+      "keywords": [ "one-shot" ],
       "body": [
-        "The first time each turn a hero would deal themselves damage, you may prevent that damage"
+        "Discard any number of cards. Another player draws X cards, where X is the number of cards discarded + 2."
       ],
+      "icons": ["Discard", "DrawCardNow"],
       "flavorQuotes": [
         {
           "identifier": "Jessica",
-          "text": "I'm not so sure I like the word 'judge'. Evaluate is a better word. Listen is better still. I want to listen to you, because I can't help you if I don't understand you, and I want my understanding of you to come from <em>your</em> words"
+          "text": "I'm here because I was invited, and{BR}because I want to help people.{BR}I'd like to help you."
         }
       ],
       "flavorReference": "Jessica, Teneral e.1",
-      "count": 2,
-      "keywords": [ "ongoing", "limited" ]
-    },
-    {
-      "identifier": "Clarity",
-      "title": "Clarity",
-      "body": [
-        "Each player reveals the top card of their deck. They may either discard it or return it to the top of their deck"
-      ],
-      "keywords": [ "one-shot" ],
-      "flavorQuotes": [
-        {
-          "identifier": "Jessica",
-          "text": "I almost always recommend relaxation exercises and meditation to my patients with control issues. There's almost always a degree of improvement."
-        }
-      ],
-      "flavorReference": "Jessica, Drone 23.4",
       "count": 4
     },
     {
       "identifier": "NothingIsLost",
       "title": "Nothing is Lost",
       "body": [
-        "Each player may search their trash for a card and put it into their hand"
+        "Each player may search their trash for a card and put it into their hand."
       ],
+      "icons": ["Search"],
       "keywords": [ "one-shot" ],
       "flavorQuotes": [
         {
           "identifier": "Jessica",
-          "text": "Just like that. Believe it or not, I've handled worse things than a young woman torn between fatalism and wanting to help her friends stick together."
+          "text": "Just like that. Believe it or not,{BR}I've handled worse things than a young{BR}woman torn between fatalism and wanting to{BR}help her friends stick together."
         }
       ],
       "flavorReference": "Jessica, Interlude 18",
       "count": 4
     },
     {
+      "identifier": "PsychologicalTraining",
+      "title": "Psychological Training",
+      "keywords": [ "ongoing" ],
+      "body": [
+        "At the end of your turn, reveal the top card of your deck. If it's a One-Shot, put it into your hand. Otherwise, return it to the top of the deck."
+      ],
+      "icons": ["EndOfTurnAction", "DrawCardNow"],
+      "flavorQuotes": [
+        {
+          "identifier": "Jessica",
+          "text": "Give it a try. It's sometimes{BR}easiest if you start with the underlying{BR}emotion. I feel, followed by the emotion,{BR}then talk about why."
+        }
+      ],
+      "flavorReference": "Jessica, Drone 23.4",
+      "count": 4
+    },
+    {
       "identifier": "ResilienceAndRespect",
       "title": "Resilience and Respect",
       "body": [
-        "Reduce psychic damage dealt to hero targets by 1"
+        "Reduce psychic damage dealt to hero targets by 1."
       ],
+      "icons": ["ReduceDamageTaken"],
       "keywords": [ "ongoing" ],
       "flavorQuotes": [
         {
           "identifier": "Jessica",
-          "text": "What we do here is up to you. I've had patients who enjoy this kind of verbal jousting. Many walk into a first session with preconceived ideas, that they'll be forced to lie on a couch and bare their vulnerabilities while I pry at them with questions. A debate gives them their power back."
+          "text": "What we do here is up to you.{BR}I've had patients who enjoy this kind{BR}of verbal jousting. A debate gives{BR}them their power back."
         }
       ],
       "flavorReference": "Jessica, Teneral e.1",
@@ -200,15 +179,52 @@
       "identifier": "StrategyAndSuggestion",
       "title": "Strategy and Suggestion",
       "count": 4,
-      "body": "Another player reveals cards from their deck until they reveal an Ongoing. They may either put it into play or into their hand. Shuffle the other revealed cards back into their deck",
+      "body": "Another player reveals cards from their deck until they reveal an Ongoing. They may either put it into play or into their hand. Shuffle the other revealed cards back into their deck.",
+      "icons": ["Search"],
       "flavorQuotes": [
         {
           "identifier": "Jessica",
-          "text": "You're allowed to say you don't know the answer, Ciara. If it comes down to that, then I can suggest an answer and we can explore it together."
+          "text": "You're allowed to say you don't{BR}know the answer, Ciara. If it comes down{BR}to that, then I can suggest an answer{BR}and we can explore it together."
         }
       ],
       "flavorReference": "Jessica, Teneral e.1",
       "keywords": [ "one-shot" ]
+    },
+    {
+      "identifier": "SupportAndStability",
+      "title": "Support and Stability",
+      "body": [
+        "The first time each turn a hero would deal themselves damage, you may prevent that damage."
+      ],
+      "icons": ["CancelledDamageGreen"],
+      "flavorQuotes": [
+        {
+          "identifier": "Jessica",
+          "text": "I want to listen to you,{BR}because I can't help you if I don't{BR}understand you, and I want my understanding of you to come from{BR}[b]your[/b] words."
+        }
+      ],
+      "flavorReference": "Jessica, Teneral e.1",
+      "count": 2,
+      "keywords": [ "ongoing", "limited" ]
+    },
+    {
+      "identifier": "TimeToThink",
+      "title": "Time to Think",
+      "keywords": [ "ongoing", "limited" ],
+      "body": [
+        "Whenever a player plays no cards during their play phase, they may draw a card.",
+        "Whenever a player uses no powers during their power phase, they may draw a card.",
+        "Whenever a player skips a phase, they may draw a card."
+      ],
+      "icons": ["DrawCardNow"],
+      "flavorQuotes": [
+        {
+          "identifier": "Weaver",
+          "text": "A break can be nice, whether it's{BR}from school or saving the world."
+        }
+      ],
+      "flavorReference": "Weaver, Drone 23.4",
+      "count": 4
     }
   ]
 }

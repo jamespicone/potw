@@ -10,7 +10,8 @@ namespace Jp.ParahumansOfTheWormverse.Armsmaster
     public class RecyclerCardController : ModuleCardController
     {
         public RecyclerCardController(Card card, TurnTakerController controller) : base(card, controller)
-        { }
+        {
+        }
 
         public override IEnumerator DoPrimary()
         {

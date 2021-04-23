@@ -23,7 +23,10 @@ namespace Jp.ParahumansOfTheWormverse.Lung
         - Lung regains 3 HP, then,{BR}- Destroy {H - 1} hero ongoing or equipment cards."
         */
         public BruteInstructionsCardController(Card card, TurnTakerController controller) : base(card, controller)
-        { }
+        {
+            SpecialStringMaker.ShowNumberOfCardsAtLocation(base.TurnTaker.Trash).Condition = () => !base.Card.IsFlipped;
+            SpecialStringMaker.ShowIfElseSpecialString(() => Journal.DealDamageEntriesThisRound().Where(j => j.TargetCard == TurnTaker.CharacterCard).Count() > 0, () => base.Card.Title + " has already reduced damage this round.", () => base.Card.Title + " has not reduced damage this round.").Condition = () => !base.Card.IsFlipped && base.TurnTaker.Trash.NumberOfCards >= 10;
+        }
 
         public override void AddSideTriggers()
         {

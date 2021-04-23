@@ -12,7 +12,9 @@ namespace Jp.ParahumansOfTheWormverse.Armsmaster
         public static string PrimarySecondaryKey = "IsPrimary";
 
         public ModuleCardController(Card card, TurnTakerController controller) : base(card, controller)
-        { }
+        {
+            SpecialStringMaker.ShowIfElseSpecialString(() => IsPrimaryModule(base.GameController, base.Card), () => base.Card.Title + " is attached as Primary.", () => base.Card.Title + " is attached as Secondary.").Condition = () => base.Card.IsInPlayAndHasGameText;
+        }
 
         public override IEnumerator DeterminePlayLocation(List<MoveCardDestination> storedResults, bool isPutIntoPlay, List<IDecision> decisionSources, Location overridePlayArea = null, LinqTurnTakerCriteria additionalTurnTakerCriteria = null)
         {

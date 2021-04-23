@@ -10,7 +10,9 @@ namespace Jp.ParahumansOfTheWormverse.Lung
     public class SmashCardController : CardController
     {
         public SmashCardController(Card card, TurnTakerController controller) : base(card, controller)
-        { }
+        {
+            SpecialStringMaker.ShowHeroTargetWithLowestHP(ranking: 1, numberOfTargets: 1);
+        }
 
         public override System.Collections.IEnumerator Play()
         {
