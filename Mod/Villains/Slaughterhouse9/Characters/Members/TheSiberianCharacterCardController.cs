@@ -16,6 +16,7 @@ namespace Jp.ParahumansOfTheWormverse.Slaughterhouse9
 
         public override void AddSideTriggers()
         {
+            // Card PlayIndex is when they came into play
         }
 
         public override IEnumerator AfterFlipCardImmediateResponse()
