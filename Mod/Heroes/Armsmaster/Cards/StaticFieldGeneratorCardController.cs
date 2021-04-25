@@ -10,7 +10,9 @@ namespace Jp.ParahumansOfTheWormverse.Armsmaster
     public class StaticFieldGeneratorCardController : ModuleCardController
     {
         public StaticFieldGeneratorCardController(Card card, TurnTakerController controller) : base(card, controller)
-        { }
+        {
+            SpecialStringMaker.ShowListOfCardsInPlay(new LinqCardCriteria((Card c) => c.IsTarget && c.HitPoints.HasValue && c.HitPoints.Value <= 3, "targets with 3 or fewer HP", false, false, "target with 3 or fewer HP", "targets with 3 or fewer HP"));
+        }
 
         public override IEnumerator DoPrimary()
         {
@@ -39,7 +41,7 @@ namespace Jp.ParahumansOfTheWormverse.Armsmaster
         public override IEnumerator DoSecondary()
         {
             // Armsmaster deals 1 lightning damage to all targets with 3 or less HP
-            var e = GameController.DealDamage(HeroTurnTakerController, Card, c => c.IsTarget && c.HitPoints <= 3, 1, DamageType.Lightning, cardSource: GetCardSource());
+            var e = GameController.DealDamage(HeroTurnTakerController, CharacterCard, c => c.IsTarget && c.HitPoints <= 3, 1, DamageType.Lightning, cardSource: GetCardSource());
             if (UseUnityCoroutines)
             {
                 yield return GameController.StartCoroutine(e);

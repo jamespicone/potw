@@ -14,6 +14,7 @@ namespace Jp.ParahumansOfTheWormverse.JessicaYamada
         public StrategyAndSuggestionCardController(Card card, TurnTakerController turnTakerController)
             : base(card, turnTakerController)
         {
+            SpecialStringMaker.ShowNumberOfCardsAtLocations(() => from httc in base.GameController.FindHeroTurnTakerControllers() where !httc.IsIncapacitatedOrOutOfGame select httc.TurnTaker.Deck, new LinqCardCriteria((Card c) => c.DoKeywordsContain("ongoing"), "ongoing"));
         }
 
         public override IEnumerator Play()

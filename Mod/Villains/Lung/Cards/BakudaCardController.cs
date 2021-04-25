@@ -10,6 +10,7 @@ namespace Jp.ParahumansOfTheWormverse.Lung
     {
         public BakudaCardController(Card card, TurnTakerController controller) : base(card, controller)
         {
+            SpecialStringMaker.ShowHeroWithMostCards(false);
         }
 
         public override void AddTriggers()

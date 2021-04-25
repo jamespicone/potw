@@ -17,7 +17,7 @@ namespace Jp.ParahumansOfTheWormverse.Armsmaster
             // Armsmaster deals 2 fire damage to a non-hero target
             var e = GameController.SelectTargetsAndDealDamage(
                 HeroTurnTakerController,
-                new DamageSource(GameController, Card),
+                new DamageSource(GameController, CharacterCard),
                 2,
                 DamageType.Fire,
                 1,
