@@ -9,7 +9,10 @@ namespace Jp.ParahumansOfTheWormverse.Lung
     public class OniLeeCardController : CardController
     {
         public OniLeeCardController(Card card, TurnTakerController controller) : base(card, controller)
-        { }
+        {
+            SpecialStringMaker.ShowHeroTargetWithLowestHP(ranking: 1, numberOfTargets: 1);
+            SpecialStringMaker.ShowNumberOfCardsAtLocation(base.TurnTaker.Deck, new LinqCardCriteria((Card c) => c.DoKeywordsContain("one-shot"), "one-shot"));
+        }
 
         public override void AddTriggers()
         {

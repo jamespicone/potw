@@ -10,7 +10,9 @@ namespace Jp.ParahumansOfTheWormverse.Bitch
     public class HoldCardController : CardController
     {
         public HoldCardController(Card card, TurnTakerController controller) : base(card, controller)
-        { }
+        {
+            SpecialStringMaker.ShowNumberOfCardsInPlay(new LinqCardCriteria((Card c) => c.DoKeywordsContain("dog"), "dog"));
+        }
 
         public override System.Collections.IEnumerator Play()
         {

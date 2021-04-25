@@ -10,7 +10,9 @@ namespace Jp.ParahumansOfTheWormverse.Armsmaster
     public class EquipmentStashCardController : CardController
     {
         public EquipmentStashCardController(Card card, TurnTakerController controller) : base(card, controller)
-        { }
+        {
+            SpecialStringMaker.ShowListOfCardsAtLocation(base.TurnTaker.Deck, new LinqCardCriteria((Card c) => c.DoKeywordsContain("equipment"), "equipment"));
+        }
 
         public override IEnumerator Play()
         {

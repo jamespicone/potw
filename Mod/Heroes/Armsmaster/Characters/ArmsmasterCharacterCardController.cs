@@ -11,7 +11,9 @@ namespace Jp.ParahumansOfTheWormverse.Armsmaster
     public class ArmsmasterCharacterCardController : HeroCharacterCardController
     {
         public ArmsmasterCharacterCardController(Card card, TurnTakerController controller) : base(card, controller)
-        { }
+        {
+            SpecialStringMaker.ShowNumberOfCardsAtLocation(base.TurnTaker.Deck, new LinqCardCriteria((Card c) => c.DoKeywordsContain("equipment"), "equipment"));
+        }
 
         public override IEnumerator UseIncapacitatedAbility(int index)
         {

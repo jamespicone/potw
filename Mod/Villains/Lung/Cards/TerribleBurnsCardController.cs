@@ -7,7 +7,9 @@ namespace Jp.ParahumansOfTheWormverse.Lung
     public class TerribleBurnsCardController : CardController
     {
         public TerribleBurnsCardController(Card card, TurnTakerController controller) : base(card, controller)
-        { }
+        {
+            SpecialStringMaker.ShowHeroTargetWithHighestHP(ranking: 1, numberOfTargets: 1);
+        }
 
         public override void AddTriggers()
         {
