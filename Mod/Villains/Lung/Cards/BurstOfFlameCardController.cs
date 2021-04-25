@@ -10,7 +10,10 @@ namespace Jp.ParahumansOfTheWormverse.Lung
     public class BurstOfFlameCardController : CardController
     {
         public BurstOfFlameCardController(Card card, TurnTakerController controller) : base(card, controller)
-        { }
+        {
+            SpecialStringMaker.ShowHeroTargetWithHighestHP(ranking: 1, numberOfTargets: 1);
+            SpecialStringMaker.ShowNumberOfCardsAtLocation(base.TurnTaker.Trash);
+        }
 
         public override System.Collections.IEnumerator Play()
         {

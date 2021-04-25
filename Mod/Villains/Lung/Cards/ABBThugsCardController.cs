@@ -6,7 +6,9 @@ namespace Jp.ParahumansOfTheWormverse.Lung
     public class ABBThugsCardController : CardController
     {
         public ABBThugsCardController(Card card, TurnTakerController controller) : base(card, controller)
-        { }
+        {
+            SpecialStringMaker.ShowHeroTargetWithLowestHP(ranking: 1, numberOfTargets: 1);
+        }
 
         public override void AddTriggers()
         {

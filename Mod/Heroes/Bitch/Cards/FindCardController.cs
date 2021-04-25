@@ -10,7 +10,10 @@ namespace Jp.ParahumansOfTheWormverse.Bitch
     public class FindCardController : CardController
     {
         public FindCardController(Card card, TurnTakerController controller) : base(card, controller)
-        { }
+        {
+            SpecialStringMaker.ShowNumberOfCardsInPlay(new LinqCardCriteria((Card c) => c.DoKeywordsContain("dog"), "dog"));
+            SpecialStringMaker.ShowNumberOfCardsAtLocations(() => from ttc in base.GameController.FindTurnTakerControllersWhere((TurnTakerController ttc) => true, cardSource: GetCardSource()) select ttc.TurnTaker.Deck, new LinqCardCriteria((Card c) => c.IsTarget, "target"));
+        }
 
         public override System.Collections.IEnumerator Play()
         {

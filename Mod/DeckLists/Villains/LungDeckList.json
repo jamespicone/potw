@@ -53,38 +53,58 @@
       "flippedIcons": ["ImmuneToDamage", "EndOfTurnAction", "DealDamageMelee", "DealDamageFire", "GainHP", "DestroyEquipment", "DestroyOngoing"]
     },
     {
+      "identifier": "ABBThugs",
+      "title": "ABB Thugs",
+      "hitpoints": 4,
+      "count": 3,
+      "body": "At the end of the villain turn, {ABBThugs} deal the hero target with the lowest HP 2 projectile damage.",
+      "icons": [
+        "EndOfTurnAction",
+        "DealDamageProjectile"
+      ],
+      "flavorQuotes": [
+        {
+          "identifier": "Bakuda",
+          "text": "The 'Azn Bad Boys' is a shit name."
+        }
+      ],
+      "flavorReference": "Bakuda, Interlude 22"
+    },
+    {
+      "identifier": "Bakuda",
+      "title": "Bakuda",
+      "hitpoints": 6,
+      "keywords": [ "parahuman" ],
+      "count": 1,
+      "body": [
+        "At the start of the villain turn, reveal the top card of the villain deck:{BR}- If it is a One-Shot, {Bakuda} deals 5 fire damage to all non-villain targets.{BR}- If it is an Ongoing, each hero discards 1 card.{BR}- If it is a target, the hero with the most cards in play destroys all their noncharacter cards.",
+        "Shuffle the revealed card back into the villain deck."
+      ],
+      "icons": [
+        "StartOfTurnAction",
+        "DealDamageFire",
+        "Discard",
+        "DestroyHero"
+      ],
+      "flavorText": "Behind their assembled group,{BR}an altered grenade launcher danging{BR}from one strap around her shoulders,{BR}was Bakuda.",
+      "flavorReference": "Shell 4.7"
+    },
+    {
       "identifier": "BurstOfFlame",
       "title": "Burst of Flame",
       "count": 4,
       "keywords": [ "one-shot" ],
-      "body": "{LungCharacter} deals the hero target with the highest HP X fire damage, where X = 1 + the number of cards in the villain trash / 2",
+      "body": "{LungCharacter} deals the hero target with the highest HP X fire damage, where X = 1 + the number of cards in the villain trash / 2.",
       "icons": ["DealDamageFire"],
       "flavorText": "Lung exploded. No metaphor there.",
       "flavorReference": "Gestation 1.4"
-    },
-    {
-      "identifier": "Smash",
-      "title": "Smash",
-      "count": 4,
-      "keywords": [ "one-shot" ],
-      "body": [
-        "{LungCharacter} deals the hero target with the lowest HP 2 melee damage.",
-        "Destroy 1 hero ongoing or equipment card"
-      ],
-      "icons": [
-        "DealDamageMelee",
-        "DestroyEquipment",
-        "DestroyOngoing"
-      ],
-      "flavorText": "You don't properly appreciate what{BR}superhuman strength means until you see{BR}someone leap from the sidewalk to the{BR}second floor of a building",
-      "flavorReference": "Gestation 1.5"
     },
     {
       "identifier": "GrowingAnger",
       "title": "Growing Anger",
       "count": 2,
       "keywords": [ "one-shot" ],
-      "body": "Discard the top 3 cards of the villain deck. Play the top card of the villain deck",
+      "body": "Discard the top 3 cards of the villain deck. Play the top card of the villain deck.",
       "icons": [
        "Discard",
        "PlayCardNow"
@@ -96,73 +116,6 @@
         }
       ],
       "flavorReference": "Skitter, Hive 5.9"
-    },
-    {
-      "identifier": "Wings",
-      "title": "Wings",
-      "count": 2,
-      "keywords": [ "ongoing" ],
-      "body": "{LungCharacter} is immune to damage from Environment cards",
-      "icons": ["ImmuneToDamage"],
-      "flavorText": "Spearlike growths stuck out of his{BR}shoulders in what I realized were{BR}the beginnings of wings.",
-      "flavorReference": "Hive 5.8"
-    },
-    {
-      "identifier": "WhiteHotFlame",
-      "title": "White-Hot Flame",
-      "count": 2,
-      "keywords": [ "ongoing" ],
-      "body": "Fire damage dealt by {LungCharacter} is irreducible",
-      "icons": ["MakeDamageIrreducible"],
-      "flavorText": "...the steel-like flesh just beneath{BR}Leviathan's skin was blackening and{BR}charring to ash by proximity alone.",
-      "flavorReference": "Interlude 22"
-    },
-    {
-      "identifier": "Pyrokinesis",
-      "title": "Pyrokinesis",
-      "count": 3,
-      "keywords": [ "ongoing" ],
-      "body": "Whenever {LungCharacter} deals melee damage to a target, {LungCharacter} deals 2 fire damage to that target.",
-      "icons": ["DealDamageFire"],
-      "flavorText": "Lung blasted her with a{BR}torrent of roaring flame.",
-      "flavorReference": "Hive 5.9"
-    },
-    {
-      "identifier": "TerribleBurns",
-      "title": "Terrible Burns",
-      "count": 3,
-      "keywords": [ "ongoing" ],
-      "body": [
-        "Whenever a hero is dealt fire damage by {LungCharacter}, destroy 1 hero ongoing or equipment card.",
-        "At the end of the villain turn, {LungCharacter} deals the hero target with the highest HP {H - 2} fire damage"
-      ],
-      "icons": [
-        "DestroyEquipment",
-        "DestroyOngoing",
-        "EndOfTurnAction",
-        "DealDamageFire"
-      ],
-      "flavorText": "He lit his hand on fire.{BR}My mangled arm went up in flames.",
-      "flavorReference": "Venom 29.8"
-    },
-    {
-      "identifier": "Bakuda",
-      "title": "Bakuda",
-      "hitpoints": 6,
-      "keywords": [ "parahuman" ],
-      "count": 1,
-      "body": [
-        "At the start of the villain turn, reveal the top card of the villain deck:{BR}- If it is a One-Shot, {Bakuda} deals 5 fire damage to all non-villain targets.{BR}- If it is an Ongoing, each hero discards 1 card.{BR}- If it is a target, the hero with the most cards in play destroys all their noncharacter cards",
-        "Shuffle the revealed card back into the villain deck"
-      ],
-      "icons": [
-        "StartOfTurnAction",
-        "DealDamageFire",
-        "Discard",
-        "DestroyHero"
-      ],
-      "flavorText": "Behind their assembled group,{BR}an altered grenade launcher danging{BR}from one strap around her shoulders,{BR}was Bakuda.",
-      "flavorReference": "Shell 4.7"
     },
     {
       "identifier": "OniLee",
@@ -183,22 +136,69 @@
       "flavorReference": "Hive 5.7"
     },
     {
-      "identifier": "ABBThugs",
-      "title": "ABB Thugs",
-      "hitpoints": 4,
+      "identifier": "Pyrokinesis",
+      "title": "Pyrokinesis",
       "count": 3,
-      "body": "At the end of the villain turn, {ABBThugs} deal the hero target with the lowest HP 2 projectile damage.",
+      "keywords": [ "ongoing" ],
+      "body": "Whenever {LungCharacter} deals melee damage to a target, {LungCharacter} deals 2 fire damage to that target.",
+      "icons": ["DealDamageFire"],
+      "flavorText": "Lung blasted her with a{BR}torrent of roaring flame.",
+      "flavorReference": "Hive 5.9"
+    },
+    {
+      "identifier": "Smash",
+      "title": "Smash",
+      "count": 4,
+      "keywords": [ "one-shot" ],
+      "body": [
+        "{LungCharacter} deals the hero target with the lowest HP 2 melee damage.",
+        "Destroy 1 hero ongoing or equipment card."
+      ],
       "icons": [
+        "DealDamageMelee",
+        "DestroyEquipment",
+        "DestroyOngoing"
+      ],
+      "flavorText": "You don't properly appreciate what{BR}superhuman strength means until you see{BR}someone leap from the sidewalk to the{BR}second floor of a building",
+      "flavorReference": "Gestation 1.5"
+    },
+    {
+      "identifier": "TerribleBurns",
+      "title": "Terrible Burns",
+      "count": 3,
+      "keywords": [ "ongoing" ],
+      "body": [
+        "Whenever a hero is dealt fire damage by {LungCharacter}, destroy 1 hero ongoing or equipment card.",
+        "At the end of the villain turn, {LungCharacter} deals the hero target with the highest HP {H - 2} fire damage."
+      ],
+      "icons": [
+        "DestroyEquipment",
+        "DestroyOngoing",
         "EndOfTurnAction",
-        "DealDamageProjectile"
+        "DealDamageFire"
       ],
-      "flavorQuotes": [
-        {
-          "identifier": "Bakuda",
-          "text": "The 'Azn Bad Boys' is a shit name."
-        }
-      ],
-      "flavorReference": "Bakuda, Interlude 22"
+      "flavorText": "He lit his hand on fire.{BR}My mangled arm went up in flames.",
+      "flavorReference": "Venom 29.8"
+    },
+    {
+      "identifier": "WhiteHotFlame",
+      "title": "White-Hot Flame",
+      "count": 2,
+      "keywords": [ "ongoing" ],
+      "body": "Fire damage dealt by {LungCharacter} is irreducible.",
+      "icons": ["MakeDamageIrreducible"],
+      "flavorText": "...the steel-like flesh just beneath{BR}Leviathan's skin was blackening and{BR}charring to ash by proximity alone.",
+      "flavorReference": "Interlude 22"
+    },
+    {
+      "identifier": "Wings",
+      "title": "Wings",
+      "count": 2,
+      "keywords": [ "ongoing" ],
+      "body": "{LungCharacter} is immune to damage from Environment cards.",
+      "icons": ["ImmuneToDamage"],
+      "flavorText": "Spearlike growths stuck out of his{BR}shoulders in what I realized were{BR}the beginnings of wings.",
+      "flavorReference": "Hive 5.8"
     }
   ]
 }
