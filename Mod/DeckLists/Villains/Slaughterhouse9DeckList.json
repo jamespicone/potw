@@ -4,7 +4,7 @@
   "initialCardIdentifiers": [ "Slaughterhouse 9" ],
   "cards": [
     {
-      "identifier": "SlaughterhouseNineCharacter",
+      "identifier": "Slaughterhouse9Character",
       "title": "Slaughterhouse 9",
       "body": "Parahuman Murder Squad",
       "count": 1,
@@ -31,6 +31,7 @@
       "identifier": "JackSlashCharacter",
       "title": "Jack Slash",
       "hitpoints": 26,
+      "flippedShowHitpoints": false,
       "count": 1,
       "character": true,
       "body": "Leader of the Nine",
@@ -51,6 +52,7 @@
       "identifier": "BonesawCharacter",
       "title": "Bonesaw",
       "hitpoints": 24,
+      "flippedShowHitpoints": false,
       "count": 1,
       "character": true,
       "body": "Biotinker",
@@ -71,6 +73,7 @@
       "identifier": "CrawlerCharacter",
       "title": "Crawler",
       "hitpoints": 30,
+      "flippedShowHitpoints": false,
       "count": 1,
       "character": true,
       "body": "Adaptive Regenerator",
@@ -92,6 +95,7 @@
       "identifier": "BurnscarCharacter",
       "title": "Burnscar",
       "hitpoints": 24,
+      "flippedShowHitpoints": false,
       "count": 1,
       "character": true,
       "body": "Pyrokinetic",
@@ -112,6 +116,7 @@
       "identifier": "MannequinCharacter",
       "title": "Mannequin",
       "hitpoints": 26,
+      "flippedShowHitpoints": false,
       "count": 1,
       "character": true,
       "body": "Tinker Killer",
@@ -132,6 +137,7 @@
       "identifier": "ShatterbirdCharacter",
       "title": "Shatterbird",
       "hitpoints": 24,
+      "flippedShowHitpoints": false,
       "count": 1,
       "character": true,
       "body": "Silicakinetic",
@@ -151,6 +157,7 @@
       "identifier": "TheSiberianCharacter",
       "title": "The Siberian",
       "hitpoints": 26,
+      "flippedShowHitpoints": false,
       "count": 1,
       "character": true,
       "body": "Unstoppable Force",
@@ -170,6 +177,7 @@
       "identifier": "CherishCharacter",
       "title": "Cherish",
       "hitpoints": 24,
+      "flippedShowHitpoints": false,
       "count": 1,
       "character": true,
       "body": "Empath",
@@ -193,6 +201,15 @@
       "hitpoints": 8,
       "count": 1,
       "body": "At the end of the villain turn Murder Rat deals 2 melee damage to the hero target with the lowest HP",
+      "keywords": [ "parahuman" ],
+      "icons": []
+    },
+    {
+      "identifier": "HatchetFace",
+      "title": "Hatchet Face",
+      "hitpoints": 8,
+      "count": 1,
+      "body": "Heroes may not use powers",
       "keywords": [ "parahuman" ],
       "icons": []
     },
@@ -231,9 +248,20 @@
       "icons": []
     },
     {
+      "identifier": "TheScream",
+      "title": "The Scream",
+      "count": 2,
+      "body": [
+        "Each hero may destroy any number of Equipment cards.",
+        "The Nine card with the highest HP deals each hero target X projectile damage, where X = 2 * the number of Equipment cards in play"
+      ],
+      "keywords": [ "one-shot", "attack" ],
+      "icons": []
+    },
+    {
       "identifier": "Legend",
       "title": "Legend",
-      "count": 1,
+      "count": 2,
       "body": "Increase damage dealt by villain cards by 1",
       "keywords": [ "ongoing", "special" ],
       "icons": []
@@ -278,5 +306,5 @@
       "keywords": [ "ongoing", "attack" ],
       "icons": []
     }
-
+  ]
 }
