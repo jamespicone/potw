@@ -179,6 +179,8 @@
     <Compile Include="Heroes\Bitch\Cards\GuardCardController.cs" />
     <Compile Include="Heroes\Bitch\Cards\HeelCardController.cs" />
     <Compile Include="Heroes\Bitch\Characters\BitchCharacterCardController.cs" />
+    <Compile Include="Heroes\Dragon\Cards\TestCardCardController.cs" />
+    <Compile Include="Heroes\Dragon\Characters\DragonCharacterCardController.cs" />
     <Compile Include="Heroes\JessicaYamada\Cards\StrategyAndSuggestionCardController.cs" />
     <Compile Include="Heroes\JessicaYamada\Cards\ResilienceAndRespectCardController.cs" />
     <Compile Include="Heroes\JessicaYamada\Cards\NothingIsLostCardController.cs" />

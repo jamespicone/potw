@@ -1,0 +1,54 @@
+{
+  "name": "Dragon",
+  "kind": "Hero",
+  "initialCardIdentifiers": [ "DragonCharacter" ],
+  "cards": [
+    {
+      "identifier": "DragonCharacter",
+      "title": "Dragon",
+      "count": 1,
+      "body": "",
+      "icons": [],
+      "hitpoints": 28,
+      "character": true,
+      "backgroundColor": "ffffff",
+      "openingLines": {
+        "default": "blargh"
+      },
+      "complexity": 1,
+      "incapacitatedAbilities": [
+        "One target regains 2 HP.",
+        "One player may take a card from their trash into their hand.",
+        "Reduce damage dealt by environment targets by 2 until the start of your next turn."
+      ],
+      "flippedIcons": [
+      ],
+      "activatableAbilities": [
+        {
+          "name": "focus",
+          "text": "Draw a card"
+        },
+        {
+          "name": "focus",
+          "text": "Play a card"
+        }
+      ],
+      "tokenPools": [
+        {
+          "identifier": "FocusPool",
+          "name": "Focus pool",
+          "initialValue": 0,
+          "minimumValue": 0,
+          "color": "0000FF"
+        }
+      ]
+    },
+    {
+      "identifier": "TestCard",
+      "title": "TestCard",
+      "count": 40,
+      "body": "Tests things",
+      "hitpoints": 10
+    }
+  ]
+}
