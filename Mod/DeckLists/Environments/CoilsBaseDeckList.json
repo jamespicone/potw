@@ -1,0 +1,268 @@
+{
+	"name": "Coil's Base",
+	"kind": "Environment",
+	"backgroundColor": "CB5841",
+	"difficulty": 1,
+	"cards": [
+		{
+			"identifier": "AblativeCladding",
+			"count": 1,
+			"title": "Ablative Cladding",
+			"keywords": [
+				"structure"
+			],
+			"hitpoints": 10,
+			"body": [
+				"Reduce all toxic and melee damage by 2.",
+				"At the start of their turn, a player may skip the rest of their turn to destroy this card."
+			],
+			"icons": [
+				"ReduceDamageTakenToxic",
+				"ReduceDamageTakenMelee",
+				"StartOfTurnAction",
+				"SkipTurn",
+				"DestroySelf"
+			],
+			"flavorText": "The laser didn't cut the armor. It was capable{BR}of cutting granite like a hot knife through{BR}butter, but it didn't cut the armor."
+		},
+		{
+			"identifier": "BlastDoors",
+			"count": 1,
+			"title": "Blast Doors",
+			"keywords": [
+				"structure"
+			],
+			"hitpoints": 10,
+			"body": [
+				"Reduce all fire and projectile damage by 2.",
+				"At the start of their turn, a player may skip the rest of their turn to destroy this card."
+			],
+			"icons": [
+				"ReduceDamageTakenFire",
+				"ReduceDamageTakenProjectile",
+				"StartOfTurnAction",
+				"SkipTurn",
+				"DestroySelf"
+			],
+			"flavorText": "“When they retreated inside, they pulled the{BR}switch, and the entire substructure dropped{BR}2,500 feet below ground, putting the upper{BR}end of the column between us and them.”",
+			"flavorQuotes": [
+				{
+					"identifier": "Satyrical",
+					"text": "When they retreated inside, they pulled the switch, and the entire substructure dropped 2,500 feet below ground, putting the upper end of the column between us and them."
+				}
+			]
+		},
+		{
+			"identifier": "ConstructionWork",
+			"count": 1,
+			"title": "Construction Work",
+			"body": [
+				"At the end of the environment turn, reveal cards from the top of the environment deck until you reveal three Structure cards. Put them into play and shuffle the other revealed cards back into the environment deck. Then, destroy this card."
+			],
+			"icons": [
+				"EndOfTurnAction",
+				"Search",
+				"DestroySelf"
+			],
+			"flavorText": "“And the containment facility?” he asked, though{BR}he already knew the answer, from the{BR}interruptions while he spent the night in the{BR}facility. He'd heard the noise of the work.",
+			"flavorQuotes": [
+				{
+					"identifier": "Coil",
+					"text": "And the containment facility?"
+				}
+			]
+		},
+		{
+			"identifier": "Cover",
+			"count": 1,
+			"title": "Cover",
+			"keywords": [
+				"structure"
+			],
+			"hitpoints": 8,
+			"body": [
+				"Redirect any damage that would be dealt to a target other than this target to this card.",
+				"Reduce damage dealt to this card by 1."
+			],
+			"icons": [
+				"RedirectDamage",
+				"ReduceDamageTaken"
+			],
+			"flavorText": "They were all moving into cover. Kaiser, Fenja{BR}and Menja had all ducked into an alleyway.{BR}Bitch and her dogs were disappearing{BR}around the far corner of the same building."
+		},
+		{
+			"identifier": "Earthing",
+			"count": 1,
+			"title": "Earthing",
+			"keywords": [
+				"structure"
+			],
+			"hitpoints": 10,
+			"body": [
+				"Reduce all cold and lightning damage by 2.",
+				"At the start of their turn, a player may skip the rest of their turn to destroy this card."
+			],
+			"icons": [
+				"ReduceDamageTakenCold",
+				"ReduceDamageTakenLightning",
+				"StartOfTurnAction",
+				"SkipTurn",
+				"DestroySelf"
+			],
+			"flavorText": "Another lightning strike, curving in the air, hit{BR}the hand. Residual electricity danced between{BR}the two extended fingers. It was working, and{BR}it was working to help morale. To contribute."
+		},
+		{
+			"identifier": "LaserRifles",
+			"count": 1,
+			"title": "Laser Rifles",
+			"body": [
+				"Increase damage dealt by villain targets by 1. Change the type of that damage to energy."
+			],
+			"icons": [
+				"IncreaseDamageDealt"
+			],
+			"flavorText": "“If they don't think bullets are doing it, or if{BR}they're after people who are behind cover,{BR}they fire off these purple laser beams that{BR}can cut through steel.”",
+			"flavorQuotes": [
+				{
+					"identifier": "Thug",
+					"text": "If they don't think bullets are doing it, or if they're after people who are behind cover, they fire off these purple laser beams that can cut through steel."
+				}
+			]
+		},
+		{
+			"identifier": "Mercenaries",
+			"count": 3,
+			"title": "Mercenaries",
+			"hitpoints": 6,
+			"body": [
+				"At the end of the environment turn, this card deals the 2 targets with the highest HP {H - 1} energy damage each."
+			],
+			"icons": [
+				"EndOfTurnAction",
+				"DealDamageEnergy"
+			],
+			"flavorText": "“Either way, you forgot the cardinal rule of{BR}employing mercenaries. They follow the person{BR}with the money.”",
+			"flavorQuotes": [
+				{
+					"identifier": "Tattletale",
+					"text": "Either way, you forgot the cardinal rule of employing mercenaries. They follow the person with the money."
+				}
+			]
+		},
+		{
+			"identifier": "PinnedDown",
+			"count": 1,
+			"title": "Pinned Down",
+			"body": [
+				"Players can't play Ongoing or Equipment cards.",
+				"At the start of their turn, a player may skip the rest of their turn to destroy this card."
+			],
+			"icons": [
+				"CannotPlayCards",
+				"StartOfTurnAction",
+				"SkipTurn",
+				"DestroySelf"
+			],
+			"flavorText": "“You'll want to verify whether Bitch, Ballistic{BR}and Genesis are captured or simply pinned{BR}down somewhere, rescue them if need be{BR}and dispatch Dragon.”",
+			"flavorQuotes": [
+				{
+					"identifier": "Coil",
+					"text": "You'll want to verify whether Bitch, Ballistic and Genesis are captured or simply pinned down somewhere, rescue them if need be and dispatch Dragon."
+				}
+			]
+		},
+		{
+			"identifier": "RepairCrew",
+			"count": 2,
+			"title": "Repair Crew",
+			"hitpoints": 5,
+			"body": [
+				"At the end of the environment turn, each Structure regains 3 HP."
+			],
+			"icons": [
+				"EndOfTurnAction",
+				"GainHP"
+			],
+			"flavorText": "To outside observers, Creep was an ordinary{BR}laborer driving an electrician's van to the{BR}construction site."
+		},
+		{
+			"identifier": "SealedChamber",
+			"count": 1,
+			"title": "Sealed Chamber",
+			"keywords": [
+				"structure"
+			],
+			"hitpoints": 20,
+			"body": [
+				"If this card is destroyed, the contents escape. [b]GAME OVER.[/b]",
+				"At the start of their turn, a player may skip the rest of their turn. If they do, this card regains 5 HP."
+			],
+			"icons": [
+				"LoseTheGame",
+				"StartOfTurnAction",
+				"SkipTurn",
+				"GainHP"
+			],
+			"flavorText": "“On a scale of one to ten, just how bad is{BR}this?” “Let me answer your question with{BR}another question. You think we could convince{BR}the PRT to turn on the air raid sirens?”",
+			"flavorQuotes": [
+				{
+					"identifier": "Skitter",
+					"text": "On a scale of one to ten, just how bad is this?"
+				},
+				{
+					"identifier": "Tattletale",
+					"text": "Let me answer your question with another question. You think we could convince the PRT to turn on the air raid sirens?"
+				}
+			]
+		},
+		{
+			"identifier": "StrangerAndMasterProtocols",
+			"count": 1,
+			"title": "Stranger and Master Protocols",
+			"body": [
+				"Hero cards and effects cannot cause other heroes to draw or play cards, use powers, or regain HP.",
+				"At the start of their turn, a player may skip the rest of their turn to destroy this card."
+			],
+			"icons": [
+				"CannotDrawCards",
+				"CannotPlayCards",
+				"CannotUsePowers",
+				"CannotGainHP",
+				"StartOfTurnAction",
+				"SkipTurn",
+				"DestroySelf"
+			],
+			"flavorText": "“This is what hell is like,” Revel said. “Listen to{BR}me.”",
+			"flavorQuotes": [
+				{
+					"identifier": "Revel",
+					"text": "This is what hell is like,"
+				},
+				{
+					"identifier": "Revel",
+					"text": "Listen to me."
+				}
+			]
+		},
+		{
+			"identifier": "TrappedChamber",
+			"count": 1,
+			"title": "Trapped Chamber",
+			"keywords": [
+				"structure"
+			],
+			"hitpoints": 14,
+			"body": [
+				"Heroes cannot use powers.",
+				"At the start of their turn, a player may skip the rest of their turn to destroy this card."
+			],
+			"icons": [
+				"CannotUsePowers",
+				"StartOfTurnAction",
+				"SkipTurn",
+				"DestroySelf"
+			],
+			"flavorText": "A series of barely-audible 'beeps' sounded{BR}throughout the room. What had I just{BR}disabled? Claymores? Did I really want to{BR}know?"
+		}
+	]
+}
