@@ -33,7 +33,7 @@ namespace Jp.ParahumansOfTheWormverse.Slaughterhouse9
         private int SpiderbotCount()
         {
             return FindCardsWhere(
-                new LinqCardCriteria(c => c.Identifier == "Spiderbots"),
+                new LinqCardCriteria(c => c.Identifier == "Spiderbots" && c.IsInPlayAndHasGameText),
                 GetCardSource()
             ).Count();
         }

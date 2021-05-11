@@ -1,7 +1,7 @@
 {
   "name": "The Slaughterhouse 9",
   "kind": "Villain",
-  "initialCardIdentifiers": [ "Slaughterhouse 9" ],
+  "initialCardIdentifiers": [ "Slaughterhouse9Character" ],
   "cards": [
     {
       "identifier": "Slaughterhouse9Character",

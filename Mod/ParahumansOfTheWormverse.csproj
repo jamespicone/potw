@@ -268,7 +268,7 @@
     <Compile Include="Villains\Slaughterhouse9\Cards\LessThanHumanCardController.cs" />
     <Compile Include="Villains\Slaughterhouse9\Cards\SomeMoreFriendsCardController.cs" />
     <Compile Include="Villains\Slaughterhouse9\Cards\ShallWePlayAGameCardController.cs" />
-    <Compile Include="Villains\Slaughterhouse9\Cards\ChangeTheRulesCardController .cs" />
+    <Compile Include="Villains\Slaughterhouse9\Cards\ChangeTheRulesCardController.cs" />
     <Compile Include="Villains\Slaughterhouse9\Cards\WeDontTakePrisonersCardController.cs" />
     <Compile Include="Villains\Slaughterhouse9\Cards\TheyreAllBetterNowCardController.cs" />
     <Compile Include="Villains\Slaughterhouse9\Cards\SpiderbotsCardController.cs" />

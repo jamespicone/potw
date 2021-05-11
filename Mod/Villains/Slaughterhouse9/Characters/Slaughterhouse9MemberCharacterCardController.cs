@@ -10,6 +10,8 @@ namespace Jp.ParahumansOfTheWormverse.Slaughterhouse9
 {
     public class Slaughterhouse9MemberCharacterCardController : VillainCharacterCardController
     {
+        public override bool CanBeDestroyed => false;
+
         public Slaughterhouse9MemberCharacterCardController(Card card, TurnTakerController controller) : base(card, controller)
         {
         }
@@ -54,6 +56,42 @@ namespace Jp.ParahumansOfTheWormverse.Slaughterhouse9
             else
             {
                 GameController.ExhaustCoroutine(response());
+            }
+        }
+
+        public override IEnumerator BeforeFlipCardImmediateResponse(FlipCardAction flip)
+        {
+            var cardSource = flip.CardSource ?? (flip.ActionSource?.CardSource ?? GetCardSource());
+
+            var e = GameController.RemoveTarget(Card, leavesPlayIfInPlay: true, cardSource);
+            if (UseUnityCoroutines)
+            {
+                yield return GameController.StartCoroutine(e);
+            }
+            else
+            {
+                GameController.ExhaustCoroutine(e);
+            }
+        }
+
+        public override IEnumerator DestroyAttempted(DestroyCardAction destroyCard)
+        {
+            var action = new FlipCardAction(
+                GameController,
+                this,
+                treatAsPlayedIfFaceUp: false,
+                treatAsPutIntoPlayIfFaceUp: false,
+                destroyCard.ActionSource
+            );
+
+            var e = DoAction(action);
+            if (UseUnityCoroutines)
+            {
+                yield return GameController.StartCoroutine(e);
+            }
+            else
+            {
+                GameController.ExhaustCoroutine(e);
             }
         }
     }

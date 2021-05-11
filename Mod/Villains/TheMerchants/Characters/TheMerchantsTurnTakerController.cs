@@ -9,7 +9,7 @@ using System.Text;
 
 namespace Jp.ParahumansOfTheWormverse.TheMerchants
 {
-    class TheMerchantsTurnTakerController : TurnTakerController
+    public class TheMerchantsTurnTakerController : TurnTakerController
     {
         public TheMerchantsTurnTakerController(TurnTaker turnTaker, GameController gameController) : base(turnTaker, gameController)
         {
