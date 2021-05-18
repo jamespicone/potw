@@ -65,7 +65,68 @@ namespace Jp.ParahumansOfTheWormverse.Slaughterhouse9
 
         private IEnumerator AttackPowers()
         {
-            yield break;
+            var heroes = FindActiveHeroTurnTakerControllers().Select(httc => httc.TurnTaker).ToList();
+            while(heroes.Count() > 0)
+            {
+                var selectedTurnTakerList = new List<SelectTurnTakerDecision>();
+                var e = GameController.SelectHeroTurnTaker(
+                    DecisionMaker,
+                    SelectionType.DealDamage,
+                    optional: false,
+                    allowAutoDecide: true,
+                    selectedTurnTakerList,
+                    new LinqTurnTakerCriteria(ht => heroes.Contains(ht)),
+                    cardSource: GetCardSource()
+                );
+                if (UseUnityCoroutines)
+                {
+                    yield return GameController.StartCoroutine(e);
+                }
+                else
+                {
+                    GameController.ExhaustCoroutine(e);
+                }
+
+                var selectedTurnTaker = GetSelectedTurnTaker(selectedTurnTakerList);
+                if (selectedTurnTaker == null) { yield break; }
+
+                heroes.Remove(selectedTurnTaker);
+
+                var powerCount = FindCardsWhere(new LinqCardCriteria(
+                    c => c.Owner == selectedTurnTaker &&
+                        c.NumberOfPowers > 0
+                )).Sum(c => c.NumberOfPowers);
+
+                var storedCard = new List<Card>();
+                e = FindCharacterCardToTakeDamage(selectedTurnTaker, storedCard, Card, powerCount, DamageType.Melee);
+                if (UseUnityCoroutines)
+                {
+                    yield return GameController.StartCoroutine(e);
+                }
+                else
+                {
+                    GameController.ExhaustCoroutine(e);
+                }
+
+                var selectedCard = storedCard.First();
+                if (selectedCard == null) { yield break; }
+
+                e = DealDamage(
+                    Card,
+                    selectedCard,
+                    powerCount,
+                    DamageType.Melee,
+                    cardSource: GetCardSource()
+                );
+                if (UseUnityCoroutines)
+                {
+                    yield return GameController.StartCoroutine(e);
+                }
+                else
+                {
+                    GameController.ExhaustCoroutine(e);
+                }
+            }
         }
     }
 }
