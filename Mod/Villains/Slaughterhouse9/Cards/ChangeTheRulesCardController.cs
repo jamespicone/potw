@@ -21,9 +21,87 @@ namespace Jp.ParahumansOfTheWormverse.Slaughterhouse9
             // TODO: Honestly this is probably way too much; maybe should just shuffle the lowest HP active and deal 2 new ones?
             // Also make sure the villains don't lose the game when this happens
 
+
+
             // Shuffle all Nine targets in play back under the Slaughterhouse 9 card.
             // Move X cards from under the Slaughterhouse 9 card into the villain play area, where X = 1 + the number of Nine cards that were in play
-            yield break;
+            var nineCard = FindCard("Slaughterhouse9Character", realCardsOnly: false);
+            if (nineCard == null) { yield break; }
+
+            var selectedCard = new List<Card>();
+            var e = GameController.FindTargetWithLowestHitPoints(
+                ranking: 1,
+                c => c.IsTarget && c.DoKeywordsContain("nine"),
+                selectedCard,
+                cardSource: GetCardSource()
+            );
+            if (UseUnityCoroutines)
+            {
+                yield return GameController.StartCoroutine(e);
+            }
+            else
+            {
+                GameController.ExhaustCoroutine(e);
+            }
+
+            if (selectedCard.Count <= 0 || selectedCard.First() == null) { yield break; }
+
+            e = GameController.ShuffleCardIntoLocation(DecisionMaker, selectedCard.First(), nineCard.UnderLocation, optional: false, cardSource: GetCardSource());
+            if (UseUnityCoroutines)
+            {
+                yield return GameController.StartCoroutine(e);
+            }
+            else
+            {
+                GameController.ExhaustCoroutine(e);
+            }
+
+            if (selectedCard.First().MaximumHitPoints != null && selectedCard.First().Location == nineCard.UnderLocation)
+            {
+                e = GameController.SetHP(selectedCard.First(), selectedCard.First().MaximumHitPoints ?? 0, GetCardSource());
+                if (UseUnityCoroutines)
+                {
+                    yield return GameController.StartCoroutine(e);
+                }
+                else
+                {
+                    GameController.ExhaustCoroutine(e);
+                }
+            }
+
+            if (nineCard.UnderLocation.TopCard == null) { yield break; }
+
+            e = GameController.MoveIntoPlay(
+                TurnTakerController,
+                nineCard.UnderLocation.TopCard,
+                TurnTaker,
+                cardSource: GetCardSource()
+            );
+            if (UseUnityCoroutines)
+            {
+                yield return GameController.StartCoroutine(e);
+            }
+            else
+            {
+                GameController.ExhaustCoroutine(e);
+            }
+
+            if (nineCard.UnderLocation.TopCard == null) { yield break; }
+
+            e = GameController.MoveIntoPlay(
+                TurnTakerController,
+                nineCard.UnderLocation.TopCard,
+                TurnTaker,
+                cardSource: GetCardSource()
+            );
+            if (UseUnityCoroutines)
+            {
+                yield return GameController.StartCoroutine(e);
+            }
+            else
+            {
+                GameController.ExhaustCoroutine(e);
+            }
         }
     }
 }

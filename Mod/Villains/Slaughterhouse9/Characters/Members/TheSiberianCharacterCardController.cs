@@ -17,14 +17,63 @@ namespace Jp.ParahumansOfTheWormverse.Slaughterhouse9
         public override void AddSideTriggers()
         {
             // Card PlayIndex is when they came into play
+
+            if (Card.IsFlipped)
+            {
+                // "The villain target with the lowest HP is immune to melee damage"
+                AddSideTrigger(AddTrigger<DealDamageAction>(
+                    dda => dda.DamageType == DamageType.Melee &&
+                        dda.Target.IsVillainTarget &&
+                        CanCardBeConsideredLowestHitPoints(dda.Target, c => c.IsVillainTarget),
+                    dda => MaybeImmune(dda),
+                    TriggerType.ImmuneToDamage,
+                    TriggerTiming.Before
+                ));
+            }
+            else
+            {
+                // "The Nine target played just before and just after The Siberian are immune to damage"
+                AddSideTrigger(AddImmuneToDamageTrigger(
+                    dda =>
+                        dda.Target.IsTarget &&
+                        dda.Target.DoKeywordsContain("nine") &&
+                        (dda.TargetPlayIndex == Card.PlayIndex - 1 || dda.TargetPlayIndex == Card.PlayIndex + 1)
+                ));
+            }
         }
 
-        public override IEnumerator AfterFlipCardImmediateResponse()
+        public IEnumerator MaybeImmune(DealDamageAction dda)
         {
-            // yuck
-            base.AfterFlipCardImmediateResponse();
+            var wasLowest = new List<bool>();
+            var e = DetermineIfGivenCardIsTargetWithLowestOrHighestHitPoints(
+                dda.Target,
+                highest: false,
+                c => c.IsVillainTarget,
+                dda,
+                wasLowest
+            );
 
-            yield break;
+            if (UseUnityCoroutines)
+            {
+                yield return GameController.StartCoroutine(e);
+            }
+            else
+            {
+                GameController.ExhaustCoroutine(e);
+            }
+
+            if (wasLowest.Count > 0 && wasLowest.First())
+            {
+                e = GameController.ImmuneToDamage(dda, GetCardSource());
+                if (UseUnityCoroutines)
+                {
+                    yield return GameController.StartCoroutine(e);
+                }
+                else
+                {
+                    GameController.ExhaustCoroutine(e);
+                }
+            }
         }
     }
 }

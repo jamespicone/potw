@@ -60,7 +60,15 @@ namespace Jp.ParahumansOfTheWormverse.Slaughterhouse9
 
             if (wasLowest.Count > 0 && wasLowest.First())
             {
-                yield return GameController.ReduceDamage(dda, 1, reduceDamageTrigger, GetCardSource());
+                e = GameController.ReduceDamage(dda, 1, reduceDamageTrigger, GetCardSource());
+                if (UseUnityCoroutines)
+                {
+                    yield return GameController.StartCoroutine(e);
+                }
+                else
+                {
+                    GameController.ExhaustCoroutine(e);
+                }
             }
         }
 

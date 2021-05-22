@@ -16,14 +16,50 @@ namespace Jp.ParahumansOfTheWormverse.Slaughterhouse9
 
         public override void AddSideTriggers()
         {
+            if (Card.IsFlipped)
+            {
+                // "At the end of the villain turn this card deals 1 projectile damage to all non-villain targets"
+                AddSideTrigger(AddDealDamageAtEndOfTurnTrigger(
+                    TurnTaker,
+                    Card,
+                    c => c.IsTarget && !c.IsVillain,
+                    TargetType.All,
+                    1,
+                    DamageType.Projectile
+                ));
+            }
+            else
+            {
+                // "The first time an Attack card would enter the trash each turn Shatterbird deals 2 projectile damage to the H - 1 hero targets with the highest HP"
+                AddSideTrigger(AddAttackTrigger(
+                    () => GlassAttack(),
+                    new TriggerType[] { TriggerType.DealDamage },
+                    "ShatterbirdAttack"
+                ));
+            }
         }
 
-        public override IEnumerator AfterFlipCardImmediateResponse()
+        public IEnumerator GlassAttack()
         {
-            // yuck
-            base.AfterFlipCardImmediateResponse();
+            var e = GameController.SelectTargetsAndDealDamage(
+                DecisionMaker,
+                new DamageSource(GameController, Card),
+                2,
+                DamageType.Projectile,
+                H - 1,
+                optional: false,
+                H - 1,
+                cardSource: GetCardSource()
+            );
 
-            yield break;
+            if (UseUnityCoroutines)
+            {
+                yield return GameController.StartCoroutine(e);
+            }
+            else
+            {
+                GameController.ExhaustCoroutine(e);
+            }
         }
     }
 }
