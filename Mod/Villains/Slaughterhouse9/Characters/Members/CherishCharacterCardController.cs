@@ -32,7 +32,7 @@ namespace Jp.ParahumansOfTheWormverse.Slaughterhouse9
                 AddSideTrigger(AddDefenceTrigger(() => DiscardResponse(), new TriggerType[] { TriggerType.DiscardCard }, "CherishDiscard"));
 
                 // Whenever Cherish is dealt damage, Cherish deals 2 psychic damage to the target that dealt her damage
-                AddSideTrigger(AddCounterDamageTrigger(dda => true, () => CharacterCard, () => CharacterCard, oncePerTargetPerTurn: false, 2, DamageType.Psychic));
+                AddSideTrigger(AddCounterDamageTrigger(dda => dda.Target == Card, () => Card, () => Card, oncePerTargetPerTurn: false, 2, DamageType.Psychic));
             }
         }
 

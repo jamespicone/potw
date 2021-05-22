@@ -49,6 +49,7 @@ namespace Jp.ParahumansOfTheWormverse.Slaughterhouse9
                 H - 1,
                 optional: false,
                 H - 1,
+                additionalCriteria: c => c.IsHero && c.IsTarget,
                 cardSource: GetCardSource()
             );
 

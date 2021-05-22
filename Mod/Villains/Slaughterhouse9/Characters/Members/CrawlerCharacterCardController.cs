@@ -22,7 +22,7 @@ namespace Jp.ParahumansOfTheWormverse.Slaughterhouse9
                 AddSideTrigger(AddDealDamageAtEndOfTurnTrigger(
                     TurnTaker,
                     Card,
-                    c => ! c.IsVillain && c.IsTarget,
+                    c => c.IsHero && c.IsTarget,
                     TargetType.LowestHP,
                     2,
                     DamageType.Melee

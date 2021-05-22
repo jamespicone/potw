@@ -22,7 +22,8 @@ namespace Jp.ParahumansOfTheWormverse.Slaughterhouse9
             var e = EachPlayerDestroysTheirCards(
                 new LinqTurnTakerCriteria(),
                 new LinqCardCriteria(c => c.DoKeywordsContain("equipment"), "equipment"),
-                numberOfCards: null
+                numberOfCards: null,
+                requiredNumberOfCards: 0
             );
             if (UseUnityCoroutines)
             {
@@ -71,7 +72,7 @@ namespace Jp.ParahumansOfTheWormverse.Slaughterhouse9
 
         private int EquipmentCardCount()
         {
-            return FindCardsWhere(new LinqCardCriteria(c => c.DoKeywordsContain("equipment")), GetCardSource()).Count();
+            return FindCardsWhere(new LinqCardCriteria(c => c.DoKeywordsContain("equipment") && c.IsInPlayAndHasGameText), GetCardSource()).Count();
         }
     }
 }
