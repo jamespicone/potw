@@ -19,12 +19,14 @@ namespace Jp.ParahumansOfTheWormverse.Slaughterhouse9
             if (Card.IsFlipped)
             {
                 // "Reduce damage dealt to the villain target with the lowest HP by 1"
-                AddSideTrigger(AddTrigger<DealDamageAction>(
-                    dda => dda.Target.IsVillainTarget,
+                reduceDamageTrigger = AddTrigger<DealDamageAction>(
+                    dda => dda.Target.IsVillainTarget && CanCardBeConsideredLowestHitPoints(dda.Target, c => c.IsVillainTarget),
                     MaybeReduceDamage,
                     TriggerType.ReduceDamage,
                     TriggerTiming.Before
-                ));
+                );
+
+                AddSideTrigger(reduceDamageTrigger);
             }
             else
             {
@@ -38,7 +40,28 @@ namespace Jp.ParahumansOfTheWormverse.Slaughterhouse9
 
         public IEnumerator MaybeReduceDamage(DealDamageAction dda)
         {
-            yield break;
+            var wasLowest = new List<bool>();
+            var e = DetermineIfGivenCardIsTargetWithLowestOrHighestHitPoints(
+                dda.Target,
+                highest: false,
+                c => c.IsVillainTarget,
+                dda,
+                wasLowest
+            );
+
+            if (UseUnityCoroutines)
+            {
+                yield return GameController.StartCoroutine(e);
+            }
+            else
+            {
+                GameController.ExhaustCoroutine(e);
+            }
+
+            if (wasLowest.Count > 0 && wasLowest.First())
+            {
+                yield return GameController.ReduceDamage(dda, 1, reduceDamageTrigger, GetCardSource());
+            }
         }
 
         public IEnumerator DestroyHeroCard()
@@ -51,5 +74,7 @@ namespace Jp.ParahumansOfTheWormverse.Slaughterhouse9
                 cardSource: GetCardSource()
             );
         }
+
+        private ITrigger reduceDamageTrigger;
     }
 }
