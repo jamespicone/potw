@@ -6,6 +6,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+using UnityEngine;
+
 namespace Jp.ParahumansOfTheWormverse.Dragon
 {
     // TODO:
@@ -46,10 +48,44 @@ namespace Jp.ParahumansOfTheWormverse.Dragon
             yield break;
         }
 
-        public override IEnumerator ActivateAbility(string abilityKey)
+        public override IEnumerator ActivateAbilityEx(CardDefinition.ActivatableAbilityDefinition ability)
         {
-            // :(
-            yield break;
+            Debug.Log("ActivateAbilityEx with name \"" + ability.Name + "\" and number " + ability.Number);
+
+            if (ability.Name == "focus")
+            {
+                IEnumerator e;
+                switch(ability.Number)
+                {
+                    case 0:
+                        // Draw a card
+                        Debug.Log("Draw a card");
+                        e = DrawCard(HeroTurnTaker);
+                        break;
+
+                    case 1:
+                        Debug.Log("Play a card");
+                        e = SelectAndPlayCardFromHand(HeroTurnTakerController);
+                        break;
+
+                    default:
+                        Debug.Log("Unrecognised ability");
+                        yield break;
+                }
+
+                if (UseUnityCoroutines)
+                {
+                    yield return GameController.StartCoroutine(e);
+                }
+                else
+                {
+                    GameController.ExhaustCoroutine(e);
+                }
+            }
+            else
+            {
+                yield return base.ActivateAbilityEx(ability);
+            }
         }
 
         private IEnumerator DoFocusActions()

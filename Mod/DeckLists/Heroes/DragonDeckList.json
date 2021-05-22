@@ -26,11 +26,13 @@
       "activatableAbilities": [
         {
           "name": "focus",
-          "text": "Draw a card"
+          "text": "Draw a card",
+          "number": 0
         },
         {
           "name": "focus",
-          "text": "Play a card"
+          "text": "Play a card",
+          "number": 1
         }
       ],
       "tokenPools": [
