@@ -23,6 +23,7 @@ namespace Jp.ParahumansOfTheWormverse.Slaughterhouse9
             while (true)
             {
                 var villains = GameController.FindCardsWhere(card => card.IsInPlay && card.IsVillainTarget, true, GetCardSource()).Except(attacked);
+                if (villains.Count() <= 0) { break; }
 
                 var storedResults = new List<SelectCardDecision>();
                 var e = GameController.SelectCardAndStoreResults(

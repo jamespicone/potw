@@ -36,12 +36,41 @@ namespace Jp.ParahumansOfTheWormverse.Slaughterhouse9
                 TriggerType.CancelAction,
                 TriggerTiming.Before
             ));
+
+            if (Game.IsAdvanced)
+            {
+                AddSideTrigger(AddEndOfTurnTrigger(
+                    tt => tt == TurnTaker,
+                    pca => PlayNineMember(),
+                    TriggerType.PutIntoPlay
+                ));
+            }
         }
 
         public override bool AskIfCardIsIndestructible(Card card)
         {
             // This card + cards under it are indestructible
             return card == Card || card.Location == Card.UnderLocation;
+        }
+
+        private IEnumerator PlayNineMember()
+        {
+            if (Card.UnderLocation.TopCard == null) { yield break; }
+
+            var e = GameController.PlayCard(
+                TurnTakerController,
+                Card.UnderLocation.TopCard,
+                isPutIntoPlay: true,
+                cardSource: GetCardSource()
+            );
+            if (UseUnityCoroutines)
+            {
+                yield return GameController.StartCoroutine(e);
+            }
+            else
+            {
+                GameController.ExhaustCoroutine(e);
+            }
         }
     }
 }
