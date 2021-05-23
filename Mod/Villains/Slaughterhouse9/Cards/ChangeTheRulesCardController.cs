@@ -16,13 +16,21 @@ namespace Jp.ParahumansOfTheWormverse.Slaughterhouse9
         {
         }
 
-        public override IEnumerator Play()
+        public override void AddTriggers()
         {
-            // TODO: Honestly this is probably way too much; maybe should just shuffle the lowest HP active and deal 2 new ones?
-            // Also make sure the villains don't lose the game when this happens
+            AddTrigger<GameOverAction>(
+                goa => goa.ResultIsVictory,
+                CancelResponse,
+                new TriggerType[] {
+                    TriggerType.CancelAction,
+                    TriggerType.GameOver
+                },
+                TriggerTiming.Before
+            );
+        }
 
-
-
+        public override IEnumerator Play()
+        {           
             // Shuffle all Nine targets in play back under the Slaughterhouse 9 card.
             // Move X cards from under the Slaughterhouse 9 card into the villain play area, where X = 1 + the number of Nine cards that were in play
             var nineCard = FindCard("Slaughterhouse9Character", realCardsOnly: false);
@@ -71,10 +79,10 @@ namespace Jp.ParahumansOfTheWormverse.Slaughterhouse9
 
             if (nineCard.UnderLocation.TopCard == null) { yield break; }
 
-            e = GameController.MoveIntoPlay(
+            e = GameController.PlayCard(
                 TurnTakerController,
                 nineCard.UnderLocation.TopCard,
-                TurnTaker,
+                isPutIntoPlay: true,
                 cardSource: GetCardSource()
             );
             if (UseUnityCoroutines)
@@ -88,10 +96,10 @@ namespace Jp.ParahumansOfTheWormverse.Slaughterhouse9
 
             if (nineCard.UnderLocation.TopCard == null) { yield break; }
 
-            e = GameController.MoveIntoPlay(
+            e = GameController.PlayCard(
                 TurnTakerController,
                 nineCard.UnderLocation.TopCard,
-                TurnTaker,
+                isPutIntoPlay: true,
                 cardSource: GetCardSource()
             );
             if (UseUnityCoroutines)

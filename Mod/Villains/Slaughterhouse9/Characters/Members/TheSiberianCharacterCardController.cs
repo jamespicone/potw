@@ -44,6 +44,8 @@ namespace Jp.ParahumansOfTheWormverse.Slaughterhouse9
 
         public IEnumerator MaybeImmune(DealDamageAction dda)
         {
+            if (dda.IsPretend) { yield break; }
+
             var wasLowest = new List<bool>();
             var e = DetermineIfGivenCardIsTargetWithLowestOrHighestHitPoints(
                 dda.Target,
