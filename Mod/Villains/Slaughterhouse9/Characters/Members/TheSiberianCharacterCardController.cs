@@ -37,12 +37,29 @@ namespace Jp.ParahumansOfTheWormverse.Slaughterhouse9
                     dda =>
                         dda.Target.IsTarget &&
                         dda.Target.DoKeywordsContain("nine") &&
-                        (dda.TargetPlayIndex == Card.PlayIndex - 1 || dda.TargetPlayIndex == Card.PlayIndex + 1)
+                        IsAdjacentNine(dda.Target)
                 ));
             }
         }
 
-        public IEnumerator MaybeImmune(DealDamageAction dda)
+        private bool IsAdjacentNine(Card target)
+        {
+            var nine = FindCardsWhere(new LinqCardCriteria(c => c.IsInPlayAndNotUnderCard && c.IsTarget && c.DoKeywordsContain("nine")), GetCardSource());
+            nine = nine.Where(c => c.PlayIndex != null && c.PlayIndex != Card.PlayIndex).OrderBy(c => c.PlayIndex);
+            
+            if (target.PlayIndex < Card.PlayIndex)
+            {
+                nine = nine.Where(c => c.PlayIndex < Card.PlayIndex);
+                return nine.Last() == target;
+            }
+            else
+            {
+                nine = nine.Where(c => c.PlayIndex > Card.PlayIndex);
+                return nine.First() == target;
+            }
+        }
+
+        private IEnumerator MaybeImmune(DealDamageAction dda)
         {
             if (dda.IsPretend) { yield break; }
 

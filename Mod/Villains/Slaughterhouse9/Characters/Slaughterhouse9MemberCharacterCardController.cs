@@ -34,7 +34,10 @@ namespace Jp.ParahumansOfTheWormverse.Slaughterhouse9
         private ITrigger AddNineTrigger(Func<IEnumerator> response, IEnumerable<TriggerType> triggerTypes, string name, string keyword)
         {
             return AddTrigger<MoveCardAction>(
-                mca => mca.Destination == TurnTaker.Trash && mca.CardToMove.DoKeywordsContain(keyword),
+                mca =>
+                    mca.Destination == TurnTaker.Trash &&
+                    mca.CardToMove.DoKeywordsContain(keyword) &&
+                    ! HasBeenSetToTrueThisTurn(name),
                 mca => DoCardResponse(mca, response, name),
                 triggerTypes,
                 TriggerTiming.After
@@ -43,11 +46,6 @@ namespace Jp.ParahumansOfTheWormverse.Slaughterhouse9
 
         private IEnumerator DoCardResponse(MoveCardAction mca, Func<IEnumerator> response, string name)
         {
-            if (HasBeenSetToTrueThisTurn(name))
-            {
-                yield break;
-            }
-
             SetCardPropertyToTrueIfRealAction(name, gameAction: mca);
             if (UseUnityCoroutines)
             {

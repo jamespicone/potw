@@ -39,8 +39,8 @@
       "nemesisIdentifiers": [ "Skitter" ],
       "flippedBody": "Incapacitated",
       "gameplay": [
-        "The first time an Attack card would enter the trash each turn this card deals X melee damage to each hero, where X = 2 * the number of Powers controlled by that player",
-        "The first time a Special card would enter the trash each turn play the top card of the villain deck"
+        "Once per turn, when an Attack card enters the trash, this card deals X melee damage to each hero, where X = 2 * the number of Powers controlled by that player",
+        "Once per turn, when a Special card enters the trash, play the top card of the villain deck"
       ],
       "flippedGameplay": [
         "Whenever a hero uses a power this card deals that hero 1 melee damage"
@@ -60,8 +60,8 @@
       "nemesisIdentifiers": [ "Grue", "GutsAndGlory" ],
       "flippedBody": "Incapacitated",
       "gameplay": [
-        "The first time a Defence card would enter the trash each turn each villain target regains 2 HP",
-        "The first time a Special card would enter the trash each turn this card deals 2 toxic damage to all non-villain targets"
+        "Once per turn, when a Defence card enters the trash each villain target regains 2 HP",
+        "Once per turn, when a Special card enters the trash this card deals 2 toxic damage to all non-villain targets"
       ],
       "flippedGameplay": [
         "At the end of the villain turn the villain target with the lowest HP regains 1 HP"
@@ -82,8 +82,8 @@
       "flippedBody": "Incapacitated",
       "gameplay": [
         "Whenever Crawler is dealt damage he becomes immune to that damage type until the next time he takes damage.",
-        "The first time an Attack card would enter the trash this turn this card deals 2 toxic damage and 2 melee damage to the non-villain target with the highest HP.",
-        "The first time a Special card would enter the trash each turn this card regains 30 HP"
+        "Once per turn, when an Attack card enters the trash this card deals 2 toxic damage and 2 melee damage to the non-villain target with the highest HP.",
+        "Once per turn, when a Special card enters the trash this card regains 30 HP"
       ],
       "flippedGameplay": [
         "At the end of the villain turn this card deals 2 melee damage to the hero target with the lowest HP"
@@ -103,8 +103,8 @@
       "nemesisIdentifiers": [ "Labyrinth" ],
       "flippedBody": "Incapacitated",
       "gameplay": [
-        "The first time a Special card would enter the trash this turn destroy all environment cards, then Burnscar deals X fire damage to all non-villain targets, where X = 1 + the number of environment cards destroyed in this way",
-        "The first time an Attack card would enter the trash this turn this card deals 3 fire damage to the hero target with the lowest HP, then destroy a noncharacter hero card"
+        "Once per turn, when a Special card enters the trash destroy all environment cards, then Burnscar deals X fire damage to all non-villain targets, where X = 1 + the number of environment cards destroyed in this way",
+        "Once per turn, when an Attack card enters the trash this card deals 3 fire damage to the hero target with the lowest HP, then destroy a noncharacter hero card"
       ],
       "flippedGameplay": [
         "At the end of the villain turn this card deals 1 fire damage to all non-villain targets"
@@ -125,7 +125,7 @@
       "flippedBody": "Incapacitated",
       "gameplay": [
         "Reduce damage dealt to Mannequin by 1",
-        "The first time a Defence card would enter the trash this turn destroy 1 hero Ongoing or Equipment card"
+        "Once per turn, when a Defence card enters the trash destroy 1 hero Ongoing or Equipment card"
       ],
       "flippedGameplay": [
         "Reduce damage dealt to the villain target with the lowest HP by 1"
@@ -145,7 +145,7 @@
       "nemesisIdentifiers": [ "Regent" ],
       "flippedBody": "Incapacitated",
       "gameplay": [
-        "The first time an Attack card would enter the trash each turn Shatterbird deals 2 projectile damage to the H - 1 hero targets with the highest HP"
+        "Once per turn, when an Attack card enters the trash Shatterbird deals 2 projectile damage to the H - 1 hero targets with the highest HP"
       ],
       "flippedGameplay": [
         "At the end of the villain turn this card deals 1 projectile damage to all non-villain targets"
@@ -185,7 +185,7 @@
       "nemesisIdentifiers": [ "Regent" ],
       "flippedBody": "Incapacitated",
       "gameplay": [
-        "The first time a Defence card would enter the trash each turn the hero with the most cards in hand discards 2 cards",
+        "Once per turn, when a Defence card enters the trash the hero with the most cards in hand discards 2 cards",
         "Whenever Cherish is dealt damage, Cherish deals 2 psychic damage to the target that dealt her damage"
       ],
       "flippedGameplay": [
@@ -302,7 +302,7 @@
       "identifier": "WeDontTakePrisoners",
       "title": "We Don't Take Prisoners",
       "count": 2,
-      "body": "Whenever a target is destroyed by a villain card remove it from the game",
+      "body": "Whenever a target is destroyed by a villain card each hero deals themselves 2 psychic damage.",
       "keywords": [ "ongoing", "attack" ],
       "icons": []
     }
