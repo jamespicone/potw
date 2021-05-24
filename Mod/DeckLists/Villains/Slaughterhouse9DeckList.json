@@ -294,7 +294,10 @@
       "identifier": "ChangeTheRules",
       "title": "Change the Rules",
       "count": 2,
-      "body": "Shuffle all Nine targets in play back under the Slaughterhouse 9 card. Move X cards from under the Slaughterhouse 9 card into the villain play area, where X = 1 + the number of Nine cards that were in play",
+      "body": [
+        "The heroes can't win the game",
+        "Shuffle all Nine targets in play back under the Slaughterhouse 9 card. Move X cards from under the Slaughterhouse 9 card into the villain play area, where X = 1 + the number of Nine cards that were in play"
+      ],
       "keywords": [ "one-shot", "defence" ],
       "icons": []
     },
