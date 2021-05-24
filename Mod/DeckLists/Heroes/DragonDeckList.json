@@ -7,7 +7,16 @@
       "identifier": "DragonCharacter",
       "title": "Dragon",
       "count": 1,
-      "body": "",
+      "body": "Overclock",
+      "gameplay": [
+        "Dragon does not have a Play, Power, or Draw phase",
+        "Dragon has a Focus phase between her Start and End phases, during which she can activate Focus effects by spending a Focus point",
+        "At the start of your turn, gain 4 Focus points",
+        "At the end of your turn, lose all your Focus points"
+      ],
+      "powers": [
+        "Activate a Focus effect"
+      ],
       "icons": [],
       "hitpoints": 28,
       "character": true,
@@ -46,11 +55,390 @@
       ]
     },
     {
-      "identifier": "TestCard",
-      "title": "TestCard",
-      "count": 40,
-      "body": "Tests things",
-      "hitpoints": 10
+      "identifier": "SecurityFeeds",
+      "title": "Security Feeds",
+      "icons": [],
+      "keywords": [ "ongoing" ],
+      "flavorText": "",
+      "flavorReference": "",
+      "count": 2,
+      "activatableAbilities": [
+        {
+          "name": "focus",
+          "text": "Reveal the top card of the Environment deck. Either return it to the top of the deck or discard it",
+          "number": 0
+        }
+      ]
+    },
+    {
+      "identifier": "PRTDatabase",
+      "title": "PRT Database",
+      "icons": [],
+      "keywords": [ "ongoing" ],
+      "flavorText": "",
+      "flavorReference": "",
+      "count": 2,
+      "activatableAbilities": [
+        {
+          "name": "focus",
+          "text": "Reveal the top card of the Villain deck. Either return it to the top of the deck or discard it",
+          "number": 0
+        }
+      ]
+    },
+    {
+      "identifier": "CommandAndControl",
+      "title": "Command and Control",
+      "icons": [],
+      "keywords": [ "ongoing" ],
+      "flavorText": "",
+      "flavorReference": "",
+      "count": 2,
+      "activatableAbilities": [
+        {
+          "name": "focus",
+          "text": "1 hero target deals a target either 2 projectile or 2 melee damage",
+          "number": 0
+        }
+      ]
+    },
+    {
+      "identifier": "Archives",
+      "title": "Archives",
+      "icons": [],
+      "keywords": [ "ongoing" ],
+      "flavorText": "",
+      "flavorReference": "",
+      "count": 2,
+      "activatableAbilities": [
+        {
+          "name": "focus",
+          "text": "A player may take a One-Shot from their trash and put it into their hand",
+          "number": 0
+        }
+      ]
+    },
+    {
+      "identifier": "SelfModifyingCode",
+      "title": "Self-Modifying Code",
+      "icons": [],
+      "keywords": [ "one-shot" ],
+      "flavorText": "",
+      "flavorReference": "",
+      "count": 4,
+      "body": [
+        "Dragon deals herself 2 irreducible psychic damage",
+        "If you take damage in this way, gain 3 focus points"
+      ]
+    },
+    {
+      "identifier": "Sabotage",
+      "title": "Sabotage",
+      "icons": [],
+      "keywords": [ "one-shot" ],
+      "flavorText": "",
+      "flavorReference": "",
+      "count": 3,
+      "body": [
+        "Destroy an Ongoing card"
+      ]
+    },
+    {
+      "identifier": "BorrowedBlueprints",
+      "title": "Borrowed Blueprints",
+      "icons": [],
+      "keywords": [ "one-shot" ],
+      "flavorText": "",
+      "flavorReference": "",
+      "count": 2,
+      "body": [
+        "Select a player other than Dragon. Reveal the top X cards of your deck, where X = the number of Equipment and Device cards that player has in hand + 2. Put any revealed Equipment cards into your hand, shuffle the rest back into your deck"
+      ]
+    },
+    {
+      "identifier": "Recycling",
+      "title": "Recycling",
+      "icons": [],
+      "keywords": [ "one-shot" ],
+      "flavorText": "",
+      "flavorReference": "",
+      "count": 2,
+      "body": [
+        "Shuffle up to 2 equipment cards from your trash back into your deck"
+      ]
+    },
+    {
+      "identifier": "Firepower",
+      "title": "Firepower",
+      "icons": [],
+      "keywords": [ "one-shot" ],
+      "flavorText": "",
+      "flavorReference": "",
+      "count": 4,
+      "body": [
+        "Choose either Dragon or a Mech in this play area. They deal a target 3 fire damage."
+      ]
+    },
+    {
+      "identifier": "Analysis",
+      "title": "Analysis",
+      "icons": [],
+      "keywords": [ "one-shot" ],
+      "flavorText": "",
+      "flavorReference": "",
+      "count": 3,
+      "body": [
+        "Until the end of your turn, whenever Dragon or a Mech in this play area would deal damage, increase that damage by 1."
+      ]
+    },
+    {
+      "identifier": "Kamikaze",
+      "title": "Kamikaze",
+      "icons": [],
+      "keywords": [ "one-shot" ],
+      "flavorText": "",
+      "flavorReference": "",
+      "count": 2,
+      "body": [
+        "Select a Mech in this play area and a target.",
+        "If that target is a character card, the Mech deals the target 3 energy, fire, and melee damage.",
+        "If that target is not a character card, destroy it.",
+        "Destroy the Mech"
+      ]
+    },
+    {
+      "identifier": "ServerFarm",
+      "title": "Server Farm",
+      "icons": [],
+      "keywords": [ "equipment" ],
+      "flavorText": "",
+      "flavorReference": "",
+      "count": 2,
+      "hitPoints": 4,
+      "body": "At the start of your turn gain a Focus point",
+      "activatableAbilities": [
+        {
+          "name": "focus",
+          "text": "Destroy this card. When it goes to the trash, gain 3 focus points",
+          "number": 0
+        }
+      ]
+    },
+    {
+      "identifier": "ParahumansOnline",
+      "title": "Parahumans Online",
+      "icons": [],
+      "keywords": [ "equipment" ],
+      "flavorText": "",
+      "flavorReference": "",
+      "count": 3,
+      "body": "At the start of your turn each player reveals the top card of their deck, then either returns it to the top of the deck or discards it",
+      "activatableAbilities": [
+        {
+          "name": "focus",
+          "text": "A player may draw a card",
+          "number": 0
+        }
+      ]
+    },
+    {
+      "identifier": "Azazel",
+      "title": "Azazel",
+      "icons": [],
+      "keywords": [ "equipment", "mech" ],
+      "flavorText": "",
+      "flavorReference": "",
+      "count": 1,
+      "hitPoints": 18,
+      "body": [
+        "Reduce damage dealt to Dragon by 1.",
+        "At the start of your turn lose 2 Focus points.",
+        "At the end of your turn this card may deal 2 irreducible energy damage to a target."
+      ],
+      "activatableAbilities": [
+        {
+          "name": "focus",
+          "text": "Return this card to your hand",
+          "number": 0
+        },
+        {
+          "name": "focus",
+          "text": "This card deals 2 irreducible energy damage to a target",
+          "number": 1
+        }
+      ]
+    },
+    {
+      "identifier": "Cawthorne",
+      "title": "Cawthorne",
+      "icons": [],
+      "keywords": [ "equipment", "mech" ],
+      "flavorText": "",
+      "flavorReference": "",
+      "count": 1,
+      "hitPoints": 10,
+      "body": [
+        "At the start of your turn lose 1 Focus point.",
+        "At the end of your turn this card deals 1 projectile damage to up to 2 targets."
+      ],
+      "activatableAbilities": [
+        {
+          "name": "focus",
+          "text": "Return this card to your hand",
+          "number": 0
+        },
+        {
+          "name": "focus",
+          "text": "Select up to 2 targets. Reduce the next damage those targets deal by 2",
+          "number": 1
+        }
+      ]
+    },
+    {
+      "identifier": "Glaurung",
+      "title": "Glaurung",
+      "icons": [],
+      "keywords": [ "equipment", "mech" ],
+      "flavorText": "",
+      "flavorReference": "",
+      "count": 1,
+      "hitPoints": 10,
+      "body": [
+        "At the start of your turn lose 1 Focus point.",
+        "At the end of your turn place a Drone token on this card.",
+        "Whenever this card takes damage remove 2 Drone tokens from it"
+      ],
+      "activatableAbilities": [
+        {
+          "name": "focus",
+          "text": "Return this card to your hand",
+          "number": 0
+        },
+        {
+          "name": "focus",
+          "text": "This card deals X targets 2 lightning damage, where X is the number of Drone tokens on this card",
+          "number": 1
+        }
+      ]
+    },
+    {
+      "identifier": "Melusine",
+      "title": "Melusine",
+      "icons": [],
+      "keywords": [ "equipment", "mech" ],
+      "flavorText": "",
+      "flavorReference": "",
+      "count": 1,
+      "hitPoints": 12,
+      "body": [
+        "At the start of your turn lose 1 Focus point.",
+        "Whenever a target deals this card damage, this card deals that target 2 fire damage"
+      ],
+      "activatableAbilities": [
+        {
+          "name": "focus",
+          "text": "Return this card to your hand",
+          "number": 0
+        },
+        {
+          "name": "focus",
+          "text": "This card deals a target 3 melee damage",
+          "number": 1
+        },
+        {
+          "name": "focus",
+          "text": "Restore this card to full HP",
+          "number": 2
+        }
+      ]
+    },
+    {
+      "identifier": "Ladon",
+      "title": "Ladon",
+      "icons": [],
+      "keywords": [ "equipment", "mech" ],
+      "flavorText": "",
+      "flavorReference": "",
+      "count": 1,
+      "hitPoints": 10,
+      "body": [
+        "At the start of your turn lose 1 Focus point.",
+        "Reduce damage dealt to this card by 1"
+      ],
+      "activatableAbilities": [
+        {
+          "name": "focus",
+          "text": "Return this card to your hand",
+          "number": 0
+        },
+        {
+          "name": "focus",
+          "text": "Select a damage type. Until the start of your next turn reduce all damage of that type by 1",
+          "number": 1
+        }
+      ]
+    },
+    {
+      "identifier": "Pythios",
+      "title": "Pythios",
+      "icons": [],
+      "keywords": [ "equipment", "mech" ],
+      "flavorText": "",
+      "flavorReference": "",
+      "count": 1,
+      "hitPoints": 10,
+      "body": [
+        "At the start of your turn lose 1 Focus point.",
+        "At the end of your turn this card deals 1 lightning damage to all targets with 3 or less HP"
+      ],
+      "activatableAbilities": [
+        {
+          "name": "focus",
+          "text": "Return this card to your hand.",
+          "number": 0
+        },
+        {
+          "name": "focus",
+          "text": "Select a non-character-card target in play and put it on top of its deck.",
+          "number": 1
+        },
+        {
+          "name": "focus",
+          "text": "Reveal cards from the top of a deck until you reveal a target. You may either discard it or put it into play. Shuffle the other cards back into the deck.",
+          "number": 2
+        }
+      ]
+    },
+    {
+      "identifier": "AstarothNidhug",
+      "title": "Astaroth-Nidhug",
+      "icons": [],
+      "keywords": [ "equipment", "mech" ],
+      "flavorText": "",
+      "flavorReference": "",
+      "count": 1,
+      "hitPoints": 10,
+      "body": [
+        "At the start of your turn lose 1 Focus point.",
+        "At the end of your turn place an Aim token on this card"
+      ],
+      "activatableAbilities": [
+        {
+          "name": "focus",
+          "text": "Return this card to your hand.",
+          "number": 0
+        },
+        {
+          "name": "focus",
+          "text": "Place an Aim token on this card",
+          "number": 1
+        },
+        {
+          "name": "focus",
+          "text": "Deal X projectile damage to a target, where X is the number of Aim tokens on this card. Remove all Aim tokens from this card",
+          "number": 2
+        }
+      ]
     }
   ]
 }

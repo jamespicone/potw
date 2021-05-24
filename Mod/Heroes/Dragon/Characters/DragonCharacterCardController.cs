@@ -10,15 +10,6 @@ using UnityEngine;
 
 namespace Jp.ParahumansOfTheWormverse.Dragon
 {
-    // TODO:
-    // This is all proof of concept. Demonstrates that the turn structure stuff can work, as far as I can tell, although not sure if unspecified wonky turn
-    // orders could fuck it up.
-    //
-    // Issues:
-    // - Token pool doesn't render. Maybe only the known pools render?
-    // - ActivateAbility only takes an ability key, so cards with multiple activateable abilities don't work. I've submitted a feature request, but
-    //   it *is* possible for card code to hand-hack around this by essentially implementing SelectAndActivateAbility by hand so it can take multiple ability
-    //   keys and then having focus1, focus2, focus3 abilities.
     public class DragonCharacterCardController : HeroCharacterCardController
     {
         public DragonCharacterCardController(Card card, TurnTakerController controller) : base(card, controller)
@@ -30,8 +21,11 @@ namespace Jp.ParahumansOfTheWormverse.Dragon
         {
             if(! Card.IsFlipped)
             {
-                AddSideTrigger(AddPhaseChangeTrigger(tt => tt == TurnTaker, p => p == Phase.Start || p == Phase.End, pca => true,
-                    pca => ResetFocus(pca), new TriggerType[] { TriggerType.FirstTrigger }, TriggerTiming.Before));
+                AddSideTrigger(AddPhaseChangeTrigger(tt => tt == TurnTaker, p => p == Phase.Start, pca => true,
+                    pca => GainFocus(), new TriggerType[] { TriggerType.FirstTrigger }, TriggerTiming.Before));
+
+                AddSideTrigger(AddPhaseChangeTrigger(tt => tt == TurnTaker, p => p == Phase.End, pca => true,
+                    pca => ResetFocus(), new TriggerType[] { TriggerType.FirstTrigger }, TriggerTiming.Before));
 
                 AddSideTrigger(AddPhaseChangeTrigger(tt => tt == TurnTaker, p => p == Phase.Unknown, 
                     pca => true, pca => DoFocusActions(), new TriggerType[] { TriggerType.UsePower }, TriggerTiming.After ));
@@ -45,7 +39,20 @@ namespace Jp.ParahumansOfTheWormverse.Dragon
 
         public override IEnumerator UsePower(int index = 0)
         {
-            yield break;
+            // Activate a Focus effect
+            var e = GameController.SelectAndActivateAbility(
+                HeroTurnTakerController,
+                "focus",
+                cardSource: GetCardSource()
+            );
+            if (UseUnityCoroutines)
+            {
+                yield return GameController.StartCoroutine(e);
+            }
+            else
+            {
+                GameController.ExhaustCoroutine(e);
+            }
         }
 
         public override IEnumerator ActivateAbilityEx(CardDefinition.ActivatableAbilityDefinition ability)
@@ -59,12 +66,11 @@ namespace Jp.ParahumansOfTheWormverse.Dragon
                 {
                     case 0:
                         // Draw a card
-                        Debug.Log("Draw a card");
                         e = DrawCard(HeroTurnTaker);
                         break;
 
                     case 1:
-                        Debug.Log("Play a card");
+                        // Play a card
                         e = SelectAndPlayCardFromHand(HeroTurnTakerController);
                         break;
 
@@ -126,26 +132,29 @@ namespace Jp.ParahumansOfTheWormverse.Dragon
             }
         }
 
-        private IEnumerator ResetFocus(PhaseChangeAction pca)
+        private IEnumerator GainFocus()
         {
-            if (HasBeenSetToTrueThisTurn("DragonFocusReset")) { yield break; }
-
-            SetCardPropertyToTrueIfRealAction("DragonFocusReset");
-
             var pool = CharacterCard.FindTokenPool("FocusPool");
             if (pool == null) { yield break; }
 
-            var tokensToMove = 4 - pool.CurrentValue;
-            IEnumerator e;
-            if (tokensToMove < 0)
+            var e = GameController.AddTokensToPool(pool, 4, GetCardSource());
+            if (UseUnityCoroutines)
             {
-                e = GameController.RemoveTokensFromPool(pool, -tokensToMove, cardSource: GetCardSource());
+                yield return GameController.StartCoroutine(e);
             }
             else
             {
-                e = GameController.AddTokensToPool(pool, tokensToMove, GetCardSource());
+                GameController.ExhaustCoroutine(e);
             }
+        }
 
+        private IEnumerator ResetFocus()
+        {
+            var pool = CharacterCard.FindTokenPool("FocusPool");
+            if (pool == null) { yield break; }
+
+            
+            var e = GameController.RemoveTokensFromPool(pool, pool.CurrentValue, cardSource: GetCardSource());
             if (UseUnityCoroutines)
             {
                 yield return GameController.StartCoroutine(e);
