@@ -1,0 +1,313 @@
+{
+  "name": "The Slaughterhouse 9",
+  "kind": "Villain",
+  "initialCardIdentifiers": [ "Slaughterhouse9Character" ],
+  "cards": [
+    {
+      "identifier": "Slaughterhouse9Character",
+      "title": "Slaughterhouse 9",
+      "body": "Parahuman Murder Squad",
+      "count": 1,
+      "character": true,
+      "isReal": false,
+      "icons": [],
+      "backgroundColor": "ffffff",
+      "setup": [ "Search the Villain deck for all Nine cards, shuffle them, and put them under this card. Move the top H cards from under this card into the villain play area." ],
+      "gameplay": [ "Whenever a Nine card would be destroyed, flip it instead. Whenever no villain targets are in play, the heroes win the game" ],
+      "openingLines": {
+        "default": "blargh"
+      },
+      "difficulty": 2,
+      "advanced": "At the end of the villain turn move the top card under this card into the villain play area.",
+      "advancedIcons": [ "" ],
+      "flippedBody": "",
+      "flippedGameplay": [],
+      "flippedIcons": [],
+      "flippedAdvanced": "",
+      "flippedAdvancedIcons": [ "" ],
+      "flippedNemesisIdentifiers": [ "" ]
+    },
+    {
+      "identifier": "JackSlashCharacter",
+      "title": "Jack Slash",
+      "hitpoints": 26,
+      "flippedShowHitpoints": false,
+      "count": 1,
+      "character": true,
+      "body": "Leader of the Nine",
+      "keywords": [ "parahuman", "nine" ],
+      "nemesisIdentifiers": [ "Skitter" ],
+      "flippedBody": "Incapacitated",
+      "gameplay": [
+        "Once per turn, when an Attack card enters the trash, this card deals X melee damage to each hero, where X = 2 * the number of Powers controlled by that player",
+        "Once per turn, when a Special card enters the trash, play the top card of the villain deck"
+      ],
+      "flippedGameplay": [
+        "Whenever a hero uses a power this card deals that hero 1 melee damage"
+      ],
+      "icons": [],
+      "flippedIcons": []
+    },
+    {
+      "identifier": "BonesawCharacter",
+      "title": "Bonesaw",
+      "hitpoints": 24,
+      "flippedShowHitpoints": false,
+      "count": 1,
+      "character": true,
+      "body": "Biotinker",
+      "keywords": [ "parahuman", "nine" ],
+      "nemesisIdentifiers": [ "Grue", "GutsAndGlory" ],
+      "flippedBody": "Incapacitated",
+      "gameplay": [
+        "Once per turn, when a Defence card enters the trash each villain target regains 2 HP",
+        "Once per turn, when a Special card enters the trash this card deals 2 toxic damage to all non-villain targets"
+      ],
+      "flippedGameplay": [
+        "At the end of the villain turn the villain target with the lowest HP regains 1 HP"
+      ],
+      "icons": [],
+      "flippedIcons": []
+    },
+    {
+      "identifier": "CrawlerCharacter",
+      "title": "Crawler",
+      "hitpoints": 30,
+      "flippedShowHitpoints": false,
+      "count": 1,
+      "character": true,
+      "body": "Adaptive Regenerator",
+      "keywords": [ "parahuman", "nine" ],
+      "nemesisIdentifiers": [ "GutsAndGlory" ],
+      "flippedBody": "Incapacitated",
+      "gameplay": [
+        "Whenever Crawler is dealt damage he becomes immune to that damage type until the next time he takes damage.",
+        "Once per turn, when an Attack card enters the trash this card deals 2 toxic damage and 2 melee damage to the non-villain target with the highest HP.",
+        "Once per turn, when a Special card enters the trash this card regains 30 HP"
+      ],
+      "flippedGameplay": [
+        "At the end of the villain turn this card deals 2 melee damage to the hero target with the lowest HP"
+      ],
+      "icons": [],
+      "flippedIcons": []
+    },
+    {
+      "identifier": "BurnscarCharacter",
+      "title": "Burnscar",
+      "hitpoints": 24,
+      "flippedShowHitpoints": false,
+      "count": 1,
+      "character": true,
+      "body": "Pyrokinetic",
+      "keywords": [ "parahuman", "nine" ],
+      "nemesisIdentifiers": [ "Labyrinth" ],
+      "flippedBody": "Incapacitated",
+      "gameplay": [
+        "Once per turn, when a Special card enters the trash destroy all environment cards, then Burnscar deals X fire damage to all non-villain targets, where X = 1 + the number of environment cards destroyed in this way",
+        "Once per turn, when an Attack card enters the trash this card deals 3 fire damage to the hero target with the lowest HP, then destroy a noncharacter hero card"
+      ],
+      "flippedGameplay": [
+        "At the end of the villain turn this card deals 1 fire damage to all non-villain targets"
+      ],
+      "icons": [],
+      "flippedIcons": []
+    },
+    {
+      "identifier": "MannequinCharacter",
+      "title": "Mannequin",
+      "hitpoints": 26,
+      "flippedShowHitpoints": false,
+      "count": 1,
+      "character": true,
+      "body": "Tinker Killer",
+      "keywords": [ "parahuman", "nine" ],
+      "nemesisIdentifiers": [ "Armsmaster" ],
+      "flippedBody": "Incapacitated",
+      "gameplay": [
+        "Reduce damage dealt to Mannequin by 1",
+        "Once per turn, when a Defence card enters the trash destroy 1 hero Ongoing or Equipment card"
+      ],
+      "flippedGameplay": [
+        "Reduce damage dealt to the villain target with the lowest HP by 1"
+      ],
+      "icons": [],
+      "flippedIcons": []
+    },
+    {
+      "identifier": "ShatterbirdCharacter",
+      "title": "Shatterbird",
+      "hitpoints": 24,
+      "flippedShowHitpoints": false,
+      "count": 1,
+      "character": true,
+      "body": "Silicakinetic",
+      "keywords": [ "parahuman", "nine" ],
+      "nemesisIdentifiers": [ "Regent" ],
+      "flippedBody": "Incapacitated",
+      "gameplay": [
+        "Once per turn, when an Attack card enters the trash Shatterbird deals 2 projectile damage to the H - 1 hero targets with the highest HP"
+      ],
+      "flippedGameplay": [
+        "At the end of the villain turn this card deals 1 projectile damage to all non-villain targets"
+      ],
+      "icons": [],
+      "flippedIcons": []
+    },
+    {
+      "identifier": "TheSiberianCharacter",
+      "title": "The Siberian",
+      "hitpoints": 26,
+      "flippedShowHitpoints": false,
+      "count": 1,
+      "character": true,
+      "body": "Unstoppable Force",
+      "keywords": [ "parahuman", "nine" ],
+      "nemesisIdentifiers": [ "Bitch" ],
+      "flippedBody": "Incapacitated",
+      "gameplay": [
+        "The Nine target played just before and just after The Siberian are immune to damage"
+      ],
+      "flippedGameplay": [
+        "The villain target with the lowest HP is immune to melee damage"
+      ],
+      "icons": [],
+      "flippedIcons": []
+    },
+    {
+      "identifier": "CherishCharacter",
+      "title": "Cherish",
+      "hitpoints": 24,
+      "flippedShowHitpoints": false,
+      "count": 1,
+      "character": true,
+      "body": "Empath",
+      "keywords": [ "parahuman", "nine" ],
+      "nemesisIdentifiers": [ "Regent" ],
+      "flippedBody": "Incapacitated",
+      "gameplay": [
+        "Once per turn, when a Defence card enters the trash the hero with the most cards in hand discards 2 cards",
+        "Whenever Cherish is dealt damage, Cherish deals 2 psychic damage to the target that dealt her damage"
+      ],
+      "flippedGameplay": [
+        "Whenever a target is destroyed during a hero's turn, that hero deals themselves 1 psychic damage"
+      ],
+      "icons": [],
+      "flippedIcons": []
+    },
+
+    {
+      "identifier": "MurderRat",
+      "title": "Murder Rat",
+      "hitpoints": 8,
+      "count": 1,
+      "body": "At the end of the villain turn Murder Rat deals 2 melee damage to the hero target with the lowest HP",
+      "keywords": [ "parahuman" ],
+      "icons": []
+    },
+    {
+      "identifier": "HatchetFace",
+      "title": "Hatchet Face",
+      "hitpoints": 8,
+      "count": 1,
+      "body": "Heroes may not use powers",
+      "keywords": [ "parahuman" ],
+      "icons": []
+    },
+    {
+      "identifier": "Spiderbots",
+      "title": "Spiderbots",
+      "hitpoints": 4,
+      "count": 4,
+      "body": "At the end of the villain turn this card deals X melee damage to the hero target with the lowest HP, where X = 1 + the number of Spiderbots in play",
+      "keywords": [ "device" ],
+      "nemesisIdentifiers": [ "Battery" ],
+      "icons": []
+    },
+    {
+      "identifier": "TheyreAllBetterNow",
+      "title": "They're All Better Now",
+      "count": 1,
+      "body": "Flip the most recently defeated Nine card and set their HP to 10. If no cards are flipped in this way play the top card of the villain deck",
+      "keywords": [ "one-shot", "defence" ],
+      "icons": []
+    },
+    {
+      "identifier": "YouveBeenAnticipated",
+      "title": "You've Been Anticipated",
+      "count": 2,
+      "body": "Each player discards 2 cards",
+      "keywords": [ "one-shot", "defence" ],
+      "icons": []
+    },
+    {
+      "identifier": "SomeLightEntertainment",
+      "title": "Some Light Entertainment",
+      "count": 2,
+      "body": "Each villain target in play deals 2 melee damage to the hero target with the highest HP",
+      "keywords": [ "one-shot", "attack" ],
+      "icons": []
+    },
+    {
+      "identifier": "TheScream",
+      "title": "The Scream",
+      "count": 2,
+      "body": [
+        "Each hero may destroy any number of Equipment cards.",
+        "The Nine card with the highest HP deals each hero target X projectile damage, where X = 2 * the number of Equipment cards in play"
+      ],
+      "keywords": [ "one-shot", "attack" ],
+      "icons": []
+    },
+    {
+      "identifier": "Legend",
+      "title": "Legend",
+      "count": 2,
+      "body": "Increase damage dealt by villain cards by 1",
+      "keywords": [ "ongoing", "special" ],
+      "icons": []
+    },
+    {
+      "identifier": "LessThanHuman",
+      "title": "Less Than Human",
+      "count": 2,
+      "body": "Reduce damage dealt to villain targets by 1",
+      "keywords": [ "ongoing", "defence" ],
+      "icons": []
+    },
+    {
+      "identifier": "SomeMoreFriends",
+      "title": "Some More Friends",
+      "count": 2,
+      "body": "Move the top card under the Slaughterhouse 9 card into the villain play area. Play the top card of the villain deck",
+      "keywords": [ "one-shot" ],
+      "icons": []
+    },
+    {
+      "identifier": "ShallWePlayAGame",
+      "title": "Shall We Play a Game?",
+      "count": 2,
+      "body": "If Jack Slash is not in play, find Jack Slash under the Slaughterhouse 9 card and put him into the villain play area. Jack Slash deals 2 psychic damage to all hero targets",
+      "keywords": [ "one-shot", "special" ],
+      "icons": []
+    },
+    {
+      "identifier": "ChangeTheRules",
+      "title": "Change the Rules",
+      "count": 2,
+      "body": [
+        "The heroes can't win the game",
+        "Shuffle all Nine targets in play back under the Slaughterhouse 9 card. Move X cards from under the Slaughterhouse 9 card into the villain play area, where X = 1 + the number of Nine cards that were in play"
+      ],
+      "keywords": [ "one-shot", "defence" ],
+      "icons": []
+    },
+    {
+      "identifier": "WeDontTakePrisoners",
+      "title": "We Don't Take Prisoners",
+      "count": 2,
+      "body": "Whenever a target is destroyed by a villain card each hero deals themselves 2 psychic damage.",
+      "keywords": [ "ongoing", "attack" ],
+      "icons": []
+    }
+  ]
+}

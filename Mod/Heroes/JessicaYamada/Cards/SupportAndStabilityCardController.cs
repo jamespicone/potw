@@ -30,10 +30,12 @@ namespace Jp.ParahumansOfTheWormverse.JessicaYamada
         public IEnumerator MaybePrevent(DealDamageAction dda)
         {
             // Check if it's the first time this turn a hero has dealt themselves damage
-            if (Journal.DealDamageEntriesThisTurn().Where(ddje => ddje.TargetCard.IsHeroCharacterCard && ddje.SourceCard == ddje.TargetCard).Count() > 0)
+            if (HasBeenSetToTrueThisTurn("JessicaSupportStability"))
             {
                 yield break;
             }
+
+            SetCardPropertyToTrueIfRealAction("JessicaSupportStability");
 
             if (dda.IsPretend)
             {

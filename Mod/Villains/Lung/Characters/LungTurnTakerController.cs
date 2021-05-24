@@ -4,7 +4,7 @@ using System.Collections;
 
 namespace Jp.ParahumansOfTheWormverse.Lung
 {
-    class LungTurnTakerController : TurnTakerController
+    public class LungTurnTakerController : TurnTakerController
     {
         public LungTurnTakerController(TurnTaker turnTaker, GameController gameController) : base(turnTaker, gameController)
         { }
