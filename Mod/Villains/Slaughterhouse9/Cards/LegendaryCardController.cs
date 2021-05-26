@@ -9,9 +9,9 @@ using System.Text;
 
 namespace Jp.ParahumansOfTheWormverse.Slaughterhouse9
 {
-    public class LegendCardController : CardController
+    public class LegendaryCardController : CardController
     {
-        public LegendCardController(Card card, TurnTakerController turnTakerController)
+        public LegendaryCardController(Card card, TurnTakerController turnTakerController)
             : base(card, turnTakerController)
         {
         }

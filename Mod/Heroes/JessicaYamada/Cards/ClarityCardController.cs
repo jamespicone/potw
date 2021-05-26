@@ -19,7 +19,7 @@ namespace Jp.ParahumansOfTheWormverse.JessicaYamada
         public override IEnumerator Play()
         {
             // "Each player reveals the top card of their deck. They may either discard it or return it to the top of their deck"
-            var e = EachPlayerLooksAtTheTopCardOfTheirDeckThenReplacesItOrDiscardsIt(TurnTakerController);
+            var e = EachPlayerLooksAtTheTopCardOfTheirDeckThenReplacesItOrDiscardsItEx(TurnTakerController);
             if (UseUnityCoroutines)
             {
                 yield return GameController.StartCoroutine(e);

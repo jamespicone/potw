@@ -259,8 +259,8 @@
       "icons": []
     },
     {
-      "identifier": "Legend",
-      "title": "Legend",
+      "identifier": "Legendary",
+      "title": "Legendary",
       "count": 2,
       "body": "Increase damage dealt by villain cards by 1",
       "keywords": [ "ongoing", "special" ],
@@ -296,7 +296,7 @@
       "count": 2,
       "body": [
         "The heroes can't win the game",
-        "Shuffle all Nine targets in play back under the Slaughterhouse 9 card. Move X cards from under the Slaughterhouse 9 card into the villain play area, where X = 1 + the number of Nine cards that were in play"
+        "Shuffle the Nine target with the lowest HP back under the Slaughterhouse 9 card. Move 2 cards from under the Slaughterhouse 9 card into the villain play area"
       ],
       "keywords": [ "one-shot", "defence" ],
       "icons": []
