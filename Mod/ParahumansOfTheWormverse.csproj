@@ -264,7 +264,7 @@
     <Compile Include="Villains\Slaughterhouse9\Cards\TheScreamCardController.cs" />
     <Compile Include="Villains\Slaughterhouse9\Cards\YouveBeenAnticipatedCardController.cs" />
     <Compile Include="Villains\Slaughterhouse9\Cards\SomeLightEntertainmentCardController.cs" />
-    <Compile Include="Villains\Slaughterhouse9\Cards\LegendCardController.cs" />
+    <Compile Include="Villains\Slaughterhouse9\Cards\LegendaryCardController.cs" />
     <Compile Include="Villains\Slaughterhouse9\Cards\LessThanHumanCardController.cs" />
     <Compile Include="Villains\Slaughterhouse9\Cards\SomeMoreFriendsCardController.cs" />
     <Compile Include="Villains\Slaughterhouse9\Cards\ShallWePlayAGameCardController.cs" />

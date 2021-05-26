@@ -259,8 +259,8 @@
       "icons": []
     },
     {
-      "identifier": "Legend",
-      "title": "Legend",
+      "identifier": "Legendary",
+      "title": "Legendary",
       "count": 2,
       "body": "Increase damage dealt by villain cards by 1",
       "keywords": [ "ongoing", "special" ],
