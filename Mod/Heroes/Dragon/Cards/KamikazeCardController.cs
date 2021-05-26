@@ -7,9 +7,9 @@ using System.Text;
 
 namespace Jp.ParahumansOfTheWormverse.Dragon
 {
-    public class TestCardCardController : CardController
+    public class KamikazeCardController : CardController
     {
-        public TestCardCardController(Card card, TurnTakerController controller) : base(card, controller)
+        public KamikazeCardController(Card card, TurnTakerController controller) : base(card, controller)
         { }
     }
 }
