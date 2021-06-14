@@ -51,7 +51,7 @@ namespace Jp.ParahumansOfTheWormverse.Dragon
                 new LinqCardCriteria(c => c.DoKeywordsContain("equipment") || c.DoKeywordsContain("device"), "equipment or device"),
                 numberOfMatches: null,
                 numberOfCards: cardsToReveal,
-                revealedCardDisplay: RevealedCardDisplay.ShowMatchingCards
+                revealedCardDisplay: RevealedCardDisplay.ShowRevealedCards
             );
             if (UseUnityCoroutines)
             {

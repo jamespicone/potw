@@ -6,6 +6,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+using UnityEngine;
+
 namespace Jp.ParahumansOfTheWormverse.Dragon
 {
     public class FirepowerCardController : CardController
@@ -13,10 +15,8 @@ namespace Jp.ParahumansOfTheWormverse.Dragon
         public FirepowerCardController(Card card, TurnTakerController controller) : base(card, controller)
         { }
 
-        public override IEnumerator ActivateAbilityEx(CardDefinition.ActivatableAbilityDefinition ability)
+        public override IEnumerator Play()
         {
-            if (ability.Name != "focus") { yield break; }
-
             var storedTargets = new List<SelectTargetDecision>();
             // Choose either Dragon or a Mech in this play area. They deal a target 3 fire damage
             var e = GameController.SelectTargetAndStoreResults(

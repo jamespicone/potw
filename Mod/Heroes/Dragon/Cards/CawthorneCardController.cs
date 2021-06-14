@@ -37,8 +37,8 @@ namespace Jp.ParahumansOfTheWormverse.Dragon
             // Select up to 2 targets. Reduce the next damage those targets deal by 2
             var e = GameController.SelectCardsAndDoAction(
                 HeroTurnTakerController,
-                new LinqCardCriteria(),
-                SelectionType.PreventDamage,
+                new LinqCardCriteria(c => c.IsTarget && c.IsInPlay),
+                SelectionType.Custom,
                 c => ReduceNextDamage(c),
                 numberOfCards: 2,
                 requiredDecisions: 0,
@@ -52,6 +52,16 @@ namespace Jp.ParahumansOfTheWormverse.Dragon
             {
                 GameController.ExhaustCoroutine(e);
             }
+        }
+
+        public override CustomDecisionText GetCustomDecisionText(IDecision decision)
+        {
+            return new CustomDecisionText(
+                "Select a target to deal less damage",
+                "Selecting a target to deal less damage",
+                "Vote for a target to deal less damage",
+                "Target to deal less damage"
+            );
         }
 
         private IEnumerator ReduceNextDamage(Card c)

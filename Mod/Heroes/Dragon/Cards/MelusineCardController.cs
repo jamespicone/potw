@@ -18,7 +18,7 @@ namespace Jp.ParahumansOfTheWormverse.Dragon
         {
             // Whenever a target deals this card damage, this card deals that target 2 fire damage
             AddCounterDamageTrigger(
-                dda => dda.DamageSource.IsTarget,
+                dda => dda.DamageSource.IsTarget && dda.Target == Card && dda.DidDealDamage,
                 () => Card,
                 () => Card,
                 oncePerTargetPerTurn: false,

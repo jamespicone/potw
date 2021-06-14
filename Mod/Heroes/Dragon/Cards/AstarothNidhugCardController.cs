@@ -48,7 +48,7 @@ namespace Jp.ParahumansOfTheWormverse.Dragon
 
         private IEnumerator AddAimToken()
         {
-            var pool = CharacterCard.FindTokenPool("AimPool");
+            var pool = Card.FindTokenPool("AimPool");
             if (pool == null) { yield break; }
 
             var e = GameController.AddTokensToPool(pool, 1, GetCardSource());
@@ -65,7 +65,7 @@ namespace Jp.ParahumansOfTheWormverse.Dragon
         private IEnumerator Shoot()
         {
             // Deal X projectile damage to a target, where X is the number of Aim tokens on this card. Remove all Aim tokens from this card
-            var pool = CharacterCard.FindTokenPool("AimPool");
+            var pool = Card.FindTokenPool("AimPool");
             if (pool == null) { yield break; }
 
             var e = GameController.SelectTargetsAndDealDamage(

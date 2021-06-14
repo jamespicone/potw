@@ -35,7 +35,7 @@ namespace Jp.ParahumansOfTheWormverse.Dragon
             if (definition.Name != "focus") { yield break; }
             if (definition.Number != 1) { yield break; }
 
-            var pool = CharacterCard.FindTokenPool("DronePool");
+            var pool = Card.FindTokenPool("DronePool");
             if (pool == null) { yield break; }
             if (pool.CurrentValue <= 0) { yield break; }
 
@@ -62,7 +62,7 @@ namespace Jp.ParahumansOfTheWormverse.Dragon
 
         private IEnumerator AddDrones()
         {
-            var pool = CharacterCard.FindTokenPool("DronePool");
+            var pool = Card.FindTokenPool("DronePool");
             if (pool == null) { yield break; }
 
             var e = GameController.AddTokensToPool(pool, 1, GetCardSource());
@@ -78,7 +78,7 @@ namespace Jp.ParahumansOfTheWormverse.Dragon
 
         private IEnumerator LoseDrones()
         {
-            var pool = CharacterCard.FindTokenPool("DronePool");
+            var pool = Card.FindTokenPool("DronePool");
             if (pool == null) { yield break; }
 
             var e = GameController.RemoveTokensFromPool(pool, 2, cardSource: GetCardSource());

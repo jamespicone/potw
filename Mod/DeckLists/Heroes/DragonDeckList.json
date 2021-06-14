@@ -214,7 +214,7 @@
       "flavorText": "",
       "flavorReference": "",
       "count": 2,
-      "hitPoints": 4,
+      "hitpoints": 4,
       "body": "At the start of your turn gain a Focus point",
       "activatableAbilities": [
         {
@@ -249,7 +249,7 @@
       "flavorText": "",
       "flavorReference": "",
       "count": 1,
-      "hitPoints": 18,
+      "hitpoints": 18,
       "body": [
         "Reduce damage dealt to Dragon by 1.",
         "At the start of your turn lose 2 Focus points.",
@@ -276,7 +276,7 @@
       "flavorText": "",
       "flavorReference": "",
       "count": 1,
-      "hitPoints": 10,
+      "hitpoints": 10,
       "body": [
         "At the start of your turn lose 1 Focus point.",
         "At the end of your turn this card deals 1 projectile damage to up to 2 targets."
@@ -302,7 +302,7 @@
       "flavorText": "",
       "flavorReference": "",
       "count": 1,
-      "hitPoints": 10,
+      "hitpoints": 10,
       "body": [
         "At the start of your turn lose 1 Focus point.",
         "At the end of your turn place a Drone token on this card.",
@@ -338,7 +338,7 @@
       "flavorText": "",
       "flavorReference": "",
       "count": 1,
-      "hitPoints": 12,
+      "hitpoints": 12,
       "body": [
         "At the start of your turn lose 1 Focus point.",
         "Whenever a target deals this card damage, this card deals that target 2 fire damage"
@@ -369,7 +369,7 @@
       "flavorText": "",
       "flavorReference": "",
       "count": 1,
-      "hitPoints": 10,
+      "hitpoints": 10,
       "body": [
         "At the start of your turn lose 1 Focus point.",
         "Reduce damage dealt to this card by 1"
@@ -395,7 +395,7 @@
       "flavorText": "",
       "flavorReference": "",
       "count": 1,
-      "hitPoints": 10,
+      "hitpoints": 10,
       "body": [
         "At the start of your turn lose 1 Focus point.",
         "At the end of your turn this card deals 1 lightning damage to all targets with 3 or less HP"
@@ -426,7 +426,7 @@
       "flavorText": "",
       "flavorReference": "",
       "count": 1,
-      "hitPoints": 10,
+      "hitpoints": 10,
       "body": [
         "At the start of your turn lose 1 Focus point.",
         "At the end of your turn place an Aim token on this card"

@@ -28,13 +28,50 @@ namespace Jp.ParahumansOfTheWormverse.Dragon
                     pca => ResetFocus(), new TriggerType[] { TriggerType.FirstTrigger }, TriggerTiming.Before));
 
                 AddSideTrigger(AddPhaseChangeTrigger(tt => tt == TurnTaker, p => p == Phase.Unknown, 
-                    pca => true, pca => DoFocusActions(), new TriggerType[] { TriggerType.UsePower }, TriggerTiming.After ));
+                    pca => true, pca => DoFocusActions(), new TriggerType[] { TriggerType.UsePower }, TriggerTiming.Before ));
             }
         }
 
         public override IEnumerator UseIncapacitatedAbility(int index)
         {
-            yield break;
+            IEnumerator e;
+
+            switch(index)
+            {
+                default: yield break;
+                case 0:
+                    // One target regains 2 HP
+                    e = GameController.SelectAndGainHP(HeroTurnTakerController, 2, cardSource: GetCardSource());
+                    break;
+
+                case 1:
+                    // One player may take a card from their trash into their hand.
+                    e = GameController.SelectHeroToMoveCardFromTrash(
+                        HeroTurnTakerController,
+                        httc => httc.HeroTurnTaker.Hand,
+                        cardSource: GetCardSource()
+                    );
+                    break;
+
+                case 2:
+                    // Reduce damage dealt by environment targets by 2 until the start of your next turn.
+                    var status = new ReduceDamageStatusEffect(2);
+                    status.SourceCriteria.IsEnvironment = true;
+                    status.SourceCriteria.IsTarget = true;
+                    status.UntilStartOfNextTurn(TurnTaker);
+
+                    e = GameController.AddStatusEffect(status, true, GetCardSource());
+                    break;
+            }
+
+            if (UseUnityCoroutines)
+            {
+                yield return GameController.StartCoroutine(e);
+            }
+            else
+            {
+                GameController.ExhaustCoroutine(e);
+            }
         }
 
         public override IEnumerator UsePower(int index = 0)
@@ -57,8 +94,6 @@ namespace Jp.ParahumansOfTheWormverse.Dragon
 
         public override IEnumerator ActivateAbilityEx(CardDefinition.ActivatableAbilityDefinition ability)
         {
-            Debug.Log("ActivateAbilityEx with name \"" + ability.Name + "\" and number " + ability.Number);
-
             if (ability.Name == "focus")
             {
                 IEnumerator e;
@@ -183,21 +218,43 @@ namespace Jp.ParahumansOfTheWormverse.Dragon
 
         public override TurnPhase AskIfTurnPhaseShouldBeChanged(TurnPhase fromPhase, TurnPhase toPhase)
         {
+            Debug.Log("AskIfTurnPhaseShouldBeChanged");
+
             if (Card.IsFlipped) { return null; }
 
-            if (fromPhase == null || toPhase == null) { return null; }
-            if (fromPhase.TurnTaker != TurnTaker || toPhase.TurnTaker != TurnTaker) { return null; }
-            if (fromPhase.IsBeforeStart || fromPhase.IsAfterEnd) { return null; }
-            if (toPhase.IsBeforeStart || toPhase.IsAfterEnd) { return null; }
+            if (fromPhase == null || toPhase == null) {
+                Debug.Log("From or To is null, returning null");
+                return null;
+            }
 
-            if (fromPhase.Phase != Phase.Unknown)
+            Debug.Log($"From phase value: {fromPhase.Phase} toPhase {toPhase.Phase}");
+
+            if (fromPhase.TurnTaker != TurnTaker) {
+                Debug.Log("One of the from/to isn't Dragon, not changing phase");
+                return null;
+            }
+            if (fromPhase.IsBeforeStart || fromPhase.IsAfterEnd) {
+                Debug.Log("Returning null for beforeStart/afterEnd");
+                return null;
+            }
+            if (toPhase.IsBeforeStart || toPhase.IsAfterEnd) {
+                Debug.Log("Returning null for beforeStart/afterEnd");
+                return null;
+            }
+
+            if (toPhase.TurnTaker == TurnTaker)
             {
+                // From dragon -> to dragon implies we've had our first phase.
                 return new TurnPhase(HeroTurnTaker, Phase.Unknown);
             }
-            else
+
+            if (fromPhase.Phase == Phase.Unknown && toPhase.TurnTaker != TurnTaker)
             {
-                return new TurnPhase(HeroTurnTaker, Phase.End);
+                // From dragon -> to someone else means we've just had our focus phase
+                return new TurnPhase(HeroTurnTaker, GameController.FindLastPhase(TurnTaker));
             }
+
+            return null;
         }
     }
 }
