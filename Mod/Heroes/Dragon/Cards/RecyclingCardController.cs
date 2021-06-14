@@ -14,13 +14,13 @@ namespace Jp.ParahumansOfTheWormverse.Dragon
 
         public override IEnumerator Play()
         {
-            // Shuffle up to 2 equipment cards from your trash back into your deck
+            // Shuffle up to 2 equipment or device cards from your trash back into your deck
             var e = GameController.SelectCardsFromLocationAndMoveThem(
                 HeroTurnTakerController,
                 TurnTaker.Trash,
                 minNumberOfCards: null,
                 maxNumberOfCards: 2,
-                new LinqCardCriteria(c => c.DoKeywordsContain("equipment")),
+                new LinqCardCriteria(c => c.DoKeywordsContain("equipment") || c.DoKeywordsContain("device"), "equipment or device"),
                 new MoveCardDestination[] { new MoveCardDestination(TurnTaker.Deck) },
                 selectionType: SelectionType.MoveCardToHand,
                 cardSource: GetCardSource()
