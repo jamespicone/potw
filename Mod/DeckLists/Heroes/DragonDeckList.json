@@ -316,8 +316,17 @@
         },
         {
           "name": "focus",
-          "text": "This card deals X targets 2 lightning damage, where X is the number of Drone tokens on this card",
+          "text": "This card deals up to X targets 2 lightning damage, where X is the number of Drone tokens on this card",
           "number": 1
+        }
+      ],
+      "tokenPools": [
+        {
+          "identifier": "DronePool",
+          "name": "Drone pool",
+          "initialValue": 0,
+          "minimumValue": 0,
+          "color": "ff0000"
         }
       ]
     },
@@ -437,6 +446,15 @@
           "name": "focus",
           "text": "Deal X projectile damage to a target, where X is the number of Aim tokens on this card. Remove all Aim tokens from this card",
           "number": 2
+        }
+      ],
+      "tokenPools": [
+        {
+          "identifier": "AimPool",
+          "name": "Aim pool",
+          "initialValue": 0,
+          "minimumValue": 0,
+          "color": "000000"
         }
       ]
     }

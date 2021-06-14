@@ -10,7 +10,7 @@ using UnityEngine;
 
 namespace Jp.ParahumansOfTheWormverse.Dragon
 {
-    public class DragonCharacterCardController : HeroCharacterCardController
+    public class DragonCharacterCardController : HeroCharacterCardController, IFocusPoolController
     {
         public DragonCharacterCardController(Card card, TurnTakerController controller) : base(card, controller)
         {
@@ -22,7 +22,7 @@ namespace Jp.ParahumansOfTheWormverse.Dragon
             if(! Card.IsFlipped)
             {
                 AddSideTrigger(AddPhaseChangeTrigger(tt => tt == TurnTaker, p => p == Phase.Start, pca => true,
-                    pca => GainFocus(), new TriggerType[] { TriggerType.FirstTrigger }, TriggerTiming.Before));
+                    pca => AddFocusTokens(4, GetCardSource()), new TriggerType[] { TriggerType.FirstTrigger }, TriggerTiming.Before));
 
                 AddSideTrigger(AddPhaseChangeTrigger(tt => tt == TurnTaker, p => p == Phase.End, pca => true,
                     pca => ResetFocus(), new TriggerType[] { TriggerType.FirstTrigger }, TriggerTiming.Before));
@@ -132,12 +132,28 @@ namespace Jp.ParahumansOfTheWormverse.Dragon
             }
         }
 
-        private IEnumerator GainFocus()
+        public IEnumerator AddFocusTokens(int tokens, CardSource source)
         {
             var pool = CharacterCard.FindTokenPool("FocusPool");
             if (pool == null) { yield break; }
 
-            var e = GameController.AddTokensToPool(pool, 4, GetCardSource());
+            var e = GameController.AddTokensToPool(pool, tokens, source);
+            if (UseUnityCoroutines)
+            {
+                yield return GameController.StartCoroutine(e);
+            }
+            else
+            {
+                GameController.ExhaustCoroutine(e);
+            }
+        }
+
+        public IEnumerator LoseFocusTokens(int tokens, CardSource source)
+        {
+            var pool = CharacterCard.FindTokenPool("FocusPool");
+            if (pool == null) { yield break; }
+
+            var e = GameController.RemoveTokensFromPool(pool, tokens, cardSource: source);
             if (UseUnityCoroutines)
             {
                 yield return GameController.StartCoroutine(e);
