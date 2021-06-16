@@ -1,7 +1,7 @@
 {
   "name": "Dragon",
   "kind": "Hero",
-  "initialCardIdentifiers": [ "DragonCharacter" ],
+  "initialCardIdentifiers": [ "DragonCharacter", "DragonsROM" ],
   "cards": [
     {
       "identifier": "DragonCharacter",
@@ -30,8 +30,26 @@
         "One player may take a card from their trash into their hand.",
         "Reduce damage dealt by environment targets by 2 until the start of your next turn."
       ],
-      "flippedIcons": [
-      ],
+      "flippedIcons": [],
+      "tokenPools": [
+        {
+          "identifier": "FocusPool",
+          "name": "Focus pool",
+          "initialValue": 0,
+          "minimumValue": 0,
+          "color": "0000FF"
+        }
+      ]
+    },
+    {
+      "identifier": "DragonsROM",
+      "title": "Dragon's ROM",
+      "icons": [],
+      "keyworks": [],
+      "flavorText": "",
+      "flavorReference": "",
+      "count": 1,
+      "isReal": false,
       "activatableAbilities": [
         {
           "name": "focus",
@@ -42,15 +60,11 @@
           "name": "focus",
           "text": "Play a card",
           "number": 1
-        }
-      ],
-      "tokenPools": [
+        },
         {
-          "identifier": "FocusPool",
-          "name": "Focus pool",
-          "initialValue": 0,
-          "minimumValue": 0,
-          "color": "0000FF"
+          "name": "focus",
+          "text": "Return a Mech in your play area to your hand",
+          "number": 2
         }
       ]
     },
@@ -258,11 +272,6 @@
       "activatableAbilities": [
         {
           "name": "focus",
-          "text": "Return this card to your hand",
-          "number": 0
-        },
-        {
-          "name": "focus",
           "text": "This card deals 2 irreducible energy damage to a target",
           "number": 1
         }
@@ -282,11 +291,6 @@
         "At the end of your turn this card deals 1 projectile damage to up to 2 targets."
       ],
       "activatableAbilities": [
-        {
-          "name": "focus",
-          "text": "Return this card to your hand",
-          "number": 0
-        },
         {
           "name": "focus",
           "text": "Select up to 2 targets. Reduce the next damage those targets deal by 2",
@@ -309,11 +313,6 @@
         "Whenever this card takes damage remove 2 Drone tokens from it"
       ],
       "activatableAbilities": [
-        {
-          "name": "focus",
-          "text": "Return this card to your hand",
-          "number": 0
-        },
         {
           "name": "focus",
           "text": "This card deals up to X targets 2 lightning damage, where X is the number of Drone tokens on this card",
@@ -346,11 +345,6 @@
       "activatableAbilities": [
         {
           "name": "focus",
-          "text": "Return this card to your hand",
-          "number": 0
-        },
-        {
-          "name": "focus",
           "text": "This card deals a target 3 melee damage",
           "number": 1
         },
@@ -377,11 +371,6 @@
       "activatableAbilities": [
         {
           "name": "focus",
-          "text": "Return this card to your hand",
-          "number": 0
-        },
-        {
-          "name": "focus",
           "text": "Select a damage type. Until the start of your next turn reduce all damage of that type by 1",
           "number": 1
         }
@@ -397,23 +386,17 @@
       "count": 1,
       "hitpoints": 10,
       "body": [
-        "At the start of your turn lose 1 Focus point.",
-        "At the end of your turn this card deals 1 lightning damage to all targets with 3 or less HP"
+        "At the start of your turn lose 1 Focus point. At the end of your turn this card deals 1 lightning damage to all targets under 4 HP"
       ],
       "activatableAbilities": [
         {
           "name": "focus",
-          "text": "Return this card to your hand.",
-          "number": 0
-        },
-        {
-          "name": "focus",
-          "text": "Select a non-character-card target in play and put it on top of its deck.",
+          "text": "Put a non-character-card target in play on top of its deck.",
           "number": 1
         },
         {
           "name": "focus",
-          "text": "Reveal cards from the top of a deck until you reveal a target. You may either discard it or put it into play. Shuffle the other cards back into the deck.",
+          "text": "Reveal cards from the top of a deck until you reveal a target; either discard it or put it into play. Shuffle the other cards back into the deck.",
           "number": 2
         }
       ]
@@ -432,11 +415,6 @@
         "At the end of your turn place an Aim token on this card"
       ],
       "activatableAbilities": [
-        {
-          "name": "focus",
-          "text": "Return this card to your hand.",
-          "number": 0
-        },
         {
           "name": "focus",
           "text": "Place an Aim token on this card",

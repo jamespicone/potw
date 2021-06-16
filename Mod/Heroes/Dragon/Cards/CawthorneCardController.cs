@@ -29,7 +29,7 @@ namespace Jp.ParahumansOfTheWormverse.Dragon
             );
         }
 
-        protected override IEnumerator HandleOtherAbilities(CardDefinition.ActivatableAbilityDefinition definition)
+        public override IEnumerator ActivateAbilityEx(CardDefinition.ActivatableAbilityDefinition definition)
         {
             if (definition.Name != "focus") { yield break; }
             if (definition.Number != 1) { yield break; }

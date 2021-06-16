@@ -28,7 +28,7 @@ namespace Jp.ParahumansOfTheWormverse.Dragon
             );
         }
 
-        protected override IEnumerator HandleOtherAbilities(CardDefinition.ActivatableAbilityDefinition definition)
+        public override IEnumerator ActivateAbilityEx(CardDefinition.ActivatableAbilityDefinition definition)
         {
             if (definition.Name != "focus") { yield break; }
 
@@ -48,6 +48,7 @@ namespace Jp.ParahumansOfTheWormverse.Dragon
 
         private IEnumerator BounceCard()
         {
+            // TODO 
             // Select a non-character-card target in play and put it on top of its deck.
             var stored = new List<SelectCardDecision>();
             var e = GameController.SelectCardAndStoreResults(

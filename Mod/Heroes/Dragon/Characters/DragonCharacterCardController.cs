@@ -92,43 +92,6 @@ namespace Jp.ParahumansOfTheWormverse.Dragon
             }
         }
 
-        public override IEnumerator ActivateAbilityEx(CardDefinition.ActivatableAbilityDefinition ability)
-        {
-            if (ability.Name == "focus")
-            {
-                IEnumerator e;
-                switch(ability.Number)
-                {
-                    case 0:
-                        // Draw a card
-                        e = DrawCard(HeroTurnTaker);
-                        break;
-
-                    case 1:
-                        // Play a card
-                        e = SelectAndPlayCardFromHand(HeroTurnTakerController);
-                        break;
-
-                    default:
-                        Debug.Log("Unrecognised ability");
-                        yield break;
-                }
-
-                if (UseUnityCoroutines)
-                {
-                    yield return GameController.StartCoroutine(e);
-                }
-                else
-                {
-                    GameController.ExhaustCoroutine(e);
-                }
-            }
-            else
-            {
-                yield return base.ActivateAbilityEx(ability);
-            }
-        }
-
         private IEnumerator DoFocusActions()
         {
             var pool = CharacterCard.FindTokenPool("FocusPool");

@@ -15,8 +15,6 @@ namespace Jp.ParahumansOfTheWormverse.Dragon
 
         protected abstract int FocusCost();
 
-        protected abstract IEnumerator HandleOtherAbilities(CardDefinition.ActivatableAbilityDefinition definition);
-
         protected virtual void AddExtraTriggers() { }
 
         public override void AddTriggers()
@@ -28,32 +26,6 @@ namespace Jp.ParahumansOfTheWormverse.Dragon
             );
 
             AddExtraTriggers();
-        }
-
-        public override IEnumerator ActivateAbilityEx(CardDefinition.ActivatableAbilityDefinition definition)
-        {
-            if (definition.Name == "focus" && definition.Number == 0)
-            {
-                // Return this card to your hand.
-                var e = GameController.MoveCard(
-                    TurnTakerController,
-                    Card,
-                    HeroTurnTaker.Hand,
-                    cardSource: GetCardSource()
-                );
-                if (UseUnityCoroutines)
-                {
-                    yield return GameController.StartCoroutine(e);
-                }
-                else
-                {
-                    GameController.ExhaustCoroutine(e);
-                }
-            }
-            else
-            {
-                yield return HandleOtherAbilities(definition);
-            }
         }
     }
 }

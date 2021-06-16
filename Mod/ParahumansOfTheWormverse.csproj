@@ -212,6 +212,7 @@
     <Compile Include="Heroes\Dragon\Cards\LadonCardController.cs" />
     <Compile Include="Heroes\Dragon\Cards\PythiosCardController.cs" />
     <Compile Include="Heroes\Dragon\Cards\AstarothNidhugCardController.cs" />
+    <Compile Include="Heroes\Dragon\Characters\DragonsROMCardController.cs" />
     <Compile Include="Heroes\Dragon\Extra\MechCardController.cs" />
     <Compile Include="Heroes\Dragon\Extra\DragonExtensionMethods.cs" />
     <Compile Include="Heroes\Dragon\Extra\IFocusPoolController.cs" />
