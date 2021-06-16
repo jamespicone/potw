@@ -14,6 +14,8 @@ namespace Jp.ParahumansOfTheWormverse.Slaughterhouse9
         {
         }
 
+        public override bool AllowFastCoroutinesDuringPretend => IsLowestHitPointsUnique((c) => c.IsVillainTarget);
+
         public override void AddSideTriggers()
         {
             if (Card.IsFlipped)
