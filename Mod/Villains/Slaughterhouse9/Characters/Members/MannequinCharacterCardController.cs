@@ -96,6 +96,6 @@ namespace Jp.ParahumansOfTheWormverse.Slaughterhouse9
         }
 
         private ITrigger reduceDamageTrigger;
-        private bool reduceDamage;
+        private bool reduceDamage = false;
     }
 }
