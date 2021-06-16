@@ -27,11 +27,11 @@ namespace Jp.ParahumansOfTheWormverse.Slaughterhouse9
             // "If Jack Slash is not in play, find Jack Slash under the Slaughterhouse 9 card and put him into the villain play area.
             if (jack.Location == nineCard.UnderLocation)
             {
-                var e = GameController.PlayCard(
+                var e = GameController.MoveIntoPlay(
                     TurnTakerController,
                     jack,
-                    isPutIntoPlay: true,
-                    cardSource: GetCardSource()
+                    TurnTaker,
+                    GetCardSource()
                 );
 
                 if (UseUnityCoroutines)
@@ -45,7 +45,7 @@ namespace Jp.ParahumansOfTheWormverse.Slaughterhouse9
             }
 
             // Jack Slash deals 2 psychic damage to all hero targets
-            if (! jack.IsInPlayAndHasGameText) { yield break; }
+            if (! jack.IsInPlayAndHasGameText || jack.IsIncapacitatedOrOutOfGame) { yield break; }
             var e2 = DealDamage(
                 jack,
                 c => c.IsHero && c.IsTarget,

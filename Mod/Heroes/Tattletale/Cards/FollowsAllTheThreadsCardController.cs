@@ -14,9 +14,6 @@ namespace Jp.ParahumansOfTheWormverse.Tattletale
         public FollowsAllTheThreadsCardController(Card card, TurnTakerController turnTakerController)
             : base(card, turnTakerController)
         {
-            // "Play with the top card of each deck face up."
-            // Going to approximate this as "you may look at the top card of any deck at any time" to minimize weird interactions with, say, Ambuscade's Traps.
-            SpecialStringMaker.ShowSpecialString(() => $"The top card of {TurnTaker.Deck.GetFriendlyName()} is {TurnTaker.Deck.TopCard.Title}.").Condition = () => Card.IsInPlayAndHasGameText && TurnTaker.Deck.HasCards;
         }
 
         public override void AddStartOfGameTriggers()
@@ -26,9 +23,10 @@ namespace Jp.ParahumansOfTheWormverse.Tattletale
 
         private void BuildTopDeckSpecialStrings()
         {
+            // "Play with the top card of each deck face up."
+            // Going to approximate this as "you may look at the top card of any deck at any time" to minimize weird interactions with, say, Ambuscade's Traps.
             //this needs to be all turntakers in all zones.
-            IEnumerable<TurnTaker> activeTurnTakers = FindTurnTakersWhere((TurnTaker tt) => !tt.IsIncapacitatedOrOutOfGame, true);
-            foreach (TurnTaker tt in activeTurnTakers)
+            foreach (TurnTaker tt in GameController.AllTurnTakers)
             {
                 foreach (Location deck in tt.Decks.Where(deck => deck.IsRealDeck))
                 {

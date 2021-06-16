@@ -14,6 +14,8 @@ namespace Jp.ParahumansOfTheWormverse.Slaughterhouse9
         {
         }
 
+        public override bool AllowFastCoroutinesDuringPretend => IsLowestHitPointsUnique((c) => c.IsVillainTarget);
+
         public override void AddSideTriggers()
         {
             // Card PlayIndex is when they came into play
@@ -61,29 +63,33 @@ namespace Jp.ParahumansOfTheWormverse.Slaughterhouse9
 
         private IEnumerator MaybeImmune(DealDamageAction dda)
         {
-            if (dda.IsPretend) { yield break; }
-
-            var wasLowest = new List<bool>();
-            var e = DetermineIfGivenCardIsTargetWithLowestOrHighestHitPoints(
-                dda.Target,
-                highest: false,
-                c => c.IsVillainTarget,
-                dda,
-                wasLowest
-            );
-
-            if (UseUnityCoroutines)
+            if (GameController.PretendMode)
             {
-                yield return GameController.StartCoroutine(e);
+
+                var wasLowest = new List<bool>();
+                var e = DetermineIfGivenCardIsTargetWithLowestOrHighestHitPoints(
+                    dda.Target,
+                    highest: false,
+                    c => c.IsVillainTarget,
+                    dda,
+                    wasLowest
+                );
+
+                if (UseUnityCoroutines)
+                {
+                    yield return GameController.StartCoroutine(e);
+                }
+                else
+                {
+                    GameController.ExhaustCoroutine(e);
+                }
+
+                preventDamage = wasLowest.Count > 0 && wasLowest.First();
             }
-            else
-            {
-                GameController.ExhaustCoroutine(e);
-            }
 
-            if (wasLowest.Count > 0 && wasLowest.First())
+            if (preventDamage)
             {
-                e = GameController.ImmuneToDamage(dda, GetCardSource());
+                var e = GameController.ImmuneToDamage(dda, GetCardSource());
                 if (UseUnityCoroutines)
                 {
                     yield return GameController.StartCoroutine(e);
@@ -93,6 +99,13 @@ namespace Jp.ParahumansOfTheWormverse.Slaughterhouse9
                     GameController.ExhaustCoroutine(e);
                 }
             }
+
+            if (! GameController.PretendMode)
+            {
+                preventDamage = false;
+            }
         }
+
+        private bool preventDamage = false;
     }
 }

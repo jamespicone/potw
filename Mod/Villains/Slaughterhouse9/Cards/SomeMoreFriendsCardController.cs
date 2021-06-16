@@ -57,10 +57,10 @@ namespace Jp.ParahumansOfTheWormverse.Slaughterhouse9
             }
             else
             {
-                var e = GameController.PlayCard(
+                var e = GameController.MoveIntoPlay(
                     TurnTakerController,
                     cardToMove,
-                    isPutIntoPlay: true,
+                    TurnTaker,
                     cardSource: GetCardSource()
                 );
                 if (UseUnityCoroutines)

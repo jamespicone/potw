@@ -57,10 +57,10 @@ namespace Jp.ParahumansOfTheWormverse.Slaughterhouse9
         {
             if (Card.UnderLocation.TopCard == null) { yield break; }
 
-            var e = GameController.PlayCard(
+            var e = GameController.MoveIntoPlay(
                 TurnTakerController,
                 Card.UnderLocation.TopCard,
-                isPutIntoPlay: true,
+                TurnTaker,
                 cardSource: GetCardSource()
             );
             if (UseUnityCoroutines)

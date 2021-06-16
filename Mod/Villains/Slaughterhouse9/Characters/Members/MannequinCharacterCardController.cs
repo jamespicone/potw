@@ -14,6 +14,8 @@ namespace Jp.ParahumansOfTheWormverse.Slaughterhouse9
         {
         }
 
+        public override bool AllowFastCoroutinesDuringPretend => IsLowestHitPointsUnique((c) => c.IsVillainTarget);
+
         public override void AddSideTriggers()
         {
             if (Card.IsFlipped)
@@ -40,27 +42,17 @@ namespace Jp.ParahumansOfTheWormverse.Slaughterhouse9
 
         public IEnumerator MaybeReduceDamage(DealDamageAction dda)
         {
-            var wasLowest = new List<bool>();
-            var e = DetermineIfGivenCardIsTargetWithLowestOrHighestHitPoints(
-                dda.Target,
-                highest: false,
-                c => c.IsVillainTarget,
-                dda,
-                wasLowest
-            );
+            if (GameController.PretendMode)
+            {
+                var wasLowest = new List<bool>();
+                var e = DetermineIfGivenCardIsTargetWithLowestOrHighestHitPoints(
+                    dda.Target,
+                    highest: false,
+                    c => c.IsVillainTarget,
+                    dda,
+                    wasLowest
+                );
 
-            if (UseUnityCoroutines)
-            {
-                yield return GameController.StartCoroutine(e);
-            }
-            else
-            {
-                GameController.ExhaustCoroutine(e);
-            }
-
-            if (wasLowest.Count > 0 && wasLowest.First())
-            {
-                e = GameController.ReduceDamage(dda, 1, reduceDamageTrigger, GetCardSource());
                 if (UseUnityCoroutines)
                 {
                     yield return GameController.StartCoroutine(e);
@@ -69,6 +61,26 @@ namespace Jp.ParahumansOfTheWormverse.Slaughterhouse9
                 {
                     GameController.ExhaustCoroutine(e);
                 }
+
+                reduceDamage = wasLowest.Count() > 0 && wasLowest.First();
+            }
+
+            if (reduceDamage)
+            {
+                var e = GameController.ReduceDamage(dda, 1, reduceDamageTrigger, GetCardSource());
+                if (UseUnityCoroutines)
+                {
+                    yield return GameController.StartCoroutine(e);
+                }
+                else
+                {
+                    GameController.ExhaustCoroutine(e);
+                }
+            }
+
+            if (! GameController.PretendMode)
+            {
+                reduceDamage = false;
             }
         }
 
@@ -84,5 +96,6 @@ namespace Jp.ParahumansOfTheWormverse.Slaughterhouse9
         }
 
         private ITrigger reduceDamageTrigger;
+        private bool reduceDamage = false;
     }
 }
