@@ -19,7 +19,7 @@ namespace Jp.ParahumansOfTheWormverse.Armsmaster
             // "Armsmaster deals 2 lightning damage to a non-hero target"
             var e = GameController.SelectTargetsAndDealDamage(
                 HeroTurnTakerController,
-                new DamageSource(GameController, Card),
+                new DamageSource(GameController, CharacterCard),
                 2,
                 DamageType.Lightning,
                 1,
