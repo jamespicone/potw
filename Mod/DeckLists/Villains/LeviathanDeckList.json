@@ -1,0 +1,172 @@
+﻿{
+  "name": "Leviathan",
+  "kind": "Villain",
+  "initialCardIdentifiers": [ "LeviathanCharacter" ],
+  "cards": [
+    {
+      "identifier": "LeviathanCharacter",
+      "title": "Leviathan",
+      "body": "Citykiller",
+      "count": 1,
+      "character": true,
+      "icons": [],
+      "hitpoints": 100,
+      "nemesisIdentifiers": [ "" ],
+      "backgroundColor": "ffffff",
+      "setup": [ "Put {Leviathan} into play [i]Citykiller[/i] side up. Reveal cards from the top of the villain deck until you reveal a [i]Tactic[/i] card; put it into play. Shuffle the other cards back into the villain deck" ],
+      "gameplay": [ 
+		"When flipped to this side, destroy {H} hero cards.",
+		"At the end of the villain turn, {Leviathan} deals 2 melee damage to all hero targets.",
+		"At the end of the villain turn, if {Leviathan} has been dealt {8 - H} damage in one instance last round, flip {Leviathan}" 
+		],
+      "flippedIcons": [],
+      "openingLines": {
+        "default": "blargh"
+      },
+      "difficulty": 2,
+      "advanced": "Reduce damage dealt to Leviathan by 1",
+      "advancedIcons": "",
+      "flippedBody": "Citykiller Retaliates",
+      "flippedGameplay": [
+        "When flipped to this side, reveal cards from the top of the villain deck until you reveal a [i]Tactic[/i] card. Put it into play; shuffle the rest of the revealed cards back into the villain deck.",
+        "At the start of the villain turn, flip {Leviathan}",
+        "Reduce damage dealt to Leviathan by 1"
+      ],
+      "flippedAdvanced": "The first time Leviathan would flip each turn, play the top card of the villain deck first",
+      "flippedAdvancedIcons": [],
+      "flippedNemesisIdentifiers": [ "" ]
+    },
+        {
+      "identifier": "WaterShadow",
+      "title": "Water Shadow",
+      "count": 1,
+      "keywords": [ "ongoing", "tactic" ],
+      "body": "Whenever {LeviathanCharacter} would deal melee damage to a target, this card deals that target 2 irreducible melee damage. This card is indestructible",
+      "flavorText": "It was Alexandria who speared forward to confront Leviathan.{BR}He saw her coming, ceased his onslaught to rear back and then lunge ahead to meet her.{BR}When they were only fifteen feet apart, he stopped, let his water echo rush forward to meet her.",
+      "flavorReference": "Extermination 8.3"
+    },
+	    {
+      "identifier": "TorrentialDownpour",
+      "title": "Torrential Downpour",
+      "count": 1,
+      "keywords": [ "ongoing", "tactic" ],
+      "body": "Whenever a player would draw a card, {LeviathanCharacter} deals that player's character card 1 cold damage. This card is indestructible",
+      "flavorText": "The windows were rattling with the force of the rain against them.{BR}It was almost impossible to see through them with the water that streamed down,{BR}and the overall gloom beyond.",
+      "flavorReference": "Extermination 8.2"
+    },
+		{
+      "identifier": "LoseTheWar",
+      "title": "Lose The War",
+      "count": 1,
+      "keywords": [ "ongoing", "tactic" ],
+      "body": [
+		"If the environment deck is ever empty, the heroes lose the game. At the end of the villain turn, remove the top card of the environment deck from the game.",
+		"Players may skip any of their phases (play, power, draw). Any time a player skips a phase, they may take a card from the environment trash and shuffle it back into the environment deck",
+		"This card is indestructible"
+		],		
+       "flavorQuotes": [
+		{
+		"identifier": "Legend", 
+		"text": "These were errors, grave mistakes from defending heroes.{BR}We had but one strategy at the time - to hem him in,{BR}minimizing the effects of growing waves and casualties until Leviathan{BR}was beaten into a retreat or Scion arrived. These areas, however, were too vulnerable.{BR}Waiting let Leviathan build up the strength of his attacks, and we lost."
+		}
+	  ],
+      "flavorReference": "Legend, Extermination 8.2"
+    },
+		{
+      "identifier": "FasterThanYoudThink",
+      "title": "Faster Than You'd Think",
+      "count": 1,
+      "keywords": [ "ongoing", "tactic" ],
+      "body": "The first time {LeviathanCharacter} would be dealt damage each round, prevent that damage. This card is indestructible",		
+      "flavorQuotes": [
+		{
+		"identifier": "Legend",
+		"text": "...At the speeds Leviathan can move,{BR}surface tension and compressibility make water harder than concrete."
+		}
+	  ],	
+      "flavorReference": "Legend, Extermination 8.2"
+    },
+		{
+      "identifier": "ImpossibleStrength",
+      "title": "Impossible Strength",
+      "count": 2,
+      "keywords": [ "ongoing" ],
+      "body": "Increase damage dealt by villain cards by 1",		
+      "flavorText": "Leviathan grabbed a car, twisted his entire upper body{BR}to toss it in the style of an olympic hammer-throw.",
+      "flavorReference": "Extermination 8.5"
+    },
+		{
+      "identifier": "ImpossibleToughness",
+      "title": "Impossible Toughness",
+      "count": 2,
+      "keywords": [ "ongoing" ],
+      "body": "Reduce damage dealt to {LeviathanCharacter} by 1",		
+      "flavorText": "Leviathan, nonstandard cardiac, nervous systems: irregular biology.{BR}No standard organs or weak points.{BR}No brain, heart or center of operations for rest of his body.",
+      "flavorReference": "Interlude 8 (Bonus)"
+    },
+		{
+      "identifier": "ImpossibleEndurance",
+      "title": "Impossible Endurance",
+      "count": 2,
+      "keywords": [ "ongoing" ],
+      "body": "At the start of the villain turn, reveal cards from the top of the villain trash until you reveal a one-shot. Play it, and then shuffle the other revealed cards back into the villain trash",		
+      "flavorText": "The Endbringer stood, showing none of the frailty or pain{BR}it had been displaying seconds ago.{BR}The injuries were there, to be sure, his head hung at an angle because of the way the weight{BR}of his head hung on the intact portions of his neck, but he wasn't suffering,{BR}had no trouble putting his full weight on his more injured leg. Had it been an act?",
+      "flavorReference": "Extermination 8.4"
+    },
+		{
+      "identifier": "TidalWave",
+      "title": "Tidal Wave",
+      "count": 3,
+      "keywords": [ "one-shot" ],
+      "body": "Destroy all environment targets. {LeviathanCharacter} deals X cold damage to all non-villain targets, where X = 1 + the number of cards destroyed in this way",		
+      "flavorText": "Layers of forcefields went up around the far wall in front of{BR}and behind the front windows, and they weren't enough to take the hit.{BR}The building rocked with an impact, the forcefields to the left collapsed,{BR}and the water began to rush in, carrying chunks of brick, glass and the{BR}metal windowframes into the lobby.",
+      "flavorReference": "Extermination 8.2"
+    },
+		{
+      "identifier": "Cunning",
+      "title": "Cunning",
+      "count": 3,
+      "keywords": [ "one-shot" ],
+      "body": "Play the top 2 cards of hte villain deck",		
+      "flavorQuotes": [
+		{
+		"identifier": "Legend", 
+		"text": "...I want to be clear that despite the image he might convey,{BR}he is not stupid, and he can display a level of cunning{BR}and tactics that can and will catch you off guard."
+		}
+	  ],
+      "flavorReference": "Legend, Extermination 8.2"
+    },
+		{
+      "identifier": "AnyoneCanDie",
+      "title": "Anyone Can Die",
+      "count": 3,
+      "keywords": [ "one-shot" ],
+      "body": "{LeviathanCharacter} deals the hero target with the highest HP 5 irreducible melee damage",		
+      "flavorText": "Jotun deceased, CD-6{BR}Dauntless deceased, CD-6.{BR}Alabaster deceased, CD-6.",
+      "flavorReference": "Extermination 8.3"
+    },
+		{
+      "identifier": "Guile",
+      "title": "Guile",
+      "count": 3,
+      "keywords": [ "one-shot" ],
+      "body": "Flip {LeviathanCharacter}",		
+      "flavorQuotes": [
+		{
+		"identifier": "Legend",
+		"text": "..The primary message I want to convey, even more{BR}than briefing you on the particulars of his abilities, organizing formations and battle plans,{BR}is that I do not want you to underestimate Leviathan"
+		}
+	  ],
+      "flavorReference": "Legend, Extermination 8.2"
+    },
+		{
+      "identifier": "WhippingTail",
+      "title": "Whipping Tail",
+      "count": 3,
+      "keywords": [ "one-shot" ],
+      "body": "{LeviathanCharacter} deals 2 melee damage to the 2 hero targets with the lowest HP",		
+      "flavorText": "Leviathan retaliated with a whiplike lash of his tail,{BR}bisecting the man. Of the twelve or so that had been on the roof a minute ago, only three remained.",
+      "flavorReference": "Interlude 8 (Bonus)"
+    }
+  ]
+}
