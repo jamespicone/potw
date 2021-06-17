@@ -45,22 +45,8 @@ namespace Jp.ParahumansOfTheWormverse.Leviathan
                 pca => true,
                 pca => ShoreUpEnvironment(pca),
                 new TriggerType[] { TriggerType.SkipPhase },
-                TriggerTiming.Before
+                TriggerTiming.After
             );
-        }
-
-        public override IEnumerator Play()
-        {
-            // Leviathan deals the hero target with the highest HP 5 irreducible melee damage
-            var e = DealDamageToHighestHP(TurnTaker.CharacterCard, 1, c => c.IsHero && c.IsTarget && c.IsInPlay, c => 5, DamageType.Melee, true);
-            if (UseUnityCoroutines)
-            {
-                yield return GameController.StartCoroutine(e);
-            }
-            else
-            {
-                GameController.ExhaustCoroutine(e);
-            }
         }
 
         private IEnumerator GameOver(GameAction ga)

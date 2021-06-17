@@ -78,9 +78,16 @@ namespace Jp.ParahumansOfTheWormverse.Leviathan
 
         public override IEnumerator AfterFlipCardImmediateResponse()
         {
-            base.AfterFlipCardImmediateResponse();
+            var e = base.AfterFlipCardImmediateResponse();
+            if (UseUnityCoroutines)
+            {
+                yield return GameController.StartCoroutine(e);
+            }
+            else
+            {
+                GameController.ExhaustCoroutine(e);
+            }
 
-            IEnumerator e;
             if (Card.IsFlipped)
             {
                 // When flipped to this side, reveal cards from the top of the villain deck until you reveal a Tactic card.
