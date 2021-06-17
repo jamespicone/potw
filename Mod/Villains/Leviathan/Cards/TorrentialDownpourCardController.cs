@@ -1,6 +1,8 @@
 ﻿using Handelabra.Sentinels.Engine.Controller;
 using Handelabra.Sentinels.Engine.Model;
 using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Jp.ParahumansOfTheWormverse.Leviathan
 {
@@ -11,31 +13,50 @@ namespace Jp.ParahumansOfTheWormverse.Leviathan
     {
         public TorrentialDownpourCardController(Card card, TurnTakerController controller) : base(card, controller)
         {
-            //This card is indestructible
-            base.AddThisCardControllerToList(CardControllerListType.MakesIndestructible);
+            // This card is indestructible
+            AddThisCardControllerToList(CardControllerListType.MakesIndestructible);
+        }
+
+        public override bool AskIfCardIsIndestructible(Card card)
+        {
+            return card == Card;
         }
 
         public override void AddTriggers()
         {
-            //Whenever a player would draw a card...  
+            // Whenever a player would draw a card...
             AddTrigger<DrawCardAction>(
-                dca => dca.HeroTurnTaker != null,
+                dca => dca.IsSuccessful,
                 dca => RespondToCardDraw(dca),
                 TriggerType.DealDamage,
                 TriggerTiming.Before
-
-            /*
-             Trigger is triggering off drawing card, but IS dealing damage - unclear whether to use TriggerType.DealDamage or TriggerType.DrawCard
-             I THINK DealDamage, since "DrawCard" insinuates that in that setting the trigger is 'dealing damage', but clarification definitely would be good
-             Relevant doc section: https://docs.google.com/document/d/e/2PACX-1vRvUNq-KAWwLdvQmhjpFp-dC6s7ZJqogQJFIFfCZrhJ6_kuS9yi5KG-OmEU3g2NqsB0zkMS0KPtTC5V/pub#h.vzv3ofjqd8e2
-             */
             );
         }
 
         public IEnumerator RespondToCardDraw(DrawCardAction dca)
         {
-            //...Leviathan deals that player's character card 1 cold damage
-            var e = DealDamage(CharacterCard, dca.HeroTurnTaker.CharacterCard, 1, DamageType.Cold, true);
+            // ...Leviathan deals that player's character card 1 cold damage
+            var stored = new List<Card>();
+            var e = FindCharacterCardToTakeDamage(
+                dca.HeroTurnTaker,
+                stored,
+                CharacterCard,
+                amount: 1,
+                DamageType.Cold
+            );
+            if (UseUnityCoroutines)
+            {
+                yield return GameController.StartCoroutine(e);
+            }
+            else
+            {
+                GameController.ExhaustCoroutine(e);
+            }
+
+            var target = stored.FirstOrDefault();
+            if (target == null) { yield break; }
+
+            e = DealDamage(CharacterCard, dca.HeroTurnTaker.CharacterCard, 1, DamageType.Cold, true);
             if (UseUnityCoroutines)
             {
                 yield return GameController.StartCoroutine(e);
