@@ -17,15 +17,10 @@ namespace Jp.ParahumansOfTheWormverse.Dragon
         protected override void AddExtraTriggers()
         {
             // At the end of your turn this card deals 1 projectile damage to up to 2 targets.
-            AddDealDamageAtEndOfTurnTrigger(
-                TurnTaker,
-                Card,
-                c => true,
-                TargetType.SelectTarget,
-                amount: 1,
-                DamageType.Projectile,
-                optional: true,
-                numberOfTargets: 2
+            AddEndOfTurnTrigger(
+                tt => tt == TurnTaker,
+                pca => ShootStuff(),
+                TriggerType.DealDamage
             );
         }
 
@@ -72,6 +67,28 @@ namespace Jp.ParahumansOfTheWormverse.Dragon
             effect.CardDestroyedExpiryCriteria.Card = c;
 
             var e = GameController.AddStatusEffect(effect, showMessage: true, GetCardSource());
+            if (UseUnityCoroutines)
+            {
+                yield return GameController.StartCoroutine(e);
+            }
+            else
+            {
+                GameController.ExhaustCoroutine(e);
+            }
+        }
+
+        private IEnumerator ShootStuff()
+        {
+            var e = GameController.SelectTargetsAndDealDamage(
+                HeroTurnTakerController,
+                new DamageSource(GameController, Card),
+                amount: 1,
+                DamageType.Projectile,
+                numberOfTargets: 2,
+                optional: false,
+                requiredTargets: 0,
+                cardSource: GetCardSource()
+            );
             if (UseUnityCoroutines)
             {
                 yield return GameController.StartCoroutine(e);

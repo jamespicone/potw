@@ -76,7 +76,15 @@ namespace Jp.ParahumansOfTheWormverse.Lung
         public override IEnumerator AfterFlipCardImmediateResponse()
         {
             // yuck
-            base.AfterFlipCardImmediateResponse();
+            var e = base.AfterFlipCardImmediateResponse();
+            if (UseUnityCoroutines)
+            {
+                yield return GameController.StartCoroutine(e);
+            }
+            else
+            {
+                GameController.ExhaustCoroutine(e);
+            }
 
             if (IsGameAdvanced)
             {
@@ -91,7 +99,7 @@ namespace Jp.ParahumansOfTheWormverse.Lung
                 }
             }
 
-            var e = GameController.DestroyCards(DecisionMaker, new LinqCardCriteria(c => c.IsVillain && !c.IsCharacter), cardSource: GetCardSource());
+            e = GameController.DestroyCards(DecisionMaker, new LinqCardCriteria(c => c.IsVillain && !c.IsCharacter), cardSource: GetCardSource());
             if (UseUnityCoroutines)
             {
                 yield return GameController.StartCoroutine(e);
