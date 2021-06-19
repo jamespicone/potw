@@ -105,10 +105,10 @@ namespace Jp.ParahumansOfTheWormverse.Leviathan
             }
             else
             {
-                // When flipped to this side, destroy {H} hero cards.
+                // When flipped to this side, destroy {H} noncharacter hero cards.
                 e = GameController.SelectAndDestroyCards(
                     DecisionMaker,
-                    new LinqCardCriteria(c => c.IsHero && c.IsInPlay),
+                    new LinqCardCriteria(c => c.IsHero && c.IsInPlay && ! c.IsCharacter),
                     numberOfCards: H,
                     responsibleCard: Card,
                     cardSource: GetCardSource()
