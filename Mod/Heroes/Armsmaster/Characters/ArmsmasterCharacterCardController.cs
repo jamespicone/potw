@@ -45,7 +45,7 @@ namespace Jp.ParahumansOfTheWormverse.Armsmaster
                 case 1:
                     e = GameController.SelectTargetsAndDealDamage(
                         HeroTurnTakerController,
-                        new DamageSource(GameController, CharacterCard),
+                        new DamageSource(GameController, TurnTaker),
                         1,
                         DamageType.Energy,
                         1,
