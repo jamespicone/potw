@@ -17,7 +17,12 @@
       "powers": [
         "Activate a Focus effect"
       ],
-      "icons": [],
+      "icons": [
+        "HasPower",
+        "AddTokens",
+        "RemoveTokens",
+        "StartAndEndOfTurnAction"
+      ],
       "hitpoints": 28,
       "character": true,
       "backgroundColor": "ffffff",
@@ -30,7 +35,11 @@
         "One player may take a card from their trash into their hand.",
         "Reduce damage dealt by environment targets by 2 until the start of your next turn."
       ],
-      "flippedIcons": [],
+      "flippedIcons": [
+        "GainHP",
+        "ReduceDamageDealt",
+        "Manipulate"
+      ],
       "tokenPools": [
         {
           "identifier": "FocusPool",
@@ -44,8 +53,11 @@
     {
       "identifier": "DragonsROM",
       "title": "Dragon's ROM",
-      "icons": [],
-      "keyworks": [],
+      "icons": [
+        "DrawCardNow",
+        "PlayCardNow",
+        "Manipulate"
+      ],
       "flavorText": "",
       "flavorReference": "",
       "count": 1,
@@ -71,7 +83,7 @@
     {
       "identifier": "SecurityFeeds",
       "title": "Security Feeds",
-      "icons": [],
+      "icons": [ "Manipulate" ],
       "keywords": [ "ongoing" ],
       "flavorText": "",
       "flavorReference": "",
@@ -87,7 +99,7 @@
     {
       "identifier": "PRTDatabase",
       "title": "PRT Database",
-      "icons": [],
+      "icons": [ "Manipulate" ],
       "keywords": [ "ongoing" ],
       "flavorText": "",
       "flavorReference": "",
@@ -103,7 +115,7 @@
     {
       "identifier": "CommandAndControl",
       "title": "Command and Control",
-      "icons": [],
+      "icons": [ "DealDamage" ],
       "keywords": [ "ongoing" ],
       "flavorText": "",
       "flavorReference": "",
@@ -119,7 +131,7 @@
     {
       "identifier": "Archives",
       "title": "Archives",
-      "icons": [],
+      "icons": [ "Manipulate" ],
       "keywords": [ "ongoing" ],
       "flavorText": "",
       "flavorReference": "",
@@ -135,7 +147,10 @@
     {
       "identifier": "SelfModifyingCode",
       "title": "Self-Modifying Code",
-      "icons": [],
+      "icons": [
+        "AddTokens",
+        "DealDamagePsychic"
+      ],
       "keywords": [ "one-shot" ],
       "flavorText": "",
       "flavorReference": "",
@@ -148,7 +163,7 @@
     {
       "identifier": "Sabotage",
       "title": "Sabotage",
-      "icons": [],
+      "icons": [ "DestroyOngoing" ],
       "keywords": [ "one-shot" ],
       "flavorText": "",
       "flavorReference": "",
@@ -160,7 +175,7 @@
     {
       "identifier": "BorrowedBlueprints",
       "title": "Borrowed Blueprints",
-      "icons": [],
+      "icons": [ "Manipulate", "DrawCardNow" ],
       "keywords": [ "one-shot" ],
       "flavorText": "",
       "flavorReference": "",
@@ -172,7 +187,7 @@
     {
       "identifier": "Recycling",
       "title": "Recycling",
-      "icons": [],
+      "icons": [ "Manipulate" ],
       "keywords": [ "one-shot" ],
       "flavorText": "",
       "flavorReference": "",
@@ -184,7 +199,7 @@
     {
       "identifier": "Firepower",
       "title": "Firepower",
-      "icons": [],
+      "icons": [ "DealDamageFire" ],
       "keywords": [ "one-shot" ],
       "flavorText": "",
       "flavorReference": "",
@@ -196,7 +211,7 @@
     {
       "identifier": "Analysis",
       "title": "Analysis",
-      "icons": [],
+      "icons": [ "IncreaseDamageDealt" ],
       "keywords": [ "one-shot" ],
       "flavorText": "",
       "flavorReference": "",
@@ -208,7 +223,7 @@
     {
       "identifier": "Kamikaze",
       "title": "Kamikaze",
-      "icons": [],
+      "icons": [ "DealDamageEnergy", "DealDamageFire", "DealDamageMelee", "DestroyTarget" ],
       "keywords": [ "one-shot" ],
       "flavorText": "",
       "flavorReference": "",
@@ -223,7 +238,7 @@
     {
       "identifier": "ServerFarm",
       "title": "Server Farm",
-      "icons": [],
+      "icons": [ "AddTokens", "DestroySelf", "StartOfTurnAction" ],
       "keywords": [ "device" ],
       "flavorText": "",
       "flavorReference": "",
@@ -241,7 +256,7 @@
     {
       "identifier": "ParahumansOnline",
       "title": "Parahumans Online",
-      "icons": [],
+      "icons": [ "Manipulate", "DrawCardNow", "StartOfTurnAction" ],
       "keywords": [ "equipment" ],
       "flavorText": "",
       "flavorReference": "",
@@ -258,7 +273,12 @@
     {
       "identifier": "Azazel",
       "title": "Azazel",
-      "icons": [],
+      "icons": [
+        "ReduceDamageTaken",
+        "DealDamageEnergy",
+        "RemoveTokens",
+        "StartAndEndOfTurnAction"
+      ],
       "keywords": [ "device", "mech" ],
       "flavorText": "",
       "flavorReference": "",
@@ -280,7 +300,12 @@
     {
       "identifier": "Cawthorne",
       "title": "Cawthorne",
-      "icons": [],
+      "icons": [
+        "RemoveTokens",
+        "DealDamageProjectile",
+        "ReduceDamageDealt",
+        "StartAndEndOfTurnAction"
+      ],
       "keywords": [ "device", "mech" ],
       "flavorText": "",
       "flavorReference": "",
@@ -301,7 +326,12 @@
     {
       "identifier": "Glaurung",
       "title": "Glaurung",
-      "icons": [],
+      "icons": [
+        "RemoveTokens",
+        "AddTokens",
+        "DealDamageLightning",
+        "StartAndEndOfTurnAction"
+      ],
       "keywords": [ "device", "mech" ],
       "flavorText": "",
       "flavorReference": "",
@@ -332,7 +362,14 @@
     {
       "identifier": "Melusine",
       "title": "Melusine",
-      "icons": [],
+      "icons": [
+        "RemoveTokens",
+        "CounterDamage",
+        "DealDamageFire",
+        "DealDamageMelee",
+        "GainHP",
+        "StartOfTurnAction"
+      ],
       "keywords": [ "device", "mech" ],
       "flavorText": "",
       "flavorReference": "",
@@ -358,7 +395,12 @@
     {
       "identifier": "Ladon",
       "title": "Ladon",
-      "icons": [],
+      "icons": [
+        "RemoveTokens",
+        "ReduceDamageTaken",
+        "ReduceDamageDealt",
+        "StartOfTurnAction"
+      ],
       "keywords": [ "device", "mech" ],
       "flavorText": "",
       "flavorReference": "",
@@ -379,7 +421,12 @@
     {
       "identifier": "Pythios",
       "title": "Pythios",
-      "icons": [],
+      "icons": [
+        "RemoveTokens",
+        "DealDamageLightning",
+        "Manipulate",
+        "StartAndEndOfTurnAction"
+      ],
       "keywords": [ "device", "mech" ],
       "flavorText": "",
       "flavorReference": "",
@@ -404,7 +451,12 @@
     {
       "identifier": "AstarothNidhug",
       "title": "Astaroth-Nidhug",
-      "icons": [],
+      "icons": [
+        "AddTokens",
+        "RemoveTokens",
+        "DealDamageProjectile",
+        "StartAndEndOfTurnAction"
+      ],
       "keywords": [ "device", "mech" ],
       "flavorText": "",
       "flavorReference": "",
