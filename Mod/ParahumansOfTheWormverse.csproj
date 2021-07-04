@@ -228,9 +228,7 @@
     <Compile Include="Heroes\JessicaYamada\Cards\PsychologicalTrainingCardController.cs" />
     <Compile Include="Heroes\JessicaYamada\Cards\AHelpfulSuggestionCardController.cs" />
     <Compile Include="Heroes\JessicaYamada\Cards\AMomentOfReflectionCardController.cs" />
-    <Compile Include="Heroes\JessicaYamada\Characters\JessicaYamadaInstructionsCardController.cs" />
     <Compile Include="Heroes\JessicaYamada\Characters\JessicaYamadaCharacterCardController.cs" />
-    <Compile Include="Heroes\JessicaYamada\Characters\JessicaYamadaTurnTakerController.cs" />
     <Compile Include="Heroes\Tattletale\Cards\ConfidenceCardController.cs" />
     <Compile Include="Heroes\Tattletale\Cards\ConstantSmileCardController.cs" />
     <Compile Include="Heroes\Tattletale\Cards\DominoMaskCardController.cs" />

@@ -1,15 +1,18 @@
 ﻿{
   "name": "Jessica Yamada",
   "kind": "Hero",
-  "initialCardIdentifiers": [ "JessicaYamadaInstructions" ],
-  "initialOffToTheSideCardIdentifiers": [ "JessicaYamadaCharacter" ],
+  "initialCardIdentifiers": [ "JessicaYamadaCharacter" ],
   "cards": [
     {
       "identifier": "JessicaYamadaCharacter",
       "title": "Jessica Yamada",
       "count": 1,
+      "hitpoints": 12,
       "body": "Therapy",
-      "gameplay": "If every other hero is incapacitated, incapacitate Jessica Yamada",
+      "gameplay": [
+        "Whenever Jessica Yamada would take damage, redirect that damage to the hero with the lowest HP other than Jessica Yamada",
+        "Jessica Yamada cannot deal damage"
+      ],
       "icons": [ "HasPower", "GainHP", "DrawCardNow" ],
       "powers": [ "Another player either regains 2 HP or draws a card" ],
       "character": true,
@@ -28,21 +31,6 @@
         "PlayCardNow",
         "GainHP"
       ]
-    },
-    {
-      "identifier": "JessicaYamadaInstructions",
-      "title": "Jessica Yamada",
-      "count": 1,
-      "isReal": false,
-      "character": true,
-      "body": "Team Psychologist",
-      "flippedBody": "Retired Psychologist",
-      "gameplay": [
-        "If this didn't exist Jessica Yamada would start the game incapacitated.",
-        "Handleabra don't think it's a bug."
-      ],
-      "icons": [],
-      "flippedIcons": []
     },
     {
       "identifier": "AHelpfulSuggestion",

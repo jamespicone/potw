@@ -14,6 +14,20 @@ namespace Jp.ParahumansOfTheWormverse.JessicaYamada
         {
         }
 
+        public override void AddSideTriggers()
+        {
+            if (! Card.IsFlipped)
+            {
+                AddSideTrigger(AddCannotDealDamageTrigger(c => c == Card));
+                AddSideTrigger(AddTrigger<DealDamageAction>(
+                    dda => dda.Target == Card,
+                    dda => RedirectDamage(dda, TargetType.LowestHP, c => c != Card && c.IsHeroCharacterCard && ! c.IsIncapacitatedOrOutOfGame && c.IsInPlay),
+                    TriggerType.RedirectDamage,
+                    TriggerTiming.Before
+                ));
+            }
+        }
+
         public override IEnumerator UseIncapacitatedAbility(int index)
         {
             /*
@@ -57,7 +71,7 @@ namespace Jp.ParahumansOfTheWormverse.JessicaYamada
             else
             {
                 GameController.ExhaustCoroutine(e);
-            };
+            }
         }
 
         public override IEnumerator UsePower(int index = 0)
@@ -135,17 +149,6 @@ namespace Jp.ParahumansOfTheWormverse.JessicaYamada
             {
                 GameController.ExhaustCoroutine(e);
             }
-        }
-
-        public override bool AskIfActionCanBePerformed(GameAction ga)
-        {
-            var ua = ga as UnincapacitateHeroAction;
-            if (ua == null) { return true; }
-
-            if (ua.HeroCharacterCard != this) { return true; }
-            if (Card.IsFlipped) { return true; }
-
-            return false;
         }
     }
 }
