@@ -3,7 +3,7 @@ Parahumans of the Wormverse
 
 [Parahumans of the Wormverse](http://www.jamespicone.name/parahumans/) is a total conversion of the [Sentinels of the Multiverse](https://boardgamegeek.com/boardgame/102652/sentinels-multiverse) card game, based on the Parahumans web serials - [Worm](https://parahumans.wordpress.com/) and [Ward](https://www.parahumans.net/) by Wildbow (J. C. McCrae). It's entirely a fan project, and isn't affiliated with either J.C. McCrae or Greater Than Games.
 
-This project is a mod for the [digital version](https://sentinelsdigital.com/) of SOTM, that puts the Parahumans of the Wormversion decks in the game. It uses the currently-in-beta modding interface. The mod is currently in very-early alpha state and should be assumed to be buggy and incomplete.
+This project is a mod for the [digital version](https://sentinelsdigital.com/) of SOTM, that puts the Parahumans of the Wormverse decks in the game. It uses the currently-in-beta modding interface. The mod is currently in very-early alpha state and should be assumed to be buggy and incomplete.
 
 Links
 ---
