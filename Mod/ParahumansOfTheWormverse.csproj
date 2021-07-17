@@ -342,6 +342,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+	<None Include="Assets\**\*.txt" />
+  </ItemGroup>
+  <ItemGroup>
     <Folder Include="Villains\TheSimurgh\Cards\" />
     <Folder Include="Villains\TheSimurgh\Characters\" />
   </ItemGroup>
@@ -350,6 +353,7 @@
   <PropertyGroup>
     <PostBuildEvent>mkdir $(SolutionDir)\ParahumansOfTheWormverse
 copy $(TargetPath) $(SolutionDir)\ParahumansOfTheWormverse
-copy $(ProjectDir)\manifest.json $(SolutionDir)\ParahumansOfTheWormverse</PostBuildEvent>
+copy $(ProjectDir)\manifest.json $(SolutionDir)\ParahumansOfTheWormverse
+xcopy $(ProjectDir)\Assets\* $(SolutionDir)\ParahumansOfTheWormverse /E/H/Y</PostBuildEvent>
   </PropertyGroup>
 </Project>

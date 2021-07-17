@@ -1,0 +1,6 @@
+Age: 8
+Classification: Tinker
+Speciality: Adapting other Tinker designs
+Affiliation: The Guild
+First Appearance: Interlude 6
+Trigger Event: ???

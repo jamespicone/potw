@@ -1,0 +1,6 @@
+Alias: Jamie
+Age: 17
+Classification: Mover 4
+Affiliation: New York Wards
+Trigger Event: None
+Favours Owed: 2
