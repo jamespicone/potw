@@ -192,6 +192,21 @@
     <Compile Include="Heroes\Bitch\Cards\GuardCardController.cs" />
     <Compile Include="Heroes\Bitch\Cards\HeelCardController.cs" />
     <Compile Include="Heroes\Bitch\Characters\BitchCharacterCardController.cs" />
+    <Compile Include="Heroes\Dauntless\Cards\CarryTheChargeCardController.cs" />
+    <Compile Include="Heroes\Dauntless\Cards\CracklingCoronaCardController.cs" />
+    <Compile Include="Heroes\Dauntless\Cards\GloriousStandCardController.cs" />
+    <Compile Include="Heroes\Dauntless\Cards\HeroicImageCardController.cs" />
+    <Compile Include="Heroes\Dauntless\Cards\YourOpponentIsMeCardController.cs" />
+    <Compile Include="Heroes\Dauntless\Cards\ResolveCardController.cs" />
+    <Compile Include="Heroes\Dauntless\Cards\OutfittingCardController.cs" />
+    <Compile Include="Heroes\Dauntless\Cards\ToMeCardController.cs" />
+    <Compile Include="Heroes\Dauntless\Cards\MatterToEnergyCardController.cs" />
+    <Compile Include="Heroes\Dauntless\Cards\PlasmaCoreCardController.cs" />
+    <Compile Include="Heroes\Dauntless\Cards\CrystallizationCardController.cs" />
+    <Compile Include="Heroes\Dauntless\Cards\ArcstepCardController.cs" />
+    <Compile Include="Heroes\Dauntless\Cards\ArcshieldCardController.cs" />
+    <Compile Include="Heroes\Dauntless\Characters\DauntlessCharacterCardController.cs" />
+    <Compile Include="Heroes\Dauntless\Extras\DauntlessExtensions.cs" />
     <Compile Include="Heroes\Dragon\Cards\SecurityFeedsCardController.cs" />
     <Compile Include="Heroes\Dragon\Cards\PRTDatabaseCardController.cs" />
     <Compile Include="Heroes\Dragon\Cards\CommandAndControlCardController.cs" />
@@ -342,7 +357,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-	<None Include="Assets\**\*.txt" />
+    <None Include="Assets\**\*.txt" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Villains\TheSimurgh\Cards\" />
