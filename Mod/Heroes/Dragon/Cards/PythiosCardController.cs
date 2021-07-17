@@ -11,7 +11,9 @@ namespace Jp.ParahumansOfTheWormverse.Dragon
     public class PythiosCardController : MechCardController
     {
         public PythiosCardController(Card card, TurnTakerController controller) : base(card, controller)
-        { }
+        {
+            SpecialStringMaker.ShowListOfCardsInPlay(new LinqCardCriteria((c) => c.IsTarget && c.HitPoints.HasValue && c.HitPoints.Value <= 3, "targets with 3 or less HP", false, false, "target with 3 or less HP", "targets with 3 or less HP"));
+        }
 
         protected override int FocusCost() { return 1; }
 
@@ -48,7 +50,6 @@ namespace Jp.ParahumansOfTheWormverse.Dragon
 
         private IEnumerator BounceCard()
         {
-            // TODO 
             // Select a non-character-card target in play and put it on top of its deck.
             var stored = new List<SelectCardDecision>();
             var e = GameController.SelectCardAndStoreResults(

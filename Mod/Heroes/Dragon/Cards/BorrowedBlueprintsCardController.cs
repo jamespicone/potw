@@ -11,7 +11,13 @@ namespace Jp.ParahumansOfTheWormverse.Dragon
     public class BorrowedBlueprintsCardController : CardController
     {
         public BorrowedBlueprintsCardController(Card card, TurnTakerController controller) : base(card, controller)
-        { }
+        {
+            foreach (var hero in Game.HeroTurnTakers)
+            {
+                if (hero == HeroTurnTaker) { continue; }
+                SpecialStringMaker.ShowNumberOfCardsAtLocation(hero.Hand, new LinqCardCriteria((c) => c.DoKeywordsContain("equipment") || c.DoKeywordsContain("device"), "equipment or device"));
+            }
+        }
 
         public override IEnumerator Play()
         {

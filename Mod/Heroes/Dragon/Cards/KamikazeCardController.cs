@@ -43,7 +43,7 @@ namespace Jp.ParahumansOfTheWormverse.Dragon
             var storedTarget = new List<SelectCardDecision>();
             e = GameController.SelectCardAndStoreResults(
                 HeroTurnTakerController,
-                SelectionType.CardToDealDamage,
+                SelectionType.DealDamage,
                 new LinqCardCriteria(c => c.IsInPlay && c.IsTarget),
                 storedTarget,
                 optional: false,

@@ -16,15 +16,12 @@ namespace Jp.ParahumansOfTheWormverse.Dragon
 
         public override IEnumerator Play()
         {
-            Debug.Log("Analysis::Play");
-
             var effect = new IncreaseDamageStatusEffect(1);
             effect.SourceCriteria.HasAnyOfTheseKeywords = new List<string>();
             effect.SourceCriteria.HasAnyOfTheseKeywords.Add("mech");
             effect.SourceCriteria.IsPlayAreaOf = TurnTaker;
             effect.UntilThisTurnIsOver(Game);
 
-            Debug.Log("Analysis::Play adding status effect");
             var e = GameController.AddStatusEffect(effect, true, GetCardSource());
             if (UseUnityCoroutines)
             {
@@ -39,7 +36,6 @@ namespace Jp.ParahumansOfTheWormverse.Dragon
             effect.SourceCriteria.IsSpecificCard = CharacterCard;
             effect.UntilThisTurnIsOver(Game);
 
-            Debug.Log("Analysis::Play adding status effect 2");
             e = GameController.AddStatusEffect(effect, true, GetCardSource());
             if (UseUnityCoroutines)
             {

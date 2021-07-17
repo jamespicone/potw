@@ -10,7 +10,12 @@ namespace Jp.ParahumansOfTheWormverse.Dragon
     public class ArchivesCardController : CardController
     {
         public ArchivesCardController(Card card, TurnTakerController controller) : base(card, controller)
-        { }
+        {
+            foreach (var hero in Game.HeroTurnTakers)
+            {
+                SpecialStringMaker.ShowListOfCardsAtLocation(hero.Trash, new LinqCardCriteria((c) => c.DoKeywordsContain("one-shot"), "One-shot"));
+            }
+        }
 
         public override IEnumerator ActivateAbilityEx(CardDefinition.ActivatableAbilityDefinition ability)
         {
