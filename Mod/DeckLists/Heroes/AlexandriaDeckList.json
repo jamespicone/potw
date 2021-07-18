@@ -1,0 +1,226 @@
+{
+  "name": "Alexandria",
+  "kind": "Hero",
+  "initialCardIdentifiers": [ "AlexandriaCharacter" ],
+  "cards": [
+    {
+      "identifier": "AlexandriaCharacter",
+      "title": "Alexandria",
+      "count": 1,
+      "body": "Eidetic Memory",
+      "hitpoints": 30,
+      "powers": [ "You may play a card. Return one of your cards in play to your hand" ],
+      "icons": [
+        "HasPower",
+        "PlayCardNow",
+        "Manipulate"
+      ],
+      "character": true,
+      "backgroundColor": "999999",
+      "openingLines": {
+        "default": "blargh"
+      },
+      "complexity": 3,
+      "incapacitatedAbilities": [
+        "Select a target. Until the start of your next turn reduce damage dealt to that target by 1",
+        "One player may search their deck for a card and put it into their hand",
+        "{AlexandriaCharacter} deals 2 melee damage to a target"
+      ],
+      "flippedIcons": [
+        "ReduceDamageDealt",
+        "DealDamageMelee",
+        "Search"
+      ]
+    },
+    {
+      "identifier": "Protector",
+      "title": "Protector",
+      "keywords": [ "ongoing" ],
+      "body": [
+        "When this card enters play {AlexandriaCharacter} regains 2 HP",
+        "At the end of your turn select a target. Until the start of your next turn, whenever that target would take damage, redirect that damage to {AlexandriaCharacter}"
+      ],
+      "icons": [
+        "EndOfTurn",
+        "GainHP",
+        "RedirectDamage"
+      ],
+      "flavorReference": "",
+      "count": 4
+    },
+    {
+      "identifier": "NamedAfterTheLibrary",
+      "title": "Named After the Library",
+      "keywords": [ "ongoing", "limited" ],
+      "body": [
+        "When this card enters play shuffle your trash into your deck",
+        "Whenever you would draw a card instead reveal the top 2 cards of your deck, put 1 into your hand, and return the other to the top of your deck"
+      ],
+      "icons": [
+        "Manipulate"
+      ],
+      "flavorReference": "",
+      "count": 2
+    },
+    {
+      "identifier": "ColdReading",
+      "title": "Cold Reading",
+      "keywords": [ "ongoing" ],
+      "body": [
+        "When this card enters play reveal the top 3 cards of the villain deck. Put them back in any order",
+        "At the start of your turn reveal the top card of the villain deck. Either discard it or return it to the top of the villain deck"
+      ],
+      "icons": [
+        "StartOfTurn",
+        "Manipulate"
+      ],
+      "flavorReference": "",
+      "count": 3
+    },
+    {
+      "identifier": "Invincible",
+      "title": "Invincible",
+      "keywords": [ "ongoing", "limited" ],
+      "body": [
+        "From when this card enters play until the start of your next turn, when {AlexandriaCharacter} would take damage you may discard a card. If you do, prevent the damage.",
+        "Reduce damage dealt to {AlexandriaCharacter} by 1"
+      ],
+      "icons": [
+        "PreventDamage",
+        "ReduceDamageTaken"
+      ],
+      "flavorReference": "",
+      "count": 3
+    },
+    {
+      "identifier": "HypersonicFlight",
+      "title": "Hypersonic Flight",
+      "keywords": [ "ongoing" ],
+      "body": [
+        "When this card enters play {AlexandriaCharacter} may deal 2 melee damage to a target",
+        "When {AlexandriaCharacter} deals damage to a villain target you may destroy a Device or Ongoing card"
+      ],
+      "icons": [
+        "DealDamageMelee",
+        "DestroyOngoing"
+      ],
+      "flavorReference": "",
+      "count": 3
+    },
+    {
+      "identifier": "MartialArts",
+      "title": "Martial Arts",
+      "keywords": [ "ongoing" ],
+      "body": [
+        "When this card enters play you may destroy a non-character-card target",
+        "When {AlexandriaCharacter} destroys a target select a target. Until the start of your next turn that target cannot deal damage"
+      ],
+      "icons": [
+        "DestroyCardTarget",
+        "CannotDealDamage"
+      ],
+      "flavorReference": "",
+      "count": 3
+    },
+    {
+      "identifier": "ImperiousDemeanour",
+      "title": "Imperious Demeanour",
+      "keywords": [ "ongoing", "limited" ],
+      "body": [
+        "When this card enters play draw a card",
+        "Whenever you use a power {AlexandriaCharacter} regains 3 HP"
+      ],
+      "icons": [
+        "DrawCardNow",
+        "GainHP"
+      ],
+      "flavorReference": "",
+      "count": 4
+    },
+    {
+      "identifier": "AlexandriasCape",
+      "title": "Alexandria's Cape",
+      "keywords": [ "equipment" ],
+      "powers": [
+        "{AlexandriaCharacter} deals 3 melee damage to a target. Return one of your cards in play to your hand"
+      ],
+      "icons": [
+        "DealDamageMelee",
+        "Manipulate"
+      ],
+      "flavorReference": "",
+      "count": 3
+    },
+    {
+      "identifier": "ProstheticEye",
+      "title": "Prosthetic Eye",
+      "keywords": [ "equipment" ],
+      "body": [
+        "At the end of your turn reveal the top 3 cards of a deck. Put them back in any order"
+      ],
+      "icons": [
+        "EndOfTurn",
+        "Manipulate"
+      ],
+      "flavorReference": "",
+      "count": 2
+    },
+    {
+      "identifier": "TimeLocked",
+      "title": "Time-Locked",
+      "keywords": [ "one-shot" ],
+      "body": [
+        "Note down Alexandria's current HP",
+        "At the start of your next turn, if {AlexandriaCharacter} is not incapacitated, set {AlexandriaCharacter}'s HP to the value you noted down"
+      ],
+      "icons": [
+        "SetHP",
+        "StartOfTurn"
+      ],
+      "flavorReference": "",
+      "count": 2
+    },
+    {
+      "identifier": "PureStrength",
+      "title": "Pure Strength",
+      "keywords": [ "one-shot" ],
+      "body": [
+        "{AlexandriaCharacter} deals a target 4 melee damage"
+      ],
+      "icons": [
+        "DealDamageMelee"
+      ],
+      "flavorReference": "",
+      "count": 4
+    },
+    {
+      "identifier": "IKnowThem",
+      "title": "I Know Them",
+      "keywords": [ "one-shot" ],
+      "body": [
+        "{AlexandriaCharacter} deals 5 melee damage to the villain target with the highest HP"
+      ],
+      "icons": [
+        "DealDamageMelee"
+      ],
+      "flavorReference": "",
+      "count": 4
+    },
+    {
+      "identifier": "AndTheyKnowMe",
+      "title": "...And They Know Me",
+      "keywords": [ "one-shot" ],
+      "body": [
+        "The villain target with the highest HP deals {AlexandriaCharacter} 5 psychic damage",
+        "The villain target with the highest HP cannot deal damage until the start of your next turn"
+      ],
+      "icons": [
+        "DealDamagePsychic",
+        "CannotDealDamage",
+        "StartTurn"
+      ],
+      "flavorReference": "",
+      "count": 3
+    }
+  ]
+}
