@@ -11,8 +11,8 @@
       "hitpoints": 30,
       "powers": [ "Reveal the top card of your deck. If it's an Equipment card, put it in your hand; otherwise shuffle it back." ],
       "icons": [
-            "HasPower",
-            "Manipulate"
+        "HasPower",
+        "Manipulate"
       ],
       "character": true,
       "backgroundColor": "ffffff",
@@ -26,9 +26,9 @@
         "One player may search their trash for an Equipment card and put it in their hand."
       ],
       "flippedIcons": [
-            "GainHP",
-            "DealDamageMelee",
-            "Search"
+        "GainHP",
+        "DealDamageMelee",
+        "Search"
       ]
     },
     {

@@ -26,7 +26,7 @@
         "Select an equipment card. Until your next turn it is indestructible"
       ],
       "flippedIcons": [
-        "DrawCard",
+        "DrawCardNow",
         "ReduceDamageEnergy",
         "Indestructible"
       ]
@@ -44,7 +44,7 @@
       ],
       "icons": [
         "HasPower",
-        "ReduceDamage",
+        "ReduceDamageTaken",
         "Indestructible"
       ],
       "flavorText": "He was holding his shield arm up{BR}and it had formed into{BR}a bubble-shaped forcefield",
@@ -196,7 +196,8 @@
         "Select a hero target. Until the start of your next turn whenever that target would be dealt damage redirect that damage to {DauntlessCharacter}"
       ],
       "icons": [
-        "ReduceDamageTaken"
+        "GainHP",
+        "RedirectDamage"
       ],
       "flavorText": "",
       "flavorReference": "",
@@ -221,7 +222,7 @@
     {
       "identifier": "CracklingCorona",
       "title": "Crackling Corona",
-      "keywords": [ "ongoing" ],
+      "keywords": [ "one-shot" ],
       "body": [
         "{DauntlessCharacter} deals 1 energy damage to all villain targets"
       ],
