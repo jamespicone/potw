@@ -10,7 +10,9 @@ namespace Jp.ParahumansOfTheWormverse.Dauntless
     public class ToMeCardController : CardController
     {
         public ToMeCardController(Card card, TurnTakerController controller) : base(card, controller)
-        { }
+        {
+            SpecialStringMaker.ShowListOfCardsAtLocation(HeroTurnTaker.Deck, new LinqCardCriteria((c) => c.DoKeywordsContain("relic"), "Relic"));
+        }
 
         public override IEnumerator Play()
         {

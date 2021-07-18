@@ -12,11 +12,13 @@ namespace Jp.ParahumansOfTheWormverse.Dauntless
         public CrystallizationCardController(Card card, TurnTakerController controller) : base(card, controller)
         {
             AddThisCardControllerToList(CardControllerListType.ChangesVisibility);
+            SpecialStringMaker.ShowCardThisCardIsNextTo(Card);
         }
 
         public override void AddTriggers()
         {
-            AddWhenDestroyedTrigger(dca => ReturnToHand(dca), TriggerType.MoveCard);
+            AddTrigger<DestroyCardAction>(dca => dca.CardToDestroy.Card == Card, dca => ReturnToHand(dca), TriggerType.CancelAction, TriggerTiming.Before);
+            AddIfTheTargetThatThisCardIsNextToLeavesPlayDestroyThisCardTrigger();
         }
 
         public override IEnumerator Play()

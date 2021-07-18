@@ -10,7 +10,10 @@ namespace Jp.ParahumansOfTheWormverse.Dauntless
     public class ResolveCardController : CardController
     {
         public ResolveCardController(Card card, TurnTakerController controller) : base(card, controller)
-        { }
+        {
+            SpecialStringMaker.ShowListOfCardsAtLocation(HeroTurnTaker.Deck, new LinqCardCriteria((c) => c.DoKeywordsContain("charge"), "Charge"));
+            SpecialStringMaker.ShowListOfCardsAtLocation(HeroTurnTaker.Trash, new LinqCardCriteria((c) => c.DoKeywordsContain("charge"), "Charge"));
+        }
 
         public override IEnumerator Play()
         {

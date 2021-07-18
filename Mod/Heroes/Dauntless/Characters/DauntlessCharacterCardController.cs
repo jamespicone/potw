@@ -12,6 +12,8 @@ namespace Jp.ParahumansOfTheWormverse.Dauntless
     {
         public DauntlessCharacterCardController(Card card, TurnTakerController controller) : base(card, controller)
         {
+            SpecialStringMaker.ShowSpecialString(() => $"Arclance will deal {CalculateArclanceDamage()} damage");
+            SpecialStringMaker.ShowListOfCardsNextToCard(Card);
         }
 
         public override IEnumerator UseIncapacitatedAbility(int index)

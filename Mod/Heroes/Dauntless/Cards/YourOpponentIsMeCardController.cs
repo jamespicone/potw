@@ -42,13 +42,13 @@ namespace Jp.ParahumansOfTheWormverse.Dauntless
 
             // "Until the start of your next turn whenever those targets would deal damage redirect that damage to {DauntlessCharacter}"
             var redirectStatus = new OnDealDamageStatusEffect(
-                    CardWithoutReplacements,
-                    nameof(RedirectResponse),
-                    "When " + dda.DamageSource.TitleOrName + " would deal damage, it is redirected to " + HeroTurnTakerController.Name,
-                    new TriggerType[] { TriggerType.RedirectDamage, TriggerType.DealDamage },
-                    TurnTaker,
-                    Card
-                );
+                CardWithoutReplacements,
+                nameof(RedirectResponse),
+                "When " + dda.Target.Title + " would deal damage, it is redirected to " + HeroTurnTakerController.Name,
+                new TriggerType[] { TriggerType.RedirectDamage, TriggerType.DealDamage },
+                TurnTaker,
+                Card
+            );
 
             // "Until the start of your next turn..."
             redirectStatus.UntilStartOfNextTurn(TurnTaker);
@@ -57,7 +57,7 @@ namespace Jp.ParahumansOfTheWormverse.Dauntless
             redirectStatus.SourceCriteria.IsSpecificCard = dda.Target;
             redirectStatus.DamageAmountCriteria.GreaterThan = 0;
 
-            redirectStatus.UntilTargetLeavesPlay(dda.DamageSource.Card);
+            redirectStatus.UntilTargetLeavesPlay(dda.Target);
             redirectStatus.BeforeOrAfter = BeforeOrAfter.Before;
 
             var e = AddStatusEffect(redirectStatus);
@@ -71,7 +71,7 @@ namespace Jp.ParahumansOfTheWormverse.Dauntless
             }
         }
 
-        private IEnumerator RedirectResponse(DealDamageAction dd, TurnTaker hero, StatusEffect effect, int[] powerNumerals = null)
+        public IEnumerator RedirectResponse(DealDamageAction dd, TurnTaker hero, StatusEffect effect, int[] powerNumerals = null)
         {
             //  ...redirect that damage to {DauntlessCharacter}
             var e = GameController.RedirectDamage(

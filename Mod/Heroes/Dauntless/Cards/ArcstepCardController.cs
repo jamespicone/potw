@@ -12,14 +12,17 @@ namespace Jp.ParahumansOfTheWormverse.Dauntless
         public ArcstepCardController(Card card, TurnTakerController controller) : base(card, controller)
         {
             AddThisCardControllerToList(CardControllerListType.ChangesVisibility);
+
+            SpecialStringMaker.ShowSpecialString(() => $"{Card.Title} will draw {DrawAmount()} cards");
+            SpecialStringMaker.ShowListOfCardsNextToCard(Card);
         }
 
         public override void AddTriggers()
         {
-            AddWhenDestroyedTrigger(dca => ReturnToHand(dca), TriggerType.MoveCard);
+            AddTrigger<DestroyCardAction>(dca => dca.CardToDestroy.Card == Card, dca => ReturnToHand(dca), TriggerType.CancelAction, TriggerTiming.Before);
         }
 
-        public override IEnumerator Play()
+        public override IEnumerator UsePower(int index = 0)
         {
             IEnumerator e;
 
@@ -62,23 +65,26 @@ namespace Jp.ParahumansOfTheWormverse.Dauntless
 
             // matter to energy
             // after using Arcstep's power {DauntlessCharacter} deals up to 3 targets 1 energy damage
-            e = GameController.SelectTargetsAndDealDamage(
-                HeroTurnTakerController,
-                new DamageSource(GameController, CharacterCard),
-                amount: 1,
-                DamageType.Energy,
-                numberOfTargets: 3,
-                optional: false,
-                requiredTargets: 0,
-                cardSource: GetCardSource()
-            );
-            if (UseUnityCoroutines)
+            if (Card.HasMatterToEnergy())
             {
-                yield return GameController.StartCoroutine(e);
-            }
-            else
-            {
-                GameController.ExhaustCoroutine(e);
+                e = GameController.SelectTargetsAndDealDamage(
+                    HeroTurnTakerController,
+                    new DamageSource(GameController, CharacterCard),
+                    amount: 1,
+                    DamageType.Energy,
+                    numberOfTargets: 3,
+                    optional: false,
+                    requiredTargets: 0,
+                    cardSource: GetCardSource()
+                );
+                if (UseUnityCoroutines)
+                {
+                    yield return GameController.StartCoroutine(e);
+                }
+                else
+                {
+                    GameController.ExhaustCoroutine(e);
+                }
             }
         }
 

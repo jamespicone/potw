@@ -79,7 +79,7 @@ namespace Jp.ParahumansOfTheWormverse.Dauntless
             }
         }
 
-        private IEnumerator RedirectResponse(DealDamageAction dd, TurnTaker hero, StatusEffect effect, int[] powerNumerals = null)
+        public IEnumerator RedirectResponse(DealDamageAction dd, TurnTaker hero, StatusEffect effect, int[] powerNumerals = null)
         {
             //  ...redirect that damage to {DauntlessCharacter}
             var e = GameController.RedirectDamage(

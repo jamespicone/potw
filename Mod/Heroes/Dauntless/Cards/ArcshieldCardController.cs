@@ -12,6 +12,9 @@ namespace Jp.ParahumansOfTheWormverse.Dauntless
         public ArcshieldCardController(Card card, TurnTakerController controller) : base(card, controller)
         {
             AddThisCardControllerToList(CardControllerListType.ChangesVisibility);
+
+            SpecialStringMaker.ShowSpecialString(() => $"{Card.Title} will reduce damage by {ReductionAmount()}");
+            SpecialStringMaker.ShowListOfCardsNextToCard(Card);
         }
 
         public override void AddTriggers()
@@ -27,7 +30,7 @@ namespace Jp.ParahumansOfTheWormverse.Dauntless
                 DamageType.Energy
             );
 
-            AddWhenDestroyedTrigger(dca => ReturnToHand(dca), TriggerType.MoveCard);
+            AddTrigger<DestroyCardAction>(dca => dca.CardToDestroy.Card == Card, dca => ReturnToHand(dca), TriggerType.CancelAction, TriggerTiming.Before);
         }
 
         public override IEnumerator UsePower(int index = 0)
