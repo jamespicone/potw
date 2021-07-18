@@ -38,8 +38,7 @@ namespace Jp.ParahumansOfTheWormverse.Dauntless
 
         private IEnumerator AddRedirect(DealDamageAction dda)
         {
-            if (dda.DidDealDamage) { yield break; }
-            if (! dda.DamageSource.IsCard) { yield break; }
+            if (! dda.DidDealDamage) { yield break; }
 
             // "Until the start of your next turn whenever those targets would deal damage redirect that damage to {DauntlessCharacter}"
             var redirectStatus = new OnDealDamageStatusEffect(
@@ -55,7 +54,7 @@ namespace Jp.ParahumansOfTheWormverse.Dauntless
             redirectStatus.UntilStartOfNextTurn(TurnTaker);
 
             // "... whenever that target would deal damage..."
-            redirectStatus.SourceCriteria.IsSpecificCard = dda.DamageSource.Card;
+            redirectStatus.SourceCriteria.IsSpecificCard = dda.Target;
             redirectStatus.DamageAmountCriteria.GreaterThan = 0;
 
             redirectStatus.UntilTargetLeavesPlay(dda.DamageSource.Card);

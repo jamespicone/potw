@@ -26,6 +26,14 @@ namespace Jp.ParahumansOfTheWormverse.Dauntless
                 storedResults,
                 cardSource: GetCardSource()
             );
+            if (UseUnityCoroutines)
+            {
+                yield return GameController.StartCoroutine(e);
+            }
+            else
+            {
+                GameController.ExhaustCoroutine(e);
+            }
 
             var location = GetSelectedLocation(storedResults);
             if (location == null) { yield break; }

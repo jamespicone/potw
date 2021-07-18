@@ -47,13 +47,13 @@ namespace Jp.ParahumansOfTheWormverse.Dauntless
                 selectedHeroController,
                 selectedHeroController,
                 selectedHero.Deck,
-                c => c.DoKeywordsContain("equipment"),
+                c => c.DoKeywordsContain("equipment") || c.DoKeywordsContain("relic"),
                 numberOfMatchesToReveal: 1,
                 numberOfRevealedCardsToChoose: 1,
                 canPutInHand: true,
                 canPlayCard: true,
                 isPutIntoPlay: true,
-                "Equipment"
+                "Equipment or Relic"
             );
             if (UseUnityCoroutines)
             {

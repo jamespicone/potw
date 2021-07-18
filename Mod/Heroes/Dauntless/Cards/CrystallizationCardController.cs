@@ -11,7 +11,12 @@ namespace Jp.ParahumansOfTheWormverse.Dauntless
     {
         public CrystallizationCardController(Card card, TurnTakerController controller) : base(card, controller)
         {
-            AddThisCardControllerToList(CardControllerListType.MakesIndestructible);
+            AddThisCardControllerToList(CardControllerListType.ChangesVisibility);
+        }
+
+        public override void AddTriggers()
+        {
+            AddWhenDestroyedTrigger(dca => ReturnToHand(dca), TriggerType.MoveCard);
         }
 
         public override IEnumerator Play()
@@ -62,10 +67,43 @@ namespace Jp.ParahumansOfTheWormverse.Dauntless
             }
         }
 
-        public override bool AskIfCardIsIndestructible(Card card)
+        public override bool? AskIfCardIsVisibleToCardSource(Card card, CardSource cardSource)
         {
-            // "This card is indestructible"
-            return card == Card;
+            // This card cannot be affected by villain or environment cards
+            if (card != Card) { return null; }
+            if (cardSource.Card == null) { return null; }
+            
+            if (cardSource.Card.IsVillain || cardSource.Card.IsEnvironment) { return false; }
+
+            return null;
+        }
+
+        private IEnumerator ReturnToHand(DestroyCardAction dca)
+        {
+            var e = CancelAction(dca);
+            if (UseUnityCoroutines)
+            {
+                yield return GameController.StartCoroutine(e);
+            }
+            else
+            {
+                GameController.ExhaustCoroutine(e);
+            }
+
+            e = GameController.MoveCard(
+                TurnTakerController,
+                Card,
+                HeroTurnTaker.Hand,
+                cardSource: GetCardSource()
+            );
+            if (UseUnityCoroutines)
+            {
+                yield return GameController.StartCoroutine(e);
+            }
+            else
+            {
+                GameController.ExhaustCoroutine(e);
+            }
         }
     }
 }

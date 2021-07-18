@@ -16,7 +16,71 @@ namespace Jp.ParahumansOfTheWormverse.Dauntless
 
         public override IEnumerator UseIncapacitatedAbility(int index)
         {
-            yield break;
+            IEnumerator e;
+            var storedResults = new List<SelectCardDecision>();
+
+            switch(index)
+            {
+                case 0:
+                    // One player may draw a card now
+                    e = GameController.SelectHeroToDrawCard(HeroTurnTakerController, cardSource: GetCardSource());
+                    break;
+
+                case 1:
+                    // Reduce all energy damage dealt to hero targets by 1 until your next turn
+                    var reduceEffect = new ReduceDamageStatusEffect(1);
+                    reduceEffect.DamageTypeCriteria.AddType(DamageType.Energy);
+                    reduceEffect.TargetCriteria.IsHero = true;
+                    reduceEffect.UntilStartOfNextTurn(TurnTaker);
+                    
+                    e = AddStatusEffect(reduceEffect);
+                    break;
+
+                case 2:
+                    // Select an equipment card.
+                    e = GameController.SelectCardAndStoreResults(
+                        HeroTurnTakerController,
+                        SelectionType.MakeIndestructible,
+                        new LinqCardCriteria(c => c.DoKeywordsContain("equipment")),
+                        storedResults,
+                        optional: false,
+                        cardSource: GetCardSource()
+                    );
+                    break;
+
+                default: yield break;
+            }
+
+            if (UseUnityCoroutines)
+            {
+                yield return GameController.StartCoroutine(e);
+            }
+            else
+            {
+                GameController.ExhaustCoroutine(e);
+            }
+
+            if (index == 2)
+            {
+                var selected = GetSelectedCard(storedResults);
+                if (selected == null) { yield break; }
+
+                // ...Until your next turn it is indestructible
+                var indestructibleEffect = new MakeIndestructibleStatusEffect();
+                indestructibleEffect.CardsToMakeIndestructible.IsSpecificCard = selected;
+                indestructibleEffect.UntilStartOfNextTurn(TurnTaker);
+                indestructibleEffect.UntilCardLeavesPlay(selected);
+
+                e = AddStatusEffect(indestructibleEffect);
+                if (UseUnityCoroutines)
+                {
+                    yield return GameController.StartCoroutine(e);
+                }
+                else
+                {
+                    GameController.ExhaustCoroutine(e);
+                }
+            }
         }
 
         public override IEnumerator UsePower(int index = 0)

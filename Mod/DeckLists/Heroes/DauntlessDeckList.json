@@ -34,9 +34,10 @@
     {
       "identifier": "Arcshield",
       "title": "Arcshield",
-      "keywords": [ "equipment", "relic" ],
+      "keywords": [ "relic" ],
       "body": [
-        "This card is indestructible"
+        "This card cannot be affected by villain or environment cards",
+        "If this card would be destroyed return it to your hand instead"
       ],
       "powers": [
         "Until the end of your next turn reduce damage dealt to Dauntless by X, where X = 1 + the number of Charge cards attached to this card / 2 (round down)"
@@ -53,9 +54,10 @@
     {
       "identifier": "Arcstep",
       "title": "Arcstep",
-      "keywords": [ "equipment", "relic" ],
+      "keywords": [ "relic" ],
       "body": [
-        "This card is indestructible"
+        "This card cannot be affected by villain or environment cards",
+        "If this card would be destroyed return it to your hand instead"
       ],
       "powers": [
         "Draw X cards, where X = 1 + the number of Charge cards attached to this card / 2 (round down){BR}You may play a card"
@@ -73,11 +75,13 @@
     {
       "identifier": "Crystallization",
       "title": "Crystallization",
-      "keywords": [ "ongoing", "charge" ],
+      "keywords": [ "charge" ],
       "body": [
         "Play this card next to {DauntlessCharacter} or a Relic in this play area",
         "When this card enters play {DauntlessCharacter} may deal 1 energy damage to a target",
-        "This card is indestructible"
+        "This card cannot be affected by villain or environment cards",
+        "If this card would be destroyed return it to your hand instead"
+          
       ],
       "icons": [
         "DealDamageEnergy",
@@ -95,7 +99,7 @@
         "Play this card next to {DauntlessCharacter} or a Relic in this play area without a Plasma Core",
         "[b]On {DauntlessCharacter}:[/b] his power does irreducible damage",
         "[b]On Arcshield:[/b] whenever {DauntlessCharacter} is dealt damage and it is reduced by Arcshield's power {DauntlessCharacter} deals the source 1 energy damage",
-        "[b]On Arcstep:[/b] after using Arcstep's power regain 1 HP"
+        "[b]On Arcstep:[/b] before using Arcstep's power regain 1 HP"
       ],
       "icons": [
         "MakeDamageIrreducible",
@@ -144,7 +148,7 @@
       "title": "Outfitting",
       "keywords": [ "one-shot" ],
       "body": [
-        "Select a hero. That hero reveals cards from the top of their deck until they reveal an Equipment card. They may put that card into play or into their hand. Shuffle the other revealed cards back into their deck"
+        "Select a hero. That hero reveals cards from the top of their deck until they reveal an Equipment or Relic card. They may put that card into play or into their hand. Shuffle the other revealed cards back into their deck"
       ],
       "icons": [
         "Manipulate"
@@ -186,7 +190,7 @@
     {
       "identifier": "HeroicImage",
       "title": "Heroic Image",
-      "keywords": [ "ongoing" ],
+      "keywords": [ "one-shot" ],
       "body": [
         "{DauntlessCharacter} regains 2 HP",
         "Select a hero target. Until the start of your next turn whenever that target would be dealt damage redirect that damage to {DauntlessCharacter}"
