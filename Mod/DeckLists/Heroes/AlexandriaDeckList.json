@@ -9,7 +9,7 @@
       "count": 1,
       "body": "Eidetic Memory",
       "hitpoints": 30,
-      "powers": [ "You may play a card. Return one of your cards in play to your hand" ],
+      "powers": [ "You may play a card. Return one of your noncharacter cards in play to your hand" ],
       "icons": [
         "HasPower",
         "PlayCardNow",
@@ -142,7 +142,7 @@
       "title": "Alexandria's Cape",
       "keywords": [ "equipment" ],
       "powers": [
-        "{AlexandriaCharacter} deals 3 melee damage to a target. Return one of your cards in play to your hand"
+        "{AlexandriaCharacter} deals 3 melee damage to a target. Return one of your noncharacter cards in play to your hand"
       ],
       "icons": [
         "DealDamageMelee",

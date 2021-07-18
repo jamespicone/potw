@@ -11,5 +11,24 @@ namespace Jp.ParahumansOfTheWormverse.Alexandria
     {
         public ImperiousDemeanourCardController(Card card, TurnTakerController controller) : base(card, controller)
         { }
+
+        public override IEnumerator Play()
+        {
+            // "When this card enters play draw a card",
+            //if (UseUnityCoroutines)
+            //{
+            //    yield return GameController.StartCoroutine(e);
+            //}
+            //else
+            //{
+            //    GameController.ExhaustCoroutine(e);
+            //}
+            yield break;
+        }
+
+        public override void AddTriggers()
+        {
+            // "Whenever you use a power {AlexandriaCharacter} regains 3 HP"
+        }
     }
 }

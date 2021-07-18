@@ -11,5 +11,24 @@ namespace Jp.ParahumansOfTheWormverse.Alexandria
     {
         public HypersonicFlightCardController(Card card, TurnTakerController controller) : base(card, controller)
         { }
+
+        public override IEnumerator Play()
+        {
+            // "When this card enters play {AlexandriaCharacter} may deal 2 melee damage to a target",
+            //if (UseUnityCoroutines)
+            //{
+            //    yield return GameController.StartCoroutine(e);
+            //}
+            //else
+            //{
+            //    GameController.ExhaustCoroutine(e);
+            //}
+            yield break;
+        }
+
+        public override void AddTriggers()
+        {
+            // "When {AlexandriaCharacter} deals damage to a villain target you may destroy a Device or Ongoing card"
+        }
     }
 }

@@ -11,5 +11,19 @@ namespace Jp.ParahumansOfTheWormverse.Alexandria
     {
         public PureStrengthCardController(Card card, TurnTakerController controller) : base(card, controller)
         { }
+
+        public override IEnumerator Play()
+        {
+            // "{AlexandriaCharacter} deals a target 4 melee damage"
+            //if (UseUnityCoroutines)
+            //{
+            //    yield return GameController.StartCoroutine(e);
+            //}
+            //else
+            //{
+            //    GameController.ExhaustCoroutine(e);
+            //}
+            yield break;
+        }
     }
 }

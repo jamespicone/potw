@@ -11,5 +11,24 @@ namespace Jp.ParahumansOfTheWormverse.Alexandria
     {
         public ProtectorCardController(Card card, TurnTakerController controller) : base(card, controller)
         { }
+
+        public override IEnumerator Play()
+        {
+            // "When this card enters play {AlexandriaCharacter} regains 2 HP",
+            //if (UseUnityCoroutines)
+            //{
+            //    yield return GameController.StartCoroutine(e);
+            //}
+            //else
+            //{
+            //    GameController.ExhaustCoroutine(e);
+            //}
+            yield break;
+        }
+
+        public override void AddTriggers()
+        {
+            // "At the end of your turn select a target. Until the start of your next turn, whenever that target would take damage, redirect that damage to {AlexandriaCharacter}"
+        }
     }
 }

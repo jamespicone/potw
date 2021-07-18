@@ -11,5 +11,10 @@ namespace Jp.ParahumansOfTheWormverse.Alexandria
     {
         public ProstheticEyeCardController(Card card, TurnTakerController controller) : base(card, controller)
         { }
+
+        public override void AddTriggers()
+        {
+            // "At the end of your turn reveal the top 3 cards of a deck. Put them back in any order"
+        }
     }
 }
