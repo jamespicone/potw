@@ -15,15 +15,34 @@ namespace Jp.ParahumansOfTheWormverse.Alexandria
         public override IEnumerator Play()
         {
             // "{AlexandriaCharacter} deals 5 melee damage to the villain target with the highest HP"
-            //if (UseUnityCoroutines)
-            //{
-            //    yield return GameController.StartCoroutine(e);
-            //}
-            //else
-            //{
-            //    GameController.ExhaustCoroutine(e);
-            //}
-            yield break;
+            var results = new List<Card>();
+            var e = GameController.FindTargetWithHighestHitPoints(
+                1,
+                c => c.IsVillain,
+                results,
+                cardSource: GetCardSource()
+            );
+            if (UseUnityCoroutines)
+            {
+                yield return GameController.StartCoroutine(e);
+            }
+            else
+            {
+                GameController.ExhaustCoroutine(e);
+            }
+
+            var highestVillain = results.FirstOrDefault();
+            if (highestVillain == null) { yield break; }
+
+            e = DealDamage(CharacterCard, highestVillain, amount: 5, DamageType.Psychic, cardSource: GetCardSource());
+            if (UseUnityCoroutines)
+            {
+                yield return GameController.StartCoroutine(e);
+            }
+            else
+            {
+                GameController.ExhaustCoroutine(e);
+            }
         }
     }
 }

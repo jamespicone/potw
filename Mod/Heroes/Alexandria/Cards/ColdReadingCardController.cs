@@ -53,6 +53,48 @@ namespace Jp.ParahumansOfTheWormverse.Alexandria
         public override void AddTriggers()
         {
             //"At the start of your turn reveal the top card of the villain deck. Either discard it or return it to the top of the villain deck"
+            AddStartOfTurnTrigger(
+                tt => tt == TurnTaker,
+                pca => RevealVillainCard(),
+                TriggerType.RevealCard
+            );
+        }
+
+        private IEnumerator RevealVillainCard()
+        {
+            var storedResults = new List<SelectLocationDecision>();
+            var e = FindVillainDeck(
+                HeroTurnTakerController,
+                SelectionType.RevealCardsFromDeck,
+                storedResults,
+                l => true
+            );
+            if (UseUnityCoroutines)
+            {
+                yield return GameController.StartCoroutine(e);
+            }
+            else
+            {
+                GameController.ExhaustCoroutine(e);
+            }
+
+            var selectedLocation = GetSelectedLocation(storedResults);
+            if (selectedLocation == null) { yield break; }
+
+            e = RevealCard_DiscardItOrPutItOnDeck(
+                HeroTurnTakerController,
+                TurnTakerController,
+                selectedLocation,
+                toBottom: false
+            );
+            if (UseUnityCoroutines)
+            {
+                yield return GameController.StartCoroutine(e);
+            }
+            else
+            {
+                GameController.ExhaustCoroutine(e);
+            }
         }
     }
 }
