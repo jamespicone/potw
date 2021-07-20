@@ -15,15 +15,15 @@ namespace Jp.ParahumansOfTheWormverse.Alexandria
         public override IEnumerator Play()
         {
             // "When this card enters play {AlexandriaCharacter} regains 2 HP",
-            //if (UseUnityCoroutines)
-            //{
-            //    yield return GameController.StartCoroutine(e);
-            //}
-            //else
-            //{
-            //    GameController.ExhaustCoroutine(e);
-            //}
-            yield break;
+            var e = GameController.GainHP(CharacterCard, 2, cardSource: GetCardSource());
+            if (UseUnityCoroutines)
+            {
+                yield return GameController.StartCoroutine(e);
+            }
+            else
+            {
+                GameController.ExhaustCoroutine(e);
+            }
         }
 
         public override void AddTriggers()

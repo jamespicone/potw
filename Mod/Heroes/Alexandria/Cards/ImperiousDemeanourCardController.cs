@@ -15,20 +15,57 @@ namespace Jp.ParahumansOfTheWormverse.Alexandria
         public override IEnumerator Play()
         {
             // "When this card enters play draw a card",
-            //if (UseUnityCoroutines)
-            //{
-            //    yield return GameController.StartCoroutine(e);
-            //}
-            //else
-            //{
-            //    GameController.ExhaustCoroutine(e);
-            //}
-            yield break;
+            var e = DrawCard(HeroTurnTaker);
+            if (UseUnityCoroutines)
+            {
+                yield return GameController.StartCoroutine(e);
+            }
+            else
+            {
+                GameController.ExhaustCoroutine(e);
+            }
         }
 
         public override void AddTriggers()
         {
             // "Whenever you use a power {AlexandriaCharacter} regains 3 HP"
+            AddTrigger<UsePowerAction>(
+                upa => upa.HeroUsingPower == HeroTurnTakerController && upa.IsSuccessful,
+                upa => HealUp(),
+                TriggerType.GainHP,
+                TriggerTiming.Before
+            );
+        }
+
+        private IEnumerator HealUp()
+        {
+            var selectedCard = new List<Card>();
+            var e = FindCharacterCard(
+                TurnTaker,
+                SelectionType.GainHP,
+                selectedCard
+            );
+            if (UseUnityCoroutines)
+            {
+                yield return GameController.StartCoroutine(e);
+            }
+            else
+            {
+                GameController.ExhaustCoroutine(e);
+            }
+
+            var card = selectedCard.FirstOrDefault();
+            if (card == null) { yield break; }
+
+            e = GameController.GainHP(card, 3, cardSource: GetCardSource());
+            if (UseUnityCoroutines)
+            {
+                yield return GameController.StartCoroutine(e);
+            }
+            else
+            {
+                GameController.ExhaustCoroutine(e);
+            }
         }
     }
 }

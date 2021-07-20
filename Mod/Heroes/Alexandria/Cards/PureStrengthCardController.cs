@@ -15,15 +15,24 @@ namespace Jp.ParahumansOfTheWormverse.Alexandria
         public override IEnumerator Play()
         {
             // "{AlexandriaCharacter} deals a target 4 melee damage"
-            //if (UseUnityCoroutines)
-            //{
-            //    yield return GameController.StartCoroutine(e);
-            //}
-            //else
-            //{
-            //    GameController.ExhaustCoroutine(e);
-            //}
-            yield break;
+            var e = GameController.SelectTargetsAndDealDamage(
+                HeroTurnTakerController,
+                new DamageSource(GameController, CharacterCard),
+                amount: 4,
+                DamageType.Melee,
+                numberOfTargets: 1,
+                optional: false,
+                requiredTargets: 1,
+                cardSource: GetCardSource()
+            );
+            if (UseUnityCoroutines)
+            {
+                yield return GameController.StartCoroutine(e);
+            }
+            else
+            {
+                GameController.ExhaustCoroutine(e);
+            }
         }
     }
 }
