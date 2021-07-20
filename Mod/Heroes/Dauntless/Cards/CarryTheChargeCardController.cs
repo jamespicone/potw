@@ -16,7 +16,7 @@ namespace Jp.ParahumansOfTheWormverse.Dauntless
         {
             // Whenever {DauntlessCharacter} is dealt damage you may draw a card. If it was energy or lightning damage you may play a card as well
             AddTrigger<DealDamageAction>(
-                dda => dda.Target == CharacterCard,
+                dda => dda.Target == CharacterCard && dda.DidDealDamage,
                 dda => DrawAndMaybePlay(dda),
                 new TriggerType[] { TriggerType.DrawCard, TriggerType.PlayCard },
                 TriggerTiming.After
