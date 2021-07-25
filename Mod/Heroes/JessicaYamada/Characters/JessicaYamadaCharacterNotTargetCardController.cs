@@ -13,5 +13,16 @@ namespace Jp.ParahumansOfTheWormverse.JessicaYamada
         public JessicaYamadaCharacterNotTargetCardController(Card card, TurnTakerController controller) : base(card, controller)
         {
         }
+
+        public override bool AskIfActionCanBePerformed(GameAction ga)
+        {
+            var ua = ga as UnincapacitateHeroAction;
+            if (ua == null) { return true; }
+
+            if (ua.HeroCharacterCard != this) { return true; }
+            if (Card.IsFlipped) { return true; }
+
+            return false;
+        }
     }
 }
