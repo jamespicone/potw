@@ -1,7 +1,7 @@
 ﻿{
   "name": "Jessica Yamada",
   "kind": "Hero",
-  "initialCardIdentifiers": [ "JessicaYamadaInstructionsEnvironment" ],
+  "initialCardIdentifiers": [ "JessicaYamadaCharacterTarget" ],
   "initialOffToTheSideCardIdentifiers": [
     "JessicaYamadaCharacterEnvironment",
     "JessicaYamadaCharacterNotTarget",
@@ -9,13 +9,13 @@
   ],
   "cards": [
     {
-      "identifier": "JessicaYamadaInstructionsEnvironment",
-      "title": "Jessica Yamada Instructions",
+      "identifier": "JessicaYamadaInstructionsTarget",
+      "title": "Jessica Yamada",
       "count": 1,
       "body": "Therapy",
       "gameplay": [
         "Jessica Yamada cannot deal damage",
-        "If there are no hero targets in play, incapacitate Jessica Yamada"
+        "If there are no hero targets in play outside your play area, incapacitate Jessica Yamada"
       ],
       "icons": [ "CannotDealDamage", "FlipFaceDown" ],
       "character": true,
@@ -35,36 +35,6 @@
         "PlayCardNow",
         "GainHP"
       ]
-    },
-    {
-      "identifier": "JessicaYamadaCharacterEnvironment",
-      "title": "Jessica Yamada",
-      "count": 1,
-      "hitpoints": 12,
-      "body": "Therapy",
-      "gameplay": [
-        "Jessica Yamada is an environment target (She is still a hero card)",
-        "Jessica Yamada is immune to damage dealt by hero cards"
-      ],
-      "icons": [ "HasPower", "GainHP", "DrawCardNow" ],
-      "powers": [ "Another player either regains 2 HP or draws a card" ],
-      "character": true,
-      "backgroundColor": "ffffff",
-      "openingLines": {
-        "default": "blargh"
-      },
-      "complexity": 1,
-      "incapacitatedAbilities": [
-        "1 player draws 1 card",
-        "1 player plays 1 card",
-        "1 player regains 2 HP"
-      ],
-      "flippedIcons": [
-        "DrawCardNow",
-        "PlayCardNow",
-        "GainHP"
-      ],
-      "kind": "environment"
     },
     {
       "identifier": "AHelpfulSuggestion",
@@ -277,6 +247,36 @@
       ]
     },
     {
+      "identifier": "JessicaYamadaCharacterEnvironment",
+      "title": "Jessica Yamada",
+      "count": 1,
+      "hitpoints": 12,
+      "body": "Therapy",
+      "gameplay": [
+        "Jessica Yamada is an environment target (She is still a hero card)",
+        "Jessica Yamada is immune to damage dealt by hero cards"
+      ],
+      "icons": [ "HasPower", "GainHP", "DrawCardNow" ],
+      "powers": [ "Another player either regains 2 HP or draws a card" ],
+      "character": true,
+      "backgroundColor": "ffffff",
+      "openingLines": {
+        "default": "blargh"
+      },
+      "complexity": 1,
+      "incapacitatedAbilities": [
+        "1 player draws 1 card",
+        "1 player plays 1 card",
+        "1 player regains 2 HP"
+      ],
+      "flippedIcons": [
+        "DrawCardNow",
+        "PlayCardNow",
+        "GainHP"
+      ],
+      "kind": "environment"
+    },
+    {
       "identifier": "JessicaYamadaCharacterNotTarget",
       "title": "Jessica Yamada (not target)",
       "count": 1,
@@ -306,15 +306,15 @@
   ],
   "promoCards": [
     {
-      "identifier": "JessicaYamadaInstructionsEnvironment",
-      "promoIdentifier": "JessicaYamadaInstructionsTarget",
-      "title": "Jessica Yamada Instructions",
-      "promoTitle": "Jessica Yamada Instructions (target)",
+      "identifier": "JessicaYamadaInstructionsTarget",
+      "promoIdentifier": "JessicaYamadaInstructionsEnvironment",
+      "title": "Jessica Yamada",
+      "promoTitle": "Jessica Yamada (environment)",
       "count": 1,
       "body": "Therapy",
       "gameplay": [
         "Jessica Yamada cannot deal damage",
-        "If there are no hero targets in play outside your play area, incapacitate Jessica Yamada"
+        "If there are no hero targets in play, incapacitate Jessica Yamada"
       ],
       "icons": [ "CannotDealDamage", "FlipFaceDown" ],
       "character": true,
@@ -336,10 +336,10 @@
       ]
     },
     {
-      "identifier": "JessicaYamadaInstructionsEnvironment",
+      "identifier": "JessicaYamadaInstructionsTarget",
       "promoIdentifier": "JessicaYamadaInstructionsNotTarget",
-      "title": "Jessica Yamada Instructions",
-      "promoTitle": "Jessica Yamada Instructions (not target)",
+      "title": "Jessica Yamada",
+      "promoTitle": "Jessica Yamada (not target)",
       "count": 1,
       "body": "Therapy",
       "gameplay": [
