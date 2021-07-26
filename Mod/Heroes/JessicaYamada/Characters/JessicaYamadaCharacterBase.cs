@@ -8,24 +8,10 @@ using System.Text;
 
 namespace Jp.ParahumansOfTheWormverse.JessicaYamada
 {
-    public class JessicaYamadaCharacterCardController : HeroCharacterCardController
+    public class JessicaYamadaCharacterBase : HeroCharacterCardController
     {
-        public JessicaYamadaCharacterCardController(Card card, TurnTakerController controller) : base(card, controller)
+        public JessicaYamadaCharacterBase(Card card, TurnTakerController controller) : base(card, controller)
         {
-        }
-
-        public override void AddSideTriggers()
-        {
-            if (! Card.IsFlipped)
-            {
-                AddSideTrigger(AddCannotDealDamageTrigger(c => c == Card));
-                AddSideTrigger(AddTrigger<DealDamageAction>(
-                    dda => dda.Target == Card,
-                    dda => RedirectDamage(dda, TargetType.LowestHP, c => c != Card && c.IsHeroCharacterCard && ! c.IsIncapacitatedOrOutOfGame && c.IsInPlay),
-                    TriggerType.RedirectDamage,
-                    TriggerTiming.Before
-                ));
-            }
         }
 
         public override IEnumerator UseIncapacitatedAbility(int index)
@@ -37,12 +23,12 @@ namespace Jp.ParahumansOfTheWormverse.JessicaYamada
              */
 
             IEnumerator e;
-            switch(index)
+            switch (index)
             {
                 case 0:
                     e = GameController.SelectHeroToDrawCard(
                         HeroTurnTakerController,
-                        cardSource: GetCardSource()                        
+                        cardSource: GetCardSource()
                     );
                     break;
 
