@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+using Jp.ParahumansOfTheWormverse.Utility;
+
 namespace Jp.ParahumansOfTheWormverse.Armsmaster
 {
     public class TargetingComputerCardController : ModuleCardController
@@ -19,7 +21,7 @@ namespace Jp.ParahumansOfTheWormverse.Armsmaster
                 HeroTurnTakerController,
                 AllCards,
                 storedResults,
-                additionalCriteria: c => c.IsHero && c.IsTarget,
+                additionalCriteria: c => c.IsHeroTarget(),
                 selectionType: SelectionType.IncreaseNextDamage,
                 cardSource: GetCardSource()
             );

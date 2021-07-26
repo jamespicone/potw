@@ -7,6 +7,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+using Jp.ParahumansOfTheWormverse.Utility;
+
 namespace Jp.ParahumansOfTheWormverse.NewDelhi
 {
     public class HeroicSacrificeCardController : CardController
@@ -20,9 +22,9 @@ namespace Jp.ParahumansOfTheWormverse.NewDelhi
         public override void AddTriggers()
         {
             // "Whenever damage is redirected from one hero target to another, increase that damage by 2."
-            AddTrigger<RedirectDamageAction>((RedirectDamageAction rda) => rda.NewTarget.IsHero && rda.OldTarget.IsHero, IncreaseDamageResponse, TriggerType.IncreaseDamage, TriggerTiming.Before);
+            AddTrigger<RedirectDamageAction>((RedirectDamageAction rda) => rda.NewTarget.IsHeroTarget() && rda.OldTarget.IsHeroTarget(), IncreaseDamageResponse, TriggerType.IncreaseDamage, TriggerTiming.Before);
             // "When a hero target deals damage to another hero target, destroy this card."
-            AddTrigger<DealDamageAction>((DealDamageAction dda) => dda.DidDealDamage && dda.DamageSource != null && dda.DamageSource.Card.IsHero && dda.DamageSource.Card.IsTarget && dda.Target.IsHero && dda.Target != dda.DamageSource.Card, base.DestroyThisCardResponse, TriggerType.DestroySelf, TriggerTiming.After);
+            AddTrigger<DealDamageAction>((DealDamageAction dda) => dda.DidDealDamage && dda.DamageSource != null && dda.DamageSource.Card.IsHeroTarget() && dda.Target.IsHeroTarget() && dda.Target != dda.DamageSource.Card, base.DestroyThisCardResponse, TriggerType.DestroySelf, TriggerTiming.After);
             base.AddTriggers();
         }
 

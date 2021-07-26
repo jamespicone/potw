@@ -269,6 +269,7 @@
     <Compile Include="Heroes\Tattletale\Characters\TattletaleCharacterCardController.cs" />
     <Compile Include="Heroes\Tattletale\Characters\TattletaleHunterOfSecretsCharacterCardController.cs" />
     <Compile Include="Heroes\Tattletale\Characters\TattletaleRulerOfBrocktonBayCharacterCardController.cs" />
+    <Compile Include="Utility\ExtensionMethods.cs" />
     <Compile Include="Villains\Behemoth\Cards\AdvanceCardController.cs" />
     <Compile Include="Villains\Behemoth\Cards\AShiftOfAttentionCardController.cs" />
     <Compile Include="Villains\Behemoth\Cards\ContinuousCrackleCardController.cs" />

@@ -6,6 +6,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+using Jp.ParahumansOfTheWormverse.Utility;
+
 namespace Jp.ParahumansOfTheWormverse.Slaughterhouse9
 {
     public class CrawlerCharacterCardController : Slaughterhouse9MemberCharacterCardController
@@ -22,7 +24,7 @@ namespace Jp.ParahumansOfTheWormverse.Slaughterhouse9
                 AddSideTrigger(AddDealDamageAtEndOfTurnTrigger(
                     TurnTaker,
                     Card,
-                    c => c.IsHero && c.IsTarget,
+                    c => c.IsHeroTarget(),
                     TargetType.LowestHP,
                     2,
                     DamageType.Melee
@@ -48,7 +50,7 @@ namespace Jp.ParahumansOfTheWormverse.Slaughterhouse9
             var e = DealDamageToHighestHP(
                 Card,
                 1,
-                c => !c.IsVillain && c.IsTarget,
+                c => !c.IsVillainTarget && c.IsTarget,
                 c => 2,
                 DamageType.Toxic,
                 storedResults: target

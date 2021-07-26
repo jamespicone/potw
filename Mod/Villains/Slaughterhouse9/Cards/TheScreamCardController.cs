@@ -7,6 +7,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+using Jp.ParahumansOfTheWormverse.Utility;
+
 namespace Jp.ParahumansOfTheWormverse.Slaughterhouse9
 {
     public class TheScreamCardController : CardController
@@ -56,7 +58,7 @@ namespace Jp.ParahumansOfTheWormverse.Slaughterhouse9
 
             e = DealDamage(
                 NineSource,
-                c => c.IsHero && c.IsTarget,
+                c => c.IsHeroTarget(),
                 c => 2 * EquipmentCardCount(),
                 DamageType.Projectile
             );

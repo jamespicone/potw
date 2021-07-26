@@ -6,6 +6,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+using Jp.ParahumansOfTheWormverse.Utility;
+
 namespace Jp.ParahumansOfTheWormverse.Slaughterhouse9
 {
     public class BurnscarCharacterCardController : Slaughterhouse9MemberCharacterCardController
@@ -21,7 +23,7 @@ namespace Jp.ParahumansOfTheWormverse.Slaughterhouse9
                 AddSideTrigger(AddDealDamageAtEndOfTurnTrigger(
                     TurnTaker,
                     Card,
-                    c => !c.IsVillain && c.IsTarget,
+                    c => !c.IsVillainTarget && c.IsTarget,
                     TargetType.All,
                     1,
                     DamageType.Fire
@@ -57,7 +59,7 @@ namespace Jp.ParahumansOfTheWormverse.Slaughterhouse9
 
             e = DealDamage(
                 Card,
-                c => !c.IsVillain && c.IsTarget,
+                c => !c.IsVillainTarget && c.IsTarget,
                 1 + destroyActions.Count(dca => dca.WasCardDestroyed && dca.CardToDestroy.Card.IsEnvironment),
                 DamageType.Fire
             );
@@ -76,7 +78,7 @@ namespace Jp.ParahumansOfTheWormverse.Slaughterhouse9
             var e = DealDamageToLowestHP(
                 Card,
                 ranking: 1,
-                c => c.IsHero && c.IsTarget,
+                c => c.IsHeroTarget(),
                 c => 3,
                 DamageType.Fire
             );

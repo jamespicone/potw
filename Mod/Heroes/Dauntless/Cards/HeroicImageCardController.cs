@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+using Jp.ParahumansOfTheWormverse.Utility;
+
 namespace Jp.ParahumansOfTheWormverse.Dauntless
 {
     public class HeroicImageCardController : CardController
@@ -30,7 +32,7 @@ namespace Jp.ParahumansOfTheWormverse.Dauntless
             e = GameController.SelectCardAndStoreResults(
                 HeroTurnTakerController,
                 SelectionType.RedirectDamageDirectedAtTarget,
-                new LinqCardCriteria(c => c.IsInPlay && c.IsHero && c.IsTarget, "hero target", useCardsSuffix: false, useCardsPrefix: false, "hero target", "hero targets"),
+                new LinqCardCriteria(c => c.IsInPlay && c.IsHeroTarget(), "hero target", useCardsSuffix: false, useCardsPrefix: false, "hero target", "hero targets"),
                 choice,
                 optional: false,
                 cardSource: GetCardSource()

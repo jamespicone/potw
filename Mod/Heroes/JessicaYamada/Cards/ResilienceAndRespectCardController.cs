@@ -7,6 +7,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+using Jp.ParahumansOfTheWormverse.Utility;
+
 namespace Jp.ParahumansOfTheWormverse.JessicaYamada
 {
     class ResilienceAndRespectCardController : CardController
@@ -20,7 +22,7 @@ namespace Jp.ParahumansOfTheWormverse.JessicaYamada
         {
             // "Reduce psychic damage dealt to hero targets by 1"
             AddReduceDamageTrigger(
-                dda => dda.DamageType == DamageType.Psychic && dda.Target.IsHero && dda.Target.IsTarget,
+                dda => dda.DamageType == DamageType.Psychic && dda.Target.IsHeroTarget(),
                 dda => 1
             );
         }

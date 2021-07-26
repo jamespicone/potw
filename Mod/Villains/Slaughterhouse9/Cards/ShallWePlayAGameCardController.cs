@@ -7,6 +7,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+using Jp.ParahumansOfTheWormverse.Utility;
+
 namespace Jp.ParahumansOfTheWormverse.Slaughterhouse9
 {
     public class ShallWePlayAGameCardController : CardController
@@ -48,7 +50,7 @@ namespace Jp.ParahumansOfTheWormverse.Slaughterhouse9
             if (! jack.IsInPlayAndHasGameText || jack.IsIncapacitatedOrOutOfGame) { yield break; }
             var e2 = DealDamage(
                 jack,
-                c => c.IsHero && c.IsTarget,
+                c => c.IsHeroTarget(),
                 2,
                 DamageType.Psychic
             );

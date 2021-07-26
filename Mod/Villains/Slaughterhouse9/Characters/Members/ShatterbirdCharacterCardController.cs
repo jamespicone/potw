@@ -6,6 +6,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+using Jp.ParahumansOfTheWormverse.Utility;
+
 namespace Jp.ParahumansOfTheWormverse.Slaughterhouse9
 {
     public class ShatterbirdCharacterCardController : Slaughterhouse9MemberCharacterCardController
@@ -22,7 +24,7 @@ namespace Jp.ParahumansOfTheWormverse.Slaughterhouse9
                 AddSideTrigger(AddDealDamageAtEndOfTurnTrigger(
                     TurnTaker,
                     Card,
-                    c => c.IsTarget && !c.IsVillain,
+                    c => c.IsTarget && !c.IsVillainTarget,
                     TargetType.All,
                     1,
                     DamageType.Projectile
@@ -49,7 +51,7 @@ namespace Jp.ParahumansOfTheWormverse.Slaughterhouse9
                 H - 1,
                 optional: false,
                 H - 1,
-                additionalCriteria: c => c.IsHero && c.IsTarget,
+                additionalCriteria: c => c.IsHeroTarget(),
                 cardSource: GetCardSource()
             );
 
