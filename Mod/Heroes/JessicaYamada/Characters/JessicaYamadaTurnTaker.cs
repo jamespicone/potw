@@ -25,13 +25,28 @@ namespace Jp.ParahumansOfTheWormverse.JessicaYamada
 
         public override CharacterCardController IncapacitationCardController => FindCardController(CharacterCard) as CharacterCardController;
 
-        public override bool IsIncapacitated => CharacterCard?.IsFlipped ?? false;
+        public override bool IsIncapacitated
+        {
+            get
+            {
+                var ret = CharacterCard?.IsFlipped ?? false;
+                return ret;
+            }
+        }
 
-        public override bool IsIncapacitatedOrOutOfGame => IsIncapacitated || (CharacterCard?.IsOutOfGame ?? false);
+        public override bool IsIncapacitatedOrOutOfGame
+        {
+            get
+            {
+                var ret = IsIncapacitated || (CharacterCard?.IsOutOfGame ?? false);
+                return ret;
+            }
+        }
 
         public override IEnumerator StartGame()
         {
-            var e = GameController.BulkMoveCards(this, TurnTaker.OffToTheSide.Cards.Where(c => c.PromoIdentifierOrIdentifier == CharacterIdentifier()), TurnTaker.PlayArea);
+            var characterCard = TurnTaker.OffToTheSide.Cards.Where(c => c.PromoIdentifierOrIdentifier == CharacterIdentifier()).FirstOrDefault();
+            var e = GameController.MoveCard(this, characterCard, TurnTaker.PlayArea);
             if (UseUnityCoroutines)
             {
                 yield return GameController.StartCoroutine(e);
@@ -41,15 +56,23 @@ namespace Jp.ParahumansOfTheWormverse.JessicaYamada
                 GameController.ExhaustCoroutine(e);
             }
 
-            e = GameController.BulkMoveCards(this, TurnTaker.OffToTheSide.Cards, TurnTaker.InTheBox);
-            if (UseUnityCoroutines)
-            {
-                yield return GameController.StartCoroutine(e);
-            }
-            else
-            {
-                GameController.ExhaustCoroutine(e);
-            }
+            // I would like to banish cards back to the box so they can be used for other effects, but unfortunately
+            // the engine has a bug where TurnTakers with character cards that aren't hero/villain team cannot be incapacitated
+            // (See HeroTurnTaker.IsIncapacitatedOrOutOfGame)
+            //
+            // The check ignores characters OffToTheSide.
+            //
+            //e = GameController.MoveCards(this, TurnTaker.OffToTheSide.Cards, TurnTaker.InTheBox);
+            //if (UseUnityCoroutines)
+            //{
+            //    yield return GameController.StartCoroutine(e);
+            //}
+            //else
+            //{
+            //    GameController.ExhaustCoroutine(e);
+            //}
+
+            TurnTaker.SetCharacterCard(CharacterCard);
         }
 
         private string CharacterIdentifier()

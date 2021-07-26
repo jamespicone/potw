@@ -22,7 +22,7 @@ namespace Jp.ParahumansOfTheWormverse.JessicaYamada
             {
                 AddSideTrigger(AddTrigger<DealDamageAction>(
                     dda => dda.Target == Card && ! dda.DamageSource.IsHero,
-                    dda => RedirectDamage(dda, TargetType.LowestHP, c => c != Card && c.IsHeroCharacterCard && !c.IsIncapacitatedOrOutOfGame && c.IsInPlay),
+                    dda => RedirectDamage(dda, TargetType.LowestHP, c => c != Card && c.IsHeroCharacterCard && !c.IsIncapacitatedOrOutOfGame && c.IsInPlay && c.IsRealCard),
                     TriggerType.RedirectDamage,
                     TriggerTiming.Before
                 ));

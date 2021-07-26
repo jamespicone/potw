@@ -6,6 +6,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+using UnityEngine;
+
 namespace Jp.ParahumansOfTheWormverse.JessicaYamada
 {
     public class JessicaYamadaInstructionsBase : HeroCharacterCardController
@@ -20,7 +22,7 @@ namespace Jp.ParahumansOfTheWormverse.JessicaYamada
             AddTrigger<GameAction>(
                 (ga) => ((ga is FlipCardAction || ga is BulkRemoveTargetsAction || ga is MoveCardAction) && !CharacterCard.IsFlipped),
                 (ga) => IncapacitateIfShouldBeIncapped(),
-                TriggerType.FlipCard,
+                TriggerType.DestroyCard,
                 TriggerTiming.After
             );
         }
@@ -106,9 +108,19 @@ namespace Jp.ParahumansOfTheWormverse.JessicaYamada
         {
             if (TurnTaker.IsIncapacitatedOrOutOfGame) { yield break; }
 
-            if (GameController.FindTargetsInPlay(c => c.IsHero && c.IsTarget).Count() > 0) { yield break; }
+            if (GameController.FindTargetsInPlay(c => c.IsHero && c.IsTarget && c.Location != TurnTaker.PlayArea).Count() > 0) { yield break; }
 
             var e = GameController.DestroyCard(null, CharacterCard);
+            if (UseUnityCoroutines)
+            {
+                yield return GameController.StartCoroutine(e);
+            }
+            else
+            {
+                GameController.ExhaustCoroutine(e);
+            }
+
+            e = GameController.DestroyCard(null, Card);
             if (UseUnityCoroutines)
             {
                 yield return GameController.StartCoroutine(e);

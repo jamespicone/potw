@@ -1,7 +1,7 @@
 ﻿{
   "name": "Jessica Yamada",
   "kind": "Hero",
-  "initialCardIdentifiers": [ "JessicaYamadaCharacterTarget" ],
+  "initialCardIdentifiers": [ "JessicaYamadaInstructionsTarget" ],
   "initialOffToTheSideCardIdentifiers": [
     "JessicaYamadaCharacterEnvironment",
     "JessicaYamadaCharacterNotTarget",
@@ -274,7 +274,8 @@
         "PlayCardNow",
         "GainHP"
       ],
-      "kind": "environment"
+      "kind": "environment",
+      "flippedKind": "hero"
     },
     {
       "identifier": "JessicaYamadaCharacterNotTarget",
