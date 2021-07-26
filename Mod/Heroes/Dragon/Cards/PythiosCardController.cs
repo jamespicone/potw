@@ -130,8 +130,8 @@ namespace Jp.ParahumansOfTheWormverse.Dragon
                 GameController.ExhaustCoroutine(e);
             }
 
-            var revealedCard = GetRevealedCard(revealed, false);
-            if (revealedCard != null)
+            var revealedCards = GetRevealedCards(revealed, false).Where(c => c.IsTarget);
+            foreach (Card revealedCard in revealedCards)
             {
                 e = GameController.SelectLocationAndMoveCard(
                     HeroTurnTakerController,
