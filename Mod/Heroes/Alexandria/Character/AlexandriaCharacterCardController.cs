@@ -8,6 +8,20 @@ using System.Text;
 
 namespace Jp.ParahumansOfTheWormverse.Alexandria
 {
+
+    /*
+     * Variant thoughts:
+     * - This becomes Alexandria, Cauldron Cape (because it's about exploiting her thinker power)
+     * - Regular Alexandria gives other targets Wraith-like reduce-next-damage + draws a card (because she wants to protect people and is learning her abilities)
+     * - Pretender reveals 3 from the top of their deck and may play one (because he doesn't have a great handle on how to do the things she does)
+     * 
+     * Might need more return-to-hand sources than Alexandria's Cape. Maybe some of the one-shots let you do it (time-locked and pure strength maybe?)
+     * 
+     * Incap thoughts:
+     * - base character should probably emphasise protecting other heroes, helping them learn, and maybe "she's got a bit of a dark side" somehow
+     * - pretender version should revive dead targets
+     */
+
     public class AlexandriaCharacterCardController : HeroCharacterCardController
     {
         public AlexandriaCharacterCardController(Card card, TurnTakerController controller) : base(card, controller)
