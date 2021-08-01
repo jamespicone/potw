@@ -15,20 +15,71 @@ namespace Jp.ParahumansOfTheWormverse.Alexandria
         public override IEnumerator Play()
         {
             // "When this card enters play you may destroy a non-character-card target",
-            //if (UseUnityCoroutines)
-            //{
-            //    yield return GameController.StartCoroutine(e);
-            //}
-            //else
-            //{
-            //    GameController.ExhaustCoroutine(e);
-            //}
-            yield break;
+            var e = GameController.SelectAndDestroyCard(
+                HeroTurnTakerController,
+                new LinqCardCriteria(c => ! c.IsCharacter && c.IsTarget, "noncharacter"),
+                optional: true,
+                responsibleCard: CharacterCard,
+                cardSource: GetCardSource()
+            );
+            if (UseUnityCoroutines)
+            {
+                yield return GameController.StartCoroutine(e);
+            }
+            else
+            {
+                GameController.ExhaustCoroutine(e);
+            }
         }
 
         public override void AddTriggers()
         {
             // "When {AlexandriaCharacter} destroys a target select a target. Until the start of your next turn that target cannot deal damage"
+            AddTrigger<DestroyCardAction>(
+                dca => dca.ResponsibleCard == CharacterCard && dca.WasCardDestroyed,
+                dca => PreventTargetDoingDamage(),
+                TriggerType.Other,
+                TriggerTiming.After
+            );
+        }
+
+        private IEnumerator PreventTargetDoingDamage()
+        {
+            // select a target. Until the start of your next turn that target cannot deal damage
+            var storedResults = new List<SelectCardDecision>();
+            var e = GameController.SelectCardAndStoreResults(
+                HeroTurnTakerController,
+                SelectionType.AmbiguousDecision,
+                new LinqCardCriteria(c => c.IsTarget, "target"),
+                storedResults,
+                optional: false,
+                cardSource: GetCardSource()
+            );
+            if (UseUnityCoroutines)
+            {
+                yield return GameController.StartCoroutine(e);
+            }
+            else
+            {
+                GameController.ExhaustCoroutine(e);
+            }
+
+            var target = GetSelectedCard(storedResults);
+            if (target == null) { yield break; }
+
+            var effect = new CannotDealDamageStatusEffect();
+            effect.SourceCriteria.IsSpecificCard = target;
+            effect.UntilStartOfNextTurn(TurnTaker);
+
+            e = GameController.AddStatusEffect(effect, showMessage: true, cardSource: GetCardSource());
+            if (UseUnityCoroutines)
+            {
+                yield return GameController.StartCoroutine(e);
+            }
+            else
+            {
+                GameController.ExhaustCoroutine(e);
+            }
         }
     }
 }

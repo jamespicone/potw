@@ -14,11 +14,11 @@ namespace Jp.ParahumansOfTheWormverse.Alexandria
 
         public override IEnumerator UsePower(int index = 0)
         {
-            // { AlexandriaCharacter} deals 3 melee damage to a target.
+            // {AlexandriaCharacter} deals 3 melee damage to a target.
             var e = GameController.SelectTargetsAndDealDamage(
                 HeroTurnTakerController,
                 new DamageSource(GameController, CharacterCard),
-                amount: 3,
+                amount: GetPowerNumeral(0, 3),
                 DamageType.Melee,
                 numberOfTargets: 1,
                 optional: false,

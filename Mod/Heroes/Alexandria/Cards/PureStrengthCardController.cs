@@ -19,7 +19,7 @@ namespace Jp.ParahumansOfTheWormverse.Alexandria
                 HeroTurnTakerController,
                 new DamageSource(GameController, CharacterCard),
                 amount: 4,
-                DamageType.Melee,
+                DamageType.Projectile,
                 numberOfTargets: 1,
                 optional: false,
                 requiredTargets: 1,

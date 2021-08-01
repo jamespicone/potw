@@ -14,12 +14,12 @@ namespace Jp.ParahumansOfTheWormverse.Alexandria
 
         public override IEnumerator Play()
         {
-            // "When this card enters play {AlexandriaCharacter} may deal 2 melee damage to a target",
+            // "When this card enters play {AlexandriaCharacter} may deal 2 sonic damage to a target",
             var e = GameController.SelectTargetsAndDealDamage(
                 HeroTurnTakerController,
                 new DamageSource(GameController, CharacterCard),
                 amount: 2,
-                DamageType.Melee,
+                DamageType.Sonic,
                 numberOfTargets: 1,
                 optional: false,
                 requiredTargets: 0,

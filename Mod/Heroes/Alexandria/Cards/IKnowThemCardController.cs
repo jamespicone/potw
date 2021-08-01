@@ -10,7 +10,9 @@ namespace Jp.ParahumansOfTheWormverse.Alexandria
     public class IKnowThemCardController : CardController
     {
         public IKnowThemCardController(Card card, TurnTakerController controller) : base(card, controller)
-        { }
+        {
+            SpecialStringMaker.ShowVillainTargetWithHighestHP();
+        }
 
         public override IEnumerator Play()
         {
@@ -34,7 +36,7 @@ namespace Jp.ParahumansOfTheWormverse.Alexandria
             var highestVillain = results.FirstOrDefault();
             if (highestVillain == null) { yield break; }
 
-            e = DealDamage(CharacterCard, highestVillain, amount: 5, DamageType.Psychic, cardSource: GetCardSource());
+            e = DealDamage(CharacterCard, highestVillain, amount: 5, DamageType.Melee, cardSource: GetCardSource());
             if (UseUnityCoroutines)
             {
                 yield return GameController.StartCoroutine(e);

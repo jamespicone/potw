@@ -10,7 +10,9 @@ namespace Jp.ParahumansOfTheWormverse.Alexandria
     public class AndTheyKnowMeCardController : CardController
     {
         public AndTheyKnowMeCardController(Card card, TurnTakerController controller) : base(card, controller)
-        { }
+        {
+            SpecialStringMaker.ShowVillainTargetWithHighestHP();
+        }
 
         public override IEnumerator Play()
         {
@@ -67,7 +69,7 @@ namespace Jp.ParahumansOfTheWormverse.Alexandria
 
             var effect = new CannotDealDamageStatusEffect();
             effect.UntilStartOfNextTurn(TurnTaker);
-            effect.TargetCriteria.IsSpecificCard = highestVillain;
+            effect.SourceCriteria.IsSpecificCard = highestVillain;
 
             e = AddStatusEffect(effect);
             if (UseUnityCoroutines)

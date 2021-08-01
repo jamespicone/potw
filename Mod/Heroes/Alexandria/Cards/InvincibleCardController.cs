@@ -46,23 +46,23 @@ namespace Jp.ParahumansOfTheWormverse.Alexandria
             AddReduceDamageTrigger(c => c == CharacterCard, 1);
         }
 
-        public IEnumerator DiscardToPreventDamage(DealDamageAction dda)
+        public IEnumerator DiscardToPreventDamage(DealDamageAction dda, TurnTaker hero, StatusEffect effect, int[] powerNumerals = null)
         {
             // Think select-and-discard is valid in pretend
-            //if (dda.IsPretend)
-            //{
-            //    var e2 = CancelAction(dda, isPreventEffect: true);
-            //    if (UseUnityCoroutines)
-            //    {
-            //        yield return GameController.StartCoroutine(e2);
-            //    }
-            //    else
-            //    {
-            //        GameController.ExhaustCoroutine(e2);
-            //    }
+            if (dda.IsPretend)
+            {
+                var e2 = CancelAction(dda, isPreventEffect: true);
+                if (UseUnityCoroutines)
+                {
+                    yield return GameController.StartCoroutine(e2);
+                }
+                else
+                {
+                    GameController.ExhaustCoroutine(e2);
+                }
 
-            //    yield break;
-            //}
+                yield break;
+            }
 
             var discardResult = new List<DiscardCardAction>();
             var e = SelectAndDiscardCards(

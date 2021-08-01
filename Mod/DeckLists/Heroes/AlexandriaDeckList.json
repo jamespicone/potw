@@ -38,10 +38,10 @@
       "keywords": [ "ongoing" ],
       "body": [
         "When this card enters play {AlexandriaCharacter} regains 2 HP",
-        "At the end of your turn select a target. Until the start of your next turn, whenever that target would take damage, redirect that damage to {AlexandriaCharacter}"
+        "At the end of your turn select a target. Until the start of your next turn, whenever that target would be dealt damage, redirect that damage to {AlexandriaCharacter}"
       ],
       "icons": [
-        "EndOfTurn",
+        "EndOfTurnAction",
         "GainHP",
         "RedirectDamage"
       ],
@@ -71,7 +71,7 @@
         "At the start of your turn reveal the top card of the villain deck. Either discard it or return it to the top of the villain deck"
       ],
       "icons": [
-        "StartOfTurn",
+        "StartOfTurnAction",
         "Manipulate"
       ],
       "flavorReference": "",
@@ -82,11 +82,11 @@
       "title": "Invincible",
       "keywords": [ "ongoing", "limited" ],
       "body": [
-        "From when this card enters play until the start of your next turn, when {AlexandriaCharacter} would take damage you may discard a card. If you do, prevent the damage.",
+        "From when this card enters play until the start of your next turn, when {AlexandriaCharacter} would be dalt damage you may discard a card. If you do, prevent the damage.",
         "Reduce damage dealt to {AlexandriaCharacter} by 1"
       ],
       "icons": [
-        "PreventDamage",
+        "CancelledDamageGreen",
         "ReduceDamageTaken"
       ],
       "flavorReference": "",
@@ -94,10 +94,10 @@
     },
     {
       "identifier": "HypersonicFlight",
-      "title": "Hypersonic Flight",
+      "title": "Supersonic Flight",
       "keywords": [ "ongoing" ],
       "body": [
-        "When this card enters play {AlexandriaCharacter} may deal 2 melee damage to a target",
+        "When this card enters play {AlexandriaCharacter} may deal 2 sonic damage to a target",
         "When {AlexandriaCharacter} deals damage to a villain target you may destroy a Device or Ongoing card"
       ],
       "icons": [
@@ -116,8 +116,8 @@
         "When {AlexandriaCharacter} destroys a target select a target. Until the start of your next turn that target cannot deal damage"
       ],
       "icons": [
-        "DestroyCardTarget",
-        "CannotDealDamage"
+        "DestroyTarget",
+        "CancelledDamageGreen"
       ],
       "flavorReference": "",
       "count": 3
@@ -159,7 +159,7 @@
         "At the end of your turn reveal the top 3 cards of a deck. Put them back in any order"
       ],
       "icons": [
-        "EndOfTurn",
+        "EndOfTurnAction",
         "Manipulate"
       ],
       "flavorReference": "",
@@ -173,10 +173,7 @@
         "Note down Alexandria's current HP",
         "At the start of your next turn, if {AlexandriaCharacter} is not incapacitated, set {AlexandriaCharacter}'s HP to the value you noted down"
       ],
-      "icons": [
-        "SetHP",
-        "StartOfTurn"
-      ],
+      "icons": [],
       "flavorReference": "",
       "count": 2
     },
@@ -185,7 +182,7 @@
       "title": "Pure Strength",
       "keywords": [ "one-shot" ],
       "body": [
-        "{AlexandriaCharacter} deals a target 4 melee damage"
+        "{AlexandriaCharacter} deals a target 4 projectile damage"
       ],
       "icons": [
         "DealDamageMelee"
@@ -216,8 +213,7 @@
       ],
       "icons": [
         "DealDamagePsychic",
-        "CannotDealDamage",
-        "StartTurn"
+        "CannotDealDamage"
       ],
       "flavorReference": "",
       "count": 3
