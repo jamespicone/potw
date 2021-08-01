@@ -7,6 +7,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+using Jp.ParahumansOfTheWormverse.Utility;
+
 namespace Jp.ParahumansOfTheWormverse.Slaughterhouse9
 {
     public class SomeLightEntertainmentCardController : CardController
@@ -51,7 +53,7 @@ namespace Jp.ParahumansOfTheWormverse.Slaughterhouse9
                 e = DealDamageToHighestHP(
                     selectedVillain.SelectedCard,
                     1,
-                    c => c.IsHero && c.IsTarget,
+                    c => c.IsHeroTarget(),
                     c => 2,
                     DamageType.Melee
                 );

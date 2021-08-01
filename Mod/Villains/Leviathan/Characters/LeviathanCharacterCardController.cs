@@ -6,6 +6,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+using Jp.ParahumansOfTheWormverse.Utility;
+
 namespace Jp.ParahumansOfTheWormverse.Leviathan
 {
     public class LeviathanCharacterCardController : VillainCharacterCardController
@@ -39,7 +41,7 @@ namespace Jp.ParahumansOfTheWormverse.Leviathan
                 AddSideTrigger(AddDealDamageAtEndOfTurnTrigger(
                     TurnTaker,
                     Card,
-                    c => c.IsHero && c.IsTarget && c.IsInPlay,
+                    c => c.IsHeroTarget() && c.IsInPlay,
                     TargetType.All,
                     amount: 2,
                     DamageType.Melee

@@ -52,12 +52,12 @@ namespace Jp.ParahumansOfTheWormverse.Slaughterhouse9
             if (target.PlayIndex < Card.PlayIndex)
             {
                 nine = nine.Where(c => c.PlayIndex < Card.PlayIndex);
-                return nine.Last() == target;
+                return nine.LastOrDefault() == target;
             }
             else
             {
                 nine = nine.Where(c => c.PlayIndex > Card.PlayIndex);
-                return nine.First() == target;
+                return nine.FirstOrDefault() == target;
             }
         }
 

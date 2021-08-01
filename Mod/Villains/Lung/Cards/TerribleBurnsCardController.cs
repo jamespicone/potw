@@ -2,6 +2,8 @@
 using Handelabra.Sentinels.Engine.Model;
 using System.Collections;
 
+using Jp.ParahumansOfTheWormverse.Utility;
+
 namespace Jp.ParahumansOfTheWormverse.Lung
 {
     public class TerribleBurnsCardController : CardController
@@ -23,7 +25,7 @@ namespace Jp.ParahumansOfTheWormverse.Lung
             );
 
             // "At the end of the villain turn, {Lung} deals the hero target with the highest HP {H - 2} fire damage"
-            AddDealDamageAtEndOfTurnTrigger(TurnTaker, CharacterCard, c => c.IsHero && c.IsTarget && c.IsInPlay, TargetType.HighestHP, Game.H - 2, DamageType.Fire);
+            AddDealDamageAtEndOfTurnTrigger(TurnTaker, CharacterCard, c => c.IsHeroTarget() && c.IsInPlay, TargetType.HighestHP, Game.H - 2, DamageType.Fire);
         }
 
         public IEnumerator RespondToFireDamage()

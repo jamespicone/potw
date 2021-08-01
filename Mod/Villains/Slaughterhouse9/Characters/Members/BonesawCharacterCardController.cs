@@ -87,7 +87,7 @@ namespace Jp.ParahumansOfTheWormverse.Slaughterhouse9
         {
             var e = DealDamage(
                 Card,
-                c => ! c.IsVillain && c.IsTarget,
+                c => ! c.IsVillainTarget,
                 2,
                 DamageType.Toxic
             );

@@ -52,7 +52,7 @@ namespace Jp.ParahumansOfTheWormverse.Lung
                 // If it is a One-Shot, {Bakuda} deals 5 fire damage to all non-villain targets.
                 if (card.IsOneShot)
                 {
-                    e = GameController.DealDamage(DecisionMaker, card, c => c.IsTarget && c.IsInPlay && !c.IsVillain, 5, DamageType.Fire, cardSource: GetCardSource());
+                    e = GameController.DealDamage(DecisionMaker, card, c => c.IsTarget && c.IsInPlay && !c.IsVillainTarget, 5, DamageType.Fire, cardSource: GetCardSource());
                     if (UseUnityCoroutines)
                     {
                         yield return GameController.StartCoroutine(e);

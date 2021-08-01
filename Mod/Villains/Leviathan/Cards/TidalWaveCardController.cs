@@ -6,6 +6,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+using Jp.ParahumansOfTheWormverse.Utility;
+
 namespace Jp.ParahumansOfTheWormverse.Leviathan
 {
     public class TidalWaveCardController : CardController
@@ -37,7 +39,7 @@ namespace Jp.ParahumansOfTheWormverse.Leviathan
             e = GameController.DealDamage(
                 DecisionMaker,
                 CharacterCard,
-                c => c.IsTarget && c.IsInPlay && !c.IsVillain,
+                c => c.IsTarget && c.IsInPlay && !c.IsVillainTarget,
                 amount: x,
                 DamageType.Cold,
                 cardSource: GetCardSource()

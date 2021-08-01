@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+using Jp.ParahumansOfTheWormverse.Utility;
+
 namespace Jp.ParahumansOfTheWormverse.Lung
 {
     public class BurstOfFlameCardController : CardController
@@ -19,7 +21,7 @@ namespace Jp.ParahumansOfTheWormverse.Lung
         {
             // Lung deals the hero target with the highest HP X fire damage, where X = 1 + the number of cards in the villain trash / 2
             int damage = 1 + TurnTaker.Trash.NumberOfCards / 2;
-            var e = DealDamageToHighestHP(TurnTaker.CharacterCard, 1, c => c.IsHero && c.IsTarget && c.IsInPlay, c => damage, DamageType.Fire);
+            var e = DealDamageToHighestHP(TurnTaker.CharacterCard, 1, c => c.IsHeroTarget() && c.IsInPlay, c => damage, DamageType.Fire);
             if (UseUnityCoroutines)
             {
                 yield return GameController.StartCoroutine(e);

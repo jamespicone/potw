@@ -6,72 +6,26 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+using Jp.ParahumansOfTheWormverse.Utility;
+
 namespace Jp.ParahumansOfTheWormverse.JessicaYamada
 {
-    public class JessicaYamadaCharacterCardController : HeroCharacterCardController
+    public class JessicaYamadaInstructionsBase : HeroCharacterCardController
     {
-        public JessicaYamadaCharacterCardController(Card card, TurnTakerController controller) : base(card, controller)
+        public JessicaYamadaInstructionsBase(Card card, TurnTakerController controller) : base(card, controller)
         {
         }
 
-        public override void AddSideTriggers()
+        public override void AddTriggers()
         {
-            if (! Card.IsFlipped)
-            {
-                AddSideTrigger(AddCannotDealDamageTrigger(c => c == Card));
-                AddSideTrigger(AddTrigger<DealDamageAction>(
-                    dda => dda.Target == Card,
-                    dda => RedirectDamage(dda, TargetType.LowestHP, c => c != Card && c.IsHeroCharacterCard && ! c.IsIncapacitatedOrOutOfGame && c.IsInPlay),
-                    TriggerType.RedirectDamage,
-                    TriggerTiming.Before
-                ));
-            }
-        }
-
-        public override IEnumerator UseIncapacitatedAbility(int index)
-        {
-            /*
-                "1 player draws 1 card",
-                "1 player plays 1 card",
-                "1 player regains 2 HP"
-             */
-
-            IEnumerator e;
-            switch(index)
-            {
-                case 0:
-                    e = GameController.SelectHeroToDrawCard(
-                        HeroTurnTakerController,
-                        cardSource: GetCardSource()                        
-                    );
-                    break;
-
-                case 1:
-                    e = GameController.SelectHeroToPlayCard(
-                        HeroTurnTakerController,
-                        cardSource: GetCardSource()
-                    );
-                    break;
-
-                case 2:
-                    e = GameController.SelectAndGainHP(
-                        HeroTurnTakerController,
-                        2,
-                        cardSource: GetCardSource()
-                    );
-                    break;
-
-                default: yield break;
-            }
-
-            if (UseUnityCoroutines)
-            {
-                yield return GameController.StartCoroutine(e);
-            }
-            else
-            {
-                GameController.ExhaustCoroutine(e);
-            }
+            AddCannotDealDamageTrigger(c => c == CharacterCard);
+            AddTrigger<GameAction>(
+                (ga) => ((ga is FlipCardAction || ga is BulkRemoveTargetsAction || ga is MoveCardAction) && !CharacterCard.IsFlipped),
+                (ga) => IncapacitateIfShouldBeIncapped(),
+                TriggerType.FirstTrigger,
+                TriggerTiming.After,
+                priority: TriggerPriority.High
+            );
         }
 
         public override IEnumerator UsePower(int index = 0)
@@ -141,6 +95,33 @@ namespace Jp.ParahumansOfTheWormverse.JessicaYamada
         private IEnumerator DrawFunc(HeroTurnTakerController ttc)
         {
             var e = DrawCard(ttc.HeroTurnTaker);
+            if (UseUnityCoroutines)
+            {
+                yield return GameController.StartCoroutine(e);
+            }
+            else
+            {
+                GameController.ExhaustCoroutine(e);
+            }
+        }
+
+        public IEnumerator IncapacitateIfShouldBeIncapped()
+        {
+            if (TurnTaker.IsIncapacitatedOrOutOfGame) { yield break; }
+
+            if (GameController.FindTargetsInPlay(c => c.IsHeroTarget() && c.Location != TurnTaker.PlayArea).Count() > 0) { yield break; }
+
+            var e = GameController.DestroyCard(null, CharacterCard);
+            if (UseUnityCoroutines)
+            {
+                yield return GameController.StartCoroutine(e);
+            }
+            else
+            {
+                GameController.ExhaustCoroutine(e);
+            }
+
+            e = GameController.DestroyCard(null, Card);
             if (UseUnityCoroutines)
             {
                 yield return GameController.StartCoroutine(e);

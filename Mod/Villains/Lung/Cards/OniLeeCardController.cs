@@ -4,6 +4,8 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
+using Jp.ParahumansOfTheWormverse.Utility;
+
 namespace Jp.ParahumansOfTheWormverse.Lung
 {
     public class OniLeeCardController : CardController
@@ -19,7 +21,7 @@ namespace Jp.ParahumansOfTheWormverse.Lung
             // "At the end of the villain turn, {Oni Lee} deals the hero target with the lowest HP 3 melee damage.",
             // "Whenever {Oni Lee} would take damage, reveal the top card of the villain deck. If it is a one-shot prevent the damage. Shuffle the revealed card back into the villain deck"
 
-            AddDealDamageAtEndOfTurnTrigger(TurnTaker, Card, c => c.IsHero && c.IsTarget, TargetType.LowestHP, 3, DamageType.Projectile);
+            AddDealDamageAtEndOfTurnTrigger(TurnTaker, Card, c => c.IsHeroTarget(), TargetType.LowestHP, 3, DamageType.Projectile);
             AddTrigger<DealDamageAction>(
                 dda => dda.Target == Card,
                 dda => RevealAndPreventResponse(dda),

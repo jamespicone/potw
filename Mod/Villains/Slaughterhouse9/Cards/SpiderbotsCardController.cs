@@ -7,6 +7,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+using Jp.ParahumansOfTheWormverse.Utility;
+
 namespace Jp.ParahumansOfTheWormverse.Slaughterhouse9
 {
     public class SpiderbotsCardController : CardController
@@ -22,7 +24,7 @@ namespace Jp.ParahumansOfTheWormverse.Slaughterhouse9
             AddDealDamageAtEndOfTurnTrigger(
                 TurnTaker,
                 Card,
-                c => c.IsHero && c.IsTarget,
+                c => c.IsHeroTarget(),
                 TargetType.LowestHP,
                 1,
                 DamageType.Melee,

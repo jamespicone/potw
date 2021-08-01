@@ -6,6 +6,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+using Jp.ParahumansOfTheWormverse.Utility;
+
 namespace Jp.ParahumansOfTheWormverse.Leviathan
 {
     public class AnyoneCanDieCardController : CardController
@@ -19,7 +21,7 @@ namespace Jp.ParahumansOfTheWormverse.Leviathan
             var e = DealDamageToHighestHP(
                 CharacterCard,
                 ranking: 1,
-                c => c.IsHero && c.IsTarget && c.IsInPlay,
+                c => c.IsHeroTarget() && c.IsInPlay,
                 c => 5,
                 DamageType.Melee,
                 isIrreducible: true

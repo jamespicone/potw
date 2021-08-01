@@ -30,9 +30,9 @@ namespace Jp.ParahumansOfTheWormverse.NewDelhi
         public override void AddTriggers()
         {
             // "Reduce damage dealt to the villain target with the highest HP by 1."
-            ReduceDamageTrigger = AddTrigger((DealDamageAction dda) => CanCardBeConsideredHighestHitPoints(dda.Target, (Card c) => c.IsVillain), MaybeReduceDamageResponse, TriggerType.ReduceDamage, TriggerTiming.Before);
+            ReduceDamageTrigger = AddTrigger((DealDamageAction dda) => CanCardBeConsideredHighestHitPoints(dda.Target, (Card c) => c.IsVillainTarget), MaybeReduceDamageResponse, TriggerType.ReduceDamage, TriggerTiming.Before);
             // "When the villain target with the highest HP is dealt 4 or more damage at once, destroy this card."
-            AddTrigger<DealDamageAction>((DealDamageAction dda) => CanCardBeConsideredHighestHitPoints(dda.Target, (Card c) => c.IsVillain) && dda.Amount >= 4, (DealDamageAction dda) => base.GameController.DestroyCard(DecisionMaker, base.Card, actionSource: dda, responsibleCard: dda.CardSource.Card, cardSource: GetCardSource()), TriggerType.DestroySelf, TriggerTiming.After);
+            AddTrigger<DealDamageAction>((DealDamageAction dda) => CanCardBeConsideredHighestHitPoints(dda.Target, (Card c) => c.IsVillainTarget) && dda.Amount >= 4, (DealDamageAction dda) => base.GameController.DestroyCard(DecisionMaker, base.Card, actionSource: dda, responsibleCard: dda.CardSource.Card, cardSource: GetCardSource()), TriggerType.DestroySelf, TriggerTiming.After);
             base.AddTriggers();
         }
 
@@ -42,7 +42,7 @@ namespace Jp.ParahumansOfTheWormverse.NewDelhi
             if (base.GameController.PretendMode)
             {
                 List<bool> results = new List<bool>();
-                IEnumerator checkCoroutine = DetermineIfGivenCardIsTargetWithLowestOrHighestHitPoints(dda.Target, true, (Card c) => c.IsVillain, dda, results);
+                IEnumerator checkCoroutine = DetermineIfGivenCardIsTargetWithLowestOrHighestHitPoints(dda.Target, true, (Card c) => c.IsVillainTarget, dda, results);
                 if (base.UseUnityCoroutines)
                 {
                     yield return base.GameController.StartCoroutine(checkCoroutine);

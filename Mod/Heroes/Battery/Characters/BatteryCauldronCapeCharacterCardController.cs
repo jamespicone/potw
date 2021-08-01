@@ -7,6 +7,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+using Jp.ParahumansOfTheWormverse.Utility;
+
 namespace Jp.ParahumansOfTheWormverse.Battery
 {
     public class BatteryCauldronCapeCharacterCardController : BatteryUtilityCharacterCardController
@@ -210,7 +212,7 @@ namespace Jp.ParahumansOfTheWormverse.Battery
         {
             // "One hero target deals 1 target 2 melee damage."
             List<SelectCardDecision> chooseHeroTarget = new List<SelectCardDecision>();
-            IEnumerator chooseHeroCoroutine = base.GameController.SelectCardAndStoreResults(base.HeroTurnTakerController, SelectionType.CardToDealDamage, new LinqCardCriteria((Card c) => c.IsInPlay && c.IsTarget && c.IsHero, "hero target", useCardsSuffix: false), chooseHeroTarget, false, cardSource: GetCardSource());
+            IEnumerator chooseHeroCoroutine = base.GameController.SelectCardAndStoreResults(base.HeroTurnTakerController, SelectionType.CardToDealDamage, new LinqCardCriteria((Card c) => c.IsInPlay && c.IsHeroTarget(), "hero target", useCardsSuffix: false), chooseHeroTarget, false, cardSource: GetCardSource());
             if (base.UseUnityCoroutines)
             {
                 yield return base.GameController.StartCoroutine(chooseHeroCoroutine);

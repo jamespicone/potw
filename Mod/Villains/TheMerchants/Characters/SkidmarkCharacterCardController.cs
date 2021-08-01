@@ -48,7 +48,7 @@ namespace Jp.ParahumansOfTheWormverse.TheMerchants
             {
                 // Defeated Drug Lord
                 // "[b]The heroes cannot win the game as long as there is a villain target in play.[/b]"
-                base.AddSideTrigger(AddTrigger((GameOverAction goa) => goa.ResultIsVictory && base.GameController.FindCardsWhere(new LinqCardCriteria((Card c) => c.IsVillain && c.IsTarget && c.IsInPlayAndHasGameText), visibleToCard: GetCardSource()).Any(), CancelVictoryResponse, TriggerType.CancelAction, TriggerTiming.Before));
+                base.AddSideTrigger(AddTrigger((GameOverAction goa) => goa.ResultIsVictory && base.GameController.FindCardsWhere(new LinqCardCriteria((Card c) => c.IsVillainTarget && c.IsInPlayAndHasGameText), visibleToCard: GetCardSource()).Any(), CancelVictoryResponse, TriggerType.CancelAction, TriggerTiming.Before));
                 // "At the start of the villain turn, if the Thug deck is empty, the Merchants have grown out of control. [b]GAME OVER.[/b]"
                 base.AddSideTrigger(AddStartOfTurnTrigger((TurnTaker tt) => tt == base.TurnTaker, GameOverResponse, TriggerType.GameOver, additionalCriteria: (PhaseChangeAction pca) => !ThugDeck.HasCards));
                 // "At the end of the villain turn, play the top card of the Thug deck."
@@ -107,7 +107,7 @@ namespace Jp.ParahumansOfTheWormverse.TheMerchants
             // "[b]The heroes cannot win the game as long as there is a villain target in play.[/b]"
             if (!HasBeenSetToTrueThisGame(nameof(HeroesCannotWinMessage)))
             {
-                IEnumerator messageCoroutine = base.GameController.SendMessageAction(base.Card.Title + " has been defeated, but his followers continue to rampage as long as there is a villain target in play!", Priority.Critical, GetCardSource(), base.GameController.FindCardsWhere(new LinqCardCriteria((Card c) => c.IsTarget && c.IsVillain && c.IsInPlayAndHasGameText), visibleToCard: GetCardSource()), showCardSource: true);
+                IEnumerator messageCoroutine = base.GameController.SendMessageAction(base.Card.Title + " has been defeated, but his followers continue to rampage as long as there is a villain target in play!", Priority.Critical, GetCardSource(), base.GameController.FindCardsWhere(new LinqCardCriteria((Card c) => c.IsVillainTarget && c.IsInPlayAndHasGameText), visibleToCard: GetCardSource()), showCardSource: true);
                 if (base.UseUnityCoroutines)
                 {
                     yield return base.GameController.StartCoroutine(messageCoroutine);
