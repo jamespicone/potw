@@ -1,1 +1,3 @@
 Jessica Yamada's original design made her not a target. Unfortunately this doesn't work well in the SOTM Digital engine. This variant is another approach to making Jessica Yamada work in the engine, where she is an environment card instead of a hero card. This may have other, surprising issues; use with caution. I will accept bug reports but may not be able to do anything about them.
+
+(I would have liked this version to be an environment target but still a hero card; unfortunately that also doesn't work in the engine)

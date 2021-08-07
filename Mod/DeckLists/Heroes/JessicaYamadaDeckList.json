@@ -92,7 +92,7 @@
       "title": "Comfortable Office",
       "keywords": [ "equipment", "limited" ],
       "body": [
-        "At the start of your turn, a player regains 3 HP."
+        "At the start of your turn, a hero character card regains 3 HP."
       ],
       "icons": [ "StartOfTurnAction", "GainHP" ],
       "flavorText": "Weld closed the door and settled in the{BR}reinforced chair she'd brought into her{BR}office in anticipation of the appointment.",
@@ -253,8 +253,9 @@
       "hitpoints": 12,
       "body": "Therapy",
       "gameplay": [
-        "Jessica Yamada is an environment target (She is still a hero card)",
-        "Jessica Yamada is immune to damage dealt by hero cards"
+        "Jessica Yamada is an environment card",
+        "Jessica Yamada is immune to damage dealt by hero cards",
+        "Jessica Yamada is indestructible while she has more than 0 HP"
       ],
       "icons": [ "HasPower", "GainHP", "DrawCardNow" ],
       "powers": [ "Another player either regains 2 HP or draws a card" ],
@@ -325,11 +326,6 @@
         "default": "blargh"
       },
       "complexity": 1,
-      "incapacitatedAbilities": [
-        "1 player draws 1 card",
-        "1 player plays 1 card",
-        "1 player regains 2 HP"
-      ],
       "flippedIcons": [
         "DrawCardNow",
         "PlayCardNow",
@@ -356,11 +352,6 @@
         "default": "blargh"
       },
       "complexity": 1,
-      "incapacitatedAbilities": [
-        "1 player draws 1 card",
-        "1 player plays 1 card",
-        "1 player regains 2 HP"
-      ],
       "flippedIcons": [
         "DrawCardNow",
         "PlayCardNow",

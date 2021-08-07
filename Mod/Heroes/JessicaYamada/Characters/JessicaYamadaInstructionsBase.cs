@@ -18,14 +18,36 @@ namespace Jp.ParahumansOfTheWormverse.JessicaYamada
 
         public override void AddTriggers()
         {
-            AddCannotDealDamageTrigger(c => c == CharacterCard);
-            AddTrigger<GameAction>(
-                (ga) => ((ga is FlipCardAction || ga is BulkRemoveTargetsAction || ga is MoveCardAction) && !CharacterCard.IsFlipped),
-                (ga) => IncapacitateIfShouldBeIncapped(),
-                TriggerType.FirstTrigger,
-                TriggerTiming.After,
-                priority: TriggerPriority.High
-            );
+            if (!Card.IsFlipped)
+            {
+                AddSideTrigger(AddCannotDealDamageTrigger(c => c == CharacterCard));
+
+                AddSideTrigger(AddTrigger<GameAction>(
+                    (ga) => ((ga is FlipCardAction || ga is BulkRemoveTargetsAction || ga is MoveCardAction) && !CharacterCard.IsFlipped),
+                    (ga) => IncapacitateIfShouldBeIncapped(),
+                    TriggerType.FirstTrigger,
+                    TriggerTiming.After,
+                    priority: TriggerPriority.High
+                ));
+
+                AddSideTrigger(AddTrigger<GameAction>(
+                    (ga) => ((ga is FlipCardAction || ga is BulkRemoveTargetsAction || ga is MoveCardAction) && CharacterCard.IsFlipped),
+                    (ga) => IncapInstructionCard(),
+                    TriggerType.FirstTrigger,
+                    TriggerTiming.After,
+                    priority: TriggerPriority.High
+                ));
+            }
+            else
+            {
+                AddSideTrigger(AddTrigger<GameAction>(
+                    (ga) => ((ga is FlipCardAction || ga is BulkRemoveTargetsAction || ga is MoveCardAction || ga is UnincapacitateHeroAction) && !CharacterCard.IsFlipped),
+                    (ga) => ReviveInstructionCard(),
+                    TriggerType.FirstTrigger,
+                    TriggerTiming.After,
+                    priority: TriggerPriority.High
+                ));
+            }
         }
 
         public override IEnumerator UsePower(int index = 0)
@@ -107,7 +129,9 @@ namespace Jp.ParahumansOfTheWormverse.JessicaYamada
 
         public IEnumerator IncapacitateIfShouldBeIncapped()
         {
-            if (TurnTaker.IsIncapacitatedOrOutOfGame) { yield break; }
+            if (TurnTaker.IsIncapacitatedOrOutOfGame) {
+                yield break;
+            }
 
             if (GameController.FindTargetsInPlay(c => c.IsHeroTarget() && c.Location != TurnTaker.PlayArea).Count() > 0) { yield break; }
 
@@ -122,6 +146,32 @@ namespace Jp.ParahumansOfTheWormverse.JessicaYamada
             }
 
             e = GameController.DestroyCard(null, Card);
+            if (UseUnityCoroutines)
+            {
+                yield return GameController.StartCoroutine(e);
+            }
+            else
+            {
+                GameController.ExhaustCoroutine(e);
+            }
+        }
+
+        public IEnumerator IncapInstructionCard()
+        {
+            var e = GameController.DestroyCard(null, Card);
+            if (UseUnityCoroutines)
+            {
+                yield return GameController.StartCoroutine(e);
+            }
+            else
+            {
+                GameController.ExhaustCoroutine(e);
+            }
+        }
+
+        public IEnumerator ReviveInstructionCard()
+        {
+            var e = GameController.FlipCard(this, cardSource: GetCardSource());
             if (UseUnityCoroutines)
             {
                 yield return GameController.StartCoroutine(e);
