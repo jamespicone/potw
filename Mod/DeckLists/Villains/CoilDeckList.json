@@ -1,0 +1,213 @@
+{
+  "name": "Coil",
+  "kind": "Villain",
+  "initialCardIdentifiers": [ "CoilCharacter" ],
+  "cards": [
+    {
+      "identifier": "CoilCharacter",
+      "title": "Coil",
+      "body": "Evil Mastermind",
+      "count": 1,
+      "character": true,
+      "icons": [],
+      "setup": [
+        "Put Scheming into play, \"Evil Mastermind\" side up.",
+        "Put Acting into play, \"Evil Mastermind\" side up.",
+        "Put Underground Base into play."
+      ],
+      "gameplay": "If neither Scheming nor Acting are targets in play the heroes win the game",
+      "isReal": false,
+      "difficulty": 3
+    },
+    {
+      "identifier": "CoilSchemingCharacter",
+      "title": "Scheming",
+      "body": "Evil Mastermind",
+      "hitpoints": 50,
+      "gameplay": [
+        "If Scheming's HP is greater than or equal to Acting's HP, use {magic} text.",
+        "{magic}: At the start of the villain turn play the top card of the environment deck.",
+        "At the end of the villain turn all villain targets regain 2 HP",
+        "When this card would be destroyed flip it instead"
+      ],
+      "advanced": "At the end of the villain turn set this card's HP to the greater of it's current HP and Acting's HP",
+      "flippedBody": "Defeated",
+      "flippedAdvanced": "At the end of the villain turn flip this card and set its HP to Acting's HP",
+      "count": 1,
+      "character": true
+    },
+    {
+      "identifier": "CoilActingCharacter",
+      "title": "Acting",
+      "body": "Evil Mastermind",
+      "hitpoints": 50,
+      "gameplay": [
+        "If Acting's HP is greater than or equal to Scheming's HP, use {magic} text.",
+        "At the start of the villain turn reveal cards from the villain deck until you reveal a Parahuman or you've revealed 1 ({magic}: {H - 1}) cards. Put any revealed Parahumans into play and shuffle the other cards into the villain deck.",
+        "At the end of the villain turn Acting deals 2 ({magic}: {H}) energy damage to the hero target with the highest HP",
+        "When this card would be destroyed flip it instead"
+      ],
+      "advanced": "At the end of the villain turn set this card's HP to the greater of it's current HP and Scheming's HP",
+      "flippedBody": "Defeated",
+      "flippedAdvanced": "At the end of the villain turn flip this card and set its HP to Scheming's HP",
+      "count": 1,
+      "character": true
+    },
+    {
+      "identifier": "UndergroundBase",
+      "title": "Underground Base",
+      "keywords": [ "ongoing" ],
+      "count": 1,
+      "body": "Villain targets are immune to damage from Environment cards"
+    },
+    {
+      "identifier": "Mercenaries",
+      "title": "Mercenaries",
+      "hitpoints": 6,
+      "count": 3,
+      "body": "At the end of the villain turn this card deals {H - 1} energy damage to the two hero targets with the highest HP"
+    },
+    {
+      "identifier": "Sundancer",
+      "title": "Sundancer",
+      "hitpoints": 10,
+      "count": 1,
+      "keywords": [ "parahuman" ],
+      "body": [
+        "This card is immune to fire damage",
+        "At the end of the villain turn this card deals 2 fire damage to all hero targets"
+      ]
+    },
+    {
+      "identifier": "Trickster",
+      "title": "Trickster",
+      "hitpoints": 6,
+      "count": 1,
+      "keywords": [ "parahuman" ],
+      "body": [
+        "The first time Trickster would be dealt damage each round redirect it to the hero target with the lowest HP",
+        "At the end of the villain turn the player with the most cards in play destroys one of their noncharacter cards"
+      ]
+    },
+    {
+      "identifier": "Genesis",
+      "title": "Genesis",
+      "hitpoints": 8,
+      "count": 1,
+      "keywords": [ "parahuman" ],
+      "body": [
+        "When this card is destroyed shuffle it back into the villain deck.",
+        "At the end of the villain turn this card deals 2 poison damage to {H} hero targets."
+      ]
+    },
+    {
+      "identifier": "Ballistic",
+      "title": "Ballistic",
+      "hitpoints": 10,
+      "count": 1,
+      "keywords": [ "parahuman" ],
+      "body": [
+        "Whenever a hero character is dealt damage by this card, destroy a noncharacter card belonging to that hero.",
+        "At the end of the villain turn this card deals {H + 1} projectile damage to the hero target with the highest HP"
+      ]
+    },
+    {
+      "identifier": "Dinah",
+      "title": "Dinah",
+      "hitpoints": 5,
+      "count": 1,
+      "keywords": [ "parahuman" ],
+      "body": [
+        "Scheming and Acting are immune to damage.",
+        "Whenever this card is dealt damage during a hero's turn that player discards a card"
+      ]
+    },
+    {
+      "identifier": "Circus",
+      "title": "Circus",
+      "hitpoints": 4,
+      "count": 1,
+      "keywords": [ "parahuman" ],
+      "body": [
+        "Whenever a hero card is played this card deals the hero who played the card 1 projectile damage"
+      ]
+    },
+    {
+      "identifier": "Trainwreck",
+      "title": "Trainwreck",
+      "hitpoints": 12,
+      "count": 1,
+      "keywords": [ "parahuman" ],
+      "body": [
+        "Whenever a non-villain target would damage a villain target other than Trainwreck redirect that damage to Trainwreck.",
+        "At the start of the villain turn Trainwreck regains {H} HP."
+      ]
+    },
+    {
+      "identifier": "IKnowAllYourTricks",
+      "title": "I Know All Your Tricks",
+      "count": 2,
+      "keywords": [ "one-shot" ],
+      "body": [
+        "Destroy all hero Ongoing cards"
+      ]
+    },
+    {
+      "identifier": "TrickeryAndDeceit",
+      "title": "Trickery and Deceit",
+      "count": 2,
+      "keywords": [ "one-shot" ],
+      "body": [
+        "Destroy all hero Equipment cards"
+      ]
+    },
+    {
+      "identifier": "LetsTrySomethingElse",
+      "title": "Let's Try Something Else",
+      "count": 2,
+      "keywords": [ "one-shot" ],
+      "body": [
+        "Shuffle the villain trash into the villain deck.",
+        "Play the top card of the villain deck."
+      ]
+    },
+    {
+      "identifier": "ABackupForEveryAsset",
+      "title": "A Backup For Every Asset",
+      "count": 2,
+      "keywords": [ "one-shot" ],
+      "body": [
+        "Take all Ongoing cards out of the villain trash and put them into play"
+      ]
+    },
+    {
+      "identifier": "Teleporter",
+      "title": "Teleporter",
+      "count": 2,
+      "hitpoints": 8,
+      "keywords": [ "device" ],
+      "body": [
+        "At the start of the villain turn reveal cards from the top of the villain deck until you have revealed H non-Device targets. Put any revealed non-Device targets into play and shuffle the rest of the revealed cards back into the villain deck"
+      ]
+    },
+    {
+      "identifier": "TwoBitesAtEveryCherry",
+      "title": "Two Bites At Every Cherry",
+      "count": 2,
+      "keywords": [ "ongoing" ],
+      "body": [
+        "Increase damage dealt by villain targets by 1",
+        "Damage dealt by villain targets is irreducible"
+      ]
+    },
+    {
+      "identifier": "PlansWithinPlans",
+      "title": "Plans Within Plans",
+      "count": 2,
+      "keywords": [ "ongoing" ],
+      "body": [
+        "Reduce damage dealt to villain targets by 2"
+      ]
+    }
+  ]
+}
