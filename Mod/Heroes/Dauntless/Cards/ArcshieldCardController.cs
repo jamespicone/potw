@@ -107,7 +107,7 @@ namespace Jp.ParahumansOfTheWormverse.Dauntless
 
         private bool DidArcshieldReduce(DealDamageAction dda)
         {
-            return dda.DamageModifiers.Any(
+            return Card.HasPlasmaCore() && dda.DamageModifiers.Any(
                 mdda =>
                     mdda.CardSource != null &&
                     mdda.CardSource.StatusEffectSource != null &&
