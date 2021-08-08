@@ -22,7 +22,7 @@ namespace Jp.ParahumansOfTheWormverse.Coil
         {
             // "The first time Trickster would be dealt damage each round redirect it to the hero target with the lowest HP",
             AddTrigger<DealDamageAction>(
-                dda => dda.Target == Card && HasBeenSetToTrueThisRound("TricksterRedirect"),
+                dda => dda.Target == Card && ! HasBeenSetToTrueThisRound("TricksterRedirect"),
                 dda => DoRedirect(dda),
                 TriggerType.RedirectDamage,
                 TriggerTiming.Before
@@ -38,9 +38,17 @@ namespace Jp.ParahumansOfTheWormverse.Coil
 
         private IEnumerator DoRedirect(DealDamageAction dda)
         {
-            SetCardPropertyToTrueIfRealAction("TricksterRedirect", gameAction: dda);
+            SetCardPropertyToTrueIfRealAction("TricksterRedirect");
 
-            return RedirectDamage(dda, TargetType.LowestHP, c => c.IsHeroTarget());
+            var e = RedirectDamage(dda, TargetType.LowestHP, c => c.IsHeroTarget());
+            if (UseUnityCoroutines)
+            {
+                yield return GameController.StartCoroutine(e);
+            }
+            else
+            {
+                GameController.ExhaustCoroutine(e);
+            }
         }
 
         private IEnumerator DestroyHeroCard()

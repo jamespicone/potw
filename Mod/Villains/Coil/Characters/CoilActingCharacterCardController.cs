@@ -37,7 +37,7 @@ namespace Jp.ParahumansOfTheWormverse.Coil
 
         private IEnumerator FindParahumans()
         {
-            var cardsToReveal = UseExtraText() ? 1 : H - 1;
+            var cardsToReveal = UseExtraText() ? H - 1 : 1;
 
             IEnumerator e;
             while (cardsToReveal > 0)

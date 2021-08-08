@@ -9,6 +9,8 @@ using System.Text;
 
 using Jp.ParahumansOfTheWormverse.Utility;
 
+using UnityEngine;
+
 namespace Jp.ParahumansOfTheWormverse.Coil
 {
     public class GenesisCardController : CardController
@@ -21,7 +23,7 @@ namespace Jp.ParahumansOfTheWormverse.Coil
         public override void AddTriggers()
         {
             //"When this card is destroyed shuffle it back into the villain deck.",
-            AddWhenDestroyedTrigger(dca => ShuffleBack(dca), TriggerType.ShuffleCardIntoDeck);
+            // AddWhenDestroyedTrigger(dca => ShuffleBack(dca), TriggerType.ShuffleCardIntoDeck);
 
             //"At the end of the villain turn this card deals 2 poison damage to {H} hero targets."
             AddDealDamageAtEndOfTurnTrigger(
@@ -35,7 +37,9 @@ namespace Jp.ParahumansOfTheWormverse.Coil
             );
         }
 
-        private IEnumerator ShuffleBack(DestroyCardAction dca)
+        public override bool CanBeDestroyed => false;
+
+        public override IEnumerator DestroyAttempted(DestroyCardAction dca)
         {
             var storedResults = new List<SelectLocationDecision>();
             var e = FindVillainDeck(
@@ -63,16 +67,6 @@ namespace Jp.ParahumansOfTheWormverse.Coil
                 optional: false,
                 cardSource: GetCardSource()
             );
-            if (UseUnityCoroutines)
-            {
-                yield return GameController.StartCoroutine(e);
-            }
-            else
-            {
-                GameController.ExhaustCoroutine(e);
-            }
-
-            e = CancelAction(dca);
             if (UseUnityCoroutines)
             {
                 yield return GameController.StartCoroutine(e);

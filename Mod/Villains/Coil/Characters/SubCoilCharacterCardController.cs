@@ -47,6 +47,8 @@ namespace Jp.ParahumansOfTheWormverse.Coil
             }
         }
 
+        public override bool CanBeDestroyed => false;
+
         public override IEnumerator DestroyAttempted(DestroyCardAction destroyCard)
         {
             // "When this card would be destroyed flip it instead"
