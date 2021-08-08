@@ -16,7 +16,8 @@
         "Put Underground Base into play."
       ],
       "gameplay": "If neither Scheming nor Acting are targets in play the heroes win the game",
-      "isReal": false
+      "isReal": false,
+      "difficulty": 3
     },
     {
       "identifier": "CoilSchemingCharacter",

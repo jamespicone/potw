@@ -91,25 +91,32 @@ namespace Jp.ParahumansOfTheWormverse.Coil
                 // Revive, but only if other coil is around
                 if (! OtherCoil.IsInPlayAndHasGameText) { yield break; }
 
-                var e1 = GameController.FlipCard(this, cardSource: GetCardSource());
-                var e2 = GameController.ChangeMaximumHP(Card, Card.MaximumHitPoints ?? 0, alsoSetHP: true, cardSource: GetCardSource());
-                var e3 = GameController.SetHP(Card, OtherCoil.HitPoints ?? 0, GetCardSource());
+                var e = GameController.FlipCard(this, cardSource: GetCardSource());
+                if (UseUnityCoroutines)
+                {
+                    yield return GameController.StartCoroutine(e);
+                }
+                else
+                {
+                    GameController.ExhaustCoroutine(e);
+                }
+
+                var e1 = GameController.ChangeMaximumHP(Card, Card.MaximumHitPoints ?? 0, alsoSetHP: true, cardSource: GetCardSource());
+                var e2 = GameController.SetHP(Card, OtherCoil.HitPoints ?? 0, GetCardSource());
                 if (UseUnityCoroutines)
                 {
                     yield return GameController.StartCoroutine(e1);
                     yield return GameController.StartCoroutine(e2);
-                    yield return GameController.StartCoroutine(e3);
                 }
                 else
                 {
                     GameController.ExhaustCoroutine(e1);
                     GameController.ExhaustCoroutine(e2);
-                    GameController.ExhaustCoroutine(e3);
                 }
             }
             else
             {
-                if (OtherCoil.HitPoints < Card.HitPoints || ! OtherCoil.IsInPlayAndHasGameText) { yield break; }
+                if (OtherCoil.HitPoints == null || OtherCoil.HitPoints < Card.HitPoints || ! OtherCoil.IsInPlayAndHasGameText) { yield break; }
 
                 var e = GameController.SetHP(Card, OtherCoil.HitPoints ?? 0, GetCardSource());
                 if (UseUnityCoroutines)
