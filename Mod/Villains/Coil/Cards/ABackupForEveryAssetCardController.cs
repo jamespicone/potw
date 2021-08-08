@@ -15,5 +15,20 @@ namespace Jp.ParahumansOfTheWormverse.Coil
             : base(card, turnTakerController)
         {
         }
+
+        public override IEnumerator Play()
+        {
+            // "Take all Ongoing cards out of the villain trash and put them into play"
+            var cardsToMove = FindCardsWhere(new LinqCardCriteria(c => c.IsOngoing && c.Location.IsVillain && c.Location.IsTrash));
+            var e = GameController.MoveCards(TurnTakerController, cardsToMove, TurnTaker.PlayArea, isPutIntoPlay: true, cardSource: GetCardSource());
+            if (UseUnityCoroutines)
+            {
+                yield return GameController.StartCoroutine(e);
+            }
+            else
+            {
+                GameController.ExhaustCoroutine(e);
+            }
+        }
     }
 }

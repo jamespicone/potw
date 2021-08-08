@@ -15,5 +15,58 @@ namespace Jp.ParahumansOfTheWormverse.Coil
             : base(card, turnTakerController)
         {
         }
+
+        public override void AddTriggers()
+        {
+            // Whenever a hero card is played this card deals the hero who played the card 1 projectile damage
+            AddTrigger<PlayCardAction>(
+                pca => pca.CardToPlay.IsHero && pca.WasCardPlayed && pca.TurnTakerController.IsHero && !pca.IsPutIntoPlay,
+                pca => HurtHero(pca),
+                TriggerType.DealDamage,
+                TriggerTiming.After
+            );
+        }
+
+        private IEnumerator HurtHero(PlayCardAction pca)
+        {
+            var httc = pca.TurnTakerController as HeroTurnTakerController;
+            if (httc == null) { yield break; }
+
+            var storedResults = new List<Card>();
+            var e = FindCharacterCardToTakeDamage(
+                httc.TurnTaker,
+                storedResults,
+                Card,
+                1,
+                DamageType.Projectile
+            );
+            if (UseUnityCoroutines)
+            {
+                yield return GameController.StartCoroutine(e);
+            }
+            else
+            {
+                GameController.ExhaustCoroutine(e);
+            }
+
+            var cardToDamage = storedResults.FirstOrDefault();
+            if (cardToDamage == null) { yield break; }
+
+            e = DealDamage(
+                Card,
+                cardToDamage,
+                1,
+                DamageType.Projectile,
+                cardSource: GetCardSource()
+            );
+            if (UseUnityCoroutines)
+            {
+                yield return GameController.StartCoroutine(e);
+            }
+            else
+            {
+                GameController.ExhaustCoroutine(e);
+            }
+        }
     }
 }

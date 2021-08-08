@@ -15,5 +15,23 @@ namespace Jp.ParahumansOfTheWormverse.Coil
             : base(card, turnTakerController)
         {
         }
+
+        public override IEnumerator Play()
+        {
+            // "Destroy all hero Equipment cards"
+            var e = GameController.DestroyCards(
+                DecisionMaker,
+                new LinqCardCriteria(c => c.DoKeywordsContain("equipment") && c.IsHero),
+                cardSource: GetCardSource()
+            );
+            if (UseUnityCoroutines)
+            {
+                yield return GameController.StartCoroutine(e);
+            }
+            else
+            {
+                GameController.ExhaustCoroutine(e);
+            }
+        }
     }
 }

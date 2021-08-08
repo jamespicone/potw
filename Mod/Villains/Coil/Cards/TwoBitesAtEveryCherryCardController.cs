@@ -15,5 +15,14 @@ namespace Jp.ParahumansOfTheWormverse.Coil
             : base(card, turnTakerController)
         {
         }
+
+        public override void AddTriggers()
+        {
+            //"Increase damage dealt by villain targets by 1",
+            AddIncreaseDamageTrigger(dda => dda.DamageSource.IsVillainTarget, 1);
+
+            //"Damage dealt by villain targets is irreducible"
+            AddMakeDamageIrreducibleTrigger(dda => dda.DamageSource.IsVillainTarget);
+        }
     }
 }

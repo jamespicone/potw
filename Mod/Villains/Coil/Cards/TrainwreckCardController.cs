@@ -15,5 +15,21 @@ namespace Jp.ParahumansOfTheWormverse.Coil
             : base(card, turnTakerController)
         {
         }
+
+        public override void AddTriggers()
+        {
+            //"Whenever a non-villain target would damage a villain target other than Trainwreck redirect that damage to Trainwreck.",
+            AddRedirectDamageTrigger(
+                dda => !dda.DamageSource.IsVillainTarget && dda.Target.IsVillainTarget && dda.Target != Card,
+                () => Card
+            );
+
+            //"At the start of the villain turn Trainwreck regains {H} HP."
+            AddEndOfTurnTrigger(
+                tt => tt == TurnTaker,
+                pca => GameController.GainHP(Card, H, cardSource: GetCardSource()),
+                TriggerType.GainHP
+            );
+        }
     }
 }

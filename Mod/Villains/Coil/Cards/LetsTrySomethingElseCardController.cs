@@ -15,5 +15,30 @@ namespace Jp.ParahumansOfTheWormverse.Coil
             : base(card, turnTakerController)
         {
         }
+
+        public override IEnumerator Play()
+        {
+            // "Shuffle the villain trash into the villain deck.",
+            var e = GameController.ShuffleTrashIntoDeck(TurnTakerController, cardSource: GetCardSource());
+            if (UseUnityCoroutines)
+            {
+                yield return GameController.StartCoroutine(e);
+            }
+            else
+            {
+                GameController.ExhaustCoroutine(e);
+            }
+
+            // "Play the top card of the villain deck."
+            e = GameController.PlayTopCard(DecisionMaker, TurnTakerController, cardSource: GetCardSource());
+            if (UseUnityCoroutines)
+            {
+                yield return GameController.StartCoroutine(e);
+            }
+            else
+            {
+                GameController.ExhaustCoroutine(e);
+            }
+        }
     }
 }

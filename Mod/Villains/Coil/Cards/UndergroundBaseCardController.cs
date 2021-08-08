@@ -15,5 +15,11 @@ namespace Jp.ParahumansOfTheWormverse.Coil
             : base(card, turnTakerController)
         {
         }
+
+        public override void AddTriggers()
+        {
+            // Villain targets are immune to damage from Environment cards
+            AddImmuneToDamageTrigger(dda => dda.DamageSource.IsEnvironmentSource && dda.Target.IsVillainTarget);
+        }
     }
 }

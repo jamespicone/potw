@@ -15,6 +15,7 @@
         "Put Acting into play, \"Evil Mastermind\" side up.",
         "Put Underground Base into play."
       ],
+      "gameplay": "If neither Scheming nor Acting are targets in play the heroes win the game",
       "isReal": false
     },
     {
@@ -30,7 +31,6 @@
       ],
       "advanced": "At the end of the villain turn set this card's HP to the greater of it's current HP and Acting's HP",
       "flippedBody": "Defeated",
-      "flippedGameplay": "If Acting is flipped to the \"Defeated\" side the heroes win the game.",
       "flippedAdvanced": "At the end of the villain turn flip this card and set its HP to Acting's HP",
       "count": 1,
       "character": true
@@ -48,7 +48,6 @@
       ],
       "advanced": "At the end of the villain turn set this card's HP to the greater of it's current HP and Scheming's HP",
       "flippedBody": "Defeated",
-      "flippedGameplay": "If Scheming is flipped to the \"Defeated\" side the heroes win the game.",
       "flippedAdvanced": "At the end of the villain turn flip this card and set its HP to Scheming's HP",
       "count": 1,
       "character": true
@@ -85,8 +84,8 @@
       "count": 1,
       "keywords": [ "parahuman" ],
       "body": [
-        "The first time Trickster would be dealt daamge each round redirect it to the hero target with the lowest HP",
-        "At the end of the villain turn the hero with the most cards in play destroys one of their noncharacter cards"
+        "The first time Trickster would be dealt damage each round redirect it to the hero target with the lowest HP",
+        "At the end of the villain turn the player with the most cards in play destroys one of their noncharacter cards"
       ]
     },
     {
