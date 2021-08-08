@@ -328,6 +328,7 @@
     <Compile Include="Villains\Coil\Characters\CoilActingCharacterCardController.cs" />
     <Compile Include="Villains\Coil\Characters\CoilCharacterCardController.cs" />
     <Compile Include="Villains\Coil\Characters\CoilTurnTakerController.cs" />
+    <Compile Include="Villains\Coil\Characters\SubCoilCharacterCardController.cs" />
     <Compile Include="Villains\Leviathan\Cards\WhippingTailCardController.cs" />
     <Compile Include="Villains\Leviathan\Cards\GuileCardController.cs" />
     <Compile Include="Villains\Leviathan\Cards\CunningCardController.cs" />
