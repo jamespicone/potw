@@ -63,7 +63,7 @@ namespace Jp.ParahumansOfTheWormverse.Slaughterhouse9
 
         private IEnumerator MaybeImmune(DealDamageAction dda)
         {
-            if (GameController.PretendMode)
+            if (GameController.PretendMode || preventDamage == null)
             {
 
                 var wasLowest = new List<bool>();
@@ -87,7 +87,7 @@ namespace Jp.ParahumansOfTheWormverse.Slaughterhouse9
                 preventDamage = wasLowest.Count > 0 && wasLowest.First();
             }
 
-            if (preventDamage)
+            if (preventDamage.GetValueOrDefault(false))
             {
                 var e = GameController.ImmuneToDamage(dda, GetCardSource());
                 if (UseUnityCoroutines)
@@ -102,10 +102,10 @@ namespace Jp.ParahumansOfTheWormverse.Slaughterhouse9
 
             if (! GameController.PretendMode)
             {
-                preventDamage = false;
+                preventDamage = null;
             }
         }
 
-        private bool preventDamage = false;
+        private bool? preventDamage;
     }
 }

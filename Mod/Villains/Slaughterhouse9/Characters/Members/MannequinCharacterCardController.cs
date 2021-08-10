@@ -42,7 +42,7 @@ namespace Jp.ParahumansOfTheWormverse.Slaughterhouse9
 
         public IEnumerator MaybeReduceDamage(DealDamageAction dda)
         {
-            if (GameController.PretendMode)
+            if (GameController.PretendMode || reduceDamage == null)
             {
                 var wasLowest = new List<bool>();
                 var e = DetermineIfGivenCardIsTargetWithLowestOrHighestHitPoints(
@@ -65,7 +65,7 @@ namespace Jp.ParahumansOfTheWormverse.Slaughterhouse9
                 reduceDamage = wasLowest.Count() > 0 && wasLowest.First();
             }
 
-            if (reduceDamage)
+            if (reduceDamage.GetValueOrDefault(false))
             {
                 var e = GameController.ReduceDamage(dda, 1, reduceDamageTrigger, GetCardSource());
                 if (UseUnityCoroutines)
@@ -80,7 +80,7 @@ namespace Jp.ParahumansOfTheWormverse.Slaughterhouse9
 
             if (! GameController.PretendMode)
             {
-                reduceDamage = false;
+                reduceDamage = null;
             }
         }
 
@@ -96,6 +96,6 @@ namespace Jp.ParahumansOfTheWormverse.Slaughterhouse9
         }
 
         private ITrigger reduceDamageTrigger;
-        private bool reduceDamage = false;
+        private bool? reduceDamage;
     }
 }

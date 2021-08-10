@@ -14,6 +14,7 @@ namespace Jp.ParahumansOfTheWormverse.JessicaYamada
         public SupportAndStabilityCardController(Card card, TurnTakerController turnTakerController)
             : base(card, turnTakerController)
         {
+            AllowFastCoroutinesDuringPretend = false;
         }
 
         public override void AddTriggers()
@@ -37,45 +38,35 @@ namespace Jp.ParahumansOfTheWormverse.JessicaYamada
 
             SetCardPropertyToTrueIfRealAction("JessicaSupportStability");
 
-            if (dda.IsPretend)
+            if (GameController.PretendMode || preventDamage == null)
             {
-                var e2 = CancelAction(dda, isPreventEffect: true);
+                var storedYesNo = new List<YesNoCardDecision>();
+                var e = GameController.MakeYesNoCardDecision(
+                    HeroTurnTakerController,
+                    SelectionType.PreventDamage,
+                    Card,
+                    storedResults: storedYesNo,
+                    associatedCards: new Card[]
+                    {
+                    dda.Target
+                    },
+                    cardSource: GetCardSource()
+                );
                 if (UseUnityCoroutines)
                 {
-                    yield return GameController.StartCoroutine(e2);
+                    yield return GameController.StartCoroutine(e);
                 }
                 else
                 {
-                    GameController.ExhaustCoroutine(e2);
+                    GameController.ExhaustCoroutine(e);
                 }
 
-                yield break;
+                preventDamage = DidPlayerAnswerYes(storedYesNo);
             }
 
-            var storedYesNo = new List<YesNoCardDecision>();
-            var e = GameController.MakeYesNoCardDecision(
-                HeroTurnTakerController,
-                SelectionType.PreventDamage,
-                Card,
-                storedResults: storedYesNo,
-                associatedCards: new Card[]
-                {
-                    dda.Target
-                },
-                cardSource: GetCardSource()
-            );
-            if (UseUnityCoroutines)
-            {
-                yield return GameController.StartCoroutine(e);
-            }
-            else
-            {
-                GameController.ExhaustCoroutine(e);
-            }
-
-            if (DidPlayerAnswerYes(storedYesNo))
-            {
-                e = CancelAction(dda, isPreventEffect: true);
+            if (preventDamage.GetValueOrDefault(false))
+            { 
+                var e = CancelAction(dda, isPreventEffect: true);
                 if (UseUnityCoroutines)
                 {
                     yield return GameController.StartCoroutine(e);
@@ -85,6 +76,13 @@ namespace Jp.ParahumansOfTheWormverse.JessicaYamada
                     GameController.ExhaustCoroutine(e);
                 }
             }
+
+            if (! GameController.PretendMode)
+            {
+                preventDamage = null;
+            }
         }
+
+        private bool? preventDamage;
     }
 }

@@ -37,10 +37,10 @@ namespace Jp.ParahumansOfTheWormverse.Lung
         {
             IEnumerator e;
 
-            // TODO: If the DDA is pretend we want to show up in the preview as unsure
-            if (dda.IsPretend)
+            // Force ambiguous resolution
+            if (GameController.PreviewMode)
             {
-                e = CancelAction(dda, isPreventEffect: true);
+                e = GameController.MakeYesNoCardDecision(DecisionMaker, SelectionType.AmbiguousDecision, Card, cardSource: GetCardSource());
                 if (UseUnityCoroutines)
                 {
                     yield return GameController.StartCoroutine(e);
@@ -52,6 +52,11 @@ namespace Jp.ParahumansOfTheWormverse.Lung
                 yield break;
             }
 
+            if (GameController.PretendMode)
+            {
+                yield break;
+            }
+            
             var storedResults = new List<Card>();
             e = GameController.RevealCards(TurnTakerController, TurnTaker.Deck, 1, storedResults, revealedCardDisplay: RevealedCardDisplay.ShowRevealedCards, cardSource: GetCardSource());
             if (UseUnityCoroutines)

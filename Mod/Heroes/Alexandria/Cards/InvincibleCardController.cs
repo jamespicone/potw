@@ -1,16 +1,20 @@
-using Handelabra.Sentinels.Engine.Controller;
+ using Handelabra.Sentinels.Engine.Controller;
 using Handelabra.Sentinels.Engine.Model;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+using UnityEngine;
+
 namespace Jp.ParahumansOfTheWormverse.Alexandria
 {
     public class InvincibleCardController : CardController
     {
         public InvincibleCardController(Card card, TurnTakerController controller) : base(card, controller)
-        { }
+        {
+            AllowFastCoroutinesDuringPretend = false;
+        }
 
         public override IEnumerator Play()
         {
@@ -48,43 +52,35 @@ namespace Jp.ParahumansOfTheWormverse.Alexandria
 
         public IEnumerator DiscardToPreventDamage(DealDamageAction dda, TurnTaker hero, StatusEffect effect, int[] powerNumerals = null)
         {
-            // Think select-and-discard is valid in pretend
-            if (dda.IsPretend)
+            Debug.Log($"Invincible discard pretend? {dda.IsPretend}, prevent? {preventDamage}");
+            if (GameController.PretendMode || preventDamage == null)
             {
-                var e2 = CancelAction(dda, isPreventEffect: true);
+                var discardResult = new List<DiscardCardAction>();
+                var e = SelectAndDiscardCards(
+                    HeroTurnTakerController,
+                    numberOfCardsToDiscard: 1,
+                    optional: true,
+                    gameAction: dda,
+                    extraInfo: () => "Discard a card to prevent the damage",
+                    storedResults: discardResult
+                );
                 if (UseUnityCoroutines)
                 {
-                    yield return GameController.StartCoroutine(e2);
+                    yield return GameController.StartCoroutine(e);
                 }
                 else
                 {
-                    GameController.ExhaustCoroutine(e2);
+                    GameController.ExhaustCoroutine(e);
                 }
 
-                yield break;
+                preventDamage = DidDiscardCards(discardResult);
+                Debug.Log($"Invincible discard decision made pretend? {dda.IsPretend}, prevent? {preventDamage}");
             }
 
-            var discardResult = new List<DiscardCardAction>();
-            var e = SelectAndDiscardCards(
-                HeroTurnTakerController,
-                numberOfCardsToDiscard: 1,
-                optional: true,
-                gameAction: dda,
-                extraInfo: () => "Discard a card to prevent the damage",
-                storedResults: discardResult
-            );
-            if (UseUnityCoroutines)
+            if (preventDamage.GetValueOrDefault(false))
             {
-                yield return GameController.StartCoroutine(e);
-            }
-            else
-            {
-                GameController.ExhaustCoroutine(e);
-            }
-
-            if (DidDiscardCards(discardResult))
-            {
-                e = CancelAction(dda, isPreventEffect: true);
+                Debug.Log($"Invincible discard preventing damage pretend? {dda.IsPretend}, prevent? {preventDamage}");
+                var e = GameController.CancelAction(dda, isPreventEffect: true, cardSource: GetCardSource());
                 if (UseUnityCoroutines)
                 {
                     yield return GameController.StartCoroutine(e);
@@ -94,6 +90,14 @@ namespace Jp.ParahumansOfTheWormverse.Alexandria
                     GameController.ExhaustCoroutine(e);
                 }
             }
+
+            if (! GameController.PretendMode)
+            {
+                preventDamage = null;
+                Debug.Log($"Invincible discard setting pretend to null pretend? {dda.IsPretend}, prevent? {preventDamage}");
+            }
         }
+
+        private bool? preventDamage;
     }
 }
