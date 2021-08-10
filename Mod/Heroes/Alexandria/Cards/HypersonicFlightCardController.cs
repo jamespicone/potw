@@ -50,7 +50,7 @@ namespace Jp.ParahumansOfTheWormverse.Alexandria
         {
             var e = GameController.SelectAndDestroyCard(
                 HeroTurnTakerController,
-                new LinqCardCriteria(c => c.IsDevice || c.DoKeywordsContain("equipment"), "device or equipment"),
+                new LinqCardCriteria(c => c.IsDevice || c.IsOngoing, "device or ongoing"),
                 optional: true,
                 responsibleCard: Card,
                 cardSource: GetCardSource()

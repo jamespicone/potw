@@ -42,7 +42,7 @@ namespace Jp.ParahumansOfTheWormverse.Alexandria
             var e = GameController.SelectCardAndStoreResults(
                 HeroTurnTakerController,
                 SelectionType.RedirectDamageDirectedAtTarget,
-                new LinqCardCriteria(c => c.IsTarget && c.IsInPlay, "target"),
+                new LinqCardCriteria(c => c.IsTarget && c.IsInPlay && c != Card, "target"),
                 storedResults: selectedTarget,
                 optional: false,
                 cardSource: GetCardSource()
