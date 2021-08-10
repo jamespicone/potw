@@ -181,29 +181,13 @@ namespace Jp.ParahumansOfTheWormverse.Dragon
 
         public override TurnPhase AskIfTurnPhaseShouldBeChanged(TurnPhase fromPhase, TurnPhase toPhase)
         {
-            Debug.Log("AskIfTurnPhaseShouldBeChanged");
-
             if (Card.IsFlipped) { return null; }
 
-            if (fromPhase == null || toPhase == null) {
-                Debug.Log("From or To is null, returning null");
-                return null;
-            }
+            if (fromPhase == null || toPhase == null) { return null; }
 
-            Debug.Log($"From phase value: {fromPhase.Phase} toPhase {toPhase.Phase}");
-
-            if (fromPhase.TurnTaker != TurnTaker) {
-                Debug.Log("One of the from/to isn't Dragon, not changing phase");
-                return null;
-            }
-            if (fromPhase.IsBeforeStart || fromPhase.IsAfterEnd) {
-                Debug.Log("Returning null for beforeStart/afterEnd");
-                return null;
-            }
-            if (toPhase.IsBeforeStart || toPhase.IsAfterEnd) {
-                Debug.Log("Returning null for beforeStart/afterEnd");
-                return null;
-            }
+            if (fromPhase.TurnTaker != TurnTaker) { return null; }
+            if (fromPhase.IsBeforeStart || fromPhase.IsAfterEnd) { return null; }
+            if (toPhase.IsBeforeStart || toPhase.IsAfterEnd) { return null; }
 
             if (toPhase.TurnTaker == TurnTaker)
             {

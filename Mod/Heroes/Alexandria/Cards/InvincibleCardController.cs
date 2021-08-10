@@ -52,7 +52,6 @@ namespace Jp.ParahumansOfTheWormverse.Alexandria
 
         public IEnumerator DiscardToPreventDamage(DealDamageAction dda, TurnTaker hero, StatusEffect effect, int[] powerNumerals = null)
         {
-            Debug.Log($"Invincible discard pretend? {dda.IsPretend}, prevent? {preventDamage}");
             if (GameController.PretendMode || preventDamage == null)
             {
                 var discardResult = new List<DiscardCardAction>();
@@ -74,12 +73,10 @@ namespace Jp.ParahumansOfTheWormverse.Alexandria
                 }
 
                 preventDamage = DidDiscardCards(discardResult);
-                Debug.Log($"Invincible discard decision made pretend? {dda.IsPretend}, prevent? {preventDamage}");
             }
 
             if (preventDamage.GetValueOrDefault(false))
             {
-                Debug.Log($"Invincible discard preventing damage pretend? {dda.IsPretend}, prevent? {preventDamage}");
                 var e = GameController.CancelAction(dda, isPreventEffect: true, cardSource: GetCardSource());
                 if (UseUnityCoroutines)
                 {
@@ -94,7 +91,6 @@ namespace Jp.ParahumansOfTheWormverse.Alexandria
             if (! GameController.PretendMode)
             {
                 preventDamage = null;
-                Debug.Log($"Invincible discard setting pretend to null pretend? {dda.IsPretend}, prevent? {preventDamage}");
             }
         }
 
