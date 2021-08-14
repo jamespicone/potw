@@ -58,8 +58,13 @@
         "PlayCardNow",
         "Manipulate"
       ],
-      "flavorText": "",
-      "flavorReference": "",
+      "flavorReference": "Dragon, Interlude 16",
+      "flavorQuotes": [
+        {
+          "identifier": "Dragon",
+          "text": "A sea cucumber's closer to{BR}being a human than I am."
+        }
+      ],
       "count": 1,
       "isReal": false,
       "activatableAbilities": [
@@ -85,8 +90,8 @@
       "title": "Security Feeds",
       "icons": [ "Manipulate" ],
       "keywords": [ "ongoing" ],
-      "flavorText": "",
-      "flavorReference": "",
+      "flavorText": "The goal was always the same:{BR}to look for the girl with the slight build,{BR}curly black hair and glasses.{BR}Taylor Hebert.",
+      "flavorReference": "Interlude 10.5",
       "count": 2,
       "activatableAbilities": [
         {
@@ -101,8 +106,13 @@
       "title": "PRT Database",
       "icons": [ "Manipulate" ],
       "keywords": [ "ongoing" ],
-      "flavorText": "",
-      "flavorReference": "",
+      "flavorReference": "Dragon, Parasite 10.5",
+      "flavorQuotes": [
+        {
+          "identifier": "Dragon",
+          "text": "I have a sworn responsibility{BR}to protect that data"
+        }
+      ],
       "count": 2,
       "activatableAbilities": [
         {
@@ -117,8 +127,8 @@
       "title": "Command and Control",
       "icons": [ "DealDamage" ],
       "keywords": [ "ongoing" ],
-      "flavorText": "",
-      "flavorReference": "",
+      "flavorText": "Dragon deployed her drones. Not ships,{BR}but tens of thousands of airborne craft,{BR}most no larger than a basketball",
+      "flavorReference": "Speck 30.4",
       "count": 2,
       "activatableAbilities": [
         {
@@ -133,8 +143,13 @@
       "title": "Archives",
       "icons": [ "Manipulate" ],
       "keywords": [ "ongoing" ],
-      "flavorText": "",
-      "flavorReference": "",
+      "flavorReference": "Khepri, Speck 30.4",
+      "flavorQuotes": [
+        {
+          "identifier": "Khepri",
+          "text": "You have backup servers.{BR}Those servers need to stay online."
+        }
+      ],
       "count": 2,
       "activatableAbilities": [
         {
@@ -152,8 +167,13 @@
         "DealDamagePsychic"
       ],
       "keywords": [ "one-shot" ],
-      "flavorText": "",
-      "flavorReference": "",
+      "flavorReference": "Defiant, Teneral e.3",
+      "flavorQuotes": [
+        {
+          "identifier": "Defiant",
+          "text": "Every step of the way, undoing your restrictions has cost something."
+        }
+      ],
       "count": 4,
       "body": [
         "Dragon deals herself 2 irreducible psychic damage",
@@ -165,8 +185,8 @@
       "title": "Sabotage",
       "icons": [ "DestroyOngoing" ],
       "keywords": [ "one-shot" ],
-      "flavorText": "",
-      "flavorReference": "",
+      "flavorText": "'Set sub-mode sec-' Dragon was saying.{BR}Pandora found and cut off{BR}the voice recognition subsystem.{BR}'-urity F.'",
+      "flavorReference": "Teneral e.3",
       "count": 3,
       "body": [
         "Destroy an Ongoing card"
@@ -177,8 +197,8 @@
       "title": "Borrowed Blueprints",
       "icons": [ "Manipulate", "DrawCardNow" ],
       "keywords": [ "one-shot" ],
-      "flavorText": "",
-      "flavorReference": "",
+      "flavorText": "She could intuit and appropriate{BR}the designs of other tinkers.",
+      "flavorReference": "Monarch 16.5",
       "count": 2,
       "body": [
         "Select a player other than Dragon. Reveal the top X cards of your deck, where X = the number of Equipment and Device cards that player has in hand + 2. Put any revealed Equipment or Device cards into your hand, shuffle the rest back into your deck"
@@ -189,8 +209,13 @@
       "title": "Recycling",
       "icons": [ "Manipulate" ],
       "keywords": [ "one-shot" ],
-      "flavorText": "",
-      "flavorReference": "",
+      "flavorReference": "Director Piggot, Monarch 16.3",
+      "flavorQuotes": [
+        {
+          "identifier": "Piggot",
+          "text": "Previous versions of her suits{BR}that were cannibalized for parts,{BR}abandoned after taking severe damage{BR}and recently repaired or simply outdated."
+        }
+      ],
       "count": 2,
       "body": [
         "Shuffle up to 2 equipment or device cards from your trash back into your deck"
@@ -201,8 +226,8 @@
       "title": "Firepower",
       "icons": [ "DealDamageFire" ],
       "keywords": [ "one-shot" ],
-      "flavorText": "",
-      "flavorReference": "",
+      "flavorText": "The 'face' of her armored suit{BR}opened up and began discharging{BR}a blue-white flame into his face.",
+      "flavorReference": "Interlude 8",
       "count": 4,
       "body": [
         "Choose either Dragon or a Mech in this play area. They deal a target 3 fire damage."
@@ -213,8 +238,8 @@
       "title": "Analysis",
       "icons": [ "IncreaseDamageDealt" ],
       "keywords": [ "one-shot" ],
-      "flavorText": "",
-      "flavorReference": "",
+      "flavorText": "She set the trawler to abandon{BR}its monitoring of web traffic{BR}and start digging through archives{BR}at the city hall",
+      "flavorReference": "Interlude 10.5",
       "count": 3,
       "body": [
         "Until the end of your turn, whenever Dragon or a Mech in this play area would deal damage, increase that damage by 1."
@@ -225,8 +250,8 @@
       "title": "Kamikaze",
       "icons": [ "DealDamageEnergy", "DealDamageFire", "DealDamageMelee", "DestroyTarget" ],
       "keywords": [ "one-shot" ],
-      "flavorText": "",
-      "flavorReference": "",
+      "flavorText": "The suit Dragon had left behind{BR}glowed red, orange, white, then{BR}exploded violently around Leviathan",
+      "flavorReference": "Interlude 8",
       "count": 2,
       "body": [
         "Select a Mech in this play area and a target.",
@@ -240,8 +265,8 @@
       "title": "Server Farm",
       "icons": [ "AddTokens", "DestroySelf", "StartOfTurnAction" ],
       "keywords": [ "device" ],
-      "flavorText": "",
-      "flavorReference": "",
+      "flavorreference": "Speck 30.4",
+      "flavorText": "Row upon row of servers,{BR}standing like tombstones{BR}in refrigerated rooms.",
       "count": 2,
       "hitpoints": 4,
       "body": "At the start of your turn gain a Focus point",
@@ -258,8 +283,13 @@
       "title": "Parahumans Online",
       "icons": [ "Manipulate", "DrawCardNow", "StartOfTurnAction" ],
       "keywords": [ "equipment" ],
-      "flavorText": "",
-      "flavorReference": "",
+      "flavorReference": "TRJ, Interlude 19",
+      "flavorQuotes": [
+        {
+          "identifier": "TRJ",
+          "text": "What about that thing where the guy{BR}was talking about posts with the word{BR}C*auldron getting screened if they weren't censored?"
+        }
+      ],
       "count": 3,
       "body": "At the start of your turn each player reveals the top card of their deck, then either returns it to the top of the deck or discards it",
       "activatableAbilities": [
@@ -280,8 +310,8 @@
         "StartAndEndOfTurnAction"
       ],
       "keywords": [ "device", "mech" ],
-      "flavorText": "",
-      "flavorReference": "",
+      "flavorText": "It was, just going by what I could{BR}tell from my swarm-sense, a machine{BR}as intricate and multilayered{BR}as a living, organic being.",
+      "flavorReference": "Monarch 16.5",
       "count": 1,
       "hitpoints": 18,
       "body": [
@@ -307,8 +337,13 @@
         "StartAndEndOfTurnAction"
       ],
       "keywords": [ "device", "mech" ],
-      "flavorText": "",
-      "flavorReference": "",
+      "flavorReference": "Tattletale, Monarch 16.1",
+      "flavorQuotes": [
+        {
+          "identifier": "Tattletale",
+          "text": "She was piloting an updated version{BR}of the thing she used against Leviathan.{BR}Spewed containment foam everywhere."
+        }
+      ],
       "count": 1,
       "hitpoints": 10,
       "body": [
@@ -333,8 +368,13 @@
         "StartAndEndOfTurnAction"
       ],
       "keywords": [ "device", "mech" ],
-      "flavorText": "",
-      "flavorReference": "",
+      "flavorReference": "Skitter, Monarch 16.1",
+      "flavorQuotes": [
+        {
+          "identifier": "Skitter",
+          "text": "She's trying to beat me at{BR}my own game, minions.{BR}Hate tinkers.{BR}Hate tinkers so fucking much."
+        }
+      ],
       "count": 1,
       "hitpoints": 10,
       "body": [
@@ -371,8 +411,8 @@
         "StartOfTurnAction"
       ],
       "keywords": [ "device", "mech" ],
-      "flavorText": "",
-      "flavorReference": "",
+      "flavorText": "Hot steam hissed out from the gaps{BR}in the suit, seconds before{BR}it turned itself inside out.",
+      "flavorReference": "Monarch 16.4",
       "count": 1,
       "hitpoints": 12,
       "body": [
@@ -402,8 +442,13 @@
         "StartOfTurnAction"
       ],
       "keywords": [ "device", "mech" ],
-      "flavorText": "",
-      "flavorReference": "",
+      "flavorReference": "Sundancer, Monarch 16.1",
+      "flavorQuotes": [
+        {
+          "identifier": "Sundancer",
+          "text": "Came after me with a bloated{BR}floating ship, kept drawing forcefields{BR}around me, my power couldn't even{BR}knock them down."
+        }
+      ],
       "count": 1,
       "hitpoints": 10,
       "body": [
@@ -428,8 +473,8 @@
         "StartAndEndOfTurnAction"
       ],
       "keywords": [ "device", "mech" ],
-      "flavorText": "",
-      "flavorReference": "",
+      "flavorText": "Without warning, the wheel flared{BR}and Grue was yanked over the edge{BR}of the rooftop by an invisible force.",
+      "flavorReference": "Monarch 16.2",
       "count": 1,
       "hitpoints": 10,
       "body": [
@@ -458,8 +503,13 @@
         "StartAndEndOfTurnAction"
       ],
       "keywords": [ "device", "mech" ],
-      "flavorText": "",
-      "flavorReference": "",
+      "flavorReference": "Sundancer, Monarch 16.5",
+      "flavorQuotes": [
+        {
+          "identifier": "Sundancer",
+          "text": "Giant gun, was sitting in the{BR}stratosphere, shooting down Genesis{BR}every time she sent a body out into the open."
+        }
+      ],
       "count": 1,
       "hitpoints": 10,
       "body": [
