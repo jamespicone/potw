@@ -131,7 +131,7 @@ namespace Jp.ParahumansOfTheWormverse.Leviathan
         {
             if (Journal.
                 DealDamageEntriesToTargetSinceLastTurn(CharacterCard, TurnTaker).
-                Where(ddje => ddje.Amount > (8 - H)).
+                Where(ddje => ddje.Amount >= (8 - H)).
                 Count() > 0)
             {
                 var e = FlipThisCharacterCardResponse(pca);
