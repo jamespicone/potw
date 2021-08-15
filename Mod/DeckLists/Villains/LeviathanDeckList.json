@@ -43,7 +43,7 @@
       "keywords": [ "tactic" ],
       "body": [
         "This card is indestructible.",
-        "Whenever {LeviathanCharacter} would deal melee damage to a target this card deals that target 2 irreducible melee damage."
+        "Whenever {LeviathanCharacter} deals melee damage to a target this card deals that target 2 irreducible melee damage."
       ],
       "flavorText": "Gallons of water poured around{BR}him in the wake of his movements, roughly{BR}the same amount of mass as the body part{BR}that had just occupied the space.",
       "flavorReference": "Extermination 8.2"

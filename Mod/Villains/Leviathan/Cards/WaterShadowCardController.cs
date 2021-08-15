@@ -19,7 +19,7 @@ namespace Jp.ParahumansOfTheWormverse.Leviathan
 
         public override void AddTriggers()
         {
-            // Whenever Leviathan would deal melee damage to a target...  
+            // Whenever Leviathan deals melee damage to a target...  
             AddTrigger<DealDamageAction>(
                 dda => dda.DamageType == DamageType.Melee && dda.DamageSource.Card == CharacterCard && dda.IsSuccessful && dda.Amount > 0,
                 dda => RespondToMeleeDamage(dda),
