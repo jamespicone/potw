@@ -45,7 +45,8 @@
         "GainHP",
         "RedirectDamage"
       ],
-      "flavorReference": "",
+      "flavorText": "She flew forward, trying to draw{BR}his attention, interjecting herself{BR}between the Behemoth and the others.",
+      "flavorReference": "Interlude 15",
       "count": 4
     },
     {
@@ -59,7 +60,13 @@
       "icons": [
         "Manipulate"
       ],
-      "flavorReference": "",
+      "flavorQuotes": [
+        {
+          "identifier": "Alexandria",
+          "text": "A reference to the burned{BR}library of Alexandria. It's been mythologized{BR}as that era's sum of human knowledge.{BR}I am much the same."
+        }
+      ],
+      "flavorReference": "Alexandria, Cell 22.4",
       "count": 2
     },
     {
@@ -74,7 +81,17 @@
         "StartOfTurnAction",
         "Manipulate"
       ],
-      "flavorReference": "",
+      "flavorQuotes": [
+        {
+          "identifier": "Skitter",
+          "text": "You're cold reading me"
+        },
+        {
+          "identifier": "Alexandria",
+          "text": "Mm hmm, I know you've{BR}probably got someone in the lobby or outside, receiving coded messages."
+        }
+      ],
+      "flavorReference": "Cell 22.4",
       "count": 3
     },
     {
@@ -89,7 +106,8 @@
         "CancelledDamageGreen",
         "ReduceDamageTaken"
       ],
-      "flavorReference": "",
+      "flavorText": "His flame burned through her,{BR}the sand was turning to glass around{BR}her, burning her costume,{BR}but it didn't burn her.",
+      "flavorReference": "Interlude 15",
       "count": 3
     },
     {
@@ -104,7 +122,13 @@
         "DealDamageMelee",
         "DestroyOngoing"
       ],
-      "flavorReference": "",
+      "flavorQuotes": [
+        {
+          "identifier": "Doctor Mother",
+          "text": "She's as strong as{BR}any parahuman we've recorded.{BR}Flies at speeds that match your own, Legend."
+        }
+      ],
+      "flavorReference": "Doctor Mother, Interlude 15",
       "count": 3
     },
     {
@@ -119,7 +143,13 @@
         "DestroyTarget",
         "CancelledDamageGreen"
       ],
-      "flavorReference": "",
+      "flavorQuotes": [
+        {
+          "identifier": "Alexandria",
+          "text": "I know martial arts and I remember everything that crosses my path."
+        }
+      ],
+      "flavorReference": "Alexandria, Cell 22.4",
       "count": 3
     },
     {
@@ -134,7 +164,13 @@
         "DrawCardNow",
         "GainHP"
       ],
-      "flavorReference": "",
+      "flavorQuotes": [
+        {
+          "identifier": "Alexandria",
+          "text": "They tried to drown me.{BR}It didn't work.{BR}Others have tried the same thing,{BR}in many different variations."
+        }
+      ],
+      "flavorReference": "Alexandria, Cell 22.4",
       "count": 4
     },
     {
@@ -148,7 +184,8 @@
         "DealDamageMelee",
         "Manipulate"
       ],
-      "flavorReference": "",
+      "flavorText": "Alexandria was something else.{BR}The heroic equivalent of a cruise missile.",
+      "flavorReference": "Cell 22.4",
       "count": 3
     },
     {
@@ -162,7 +199,8 @@
         "EndOfTurnAction",
         "Manipulate"
       ],
-      "flavorReference": "",
+      "flavorText": "Eidolon's healing had only been able{BR}to do so much.{BR}She held a glass eye in one hand,{BR}the remains of her other eye in the other.",
+      "flavorReference": "Interlude 15",
       "count": 2
     },
     {
@@ -174,7 +212,13 @@
         "At the start of your next turn, if {AlexandriaCharacter} is not incapacitated, set {AlexandriaCharacter}'s HP to the value you noted down"
       ],
       "icons": [],
-      "flavorReference": "",
+      "flavorQuotes": [
+        {
+          "identifier": "Pretender",
+          "text": "Her body's peculiar.{BR}Doesn't really age. Hair doesn't grow,{BR}nails don't grow.{BR}Wounds don't really heal or get worse."
+        }
+      ],
+      "flavorReference": "Pretender, Interlude 24",
       "count": 2
     },
     {
@@ -187,7 +231,17 @@
       "icons": [
         "DealDamageMelee"
       ],
-      "flavorReference": "",
+      "flavorQuotes": [
+        {
+          "identifier": "Legend",
+          "text": "Do you get a lot of blood{BR}on your costume?"
+        },
+        {
+          "identifier": "Alexandria",
+          "text": "I hit [b]really[/b] hard"
+        }
+      ],
+      "flavorReference": "Interlude 15",
       "count": 4
     },
     {
@@ -200,7 +254,13 @@
       "icons": [
         "DealDamageMelee"
       ],
-      "flavorReference": "",
+      "flavorQuotes": [
+        {
+          "identifier": "Alexandria",
+          "text": "There have been fifty-six Endbringer{BR}attacks in the last nineteen years.{BR}I have personally participated in forty-nine of them"
+        }
+      ],
+      "flavorReference": "Alexandria, Cell 22.4",
       "count": 4
     },
     {
@@ -215,7 +275,13 @@
         "DealDamagePsychic",
         "CannotDealDamage"
       ],
-      "flavorReference": "",
+      "flavorQuotes": [
+        {
+          "identifier": "Alexandria",
+          "text": "The creatures know me.{BR}They know how to fight me,{BR}and I know how to fight them.{BR}Yet I'm still here."
+        }
+      ],
+      "flavorReference": "Alexandria, Cell 22.4",
       "count": 3
     }
   ]
