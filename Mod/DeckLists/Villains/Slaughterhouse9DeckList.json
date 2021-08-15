@@ -202,7 +202,9 @@
       "count": 1,
       "body": "At the end of the villain turn Murder Rat deals 2 melee damage to the hero target with the lowest HP",
       "keywords": [ "parahuman" ],
-      "icons": []
+      "icons": [],
+      "flavorText": "She pushed herself free of the vent,{BR}lunging, drawing her claws together as if{BR}she were diving into water from a height.",
+      "flavorReference": "Sting 26.3"
     },
     {
       "identifier": "HatchetFace",
@@ -211,7 +213,14 @@
       "count": 1,
       "body": "Heroes may not use powers",
       "keywords": [ "parahuman" ],
-      "icons": []
+      "icons": [],
+      "flavorQuotes": [
+        {
+          "identifier": "Tattletale",
+          "text": "He's strong enough to swing{BR}that axe through a car, tough enough{BR}you could flatten him with a steamroller{BR}and he'd get back up when you were done."
+        }
+      ],
+      "flavorReference": "Tattletale, Sting 26.5"
     },
     {
       "identifier": "Spiderbots",
@@ -221,7 +230,9 @@
       "body": "At the end of the villain turn this card deals X melee damage to the hero target with the lowest HP, where X = 1 + the number of Spiderbots in play",
       "keywords": [ "device" ],
       "nemesisIdentifiers": [ "Battery" ],
-      "icons": []
+      "icons": [],
+      "flavorText": "Spidery contraptions of{BR}scrap metal, they lacked heads,{BR}only consisting of a box half the size{BR}of a toaster and spindly legs that moved{BR}on hydraulics",
+      "flavorReference": "Interlude 11h"
     },
     {
       "identifier": "TheyreAllBetterNow",
@@ -229,7 +240,9 @@
       "count": 1,
       "body": "Flip the most recently defeated Nine card and set their HP to 10. If no cards are flipped in this way play the top card of the villain deck",
       "keywords": [ "one-shot", "defence" ],
-      "icons": []
+      "icons": [],
+      "flavorText": "Her mind leaped into action,{BR}reaching for knowledge she hadn't had{BR}earlier in the night,{BR}knowledge of how to fix people.",
+      "flavorReference": "Interlude 25"
     },
     {
       "identifier": "YouveBeenAnticipated",
@@ -237,7 +250,9 @@
       "count": 2,
       "body": "Each player discards 2 cards",
       "keywords": [ "one-shot", "defence" ],
-      "icons": []
+      "icons": [],
+      "flavorText": "I fumbled for the gun,{BR}using my bugs to get a sense for where{BR}it was. In the same motion that I pointed{BR}it, Jack slapped it out of my hand{BR}with two slashes of his knife.",
+      "flavorReference": "Prey 14.9"
     },
     {
       "identifier": "SomeLightEntertainment",
@@ -245,7 +260,9 @@
       "count": 2,
       "body": "Each villain target in play deals 2 melee damage to the hero target with the highest HP",
       "keywords": [ "one-shot", "attack" ],
-      "icons": []
+      "icons": [],
+      "flavorText": "If and when the{BR}Slaughterhouse Nine do eliminate{BR}five of the six candidates, or if any{BR}candidates leave the city, the Nine are{BR}prepared to penalize the city for{BR}their failure",
+      "flavorReference": "Snare 13.1"
     },
     {
       "identifier": "TheScream",
@@ -256,7 +273,9 @@
         "The Nine card with the highest HP deals each hero target X projectile damage, where X = 2 * the number of Equipment cards in play"
       ],
       "keywords": [ "one-shot", "attack" ],
-      "icons": []
+      "icons": [],
+      "flavorText": "It was as though the{BR}glass broke in response to some{BR}invisible tidal wave, caught in the{BR}nonexistent 'water', carried along",
+      "flavorReference": "Plague 12.5"
     },
     {
       "identifier": "Legendary",
@@ -264,7 +283,14 @@
       "count": 2,
       "body": "Increase damage dealt by villain cards by 1",
       "keywords": [ "ongoing", "special" ],
-      "icons": []
+      "icons": [],
+      "flavorQuotes": [
+        {
+          "identifier": "Jack",
+          "text": "If you fail in this, I'll{BR}kill nine hundred and ninety-nine{BR}people in your name. I'll even break my{BR}usual rules to get the body count that high, so{BR}it's something special, beyond my usual habits"
+        }
+      ],
+      "flavorReference": "Jack Slash, Interlude 11b"
     },
     {
       "identifier": "LessThanHuman",
@@ -272,7 +298,9 @@
       "count": 2,
       "body": "Reduce damage dealt to villain targets by 1",
       "keywords": [ "ongoing", "defence" ],
-      "icons": []
+      "icons": [],
+      "flavorText": "Bonesaw spat blood onto the ground.{BR}Being impaled in the heart{BR}hadn't put her down.",
+      "flavorReference": "Interlude 19"
     },
     {
       "identifier": "SomeMoreFriends",
@@ -280,7 +308,9 @@
       "count": 2,
       "body": "Move the top card under the Slaughterhouse 9 card into the villain play area. Play the top card of the villain deck",
       "keywords": [ "one-shot" ],
-      "icons": []
+      "icons": [],
+      "flavorText": "He raised one hand,{BR}and Burnscar slapped it{BR}in a lazy high-five",
+      "flavorReference": "Snare 13.3"
     },
     {
       "identifier": "ShallWePlayAGame",
@@ -288,7 +318,9 @@
       "count": 2,
       "body": "If Jack Slash is not in play, find Jack Slash under the Slaughterhouse 9 card and put him into the villain play area. Jack Slash deals 2 psychic damage to all hero targets",
       "keywords": [ "one-shot", "special" ],
-      "icons": []
+      "icons": [],
+      "flavorText": "He smiled.{BR}These challenges, after all,{BR}served as his own carrot.",
+      "flavorReference": "Interlude 12"
     },
     {
       "identifier": "ChangeTheRules",
@@ -299,7 +331,14 @@
         "Shuffle the Nine target with the lowest HP back under the Slaughterhouse 9 card. Move 2 cards from under the Slaughterhouse 9 card into the villain play area"
       ],
       "keywords": [ "one-shot", "defence" ],
-      "icons": []
+      "icons": [],
+      "flavorQuotes": [
+        {
+          "identifier": "Jack",
+          "text": "What I don't understand,{BR}is why a blank slate like you would{BR}default to doing good deeds, rescuing{BR}cats from trees. Why not turn to that violence,{BR}as our ancestors did?"
+        }
+      ],
+      "flavorReference": "Jack Slash, Interlude 26"
     },
     {
       "identifier": "WeDontTakePrisoners",
@@ -307,7 +346,14 @@
       "count": 2,
       "body": "Whenever a target is destroyed by a villain card each hero deals themselves 2 psychic damage.",
       "keywords": [ "ongoing", "attack" ],
-      "icons": []
+      "icons": [],
+      "flavorQuotes": [
+        {
+          "identifier": "Bonesaw",
+          "text": "Forgot to turn the music off"
+        }
+      ],
+      "flavorReference": "Bonesaw, Interlude 25"
     }
   ]
 }

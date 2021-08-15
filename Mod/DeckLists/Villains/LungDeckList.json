@@ -77,8 +77,7 @@
       "keywords": [ "parahuman" ],
       "count": 1,
       "body": [
-        "At the start of the villain turn, reveal the top card of the villain deck:{BR}- If it is a One-Shot, {Bakuda} deals 5 fire damage to all non-villain targets.{BR}- If it is an Ongoing, each hero discards 1 card.{BR}- If it is a target, the hero with the most cards in play destroys all their noncharacter cards.",
-        "Shuffle the revealed card back into the villain deck."
+        "At the start of the villain turn, reveal the top card of the villain deck then shuffle it back:{BR}- If it is a One-Shot, {Bakuda} deals 5 fire damage to all non-villain targets.{BR}- If it is an Ongoing, each hero discards 1 card.{BR}- If it is a target, the hero with the most cards in play destroys all their noncharacter cards."
       ],
       "icons": [
         "StartOfTurnAction",

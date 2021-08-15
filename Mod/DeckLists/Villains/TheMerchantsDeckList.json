@@ -207,7 +207,7 @@
 				"EndOfTurnAction",
 				"DealDamageMelee"
 			],
-			"flavorText": "A man who stood outside the{BR}ring grabbed a piece of rubble and{BR}threw it, striking a man who was crouching{BR}and trying to avoid the{BR}worst of the fighting.",
+			"flavorText": "A man who stood outside the{BR}ring grabbed a piece of rubble and{BR}threw it, striking a man who was{BR}crouching and trying to avoid the{BR}worst of the fighting.",
 			"flavorReference": "Infestation 11.6"
 		},
 		{

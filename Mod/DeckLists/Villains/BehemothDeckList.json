@@ -109,7 +109,7 @@
 			"flavorQuotes": [
 				{
 					"identifier": "Chevalier",
-					"text": "I’m not going to make any big speeches. Better we get out there and save lives."
+					"text": "I’m not going to make any big speeches.{BR}Better we get out there and save lives."
 				}
 			],
 			"flavorReference": "Chevalier, Drone 23.5"
@@ -410,7 +410,7 @@
 			"icons": [
 				"AddTokens"
 			],
-			"flavorText": "With his claws and feet now on{BR}firm ground, he leaped. The shockwave of{BR}his departure toppled the slipshod buildings{BR}around him in his wake.",
+			"flavorText": "With his claws and feet now on{BR}firm ground, he leaped. The shockwave of{BR}his departure toppled the slipshod{BR}buildings around him in his wake.",
 			"flavorReference": "Drone 23.5"
 		},
 		{
