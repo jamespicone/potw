@@ -20,11 +20,11 @@ namespace Jp.ParahumansOfTheWormverse.Dauntless
         public override void AddTriggers()
         {
             // Plasma Core
-            // whenever {DauntlessCharacter} is dealt damage and it is reduced by Arcshield's power {DauntlessCharacter} deals the source 1 energy damage
+            // whenever damage is reduced by Arcshield's power {DauntlessCharacter} deals the source 1 energy damage
             AddCounterDamageTrigger(
                 dda => DidArcshieldReduce(dda),
-                () => CharacterCard,
-                () => CharacterCard,
+                cardReceivingDamage: () => null,
+                cardDealingCounterDamage: () => CharacterCard,
                 oncePerTargetPerTurn: false,
                 damageAmount: 1,
                 DamageType.Energy
