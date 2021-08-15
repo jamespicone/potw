@@ -136,7 +136,7 @@
       "title": "Martial Arts",
       "keywords": [ "ongoing" ],
       "body": [
-        "When this card enters play you may destroy a non-character-card target",
+        "When this card enters play you may destroy a non-character-card target with 5 or less HP",
         "When {AlexandriaCharacter} destroys a target select a target. Until the start of your next turn that target cannot deal damage"
       ],
       "icons": [

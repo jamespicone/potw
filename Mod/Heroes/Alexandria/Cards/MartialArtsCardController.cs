@@ -14,10 +14,10 @@ namespace Jp.ParahumansOfTheWormverse.Alexandria
 
         public override IEnumerator Play()
         {
-            // "When this card enters play you may destroy a non-character-card target",
+            // "When this card enters play you may destroy a non-character-card target with 5 or less HP",
             var e = GameController.SelectAndDestroyCard(
                 HeroTurnTakerController,
-                new LinqCardCriteria(c => ! c.IsCharacter && c.IsTarget, "noncharacter"),
+                new LinqCardCriteria(c => ! c.IsCharacter && c.IsTarget && c.HitPoints <= 5, "noncharacter target with 5 or less HP"),
                 optional: true,
                 responsibleCard: CharacterCard,
                 cardSource: GetCardSource()
