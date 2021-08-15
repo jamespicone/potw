@@ -98,7 +98,7 @@
       "body": [
         "Play this card next to {DauntlessCharacter} or a Relic in this play area without a Plasma Core",
         "[b]On {DauntlessCharacter}:[/b] his power does irreducible damage",
-        "[b]On Arcshield:[/b] whenever {DauntlessCharacter} is dealt damage and it is reduced by Arcshield's power {DauntlessCharacter} deals the source 1 energy damage",
+        "[b]On Arcshield:[/b] Whenever damage is reduced by the Arcshield's power {DauntlessCharacter} deals the source 1 energy damage",
         "[b]On Arcstep:[/b] before using Arcstep's power regain 1 HP"
       ],
       "icons": [
