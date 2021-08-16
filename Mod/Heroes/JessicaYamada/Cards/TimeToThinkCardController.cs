@@ -7,6 +7,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+using UnityEngine;
+
 namespace Jp.ParahumansOfTheWormverse.JessicaYamada
 {
     class TimeToThinkCardController : CardController
@@ -36,9 +38,14 @@ namespace Jp.ParahumansOfTheWormverse.JessicaYamada
                         )
                     ),
                 pca => DrawCardResponse(pca),
-                new[] { TriggerType.DrawCard },
+                new[] { TriggerType.FirstTrigger },
                 TriggerTiming.Before
             );
+        }
+
+        private IEnumerator PrintPCAInfo(PhaseChangeAction pca)
+        {
+            yield break;
         }
 
         public IEnumerator DrawCardResponse(PhaseChangeAction pca)

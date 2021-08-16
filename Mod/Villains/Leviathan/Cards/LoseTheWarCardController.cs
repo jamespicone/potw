@@ -150,8 +150,8 @@ namespace Jp.ParahumansOfTheWormverse.Leviathan
                 GameController.ExhaustCoroutine(e);
             }
 
-            var nextPhase = GameController.FindNextTurnPhase(pca.ToPhase);
-            e = GameController.SkipToTurnPhase(nextPhase, cardSource: GetCardSource());
+            //var nextPhase = GameController.FindNextTurnPhase(pca.ToPhase);
+            e = GameController.PreventPhaseAction(pca.ToPhase, cardSource: GetCardSource());
             if (UseUnityCoroutines)
             {
                 yield return GameController.StartCoroutine(e);
