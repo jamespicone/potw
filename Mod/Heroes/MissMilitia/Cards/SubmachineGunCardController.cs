@@ -7,6 +7,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+using Jp.ParahumansOfTheWormverse.Utility;
+
 namespace Jp.ParahumansOfTheWormverse.MissMilitia
 {
     public class SubmachineGunCardController : WeaponCardController
@@ -22,58 +24,84 @@ namespace Jp.ParahumansOfTheWormverse.MissMilitia
         {
             int numTargets = GetPowerNumeral(0, 3);
             int amount = GetPowerNumeral(1, 1);
+            
             // "{MissMilitiaCharacter} deals up to 3 non-hero targets 1 projectile damage each."
-            IEnumerator damageCoroutine = base.GameController.SelectTargetsAndDealDamage(base.HeroTurnTakerController, new DamageSource(base.GameController, base.CharacterCard), amount, DamageType.Projectile, numTargets, false, 0, additionalCriteria: (Card c) => !c.IsHero, cardSource: GetCardSource());
-            if (base.UseUnityCoroutines)
+            var e = GameController.SelectTargetsAndDealDamage(
+                HeroTurnTakerController,
+                new DamageSource(GameController, CharacterCard),
+                amount,
+                DamageType.Projectile,
+                numTargets,
+                false,
+                requiredTargets: 0,
+                additionalCriteria: (c) => ! c.IsHeroTarget(),
+                cardSource: GetCardSource()
+            );
+            if (UseUnityCoroutines)
             {
-                yield return base.GameController.StartCoroutine(damageCoroutine);
+                yield return GameController.StartCoroutine(e);
             }
             else
             {
-                base.GameController.ExhaustCoroutine(damageCoroutine);
+                GameController.ExhaustCoroutine(e);
             }
+
             // "{machete} You may destroy an Ongoing or environment card."
             if (ActivateWeaponEffectForPower(MacheteKey))
             {
-                IEnumerator destroyCoroutine = base.GameController.SelectAndDestroyCard(base.HeroTurnTakerController, new LinqCardCriteria((Card c) => c.DoKeywordsContain("ongoing") || c.IsEnvironment, "Ongoing or environment"), true, responsibleCard: base.Card, cardSource: GetCardSource());
-                if (base.UseUnityCoroutines)
+                e = GameController.SelectAndDestroyCard(
+                    HeroTurnTakerController,
+                    new LinqCardCriteria((c) => c.DoKeywordsContain("ongoing") || c.IsEnvironment, "Ongoing or environment"),
+                    optional: true,
+                    responsibleCard: Card,
+                    cardSource: GetCardSource()
+                );
+                if (UseUnityCoroutines)
                 {
-                    yield return base.GameController.StartCoroutine(destroyCoroutine);
+                    yield return GameController.StartCoroutine(e);
                 }
                 else
                 {
-                    base.GameController.ExhaustCoroutine(destroyCoroutine);
+                    GameController.ExhaustCoroutine(e);
                 }
             }
+
             // "{sniper} You may put a non-hero non-character target in play on top of its deck."
             if (ActivateWeaponEffectForPower(SniperRifleKey))
             {
-                List<SelectCardDecision> cardChoices = new List<SelectCardDecision>();
-                IEnumerator chooseCoroutine = base.GameController.SelectCardAndStoreResults(base.HeroTurnTakerController, SelectionType.MoveCardOnDeck, new LinqCardCriteria((Card c) => c.IsInPlayAndHasGameText && c.IsTarget && !c.IsHero && !c.IsCharacter && base.GameController.IsCardVisibleToCardSource(c, GetCardSource()), "non-hero non-character targets", false, singular: "non-hero non-character target", plural: "non-hero non-character targets"), cardChoices, true, cardSource: GetCardSource());
-                if (base.UseUnityCoroutines)
+                var cardChoices = new List<SelectCardDecision>();
+                e = GameController.SelectCardAndStoreResults(
+                    HeroTurnTakerController,
+                    SelectionType.MoveCardOnDeck,
+                    new LinqCardCriteria((c) => c.IsInPlayAndHasGameText && ! c.IsHeroTarget() && c.IsTarget && ! c.IsCharacter && GameController.IsCardVisibleToCardSource(c, GetCardSource()), "non-hero non-character targets", false, singular: "non-hero non-character target", plural: "non-hero non-character targets"),
+                    cardChoices,
+                    optional: true,
+                    cardSource: GetCardSource()
+                );
+                if (UseUnityCoroutines)
                 {
-                    yield return base.GameController.StartCoroutine(chooseCoroutine);
+                    yield return GameController.StartCoroutine(e);
                 }
                 else
                 {
-                    base.GameController.ExhaustCoroutine(chooseCoroutine);
+                    GameController.ExhaustCoroutine(e);
                 }
-                SelectCardDecision firstChoice = cardChoices.Where((SelectCardDecision scd) => scd.Completed).FirstOrDefault();
-                if (firstChoice != null && firstChoice.SelectedCard != null)
+
+                var firstChoice = cardChoices.Where((SelectCardDecision scd) => scd.Completed).FirstOrDefault();
+                var chosen = firstChoice?.SelectedCard;
+                if (chosen != null)
                 {
-                    Card chosen = firstChoice.SelectedCard;
-                    IEnumerator moveCoroutine = base.GameController.MoveCard(base.TurnTakerController, chosen, chosen.NativeDeck, cardSource: GetCardSource());
-                    if (base.UseUnityCoroutines)
+                    e = GameController.MoveCard(TurnTakerController, chosen, chosen.NativeDeck, cardSource: GetCardSource());
+                    if (UseUnityCoroutines)
                     {
-                        yield return base.GameController.StartCoroutine(moveCoroutine);
+                        yield return GameController.StartCoroutine(e);
                     }
                     else
                     {
-                        base.GameController.ExhaustCoroutine(moveCoroutine);
+                        GameController.ExhaustCoroutine(e);
                     }
                 }
             }
-            yield break;
         }
     }
 }

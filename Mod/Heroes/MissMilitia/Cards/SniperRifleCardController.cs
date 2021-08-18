@@ -21,16 +21,22 @@ namespace Jp.ParahumansOfTheWormverse.MissMilitia
         {
             int amount = GetPowerNumeral(0, 4);
             int draws = GetPowerNumeral(1, 3);
+            
             // "Discard a card."
-            IEnumerator discardCoroutine = base.GameController.SelectAndDiscardCard(base.HeroTurnTakerController, responsibleTurnTaker: base.TurnTaker, cardSource: GetCardSource());
-            if (base.UseUnityCoroutines)
+            var e = GameController.SelectAndDiscardCard(
+                HeroTurnTakerController,
+                responsibleTurnTaker: TurnTaker,
+                cardSource: GetCardSource()
+            );
+            if (UseUnityCoroutines)
             {
-                yield return base.GameController.StartCoroutine(discardCoroutine);
+                yield return GameController.StartCoroutine(e);
             }
             else
             {
-                base.GameController.ExhaustCoroutine(discardCoroutine);
+                GameController.ExhaustCoroutine(e);
             }
+
             // "Select a target. At the start of your next turn, {MissMilitiaCharacter} deals that target 4 projectile damage."
             List<SelectTargetDecision> choices = new List<SelectTargetDecision>();
             IEnumerable<Card> targets = GameController.FindTargetsInPlay();
@@ -56,7 +62,7 @@ namespace Jp.ParahumansOfTheWormverse.MissMilitia
                 shootEffect.CardSource = base.Card;
                 shootEffect.NumberOfUses = 1;
                 shootEffect.DoesDealDamage = true;
-                shootEffect.SetPowerNumeralsArray(new int[] { amount, draws });
+                //shootEffect.SetPowerNumeralsArray(new int[] { amount, draws });
                 IEnumerator shootCoroutine = base.GameController.AddStatusEffect(shootEffect, true, GetCardSource());
                 if (base.UseUnityCoroutines)
                 {

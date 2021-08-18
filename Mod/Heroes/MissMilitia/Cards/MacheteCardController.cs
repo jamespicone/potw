@@ -7,6 +7,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+using Jp.ParahumansOfTheWormverse.Utility;
+
 namespace Jp.ParahumansOfTheWormverse.MissMilitia
 {
     public class MacheteCardController : WeaponCardController
@@ -21,34 +23,49 @@ namespace Jp.ParahumansOfTheWormverse.MissMilitia
         {
             int firstAmount = GetPowerNumeral(0, 2);
             int secondAmount = GetPowerNumeral(1, 3);
-            List<SelectCardDecision> targetChoice = new List<SelectCardDecision>();
-            Func<Card, IEnumerable<DealDamageAction>> followUp = (Card c) => ActivateWeaponEffectForPower(SubmachineGunKey) ? new DealDamageAction[] { new DealDamageAction(GetCardSource(), new DamageSource(base.GameController, base.CharacterCard), c, secondAmount, DamageType.Melee) } : null;
+            var targetChoice = new List<SelectCardDecision>();
+
             // "{MissMilitiaCharacter} deals a non-hero target 2 melee damage."
-            //IEnumerator firstDamageCoroutine = base.GameController.SelectTargetsAndDealDamage(base.HeroTurnTakerController, new DamageSource(base.GameController, base.Card), (Card c) => firstAmount, DamageType.Melee, () => 1, false, 1, additionalCriteria: (Card c) => !c.IsHero, storedResultsDecisions: targetChoice, cardSource: GetCardSource(), dynamicFollowUpDamageInformation: followUp);
-            IEnumerator firstDamageCoroutine = base.GameController.SelectTargetsAndDealDamage(base.HeroTurnTakerController, new DamageSource(base.GameController, base.CharacterCard), firstAmount, DamageType.Melee, 1, false, 1, additionalCriteria: (Card c) => !c.IsHero, storedResultsDecisions: targetChoice, cardSource: GetCardSource());
-            if (base.UseUnityCoroutines)
+            var e = GameController.SelectTargetsAndDealDamage(
+                HeroTurnTakerController,
+                new DamageSource(GameController, CharacterCard),
+                amount: firstAmount,
+                DamageType.Melee,
+                numberOfTargets: 1,
+                optional: false,
+                requiredTargets: 1,
+                additionalCriteria: (c) => ! c.IsHeroTarget(),
+                storedResultsDecisions: targetChoice,
+                cardSource: GetCardSource()
+            );
+            if (UseUnityCoroutines)
             {
-                yield return base.GameController.StartCoroutine(firstDamageCoroutine);
+                yield return GameController.StartCoroutine(e);
             }
             else
             {
-                base.GameController.ExhaustCoroutine(firstDamageCoroutine);
+                GameController.ExhaustCoroutine(e);
             }
+
             // "{smg} {MissMilitiaCharacter} deals that target 3 melee damage."
-            if (ActivateWeaponEffectForPower(SubmachineGunKey) && targetChoice != null && targetChoice.FirstOrDefault() != null && targetChoice.FirstOrDefault().SelectedCard != null)
+            if (ActivateWeaponEffectForPower(SubmachineGunKey) && targetChoice?.FirstOrDefault()?.SelectedCard != null)
             {
-                Card target = targetChoice.FirstOrDefault().SelectedCard;
-                IEnumerator secondDamageCoroutine = DealDamage(base.CharacterCard, target, secondAmount, DamageType.Melee, cardSource: GetCardSource());
-                if (base.UseUnityCoroutines)
+                e = DealDamage(
+                    CharacterCard,
+                    targetChoice.FirstOrDefault().SelectedCard,
+                    secondAmount,
+                    DamageType.Melee,
+                    cardSource: GetCardSource()
+                );
+                if (UseUnityCoroutines)
                 {
-                    yield return base.GameController.StartCoroutine(secondDamageCoroutine);
+                    yield return GameController.StartCoroutine(e);
                 }
                 else
                 {
-                    base.GameController.ExhaustCoroutine(secondDamageCoroutine);
+                    GameController.ExhaustCoroutine(e);
                 }
             }
-            yield break;
         }
     }
 }

@@ -25,26 +25,40 @@ namespace Jp.ParahumansOfTheWormverse.MissMilitia
         public override IEnumerator Play()
         {
             // "Destroy a Weapon card."
-            IEnumerator destroyWeaponCoroutine = base.GameController.SelectAndDestroyCard(base.HeroTurnTakerController, WeaponCard(), false, responsibleCard: base.Card, cardSource: GetCardSource());
-            if (base.UseUnityCoroutines)
+            var e = GameController.SelectAndDestroyCard(
+                HeroTurnTakerController,
+                WeaponCard(),
+                optional: false,
+                responsibleCard: Card,
+                cardSource: GetCardSource()
+            );
+            if (UseUnityCoroutines)
             {
-                yield return base.GameController.StartCoroutine(destroyWeaponCoroutine);
+                yield return GameController.StartCoroutine(e);
             }
             else
             {
-                base.GameController.ExhaustCoroutine(destroyWeaponCoroutine);
+                GameController.ExhaustCoroutine(e);
             }
+
             // "Destroy up to 2 Ongoing and/or environment cards."
-            IEnumerator destroyOngEnvCoroutine = base.GameController.SelectAndDestroyCards(base.HeroTurnTakerController, new LinqCardCriteria((Card c) => c.IsOngoing || c.IsEnvironment, "ongoing or environment"), 2, false, 0, responsibleCard: base.Card, cardSource: GetCardSource());
-            if (base.UseUnityCoroutines)
+            e = GameController.SelectAndDestroyCards(
+                HeroTurnTakerController,
+                new LinqCardCriteria((c) => c.IsOngoing || c.IsEnvironment, "ongoing or environment"),
+                numberOfCards: 2,
+                optional: false,
+                requiredDecisions: 0,
+                responsibleCard: Card,
+                cardSource: GetCardSource()
+            );
+            if (UseUnityCoroutines)
             {
-                yield return base.GameController.StartCoroutine(destroyOngEnvCoroutine);
+                yield return GameController.StartCoroutine(e);
             }
             else
             {
-                base.GameController.ExhaustCoroutine(destroyOngEnvCoroutine);
+                GameController.ExhaustCoroutine(e);
             }
-            yield break;
         }
     }
 }

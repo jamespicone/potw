@@ -7,6 +7,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+using Jp.ParahumansOfTheWormverse.Utility;
+
 namespace Jp.ParahumansOfTheWormverse.MissMilitia
 {
     public class WeaponryCardController : MissMilitiaUtilityCardController
@@ -22,63 +24,84 @@ namespace Jp.ParahumansOfTheWormverse.MissMilitia
 
         public override IEnumerator Play()
         {
+            IEnumerator e;
+
             // "{smg} Increase damage dealt by {MissMilitiaCharacter} this turn by 1."
             if (HasUsedWeaponSinceStartOfLastTurn(SubmachineGunKey))
             {
-                IncreaseDamageStatusEffect increaseStatus = new IncreaseDamageStatusEffect(1);
+                var increaseStatus = new IncreaseDamageStatusEffect(1);
                 increaseStatus.SourceCriteria.IsSpecificCard = base.CharacterCard;
-                increaseStatus.UntilCardLeavesPlay(base.CharacterCard);
-                increaseStatus.UntilThisTurnIsOver(base.Game);
-                IEnumerator statusCoroutine = base.GameController.AddStatusEffect(increaseStatus, true, GetCardSource());
-                if (base.UseUnityCoroutines)
+                increaseStatus.UntilCardLeavesPlay(CharacterCard);
+                increaseStatus.UntilThisTurnIsOver(Game);
+                e = GameController.AddStatusEffect(increaseStatus, showMessage: true, GetCardSource());
+                if (UseUnityCoroutines)
                 {
-                    yield return base.GameController.StartCoroutine(statusCoroutine);
+                    yield return GameController.StartCoroutine(e);
                 }
                 else
                 {
-                    base.GameController.ExhaustCoroutine(statusCoroutine);
+                    GameController.ExhaustCoroutine(e);
                 }
             }
+
             // "{machete} {MissMilitiaCharacter} may deal a non-hero target 1 irreducible melee damage."
             if (HasUsedWeaponSinceStartOfLastTurn(MacheteKey))
             {
-                IEnumerator damageCoroutine = base.GameController.SelectTargetsAndDealDamage(base.HeroTurnTakerController, new DamageSource(base.GameController, base.CharacterCard), 1, DamageType.Melee, 1, false, 0, true, additionalCriteria: (Card c) => !c.IsHero, cardSource: GetCardSource());
-                if (base.UseUnityCoroutines)
+                e = GameController.SelectTargetsAndDealDamage(
+                    HeroTurnTakerController,
+                    new DamageSource(GameController, CharacterCard),
+                    amount: 1,
+                    DamageType.Melee,
+                    numberOfTargets: 1,
+                    optional: false,
+                    requiredTargets: 0,
+                    isIrreducible: true,
+                    additionalCriteria: (c) => ! c.IsHeroTarget(),
+                    cardSource: GetCardSource()
+                );
+                if (UseUnityCoroutines)
                 {
-                    yield return base.GameController.StartCoroutine(damageCoroutine);
+                    yield return GameController.StartCoroutine(e);
                 }
                 else
                 {
-                    base.GameController.ExhaustCoroutine(damageCoroutine);
+                    GameController.ExhaustCoroutine(e);
                 }
             }
+
             // "{pistol} Draw a card."
             if (HasUsedWeaponSinceStartOfLastTurn(PistolKey))
             {
-                IEnumerator drawCoroutine = base.GameController.DrawCard(base.HeroTurnTaker, false, cardSource: GetCardSource());
-                if (base.UseUnityCoroutines)
+                e = GameController.DrawCard(HeroTurnTaker, optional: false, cardSource: GetCardSource());
+                if (UseUnityCoroutines)
                 {
-                    yield return base.GameController.StartCoroutine(drawCoroutine);
+                    yield return GameController.StartCoroutine(e);
                 }
                 else
                 {
-                    base.GameController.ExhaustCoroutine(drawCoroutine);
+                    GameController.ExhaustCoroutine(e);
                 }
             }
+
             // "{sniper} You may destroy a non-character card non-hero target."
             if (HasUsedWeaponSinceStartOfLastTurn(SniperRifleKey))
             {
-                IEnumerator destroyCoroutine = base.GameController.SelectAndDestroyCard(base.HeroTurnTakerController, new LinqCardCriteria((Card c) => c.IsInPlayAndHasGameText && c.IsTarget && !c.IsHero && !c.IsCharacter && GameController.IsCardVisibleToCardSource(c, GetCardSource()), "non-character card non-hero targets", false, false, "non-character card non-hero target", "non-character card non-hero targets"), true, responsibleCard: base.Card, cardSource: GetCardSource());
-                if (base.UseUnityCoroutines)
+                e = GameController.SelectAndDestroyCard(
+                    HeroTurnTakerController,
+                    new LinqCardCriteria((c) => c.IsInPlayAndHasGameText && c.IsTarget && ! c.IsHeroTarget() && ! c.IsCharacter && GameController.IsCardVisibleToCardSource(c, GetCardSource()), "non-character card non-hero targets", false, false, "non-character card non-hero target", "non-character card non-hero targets"),
+                    optional: true,
+                    responsibleCard: Card,
+                    cardSource: GetCardSource()
+                );
+                if (UseUnityCoroutines)
                 {
-                    yield return base.GameController.StartCoroutine(destroyCoroutine);
+                    yield return GameController.StartCoroutine(e);
                 }
                 else
                 {
-                    base.GameController.ExhaustCoroutine(destroyCoroutine);
+                    GameController.ExhaustCoroutine(e);
                 }
             }
-            yield break;
         }
     }
 }

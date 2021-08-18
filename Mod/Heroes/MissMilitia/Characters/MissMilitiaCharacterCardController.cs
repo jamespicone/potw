@@ -14,162 +14,183 @@ namespace Jp.ParahumansOfTheWormverse.MissMilitia
         public MissMilitiaCharacterCardController(Card card, TurnTakerController turnTakerController)
             : base(card, turnTakerController)
         {
-            SpecialStringMaker.ShowNumberOfCardsAtLocation(base.TurnTaker.Deck, WeaponCard()).Condition = () => !base.Card.IsFlipped;
+            SpecialStringMaker.ShowNumberOfCardsAtLocation(TurnTaker.Deck, WeaponCard()).Condition = () => ! Card.IsFlipped;
         }
 
         public override IEnumerator UsePower(int index = 0)
         {
             int numCards = GetPowerNumeral(0, 2);
+
             // "Reveal the top 2 cards of your deck. Put any revealed Weapon cards into play and discard the rest."
-            IEnumerator revealCoroutine = RevealCards_PutSomeIntoPlay_DiscardRemaining(base.TurnTakerController, base.TurnTaker.Deck, numCards, WeaponCard());
-            if (base.UseUnityCoroutines)
+            var e = RevealCards_PutSomeIntoPlay_DiscardRemaining(
+                TurnTakerController, 
+                TurnTaker.Deck,
+                numCards,
+                WeaponCard()
+            );
+            if (UseUnityCoroutines)
             {
-                yield return base.GameController.StartCoroutine(revealCoroutine);
+                yield return GameController.StartCoroutine(e);
             }
             else
             {
-                base.GameController.ExhaustCoroutine(revealCoroutine);
+                GameController.ExhaustCoroutine(e);
             }
+
             // "You may use a power on a Weapon card now."
-            IEnumerator powerCoroutine = base.GameController.SelectAndUsePower(base.HeroTurnTakerController, true, (Power p) => p.CardController.Card.DoKeywordsContain("weapon"), cardSource: GetCardSource());
-            if (base.UseUnityCoroutines)
+            e = GameController.SelectAndUsePower(
+                HeroTurnTakerController, 
+                optional: true,
+                (p) => p.CardController.Card.DoKeywordsContain("weapon"),
+                cardSource: GetCardSource()
+            );
+            if (UseUnityCoroutines)
             {
-                yield return base.GameController.StartCoroutine(powerCoroutine);
+                yield return GameController.StartCoroutine(e);
             }
             else
             {
-                base.GameController.ExhaustCoroutine(powerCoroutine);
+                GameController.ExhaustCoroutine(e);
             }
-            yield break;
         }
 
         public override IEnumerator UseIncapacitatedAbility(int index)
         {
-            IEnumerator incapCoroutine;
+            IEnumerator e;
             switch (index)
             {
-                case 0:
-                    incapCoroutine = UseIncapOption1();
-                    if (base.UseUnityCoroutines)
-                    {
-                        yield return base.GameController.StartCoroutine(incapCoroutine);
-                    }
-                    else
-                    {
-                        base.GameController.ExhaustCoroutine(incapCoroutine);
-                    }
-                    break;
-                case 1:
-                    incapCoroutine = UseIncapOption2();
-                    if (base.UseUnityCoroutines)
-                    {
-                        yield return base.GameController.StartCoroutine(incapCoroutine);
-                    }
-                    else
-                    {
-                        base.GameController.ExhaustCoroutine(incapCoroutine);
-                    }
-                    break;
-                case 2:
-                    incapCoroutine = UseIncapOption3();
-                    if (base.UseUnityCoroutines)
-                    {
-                        yield return base.GameController.StartCoroutine(incapCoroutine);
-                    }
-                    else
-                    {
-                        base.GameController.ExhaustCoroutine(incapCoroutine);
-                    }
-                    break;
+                case 0: e = UseIncapOption1(); break;
+                case 1: e = UseIncapOption2(); break;
+                case 2: e = UseIncapOption3(); break;
             }
-            yield break;
+
+            if (UseUnityCoroutines)
+            {
+                yield return GameController.StartCoroutine(e);
+            }
+            else
+            {
+                GameController.ExhaustCoroutine(e);
+            }
         }
 
         private IEnumerator UseIncapOption1()
         {
             // "One hero target deals 1 target 2 projectile damage."
-            List<SelectCardDecision> chooseHeroTarget = new List<SelectCardDecision>();
-            IEnumerator chooseHeroCoroutine = base.GameController.SelectCardAndStoreResults(base.HeroTurnTakerController, SelectionType.CardToDealDamage, new LinqCardCriteria((Card c) => c.IsInPlay && c.IsTarget && c.IsHero, "hero target", useCardsSuffix: false), chooseHeroTarget, false, cardSource: GetCardSource());
-            if (base.UseUnityCoroutines)
+            var chooseHeroTarget = new List<SelectCardDecision>();
+            var e = GameController.SelectCardAndStoreResults(
+                HeroTurnTakerController,
+                SelectionType.CardToDealDamage,
+                new LinqCardCriteria((c) => c.IsInPlay && c.IsHeroTarget(), "hero target", useCardsSuffix: false),
+                chooseHeroTarget,
+                optional: false,
+                cardSource: GetCardSource()
+            );
+            if (UseUnityCoroutines)
             {
-                yield return base.GameController.StartCoroutine(chooseHeroCoroutine);
+                yield return GameController.StartCoroutine(e);
             }
             else
             {
-                base.GameController.ExhaustCoroutine(chooseHeroCoroutine);
+                GameController.ExhaustCoroutine(e);
             }
-            SelectCardDecision choice = chooseHeroTarget.FirstOrDefault();
-            if (choice != null && choice.SelectedCard != null)
+
+            var choice = chooseHeroTarget.FirstOrDefault();
+            if (choice?.SelectedCard != null)
             {
-                IEnumerator damageCoroutine = base.GameController.SelectTargetsAndDealDamage(DecisionMaker, new DamageSource(base.GameController, choice.SelectedCard), 2, DamageType.Projectile, 1, false, 1, cardSource: GetCardSource());
-                if (base.UseUnityCoroutines)
+                e = GameController.SelectTargetsAndDealDamage(
+                    DecisionMaker,
+                    new DamageSource(GameController, choice.SelectedCard),
+                    amount: 2,
+                    DamageType.Projectile,
+                    numberOfTargets: 1,
+                    optional: false,
+                    requiredTargets: 1,
+                    cardSource: GetCardSource()
+                );
+                if (UseUnityCoroutines)
                 {
-                    yield return base.GameController.StartCoroutine(damageCoroutine);
+                    yield return GameController.StartCoroutine(e);
                 }
                 else
                 {
-                    base.GameController.ExhaustCoroutine(damageCoroutine);
+                    GameController.ExhaustCoroutine(e);
                 }
             }
-            yield break;
         }
 
         private IEnumerator UseIncapOption2()
         {
             // "One hero destroys one of their Equipment cards. If they do, they deal 1 target 4 projectile damage."
-            List<DestroyCardAction> storedResults = new List<DestroyCardAction>();
-            IEnumerator destroyCoroutine = base.GameController.SelectHeroToDestroyTheirCard(DecisionMaker, new LinqCardCriteria((Card c) => IsEquipment(c), "equipment"), optionalSelectHero: false, optionalDestroyCard: false, storedResults, null, null, GetCardSource());
-            if (base.UseUnityCoroutines)
+            var storedResults = new List<DestroyCardAction>();
+            var e = GameController.SelectHeroToDestroyTheirCard(
+                DecisionMaker,
+                new LinqCardCriteria((c) => IsEquipment(c), "equipment"),
+                optionalSelectHero: false,
+                optionalDestroyCard: false,
+                storedResults, 
+                responsibleCard: Card,
+                cardSource: GetCardSource()
+            );
+            if (UseUnityCoroutines)
             {
-                yield return base.GameController.StartCoroutine(destroyCoroutine);
+                yield return GameController.StartCoroutine(e);
             }
             else
             {
-                base.GameController.ExhaustCoroutine(destroyCoroutine);
+                GameController.ExhaustCoroutine(e);
             }
+
             if (DidDestroyCard(storedResults))
             {
-                TurnTaker owner = storedResults.First().CardToDestroy.Card.Owner;
-                List<Card> storedCharacter = new List<Card>();
-                IEnumerator findCoroutine = FindCharacterCard(owner, SelectionType.HeroToDealDamage, storedCharacter);
-                if (base.UseUnityCoroutines)
+                var owner = storedResults.First().CardToDestroy.Card.Owner;
+                var storedCharacter = new List<Card>();
+                e = FindCharacterCard(owner, SelectionType.HeroToDealDamage, storedCharacter);
+                if (UseUnityCoroutines)
                 {
-                    yield return base.GameController.StartCoroutine(findCoroutine);
+                    yield return GameController.StartCoroutine(e);
                 }
                 else
                 {
-                    base.GameController.ExhaustCoroutine(findCoroutine);
+                    GameController.ExhaustCoroutine(e);
                 }
-                Card character = storedCharacter.FirstOrDefault();
+
+                var character = storedCharacter.FirstOrDefault();
                 if (character != null)
                 {
-                    IEnumerator damageCoroutine = base.GameController.SelectTargetsAndDealDamage(FindHeroTurnTakerController(character.Owner.ToHero()), new DamageSource(base.GameController, character), 4, DamageType.Projectile, 1, false, 1, cardSource: GetCardSource());
-                    if (base.UseUnityCoroutines)
+                    e = GameController.SelectTargetsAndDealDamage(
+                        FindHeroTurnTakerController(character.Owner.ToHero()),
+                        new DamageSource(GameController, character),
+                        amount: 4, DamageType.Projectile,
+                        numberOfTargets: 1,
+                        optional: false,
+                        requiredTargets: 1,
+                        cardSource: GetCardSource()
+                    );
+                    if (UseUnityCoroutines)
                     {
-                        yield return base.GameController.StartCoroutine(damageCoroutine);
+                        yield return GameController.StartCoroutine(e);
                     }
                     else
                     {
-                        base.GameController.ExhaustCoroutine(damageCoroutine);
+                        GameController.ExhaustCoroutine(e);
                     }
                 }
             }
-            yield break;
         }
 
         private IEnumerator UseIncapOption3()
         {
             // "One player may play a card."
-            IEnumerator playCoroutine = base.GameController.SelectHeroToPlayCard(base.HeroTurnTakerController, cardSource: GetCardSource());
-            if (base.UseUnityCoroutines)
+            var e = GameController.SelectHeroToPlayCard(HeroTurnTakerController, cardSource: GetCardSource());
+            if (UseUnityCoroutines)
             {
-                yield return base.GameController.StartCoroutine(playCoroutine);
+                yield return GameController.StartCoroutine(e);
             }
             else
             {
-                base.GameController.ExhaustCoroutine(playCoroutine);
+                GameController.ExhaustCoroutine(e);
             }
-            yield break;
         }
     }
 }

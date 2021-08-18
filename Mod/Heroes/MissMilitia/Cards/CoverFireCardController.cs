@@ -7,6 +7,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+using Jp.ParahumansOfTheWormverse.Utility;
+
 namespace Jp.ParahumansOfTheWormverse.MissMilitia
 {
     public class CoverFireCardController : MissMilitiaUtilityCardController
@@ -14,32 +16,48 @@ namespace Jp.ParahumansOfTheWormverse.MissMilitia
         public CoverFireCardController(Card card, TurnTakerController turnTakerController)
             : base(card, turnTakerController)
         {
-
         }
 
         public override IEnumerator Play()
         {
             // "{MissMilitiaCharacter} deals a non-hero target 2 projectile damage."
-            IEnumerator damageCoroutine = base.GameController.SelectTargetsAndDealDamage(base.HeroTurnTakerController, new DamageSource(base.GameController, base.CharacterCard), 2, DamageType.Projectile, 1, false, 1, additionalCriteria: (Card c) => !c.IsHero, cardSource: GetCardSource());
-            if (base.UseUnityCoroutines)
+            var e = GameController.SelectTargetsAndDealDamage(
+                HeroTurnTakerController,
+                new DamageSource(GameController, CharacterCard),
+                amount: 2,
+                DamageType.Projectile,
+                numberOfTargets: 1,
+                optional: false,
+                requiredTargets: 1,
+                additionalCriteria: (c) => ! c.IsHeroTarget(),
+                cardSource: GetCardSource()
+            );
+            if (UseUnityCoroutines)
             {
-                yield return base.GameController.StartCoroutine(damageCoroutine);
+                yield return GameController.StartCoroutine(e);
             }
             else
             {
-                base.GameController.ExhaustCoroutine(damageCoroutine);
+                GameController.ExhaustCoroutine(e);
             }
+
             // "1 hero target regains 2 HP."
-            IEnumerator healCoroutine = base.GameController.SelectAndGainHP(base.HeroTurnTakerController, 2, false, (Card c) => c.IsHero, 1, cardSource: GetCardSource());
-            if (base.UseUnityCoroutines)
+            e = GameController.SelectAndGainHP(
+                HeroTurnTakerController,
+                amount: 2,
+                optional: false,
+                (c) => c.IsHeroTarget(),
+                numberOfTargets: 1,
+                cardSource: GetCardSource()
+            );
+            if (UseUnityCoroutines)
             {
-                yield return base.GameController.StartCoroutine(healCoroutine);
+                yield return GameController.StartCoroutine(e);
             }
             else
             {
-                base.GameController.ExhaustCoroutine(healCoroutine);
+                GameController.ExhaustCoroutine(e);
             }
-            yield break;
         }
     }
 }

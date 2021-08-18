@@ -7,6 +7,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+using Jp.ParahumansOfTheWormverse.Utility;
+
 namespace Jp.ParahumansOfTheWormverse.MissMilitia
 {
     public class PistolCardController : WeaponCardController
@@ -17,38 +19,48 @@ namespace Jp.ParahumansOfTheWormverse.MissMilitia
             ShowWeaponStatusIfActive(SubmachineGunKey);
         }
 
-        public override void AddTriggers()
-        {
-            base.AddTriggers();
-        }
-
         public override IEnumerator UsePower(int index = 0)
         {
             int amount = GetPowerNumeral(0, 2);
+
             // "{MissMilitiaCharacter} deals a non-hero target 2 projectile damage."
-            IEnumerator damageCoroutine = base.GameController.SelectTargetsAndDealDamage(base.HeroTurnTakerController, new DamageSource(base.GameController, base.CharacterCard), amount, DamageType.Projectile, 1, false, 1, additionalCriteria: (Card c) => !c.IsHero, cardSource: GetCardSource());
-            if (base.UseUnityCoroutines)
+            var e = GameController.SelectTargetsAndDealDamage(
+                HeroTurnTakerController,
+                new DamageSource(GameController, CharacterCard),
+                amount,
+                DamageType.Projectile,
+                numberOfTargets: 1,
+                optional: false,
+                requiredTargets: 1,
+                additionalCriteria: (c) => ! c.IsHeroTarget(),
+                cardSource: GetCardSource()
+            );
+            if (UseUnityCoroutines)
             {
-                yield return base.GameController.StartCoroutine(damageCoroutine);
+                yield return GameController.StartCoroutine(e);
             }
             else
             {
-                base.GameController.ExhaustCoroutine(damageCoroutine);
+                GameController.ExhaustCoroutine(e);
             }
+
             // "{smg} You may play a card."
             if (ActivateWeaponEffectForPower(SubmachineGunKey))
             {
-                IEnumerator playCoroutine = base.GameController.SelectAndPlayCardFromHand(base.HeroTurnTakerController, true, cardSource: GetCardSource());
-                if (base.UseUnityCoroutines)
+                e = GameController.SelectAndPlayCardFromHand(
+                    HeroTurnTakerController,
+                    optional: true,
+                    cardSource: GetCardSource()
+                );
+                if (UseUnityCoroutines)
                 {
-                    yield return base.GameController.StartCoroutine(playCoroutine);
+                    yield return GameController.StartCoroutine(e);
                 }
                 else
                 {
-                    base.GameController.ExhaustCoroutine(playCoroutine);
+                    GameController.ExhaustCoroutine(e);
                 }
             }
-            yield break;
         }
     }
 }

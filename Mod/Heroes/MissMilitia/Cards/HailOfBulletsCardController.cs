@@ -7,6 +7,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+using Jp.ParahumansOfTheWormverse.Utility;
+
 namespace Jp.ParahumansOfTheWormverse.MissMilitia
 {
     public class HailOfBulletsCardController : MissMilitiaUtilityCardController
@@ -14,22 +16,25 @@ namespace Jp.ParahumansOfTheWormverse.MissMilitia
         public HailOfBulletsCardController(Card card, TurnTakerController turnTakerController)
             : base(card, turnTakerController)
         {
-
         }
 
         public override IEnumerator Play()
         {
             // "{MissMilitiaCharacter} deals each non-hero target 2 projectile damage."
-            IEnumerator damageCoroutine = DealDamage(base.CharacterCard, (Card c) => !c.IsHero, 2, DamageType.Projectile);
-            if (base.UseUnityCoroutines)
+            var e = DealDamage(
+                CharacterCard,
+                (c) => ! c.IsHeroTarget(),
+                amount: 2,
+                DamageType.Projectile
+            );
+            if (UseUnityCoroutines)
             {
-                yield return base.GameController.StartCoroutine(damageCoroutine);
+                yield return GameController.StartCoroutine(e);
             }
             else
             {
-                base.GameController.ExhaustCoroutine(damageCoroutine);
+                GameController.ExhaustCoroutine(e);
             }
-            yield break;
         }
     }
 }
