@@ -1,0 +1,362 @@
+﻿{
+  "name": "Jessica Yamada",
+  "kind": "Hero",
+  "initialCardIdentifiers": [ "JessicaYamadaInstructionsTarget" ],
+  "initialOffToTheSideCardIdentifiers": [
+    "JessicaYamadaCharacterEnvironment",
+    "JessicaYamadaCharacterNotTarget",
+    "JessicaYamadaCharacterTarget"
+  ],
+  "cards": [
+    {
+      "identifier": "JessicaYamadaInstructionsTarget",
+      "title": "Jessica Yamada",
+      "count": 1,
+      "body": "Therapy",
+      "gameplay": [
+        "Jessica Yamada cannot deal damage",
+        "If there are no hero targets in play outside your play area, incapacitate Jessica Yamada"
+      ],
+      "icons": [ "CannotDealDamage", "FlipFaceDown" ],
+      "character": true,
+      "isReal": false,
+      "backgroundColor": "ffffff",
+      "openingLines": {
+        "default": "blargh"
+      },
+      "complexity": 1,
+      "incapacitatedAbilities": [
+        "1 player draws 1 card",
+        "1 player plays 1 card",
+        "1 player regains 2 HP"
+      ],
+      "flippedIcons": [
+        "DrawCardNow",
+        "PlayCardNow",
+        "GainHP"
+      ]
+    },
+    {
+      "identifier": "AHelpfulSuggestion",
+      "title": "A Helpful Suggestion",
+      "keywords": [ "one-shot" ],
+      "body": [
+        "Another player may play a card and use a power, in any order."
+      ],
+      "icons": [ "PlayCardNow", "UsePower" ],
+      "flavorQuotes": [
+        {
+          "identifier": "Jessica",
+          "text": "I could, for example, talk to the{BR}warden about you getting a chance to{BR}run in the mornings, testifying that it'd be{BR}a good, healthy release."
+        }
+      ],
+      "flavorReference": "Jessica, Drone 23.4",
+      "count": 4
+    },
+    {
+      "identifier": "AMomentOfReflection",
+      "title": "A Moment of Reflection",
+      "keywords": [ "one-shot" ],
+      "body": [
+        "Another player may search their deck for a card, put it into their hand, and then shuffle their deck."
+      ],
+      "icons": [ "Search" ],
+      "flavorQuotes": [
+        {
+          "identifier": "Weaver",
+          "text": "I got a chance to talk stuff{BR}through. More of a sense of why they{BR}were putting obstacles in my way."
+        }
+      ],
+      "flavorReference": "Weaver, Drone 23.4",
+      "count": 4
+    },
+    {
+      "identifier": "Clarity",
+      "title": "Clarity",
+      "body": [
+        "Each player reveals the top card of their deck. They may either discard it or return it to the top of their deck."
+      ],
+      "icons": [ "Manipulate" ],
+      "keywords": [ "one-shot" ],
+      "flavorQuotes": [
+        {
+          "identifier": "Jessica",
+          "text": "I almost always recommend{BR}relaxation exercises and meditation to my{BR}patients with control issues. There's almost{BR}always a degree of improvement."
+        }
+      ],
+      "flavorReference": "Jessica, Drone 23.4",
+      "count": 4
+    },
+    {
+      "identifier": "ComfortableOffice",
+      "title": "Comfortable Office",
+      "keywords": [ "equipment", "limited" ],
+      "body": [
+        "At the start of your turn, a hero character card regains 3 HP."
+      ],
+      "icons": [ "StartOfTurnAction", "GainHP" ],
+      "flavorText": "Weld closed the door and settled in the{BR}reinforced chair she'd brought into her{BR}office in anticipation of the appointment.",
+      "flavorReference": "Interlude 18",
+      "count": 2
+    },
+    {
+      "identifier": "HelpNoMatterTheCost",
+      "title": "Help, No Matter the Cost",
+      "keywords": [ "one-shot" ],
+      "body": [
+        "Discard any number of cards. Another player draws X cards, where X is the number of cards discarded + 2."
+      ],
+      "icons": [ "Discard", "DrawCardNow" ],
+      "flavorQuotes": [
+        {
+          "identifier": "Jessica",
+          "text": "I'm here because I was invited, and{BR}because I want to help people.{BR}I'd like to help you."
+        }
+      ],
+      "flavorReference": "Jessica, Teneral e.1",
+      "count": 4
+    },
+    {
+      "identifier": "NothingIsLost",
+      "title": "Nothing is Lost",
+      "body": [
+        "Each player may search their trash for a card and put it into their hand."
+      ],
+      "icons": [ "Search" ],
+      "keywords": [ "one-shot" ],
+      "flavorQuotes": [
+        {
+          "identifier": "Jessica",
+          "text": "Just like that. Believe it or not,{BR}I've handled worse things than a young{BR}woman torn between fatalism and wanting to{BR}help her friends stick together."
+        }
+      ],
+      "flavorReference": "Jessica, Interlude 18",
+      "count": 4
+    },
+    {
+      "identifier": "PsychologicalTraining",
+      "title": "Psychological Training",
+      "keywords": [ "ongoing" ],
+      "body": [
+        "At the end of your turn, reveal the top card of your deck. If it's a One-Shot, put it into your hand. Otherwise, return it to the top of the deck."
+      ],
+      "icons": [ "EndOfTurnAction", "DrawCardNow" ],
+      "flavorQuotes": [
+        {
+          "identifier": "Jessica",
+          "text": "Give it a try. It's sometimes{BR}easiest if you start with the underlying{BR}emotion. I feel, followed by the emotion,{BR}then talk about why."
+        }
+      ],
+      "flavorReference": "Jessica, Drone 23.4",
+      "count": 4
+    },
+    {
+      "identifier": "ResilienceAndRespect",
+      "title": "Resilience and Respect",
+      "body": [
+        "Reduce psychic damage dealt to hero targets by 1."
+      ],
+      "icons": [ "ReduceDamageTaken" ],
+      "keywords": [ "ongoing" ],
+      "flavorQuotes": [
+        {
+          "identifier": "Jessica",
+          "text": "What we do here is up to you.{BR}I've had patients who enjoy this kind{BR}of verbal jousting. A debate gives{BR}them their power back."
+        }
+      ],
+      "flavorReference": "Jessica, Teneral e.1",
+      "count": 4
+    },
+    {
+      "identifier": "StrategyAndSuggestion",
+      "title": "Strategy and Suggestion",
+      "count": 4,
+      "body": "Another player reveals cards from their deck until they reveal an Ongoing. They may either put it into play or into their hand. Shuffle the other revealed cards back into their deck.",
+      "icons": [ "Search" ],
+      "flavorQuotes": [
+        {
+          "identifier": "Jessica",
+          "text": "You're allowed to say you don't{BR}know the answer, Ciara. If it comes down{BR}to that, then I can suggest an answer{BR}and we can explore it together."
+        }
+      ],
+      "flavorReference": "Jessica, Teneral e.1",
+      "keywords": [ "one-shot" ]
+    },
+    {
+      "identifier": "SupportAndStability",
+      "title": "Support and Stability",
+      "body": [
+        "The first time each turn a hero would deal themselves damage, you may prevent that damage."
+      ],
+      "icons": [ "CancelledDamageGreen" ],
+      "flavorQuotes": [
+        {
+          "identifier": "Jessica",
+          "text": "I want to listen to you,{BR}because I can't help you if I don't{BR}understand you, and I want my understanding of you to come from{BR}[b]your[/b] words."
+        }
+      ],
+      "flavorReference": "Jessica, Teneral e.1",
+      "count": 2,
+      "keywords": [ "ongoing", "limited" ]
+    },
+    {
+      "identifier": "TimeToThink",
+      "title": "Time to Think",
+      "keywords": [ "ongoing", "limited" ],
+      "body": [
+        "Whenever a player plays no cards during their play phase, they may draw a card.",
+        "Whenever a player uses no powers during their power phase, they may draw a card.",
+        "Whenever a player skips a phase, they may draw a card."
+      ],
+      "icons": [ "DrawCardNow" ],
+      "flavorQuotes": [
+        {
+          "identifier": "Weaver",
+          "text": "A break can be nice, whether it's{BR}from school or saving the world."
+        }
+      ],
+      "flavorReference": "Weaver, Drone 23.4",
+      "count": 4
+    },
+    {
+      "identifier": "JessicaYamadaCharacterTarget",
+      "title": "Jessica Yamada (target)",
+      "count": 1,
+      "hitpoints": 12,
+      "body": "Therapy",
+      "gameplay": [
+        "Whenever Jessica Yamada would take damage from a non-hero card, redirect that damage to the hero with the lowest HP other than Jessica Yamada"
+      ],
+      "icons": [ "HasPower", "GainHP", "DrawCardNow" ],
+      "powers": [ "Another player either regains 2 HP or draws a card" ],
+      "character": true,
+      "backgroundColor": "ffffff",
+      "openingLines": {
+        "default": "blargh"
+      },
+      "complexity": 1,
+      "incapacitatedAbilities": [
+        "1 player draws 1 card",
+        "1 player plays 1 card",
+        "1 player regains 2 HP"
+      ],
+      "flippedIcons": [
+        "DrawCardNow",
+        "PlayCardNow",
+        "GainHP"
+      ]
+    },
+    {
+      "identifier": "JessicaYamadaCharacterEnvironment",
+      "title": "Jessica Yamada",
+      "count": 1,
+      "hitpoints": 12,
+      "body": "Therapy",
+      "gameplay": [
+        "Jessica Yamada is an environment card",
+        "Jessica Yamada is immune to damage dealt by hero cards",
+        "Jessica Yamada is indestructible while she has more than 0 HP"
+      ],
+      "icons": [ "HasPower", "GainHP", "DrawCardNow" ],
+      "powers": [ "Another player either regains 2 HP or draws a card" ],
+      "character": true,
+      "backgroundColor": "ffffff",
+      "openingLines": {
+        "default": "blargh"
+      },
+      "complexity": 1,
+      "incapacitatedAbilities": [
+        "1 player draws 1 card",
+        "1 player plays 1 card",
+        "1 player regains 2 HP"
+      ],
+      "flippedIcons": [
+        "DrawCardNow",
+        "PlayCardNow",
+        "GainHP"
+      ],
+      "kind": "environment",
+      "flippedKind": "hero"
+    },
+    {
+      "identifier": "JessicaYamadaCharacterNotTarget",
+      "title": "Jessica Yamada (not target)",
+      "count": 1,
+      "body": "Therapy",
+      "gameplay": [
+        "Jessica Yamada is not a target"
+      ],
+      "icons": [ "HasPower", "GainHP", "DrawCardNow" ],
+      "powers": [ "Another player either regains 2 HP or draws a card" ],
+      "character": true,
+      "backgroundColor": "ffffff",
+      "openingLines": {
+        "default": "blargh"
+      },
+      "complexity": 1,
+      "incapacitatedAbilities": [
+        "1 player draws 1 card",
+        "1 player plays 1 card",
+        "1 player regains 2 HP"
+      ],
+      "flippedIcons": [
+        "DrawCardNow",
+        "PlayCardNow",
+        "GainHP"
+      ]
+    }
+  ],
+  "promoCards": [
+    {
+      "identifier": "JessicaYamadaInstructionsTarget",
+      "promoIdentifier": "JessicaYamadaInstructionsEnvironment",
+      "title": "Jessica Yamada",
+      "promoTitle": "Jessica Yamada (environment)",
+      "count": 1,
+      "body": "Therapy",
+      "gameplay": [
+        "Jessica Yamada cannot deal damage",
+        "If there are no hero targets in play, incapacitate Jessica Yamada"
+      ],
+      "icons": [ "CannotDealDamage", "FlipFaceDown" ],
+      "character": true,
+      "isReal": false,
+      "backgroundColor": "ffffff",
+      "openingLines": {
+        "default": "blargh"
+      },
+      "complexity": 1,
+      "flippedIcons": [
+        "DrawCardNow",
+        "PlayCardNow",
+        "GainHP"
+      ]
+    },
+    {
+      "identifier": "JessicaYamadaInstructionsTarget",
+      "promoIdentifier": "JessicaYamadaInstructionsNotTarget",
+      "title": "Jessica Yamada",
+      "promoTitle": "Jessica Yamada (not target)",
+      "count": 1,
+      "body": "Therapy",
+      "gameplay": [
+        "Jessica Yamada cannot deal damage",
+        "If there are no hero targets in play, incapacitate Jessica Yamada"
+      ],
+      "icons": [ "HasPower", "GainHP", "DrawCardNow", "CannotDealDamage", "FlipFaceDown" ],
+      "powers": [ "Another player either regains 2 HP or draws a card" ],
+      "character": true,
+      "isReal": false,
+      "backgroundColor": "ffffff",
+      "openingLines": {
+        "default": "blargh"
+      },
+      "complexity": 1,
+      "flippedIcons": [
+        "DrawCardNow",
+        "PlayCardNow",
+        "GainHP"
+      ]
+    }
+  ]
+}

@@ -17,7 +17,7 @@ namespace Jp.ParahumansOfTheWormverse.Armsmaster
             // "Armsmaster deals 1 projectile damage to up to 2 non-hero targets"
             var e = GameController.SelectTargetsAndDealDamage(
                 HeroTurnTakerController,
-                new DamageSource(GameController, Card),
+                new DamageSource(GameController, CharacterCard),
                 1,
                 DamageType.Projectile,
                 2,

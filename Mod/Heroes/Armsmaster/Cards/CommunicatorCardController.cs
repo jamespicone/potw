@@ -29,7 +29,7 @@ namespace Jp.ParahumansOfTheWormverse.Armsmaster
         public override IEnumerator DoSecondary()
         {
             // "A hero other than Armsmaster may play a card"
-            var e = SelectHeroToPlayCard(HeroTurnTakerController);
+            var e = SelectHeroToPlayCard(HeroTurnTakerController, heroCriteria: new LinqTurnTakerCriteria(tt => tt != TurnTaker));
             if (UseUnityCoroutines)
             {
                 yield return GameController.StartCoroutine(e);

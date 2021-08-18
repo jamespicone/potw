@@ -1,0 +1,5 @@
+Age: 22
+Classification: Mover 4
+Affiliation: Protectorate ENE
+First Appearance: Agitation 3.5
+Trigger Event: ???

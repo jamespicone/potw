@@ -1,0 +1,270 @@
+{
+  "name": "Coil",
+  "kind": "Villain",
+  "initialCardIdentifiers": [ "CoilCharacter" ],
+  "cards": [
+    {
+      "identifier": "CoilCharacter",
+      "title": "Coil",
+      "body": "Evil Mastermind",
+      "count": 1,
+      "character": true,
+      "icons": [],
+      "setup": [
+        "Put Scheming into play, \"Evil Mastermind\" side up.",
+        "Put Acting into play, \"Evil Mastermind\" side up.",
+        "Put Underground Base into play."
+      ],
+      "gameplay": "If neither Scheming nor Acting are targets in play the heroes win the game",
+      "isReal": false,
+      "difficulty": 3
+    },
+    {
+      "identifier": "CoilSchemingCharacter",
+      "title": "Scheming",
+      "body": "Evil Mastermind",
+      "hitpoints": 50,
+      "gameplay": [
+        "If Scheming's HP is greater than or equal to Acting's HP, use {magic} text.",
+        "{magic}: At the start of the villain turn play the top card of the environment deck.",
+        "At the end of the villain turn all villain targets regain 2 HP",
+        "When this card would be destroyed flip it instead"
+      ],
+      "advanced": "At the end of the villain turn set this card's HP to the greater of it's current HP and Acting's HP",
+      "flippedBody": "Defeated",
+      "flippedAdvanced": "At the end of the villain turn flip this card and set its HP to Acting's HP",
+      "count": 1,
+      "character": true
+    },
+    {
+      "identifier": "CoilActingCharacter",
+      "title": "Acting",
+      "body": "Evil Mastermind",
+      "hitpoints": 50,
+      "gameplay": [
+        "If Acting's HP is greater than or equal to Scheming's HP, use {magic} text.",
+        "At the start of the villain turn reveal cards from the villain deck until you reveal a Parahuman or you've revealed 1 ({magic}: {H - 1}) cards. Put any revealed Parahumans into play and shuffle the other cards into the villain deck.",
+        "At the end of the villain turn Acting deals 2 ({magic}: {H}) energy damage to the hero target with the highest HP",
+        "When this card would be destroyed flip it instead"
+      ],
+      "advanced": "At the end of the villain turn set this card's HP to the greater of it's current HP and Scheming's HP",
+      "flippedBody": "Defeated",
+      "flippedAdvanced": "At the end of the villain turn flip this card and set its HP to Scheming's HP",
+      "count": 1,
+      "character": true
+    },
+    {
+      "identifier": "UndergroundBase",
+      "title": "Underground Base",
+      "keywords": [ "ongoing" ],
+      "count": 1,
+      "body": "Villain targets are immune to damage from Environment cards",
+      "flavorText": "The upper level we stood on{BR}was an arrangement of metal walkways{BR}that extended around the room's{BR}perimeter. Crates and boxes filled{BR}the level below",
+      "flavorReference": "Buzz 7.11"
+    },
+    {
+      "identifier": "Mercenaries",
+      "title": "Mercenaries",
+      "hitpoints": 6,
+      "count": 3,
+      "body": "At the end of the villain turn this card deals {H - 1} energy damage to the two hero targets with the highest HP",
+      "flavorText": "Each soldier was outfitted{BR}in a matching uniform: shades of gray{BR}and some black, hard vests with{BR}raised collars to protect their necks",
+      "flavorReference": "Buzz 7.11"
+    },
+    {
+      "identifier": "Sundancer",
+      "title": "Sundancer",
+      "hitpoints": 10,
+      "count": 1,
+      "keywords": [ "parahuman" ],
+      "body": [
+        "This card is immune to fire damage",
+        "At the end of the villain turn this card deals 2 fire damage to all hero targets"
+      ],
+      "flavorText": "Directly below Sundancer,{BR}the floor was normal. Starting{BR}around five feet from her, though, the{BR}ground looked wet, glassy.{BR}The asphalt was [b]melting[/b]",
+      "flavorReference": "Hive 5.9"
+    },
+    {
+      "identifier": "Trickster",
+      "title": "Trickster",
+      "hitpoints": 6,
+      "count": 1,
+      "keywords": [ "parahuman" ],
+      "body": [
+        "The first time Trickster would be dealt damage each round redirect it to the hero target with the lowest HP",
+        "At the end of the villain turn the player with the most cards in play destroys one of their noncharacter cards"
+      ],
+      "flavorText": "Trickster bowed.{BR}In the blink of an eye, Weld disappeared,{BR}and Genesis loomed in his place",
+      "flavorReference": "Sentinel 9.3"
+    },
+    {
+      "identifier": "Genesis",
+      "title": "Genesis",
+      "hitpoints": 8,
+      "count": 1,
+      "keywords": [ "parahuman" ],
+      "body": [
+        "When this card is destroyed shuffle it back into the villain deck.",
+        "At the end of the villain turn this card deals 2 poison damage to {H} hero targets."
+      ],
+      "flavorText": "Genesis had decided on a form{BR}that was an overlarge woman's face{BR}carved out of bone, surrounded{BR}by long, thin, branching tentacles.",
+      "flavorReference": "Colony 15.10"
+    },
+    {
+      "identifier": "Ballistic",
+      "title": "Ballistic",
+      "hitpoints": 10,
+      "count": 1,
+      "keywords": [ "parahuman" ],
+      "body": [
+        "Whenever a hero character is dealt damage by this card, destroy a noncharacter card belonging to that hero.",
+        "At the end of the villain turn this card deals {H + 1} projectile damage to the hero target with the highest HP"
+      ],
+      "flavorText": "When he used his power on the{BR}car, you didn't see it move. Rather,{BR}in the blink of an eye, it was gone{BR}from where it had been",
+      "flavorReference": "Tangle 6.7"
+    },
+    {
+      "identifier": "Dinah",
+      "title": "Dinah",
+      "hitpoints": 5,
+      "count": 1,
+      "keywords": [ "parahuman" ],
+      "body": [
+        "Scheming and Acting are immune to damage.",
+        "Whenever this card is dealt damage during a hero's turn that player discards a card"
+      ],
+      "flavorQuotes": [
+        {
+          "identifier": "Dinah",
+          "text": "The last thing I want is{BR}[b]another[/b] arrogant dickface telling me{BR}what to do. You want answers, Director? Fine.{BR}Twenty two point eight one three percent chance{BR}you die painfully, over long, slow minutes{BR}or hours."
+        }
+      ],
+      "flavorReference": "Dinah, Cell 22.1"
+    },
+    {
+      "identifier": "Circus",
+      "title": "Circus",
+      "hitpoints": 4,
+      "count": 1,
+      "keywords": [ "parahuman" ],
+      "body": [
+        "Whenever a hero card is played this card deals the hero who played the card 1 projectile damage"
+      ],
+      "flavorText": "Dauntless parried Circus'{BR}sledgehammer with his Arclance, and the{BR}sledgehammer was gone in the next{BR}second, as though it had never existed.",
+      "flavorReference": "Tangle 6.7"
+    },
+    {
+      "identifier": "Trainwreck",
+      "title": "Trainwreck",
+      "hitpoints": 12,
+      "count": 1,
+      "keywords": [ "parahuman" ],
+      "body": [
+        "Whenever a non-villain target would damage a villain target other than Trainwreck redirect that damage to Trainwreck.",
+        "At the start of the villain turn Trainwreck regains {H} HP."
+      ],
+      "flavorText": "A steel giant with massive hands{BR}and a spout on its back that was spewing{BR}volumes of gray-black smoke had one{BR}hand closed around Armsmaster.",
+      "flavorReference": "Tangle 6.7"
+    },
+    {
+      "identifier": "IKnowAllYourTricks",
+      "title": "I Know All Your Tricks",
+      "count": 2,
+      "keywords": [ "one-shot" ],
+      "body": [
+        "Destroy all hero Ongoing cards"
+      ],
+      "flavorQuotes": [
+        {
+          "identifier": "Tattletale",
+          "text": "He's found a way to confuse my{BR}power, to counteract it.{BR}This thing with the hit on your head.{BR}It was just to scare us."
+        }
+      ],
+      "flavorReference": "Tattletale, Colony 15.10"
+    },
+    {
+      "identifier": "TrickeryAndDeceit",
+      "title": "Trickery and Deceit",
+      "count": 2,
+      "keywords": [ "one-shot" ],
+      "body": [
+        "Destroy all hero Equipment cards"
+      ],
+      "flavorText": "Uber kicking down the door,{BR}leaving the heroes to deal with the bomb{BR}they were holding which was squealing{BR}at a higher pitch and volume{BR}with every passing second",
+      "flavorReference": "Monarch 16.8"
+    },
+    {
+      "identifier": "LetsTrySomethingElse",
+      "title": "Let's Try Something Else",
+      "count": 2,
+      "keywords": [ "one-shot" ],
+      "body": [
+        "Shuffle the villain trash into the villain deck.",
+        "Play the top card of the villain deck."
+      ],
+      "flavorQuotes": [
+        {
+          "identifier": "Coil",
+          "text": "Do not use grenades.{BR}I assure you it does not work{BR}out the way you imagine it will.{BR}Give me that!"
+        }
+      ],
+      "flavorReference": "Coil, Monarch 16.11"
+    },
+    {
+      "identifier": "ABackupForEveryAsset",
+      "title": "A Backup For Every Asset",
+      "count": 2,
+      "keywords": [ "one-shot" ],
+      "body": [
+        "Take all Ongoing cards out of the villain trash and put them into play"
+      ],
+      "flavorQuotes": [
+        {
+          "identifier": "Tattletale",
+          "text": "Maybe, but that still feels wrong.{BR}Why wouldn't Coil have a backup plan?"
+        }
+      ],
+      "flavorReference": "Tattletale, Colony 15.10"
+    },
+    {
+      "identifier": "Teleporter",
+      "title": "Teleporter",
+      "count": 2,
+      "hitpoints": 8,
+      "keywords": [ "device" ],
+      "body": [
+        "At the start of the villain turn reveal cards from the top of the villain deck until you have revealed H non-Device targets. Put any revealed non-Device targets into play and shuffle the rest of the revealed cards back into the villain deck"
+      ],
+      "flavorText": "He snapped his fingers,{BR}and soldiers began to teleport{BR}down to the edges of the market.",
+      "flavorReference": "Monarch 16.13"
+    },
+    {
+      "identifier": "TwoBitesAtEveryCherry",
+      "title": "Two Bites At Every Cherry",
+      "count": 2,
+      "keywords": [ "ongoing" ],
+      "body": [
+        "Increase damage dealt by villain targets by 1",
+        "Damage dealt by villain targets is irreducible"
+      ],
+      "flavorQuotes": [
+        {
+          "identifier": "Skitter",
+          "text": "Tattletale clued me in.{BR}He creates parallel realities. Makes two{BR}different decisions, and he gets to see{BR}the outcome of each as they unfold.{BR}Decides which he wants in the end."
+        }
+      ],
+      "flavorReference": "Skitter, Colony 15.4"
+    },
+    {
+      "identifier": "PlansWithinPlans",
+      "title": "Plans Within Plans",
+      "count": 2,
+      "keywords": [ "ongoing" ],
+      "body": [
+        "Reduce damage dealt to villain targets by 2"
+      ],
+      "flavorText": "Screws. Screws with{BR}[b]hexagonal slots[/b]. Because Calvert{BR}wasn't willing to risk that I'd have a{BR}screwdriver on hand with a more{BR}typical head on it.",
+      "flavorReference": "Monarch 16.11"
+    }
+  ]
+}

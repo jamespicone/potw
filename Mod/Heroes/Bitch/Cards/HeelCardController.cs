@@ -10,15 +10,41 @@ namespace Jp.ParahumansOfTheWormverse.Bitch
     public class HeelCardController : CardController
     {
         public HeelCardController(Card card, TurnTakerController controller) : base(card, controller)
-        { }
+        {
+            SpecialStringMaker.ShowNumberOfCardsAtLocation(base.TurnTaker.Deck, new LinqCardCriteria((Card c) => c.DoKeywordsContain("dog"), "dog"));
+            SpecialStringMaker.ShowLocationOfCards(new LinqCardCriteria((Card c) => c.Identifier == "Bastard" && c.Owner == base.TurnTaker));
+        }
 
         public override System.Collections.IEnumerator Play()
         {
             // "Reveal cards from the top of either your deck or your trash until you reveal a Dog. Put it into play. Return the other cards and shuffle your deck.",
             // "You may draw a card"
-            var e = RevealCards_MoveMatching_ReturnNonMatchingCards(
+            var storedResults = new List<SelectLocationDecision>();
+            var e = GameController.SelectLocation(
+                HeroTurnTakerController,
+                new LocationChoice[] {
+                    new LocationChoice(HeroTurnTaker.Deck),
+                    new LocationChoice(HeroTurnTaker.Trash)
+                },
+                SelectionType.RevealCardsFromDeck,
+                storedResults,
+                cardSource: GetCardSource()
+            );
+            if (UseUnityCoroutines)
+            {
+                yield return GameController.StartCoroutine(e);
+            }
+            else
+            {
+                GameController.ExhaustCoroutine(e);
+            }
+
+            var selectedLocation = GetSelectedLocation(storedResults);
+            if (selectedLocation == null) { yield break; }
+
+            e = RevealCards_MoveMatching_ReturnNonMatchingCards(
                 TurnTakerController,
-                HeroTurnTaker.Deck,
+                selectedLocation,
                 false,
                 true,
                 false,
@@ -46,9 +72,6 @@ namespace Jp.ParahumansOfTheWormverse.Bitch
             {
                 GameController.ExhaustCoroutine(e);
             }
-
-            // TODO: Dog count in deck informational window
-            // TODO: Does this shuffle?
         }
     }
 }

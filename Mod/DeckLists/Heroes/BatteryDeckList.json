@@ -108,7 +108,7 @@
       "icons": [
         "DealDamageLightning"
       ],
-      "flavorText": "She leaped to one side, kicked Assault{BR}square in the middle of the chest with both feet,{BR}and then careened off in the opposite direction.",
+      "flavorText": "She leaped to one side, kicked{BR}Assault square in the middle of the chest{BR}with both feet, and then careened{BR}off in the opposite direction.",
       "flavorReference": "Tangle 6.5"
     },
     {
@@ -127,7 +127,7 @@
         "Search",
         "PlayCardNow"
       ],
-      "flavorText": "Instead, she spent the rest{BR}of her accumulated power in a single burst,{BR}pulling at the metal of a nearby chair. It fell{BR}over, sliding into Madcap's path.",
+      "flavorText": "She spent the rest of her{BR}accumulated power in a single burst,{BR}pulling at the metal of a nearby chair.{BR}It fell over, sliding into Madcap's path.",
       "flavorReference": "Interlude 12.5"
     },
     {
@@ -248,7 +248,7 @@
         "StartOfTurnAction",
         "DealDamageLightning"
       ],
-      "flavorText": "Between one heartbeat and{BR}the next, everything seemed to click. She felt{BR}as though she were floating in slow motion{BR}rather than falling, her body thrumming.",
+      "flavorText": "Between one heartbeat and the next,{BR}everything seemed to click. She felt as{BR}though she were floating in slow motion{BR}rather than falling, her body thrumming.",
       "flavorReference": "Interlude 12.5"
     },
     {
@@ -265,7 +265,7 @@
       "icons": [
         "DealDamageMelee"
       ],
-      "flavorText": "She went from fighting like an{BR}ordinary individual to moving at high speeds and{BR}throwing crushing punches, then back again.",
+      "flavorText": "She went from fighting like an{BR}ordinary individual to moving at high{BR}speeds and throwing crushing{BR}punches, then back again.",
       "flavorReference": "Prey 14.9"
     },
     {
@@ -285,7 +285,7 @@
         "PlayCardNow",
         "UsePowerNow"
       ],
-      "flavorText": "Whatever those favors{BR}were, all she could do was hope she could{BR}do enough good to counterbalance any wrongs{BR}she'd have to commit.",
+      "flavorText": "Whatever those favors were,{BR}all she could do was hope she could{BR}do enough good to counterbalance any{BR}wrongs she'd have to commit.",
       "flavorReference": "Interlude 12.5"
     },
     {

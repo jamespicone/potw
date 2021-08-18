@@ -33,16 +33,8 @@ namespace Jp.ParahumansOfTheWormverse.Battery
             // "If {BatteryCharacter} is {Charged}, she deals up to 3 other targets 3 lightning damage each."
             if (IsBatteryCharged())
             {
-                Card previouslyDamaged = null;
-                if (firstStrike != null)
-                {
-                    DealDamageAction actualStrike = firstStrike.Where((DealDamageAction dda) => dda.DidDealDamage).FirstOrDefault();
-                    if (actualStrike != null)
-                    {
-                        previouslyDamaged = actualStrike.Target;
-                    }
-                }
-                IEnumerator additionalDamageCoroutine = base.GameController.SelectTargetsAndDealDamage(base.HeroTurnTakerController, new DamageSource(base.GameController, base.CharacterCard), 3, DamageType.Lightning, 3, false, 0, additionalCriteria: (Card c) => c != previouslyDamaged, cardSource: GetCardSource());
+                var previouslySelected = firstStrike.Select(dda => dda.OriginalTarget);
+                IEnumerator additionalDamageCoroutine = base.GameController.SelectTargetsAndDealDamage(base.HeroTurnTakerController, new DamageSource(base.GameController, base.CharacterCard), 3, DamageType.Lightning, 3, false, 0, additionalCriteria: (Card c) => ! previouslySelected.Contains(c), cardSource: GetCardSource());
                 if (base.UseUnityCoroutines)
                 {
                     yield return base.GameController.StartCoroutine(additionalDamageCoroutine);

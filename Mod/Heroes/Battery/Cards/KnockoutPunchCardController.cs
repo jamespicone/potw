@@ -33,7 +33,7 @@ namespace Jp.ParahumansOfTheWormverse.Battery
             // "If {BatteryCharacter} is {Charged}, a non-character card target dealt damage this way loses all 'start of turn' and 'end of turn' effects on its card until the start of your next turn."
             if (IsBatteryCharged())
             {
-                IEnumerable<Card> validChoices = (from dda in damageActions where dda.DidDealDamage && dda.Target != null select dda.Target).Distinct();
+                IEnumerable<Card> validChoices = (from dda in damageActions where dda.DidDealDamage && dda.Target != null && (! dda.Target.IsCharacter) select dda.Target).Distinct();
                 Card chosen = validChoices.FirstOrDefault();
                 if (validChoices.Count() > 0)
                 {

@@ -7,6 +7,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+using Jp.ParahumansOfTheWormverse.Utility;
+
 namespace Jp.ParahumansOfTheWormverse.Battery
 {
     public class KnockEmDownCardController : BatteryUtilityCardController
@@ -32,7 +34,7 @@ namespace Jp.ParahumansOfTheWormverse.Battery
             // "If {BatteryCharacter} is {Charged}, she deals each non-hero target 2 melee damage."
             if (IsBatteryCharged())
             {
-                IEnumerator massCoroutine = base.GameController.DealDamage(base.HeroTurnTakerController, base.CharacterCard, (Card c) => c.IsTarget && !c.IsHero && base.GameController.IsCardVisibleToCardSource(c, GetCardSource()), 2, DamageType.Melee, cardSource: GetCardSource());
+                IEnumerator massCoroutine = base.GameController.DealDamage(base.HeroTurnTakerController, base.CharacterCard, (Card c) => c.IsTarget && !c.IsHeroTarget() && base.GameController.IsCardVisibleToCardSource(c, GetCardSource()), 2, DamageType.Melee, cardSource: GetCardSource());
                 if (base.UseUnityCoroutines)
                 {
                     yield return base.GameController.StartCoroutine(massCoroutine);

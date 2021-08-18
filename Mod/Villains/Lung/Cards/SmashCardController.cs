@@ -5,18 +5,22 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+using Jp.ParahumansOfTheWormverse.Utility;
+
 namespace Jp.ParahumansOfTheWormverse.Lung
 {
     public class SmashCardController : CardController
     {
         public SmashCardController(Card card, TurnTakerController controller) : base(card, controller)
-        { }
+        {
+            SpecialStringMaker.ShowHeroTargetWithLowestHP(ranking: 1, numberOfTargets: 1);
+        }
 
         public override System.Collections.IEnumerator Play()
         {
             // "{Lung} deals the hero target with the lowest HP 2 melee damage.",
             // "Destroy 1 hero ongoing or equipment card"
-            var e = DealDamageToLowestHP(TurnTaker.CharacterCard, 1, c => c.IsHero && c.IsTarget && c.IsInPlay, c => 2, DamageType.Melee);
+            var e = DealDamageToLowestHP(TurnTaker.CharacterCard, 1, c => c.IsHeroTarget() && c.IsInPlay, c => 2, DamageType.Melee);
             if (UseUnityCoroutines)
             {
                 yield return GameController.StartCoroutine(e);

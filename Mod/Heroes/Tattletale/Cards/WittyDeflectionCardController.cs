@@ -7,6 +7,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+using Jp.ParahumansOfTheWormverse.Utility;
+
 namespace Jp.ParahumansOfTheWormverse.Tattletale
 {
     public class WittyDeflectionCardController : CardController
@@ -42,7 +44,7 @@ namespace Jp.ParahumansOfTheWormverse.Tattletale
         {
             // "Select a hero target."
             List<SelectCardDecision> choice = new List<SelectCardDecision>();
-            IEnumerator chooseCoroutine = base.GameController.SelectCardAndStoreResults(base.HeroTurnTakerController, SelectionType.RedirectDamageDirectedAtTarget, new LinqCardCriteria((Card c) => c.IsInPlay && c.IsHero && c.IsTarget, "hero target", useCardsSuffix: false, useCardsPrefix: false, "hero target", "hero targets"), choice, false, cardSource: GetCardSource());
+            IEnumerator chooseCoroutine = base.GameController.SelectCardAndStoreResults(base.HeroTurnTakerController, SelectionType.RedirectDamageDirectedAtTarget, new LinqCardCriteria((Card c) => c.IsInPlay && c.IsHeroTarget(), "hero target", useCardsSuffix: false, useCardsPrefix: false, "hero target", "hero targets"), choice, false, cardSource: GetCardSource());
             if (UseUnityCoroutines)
             {
                 yield return GameController.StartCoroutine(chooseCoroutine);
@@ -83,7 +85,7 @@ namespace Jp.ParahumansOfTheWormverse.Tattletale
         {
             // "... you may redirect that damage to another hero target."
             List<SelectCardDecision> selectTarget = new List<SelectCardDecision>();
-            IEnumerator selectCoroutine = base.GameController.SelectTargetAndRedirectDamage(base.HeroTurnTakerController, (Card c) => c.IsInPlay && c.IsTarget && c.IsHero && c != dd.Target, dd, optional: true, selectTarget, cardSource: GetCardSource());
+            IEnumerator selectCoroutine = base.GameController.SelectTargetAndRedirectDamage(base.HeroTurnTakerController, (Card c) => c.IsInPlay && c.IsHeroTarget() && c != dd.Target, dd, optional: true, selectTarget, cardSource: GetCardSource());
             if (UseUnityCoroutines)
             {
                 yield return GameController.StartCoroutine(selectCoroutine);

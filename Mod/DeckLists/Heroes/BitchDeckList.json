@@ -29,21 +29,73 @@
 	  ]
     },
 		{
-			"identifier": "Heel",
-			"title": "Heel!",
-			"keywords": [ "order", "one-shot" ],
-			"body": [
-				"Reveal cards from the top of either your deck or your trash until you reveal a Dog. Put it into play. Return the other cards and shuffle your deck.",
-				"You may draw a card."
-			],
-			"icons": [
-				"Search",
-				"DrawCardNow"
-			],
-			"flavorText": "Master only asks for dogs{br}to come to the front stairs{BR}if it is time for walkies!",
-			"flavorReference": "Interlude 4",
-			"count": 4
+			"identifier": "Angelica",
+			"title": "Angelica",
+			"count": 1,
+			"body": "At the end of your turn, this card deals itself 1 psychic damage.",
+			"icons": ["EndOfTurnAction", "DealDamagePsychic"],
+			"hitpoints": 6,
+			"flavorText": "Angelica positioned herself between{BR}enemy and master, and Glory Girl{BR}hit the dog broadside.",
+			"flavorReference": "Interlude 11a",
+			"keywords": [ "dog" ]
 		},
+		{
+			"identifier": "Axel",
+			"title": "Axel",
+			"count": 1,
+			"body": "At the end of your turn, this card deals itself 1 psychic damage.",
+			"icons": ["EndOfTurnAction", "DealDamagePsychic"],
+			"hitpoints": 6,
+			"flavorText": "...resembling a cross between a lizard{BR}and a tiger, with tangles of muscle{BR}and bone where it ought to have skin.",
+			"flavorReference": "Gestation 1.5",
+			"keywords": [ "dog" ]
+		},
+		{
+			"identifier": "Bastard",
+			"title": "Bastard",
+			"count": 1,
+			"body": "",
+			"hitpoints": 8,
+			"flavorText": "“Little bastard”, she smiled.",
+			"flavorReference": "Interlude 11a",
+			"keywords": [ "dog" ]
+		},
+		{
+			"identifier": "Brutus",
+			"title": "Brutus",
+			"count": 1,
+			"body": "At the end of your turn, this card deals itself 1 psychic damage.",
+			"icons": ["EndOfTurnAction", "DealDamagePsychic"],
+			"hitpoints": 6,
+			"flavorText": "He'd been the Rottweiler, before.",
+			"flavorReference": "Agitation 3.8",
+			"keywords": [ "dog" ]
+		},
+		{
+			"identifier": "Bullet",
+			"title": "Bullet",
+			"count": 1,
+			"body": "At the end of your turn, this card deals itself 1 psychic damage.",
+			"icons": ["EndOfTurnAction", "DealDamagePsychic"],
+			"hitpoints": 6,
+			"flavorText": "Leviathan pulled away,{BR}only for a dog to snag his arm,{BR}drag him off balance.",
+			"flavorReference": "Extermination 8.5",
+			"keywords": [ "dog" ]
+		},
+	{
+		"identifier": "Fetch",
+		"title": "Fetch!",
+		"keywords": [ "order", "one-shot" ],
+		"body": [
+			"Reveal the top X cards of a deck, where X = the number of Dog cards in play + 2. For each equipment or device card revealed in this way, either discard it or put it into play. Shuffle the other cards back into the deck.",
+		],
+		"icons": [
+			"Search"
+		],
+		"flavorText": "If only humans were as reliable,{BR}as easy to train.",
+		"flavorReference": "Interlude 11a",
+		"count": 2
+	},
 		{
 			"identifier": "Find",
 			"title": "Find!",
@@ -62,6 +114,17 @@
 			],
 			"flavorReference": "Bitch, Monarch 16.12",
 			"count": 2
+		},
+		{
+			"identifier": "Ginger",
+			"title": "Ginger",
+			"count": 1,
+			"body": "At the end of your turn, this card deals itself 1 psychic damage.",
+			"icons": ["EndOfTurnAction", "DealDamagePsychic"],
+			"hitpoints": 6,
+			"flavorText": "[b]KOOROW BULLIT MILK STUMPY{BR}BROOTUS JOODUS AXIL GINGIR[/b]",
+			"flavorReference": "Brockton Bay Endbringer Monument",
+			"keywords": [ "dog" ]
 		},
 		{
 			"identifier": "Guard",
@@ -84,6 +147,36 @@
 			"flavorReference": "Bitch, Interlude 11a",
 			"count": 3
 		},
+	{
+		"identifier": "HaveARide",
+		"title": "Have a Ride",
+		"body": [
+			"Reduce damage dealt to hero targets by environment cards by 1."
+		],
+		"icons": [
+			"ReduceDamageTaken"
+		],
+		"keywords": [ "ongoing", "limited" ],
+		"flavorText": "Leaping from rooftop to rooftop{BR}was not as awesome or efficient as it was{BR}on TV and in the movies.",
+		"flavorReference": "Tangle 6.7",
+		"count": 3
+	},
+		{
+			"identifier": "Heel",
+			"title": "Heel!",
+			"keywords": [ "order", "one-shot" ],
+			"body": [
+				"Reveal cards from the top of either your deck or your trash until you reveal a Dog. Put it into play. Return the other cards and shuffle your deck.",
+				"You may draw a card."
+			],
+			"icons": [
+				"Search",
+				"DrawCardNow"
+			],
+			"flavorText": "Master only asks for dogs{br}to come to the front stairs{BR}if it is time for walkies!",
+			"flavorReference": "Interlude 4",
+			"count": 4
+		},
 		{
 			"identifier": "Hold",
 			"title": "Hold!",
@@ -96,10 +189,21 @@
 				"DestroyTarget",
 				"DrawCardNow"
 			],
-			"flavorText": "The dog lurched forward{BR}and placed both front paws on{BR}Mannequin's body",
+			"flavorText": "The dog lurched forward{BR}and placed both front paws on{BR}Mannequin's body.",
 			"flavorReference": "Snare 13.3",
 			"count": 3
 		},
+	{
+		"identifier": "Judas",
+		"title": "Judas",
+		"count": 1,
+		"body": "At the end of your turn, this card deals itself 1 psychic damage.",
+		"icons": ["EndOfTurnAction", "DealDamagePsychic"],
+		"hitpoints": 6,
+		"flavorText": "The dog's prehensile tail{BR}wrapped around Aegis' torso.",
+		"flavorReference": "Agitation 3.9",
+		"keywords": [ "dog" ]
+    },
 		{
 			"identifier": "Kill",
 			"title": "Kill!",
@@ -119,127 +223,6 @@
 			"flavorReference": "Bitch, Extermination 8.5",
 			"count": 3
 		},
-	{
-		"identifier": "Fetch",
-		"title": "Fetch!",
-		"keywords": [ "order", "one-shot" ],
-		"body": [
-			"Reveal the top X cards of a deck, where X = the number of Dog cards in play + 2. For each equipment or device card revealed in this way, either discard it or put it into play. Shuffle the other cards back into the deck.",
-		],
-		"icons": [
-			"Search"
-		],
-		"flavorText": "If only humans were as reliable,{BR}as easy to train.",
-		"flavorReference": "Interlude 11a",
-		"count": 2
-	},
-		{
-			"identifier": "VeterinaryCare",
-			"title": "Veterinary Care",
-			"body": [
-				"Restore all Dog cards to maximum HP.",
-				"You may draw a card.",
-				"You may play a card."
-			],
-			"icons": [
-				"GainHP",
-				"DrawCardNow",
-				"PlayCardNow"
-			],
-			"flavorQuotes": [
-				{
-					"identifier": "Bitch",
-					"text": "Like this, his body won't just kill them,{BR}but it can kill the disease.{BR}He'll be fine by tomorrow."
-				}
-			],
-			"flavorReference": "Bitch, Buzz 7.2",
-			"count": 4,
-			"keywords": [ "one-shot" ]
-		},
-	{
-		"identifier": "Whistle",
-		"title": "Whistle",
-		"body": [
-			"At the start of your turn, you may draw a card.",
-			"At the end of your turn, you may play an Order card.",
-		],
-		"icons": [
-			"StartAndEndOfTurnAction",
-			"DrawCardNow",
-			"PlayCardNow"
-		],
-		"keywords": [ "equipment", "limited" ],
-		"flavorText": "I could hear her whistle{BR}at a volume that I doubted{BR}I could scream.",
-		"flavorReference": "Parasite 10.3",
-		"count": 3
-	},
-		{
-			"identifier": "TheHunt",
-			"title": "The Hunt",
-			"body": [
-				"At the start of your turn, each Dog in play may deal 1 melee damage to a target."
-			],
-			"icons": [
-				"StartOfTurnAction",
-				"DealDamageMelee"
-			],
-			"keywords": [ "ongoing", "limited" ],
-			"flavorQuotes": [
-				{
-					"identifier": "Bitch",
-					"text": "If I ordered them to kill you,{BR}Brutus would have torn out your throat{BR}before you could scream."
-				}
-			],
-			"flavorReference": "Bitch, Insinuation 2.8",
-			"count": 3
-		},
-	{
-		"identifier": "HaveARide",
-		"title": "Have a Ride",
-		"body": [
-			"Reduce damage dealt to hero targets by environment cards by 1."
-		],
-		"icons": [
-			"ReduceDamageTaken"
-		],
-		"keywords": [ "ongoing", "limited" ],
-		"flavorText": "Leaping from rooftop to rooftop{BR}was not as awesome or efficient as it was{BR}on TV and in the movies.",
-		"flavorReference": "Tangle 6.7",
-		"count": 3
-	},
-	{
-		"identifier": "Judas",
-		"title": "Judas",
-		"count": 1,
-		"body": "At the end of your turn, this card deals itself 1 psychic damage.",
-		"icons": ["EndOfTurnAction", "DealDamagePsychic"],
-		"hitpoints": 6,
-		"flavorText": "The dog's prehensile tail{BR}wrapped around Aegis' torso.",
-		"flavorReference": "Agitation 3.9",
-		"keywords": [ "dog" ]
-    },
-		{
-			"identifier": "Angelica",
-			"title": "Angelica",
-			"count": 1,
-			"body": "At the end of your turn, this card deals itself 1 psychic damage.",
-			"icons": ["EndOfTurnAction", "DealDamagePsychic"],
-			"hitpoints": 6,
-			"flavorText": "Angelica positioned herself between{BR}enemy and master, and{BR}Glory Girl hit the dog broadside.",
-			"flavorReference": "Interlude 11a",
-			"keywords": [ "dog" ]
-		},
-		{
-			"identifier": "Brutus",
-			"title": "Brutus",
-			"count": 1,
-			"body": "At the end of your turn, this card deals itself 1 psychic damage.",
-			"icons": ["EndOfTurnAction", "DealDamagePsychic"],
-			"hitpoints": 6,
-			"flavorText": "He'd been the Rottweiler, before.",
-			"flavorReference": "Agitation 3.8",
-			"keywords": [ "dog" ]
-		},
 		{
 			"identifier": "Kuro",
 			"title": "Kuro",
@@ -254,28 +237,6 @@
 				}
 			],
 			"flavorReference": "Bitch, Crushed 24.1",
-			"keywords": [ "dog" ]
-		},
-		{
-			"identifier": "Bullet",
-			"title": "Bullet",
-			"count": 1,
-			"body": "At the end of your turn, this card deals itself 1 psychic damage.",
-			"icons": ["EndOfTurnAction", "DealDamagePsychic"],
-			"hitpoints": 6,
-			"flavorText": "Leviathan pulled away,{BR}only for a dog to snag his arm,{BR}drag him off balance.",
-			"flavorReference": "Extermination 8.5",
-			"keywords": [ "dog" ]
-		},
-		{
-			"identifier": "Ginger",
-			"title": "Ginger",
-			"count": 1,
-			"body": "At the end of your turn, this card deals itself 1 psychic damage.",
-			"icons": ["EndOfTurnAction", "DealDamagePsychic"],
-			"hitpoints": 6,
-			"flavorText": "KOOROW BULLIT MILK STUMPY{BR}BROOTUS JOODUS AXIL GINGIR",
-			"flavorReference": "Brockton Bay Endbringer Monument",
 			"keywords": [ "dog" ]
 		},
 		{
@@ -301,26 +262,65 @@
 			"keywords": [ "dog" ]
 		},
 		{
-			"identifier": "Axel",
-			"title": "Axel",
-			"count": 1,
-			"body": "At the end of your turn, this card deals itself 1 psychic damage.",
-			"icons": ["EndOfTurnAction", "DealDamagePsychic"],
-			"hitpoints": 6,
-			"flavorText": "...resembling a cross between a lizard{BR}and a tiger, with tangles of muscle{BR}and bone where it ought to have skin",
-			"flavorReference": "Gestation 1.5",
-			"keywords": [ "dog" ]
+			"identifier": "TheHunt",
+			"title": "The Hunt",
+			"body": [
+				"At the start of your turn, each Dog in play may deal 1 melee damage to a target."
+			],
+			"icons": [
+				"StartOfTurnAction",
+				"DealDamageMelee"
+			],
+			"keywords": [ "ongoing", "limited" ],
+			"flavorQuotes": [
+				{
+					"identifier": "Bitch",
+					"text": "If I ordered them to kill you,{BR}Brutus would have torn out your throat{BR}before you could scream."
+				}
+			],
+			"flavorReference": "Bitch, Insinuation 2.8",
+			"count": 3
 		},
 		{
-			"identifier": "Bastard",
-			"title": "Bastard",
-			"count": 1,
-			"body": "",
-			"hitpoints": 8,
-			"flavorText": "“Little bastard”, she smiled.",
-			"flavorReference": "Interlude 11a",
-			"keywords": [ "dog" ]
-		}
+			"identifier": "VeterinaryCare",
+			"title": "Veterinary Care",
+			"body": [
+				"Restore all Dog cards to maximum HP.",
+				"You may draw a card.",
+				"You may play a card."
+			],
+			"icons": [
+				"GainHP",
+				"DrawCardNow",
+				"PlayCardNow"
+			],
+			"flavorQuotes": [
+				{
+					"identifier": "Bitch",
+					"text": "Like this, his body won't just kill{BR}them, but it can kill the disease.{BR}He'll be fine by tomorrow."
+				}
+			],
+			"flavorReference": "Bitch, Buzz 7.2",
+			"count": 4,
+			"keywords": [ "one-shot" ]
+		},
+	{
+		"identifier": "Whistle",
+		"title": "Whistle",
+		"body": [
+			"At the start of your turn, you may draw a card.",
+			"At the end of your turn, you may play an Order card.",
+		],
+		"icons": [
+			"StartAndEndOfTurnAction",
+			"DrawCardNow",
+			"PlayCardNow"
+		],
+		"keywords": [ "equipment", "limited" ],
+		"flavorText": "I could hear her whistle{BR}at a volume that I doubted{BR}I could scream.",
+		"flavorReference": "Parasite 10.3",
+		"count": 3
+	}
   ]
 
 }

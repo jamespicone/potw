@@ -1,0 +1,262 @@
+{
+  "name": "Dauntless",
+  "kind": "Hero",
+  "initialCardIdentifiers": [ "DauntlessCharacter" ],
+  "cards": [
+    {
+      "identifier": "DauntlessCharacter",
+      "title": "Dauntless",
+      "count": 1,
+      "body": "Arclance",
+      "hitpoints": 28,
+      "powers": [ "Deal X energy damage to a target, where X = 1 + the number of Charge cards attached to Dauntless / 2 (round down)" ],
+      "icons": [
+        "HasPower",
+        "DealDamageEnergy"
+      ],
+      "character": true,
+      "backgroundColor": "ffffff",
+      "openingLines": {
+        "default": "blargh"
+      },
+      "complexity": 2,
+      "incapacitatedAbilities": [
+        "One player may draw a card now",
+        "Reduce all energy damage dealt to hero targets by 1 until your next turn",
+        "Select an equipment card. Until your next turn it is indestructible"
+      ],
+      "flippedIcons": [
+        "DrawCardNow",
+        "ReduceDamageEnergy",
+        "Indestructible"
+      ]
+    },
+    {
+      "identifier": "Arcshield",
+      "title": "Arcshield",
+      "keywords": [ "relic" ],
+      "body": [
+        "This card cannot be affected by villain or environment cards",
+        "If this card would be destroyed return it to your hand instead"
+      ],
+      "powers": [
+        "Until the end of your next turn reduce damage dealt to Dauntless by X, where X = 1 + the number of Charge cards attached to this card / 2 (round down)"
+      ],
+      "icons": [
+        "HasPower",
+        "ReduceDamageTaken",
+        "Indestructible"
+      ],
+      "flavorText": "He was holding his shield arm up{BR}and it had formed into{BR}a bubble-shaped forcefield",
+      "flavorReference": "Tangle 6.7",
+      "count": 1
+    },
+    {
+      "identifier": "Arcstep",
+      "title": "Arcstep",
+      "keywords": [ "relic" ],
+      "body": [
+        "This card cannot be affected by villain or environment cards",
+        "If this card would be destroyed return it to your hand instead"
+      ],
+      "powers": [
+        "Draw X cards, where X = 1 + the number of Charge cards attached to this card / 2 (round down){BR}You may play a card"
+      ],
+      "icons": [
+        "HasPower",
+        "DrawCardNow",
+        "PlayCardNow",
+        "Indestructible"
+      ],
+      "flavorText": "His feet looked like they were{BR}encased in the white crackling energy.",
+      "flavorReference": "Tangle 6.7",
+      "count": 1
+    },
+    {
+      "identifier": "Crystallization",
+      "title": "Crystallization",
+      "keywords": [ "charge" ],
+      "body": [
+        "Play this card next to {DauntlessCharacter} or a Relic in this play area",
+        "When this card enters play {DauntlessCharacter} may deal 1 energy damage to a target",
+        "This card cannot be affected by villain or environment cards",
+        "If this card would be destroyed return it to your hand instead"
+          
+      ],
+      "icons": [
+        "DealDamageEnergy",
+        "Indestructible"
+      ],
+      "flavorText": "His power let him imbue his gear{BR}with a little bit of power every day",
+      "flavorReference": "Tangle 6.7",
+      "count": 4
+    },
+    {
+      "identifier": "PlasmaCore",
+      "title": "Plasma Core",
+      "keywords": [ "ongoing", "charge" ],
+      "body": [
+        "Play this card next to {DauntlessCharacter} or a Relic in this play area without a Plasma Core",
+        "[b]On {DauntlessCharacter}:[/b] his power does irreducible damage",
+        "[b]On Arcshield:[/b] Whenever damage is dealt and it was reduced by the Arcshield's power {DauntlessCharacter} deals the source 1 energy damage",
+        "[b]On Arcstep:[/b] before using Arcstep's power regain 1 HP"
+      ],
+      "icons": [
+        "MakeDamageIrreducible",
+        "DealDamageEnergy",
+        "GainHP"
+      ],
+      "flavorText": "He had his Arclance, a spear he held{BR}in one hand that looked like{BR}it was made of white lightning.",
+      "flavorReference": "Tangle 6.7",
+      "count": 3
+    },
+    {
+      "identifier": "MatterToEnergy",
+      "title": "Matter to Energy",
+      "keywords": [ "ongoing", "charge" ],
+      "body": [
+        "Play this card next to {DauntlessCharacter} or a Relic in this play area without a Matter to Energy",
+        "[b]On {DauntlessCharacter}:[/b] choose the damage type for his power{BR}[b]On Arcshield:[/b] after using Arcshield's power pick a damage type; reduce all damage of that type by 1 until the end of your next turn{BR}[b]On Arcstep:[/b] after using Arcstep's power {DauntlessCharacter} deals up to 3 targets 1 energy damage"
+      ],
+      "icons": [
+        "ReduceDamageDealt",
+        "DealDamageEnergy"
+      ],
+      "flavorText": "The Arclance was something{BR}between a solid and an energy,{BR}combining traits of both.",
+      "flavorReference": "Tangle 6.7",
+      "count": 3
+    },
+    {
+      "identifier": "ToMe",
+      "title": "To Me!",
+      "keywords": [ "one-shot" ],
+      "body": [
+        "Search your deck for a Relic and put it into play. Shuffle your deck.",
+        "Draw a card. You may play a card"
+      ],
+      "icons": [
+        "Search",
+        "DrawCardNow",
+        "PlayCardNow"
+      ],
+      "flavorText": "He'd infused power into every{BR}article of clothing he owned,{BR}sometimes years worth of power,{BR}and that power had come due.",
+      "flavorReference": "Heavens 12.none",
+      "count": 4
+    },
+    {
+      "identifier": "Outfitting",
+      "title": "Outfitting",
+      "keywords": [ "one-shot" ],
+      "body": [
+        "Select a hero. That hero reveals cards from the top of their deck until they reveal an Equipment or Relic card. They may put that card into play or into their hand. Shuffle the other revealed cards back into their deck"
+      ],
+      "icons": [
+        "Manipulate"
+      ],
+      "flavorText": "Piece by piece, he strapped on his armor.",
+      "flavorReference": "Heavens 12.none",
+      "count": 4
+    },
+    {
+      "identifier": "Resolve",
+      "title": "Resolve",
+      "keywords": [ "one-shot" ],
+      "body": [
+        "Reveal cards from the top of your trash or the top of your deck until you reveal a Charge card. You may put it into play or into your hand. Shuffle the other cards back where they came from"
+      ],
+      "icons": [
+        "Manipulate"
+      ],
+      "flavorText": "He had the day's power to allocate.{BR}A fractional bonus to one of his items.",
+      "flavorReference": "Heavens 12.none",
+      "count": 4
+    },
+    {
+      "identifier": "YourOpponentIsMe",
+      "title": "Your Opponent Is Me",
+      "keywords": [ "one-shot" ],
+      "body": [
+        "{DauntlessCharacter} deals 2 energy damage to up to 2 targets.",
+        "Until the start of your next turn whenever those targets would deal damage redirect that damage to {DauntlessCharacter}"
+      ],
+      "icons": [
+        "DealDamageEnergy",
+        "RedirectDamage"
+      ],
+      "flavorText": "Dauntless advanced a pace,{BR}and the forcefield moved a{BR}corresponding distance closer to us.",
+      "flavorReference": "Tangle 6.7",
+      "count": 4
+    },
+    {
+      "identifier": "HeroicImage",
+      "title": "Heroic Image",
+      "keywords": [ "one-shot" ],
+      "body": [
+        "{DauntlessCharacter} regains 2 HP",
+        "Select a hero target. Until the start of your next turn whenever that target would be dealt damage redirect that damage to {DauntlessCharacter}"
+      ],
+      "icons": [
+        "GainHP",
+        "RedirectDamage"
+      ],
+      "flavorReference": "Dauntless, Heavens 12.none",
+      "flavorQuotes": [
+        {
+          "identifier": "Dauntless",
+          "text": "I can't tell you the exact details,{BR}but I saved a life.{BR}One that meant everything to me."
+        }
+      ],
+      "count": 4
+    },
+    {
+      "identifier": "GloriousStand",
+      "title": "Glorious Stand",
+      "keywords": [ "ongoing" ],
+      "body": [
+        "Whenever a hero target would be dealt damage, redirect the damage to {DauntlessCharacter}",
+        "At the start of your turn destroy this card"
+      ],
+      "icons": [
+        "RedirectDamage",
+        "DestroySelf"
+      ],
+      "flavorReference": "Dauntless, Heavens 12.none",
+      "flavorQuotes": [
+        {
+          "identifier": "Dauntless",
+          "text": "There's never going to be a place that{BR}I'll step up to defend faster or{BR}with more conviction than our city."
+        }
+      ],
+      "count": 3
+    },
+    {
+      "identifier": "CracklingCorona",
+      "title": "Crackling Corona",
+      "keywords": [ "one-shot" ],
+      "body": [
+        "{DauntlessCharacter} deals 1 energy damage to all villain targets"
+      ],
+      "icons": [
+        "DealDamageEnergy"
+      ],
+      "flavorText": "Grue had to back up a step to{BR}avoid touching the field of{BR}crackling white energy.",
+      "flavorReference": "Tangle 6.7",
+      "count": 3
+    },
+    {
+      "identifier": "CarryTheCharge",
+      "title": "Carry the Charge",
+      "keywords": [ "ongoing", "limited" ],
+      "body": [
+        "Whenever {DauntlessCharacter} is dealt damage you may draw a card. If it was energy or lightning damage you may play a card as well"
+      ],
+      "icons": [
+        "DrawCardNow",
+        "PlayCardNow"
+      ],
+      "flavorText": "He could already feel more power{BR}building up inside him",
+      "flavorReference": "Heavens 12.none",
+      "count": 2
+    }
+  ]
+}

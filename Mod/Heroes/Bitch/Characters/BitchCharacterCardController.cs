@@ -11,7 +11,9 @@ namespace Jp.ParahumansOfTheWormverse.Bitch
     public class BitchCharacterCardController : HeroCharacterCardController
     {
         public BitchCharacterCardController(Card card, TurnTakerController controller) : base(card, controller)
-        { }
+        {
+            SpecialStringMaker.ShowNumberOfCardsInPlay(new LinqCardCriteria((Card c) => c.DoKeywordsContain("dog"), "dog"));
+        }
 
         public override IEnumerator UseIncapacitatedAbility(int index)
         {
@@ -77,6 +79,7 @@ namespace Jp.ParahumansOfTheWormverse.Bitch
                     new LinqCardCriteria(c => cards.Contains(c)),
                     storedResults,
                     optional: false,
+                    allowAutoDecide: true,
                     cardSource: GetCardSource()
                 );
                 if (UseUnityCoroutines)

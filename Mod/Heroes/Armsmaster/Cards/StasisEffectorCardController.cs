@@ -111,7 +111,6 @@ namespace Jp.ParahumansOfTheWormverse.Armsmaster
                 sourceEffect.UntilEndOfPhase(phase.ToPhase.TurnTaker, phase.ToPhase.Phase);
             }
 
-            Debug.Log("HandlePreventVillainCards Preventing phase action");
             var e = GameController.PreventPhaseAction(phase.ToPhase, cardSource: GetCardSource());
             if (UseUnityCoroutines)
             {

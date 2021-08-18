@@ -1,0 +1,209 @@
+{
+	"name": "Brockton Bay",
+	"kind": "Environment",
+	"backgroundColor": "",
+	"difficulty": 1,
+	"cards": [
+		{
+			"identifier": "Attention",
+			"count": 1,
+			"title": "Attention",
+			"body": [
+				"At the end of the environment turn, reveal the top card of each deck in turn order, starting with the villain deck. If the revealed card is a target, put it into play. Otherwise, shuffle it back into its deck. Then, destroy this card."
+			],
+			"icons": [
+				"EndOfTurnAction",
+				"PlayCardNow",
+				"Manipulate",
+				"DestroySelf"
+			],
+			"flavorText": "“That's the kind of thing you're supposed to{BR}inform us of well in advance,” Grue hissed at{BR}her. “And there's not supposed to be six of them.”",
+			"flavorQuotes": [
+				{
+					"identifier": "Grue",
+					"text": "That's the kind of thing you're supposed to inform us of well in advance. And there's not supposed to be six of them."
+				}
+			]
+		},
+		{
+			"identifier": "Civilians",
+			"count": 2,
+			"title": "Civilians",
+			"body": [
+				"Players cannot use powers.",
+				"At the start of the environment turn, each player may discard 1 card each to destroy this card."
+			],
+			"icons": [
+				"CannotUsePowers",
+				"StartOfTurnAction",
+				"Discard",
+				"DestroySelf"
+			],
+			"flavorText": "“Low blow, Dragon,” I said, finally. “Outing me?{BR}I thought you were better than that.”",
+			"flavorQuotes": [
+				{
+					"identifier": "Skitter",
+					"text": "Low blow, Dragon. Outing me? I thought you were better than that."
+				}
+			]
+		},
+		{
+			"identifier": "Leet",
+			"count": 1,
+			"title": "Leet",
+			"keywords": [
+				"parahuman"
+			],
+			"hitpoints": 4,
+			"body": [
+				"At the end of the environment turn, this card deals the non-environment target with the lowest HP 2 lightning damage.",
+				"If [i]Uber[/i] is in play, increase damage dealt by [i]Uber[/i] and [i]Leet[/i] by 1."
+			],
+			"icons": [
+				"EndOfTurnAction",
+				"DealDamageLightning",
+				"IncreaseDamageDealt"
+			],
+			"flavorText": "“I can make anything,” Leet boasted. “[i]Once.[/i] You{BR}can make anything [i]once.[/i] But the closer{BR}something you invent is to something you've{BR}made before, the more likely it is to blow up in  your face or misfire.”",
+			"flavorQuotes": [
+				{
+					"identifier": "Leet",
+					"text": "I can make anything."
+				},
+				{
+					"identifier": "Tattletale",
+					"text": "[i]Once.[/i] You can make anything [i]once.[/i] But the closer something you invent is to something you've made before, the more likely it is to blow up in your face or misfire. Real impressive."
+				}
+			]
+		},
+		{
+			"identifier": "PRTSquad",
+			"count": 3,
+			"title": "PRT Squad",
+			"hitpoints": 5,
+			"body": [
+				"At the end of the environment turn, this card deals the non-environment target with the lowest HP 2 projectile damage."
+			],
+			"icons": [
+				"EndOfTurnAction",
+				"DealDamageProjectile"
+			],
+			"flavorText": "Their very recognizable uniforms were chain{BR}mesh augmented with kevlar, topped with{BR}faceless helmets. The only means you had to{BR}identify them with were the badge numbers."
+		},
+		{
+			"identifier": "Rooftops",
+			"count": 1,
+			"title": "Rooftops",
+			"body": [
+				"Increase all damage by 1.",
+				"At the end of their turn, a player may discard 2 cards to destroy this card."
+			],
+			"icons": [
+				"IncreaseDamageDealt",
+				"EndOfTurnAction",
+				"Discard",
+				"DestroySelf"
+			],
+			"flavorText": "I could just imagine the flames igniting the{BR}rooftop, and just how little I'd be able to{BR}do if it happened."
+		},
+		{
+			"identifier": "Scum",
+			"count": 3,
+			"title": "Scum",
+			"keywords": [
+				"scum"
+			],
+			"hitpoints": 4,
+			"body": [
+				"At the end of the environment turn, this card deals the non-environment target with the second highest HP X projectile damage, where X is 2 times the number of Scum in play."
+			],
+			"icons": [
+				"EndOfTurnAction",
+				"DealDamageProjectile"
+			],
+			"flavorText": "Some had their faces exposed, others wore{BR}kerchiefs over the lower halves of their{BR}faces. One had a bandanna folded so it{BR}covered one eye. She couldn't think straight."
+		},
+		{
+			"identifier": "TheBoardwalk",
+			"count": 1,
+			"title": "The Boardwalk",
+			"keywords": [
+				"suburb"
+			],
+			"body": [
+				"When this card enters play, destroy all other Suburb cards.",
+				"Reduce damage dealt to environment targets by 1."
+			],
+			"icons": [
+				"Destroy",
+				"ReduceDamageTaken"
+			],
+			"flavorText": "There were shops that sold dresses for over{BR}a thousand dollars, cafes with ludicrously{BR}expensive coffees and stretches of wooden{BR}walkways and beaches where tourists could  get a great view of the ocean."
+		},
+		{
+			"identifier": "TheDocks",
+			"count": 1,
+			"title": "The Docks",
+			"keywords": [
+				"suburb"
+			],
+			"body": [
+				"When this card enters play, destroy all other Suburb cards.",
+				"Increase damage dealt by environment targets by 1."
+			],
+			"icons": [
+				"Destroy",
+				"IncreaseDamageDealt"
+			],
+			"flavorText": "Even on my runs, I had scrupulously stayed{BR}on the Boardwalk and avoided the bad part of{BR}town. Now it was Sunday night and I was in{BR}costume and breaking the rules."
+		},
+		{
+			"identifier": "TheOutskirts",
+			"count": 1,
+			"title": "The Outskirts",
+			"keywords": [
+				"suburb"
+			],
+			"body": [
+				"When this card enters play, destroy all other Suburb cards.",
+				"At the end of the environment turn, play the top card of the environment deck."
+			],
+			"icons": [
+				"Destroy",
+				"EndOfTurnAction",
+				"PlayCardNow"
+			],
+			"flavorText": "“The howling. If you can hear the howling,{BR}you're too fucking close. Leave.”",
+			"flavorQuotes": [
+				{
+					"identifier": "Bitch",
+					"text": "The howling. If you can hear the howling, you're too fucking close. Leave."
+				}
+			]
+		},
+		{
+			"identifier": "Uber",
+			"count": 1,
+			"title": "Uber",
+			"keywords": [
+				"parahuman"
+			],
+			"hitpoints": 4,
+			"body": [
+				"At the end of the environment turn, this card deals the non-environment target with the highest HP 2 melee damage. Then, if [i]Leet[/i] is in play, [i]Uber[/i] and [i]Leet[/i] each regain 1 HP."
+			],
+			"icons": [
+				"EndOfTurnAction",
+				"DealDamageMelee",
+				"GainHP"
+			],
+			"flavorText": "Uber and Leet. I can't tell you two how{BR}relieved I am. For a few seconds, I thought{BR}we had something to be worried about.",
+			"flavorQuotes": [
+				{
+					"identifier": "Tattletale",
+					"text": "Uber and Leet. I can't tell you two how relieved I am. For a few seconds, I thought we had something to be worried about."
+				}
+			]
+		}
+	]
+}
