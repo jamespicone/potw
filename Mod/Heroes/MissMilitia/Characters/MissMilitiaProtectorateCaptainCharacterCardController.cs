@@ -29,13 +29,12 @@ namespace Jp.ParahumansOfTheWormverse.MissMilitia
         public override IEnumerator UsePower(int index = 0)
         {
             // "You may use a power on a Weapon card, activating all of its {sniper}{machete}{smg}{pistol} effects."
-            var chosen = new List<SelectCardDecision>();
-            var e = GameController.SelectCardAndStoreResults(
+            var results = new List<UsePowerDecision>();
+            activateAllWeaponEffects = true;
+            var e = GameController.SelectAndUsePower(
                 HeroTurnTakerController,
-                SelectionType.UsePower,
-                new LinqCardCriteria((c) => c.IsInPlayAndHasGameText && c.DoKeywordsContain("weapon"), "Weapon"),
-                chosen,
-                optional: true,
+                powerCriteria: (p) => p.CardController.Card.DoKeywordsContain("weapon"),
+                storedResults: results,
                 cardSource: GetCardSource()
             );
             if (UseUnityCoroutines)
@@ -46,20 +45,13 @@ namespace Jp.ParahumansOfTheWormverse.MissMilitia
             {
                 GameController.ExhaustCoroutine(e);
             }
+            activateAllWeaponEffects = false;
 
-            var selectedWeapon = GetSelectedCard(chosen);
-            if (selectedWeapon != null)
+            // "Return that card to your hand."
+            if (WasPowerUsed(results))
             {
-                var results = new List<UsePowerDecision>();
-                CardController selectedController = FindCardController(selectedWeapon);
-
-                activateAllWeaponEffects = true;
-                e = GameController.SelectAndUsePower(
-                    HeroTurnTakerController,
-                    powerCriteria: (p) => p.CardController == selectedController,
-                    storedResults: results,
-                    cardSource: GetCardSource()
-                );
+                var selectedWeapon = results.FirstOrDefault().SelectedPower.CardController.Card;
+                e = GameController.MoveCard(TurnTakerController, selectedWeapon, HeroTurnTaker.Hand, responsibleTurnTaker: TurnTaker, cardSource: GetCardSource());
                 if (UseUnityCoroutines)
                 {
                     yield return GameController.StartCoroutine(e);
@@ -67,21 +59,6 @@ namespace Jp.ParahumansOfTheWormverse.MissMilitia
                 else
                 {
                     GameController.ExhaustCoroutine(e);
-                }
-                activateAllWeaponEffects = false;
-
-                // "Return that card to your hand."
-                if (WasPowerUsed(results))
-                {
-                    e = GameController.MoveCard(TurnTakerController, selectedWeapon, HeroTurnTaker.Hand, responsibleTurnTaker: TurnTaker, cardSource: GetCardSource());
-                    if (UseUnityCoroutines)
-                    {
-                        yield return GameController.StartCoroutine(e);
-                    }
-                    else
-                    {
-                        GameController.ExhaustCoroutine(e);
-                    }
                 }
             }
             
