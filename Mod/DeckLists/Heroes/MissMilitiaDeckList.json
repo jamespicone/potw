@@ -154,7 +154,7 @@
 				"weapon"
 			],
 			"powers": [
-				"{MissMilitiaCharacter} deals a non-hero target 2 melee damage.{BR}If you have used the power on [i]Submachine Gun[/i] since the start of your last turn, {MissMilitiaCharacter} deals that target 3 melee damage."
+				"Until the end of your next turn activate [b]Machete[/b] effects{BR}{MissMilitiaCharacter} deals a non-hero target 2 melee damage.{BR}[b]SMG[/b]: {MissMilitiaCharacter} deals that target 3 melee damage."
 			],
 			"icons": [
 				"HasPower",
@@ -207,7 +207,7 @@
 				"weapon"
 			],
 			"powers": [
-				"{MissMilitiaCharacter} deals a non-hero target 2 projectile damage.{BR}If you have used the power on [i]Submachine Gun[/i] since the start of your last turn, you may play a card."
+				"Until the end of your next turn activate [b]Pistol[/b] effects{BR}{MissMilitiaCharacter} deals a non-hero target 2 projectile damage.{BR}[b]SMG:[/b] you may play a card."
 			],
 			"icons": [
 				"HasPower",
@@ -226,7 +226,7 @@
 				"weapon"
 			],
 			"powers": [
-				"Discard a card. Select a target. At the start of your next turn, {MissMilitiaCharacter} deals that target 4 projectile damage.{BR}If you have used the power on [i]Pistol[/i] since the start of your last turn, draw 3 cards."
+				"Until the end of your next turn activate [b]Sniper[/b] effects{BR}Discard a card. Select a target. At the start of your next turn, {MissMilitiaCharacter} deals that target 4 projectile damage.{BR}[b]Pistol[/b]: draw 3 cards."
 			],
 			"icons": [
 				"HasPower",
@@ -247,7 +247,7 @@
 				"weapon"
 			],
 			"powers": [
-				"{MissMilitiaCharacter} deals up to 3 non-hero targets 1 projectile damage each.{BR}If you have used the power on [i]Machete[/i] since the start of your last turn, you may destroy an Ongoing or environment card.{BR}If you have used the power on [i]Sniper Rifle[/i] since the start of your last turn, you may put a non-hero non-character target in play on top of its deck."
+				"Until the end of your next turn activate [b]SMG[/b] effects{BR}{MissMilitiaCharacter} deals up to 3 non-hero targets 1 projectile damage each.{BR}[b]Machete[/b]: you may destroy an Ongoing or environment card.{BR}[b]Sniper[/b]: you may put a non-hero non-character target in play on top of its deck."
 			],
 			"icons": [
 				"HasPower",
@@ -267,11 +267,10 @@
 				"one-shot"
 			],
 			"body": [
-				"Activate each effect in order if you have used the power on the corresponding Weapon card since the start of your last turn:",
-				"[i]Submachine Gun[/i]: Increase damage dealt by {MissMilitiaCharacter} this turn by 1.",
-				"[i]Machete[/i]: {MissMilitiaCharacter} may deal a non-hero target 1 irreducible melee damage.",
-				"[i]Pistol[/i]: Draw a card.",
-				"[i]Sniper Rifle[/i]: You may destroy a non-character card non-hero target."
+				"[b]SMG[/b]: Increase damage dealt by {MissMilitiaCharacter} this turn by 1.",
+				"[b]Machete[/b]: {MissMilitiaCharacter} may deal a non-hero target 1 irreducible melee damage.",
+				"[b]Pistol[/b]: Draw a card.",
+				"[b]Sniper[/b]: You may destroy a non-character card non-hero target."
 			],
 			"icons": [
 				"IncreaseDamageDealt",
@@ -294,7 +293,7 @@
 			"backgroundColor": "96FF9C",
 			"character": true,
 			"powers": [
-				"You may use a power on a Weapon card, treating it as if all Weapon powers have been used since your last turn. Return that card to your hand. You may play a Weapon card."
+				"You may use a power on a Weapon card, activating [b]Pistol[/b], [b]Machete[/b], [b]Sniper[/b] and [b]SMG[/b] effects. Return that card to your hand. You may play a Weapon card."
 			],
 			"icons": [
 				"HasPower",

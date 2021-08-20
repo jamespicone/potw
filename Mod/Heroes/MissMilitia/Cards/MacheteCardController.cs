@@ -14,12 +14,12 @@ namespace Jp.ParahumansOfTheWormverse.MissMilitia
     public class MacheteCardController : WeaponCardController
     {
         public MacheteCardController(Card card, TurnTakerController turnTakerController)
-            : base(card, turnTakerController, "{machete}")
+            : base(card, turnTakerController, WeaponType.Machete)
         {
-            ShowWeaponStatusIfActive(SubmachineGunKey);
+            ShowWeaponStatusIfActive(WeaponType.SubmachineGun);
         }
 
-        public override IEnumerator UsePower(int index = 0)
+        protected override IEnumerator DoWeaponEffect(bool activateAll)
         {
             int firstAmount = GetPowerNumeral(0, 2);
             int secondAmount = GetPowerNumeral(1, 3);
@@ -48,7 +48,7 @@ namespace Jp.ParahumansOfTheWormverse.MissMilitia
             }
 
             // "{smg} {MissMilitiaCharacter} deals that target 3 melee damage."
-            if (ActivateWeaponEffectForPower(SubmachineGunKey) && targetChoice?.FirstOrDefault()?.SelectedCard != null)
+            if ((activateAll || this.ShouldActivateWeaponAbility(WeaponType.SubmachineGun)) && targetChoice?.FirstOrDefault()?.SelectedCard != null)
             {
                 e = DealDamage(
                     CharacterCard,

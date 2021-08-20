@@ -16,10 +16,10 @@ namespace Jp.ParahumansOfTheWormverse.MissMilitia
         public WeaponryCardController(Card card, TurnTakerController turnTakerController)
             : base(card, turnTakerController)
         {
-            ShowWeaponStatusIfActive(SubmachineGunKey);
-            ShowWeaponStatusIfActive(MacheteKey);
-            ShowWeaponStatusIfActive(PistolKey);
-            ShowWeaponStatusIfActive(SniperRifleKey);
+            ShowWeaponStatusIfActive(WeaponType.SubmachineGun);
+            ShowWeaponStatusIfActive(WeaponType.Machete);
+            ShowWeaponStatusIfActive(WeaponType.Pistol);
+            ShowWeaponStatusIfActive(WeaponType.SniperRifle);
         }
 
         public override IEnumerator Play()
@@ -27,7 +27,7 @@ namespace Jp.ParahumansOfTheWormverse.MissMilitia
             IEnumerator e;
 
             // "{smg} Increase damage dealt by {MissMilitiaCharacter} this turn by 1."
-            if (HasUsedWeaponSinceStartOfLastTurn(SubmachineGunKey))
+            if (this.ShouldActivateWeaponAbility(WeaponType.SubmachineGun))
             {
                 var increaseStatus = new IncreaseDamageStatusEffect(1);
                 increaseStatus.SourceCriteria.IsSpecificCard = base.CharacterCard;
@@ -45,7 +45,7 @@ namespace Jp.ParahumansOfTheWormverse.MissMilitia
             }
 
             // "{machete} {MissMilitiaCharacter} may deal a non-hero target 1 irreducible melee damage."
-            if (HasUsedWeaponSinceStartOfLastTurn(MacheteKey))
+            if (this.ShouldActivateWeaponAbility(WeaponType.Machete))
             {
                 e = GameController.SelectTargetsAndDealDamage(
                     HeroTurnTakerController,
@@ -70,7 +70,7 @@ namespace Jp.ParahumansOfTheWormverse.MissMilitia
             }
 
             // "{pistol} Draw a card."
-            if (HasUsedWeaponSinceStartOfLastTurn(PistolKey))
+            if (this.ShouldActivateWeaponAbility(WeaponType.Pistol))
             {
                 e = GameController.DrawCard(HeroTurnTaker, optional: false, cardSource: GetCardSource());
                 if (UseUnityCoroutines)
@@ -84,7 +84,7 @@ namespace Jp.ParahumansOfTheWormverse.MissMilitia
             }
 
             // "{sniper} You may destroy a non-character card non-hero target."
-            if (HasUsedWeaponSinceStartOfLastTurn(SniperRifleKey))
+            if (this.ShouldActivateWeaponAbility(WeaponType.SniperRifle))
             {
                 e = GameController.SelectAndDestroyCard(
                     HeroTurnTakerController,

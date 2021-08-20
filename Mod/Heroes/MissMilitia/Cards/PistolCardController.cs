@@ -14,12 +14,12 @@ namespace Jp.ParahumansOfTheWormverse.MissMilitia
     public class PistolCardController : WeaponCardController
     {
         public PistolCardController(Card card, TurnTakerController turnTakerController)
-            : base(card, turnTakerController, "{pistol}")
+            : base(card, turnTakerController, WeaponType.Pistol)
         {
-            ShowWeaponStatusIfActive(SubmachineGunKey);
+            ShowWeaponStatusIfActive(WeaponType.SubmachineGun);
         }
 
-        public override IEnumerator UsePower(int index = 0)
+        protected override IEnumerator DoWeaponEffect(bool activateAll)
         {
             int amount = GetPowerNumeral(0, 2);
 
@@ -45,7 +45,7 @@ namespace Jp.ParahumansOfTheWormverse.MissMilitia
             }
 
             // "{smg} You may play a card."
-            if (ActivateWeaponEffectForPower(SubmachineGunKey))
+            if (activateAll || this.ShouldActivateWeaponAbility(WeaponType.SubmachineGun))
             {
                 e = GameController.SelectAndPlayCardFromHand(
                     HeroTurnTakerController,

@@ -18,6 +18,14 @@ namespace Jp.ParahumansOfTheWormverse.MissMilitia
             SpecialStringMaker.ShowListOfCardsAtLocation(HeroTurnTaker.Hand, WeaponCard()).Condition = () => ! Card.IsFlipped;
         }
 
+        private bool activateAllWeaponEffects = false;
+        public bool ConsumeActivateAllWeaponEffects()
+        {
+            var ret = activateAllWeaponEffects;
+            activateAllWeaponEffects = false;
+            return ret;
+        }
+
         public override IEnumerator UsePower(int index = 0)
         {
             // "You may use a power on a Weapon card, activating all of its {sniper}{machete}{smg}{pistol} effects."
@@ -44,7 +52,8 @@ namespace Jp.ParahumansOfTheWormverse.MissMilitia
             {
                 var results = new List<UsePowerDecision>();
                 CardController selectedController = FindCardController(selectedWeapon);
-                selectedController.SetCardPropertyToTrueIfRealAction(WeaponCardController.ActivateAllIcons);
+
+                activateAllWeaponEffects = true;
                 e = GameController.SelectAndUsePower(
                     HeroTurnTakerController,
                     powerCriteria: (p) => p.CardController == selectedController,
@@ -59,11 +68,7 @@ namespace Jp.ParahumansOfTheWormverse.MissMilitia
                 {
                     GameController.ExhaustCoroutine(e);
                 }
-
-                if (IsRealAction())
-                {
-                    selectedController.SetCardProperty(WeaponCardController.ActivateAllIcons, false);
-                }
+                activateAllWeaponEffects = false;
 
                 // "Return that card to your hand."
                 if (WasPowerUsed(results))
@@ -100,6 +105,7 @@ namespace Jp.ParahumansOfTheWormverse.MissMilitia
                 case 0: e = UseIncapOption1(); break;
                 case 1: e = UseIncapOption2(); break;
                 case 2: e = UseIncapOption3(); break;
+                default: yield break;
             }
 
             if (UseUnityCoroutines)

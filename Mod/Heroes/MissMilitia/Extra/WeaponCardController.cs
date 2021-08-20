@@ -7,38 +7,50 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+using Jp.ParahumansOfTheWormverse.MissMilitia;
+
 namespace Jp.ParahumansOfTheWormverse.MissMilitia
 {
-    public class WeaponCardController : MissMilitiaUtilityCardController
+    public abstract class WeaponCardController : MissMilitiaUtilityCardController
     {
-        protected string EffectIcon
+        protected WeaponType Type
         {
             get;
             private set;
         }
 
-        public static readonly string ActivateAllIcons = "ActivateAllIcons";
-
-        public WeaponCardController(Card card, TurnTakerController turnTakerController, string icon)
+        public WeaponCardController(Card card, TurnTakerController turnTakerController, WeaponType type)
             : base(card, turnTakerController)
         {
-            AddThisCardControllerToList(CardControllerListType.ActivatesEffects);
-            EffectIcon = icon;
+            Type = type;
         }
 
-        public override bool? AskIfActivatesEffect(TurnTakerController turnTakerController, string effectKey)
+        public sealed override IEnumerator UsePower(int index = 0)
         {
-            bool? result = null;
-            if (turnTakerController == base.TurnTakerController && effectKey == EffectIcon)
+            var effect = new ActivateEffectStatusEffect(TurnTaker, Card, MissMilitiaExtensions.EffectKey(Type));
+            effect.UntilEndOfNextTurn(TurnTaker);
+
+            bool activateAllEffects = false;
+            var controller = FindCardController(CharacterCard) as MissMilitiaProtectorateCaptainCharacterCardController;
+            if (controller != null)
             {
-                result = true;
+                activateAllEffects = controller.ConsumeActivateAllWeaponEffects();
+            }            
+
+            var e = AddStatusEffect(effect);
+            var e2 = DoWeaponEffect(activateAllEffects);
+            if (UseUnityCoroutines)
+            {
+                yield return GameController.StartCoroutine(e);
+                yield return GameController.StartCoroutine(e2);
             }
-            return result;
+            else
+            {
+                GameController.ExhaustCoroutine(e);
+                GameController.ExhaustCoroutine(e2);
+            }
         }
 
-        public bool ActivateWeaponEffectForPower(string weaponKey)
-        {
-            return HasUsedWeaponSinceStartOfLastTurn(weaponKey) || Journal.GetCardPropertiesBoolean(base.Card, ActivateAllIcons) == true;
-        }
+        protected abstract IEnumerator DoWeaponEffect(bool activateAllEffects);
     }
 }

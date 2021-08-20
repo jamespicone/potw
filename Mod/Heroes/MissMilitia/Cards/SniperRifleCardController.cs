@@ -12,12 +12,12 @@ namespace Jp.ParahumansOfTheWormverse.MissMilitia
     public class SniperRifleCardController : WeaponCardController
     {
         public SniperRifleCardController(Card card, TurnTakerController turnTakerController)
-            : base(card, turnTakerController, "{sniper}")
+            : base(card, turnTakerController, WeaponType.SniperRifle)
         {
-            ShowWeaponStatusIfActive(PistolKey);
+            ShowWeaponStatusIfActive(WeaponType.Pistol);
         }
 
-        public override IEnumerator UsePower(int index = 0)
+        protected override IEnumerator DoWeaponEffect(bool activateAll)
         {
             int amount = GetPowerNumeral(0, 4);
             int draws = GetPowerNumeral(1, 3);
@@ -74,7 +74,7 @@ namespace Jp.ParahumansOfTheWormverse.MissMilitia
                 }
             }
             // "{pistol} Draw 3 cards."
-            if (ActivateWeaponEffectForPower(PistolKey))
+            if (activateAll || this.ShouldActivateWeaponAbility(WeaponType.Pistol))
             {
                 IEnumerator drawCoroutine = base.GameController.DrawCards(base.HeroTurnTakerController, draws, cardSource: GetCardSource());
                 if (base.UseUnityCoroutines)

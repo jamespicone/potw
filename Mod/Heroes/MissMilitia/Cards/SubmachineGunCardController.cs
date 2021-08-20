@@ -14,13 +14,13 @@ namespace Jp.ParahumansOfTheWormverse.MissMilitia
     public class SubmachineGunCardController : WeaponCardController
     {
         public SubmachineGunCardController(Card card, TurnTakerController turnTakerController)
-            : base(card, turnTakerController, "{smg}")
+            : base(card, turnTakerController, WeaponType.SubmachineGun)
         {
-            ShowWeaponStatusIfActive(MacheteKey);
-            ShowWeaponStatusIfActive(SniperRifleKey);
+            ShowWeaponStatusIfActive(WeaponType.Machete);
+            ShowWeaponStatusIfActive(WeaponType.SniperRifle);
         }
 
-        public override IEnumerator UsePower(int index = 0)
+        protected override IEnumerator DoWeaponEffect(bool activateAll)
         {
             int numTargets = GetPowerNumeral(0, 3);
             int amount = GetPowerNumeral(1, 1);
@@ -47,7 +47,7 @@ namespace Jp.ParahumansOfTheWormverse.MissMilitia
             }
 
             // "{machete} You may destroy an Ongoing or environment card."
-            if (ActivateWeaponEffectForPower(MacheteKey))
+            if (activateAll || this.ShouldActivateWeaponAbility(WeaponType.Machete))
             {
                 e = GameController.SelectAndDestroyCard(
                     HeroTurnTakerController,
@@ -67,7 +67,7 @@ namespace Jp.ParahumansOfTheWormverse.MissMilitia
             }
 
             // "{sniper} You may put a non-hero non-character target in play on top of its deck."
-            if (ActivateWeaponEffectForPower(SniperRifleKey))
+            if (activateAll || this.ShouldActivateWeaponAbility(WeaponType.SniperRifle))
             {
                 var cardChoices = new List<SelectCardDecision>();
                 e = GameController.SelectCardAndStoreResults(

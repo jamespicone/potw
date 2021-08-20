@@ -7,6 +7,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+using Jp.ParahumansOfTheWormverse.Utility;
+
 namespace Jp.ParahumansOfTheWormverse.MissMilitia
 {
     public class MissMilitiaCharacterCardController : MissMilitiaUtilityCharacterCardController
@@ -62,6 +64,7 @@ namespace Jp.ParahumansOfTheWormverse.MissMilitia
                 case 0: e = UseIncapOption1(); break;
                 case 1: e = UseIncapOption2(); break;
                 case 2: e = UseIncapOption3(); break;
+                default: yield break;
             }
 
             if (UseUnityCoroutines)
