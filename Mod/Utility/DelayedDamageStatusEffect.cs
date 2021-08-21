@@ -26,6 +26,7 @@ namespace Jp.ParahumansOfTheWormverse.Utility
             TurnTakerCriteria.IsSpecificTurnTaker = player;
             TurnPhaseCriteria.Phase = Phase.Start;
             BeforeOrAfter = BeforeOrAfter.After;
+            CanEffectStack = true;
         }
 
         public int DamageToDeal { get; private set; }
