@@ -7,6 +7,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+using Jp.ParahumansOfTheWormverse.Utility;
+
 namespace Jp.ParahumansOfTheWormverse.MissMilitia
 {
     public class SniperRifleCardController : WeaponCardController
@@ -38,90 +40,75 @@ namespace Jp.ParahumansOfTheWormverse.MissMilitia
             }
 
             // "Select a target. At the start of your next turn, {MissMilitiaCharacter} deals that target 4 projectile damage."
-            List<SelectTargetDecision> choices = new List<SelectTargetDecision>();
+            var choices = new List<SelectTargetDecision>();
             IEnumerable<Card> targets = GameController.FindTargetsInPlay();
-            IEnumerator selectCoroutine = base.GameController.SelectTargetAndStoreResults(base.HeroTurnTakerController, targets, choices, damageSource: base.CharacterCard, damageAmount: (Card c) => amount, damageType: DamageType.Projectile, selectionType: SelectionType.SelectTargetNoDamage, cardSource: GetCardSource());
-            if (base.UseUnityCoroutines)
+            e = GameController.SelectTargetAndStoreResults(
+                HeroTurnTakerController,
+                GameController.FindTargetsInPlay(),
+                choices,
+                damageSource: CharacterCard,
+                damageAmount: c => amount,
+                damageType: DamageType.Projectile,
+                selectionType: SelectionType.SelectTargetNoDamage,
+                cardSource: GetCardSource()
+            );
+            if (UseUnityCoroutines)
             {
-                yield return base.GameController.StartCoroutine(selectCoroutine);
+                yield return GameController.StartCoroutine(e);
             }
             else
             {
-                base.GameController.ExhaustCoroutine(selectCoroutine);
+                GameController.ExhaustCoroutine(e);
             }
-            Card targeted = choices.FirstOrDefault()?.SelectedCard;
+
+            var targeted = choices.FirstOrDefault()?.SelectedCard;
             if (targeted != null)
             {
-                OnPhaseChangeStatusEffect shootEffect = new OnPhaseChangeStatusEffect(base.Card, nameof(ShootResponse), "At the start of her next turn, " + base.CharacterCard.Title + " will deal " + amount.ToString() + " projectile damage to " + targeted.Title + ".", new TriggerType[] { TriggerType.DealDamage }, base.Card);
-                shootEffect.UntilEndOfNextTurn(base.TurnTaker);
-                shootEffect.TurnTakerCriteria.IsSpecificTurnTaker = base.TurnTaker;
-                shootEffect.UntilTargetLeavesPlay(targeted);
-                shootEffect.TurnPhaseCriteria.Phase = Phase.Start;
-                shootEffect.BeforeOrAfter = BeforeOrAfter.After;
-                shootEffect.CanEffectStack = true;
-                shootEffect.CardSource = base.Card;
-                shootEffect.NumberOfUses = 1;
-                shootEffect.DoesDealDamage = true;
-                //shootEffect.SetPowerNumeralsArray(new int[] { amount, draws });
-                IEnumerator shootCoroutine = base.GameController.AddStatusEffect(shootEffect, true, GetCardSource());
-                if (base.UseUnityCoroutines)
+                var effect = new DelayedDamageStatusEffect(
+                    CardWithoutReplacements,
+                    nameof(ShootResponse),
+                    $"At the start of her next turn, {CharacterCard.Title} will deal {amount} projectile damage to {targeted.Title}.",
+                    Card
+                );
+
+                effect.DealDamageToTargetAtStartOfNextTurn(TurnTaker, targeted, amount);
+                e = GameController.AddStatusEffect(effect, true, GetCardSource());
+                if (UseUnityCoroutines)
                 {
-                    yield return base.GameController.StartCoroutine(shootCoroutine);
+                    yield return GameController.StartCoroutine(e);
                 }
                 else
                 {
-                    base.GameController.ExhaustCoroutine(shootCoroutine);
+                    GameController.ExhaustCoroutine(e);
                 }
             }
+
             // "{pistol} Draw 3 cards."
             if (activateAll || this.ShouldActivateWeaponAbility(WeaponType.Pistol))
             {
-                IEnumerator drawCoroutine = base.GameController.DrawCards(base.HeroTurnTakerController, draws, cardSource: GetCardSource());
-                if (base.UseUnityCoroutines)
+                e = GameController.DrawCards(HeroTurnTakerController, draws, cardSource: GetCardSource());
+                if (UseUnityCoroutines)
                 {
-                    yield return base.GameController.StartCoroutine(drawCoroutine);
+                    yield return GameController.StartCoroutine(e);
                 }
                 else
                 {
-                    base.GameController.ExhaustCoroutine(drawCoroutine);
+                    GameController.ExhaustCoroutine(e);
                 }
             }
-            yield break;
         }
 
         public IEnumerator ShootResponse(PhaseChangeAction pca, OnPhaseChangeStatusEffect sourceEffect)
         {
-            // "... {MissMilitiaCharacter} deals that target 4(?) projectile damage."
-            var target = sourceEffect.TargetLeavesPlayExpiryCriteria.IsOneOfTheseCards.FirstOrDefault();
-            int powerNumeral = sourceEffect.PowerNumeralsToChange[0];
-            if (!base.CharacterCard.IsIncapacitatedOrOutOfGame && target.IsTarget && target.IsInPlayAndNotUnderCard)
+            var e = this.DoDelayedDamage(sourceEffect);
+            if (UseUnityCoroutines)
             {
-                if (GameController.IsCardVisibleToCardSource(target, new CardSource(FindCardController(base.CharacterCard))) != true)
-                {
-                    IEnumerator messageCoroutine = base.GameController.SendMessageAction(base.CharacterCardWithoutReplacements.Title + " can't hit " + target.Title + " from here!", Priority.Medium, GetCardSource(), new Card[] { target });
-                    if (base.UseUnityCoroutines)
-                    {
-                        yield return base.GameController.StartCoroutine(messageCoroutine);
-                    }
-                    else
-                    {
-                        base.GameController.ExhaustCoroutine(messageCoroutine);
-                    }
-                }
-                else
-                {
-                    IEnumerator damageCoroutine = DealDamage(base.CharacterCard, target, powerNumeral, DamageType.Projectile, cardSource: GetCardSource());
-                    if (base.UseUnityCoroutines)
-                    {
-                        yield return base.GameController.StartCoroutine(damageCoroutine);
-                    }
-                    else
-                    {
-                        base.GameController.ExhaustCoroutine(damageCoroutine);
-                    }
-                }
+                yield return GameController.StartCoroutine(e);
             }
-            yield break;
+            else
+            {
+                GameController.ExhaustCoroutine(e);
+            }
         }
     }
 }
