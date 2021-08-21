@@ -35,7 +35,6 @@ namespace Jp.ParahumansOfTheWormverse.Tattletale
                 GameController.ExhaustCoroutine(powersCoroutine);
             }
             // "Whenever {TattletaleCharacter} uses a power this turn, she deals herself 1 psychic damage."
-            // NEEDS TESTING
             DealDamageAfterUsePowerStatusEffect backlashStatus = new DealDamageAfterUsePowerStatusEffect(base.HeroTurnTaker, base.CharacterCard, base.CharacterCard, 1, DamageType.Psychic, 1, false);
             backlashStatus.UntilThisTurnIsOver(base.Game);
             IEnumerator statusCoroutine = base.AddStatusEffect(backlashStatus);

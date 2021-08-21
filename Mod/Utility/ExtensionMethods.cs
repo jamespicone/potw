@@ -17,6 +17,5 @@ namespace Jp.ParahumansOfTheWormverse.Utility
 
 			return c.IsHero && c.IsTarget;
 		}
-
     }
 }
