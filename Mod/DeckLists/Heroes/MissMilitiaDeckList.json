@@ -124,8 +124,13 @@
 				"EndOfTurnAction",
 				"DrawCardNow"
 			],
-			"flavorText": "Hannah's eyes snapped open.{BR}This is why I don't sleep.",
-			"flavorReference": "Interlude 7"
+			"flavorQuotes": [
+				{
+					"identifier": "Miss Militia",
+					"text": "I don't sleep.{BR}Not really,{BR}since I got my powers"
+				}
+			],
+			"flavorReference": "Miss Militia, Interlude 7"
 		},
 		{
 			"identifier": "IHaveMore",
@@ -176,8 +181,13 @@
 			"icons": [
 				"Manipulate"
 			],
-			"flavorText": "“Taylor!” she called out, as if she{BR}could reach me that way. “I'm not going{BR}to shoot, but you have to stop!”",
-			"flavorReference": "Cell 22.4"
+			"flavorQuotes": [
+				{
+					"identifier": "Miss Militia",
+					"text": "Taylor!{BR}I'm not going to shoot,{BR}but you have to stop!"
+				}
+			],
+			"flavorReference": "Miss Militia, Cell 22.4"
 		},
 		{
 			"identifier": "Overdrive",
