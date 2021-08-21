@@ -14,119 +14,198 @@ namespace Jp.ParahumansOfTheWormverse.MissMilitia
         public OverdriveCardController(Card card, TurnTakerController turnTakerController)
             : base(card, turnTakerController)
         {
-            SpecialStringMaker.ShowNumberOfCardsInPlay(YourUniqueWeaponsInPlay(), owners: new TurnTaker[] { base.TurnTaker });
+            SpecialStringMaker.ShowNumberOfCardsInPlay(YourUniqueWeaponsInPlay(TurnTaker));
         }
 
-        public LinqCardCriteria YourUniqueWeaponsInPlay()
+        public override void AddTriggers()
         {
-            return new LinqCardCriteria((Card c) => c.IsInPlayAndHasGameText && c.DoKeywordsContain("weapon") && FindCardController(c).IsFirstOrOnlyCopyOfThisCardInPlay(), "unique Weapon");
+            AddTrigger<GameAction>(
+                ga => ! (ga is SetPhaseActionCountAction) && ShouldUpdatePhaseCount(),
+                ga => UpdatePhaseCount(),
+                TriggerType.SetPhaseActionCount,
+                TriggerTiming.After,
+                outOfPlayTrigger: true
+            );
         }
 
-        public int NumberOfUniqueWeaponsInPlay()
+        public LinqCardCriteria YourUniqueWeaponsInPlay(TurnTaker owner)
         {
-            return FindCardsWhere(YourUniqueWeaponsInPlay(), visibleToCard: GetCardSource()).Count();
+            return new LinqCardCriteria((c) => c.IsInPlayAndHasGameText && c.Owner == owner && c.DoKeywordsContain("weapon") && FindCardController(c).IsFirstOrOnlyCopyOfThisCardInPlay(), "unique Weapon");
+        }
+
+        public int NumberOfUniqueWeaponsInPlay(TurnTaker owner)
+        {
+            return FindCardsWhere(YourUniqueWeaponsInPlay(owner), visibleToCard: GetCardSource()).Count();
         }
 
         public override IEnumerator Play()
         {
+            IEnumerator e;
+
             // "Count the number of your unique Weapon cards in play. You may use that many powers this turn."
-            if (NumberOfUniqueWeaponsInPlay() <= 0)
+            if (NumberOfUniqueWeaponsInPlay(TurnTaker) <= 0)
             {
-                IEnumerator messageCoroutine = base.GameController.SendMessageAction(base.TurnTaker.Name + " has no Weapon cards in play, so they may not use powers this turn.", Priority.High, GetCardSource());
-                if (base.UseUnityCoroutines)
+                e = GameController.SendMessageAction(TurnTaker.Name + " has no Weapon cards in play, so they may not use powers this turn.", Priority.High, GetCardSource());
+                if (UseUnityCoroutines)
                 {
-                    yield return base.GameController.StartCoroutine(messageCoroutine);
+                    yield return GameController.StartCoroutine(e);
                 }
                 else
                 {
-                    base.GameController.ExhaustCoroutine(messageCoroutine);
+                    GameController.ExhaustCoroutine(e);
                 }
             }
-            // Note: basing implementation on cards like Flame Spike or Smite the Transgressor but with variable amount of powers, because Unload is implemented using CardCriteria which doesn't have a way of checking uniqueness
-            if (base.GameController.ActiveTurnTaker == base.TurnTaker)
+
+            // If played off-turn or after power step gives immediate power uses. Otherwise we add our marker status effect.
+            // TODO: This doesn't work properly with strange phase orders. It matches Expatriette's Unload though. Possibly a base game bug?
+            if (GameController.ActiveTurnTaker == TurnTaker && GameController.ActiveTurnPhase.Phase < Phase.UsePower)
             {
-                TurnPhase powerPhase = (from TurnPhase phase in GameController.ActiveTurnTaker.ToHero().TurnPhases where phase.IsUsePower select phase).FirstOrDefault();
-                int additionalPowers = NumberOfUniqueWeaponsInPlay();
-                Log.Debug(base.TurnTaker.Name + " has " + NumberOfUniqueWeaponsInPlay().ToString() + " unique Weapons in play.");
-                if (powerPhase == null)
+                var effect = new OnPhaseChangeStatusEffect(
+                    CardWithoutReplacements,
+                    nameof(NoOpEffect),
+                    $"This turn {TurnTaker.Name} may use as many powers as they have unique Weapon cards in play",
+                    new TriggerType[] { TriggerType.SetPhaseActionCount },
+                    Card
+                );
+
+                effect.UntilEndOfPhase(TurnTaker, Phase.UsePower);
+                effect.UntilThisTurnIsOver(Game);
+
+                e = AddStatusEffect(effect);
+                if (UseUnityCoroutines)
                 {
-                    Log.Debug("Couldn't find power phase from ActiveTurnTaker.");
-                }
-                else if (!powerPhase.GetPhaseActionCount().HasValue)
-                {
-                    Log.Debug("Found power phase from ActiveTurnTaker, but GetPhaseActionCount() returned " + powerPhase.GetPhaseActionCount().ToString());
-                }
-                if (powerPhase != null && powerPhase.GetPhaseActionCount().HasValue)
-                {
-                    Log.Debug("Current number of powers this turn: " + powerPhase.GetPhaseActionCount().Value.ToString());
-                    additionalPowers -= powerPhase.GetPhaseActionCount().Value;
-                    int totalPowers = additionalPowers + powerPhase.GetPhaseActionCount().Value;
-                    Log.Debug("Granting " + additionalPowers.ToString() + " bonus powers for a total of " + totalPowers.ToString() + ".");
-                }
-                IEnumerator powersCoroutine = AdditionalPhaseActionThisTurn(base.TurnTaker, Phase.UsePower, additionalPowers);
-                if (base.UseUnityCoroutines)
-                {
-                    yield return base.GameController.StartCoroutine(powersCoroutine);
+                    yield return GameController.StartCoroutine(e);
                 }
                 else
                 {
-                    base.GameController.ExhaustCoroutine(powersCoroutine);
+                    GameController.ExhaustCoroutine(e);
                 }
             }
             else
             {
-                int powersUsed = (from e in base.Journal.UsePowerEntriesThisTurn() where e.PowerUser == base.HeroTurnTaker select e).Count();
-                if (powersUsed < NumberOfUniqueWeaponsInPlay())
+                var powersUsed = (from p in Journal.UsePowerEntriesThisTurn() where p.PowerUser == HeroTurnTaker select p).Count();
+                while (powersUsed < NumberOfUniqueWeaponsInPlay(TurnTaker))
                 {
-                    int powersRemaining = NumberOfUniqueWeaponsInPlay() - powersUsed;
-                    IEnumerator powerCoroutine = base.GameController.SelectAndUsePower(base.HeroTurnTakerController, numberOfPowers: powersRemaining, cardSource: GetCardSource());
-                    if (base.UseUnityCoroutines)
+                    var results = new List<UsePowerDecision>();
+                    e = GameController.SelectAndUsePower(HeroTurnTakerController, storedResults: results, cardSource: GetCardSource());
+                    if (UseUnityCoroutines)
                     {
-                        yield return base.GameController.StartCoroutine(powerCoroutine);
+                        yield return GameController.StartCoroutine(e);
                     }
                     else
                     {
-                        base.GameController.ExhaustCoroutine(powerCoroutine);
+                        GameController.ExhaustCoroutine(e);
+                    }
+                    ++powersUsed;
+
+                    if (! WasPowerUsed(results))
+                    {
+                        break;
                     }
                 }
             }
+
             // "At the end of this turn, destroy each Weapon card whose power you used this turn."
-            OnPhaseChangeStatusEffect weaponExpiration = new OnPhaseChangeStatusEffect(base.CardWithoutReplacements, nameof(DestroyUsedWeaponsResponse), "At the end of this turn, destroy each Weapon card whose power " + base.TurnTaker.Name + " used this turn.", new TriggerType[] { TriggerType.DestroyCard }, base.Card);
-            weaponExpiration.NumberOfUses = 1;
+            OnPhaseChangeStatusEffect weaponExpiration = new OnPhaseChangeStatusEffect(
+                CardWithoutReplacements,
+                nameof(DestroyUsedWeaponsResponse),
+                "At the end of this turn, destroy each Weapon card whose power " + TurnTaker.Name + " used this turn.",
+                new TriggerType[] { TriggerType.DestroyCard },
+                Card
+            );
+
             weaponExpiration.BeforeOrAfter = BeforeOrAfter.After;
             weaponExpiration.TurnTakerCriteria.IsSpecificTurnTaker = Game.ActiveTurnTaker;
             weaponExpiration.TurnPhaseCriteria.Phase = Phase.End;
-            weaponExpiration.TurnIndexCriteria.EqualTo = base.Game.TurnIndex;
-            IEnumerator expireCoroutine = base.GameController.AddStatusEffect(weaponExpiration, true, GetCardSource());
-            if (base.UseUnityCoroutines)
+            weaponExpiration.TurnIndexCriteria.EqualTo = Game.TurnIndex;
+
+            weaponExpiration.UntilThisTurnIsOver(Game);
+
+            e = GameController.AddStatusEffect(weaponExpiration, true, GetCardSource());
+            if (UseUnityCoroutines)
             {
-                yield return base.GameController.StartCoroutine(expireCoroutine);
+                yield return GameController.StartCoroutine(e);
             }
             else
             {
-                base.GameController.ExhaustCoroutine(expireCoroutine);
+                GameController.ExhaustCoroutine(e);
             }
-            yield break;
         }
 
         public IEnumerator DestroyUsedWeaponsResponse(PhaseChangeAction pca, OnPhaseChangeStatusEffect sourceEffect)
         {
             // "... destroy each Weapon card whose power you used this turn."
-            Log.Debug("Overdrive activating DestroyUsedWeaponsResponse");
-            List<Card> usedWeapons = (from e in base.Journal.UsePowerEntriesThisTurn() where e.PowerUser == base.HeroTurnTaker && e.CardWithPower.DoKeywordsContain("weapon") select e.CardWithPower).ToList();
-            foreach (Card weapon in usedWeapons)
+            var usedWeapons = (from p in Journal.UsePowerEntriesThisTurn() where p.PowerUser == HeroTurnTaker && p.CardWithPower.DoKeywordsContain("weapon") select p.CardWithPower);
+
+            var e = GameController.DestroyCards(
+                HeroTurnTakerController,
+                new LinqCardCriteria(
+                    c => usedWeapons.Contains(c),
+                    "Weapon cards whose powers were used by " + TurnTaker.Name + " this turn",
+                    useCardsSuffix: false,
+                    singular: "Weapon card whose power was used by " + TurnTaker.Name + " this turn",
+                    plural: "Weapon cards whose powers were used by " + TurnTaker.Name + " this turn"
+                ),
+                cardSource: GetCardSource()
+            );
+
+            if (UseUnityCoroutines)
             {
-                Log.Debug(weapon.Title + " was used this turn and will be destroyed.");
-            }
-            IEnumerator destroyCoroutine = base.GameController.DestroyCards(base.HeroTurnTakerController, new LinqCardCriteria((Card c) => usedWeapons.Contains(c), "Weapon cards whose powers were used by " + base.TurnTaker.Name + " this turn", false, false, "Weapon card whose power was used by " + base.TurnTaker.Name + " this turn", "Weapon cards whose powers were used by " + base.TurnTaker.Name + " this turn"), cardSource: GetCardSource());
-            if (base.UseUnityCoroutines)
-            {
-                yield return base.GameController.StartCoroutine(destroyCoroutine);
+                yield return GameController.StartCoroutine(e);
             }
             else
             {
-                base.GameController.ExhaustCoroutine(destroyCoroutine);
+                GameController.ExhaustCoroutine(e);
             }
+        }
+
+        private bool ShouldUpdatePhaseCount()
+        {
+            var myStatusEffects = GameController.StatusEffectManager.StatusEffectControllers.Select(sec => sec.StatusEffect).Where(se => se.CardSource == Card);
+            foreach (var effect in myStatusEffects)
+            {
+                var turntaker = effect.FromTurnPhaseExpiryCriteria.TurnTaker;
+                var phase = FindTurnPhase(turntaker, Phase.UsePower);
+                if (phase == null)
+                {
+                    continue;
+                }
+
+                if (phase.GetPhaseActionCount() != NumberOfUniqueWeaponsInPlay(turntaker))
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        private IEnumerator UpdatePhaseCount()
+        {
+            var myStatusEffects = GameController.StatusEffectManager.StatusEffectControllers.Select(sec => sec.StatusEffect).Where(se => se.CardSource == Card);
+            foreach (var effect in myStatusEffects)
+            {
+                var turntaker = effect.FromTurnPhaseExpiryCriteria.TurnTaker;
+                var phase = FindTurnPhase(turntaker, Phase.UsePower);
+                if (phase == null)
+                {
+                    continue;
+                }
+
+                var e = GameController.SetPhaseActionCount(phase, NumberOfUniqueWeaponsInPlay(turntaker), GetCardSource());
+                if (UseUnityCoroutines)
+                {
+                    yield return GameController.StartCoroutine(e);
+                }
+                else
+                {
+                    GameController.ExhaustCoroutine(e);
+                }
+            }
+        }
+
+        public IEnumerator NoOpEffect(PhaseChangeAction p, OnPhaseChangeStatusEffect effect)
+        {
             yield break;
         }
     }
