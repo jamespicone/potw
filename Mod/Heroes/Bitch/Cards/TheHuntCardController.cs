@@ -32,6 +32,7 @@ namespace Jp.ParahumansOfTheWormverse.Bitch
                     new LinqCardCriteria(c => cards.Contains(c)),
                     storedResults,
                     optional: false,
+                    allowAutoDecide: true,
                     cardSource: GetCardSource()
                 );
                 if (UseUnityCoroutines)
