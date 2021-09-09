@@ -32,6 +32,7 @@ namespace Jp.ParahumansOfTheWormverse.Dragon
                 optional: false,
                 allowAutoDecide: false,
                 storedTurnTaker,
+                heroCriteria: new LinqTurnTakerCriteria(tt => tt != TurnTaker),
                 cardSource: GetCardSource()
             );
             if (UseUnityCoroutines)
