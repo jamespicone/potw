@@ -16,7 +16,7 @@ namespace Jp.ParahumansOfTheWormverse.Dragon
         public override void AddTriggers()
         {
             // At the start of your turn each player reveals the top card of their deck, then either returns it to the top of the deck or discards it
-            AddEndOfTurnTrigger(
+            AddStartOfTurnTrigger(
                 tt => tt == TurnTaker,
                 pca => EachPlayerLooksAtTheTopCardOfTheirDeckThenReplacesItOrDiscardsItEx(TurnTakerController),
                 TriggerType.RevealCard
