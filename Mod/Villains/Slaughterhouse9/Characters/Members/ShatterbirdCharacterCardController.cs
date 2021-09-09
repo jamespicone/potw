@@ -43,16 +43,13 @@ namespace Jp.ParahumansOfTheWormverse.Slaughterhouse9
 
         public IEnumerator GlassAttack()
         {
-            var e = GameController.SelectTargetsAndDealDamage(
-                DecisionMaker,
-                new DamageSource(GameController, Card),
-                2,
+            var e = DealDamageToHighestHP(
+                Card,
+                1,
+                c => c.IsHeroTarget(),
+                c => 2,
                 DamageType.Projectile,
-                H - 1,
-                optional: false,
-                H - 1,
-                additionalCriteria: c => c.IsHeroTarget(),
-                cardSource: GetCardSource()
+                numberOfTargets: () => H - 1
             );
 
             if (UseUnityCoroutines)
