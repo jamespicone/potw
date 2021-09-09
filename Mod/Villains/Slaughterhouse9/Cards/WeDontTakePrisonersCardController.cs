@@ -40,6 +40,7 @@ namespace Jp.ParahumansOfTheWormverse.Slaughterhouse9
                 DamageType.Psychic,
                 cards.Count(),
                 optional: false,
+                allowAutoDecide: true,
                 requiredTargets: null,
                 additionalCriteria: c => c.IsHeroCharacterCard,
                 cardSource: GetCardSource()
