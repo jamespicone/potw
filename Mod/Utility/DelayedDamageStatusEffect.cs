@@ -36,6 +36,8 @@ namespace Jp.ParahumansOfTheWormverse.Utility
     {
         public static IEnumerator DoDelayedDamage(this CardController co, OnPhaseChangeStatusEffect effect)
         {
+            co.AddThisCardControllerToList(CardControllerListType.CanCauseDamageOutOfPlay);
+
             IEnumerator e;
             while (true)
             {
