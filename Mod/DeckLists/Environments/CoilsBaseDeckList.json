@@ -220,7 +220,7 @@
 			"count": 1,
 			"title": "Stranger and Master Protocols",
 			"body": [
-				"Hero cards and effects cannot cause other heroes to draw or play cards, use powers, or regain HP.",
+				"Hero cards cannot affect or be affected by other heroes' cards and effects",
 				"At the start of their turn, a player may skip the rest of their turn to destroy this card."
 			],
 			"icons": [
@@ -251,10 +251,10 @@
 			"keywords": [
 				"structure"
 			],
-			"hitpoints": 14,
+			"hitpoints": 6,
 			"body": [
 				"Heroes cannot use powers.",
-				"At the start of their turn, a player may skip the rest of their turn to destroy this card."
+				"At the start of the environment turn this card deals 2 projectile damage to the H nonenvironment targets with the highest HP, then destroys itself"
 			],
 			"icons": [
 				"CannotUsePowers",
