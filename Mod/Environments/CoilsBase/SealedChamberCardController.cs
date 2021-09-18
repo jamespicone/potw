@@ -47,42 +47,43 @@ namespace Jp.ParahumansOfTheWormverse.CoilsBase
         private IEnumerator SkipTheirTurnToHealThisCardResponse(PhaseChangeAction pca)
         {
             // "... a player may skip the rest of their turn. If they do, this card regains 5 HP."
-            if (pca.ToPhase.IsHero)
+            if (! pca.ToPhase.IsHero) { yield break; }
+
+            
+            var hero = GameController.FindHeroTurnTakerController(pca.ToPhase.TurnTaker.ToHero());
+            var decision = new YesNoAmountDecision(GameController, hero, SelectionType.SkipTurn, 5, upTo: false, cardSource: GetCardSource());
+            var e = GameController.MakeDecisionAction(decision);
+            if (UseUnityCoroutines)
             {
-                HeroTurnTakerController hero = base.GameController.FindHeroTurnTakerController(pca.ToPhase.TurnTaker.ToHero());
-                YesNoAmountDecision decision = new YesNoAmountDecision(base.GameController, hero, SelectionType.SkipTurn, 5, upTo: false, cardSource: GetCardSource());
-                IEnumerator decideCoroutine = base.GameController.MakeDecisionAction(decision);
-                if (base.UseUnityCoroutines)
+                yield return GameController.StartCoroutine(e);
+            }
+            else
+            {
+                GameController.ExhaustCoroutine(e);
+            }
+
+            if (DidPlayerAnswerYes(decision))
+            {
+                e = GameController.GainHP(Card, 5, cardSource: GetCardSource());
+                if (UseUnityCoroutines)
                 {
-                    yield return base.GameController.StartCoroutine(decideCoroutine);
+                    yield return GameController.StartCoroutine(e);
                 }
                 else
                 {
-                    base.GameController.ExhaustCoroutine(decideCoroutine);
+                    GameController.ExhaustCoroutine(e);
                 }
-                if (DidPlayerAnswerYes(decision))
+
+                e = GameController.SkipToNextTurn(cardSource: GetCardSource());
+                if (UseUnityCoroutines)
                 {
-                    IEnumerator healCoroutine = base.GameController.GainHP(base.Card, 5, cardSource: GetCardSource());
-                    if (base.UseUnityCoroutines)
-                    {
-                        yield return base.GameController.StartCoroutine(healCoroutine);
-                    }
-                    else
-                    {
-                        base.GameController.ExhaustCoroutine(healCoroutine);
-                    }
-                    IEnumerator skipCoroutine = base.GameController.SkipToNextTurn(cardSource: GetCardSource());
-                    if (base.UseUnityCoroutines)
-                    {
-                        yield return base.GameController.StartCoroutine(skipCoroutine);
-                    }
-                    else
-                    {
-                        base.GameController.ExhaustCoroutine(skipCoroutine);
-                    }
+                    yield return GameController.StartCoroutine(e);
+                }
+                else
+                {
+                    GameController.ExhaustCoroutine(e);
                 }
             }
-            yield break;
         }
     }
 }

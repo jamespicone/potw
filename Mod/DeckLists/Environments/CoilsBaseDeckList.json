@@ -145,26 +145,20 @@
 			]
 		},
 		{
-			"identifier": "PinnedDown",
+			"identifier": "ParahumanPrison",
 			"count": 1,
-			"title": "Pinned Down",
+			"title": "Parahuman Prison",
+			"keywords": [
+				"structure"
+			],
+			"hitpoints": 6,
 			"body": [
-				"Players can't play Ongoing or Equipment cards.",
-				"At the start of their turn, a player may skip the rest of their turn to destroy this card."
+				"Whenever a non-Structure target is destroyed put it under this card, then put any other cards under this card into play.",
+				"When this card is destroyed put any cards under it into play.",
+				"Cards under this card can only be affected by this card."
 			],
-			"icons": [
-				"CannotPlayCards",
-				"StartOfTurnAction",
-				"SkipTurn",
-				"DestroySelf"
-			],
-			"flavorText": "“You'll want to verify whether Bitch, Ballistic{BR}and Genesis are captured or simply pinned{BR}down somewhere, rescue them if need be{BR}and dispatch Dragon.”",
-			"flavorQuotes": [
-				{
-					"identifier": "Coil",
-					"text": "You'll want to verify whether Bitch, Ballistic and Genesis are captured or simply pinned down somewhere, rescue them if need be and dispatch Dragon."
-				}
-			]
+			"icons": [],
+			"flavorText": "A series of barely-audible 'beeps' sounded{BR}throughout the room. What had I just{BR}disabled? Claymores? Did I really want to{BR}know?"
 		},
 		{
 			"identifier": "RepairCrew",
@@ -254,7 +248,7 @@
 			"icons": [
 				"CannotUsePowers",
 				"StartOfTurnAction",
-				"SkipTurn",
+				"DealDamageProjectile",
 				"DestroySelf"
 			],
 			"flavorText": "A series of barely-audible 'beeps' sounded{BR}throughout the room. What had I just{BR}disabled? Claymores? Did I really want to{BR}know?"

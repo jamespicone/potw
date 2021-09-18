@@ -63,6 +63,8 @@ namespace Jp.ParahumansOfTheWormverse.CoilsBase
 
         public override void AddTriggers()
         {
+            base.AddTriggers();
+
             AddTrigger<MakeDecisionsAction>(
                 mda => mda.CardSource?.Card?.IsHero ?? false,
                 mda => RemoveDecisions(mda),
