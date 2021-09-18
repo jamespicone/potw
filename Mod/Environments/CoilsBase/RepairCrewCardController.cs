@@ -19,9 +19,17 @@ namespace Jp.ParahumansOfTheWormverse.CoilsBase
 
         public override void AddTriggers()
         {
-            base.AddTriggers();
             // "At the end of the environment turn, each Structure regains 3 HP."
-            AddEndOfTurnTrigger((TurnTaker tt) => tt == base.TurnTaker, (PhaseChangeAction pca) => base.GameController.GainHP(DecisionMaker, (Card c) => c.DoKeywordsContain("structure"), 3, cardSource: GetCardSource()), TriggerType.GainHP);
+            AddEndOfTurnTrigger(
+                tt => tt == TurnTaker,
+                pca => GameController.GainHP(
+                    DecisionMaker,
+                    c => c.DoKeywordsContain("structure"),
+                    3,
+                    cardSource: GetCardSource()
+                ),
+                TriggerType.GainHP
+            );
         }
     }
 }

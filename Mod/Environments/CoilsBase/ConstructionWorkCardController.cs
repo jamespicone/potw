@@ -14,39 +14,56 @@ namespace Jp.ParahumansOfTheWormverse.CoilsBase
         public ConstructionWorkCardController(Card card, TurnTakerController turnTakerController)
             : base(card, turnTakerController)
         {
-
         }
 
         public override void AddTriggers()
         {
-            base.AddTriggers();
             // "At the end of the environment turn, reveal cards from the top of the environment deck until you reveal three Structure cards. Put them into play and shuffle the other revealed cards back into the environment deck. Then, destroy this card."
-            AddEndOfTurnTrigger((TurnTaker tt) => tt == base.TurnTaker, SearchDestructResponse, new TriggerType[] { TriggerType.RevealCard, TriggerType.PutIntoPlay, TriggerType.ShuffleDeck, TriggerType.DestroySelf });
+            AddEndOfTurnTrigger(
+                tt => tt == TurnTaker,
+                SearchDestructResponse,
+                new TriggerType[] { TriggerType.RevealCard, TriggerType.PutIntoPlay, TriggerType.ShuffleDeck, TriggerType.DestroySelf }
+            );
         }
 
         public IEnumerator SearchDestructResponse(GameAction ga)
         {
             // "... reveal cards from the top of the environment deck until you reveal three Structure cards. Put them into play and shuffle the other revealed cards back into the environment deck."
-            IEnumerator revealCoroutine = RevealCards_MoveMatching_ReturnNonMatchingCards(base.TurnTakerController, base.TurnTaker.Deck, false, true, false, new LinqCardCriteria((Card c) => c.DoKeywordsContain("structure"), "structure"), 3, shuffleSourceAfterwards: true, revealedCardDisplay: RevealedCardDisplay.ShowMatchingCards);
-            if (base.UseUnityCoroutines)
+            var e = RevealCards_MoveMatching_ReturnNonMatchingCards(
+                TurnTakerController,
+                TurnTaker.Deck,
+                playMatchingCards: false,
+                putMatchingCardsIntoPlay: true,
+                moveMatchingCardsToHand: false,
+                new LinqCardCriteria(c => c.DoKeywordsContain("structure"), "structure"),
+                numberOfMatches: 3,
+                shuffleSourceAfterwards: true,
+                revealedCardDisplay: RevealedCardDisplay.ShowMatchingCards
+            );
+            if (UseUnityCoroutines)
             {
-                yield return base.GameController.StartCoroutine(revealCoroutine);
+                yield return GameController.StartCoroutine(e);
             }
             else
             {
-                base.GameController.ExhaustCoroutine(revealCoroutine);
+                GameController.ExhaustCoroutine(e);
             }
+
             // "Then, destroy this card."
-            IEnumerator destroyCoroutine = base.GameController.DestroyCard(DecisionMaker, base.Card, responsibleCard: base.Card, cardSource: GetCardSource());
-            if (base.UseUnityCoroutines)
+            e = GameController.DestroyCard(
+                DecisionMaker,
+                Card,
+                responsibleCard: Card,
+                cardSource: GetCardSource()
+            );
+            if (UseUnityCoroutines)
             {
-                yield return base.GameController.StartCoroutine(destroyCoroutine);
+                yield return GameController.StartCoroutine(e);
             }
             else
             {
-                base.GameController.ExhaustCoroutine(destroyCoroutine);
+                GameController.ExhaustCoroutine(e);
             }
-            yield break;
         }
     }
 }

@@ -9,19 +9,25 @@ using System.Text;
 
 namespace Jp.ParahumansOfTheWormverse.CoilsBase
 {
-    public class BlastDoorsCardController : CoilsBaseSelfDestructCardController
+    public class BlastDoorsCardController : CardController
     {
         public BlastDoorsCardController(Card card, TurnTakerController turnTakerController)
             : base(card, turnTakerController)
         {
-
         }
 
         public override void AddTriggers()
         {
-            base.AddTriggers();
-            // "Reduce all fire and projectile damage by 2."
-            AddReduceDamageTrigger((DealDamageAction dda) => dda.DamageType == DamageType.Fire || dda.DamageType == DamageType.Projectile, (DealDamageAction dda) => 2);
+            // "Reduce all fire and projectile damage by X, where X is the number of times damage has been dealt this turn.",
+            AddReduceDamageTrigger(dda => dda.DamageType == DamageType.Fire || dda.DamageType == DamageType.Projectile, dda => DamageCountThisTurn());
+
+            // "At the start of the environment turn this card deals itself 1 irreducible melee damage"
+            AddDealDamageAtStartOfTurnTrigger(TurnTaker, Card, c => c == Card, TargetType.All, amount: 1, DamageType.Melee, isIrreducible: true);
+        }
+
+        private int DamageCountThisTurn()
+        {
+            return Journal.DealDamageEntriesThisTurn().Count();
         }
     }
 }
