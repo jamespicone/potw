@@ -11,17 +11,15 @@
 			"keywords": [
 				"structure"
 			],
-			"hitpoints": 10,
+			"hitpoints": 8,
 			"body": [
 				"Reduce all toxic and melee damage by 2.",
-				"At the start of their turn, a player may skip the rest of their turn to destroy this card."
+				"After damage that was reduced by this card is dealt or reduced to 0 this card deals itself 1 irreducible melee damage."
 			],
 			"icons": [
 				"ReduceDamageTakenToxic",
 				"ReduceDamageTakenMelee",
-				"StartOfTurnAction",
-				"SkipTurn",
-				"DestroySelf"
+				"DealDamageMelee"
 			],
 			"flavorText": "The laser didn't cut the armor. It was capable{BR}of cutting granite like a hot knife through{BR}butter, but it didn't cut the armor."
 		},
@@ -32,17 +30,16 @@
 			"keywords": [
 				"structure"
 			],
-			"hitpoints": 10,
+			"hitpoints": 8,
 			"body": [
-				"Reduce all fire and projectile damage by 2.",
-				"At the start of their turn, a player may skip the rest of their turn to destroy this card."
+				"Reduce all fire and projectile damage by X, where X is the number of times damage has been dealt this turn.",
+				"At the start of the environment turn this card deals itself 1 irreducible melee damage"
 			],
 			"icons": [
 				"ReduceDamageTakenFire",
 				"ReduceDamageTakenProjectile",
 				"StartOfTurnAction",
-				"SkipTurn",
-				"DestroySelf"
+				"DealDamageMelee"
 			],
 			"flavorText": "“When they retreated inside, they pulled the{BR}switch, and the entire substructure dropped{BR}2,500 feet below ground, putting the upper{BR}end of the column between us and them.”",
 			"flavorQuotes": [
@@ -81,7 +78,7 @@
 			],
 			"hitpoints": 8,
 			"body": [
-				"Redirect any damage that would be dealt to a target other than this target to this card.",
+				"Redirect any damage that would be dealt by a nonenvironment source to a target other than this target to this card.",
 				"Reduce damage dealt to this card by 1."
 			],
 			"icons": [
@@ -100,14 +97,12 @@
 			"hitpoints": 10,
 			"body": [
 				"Reduce all cold and lightning damage by 2.",
-				"At the start of their turn, a player may skip the rest of their turn to destroy this card."
+				"After damage that was reduced by this card is dealt or reduced to 0 this card deals every other Structure 1 irreducible energy damage."
 			],
 			"icons": [
 				"ReduceDamageTakenCold",
 				"ReduceDamageTakenLightning",
-				"StartOfTurnAction",
-				"SkipTurn",
-				"DestroySelf"
+				"DealDamageEnergy"
 			],
 			"flavorText": "Another lightning strike, curving in the air, hit{BR}the hand. Residual electricity danced between{BR}the two extended fingers. It was working, and{BR}it was working to help morale. To contribute."
 		},

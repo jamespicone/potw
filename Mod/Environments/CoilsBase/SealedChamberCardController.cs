@@ -14,34 +14,37 @@ namespace Jp.ParahumansOfTheWormverse.CoilsBase
         public SealedChamberCardController(Card card, TurnTakerController turnTakerController)
             : base(card, turnTakerController)
         {
-
         }
 
         public override void AddTriggers()
         {
-            base.AddTriggers();
             // "If this card is destroyed, the contents escape. [b]GAME OVER.[/b]"
             AddWhenDestroyedTrigger(OnDestroyResponse, TriggerType.GameOver);
+
             // "At the start of their turn, a player may skip the rest of their turn. If they do, this card regains 5 HP."
-            AddStartOfTurnTrigger((TurnTaker tt) => tt.IsHero, SkipTheirTurnToHealThisCardResponse, new TriggerType[] { TriggerType.SkipTurn, TriggerType.GainHP });
+            AddStartOfTurnTrigger(tt => tt.IsHero, SkipTheirTurnToHealThisCardResponse, new TriggerType[] { TriggerType.SkipTurn, TriggerType.GainHP });
         }
 
-        public IEnumerator OnDestroyResponse(DestroyCardAction dca)
+        private IEnumerator OnDestroyResponse(DestroyCardAction dca)
         {
             // "... the contents escape. [b]GAME OVER.[/b]"
-            IEnumerator loseCoroutine = base.GameController.GameOver(EndingResult.EnvironmentDefeat, "The sealed chamber at the heart of Coil's base has been breached, and something is coming out...", showEndingTextAsMessage: true, actionSource: dca, cardSource: GetCardSource());
-            if (base.UseUnityCoroutines)
+            var e = GameController.GameOver(
+                EndingResult.EnvironmentDefeat,
+                "The sealed chamber at the heart of Coil's base has been breached, and something is coming out...",
+                showEndingTextAsMessage: true,
+                actionSource: dca,
+            cardSource: GetCardSource());
+            if (UseUnityCoroutines)
             {
-                yield return base.GameController.StartCoroutine(loseCoroutine);
+                yield return GameController.StartCoroutine(e);
             }
             else
             {
-                base.GameController.ExhaustCoroutine(loseCoroutine);
+                GameController.ExhaustCoroutine(e);
             }
-            yield break;
         }
 
-        public IEnumerator SkipTheirTurnToHealThisCardResponse(PhaseChangeAction pca)
+        private IEnumerator SkipTheirTurnToHealThisCardResponse(PhaseChangeAction pca)
         {
             // "... a player may skip the rest of their turn. If they do, this card regains 5 HP."
             if (pca.ToPhase.IsHero)
