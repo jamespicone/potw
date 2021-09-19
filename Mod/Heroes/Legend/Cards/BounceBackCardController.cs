@@ -11,5 +11,101 @@ namespace Jp.ParahumansOfTheWormverse.Legend
     {
         public BounceBackCardController(Card card, TurnTakerController controller) : base(card, controller)
         { }
+
+        public override void AddTriggers()
+        {
+            //"Whenever Legend takes damage place a Charge token on this card",
+            AddTrigger<DealDamageAction>(
+                dda => dda.Target == CharacterCard && dda.DidDealDamage,
+                dda => AddChargeToken(),
+                TriggerType.AddTokensToPool,
+                TriggerTiming.After
+            );
+
+            //"Whenever Legend deals damage you may remove a Charge token from this card to increase the damage by 1"
+            AddTrigger<DealDamageAction>(
+                dda => dda.DamageSource.Card == CharacterCard && HasChargeTokens(),
+                dda => UseChargeToken(dda),
+                TriggerType.IncreaseDamage,
+                TriggerTiming.Before
+            );
+        }
+
+        private IEnumerator AddChargeToken()
+        {
+            var pool = Card.FindTokenPool("ChargePool");
+            if (pool == null) { yield break; }
+
+            var e = AddOrRemoveTokens(pool, amount: 1, optional: false);
+            if (UseUnityCoroutines)
+            {
+                yield return GameController.StartCoroutine(e);
+            }
+            else
+            {
+                GameController.ExhaustCoroutine(e);
+            }
+        }
+
+        private bool HasChargeTokens()
+        {
+            var pool = Card.FindTokenPool("ChargePool");
+            if (pool == null) { return false; }
+
+            return pool.CurrentValue > 0;
+        }
+
+        private IEnumerator UseChargeToken(DealDamageAction dda)
+        {
+            var pool = Card.FindTokenPool("ChargePool");
+            if (pool == null) { yield break; }
+
+            if (! HasChargeTokens()) { yield break; }
+
+            if (GameController.PretendMode || increaseDamage == null)
+            {
+                var increaseResult = new List<YesNoCardDecision>();
+                var e = GameController.MakeYesNoCardDecision(
+                    HeroTurnTakerController,
+                    SelectionType.IncreaseDamage,
+                    Card,
+                    dda,
+                    increaseResult,
+                    new Card[] { dda.Target },
+                    GetCardSource()
+                );
+                
+                if (UseUnityCoroutines)
+                {
+                    yield return GameController.StartCoroutine(e);
+                }
+                else
+                {
+                    GameController.ExhaustCoroutine(e);
+                }
+
+                increaseDamage = DidPlayerAnswerYes(increaseResult);
+            }
+
+            if (increaseDamage.GetValueOrDefault(false))
+            {
+                var e = GameController.IncreaseDamage(dda, 1, cardSource: GetCardSource());
+                if (UseUnityCoroutines)
+                {
+                    yield return GameController.StartCoroutine(e);
+                }
+                else
+                {
+                    GameController.ExhaustCoroutine(e);
+                }
+            }
+
+            if (! GameController.PretendMode)
+            {
+                increaseDamage = null;
+            }
+        }
+
+        private bool? increaseDamage;
     }
 }

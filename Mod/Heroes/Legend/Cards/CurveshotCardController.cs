@@ -11,5 +11,10 @@ namespace Jp.ParahumansOfTheWormverse.Legend
     {
         public CurveshotCardController(Card card, TurnTakerController controller) : base(card, controller)
         { }
+
+        public override void AddTriggers()
+        {
+            
+        }
     }
 }

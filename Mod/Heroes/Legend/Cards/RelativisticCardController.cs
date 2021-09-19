@@ -11,5 +11,24 @@ namespace Jp.ParahumansOfTheWormverse.Legend
     {
         public RelativisticCardController(Card card, TurnTakerController controller) : base(card, controller)
         { }
+
+        public override IEnumerator Play()
+        {
+            // "You may play a card",
+            // "You may play a card"
+            var e = SelectAndPlayCardsFromHand(
+                HeroTurnTakerController,
+                numberOfCards: 2,
+                requiredDecisions: 0
+            );
+            if (UseUnityCoroutines)
+            {
+                yield return GameController.StartCoroutine(e);
+            }
+            else
+            {
+                GameController.ExhaustCoroutine(e);
+            }
+        }
     }
 }

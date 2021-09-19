@@ -145,6 +145,15 @@
       "title": "Bounce Back",
       "keywords": [ "ongoing", "limited" ],
       "icons": [],
+      "tokenPools": [
+        {
+          "identifier": "ChargePool",
+          "name": "Charge Pool",
+          "initialValue": 0,
+          "minimumValue": 0,
+          "color": "0000ff"
+        }
+      ],
       "body": [
         "Whenever Legend takes damage place a Charge token on this card",
         "Whenever Legend deals damage you may remove a Charge token from this card to increase the damage by 1"
@@ -190,7 +199,7 @@
       "title": "Charisma",
       "keywords": [ "one-shot" ],
       "icons": [],
-      "body": "Each hero may either regain 2 HP or play a card",
+      "body": "Each player may either have one of their characters regain 2 HP or play a card",
       "flavorText": "",
       "flavorReference": "",
       "count": 3

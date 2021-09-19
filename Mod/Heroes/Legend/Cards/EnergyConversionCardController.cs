@@ -11,5 +11,16 @@ namespace Jp.ParahumansOfTheWormverse.Legend
     {
         public EnergyConversionCardController(Card card, TurnTakerController controller) : base(card, controller)
         { }
+
+        public override void AddTriggers()
+        {
+            // "Whenever Legend is dealt damage by a villain or environment target, you may draw a card or play a card"
+            AddTrigger<DealDamageAction>(
+                dda => dda.DidDealDamage && dda.Target == CharacterCard && (dda.DamageSource.IsEnvironmentTarget || dda.DamageSource.IsVillainTarget),
+                dda => DrawACardOrPlayACard(HeroTurnTakerController, optional: true),
+                new TriggerType[] { TriggerType.DrawCard, TriggerType.PlayCard },
+                TriggerTiming.After
+            );
+        }
     }
 }
