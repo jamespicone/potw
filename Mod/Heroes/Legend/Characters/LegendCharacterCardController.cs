@@ -10,26 +10,10 @@ using Handelabra;
 namespace Jp.ParahumansOfTheWormverse.Legend
 {
 
-    public class LegendCharacterCardController : HeroCharacterCardController
+    public class LegendCharacterCardController : HeroCharacterCardController, IEffectCardController
     {
         public LegendCharacterCardController(Card card, TurnTakerController controller) : base(card, controller)
         {
-        }
-
-        public override void AddTriggers()
-        {
-            AddTrigger<DealDamageAction>(
-                dda => true,
-                dda => PrintDDA(dda),
-                TriggerType.FirstTrigger,
-                TriggerTiming.Before
-            );            
-        }
-
-        IEnumerator PrintDDA(DealDamageAction dda)
-        {
-            Log.Debug(LogName.ResolvedAction, $"DebugDDA: {dda.SourceString} damages {dda.Target.Title}. Preview: {GameController.PreviewMode}. Pretend: {GameController.PretendMode}. DDA Pretend: {dda.IsPretend}");
-            yield break;
         }
 
         public override IEnumerator UseIncapacitatedAbility(int index)
@@ -39,14 +23,14 @@ namespace Jp.ParahumansOfTheWormverse.Legend
 
         public override IEnumerator UsePower(int index = 0)
         {
-            // You may play a card.
-            var e = GameController.SelectTargetsAndDealDamage(
+            // Select a Target, then apply an Effect to it
+            var storedResult = new List<SelectCardDecision>();
+            var e = GameController.SelectCardAndStoreResults(
                 HeroTurnTakerController,
-                new DamageSource(GameController, Card),
-                1, DamageType.Radiant,
-                numberOfTargets: 1,
+                SelectionType.SelectTarget,
+                new LinqCardCriteria(c => c.IsTarget && c.IsInPlay, "target"),
+                storedResult,
                 optional: false,
-                requiredTargets: 1,
                 cardSource: GetCardSource()
             );
             if (UseUnityCoroutines)
@@ -56,6 +40,42 @@ namespace Jp.ParahumansOfTheWormverse.Legend
             else
             {
                 GameController.ExhaustCoroutine(e);
+            }
+
+            var card = GetSelectedCard(storedResult);
+            if (card == null) { yield break; }
+
+            e = this.SelectAndPerformEffects(new Card[] { card });
+            if (UseUnityCoroutines)
+            {
+                yield return GameController.StartCoroutine(e);
+            }
+            else
+            {
+                GameController.ExhaustCoroutine(e);
+            }
+        }
+
+        public IEnumerator DoEffect(IEnumerable<Card> targets)
+        {
+            // "Legend deals 2 energy damage"
+            foreach (var c in targets)
+            {
+                var e = DealDamage(
+                    CharacterCard,
+                    c,
+                    2,
+                    DamageType.Energy,
+                    cardSource: GetCardSource()
+                );
+                if (UseUnityCoroutines)
+                {
+                    yield return GameController.StartCoroutine(e);
+                }
+                else
+                {
+                    GameController.ExhaustCoroutine(e);
+                }
             }
         }
     }

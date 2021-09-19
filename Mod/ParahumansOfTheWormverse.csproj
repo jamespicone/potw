@@ -285,6 +285,7 @@
     <Compile Include="Heroes\Legend\Cards\CurveshotCardController.cs" />
     <Compile Include="Heroes\Legend\Characters\LegendCharacterCardController.cs" />
     <Compile Include="Heroes\Legend\Extras\IEffectCardController.cs" />
+    <Compile Include="Heroes\Legend\Extras\LegendBurstStatusEffect.cs" />
     <Compile Include="Heroes\Legend\Extras\LegendExtensions.cs" />
     <Compile Include="Heroes\MissMilitia\Extra\MissMilitiaExtensions.cs" />
     <Compile Include="Heroes\Tattletale\Cards\ConfidenceCardController.cs" />
