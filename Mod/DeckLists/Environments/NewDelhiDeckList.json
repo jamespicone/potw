@@ -17,7 +17,7 @@
 				"PlayCardNow",
 				"DestroySelf"
 			],
-			"flavorText": "We don't have the organization. Our command{BR}structure is down. Tattletale is gone, either{BR}dead or too hurt to fight."
+			"flavorText": "‚ÄúWe don't have the organization. Our command{BR}structure is down. Tattletale is gone, either{BR}dead or too hurt to fight.‚Äù"
 		},
 		{
 			"identifier": "AccordsPlan",
@@ -95,13 +95,7 @@
 				"IncreaseDamageTaken",
 				"DestroySelf"
 			],
-			"flavorText": "ìFuck it,î Regent said, his voice almost inaudible.{BR}He was looking at Imp.",
-			"flavorQuotes": [
-				{
-					"identifier": "Regent",
-					"text": "Fuck it."
-				}
-			]
+			"flavorText": "‚ÄúFuck it,‚Äù Regent said, his voice almost{BR}inaudible.{BR}He was looking at Imp."
 		},
 		{
 			"identifier": "Irradiated",
@@ -144,13 +138,7 @@
 			"icons": [
 				"RedirectDamageLightning"
 			],
-			"flavorText": "ìHis lightning doesn't follow regular channels.{BR}We're all lightning rods to him.î",
-			"flavorQuotes": [
-				{
-					"identifier": "Skitter",
-					"text": "His lightning doesn't follow regular channels. We're all lightning rods to him."
-				}
-			]
+			"flavorText": "‚ÄúHis lightning doesn't follow regular{BR}channels. We're all lightning rods to him.‚Äù",
 		},
 		{
 			"identifier": "Perdition",
@@ -167,13 +155,7 @@
 				"StartOfTurnAction",
 				"PlayCardNow"
 			],
-			"flavorText": "ìDirected time travel, anyways. Backwards only,{BR}a few seconds at a time. You teleport away, I{BR}set you back to where you were, then kick{BR}you in the balls for being an asshole.î",
-			"flavorQuotes": [
-				{
-					"identifier": "Perdition",
-					"text": "Directed time travel, anyways. Backwards only, a few seconds at a time. You teleport away, I set you back to where you were, then kick you in the balls for being an asshole."
-				}
-			]
+			"flavorText": "‚ÄúDirected time travel, anyways. Backwards only,{BR}a few seconds at a time. You teleport away, I{BR}set you back to where you were, then kick{BR}you in the balls for being an asshole.‚Äù"
 		},
 		{
 			"identifier": "PhirSe",
@@ -202,13 +184,7 @@
 				"AddTokens",
 				"DealDamageEnergy"
 			],
-			"flavorText": "ìA weapon, A... how do you Americans say it?{BR}Time bomb? Only this is joke.î",
-			"flavorQuotes": [
-				{
-					"identifier": "Phir Se",
-					"text": "A weapon, A... how do you Americans say it? Time bomb? Only this is joke."
-				}
-			]
+			"flavorText": "‚ÄúA weapon, A... how do you Americans say it?{BR}Time bomb? Only this is joke.‚Äù"
 		},
 		{
 			"identifier": "ScionNewDelhi",
@@ -252,13 +228,7 @@
 				"EndOfTurnAction",
 				"RemoveTokens"
 			],
-			"flavorText": "ìWe need the ones with killer instinct, the ones{BR}who fight for real, not for play. The cold capes.î",
-			"flavorQuotes": [
-				{
-					"identifier": "Defiant",
-					"text": "We need the ones with killer instinct, the ones who fight for real, not for play. The cold capes."
-				}
-			]
+			"flavorText": "‚ÄúWe need the ones with killer instinct, the ones{BR}who fight for real, not for play. The cold capes.‚Äù"
 		},
 		{
 			"identifier": "Unstoppable",
@@ -272,13 +242,7 @@
 				"ReduceDamageTaken",
 				"DestroySelf"
 			],
-			"flavorText": "[i]hes here. defenses crumbled in a minute. rime{BR}dead. melted off more than half his outer{BR}body and he still fighting. last stand to{BR}protect hosp'l and he cutting them down.[/i]",
-			"flavorQuotes": [
-				{
-					"identifier": "Tattletale",
-					"text": "hes here. defenses crumbled in a minute. rime dead. melted off more than half his outer body and he still fighting. last stand to protect hosp'l and he cutting them down"
-				}
-			]
+			"flavorText": "[i]hes here. defenses crumbled in a minute. rime{BR}dead. melted off more than half his outer{BR}body and he still fighting. last stand to{BR}protect hosp'l and he cutting them down.[/i]"
 		},
 		{
 			"identifier": "Wildfires",
@@ -314,13 +278,7 @@
 				"DealDamageLightning",
 				"DealDamageEnergy"
 			],
-			"flavorText": "ìFor years, we have boasted of the strength{BR}the Yangban offers the world. But we are{BR}small, and too many citizens with powers flee{BR}or fight rather than cooperate.î",
-			"flavorQuotes": [
-				{
-					"identifier": "Thirty-two",
-					"text": "For years, we have boasted of the strength the Yangban offers the world. But we are small, and too many citizens with powers flee or fight rather than cooperate."
-				}
-			]
+			"flavorText": "‚ÄúFor years, we have boasted of the strength{BR}the Yangban offers the world. But we are{BR}small, and too many citizens with powers flee{BR}or fight rather than cooperate.‚Äù"
 		}
 	]
 }
