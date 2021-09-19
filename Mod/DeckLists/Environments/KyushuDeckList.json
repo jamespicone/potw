@@ -21,7 +21,7 @@
 				"DealDamageMelee",
 				"RedirectDamage"
 			],
-			"flavorText": "She'd roamed the remains of the landscape,{BR}killing survivors, killing rescuers, boarding{BR}the ships that approached too close to the{BR}ruined area and killing the crews, and{BR}rendering a widespread area devoid of life."
+			"flavorText": "She'd roamed the remains of the landscape,{BR}killing survivors, killing rescuers, boarding{BR}the ships that approached too close to the{BR}ruined area and killing the crews"
 		},
 		{
 			"identifier": "CollapsingBuilding",
@@ -52,13 +52,7 @@
 				"EndOfTurnAction",
 				"DestroySelf"
 			],
-			"flavorText": "ìYou're going to die!î the Sentai in black and{BR}yellow shouted.",
-			"flavorQuotes": [
-				{
-					"identifier": "Sentai",
-					"text": "You're going to die!"
-				}
-			]
+			"flavorText": "‚ÄúYou're going to die!‚Äù the Sentai in black and{BR}yellow shouted."
 		},
 		{
 			"identifier": "LungKyushu",
@@ -125,7 +119,7 @@
 				"EndOfTurnAction",
 				"DealDamageEnergy"
 			],
-			"flavorText": "Leviathan couldn't attack from range, and{BR}couldn't get close without getting{BR}pummelled. He attempted to run, only for{BR}Japan's foremost team, the Sentai Elite, to{BR}step into his way, blocking his progress."
+			"flavorText": "He attempted to run, only for{BR}Japan's foremost team, the Sentai Elite, to{BR}step into his way, blocking his progress."
 		},
 		{
 			"identifier": "SlideIntoTheSea",
@@ -143,13 +137,7 @@
 				"LoseTheGame",
 				"DestroyEnvironment"
 			],
-			"flavorText": "May ninth, 2005. Nearly half a million dead. The{BR}Canadian island simply gone, after the shelf{BR}of land holding it up cracked in the face of{BR}what we now understand were incredible{BR}pressures beneath the water level.",
-			"flavorQuotes": [
-				{
-					"identifier": "Legend",
-					"text": "May ninth, 2005. Nearly half a million dead. The Canadian island{BR}simply gone, after the shelf of land{BR}holding it up cracked in the face of{BR}what we now understand were incredible pressures beneath the water level."
-				}
-			]
+			"flavorText": "May ninth, 2005. Nearly half a million dead. The{BR}Canadian island simply gone, after the shelf{BR}of land holding it up cracked in the face of{BR}what we now understand were incredible{BR}pressures beneath the water level."
 		},
 		{
 			"identifier": "TidalWaveKyushu",

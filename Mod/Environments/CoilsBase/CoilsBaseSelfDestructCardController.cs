@@ -14,14 +14,12 @@ namespace Jp.ParahumansOfTheWormverse.CoilsBase
         public CoilsBaseSelfDestructCardController(Card card, TurnTakerController turnTakerController)
             : base(card, turnTakerController)
         {
-
         }
 
         public override void AddTriggers()
         {
-            base.AddTriggers();
             // "At the start of their turn, a player may skip the rest of their turn to destroy this card."
-            AddStartOfTurnTrigger((TurnTaker tt) => tt.IsHero, base.SkipTheirTurnToDestroyThisCardResponse, new TriggerType[] { TriggerType.SkipTurn, TriggerType.DestroySelf });
+            AddStartOfTurnTrigger(tt => tt.IsHero, SkipTheirTurnToDestroyThisCardResponse, new TriggerType[] { TriggerType.SkipTurn, TriggerType.DestroySelf });
         }
     }
 }

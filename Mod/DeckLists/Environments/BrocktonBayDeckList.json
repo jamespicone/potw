@@ -17,13 +17,7 @@
 				"Manipulate",
 				"DestroySelf"
 			],
-			"flavorText": "ìThat's the kind of thing you're supposed to{BR}inform us of well in advance,î Grue hissed at{BR}her. ìAnd there's not supposed to be six of them.î",
-			"flavorQuotes": [
-				{
-					"identifier": "Grue",
-					"text": "That's the kind of thing you're supposed to inform us of well in advance. And there's not supposed to be six of them."
-				}
-			]
+			"flavorText": "‚ÄúThat's the kind of thing you're supposed to{BR}inform us of well in advance,‚Äù Grue hissed at{BR}her. ‚ÄúAnd there's not supposed to be six of them.‚Äù"
 		},
 		{
 			"identifier": "Civilians",
@@ -39,13 +33,7 @@
 				"Discard",
 				"DestroySelf"
 			],
-			"flavorText": "ìLow blow, Dragon,î I said, finally. ìOuting me?{BR}I thought you were better than that.î",
-			"flavorQuotes": [
-				{
-					"identifier": "Skitter",
-					"text": "Low blow, Dragon. Outing me? I thought you were better than that."
-				}
-			]
+			"flavorText": "‚ÄúLow blow, Dragon,‚Äù I said, finally.{BR}‚ÄúOuting me? I thought you were better than{BR}that.‚Äù"
 		},
 		{
 			"identifier": "Leet",
@@ -64,7 +52,6 @@
 				"DealDamageLightning",
 				"IncreaseDamageDealt"
 			],
-			"flavorText": "ìI can make anything,î Leet boasted. ì[i]Once.[/i] You{BR}can make anything [i]once.[/i] But the closer{BR}something you invent is to something you've{BR}made before, the more likely it is to blow up in  your face or misfire.î",
 			"flavorQuotes": [
 				{
 					"identifier": "Leet",
@@ -72,7 +59,7 @@
 				},
 				{
 					"identifier": "Tattletale",
-					"text": "[i]Once.[/i] You can make anything [i]once.[/i] But the closer something you invent is to something you've made before, the more likely it is to blow up in your face or misfire. Real impressive."
+					"text": "[i]Once.[/i]{BR}You can make anything [i]once.[/i]"
 				}
 			]
 		},
@@ -138,7 +125,7 @@
 				"Destroy",
 				"ReduceDamageTaken"
 			],
-			"flavorText": "There were shops that sold dresses for over{BR}a thousand dollars, cafes with ludicrously{BR}expensive coffees and stretches of wooden{BR}walkways and beaches where tourists could  get a great view of the ocean."
+			"flavorText": "There were shops that sold dresses for over{BR}a thousand dollars, cafes with ludicrously{BR}expensive coffees and stretches of wooden{BR}walkways"
 		},
 		{
 			"identifier": "TheDocks",
@@ -173,13 +160,7 @@
 				"EndOfTurnAction",
 				"PlayCardNow"
 			],
-			"flavorText": "ìThe howling. If you can hear the howling,{BR}you're too fucking close. Leave.î",
-			"flavorQuotes": [
-				{
-					"identifier": "Bitch",
-					"text": "The howling. If you can hear the howling, you're too fucking close. Leave."
-				}
-			]
+			"flavorText": "‚ÄúThe howling. If you can hear the howling,{BR}you're too fucking close. Leave.‚Äù"
 		},
 		{
 			"identifier": "Uber",
@@ -197,13 +178,7 @@
 				"DealDamageMelee",
 				"GainHP"
 			],
-			"flavorText": "Uber and Leet. I can't tell you two how{BR}relieved I am. For a few seconds, I thought{BR}we had something to be worried about.",
-			"flavorQuotes": [
-				{
-					"identifier": "Tattletale",
-					"text": "Uber and Leet. I can't tell you two how relieved I am. For a few seconds, I thought we had something to be worried about."
-				}
-			]
+			"flavorText": "‚ÄúUber and Leet. I can't tell you two how{BR}relieved I am. For a few seconds, I thought{BR}we had something to be worried about.‚Äù"
 		}
 	]
 }

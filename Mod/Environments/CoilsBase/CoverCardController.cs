@@ -14,16 +14,15 @@ namespace Jp.ParahumansOfTheWormverse.CoilsBase
         public CoverCardController(Card card, TurnTakerController turnTakerController)
             : base(card, turnTakerController)
         {
-
         }
 
         public override void AddTriggers()
         {
-            base.AddTriggers();
-            // "Redirect any damage that would be dealt to a target other than this target to this card."
-            AddRedirectDamageTrigger((DealDamageAction dda) => dda.Target != base.Card, () => base.Card);
+            // Redirect any damage that would be dealt by a nonenvironment source to a target other than this target to this card.
+            AddRedirectDamageTrigger(dda => (! dda.DamageSource.IsEnvironmentSource) && dda.Target != Card, () => Card);
+
             // "Reduce damage dealt to this card by 1."
-            AddReduceDamageTrigger((Card c) => c == base.Card, 1);
+            AddReduceDamageTrigger(c => c == Card, 1);
         }
     }
 }

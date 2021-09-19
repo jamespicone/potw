@@ -14,7 +14,7 @@ namespace Jp.ParahumansOfTheWormverse.Alexandria
 
         public override IEnumerator Play()
         {
-            // "{AlexandriaCharacter} deals a target 4 melee damage"
+            // "{AlexandriaCharacter} deals a target 4 projectile damage"
             var e = GameController.SelectTargetsAndDealDamage(
                 HeroTurnTakerController,
                 new DamageSource(GameController, CharacterCard),

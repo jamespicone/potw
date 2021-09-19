@@ -14,16 +14,15 @@ namespace Jp.ParahumansOfTheWormverse.CoilsBase
         public LaserRiflesCardController(Card card, TurnTakerController turnTakerController)
             : base(card, turnTakerController)
         {
-
         }
 
         public override void AddTriggers()
         {
-            base.AddTriggers();
             // "Increase damage dealt by villain targets by 1."
-            AddIncreaseDamageTrigger((DealDamageAction dda) => dda.DamageSource != null && dda.DamageSource.IsVillainTarget, (DealDamageAction dda) => 1);
+            AddIncreaseDamageTrigger(dda => dda.DamageSource != null && dda.DamageSource.IsVillainTarget, dda => 1);
+
             // "Change the type of that damage to energy."
-            AddChangeDamageTypeTrigger((DealDamageAction dda) => dda.DamageSource != null && dda.DamageSource.IsVillainTarget, DamageType.Energy);
+            AddChangeDamageTypeTrigger(dda => dda.DamageSource != null && dda.DamageSource.IsVillainTarget, DamageType.Energy);
         }
     }
 }

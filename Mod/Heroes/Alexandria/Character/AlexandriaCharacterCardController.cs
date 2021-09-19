@@ -88,7 +88,7 @@ namespace Jp.ParahumansOfTheWormverse.Alexandria
             // Return one of your cards in play to your hand
             e = GameController.SelectAndMoveCard(
                 HeroTurnTakerController,
-                c => !c.IsCharacter && c.IsInPlay && c.Location == TurnTaker.PlayArea,
+                c => !c.IsCharacter && c.IsInPlay && c.Location == TurnTaker.PlayArea && c.Owner == TurnTaker,
                 HeroTurnTaker.Hand,
                 cardSource: GetCardSource()
             );

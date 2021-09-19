@@ -11,17 +11,15 @@
 			"keywords": [
 				"structure"
 			],
-			"hitpoints": 10,
+			"hitpoints": 8,
 			"body": [
 				"Reduce all toxic and melee damage by 2.",
-				"At the start of their turn, a player may skip the rest of their turn to destroy this card."
+				"After damage that was reduced by this card is dealt or reduced to 0 this card deals itself 1 irreducible melee damage."
 			],
 			"icons": [
 				"ReduceDamageTakenToxic",
 				"ReduceDamageTakenMelee",
-				"StartOfTurnAction",
-				"SkipTurn",
-				"DestroySelf"
+				"DealDamageMelee"
 			],
 			"flavorText": "The laser didn't cut the armor. It was capable{BR}of cutting granite like a hot knife through{BR}butter, but it didn't cut the armor."
 		},
@@ -32,25 +30,18 @@
 			"keywords": [
 				"structure"
 			],
-			"hitpoints": 10,
+			"hitpoints": 8,
 			"body": [
-				"Reduce all fire and projectile damage by 2.",
-				"At the start of their turn, a player may skip the rest of their turn to destroy this card."
+				"Reduce all fire and projectile damage by X, where X is the number of times damage has been dealt this turn.",
+				"At the start of the environment turn this card deals itself 1 irreducible melee damage"
 			],
 			"icons": [
 				"ReduceDamageTakenFire",
 				"ReduceDamageTakenProjectile",
 				"StartOfTurnAction",
-				"SkipTurn",
-				"DestroySelf"
+				"DealDamageMelee"
 			],
-			"flavorText": "ìWhen they retreated inside, they pulled the{BR}switch, and the entire substructure dropped{BR}2,500 feet below ground, putting the upper{BR}end of the column between us and them.î",
-			"flavorQuotes": [
-				{
-					"identifier": "Satyrical",
-					"text": "When they retreated inside, they pulled the switch, and the entire substructure dropped 2,500 feet below ground, putting the upper end of the column between us and them."
-				}
-			]
+			"flavorText": "When they retreated inside, they pulled the{BR}switch, and the entire substructure dropped{BR}2,500 feet below ground, putting the upper{BR}end of the column between us and them."
 		},
 		{
 			"identifier": "ConstructionWork",
@@ -64,13 +55,7 @@
 				"Search",
 				"DestroySelf"
 			],
-			"flavorText": "ìAnd the containment facility?î he asked, though{BR}he already knew the answer, from the{BR}interruptions while he spent the night in the{BR}facility. He'd heard the noise of the work.",
-			"flavorQuotes": [
-				{
-					"identifier": "Coil",
-					"text": "And the containment facility?"
-				}
-			]
+			"flavorText": "‚ÄúAnd the containment facility?‚Äù Coil asked,{BR}though he already knew the answer"
 		},
 		{
 			"identifier": "Cover",
@@ -81,7 +66,7 @@
 			],
 			"hitpoints": 8,
 			"body": [
-				"Redirect any damage that would be dealt to a target other than this target to this card.",
+				"Redirect any damage that would be dealt by a nonenvironment source to a target other than this target to this card.",
 				"Reduce damage dealt to this card by 1."
 			],
 			"icons": [
@@ -100,14 +85,12 @@
 			"hitpoints": 10,
 			"body": [
 				"Reduce all cold and lightning damage by 2.",
-				"At the start of their turn, a player may skip the rest of their turn to destroy this card."
+				"After damage that was reduced by this card is dealt or reduced to 0 this card deals every other Structure 1 irreducible energy damage."
 			],
 			"icons": [
 				"ReduceDamageTakenCold",
 				"ReduceDamageTakenLightning",
-				"StartOfTurnAction",
-				"SkipTurn",
-				"DestroySelf"
+				"DealDamageEnergy"
 			],
 			"flavorText": "Another lightning strike, curving in the air, hit{BR}the hand. Residual electricity danced between{BR}the two extended fingers. It was working, and{BR}it was working to help morale. To contribute."
 		},
@@ -121,13 +104,7 @@
 			"icons": [
 				"IncreaseDamageDealt"
 			],
-			"flavorText": "ìIf they don't think bullets are doing it, or if{BR}they're after people who are behind cover,{BR}they fire off these purple laser beams that{BR}can cut through steel.î",
-			"flavorQuotes": [
-				{
-					"identifier": "Thug",
-					"text": "If they don't think bullets are doing it, or if they're after people who are behind cover, they fire off these purple laser beams that can cut through steel."
-				}
-			]
+			"flavorText": "‚ÄúIf they don't think bullets are doing it, or if{BR}they're after people who are behind cover,{BR}they fire off these purple laser beams that{BR}can cut through steel.‚Äù"
 		},
 		{
 			"identifier": "Mercenaries",
@@ -141,35 +118,23 @@
 				"EndOfTurnAction",
 				"DealDamageEnergy"
 			],
-			"flavorText": "ìEither way, you forgot the cardinal rule of{BR}employing mercenaries. They follow the person{BR}with the money.î",
-			"flavorQuotes": [
-				{
-					"identifier": "Tattletale",
-					"text": "Either way, you forgot the cardinal rule of employing mercenaries. They follow the person with the money."
-				}
-			]
+			"flavorText": "‚ÄúEither way, you forgot the{BR}cardinal rule of employing mercenaries.{BR}They follow the person with the money.‚Äù"
 		},
 		{
-			"identifier": "PinnedDown",
+			"identifier": "ParahumanPrison",
 			"count": 1,
-			"title": "Pinned Down",
+			"title": "Parahuman Prison",
+			"keywords": [
+				"structure"
+			],
+			"hitpoints": 6,
 			"body": [
-				"Players can't play Ongoing or Equipment cards.",
-				"At the start of their turn, a player may skip the rest of their turn to destroy this card."
+				"Whenever a non-Structure target is destroyed put it under this card, then put any other cards under this card into play.",
+				"When this card is destroyed put any cards under it into play.",
+				"Cards under this card can only be affected by this card."
 			],
-			"icons": [
-				"CannotPlayCards",
-				"StartOfTurnAction",
-				"SkipTurn",
-				"DestroySelf"
-			],
-			"flavorText": "ìYou'll want to verify whether Bitch, Ballistic{BR}and Genesis are captured or simply pinned{BR}down somewhere, rescue them if need be{BR}and dispatch Dragon.î",
-			"flavorQuotes": [
-				{
-					"identifier": "Coil",
-					"text": "You'll want to verify whether Bitch, Ballistic and Genesis are captured or simply pinned down somewhere, rescue them if need be and dispatch Dragon."
-				}
-			]
+			"icons": [],
+			"flavorText": "Shatterbird's cell was large, twenty feet by{BR}twenty feet across, and the walls had the{BR}same textured black rubber soundproofing{BR}as the sound recording booths I'd seen{BR}in movies and on TV."
 		},
 		{
 			"identifier": "RepairCrew",
@@ -203,15 +168,14 @@
 				"SkipTurn",
 				"GainHP"
 			],
-			"flavorText": "ìOn a scale of one to ten, just how bad is{BR}this?î ìLet me answer your question with{BR}another question. You think we could convince{BR}the PRT to turn on the air raid sirens?î",
 			"flavorQuotes": [
 				{
 					"identifier": "Skitter",
-					"text": "On a scale of one to ten, just how bad is this?"
+					"text": "Just how bad is this?"
 				},
 				{
 					"identifier": "Tattletale",
-					"text": "Let me answer your question with another question. You think we could convince the PRT to turn on the air raid sirens?"
+					"text": "You think we could convince{BR}the PRT to turn on the air raid sirens?"
 				}
 			]
 		},
@@ -220,7 +184,7 @@
 			"count": 1,
 			"title": "Stranger and Master Protocols",
 			"body": [
-				"Hero cards and effects cannot cause other heroes to draw or play cards, use powers, or regain HP.",
+				"Hero cards cannot affect or be affected by other heroes' cards and effects",
 				"At the start of their turn, a player may skip the rest of their turn to destroy this card."
 			],
 			"icons": [
@@ -232,17 +196,7 @@
 				"SkipTurn",
 				"DestroySelf"
 			],
-			"flavorText": "ìThis is what hell is like,î Revel said. ìListen to{BR}me.î",
-			"flavorQuotes": [
-				{
-					"identifier": "Revel",
-					"text": "This is what hell is like,"
-				},
-				{
-					"identifier": "Revel",
-					"text": "Listen to me."
-				}
-			]
+			"flavorText": "‚ÄúThis is what hell is like,‚Äù Revel said. ‚ÄúListen to{BR}me!‚Äù"
 		},
 		{
 			"identifier": "TrappedChamber",
@@ -251,15 +205,15 @@
 			"keywords": [
 				"structure"
 			],
-			"hitpoints": 14,
+			"hitpoints": 6,
 			"body": [
 				"Heroes cannot use powers.",
-				"At the start of their turn, a player may skip the rest of their turn to destroy this card."
+				"At the start of the environment turn this card deals 2 projectile damage to the H nonenvironment targets with the highest HP, then destroys itself"
 			],
 			"icons": [
 				"CannotUsePowers",
 				"StartOfTurnAction",
-				"SkipTurn",
+				"DealDamageProjectile",
 				"DestroySelf"
 			],
 			"flavorText": "A series of barely-audible 'beeps' sounded{BR}throughout the room. What had I just{BR}disabled? Claymores? Did I really want to{BR}know?"
