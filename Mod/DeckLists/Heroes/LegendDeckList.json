@@ -9,7 +9,7 @@
       "count": 1,
       "body": "Coruscation",
       "hitpoints": 28,
-      "powers": [ "Select a Target, then apply an Effect to it" ],
+      "powers": [ "Choose an effect, then apply it to a target" ],
       "activatableAbilities": [
         {
           "name": "effect",
@@ -43,7 +43,7 @@
       "keywords": [ "ongoing", "laser" ],
       "icons": [],
       "powers": [
-        "Select a target, then apply an Effect to it.{BR}If any Effect you select for this power does damage, that damage is irreducible, cannot be redirected, and damages targets that are immune to damage"
+        "Choose an effect, then apply it to a target.{BR}If any Effect you choose for this power does damage, that damage is irreducible, cannot be redirected, and damages targets that are immune to damage"
       ],
       "flavorText": "",
       "flavorReference": "",
@@ -55,7 +55,7 @@
       "keywords": [ "ongoing", "laser" ],
       "icons": [],
       "powers": [
-        "Select up to 3 targets, then apply an Effect to them"
+        "Choose an effect, then apply it to up to 3 targets"
       ],
       "flavorText": "",
       "flavorReference": "",
@@ -67,7 +67,7 @@
       "keywords": [ "ongoing", "laser" ],
       "icons": [],
       "powers": [
-        "Apply an Effect to all targets except Legend"
+        "Choose an effect, then apply it to all targets except Legend"
       ],
       "flavorText": "",
       "flavorReference": "",
@@ -79,7 +79,7 @@
       "keywords": [ "ongoing", "laser" ],
       "icons": [],
       "powers": [
-        "Select any number of targets, then apply an Effect to them.{BR}Destroy this card."
+        "Choose an effect, then apply it to any number of targets.{BR}Destroy this card."
       ],
       "flavorText": "",
       "flavorReference": "",

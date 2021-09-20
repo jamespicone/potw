@@ -11,10 +11,10 @@ namespace Jp.ParahumansOfTheWormverse.Legend
 {
     public static class LegendExtensions
     {
-        public static IEnumerator SelectAndPerformEffects(this CardController co, IEnumerable<Card> targets)
+        public static IEnumerator ChooseEffects(this CardController co, List<IEffectCardController> effects)
         {
             var areWeBursting = co.GameController.StatusEffectManager.StatusEffectControllers.Select(sec => sec.StatusEffect as LegendBurstStatusEffect)
-                .Where(se => se != null && se.AffectedTurnTaker == co.TurnTaker ).Count() > 0;
+                .Where(se => se != null && se.AffectedTurnTaker == co.TurnTaker).Count() > 0;
 
             var selectedEffects = new List<CardController>();
 
@@ -45,13 +45,15 @@ namespace Jp.ParahumansOfTheWormverse.Legend
                 selectedEffects.Add(selected);
             } while (areWeBursting);
 
-            // apply effects
-            foreach (var effect in selectedEffects)
-            {
-                var effectIntf = effect as IEffectCardController;
-                if (effectIntf == null) { continue; }
+            effects.AddRange(selectedEffects.Cast<IEffectCardController>());
+        }
 
-                var e = effectIntf.DoEffect(targets);
+        public static IEnumerator ApplyEffects(this CardController co, IEnumerable<IEffectCardController> effects, IEnumerable<Card> targets)
+        {
+            // apply effects
+            foreach (var effect in effects)
+            {
+                var e = effect.DoEffect(targets);
                 if (co.UseUnityCoroutines)
                 {
                     yield return co.GameController.StartCoroutine(e);

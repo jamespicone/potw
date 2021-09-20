@@ -24,12 +24,46 @@ namespace Jp.ParahumansOfTheWormverse.Legend
         public override IEnumerator UsePower(int index = 0)
         {
             // Select a Target, then apply an Effect to it
+            var targets = new List<Card>();
+            var effects = new List<IEffectCardController>();
+
+            var e = this.ChooseEffects(effects);
+            if (UseUnityCoroutines)
+            {
+                yield return GameController.StartCoroutine(e);
+            }
+            else
+            {
+                GameController.ExhaustCoroutine(e);
+            }
+            if (UseUnityCoroutines)
+            {
+                yield return GameController.StartCoroutine(e);
+            }
+            else
+            {
+                GameController.ExhaustCoroutine(e);
+            }
+
+            var possibleTargets = FindCardsWhere(
+                c => c.IsTarget && c.IsInPlay,
+                realCardsOnly: true,
+                visibleToCard: GetCardSource()
+            );
+
+            var damage = new List<DealDamageAction>();
+            foreach (var effect in effects)
+            {
+                damage.Add(effect.TypicalDamageAction(targets));
+            }
+
             var storedResult = new List<SelectCardDecision>();
-            var e = GameController.SelectCardAndStoreResults(
+            e = GameController.SelectCardAndStoreResults(
                 HeroTurnTakerController,
                 SelectionType.SelectTarget,
-                new LinqCardCriteria(c => c.IsTarget && c.IsInPlay, "target"),
+                possibleTargets,
                 storedResult,
+                dealDamageInfo: damage,                
                 optional: false,
                 cardSource: GetCardSource()
             );
@@ -45,7 +79,7 @@ namespace Jp.ParahumansOfTheWormverse.Legend
             var card = GetSelectedCard(storedResult);
             if (card == null) { yield break; }
 
-            e = this.SelectAndPerformEffects(new Card[] { card });
+            e = this.DoEffect(new Card[] { card });
             if (UseUnityCoroutines)
             {
                 yield return GameController.StartCoroutine(e);
@@ -54,6 +88,11 @@ namespace Jp.ParahumansOfTheWormverse.Legend
             {
                 GameController.ExhaustCoroutine(e);
             }
+        }
+
+        public DealDamageAction TypicalDamageAction(IEnumerable<Card> targets)
+        {
+            return new DealDamageAction(GetCardSource(), new DamageSource(GameController, CharacterCard), null, 2, DamageType.Energy);
         }
 
         public IEnumerator DoEffect(IEnumerable<Card> targets)
