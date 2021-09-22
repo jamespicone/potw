@@ -79,7 +79,7 @@ namespace Jp.ParahumansOfTheWormverse.Legend
             var card = GetSelectedCard(storedResult);
             if (card == null) { yield break; }
 
-            e = this.DoEffect(new Card[] { card });
+            e = this.ApplyEffects(effects, new Card[] { card }, EffectTargetingOrdering.OrderingAlreadyDecided);
             if (UseUnityCoroutines)
             {
                 yield return GameController.StartCoroutine(e);
@@ -95,7 +95,7 @@ namespace Jp.ParahumansOfTheWormverse.Legend
             return new DealDamageAction(GetCardSource(), new DamageSource(GameController, CharacterCard), null, 2, DamageType.Energy);
         }
 
-        public IEnumerator DoEffect(IEnumerable<Card> targets)
+        public IEnumerator DoEffect(IEnumerable<Card> targets, EffectTargetingOrdering ordering)
         {
             // "Legend deals 2 energy damage"
             foreach (var c in targets)

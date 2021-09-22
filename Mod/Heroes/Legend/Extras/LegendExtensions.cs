@@ -48,12 +48,12 @@ namespace Jp.ParahumansOfTheWormverse.Legend
             effects.AddRange(selectedEffects.Cast<IEffectCardController>());
         }
 
-        public static IEnumerator ApplyEffects(this CardController co, IEnumerable<IEffectCardController> effects, IEnumerable<Card> targets)
+        public static IEnumerator ApplyEffects(this CardController co, IEnumerable<IEffectCardController> effects, IEnumerable<Card> targets, EffectTargetingOrdering ordering)
         {
             // apply effects
             foreach (var effect in effects)
             {
-                var e = effect.DoEffect(targets);
+                var e = effect.DoEffect(targets, ordering);
                 if (co.UseUnityCoroutines)
                 {
                     yield return co.GameController.StartCoroutine(e);

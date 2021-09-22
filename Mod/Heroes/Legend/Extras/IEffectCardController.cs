@@ -6,10 +6,16 @@ using Handelabra.Sentinels.Engine.Controller;
 
 namespace Jp.ParahumansOfTheWormverse.Legend
 {
+    public enum EffectTargetingOrdering
+    {
+        OrderingAlreadyDecided,
+        NeedsOrdering
+    };
+
     public interface IEffectCardController
     {
         DealDamageAction TypicalDamageAction(IEnumerable<Card> targets);
 
-        IEnumerator DoEffect(IEnumerable<Card> targets);
+        IEnumerator DoEffect(IEnumerable<Card> targets, EffectTargetingOrdering ordering = EffectTargetingOrdering.NeedsOrdering );
     }
 }
