@@ -21,7 +21,7 @@ namespace Jp.ParahumansOfTheWormverse.Armsmaster
                 HeroTurnTakerController,
                 AllCards,
                 storedResults,
-                additionalCriteria: c => c.IsHeroTarget(),
+                additionalCriteria: c => c.IsHeroTarget() && c.IsInPlay,
                 selectionType: SelectionType.IncreaseNextDamage,
                 cardSource: GetCardSource()
             );

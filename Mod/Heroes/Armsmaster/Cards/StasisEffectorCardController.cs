@@ -1,5 +1,6 @@
 ﻿using Handelabra.Sentinels.Engine.Controller;
 using Handelabra.Sentinels.Engine.Model;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,10 +9,97 @@ using UnityEngine;
 
 namespace Jp.ParahumansOfTheWormverse.Armsmaster
 {
+    [Serializable]
+    public class StasisEffectorStatusEffect : OnPhaseChangeStatusEffect
+    {
+        public StasisEffectorStatusEffect(Card cardWithMethod, string nameOfMethod, Card cardSource)
+            : base(cardWithMethod, nameOfMethod, "", new TriggerType[] { TriggerType.CancelAction }, cardSource)
+        {
+            NumberOfUses = 1;
+        }
+
+        public override bool IsSameAs(StatusEffect other)
+        {
+            return other is StasisEffectorStatusEffect;
+        }
+
+        public override void CombineWithStatusEffect(StatusEffect se)
+        {
+            NumberOfUses += se.NumberOfUses;
+        }
+
+        public override bool CombineWithExistingInstance => true;
+
+        public override string ToString()
+        {
+            if (NumberOfUses == 1)
+            {
+                return "The next time a villain card would be played prevent it";
+            }
+            else
+            {
+                return $"The next {NumberOfUses.Value} times a villain card would be played prevent it";
+            }
+        }
+    };
+
     public class StasisEffectorCardController : ModuleCardController
     {
         public StasisEffectorCardController(Card card, TurnTakerController controller) : base(card, controller)
         { }
+
+        public override void AddTriggers()
+        {
+            AddTrigger<PlayCardAction>(
+                pca => 
+                    pca.CardToPlay.IsVillain && 
+                    !pca.IsPutIntoPlay && 
+                    StatusEffectIsActive() &&
+                    GameController.IsCardLocationVisibleToSource(FindCardController(pca.CardToPlay), GetCardSource()) &&
+                    (pca.BattleZone == null || pca.BattleZone == BattleZone),
+                pca => PreventCardPlay(pca),
+                TriggerType.CancelAction,
+                TriggerTiming.Before,
+                outOfPlayTrigger: true
+            );
+        }
+
+        private bool StatusEffectIsActive()
+        {
+            return GameController.StatusEffectManager.StatusEffectControllers.Where(sec => sec.StatusEffect.CardSource == Card).Count() > 0;
+        }
+
+        private IEnumerator PreventCardPlay(PlayCardAction pca)
+        {
+            var relevantEffect = GameController.StatusEffectManager.StatusEffectControllers.Where(sec => sec.StatusEffect.CardSource == Card).FirstOrDefault();
+            if (relevantEffect == null) { yield break; }
+
+            var e = CancelAction(pca);
+            if (UseUnityCoroutines)
+            {
+                yield return GameController.StartCoroutine(e);
+            }
+            else
+            {
+                GameController.ExhaustCoroutine(e);
+            }
+
+            if (pca.IsPretend) { yield break; }
+
+            relevantEffect.StatusEffect.NumberOfUses--;
+            if (relevantEffect.StatusEffect.NumberOfUses <= 0)
+            {
+                e = GameController.ExpireStatusEffect(relevantEffect.StatusEffect, GetCardSource());
+                if (UseUnityCoroutines)
+                {
+                    yield return GameController.StartCoroutine(e);
+                }
+                else
+                {
+                    GameController.ExhaustCoroutine(e);
+                }
+            }
+        }
 
         public override IEnumerator DoPrimary()
         {
@@ -46,19 +134,7 @@ namespace Jp.ParahumansOfTheWormverse.Armsmaster
             //cannotPlayCardsEffect.NumberOfUses = 1;
             //cannotPlayCardsEffect.CardSource = Card;
 
-            var cannotPlayCardsEffect = new OnPhaseChangeStatusEffect(
-                Card,
-                nameof(HandlePreventVillainCards),
-                $"Skip the next villain play phase",
-                new[] { TriggerType.PreventPhaseAction },
-                Card
-            );
-            cannotPlayCardsEffect.TurnTakerCriteria.IsVillain = true;
-            cannotPlayCardsEffect.TurnPhaseCriteria.Phase = Phase.PlayCard;
-            cannotPlayCardsEffect.CanEffectStack = true;
-            cannotPlayCardsEffect.CardSource = Card;
-            cannotPlayCardsEffect.NumberOfUses = 1;
-
+            var cannotPlayCardsEffect = new StasisEffectorStatusEffect(Card, nameof(NoOpEffect), Card);
             e = AddStatusEffect(cannotPlayCardsEffect);
             if (UseUnityCoroutines)
             {
@@ -100,38 +176,9 @@ namespace Jp.ParahumansOfTheWormverse.Armsmaster
             }
         }
 
-        public IEnumerator HandlePreventVillainCards(PhaseChangeAction phase, OnPhaseChangeStatusEffect sourceEffect)
+        public IEnumerator NoOpEffect(PhaseChangeAction p, OnPhaseChangeStatusEffect effect)
         {
-            // TODO: This seems to fire even if some other effect has cancelled the turn,
-            // even if it's another instance of the status effect (or at least it expires).
-            //
-            // Not sure why.
-            //
-            if (!phase.ToPhase.IsVillain) { yield break; }
-            if (!phase.ToPhase.IsPlayCard) { yield break; }
-            if (!phase.ToPhase.CanPerformAction) { yield break; }
-            if (phase.ToPhase.WasSkipped) { yield break; }
-            if (phase.ToPhase.PhaseActionCountRoot == null) { yield break; }
-
-            var turnsLeft = (phase.ToPhase.PhaseActionCountRoot ?? 0) + (phase.ToPhase.PhaseActionCountModifiers ?? 0);
-            if (turnsLeft <= 0) { yield break; }
-
-            sourceEffect.NumberOfUses--;
-
-            if (sourceEffect.NumberOfUses < 0)
-            {
-                sourceEffect.UntilEndOfPhase(phase.ToPhase.TurnTaker, phase.ToPhase.Phase);
-            }
-
-            var e = GameController.PreventPhaseAction(phase.ToPhase, cardSource: GetCardSource());
-            if (UseUnityCoroutines)
-            {
-                yield return GameController.StartCoroutine(e);
-            }
-            else
-            {
-                GameController.ExhaustCoroutine(e);
-            }
+            yield break;
         }
     }
 }

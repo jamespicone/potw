@@ -29,17 +29,11 @@ namespace Jp.ParahumansOfTheWormverse.Armsmaster
             var selectedLocation = GetSelectedLocation(storedLocation);
             if (selectedLocation == null) { yield break; }
 
-            // TODO: This repeatedly asks what card you want to put "on top of the deck" which is a bit confusing
-            // Ideally should ask for top/second from top
-            e = RevealThreeCardsFromTopOfDeck_DetermineTheirLocation(
+            e = RevealTheTopCardsOfDeck_MoveInAnyOrder(
                 HeroTurnTakerController,
                 TurnTakerController,
-                selectedLocation,
-                selectedLocation,
-                selectedLocation,
-                firstOnBottom: false,
-                secondAndThirdToBottom: false,
-                responsibleTurnTaker: TurnTaker
+                selectedLocation.OwnerTurnTaker,
+                3
             );
             if (UseUnityCoroutines)
             {
