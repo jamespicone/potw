@@ -210,10 +210,10 @@
       "keywords": [ "ongoing" ],
       "icons": [],
       "body": [
-        "You cannot play cards or use powers.",
-        "Legend is immune to damage",
-        "At the start of your turn you may destroy this card",
-        "At the end of your turn draw a card"
+        "You may use an additional power each turn",
+        "Reduce damage dealt by Legend by 1",
+        "Reduce damage dealt to Legend by 1",
+        "At the start of your turn you may destroy this card. If you do, draw a card"
       ],
       "flavorText": "",
       "flavorReference": "",

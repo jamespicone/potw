@@ -25,23 +25,31 @@ namespace Jp.ParahumansOfTheWormverse.Legend
             );
         }
 
-        public IEnumerator DoEffect(IEnumerable<Card> targets, EffectTargetingOrdering ordering)
+        public IEnumerator DoEffect(IEnumerable<Card> targets, CardSource cardSource, EffectTargetingOrdering ordering)
         {
             // Legend deals X energy damage, where X = 5 - the number of targets affected, minimum 1
-            var e = DealDamage(
-                CharacterCard,
-                c => targets.Contains(c),
-                Math.Max(1, 5 - targets.Count()),
-                DamageType.Energy
+            return this.HandleEffectOrdering(
+                targets,
+                ordering,
+                t => GameController.DealDamageToTarget(
+                    new DamageSource(GameController, CharacterCard),
+                    t,
+                    c => Math.Max(1, 5 - targets.Count()),
+                    DamageType.Energy,
+                    cardSource: cardSource
+                ),
+                ts => GameController.SelectTargetsAndDealDamage(
+                    HeroTurnTakerController,
+                    new DamageSource(GameController, CharacterCard),
+                    amount: c => Math.Max(1, 5 - targets.Count()),
+                    damageType: DamageType.Energy,
+                    dynamicNumberOfTargets: () => ts.Count(),
+                    requiredTargets: ts.Count(),
+                    optional: false,                    
+                    additionalCriteria: c => ts.Contains(c),
+                    cardSource: cardSource
+                )
             );
-            if (UseUnityCoroutines)
-            {
-                yield return GameController.StartCoroutine(e);
-            }
-            else
-            {
-                GameController.ExhaustCoroutine(e);
-            }
         }
     }
 }

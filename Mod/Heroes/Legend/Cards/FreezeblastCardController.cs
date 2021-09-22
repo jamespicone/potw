@@ -24,24 +24,30 @@ namespace Jp.ParahumansOfTheWormverse.Legend
             );
         }
 
-        public IEnumerator DoEffect(IEnumerable<Card> targets, EffectTargetingOrdering ordering)
+        public IEnumerator DoEffect(IEnumerable<Card> targets, CardSource cardSource, EffectTargetingOrdering ordering)
         {
             // Legend deals 1 cold damage. Targets dealt damage in this way deal 1 less damage until the start of your next turn
-            var e = DealDamage(
-                CharacterCard,
-                c => targets.Contains(c),
-                1,
-                DamageType.Cold,
-                addStatusEffect: dda => ReduceDamageDealtByThatTargetUntilTheStartOfYourNextTurnResponse(dda, 1)
+            return this.HandleEffectOrdering(
+                targets,
+                ordering,
+                t => GameController.DealDamageToTarget(
+                    new DamageSource(GameController, CharacterCard),
+                    t,
+                    1,
+                    DamageType.Cold,
+                    addStatusEffect: dda => ReduceDamageDealtByThatTargetUntilTheStartOfYourNextTurnResponse(dda, 1),
+                    cardSource: cardSource
+                ),
+                ts => GameController.DealDamage(
+                    HeroTurnTakerController,
+                    CharacterCard,
+                    c => ts.Contains(c),
+                    1,
+                    DamageType.Cold,
+                    addStatusEffect: dda => ReduceDamageDealtByThatTargetUntilTheStartOfYourNextTurnResponse(dda, 1),
+                    cardSource: cardSource
+                )
             );
-            if (UseUnityCoroutines)
-            {
-                yield return GameController.StartCoroutine(e);
-            }
-            else
-            {
-                GameController.ExhaustCoroutine(e);
-            }
         }
     }
 }

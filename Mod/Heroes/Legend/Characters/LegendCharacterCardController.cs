@@ -79,7 +79,7 @@ namespace Jp.ParahumansOfTheWormverse.Legend
             var card = GetSelectedCard(storedResult);
             if (card == null) { yield break; }
 
-            e = this.ApplyEffects(effects, new Card[] { card }, EffectTargetingOrdering.OrderingAlreadyDecided);
+            e = this.ApplyEffects(effects, new Card[] { card }, EffectTargetingOrdering.OrderingAlreadyDecided, GetCardSource());
             if (UseUnityCoroutines)
             {
                 yield return GameController.StartCoroutine(e);
@@ -95,27 +95,28 @@ namespace Jp.ParahumansOfTheWormverse.Legend
             return new DealDamageAction(GetCardSource(), new DamageSource(GameController, CharacterCard), null, 2, DamageType.Energy);
         }
 
-        public IEnumerator DoEffect(IEnumerable<Card> targets, EffectTargetingOrdering ordering)
+        public IEnumerator DoEffect(IEnumerable<Card> targets, CardSource cardSource, EffectTargetingOrdering ordering)
         {
             // "Legend deals 2 energy damage"
-            foreach (var c in targets)
-            {
-                var e = DealDamage(
-                    CharacterCard,
-                    c,
-                    2,
-                    DamageType.Energy,
-                    cardSource: GetCardSource()
-                );
-                if (UseUnityCoroutines)
-                {
-                    yield return GameController.StartCoroutine(e);
-                }
-                else
-                {
-                    GameController.ExhaustCoroutine(e);
-                }
-            }
+            return this.HandleEffectOrdering(
+                 targets,
+                 ordering,
+                 t => GameController.DealDamageToTarget(
+                     new DamageSource(GameController, CharacterCard),
+                     t,
+                     2,
+                     DamageType.Energy,
+                     cardSource: cardSource
+                 ),
+                 ts => GameController.DealDamage(
+                     HeroTurnTakerController,
+                     CharacterCard,
+                     c => ts.Contains(c),
+                     2,
+                     DamageType.Energy,
+                     cardSource: cardSource
+                 )
+             );
         }
     }
 }

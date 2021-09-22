@@ -16,6 +16,6 @@ namespace Jp.ParahumansOfTheWormverse.Legend
     {
         DealDamageAction TypicalDamageAction(IEnumerable<Card> targets);
 
-        IEnumerator DoEffect(IEnumerable<Card> targets, EffectTargetingOrdering ordering = EffectTargetingOrdering.NeedsOrdering );
+        IEnumerator DoEffect(IEnumerable<Card> targets, CardSource cardSourceToUse, EffectTargetingOrdering ordering = EffectTargetingOrdering.NeedsOrdering );
     }
 }

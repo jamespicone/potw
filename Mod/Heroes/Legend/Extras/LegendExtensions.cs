@@ -48,12 +48,18 @@ namespace Jp.ParahumansOfTheWormverse.Legend
             effects.AddRange(selectedEffects.Cast<IEffectCardController>());
         }
 
-        public static IEnumerator ApplyEffects(this CardController co, IEnumerable<IEffectCardController> effects, IEnumerable<Card> targets, EffectTargetingOrdering ordering)
+        public static IEnumerator ApplyEffects(
+            this CardController co,
+            IEnumerable<IEffectCardController> effects,
+            IEnumerable<Card> targets,
+            EffectTargetingOrdering ordering,
+            CardSource cardSourceToUse
+        )
         {
             // apply effects
             foreach (var effect in effects)
             {
-                var e = effect.DoEffect(targets, ordering);
+                var e = effect.DoEffect(targets, cardSourceToUse, ordering);
                 if (co.UseUnityCoroutines)
                 {
                     yield return co.GameController.StartCoroutine(e);
@@ -61,6 +67,44 @@ namespace Jp.ParahumansOfTheWormverse.Legend
                 else
                 {
                     co.GameController.ExhaustCoroutine(e);
+                }
+            }
+        }
+
+        public static IEnumerator HandleEffectOrdering(
+            this CardController co,
+            IEnumerable<Card> targets,
+            EffectTargetingOrdering ordering,
+            Func<Card, IEnumerator> singleTargetVersion,
+            Func<IEnumerable<Card>, IEnumerator> multiTargetVersion
+        )
+        {
+            if (ordering == EffectTargetingOrdering.NeedsOrdering)
+            {
+                var e = multiTargetVersion(targets);
+                if (co.UseUnityCoroutines)
+                {
+                    yield return co.GameController.StartCoroutine(e);
+                }
+                else
+                {
+                    co.GameController.ExhaustCoroutine(e);
+                }
+            }
+
+            if (ordering == EffectTargetingOrdering.OrderingAlreadyDecided)
+            {
+                foreach (Card c in targets)
+                {
+                    var e = singleTargetVersion(c);
+                    if (co.UseUnityCoroutines)
+                    {
+                        yield return co.GameController.StartCoroutine(e);
+                    }
+                    else
+                    {
+                        co.GameController.ExhaustCoroutine(e);
+                    }
                 }
             }
         }

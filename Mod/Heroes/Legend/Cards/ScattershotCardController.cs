@@ -36,7 +36,7 @@ namespace Jp.ParahumansOfTheWormverse.Legend
                 GameController.ExhaustCoroutine(e);
             }
 
-            e = this.ApplyEffects(effects, targets, EffectTargetingOrdering.NeedsOrdering);
+            e = this.ApplyEffects(effects, targets, EffectTargetingOrdering.NeedsOrdering, GetCardSource());
             if (UseUnityCoroutines)
             {
                 yield return GameController.StartCoroutine(e);

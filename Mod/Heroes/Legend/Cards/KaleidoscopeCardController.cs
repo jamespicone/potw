@@ -26,48 +26,88 @@ namespace Jp.ParahumansOfTheWormverse.Legend
             return ret;
         }
 
-        public IEnumerator DoEffect(IEnumerable<Card> targets, EffectTargetingOrdering ordering)
+        public IEnumerator DoEffect(IEnumerable<Card> targets, CardSource cardSource, EffectTargetingOrdering ordering)
         {
             // Select a damage type. Legend deals 2 damage of that type
-            foreach (var target in targets)
+            return this.HandleEffectOrdering(
+                targets,
+                ordering,
+                t => SingleTargetEffect(t, cardSource),
+                ts => MultiTargetEffect(ts, cardSource)
+            );
+        }
+
+        private IEnumerator SingleTargetEffect(Card target, CardSource cardSource)
+        {
+            var dda = TypicalDamageAction(new Card[] { target });
+            dda.Target = target;
+
+            var storedResults = new List<SelectDamageTypeDecision>();
+            var e = GameController.SelectDamageType(
+                HeroTurnTakerController,
+                storedResults,
+                gameAction: dda,
+                cardSource: GetCardSource()
+            );
+            if (UseUnityCoroutines)
             {
-                var dda = TypicalDamageAction(new Card[] { target });
-                dda.Target = target;
+                yield return GameController.StartCoroutine(e);
+            }
+            else
+            {
+                GameController.ExhaustCoroutine(e);
+            }
 
-                var storedResults = new List<SelectDamageTypeDecision>();
-                var e = GameController.SelectDamageType(
-                    HeroTurnTakerController,
-                    storedResults,
-                    gameAction: dda,
-                    cardSource: GetCardSource()
-                );
-                if (UseUnityCoroutines)
-                {
-                    yield return GameController.StartCoroutine(e);
-                }
-                else
-                {
-                    GameController.ExhaustCoroutine(e);
-                }
+            var damageType = GetSelectedDamageType(storedResults);
+            if (damageType == null) { yield break; }
 
-                var damageType = GetSelectedDamageType(storedResults);
-                if (damageType == null) { continue; }
+            e = DealDamage(
+                CharacterCard,
+                target,
+                dda.Amount,
+                damageType.Value,
+                cardSource: cardSource
+            );
+            if (UseUnityCoroutines)
+            {
+                yield return GameController.StartCoroutine(e);
+            }
+            else
+            {
+                GameController.ExhaustCoroutine(e);
+            }
+        }
 
-                e = DealDamage(
-                    CharacterCard,
-                    target,
-                    dda.Amount,
-                    damageType.Value,
-                    cardSource: GetCardSource()
-                );
-                if (UseUnityCoroutines)
-                {
-                    yield return GameController.StartCoroutine(e);
-                }
-                else
-                {
-                    GameController.ExhaustCoroutine(e);
-                }
+        private IEnumerator MultiTargetEffect(IEnumerable<Card> targets, CardSource cardSource)
+        {
+            var dda = TypicalDamageAction(targets);
+
+            // TODO: This doesn't work
+            SelectTargetsDecision decision = new SelectTargetsDecision(
+                GameController,
+                HeroTurnTakerController,
+                c => targets.Contains(c),
+                allowAutoDecide: true,
+                numberOfCards: targets.Count(),
+                requiredDecisions: targets.Count(),
+                cardSource: GetCardSource(),
+                damageSource: dda.DamageSource,
+                amount: dda.Amount,
+                selectTargetsEvenIfCannotPerformAction: true
+            );
+
+            var e = GameController.SelectCardsAndDoAction(
+                decision,
+                scd => SingleTargetEffect(scd.SelectedCard, cardSource),
+                cardSource: GetCardSource()
+            );
+            if (UseUnityCoroutines)
+            {
+                yield return GameController.StartCoroutine(e);
+            }
+            else
+            {
+                GameController.ExhaustCoroutine(e);
             }
         }
     }
