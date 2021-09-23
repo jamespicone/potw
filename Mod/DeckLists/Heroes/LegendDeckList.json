@@ -1,0 +1,259 @@
+{
+  "name": "Legend",
+  "kind": "Hero",
+  "initialCardIdentifiers": [ "LegendCharacter" ],
+  "cards": [
+    {
+      "identifier": "LegendCharacter",
+      "title": "Legend",
+      "count": 1,
+      "body": "Coruscation",
+      "hitpoints": 28,
+      "powers": [ "Choose an effect, then apply it to a target" ],
+      "gameplay": "[u]effect[/u]: Legend deals 2 energy damage",
+      "activatableAbilities": [
+        {
+          "name": "effect",
+          "text": "Legend deals 2 energy damage"
+        }
+      ],
+      "icons": [
+        "HasPower",
+        "DealDamageEnergy"
+      ],
+      "character": true,
+      "backgroundColor": "9999FF",
+      "openingLines": {
+        "default": "blargh"
+      },
+      "complexity": 2,
+      "incapacitatedAbilities": [
+        "Legend deals 1 energy damage to a target",
+        "A player may use a power",
+        "A player may draw a card"
+      ],
+      "flippedIcons": [
+        "DealDamageEnergy",
+        "UsePowerNow",
+        "DrawCardNow"
+      ]
+    },
+    {
+      "identifier": "Curveshot",
+      "title": "Curveshot",
+      "keywords": [ "ongoing", "laser" ],
+      "icons": [],
+      "powers": [
+        "Choose an effect, then apply it to a target.{BR}If any Effect you choose for this power does damage, that damage is irreducible, cannot be redirected, and damages targets that are immune to damage"
+      ],
+      "flavorText": "",
+      "flavorReference": "",
+      "count": 2
+    },
+    {
+      "identifier": "Splitshot",
+      "title": "Splitshot",
+      "keywords": [ "ongoing", "laser" ],
+      "icons": [],
+      "powers": [
+        "Choose an effect, then apply it to up to 3 targets"
+      ],
+      "flavorText": "",
+      "flavorReference": "",
+      "count": 2
+    },
+    {
+      "identifier": "Scattershot",
+      "title": "Scattershot",
+      "keywords": [ "ongoing", "laser" ],
+      "icons": [],
+      "powers": [
+        "Choose an effect, then apply it to all targets except Legend"
+      ],
+      "flavorText": "",
+      "flavorReference": "",
+      "count": 2
+    },
+    {
+      "identifier": "FillTheSky",
+      "title": "Fill the Sky",
+      "keywords": [ "ongoing", "laser" ],
+      "icons": [],
+      "powers": [
+        "Choose an effect, then apply it to any number of targets.{BR}Destroy this card."
+      ],
+      "flavorText": "",
+      "flavorReference": "",
+      "count": 2
+    },
+    {
+      "identifier": "Freezeblast",
+      "title": "Freezeblast",
+      "keywords": [ "ongoing", "laser" ],
+      "icons": [],
+      "activatableAbilities": [
+        {
+          "name": "effect",
+          "text": "Legend deals 1 cold damage. Targets dealt damage in this way deal 1 less damage until the start of your next turn"
+        }
+      ],
+      "flavorText": "",
+      "flavorReference": "",
+      "count": 2
+    },
+    {
+      "identifier": "Kaleidoscope",
+      "title": "Kaleidoscope",
+      "keywords": [ "ongoing", "laser" ],
+      "icons": [],
+      "activatableAbilities": [
+        {
+          "name": "effect",
+          "text": "Select a damage type. Legend deals 2 damage of that type"
+        }
+      ],
+      "flavorText": "",
+      "flavorReference": "",
+      "count": 2
+    },
+    {
+      "identifier": "Scatterblast",
+      "title": "Scatterblast",
+      "keywords": [ "ongoing", "laser" ],
+      "icons": [],
+      "activatableAbilities": [
+        {
+          "name": "effect",
+          "text": "Legend deals X energy damage, where X = 5 - the number of targets affected, minimum 1"
+        }
+      ],
+      "flavorText": "",
+      "flavorReference": "",
+      "count": 2
+    },
+    {
+      "identifier": "Burst",
+      "title": "Burst",
+      "keywords": [ "one-shot" ],
+      "icons": [],
+      "body": "This turn, when you would choose an Effect, instead choose any number of Effects",
+      "flavorText": "",
+      "flavorReference": "",
+      "count": 2
+    },
+    {
+      "identifier": "BounceBack",
+      "title": "Bounce Back",
+      "keywords": [ "ongoing", "limited" ],
+      "icons": [],
+      "tokenPools": [
+        {
+          "identifier": "ChargePool",
+          "name": "Charge Pool",
+          "initialValue": 0,
+          "minimumValue": 0,
+          "color": "0000ff"
+        }
+      ],
+      "body": [
+        "Whenever Legend takes damage place a Charge token on this card",
+        "Whenever Legend deals damage you may remove a Charge token from this card to increase the damage by 1"
+      ],
+      "flavorText": "",
+      "flavorReference": "",
+      "count": 2
+    },
+    {
+      "identifier": "Luminal",
+      "title": "Luminal",
+      "keywords": [ "one-shot" ],
+      "icons": [],
+      "body": [ "Draw 3 cards.", "You may use an additional power this turn." ],
+      "flavorText": "",
+      "flavorReference": "",
+      "count": 3
+    },
+    {
+      "identifier": "SkyHigh",
+      "title": "Sky High",
+      "keywords": [ "ongoing" ],
+      "icons": [],
+      "body": [
+        "Legend and Legend's cards cannot be affected by Environment cards"
+      ],
+      "flavorText": "",
+      "flavorReference": "",
+      "count": 2
+    },
+    {
+      "identifier": "PreciseTargeting",
+      "title": "Precise Targeting",
+      "keywords": [ "one-shot" ],
+      "icons": [],
+      "body": "Destroy an Ongoing or Environment card",
+      "flavorText": "",
+      "flavorReference": "",
+      "count": 3
+    },
+    {
+      "identifier": "Charisma",
+      "title": "Charisma",
+      "keywords": [ "one-shot" ],
+      "icons": [],
+      "body": "Each player may either have one of their characters regain 2 HP or play a card",
+      "flavorText": "",
+      "flavorReference": "",
+      "count": 3
+    },
+    {
+      "identifier": "BreakerState",
+      "title": "Breaker State",
+      "keywords": [ "ongoing", "limited" ],
+      "icons": [],
+      "body": [
+        "You may use an additional power each turn",
+        "Reduce damage dealt by Legend by 1",
+        "Reduce damage dealt to Legend by 1",
+        "At the start of your turn you may destroy this card. If you do, draw a card"
+      ],
+      "flavorText": "",
+      "flavorReference": "",
+      "count": 2
+    },
+    {
+      "identifier": "Barrage",
+      "title": "Barrage",
+      "keywords": [ "one-shot" ],
+      "icons": [],
+      "body": "Legend deals 3 energy damage to all villain targets",
+      "flavorText": "",
+      "flavorReference": "",
+      "count": 4
+    },
+    {
+      "identifier": "EnergyConversion",
+      "title": "Energy Conversion",
+      "keywords": [ "ongoing" ],
+      "icons": [],
+      "body": [
+        "Whenever Legend is dealt damage by a villain or environment target, you may draw a card or play a card"
+      ],
+      "flavorText": "",
+      "flavorReference": "",
+      "count": 2
+    },
+    {
+      "identifier": "Relativistic",
+      "title": "Relativistic",
+      "keywords": [ "one-shot" ],
+      "icons": [],
+      "body": [
+        "You may play a card",
+        "You may play a card"
+      ],
+      "flavorText": "",
+      "flavorReference": "",
+      "count": 3
+    }
+  ]
+}
