@@ -10,7 +10,9 @@ namespace Jp.ParahumansOfTheWormverse.Legend
     public class CurveshotCardController : CardController
     {
         public CurveshotCardController(Card card, TurnTakerController controller) : base(card, controller)
-        { }
+        {
+            AddThisCardControllerToList(CardControllerListType.CanCauseDamageOutOfPlay);
+        }
 
         public override void AddTriggers()
         {

@@ -10,7 +10,9 @@ namespace Jp.ParahumansOfTheWormverse.Legend
     public class FillTheSkyCardController : CardController
     {
         public FillTheSkyCardController(Card card, TurnTakerController controller) : base(card, controller)
-        { }
+        {
+            AddThisCardControllerToList(CardControllerListType.CanCauseDamageOutOfPlay);
+        }
 
         public override IEnumerator UsePower(int index = 0)
         {

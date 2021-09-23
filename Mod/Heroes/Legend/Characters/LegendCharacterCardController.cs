@@ -14,6 +14,7 @@ namespace Jp.ParahumansOfTheWormverse.Legend
     {
         public LegendCharacterCardController(Card card, TurnTakerController controller) : base(card, controller)
         {
+            AddThisCardControllerToList(CardControllerListType.CanCauseDamageOutOfPlay);
         }
 
         public override IEnumerator UseIncapacitatedAbility(int index)
