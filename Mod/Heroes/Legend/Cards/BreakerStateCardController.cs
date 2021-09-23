@@ -53,7 +53,8 @@ namespace Jp.ParahumansOfTheWormverse.Legend
 
             if (GetNumberOfCardsDestroyed(results) > 0)
             {
-                e = DrawCard();
+                GameController.AddInhibitorException(this, ga => ga is DrawCardAction);
+                e = DrawCard(HeroTurnTaker);
                 if (UseUnityCoroutines)
                 {
                     yield return GameController.StartCoroutine(e);
@@ -62,6 +63,7 @@ namespace Jp.ParahumansOfTheWormverse.Legend
                 {
                     GameController.ExhaustCoroutine(e);
                 }
+                GameController.RemoveInhibitorException(this);
             }
         }
     }

@@ -12,6 +12,8 @@ namespace Jp.ParahumansOfTheWormverse.Legend
         public BounceBackCardController(Card card, TurnTakerController controller) : base(card, controller)
         { }
 
+        public override bool AllowFastCoroutinesDuringPretend { get => ! HasChargeTokens(); }
+
         public override void AddTriggers()
         {
             //"Whenever Legend takes damage place a Charge token on this card",
@@ -36,7 +38,7 @@ namespace Jp.ParahumansOfTheWormverse.Legend
             var pool = Card.FindTokenPool("ChargePool");
             if (pool == null) { yield break; }
 
-            var e = AddOrRemoveTokens(pool, amount: 1, optional: false);
+            var e = GameController.AddTokensToPool(pool, 1, GetCardSource());
             if (UseUnityCoroutines)
             {
                 yield return GameController.StartCoroutine(e);
@@ -67,7 +69,7 @@ namespace Jp.ParahumansOfTheWormverse.Legend
                 var increaseResult = new List<YesNoCardDecision>();
                 var e = GameController.MakeYesNoCardDecision(
                     HeroTurnTakerController,
-                    SelectionType.IncreaseDamage,
+                    SelectionType.RemoveTokens,
                     Card,
                     dda,
                     increaseResult,
@@ -89,7 +91,17 @@ namespace Jp.ParahumansOfTheWormverse.Legend
 
             if (increaseDamage.GetValueOrDefault(false))
             {
-                var e = GameController.IncreaseDamage(dda, 1, cardSource: GetCardSource());
+                var e = GameController.RemoveTokensFromPool(pool, 1, gameAction: dda, cardSource: GetCardSource());
+                if (UseUnityCoroutines)
+                {
+                    yield return GameController.StartCoroutine(e);
+                }
+                else
+                {
+                    GameController.ExhaustCoroutine(e);
+                }
+
+                e = GameController.IncreaseDamage(dda, 1, cardSource: GetCardSource());
                 if (UseUnityCoroutines)
                 {
                     yield return GameController.StartCoroutine(e);

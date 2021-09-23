@@ -50,33 +50,35 @@ namespace Jp.ParahumansOfTheWormverse.Legend
                 damage.Add(effect.TypicalDamageAction(targets));
             }
 
-            for (int i = 0; i < numberOfTargets; ++i)
+            var decision = new SelectTargetsDecision(
+                GameController,
+                HeroTurnTakerController,
+                c => possibleTargets.Contains(c),
+                numberOfCards: numberOfTargets,
+                requiredDecisions: 0,
+                damageSource: damage.First().DamageSource,
+                amount: damage.First().Amount,
+                damageType: damage.First().DamageType,
+                isIrreducible: damage.First().IsIrreducible,
+                followUpDamageInformation: damage.Skip(1),
+                addStatusEffect: damage.First().StatusEffectResponses.FirstOrDefault(),
+                selectTargetsEvenIfCannotPerformAction: true,
+                cardSource: GetCardSource()
+            );
+
+            decision.SequenceIndex = 1;
+
+            e = GameController.SelectCardsAndDoAction(decision, scd => DoNothing(), cardSource: GetCardSource());
+            if (UseUnityCoroutines)
             {
-                var storedResult = new List<SelectCardDecision>();
-                e = GameController.SelectCardAndStoreResults(
-                    HeroTurnTakerController,
-                    SelectionType.SelectTarget,
-                    possibleTargets,
-                    storedResult,
-                    dealDamageInfo: damage,
-                    optional: true,
-                    selectionTypeOrdinal: i + 1,
-                    cardSource: GetCardSource()
-                );
-                if (UseUnityCoroutines)
-                {
-                    yield return GameController.StartCoroutine(e);
-                }
-                else
-                {
-                    GameController.ExhaustCoroutine(e);
-                }
-
-                var card = GetSelectedCard(storedResult);
-                if (card == null) { break; }
-
-                targets.Add(card);
+                yield return GameController.StartCoroutine(e);
             }
+            else
+            {
+                GameController.ExhaustCoroutine(e);
+            }
+
+            targets.AddRange(GetSelectedCards(new SelectCardsDecision[] { decision }));
 
             e = this.ApplyEffects(effects, targets, EffectTargetingOrdering.OrderingAlreadyDecided, GetCardSource());
             if (UseUnityCoroutines)

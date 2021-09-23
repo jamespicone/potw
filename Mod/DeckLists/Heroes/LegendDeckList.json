@@ -207,7 +207,7 @@
     {
       "identifier": "BreakerState",
       "title": "Breaker State",
-      "keywords": [ "ongoing" ],
+      "keywords": [ "ongoing", "limited" ],
       "icons": [],
       "body": [
         "You may use an additional power each turn",

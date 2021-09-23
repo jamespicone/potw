@@ -26,7 +26,8 @@ namespace Jp.ParahumansOfTheWormverse.Legend
                     "effect",
                     new LinqCardCriteria(c => selectedEffects.Count(cc => cc.Card == c) <= 0),
                     storedResults: selectedEffect,
-                    cardSource: co.GetCardSource()
+                    cardSource: co.GetCardSource(),
+                    optional: selectedEffects.Count() > 0
                 );
                 if (co.UseUnityCoroutines)
                 {

@@ -18,7 +18,45 @@ namespace Jp.ParahumansOfTheWormverse.Legend
 
         public override IEnumerator UseIncapacitatedAbility(int index)
         {
-            yield break;
+            IEnumerator e;
+            switch(index)
+            {
+                //"Legend deals 1 energy damage to a target",
+                case 0:
+                    e = GameController.SelectTargetsAndDealDamage(
+                        HeroTurnTakerController,
+                        new DamageSource(GameController, TurnTaker),
+                        amount: 1,
+                        DamageType.Energy,
+                        numberOfTargets: 1,
+                        optional: false,
+                        requiredTargets: 1,
+                        cardSource: GetCardSource()
+                    );
+                    break;
+
+                //"A player may use a power",
+                case 1:
+                    e = GameController.SelectHeroToPlayCard(HeroTurnTakerController, cardSource: GetCardSource());
+                    break;
+
+                //"A player may draw a card"
+                case 2:
+                    e = GameController.SelectHeroToDrawCard(HeroTurnTakerController, cardSource: GetCardSource());
+                    break;
+
+                default:
+                    yield break;
+            }
+
+            if (UseUnityCoroutines)
+            {
+                yield return GameController.StartCoroutine(e);
+            }
+            else
+            {
+                GameController.ExhaustCoroutine(e);
+            }
         }
 
         public override IEnumerator UsePower(int index = 0)
@@ -28,14 +66,6 @@ namespace Jp.ParahumansOfTheWormverse.Legend
             var effects = new List<IEffectCardController>();
 
             var e = this.ChooseEffects(effects);
-            if (UseUnityCoroutines)
-            {
-                yield return GameController.StartCoroutine(e);
-            }
-            else
-            {
-                GameController.ExhaustCoroutine(e);
-            }
             if (UseUnityCoroutines)
             {
                 yield return GameController.StartCoroutine(e);
