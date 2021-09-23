@@ -10,6 +10,7 @@
       "body": "Coruscation",
       "hitpoints": 28,
       "powers": [ "Choose an effect, then apply it to a target" ],
+      "gameplay": "[u]effect[/u]: Legend deals 2 energy damage",
       "activatableAbilities": [
         {
           "name": "effect",
@@ -21,7 +22,7 @@
         "DealDamageEnergy"
       ],
       "character": true,
-      "backgroundColor": "ffffff",
+      "backgroundColor": "9999FF",
       "openingLines": {
         "default": "blargh"
       },
