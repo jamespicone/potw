@@ -42,7 +42,11 @@
       "identifier": "Curveshot",
       "title": "Curveshot",
       "keywords": [ "ongoing", "laser" ],
-      "icons": [],
+      "icons": [
+        "HasPower",
+        "MakeDamageIrreducible",
+        "MakeDamageUnredirectable"
+      ],
       "powers": [
         "Choose an effect, then apply it to a target.{BR}If any Effect you choose for this power does damage, that damage is irreducible, cannot be redirected, and damages targets that are immune to damage"
       ],
@@ -54,7 +58,9 @@
       "identifier": "Splitshot",
       "title": "Splitshot",
       "keywords": [ "ongoing", "laser" ],
-      "icons": [],
+      "icons": [
+        "HasPower"
+      ],
       "powers": [
         "Choose an effect, then apply it to up to 3 targets"
       ],
@@ -66,7 +72,9 @@
       "identifier": "Scattershot",
       "title": "Scattershot",
       "keywords": [ "ongoing", "laser" ],
-      "icons": [],
+      "icons": [
+        "HasPower"
+      ],
       "powers": [
         "Choose an effect, then apply it to all targets except Legend"
       ],
@@ -78,7 +86,7 @@
       "identifier": "FillTheSky",
       "title": "Fill the Sky",
       "keywords": [ "ongoing", "laser" ],
-      "icons": [],
+      "icons": [ "HasPower", "DestroySelf" ],
       "powers": [
         "Choose an effect, then apply it to any number of targets.{BR}Destroy this card."
       ],
@@ -90,7 +98,10 @@
       "identifier": "Freezeblast",
       "title": "Freezeblast",
       "keywords": [ "ongoing", "laser" ],
-      "icons": [],
+      "icons": [
+        "DealDamageCold",
+        "ReduceDamageDealt"
+      ],
       "activatableAbilities": [
         {
           "name": "effect",
@@ -105,7 +116,9 @@
       "identifier": "Kaleidoscope",
       "title": "Kaleidoscope",
       "keywords": [ "ongoing", "laser" ],
-      "icons": [],
+      "icons": [
+        "DealDamage"
+      ],
       "activatableAbilities": [
         {
           "name": "effect",
@@ -120,7 +133,9 @@
       "identifier": "Scatterblast",
       "title": "Scatterblast",
       "keywords": [ "ongoing", "laser" ],
-      "icons": [],
+      "icons": [
+        "DealDamageEnergy"
+      ],
       "activatableAbilities": [
         {
           "name": "effect",
@@ -145,7 +160,10 @@
       "identifier": "BounceBack",
       "title": "Bounce Back",
       "keywords": [ "ongoing", "limited" ],
-      "icons": [],
+      "icons": [
+        "AddTokens",
+        "IncreaseDamageDealt"
+      ],
       "tokenPools": [
         {
           "identifier": "ChargePool",
@@ -167,7 +185,10 @@
       "identifier": "Luminal",
       "title": "Luminal",
       "keywords": [ "one-shot" ],
-      "icons": [],
+      "icons": [
+        "DrawCardNow",
+        "UsePowerExtra"
+      ],
       "body": [ "Draw 3 cards.", "You may use an additional power this turn." ],
       "flavorText": "",
       "flavorReference": "",
@@ -177,7 +198,9 @@
       "identifier": "SkyHigh",
       "title": "Sky High",
       "keywords": [ "ongoing" ],
-      "icons": [],
+      "icons": [
+        "ImmuneToDamage"
+      ],
       "body": [
         "Legend and Legend's cards cannot be affected by Environment cards"
       ],
@@ -189,7 +212,10 @@
       "identifier": "PreciseTargeting",
       "title": "Precise Targeting",
       "keywords": [ "one-shot" ],
-      "icons": [],
+      "icons": [
+        "DestroyEnvironment",
+        "DestroyOngoing"
+      ],
       "body": "Destroy an Ongoing or Environment card",
       "flavorText": "",
       "flavorReference": "",
@@ -199,7 +225,10 @@
       "identifier": "Charisma",
       "title": "Charisma",
       "keywords": [ "one-shot" ],
-      "icons": [],
+      "icons": [
+        "PlayCardNow",
+        "GainHP"
+      ],
       "body": "Each player may either have one of their characters regain 2 HP or play a card",
       "flavorText": "",
       "flavorReference": "",
@@ -209,7 +238,13 @@
       "identifier": "BreakerState",
       "title": "Breaker State",
       "keywords": [ "ongoing", "limited" ],
-      "icons": [],
+      "icons": [
+        "UsePowerExtra",
+        "ReduceDamageDealt",
+        "ReduceDamageTaken",
+        "DestroySelf",
+        "DrawCardNow"
+      ],
       "body": [
         "You may use an additional power each turn",
         "Reduce damage dealt by Legend by 1",
@@ -224,7 +259,9 @@
       "identifier": "Barrage",
       "title": "Barrage",
       "keywords": [ "one-shot" ],
-      "icons": [],
+      "icons": [
+        "DealDamageEnergy"
+      ],
       "body": "Legend deals 3 energy damage to all villain targets",
       "flavorText": "",
       "flavorReference": "",
@@ -234,7 +271,10 @@
       "identifier": "EnergyConversion",
       "title": "Energy Conversion",
       "keywords": [ "ongoing" ],
-      "icons": [],
+      "icons": [
+        "DrawCardNow",
+        "PlayCardNow"
+      ],
       "body": [
         "Whenever Legend is dealt damage by a villain or environment target, you may draw a card or play a card"
       ],
@@ -246,7 +286,9 @@
       "identifier": "Relativistic",
       "title": "Relativistic",
       "keywords": [ "one-shot" ],
-      "icons": [],
+      "icons": [
+        "PlayCardNow"
+      ],
       "body": [
         "You may play a card",
         "You may play a card"
