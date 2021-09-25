@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+using UnityEngine;
+
 namespace Jp.ParahumansOfTheWormverse.Legend
 {
     public class CurveshotCardController : CardController
@@ -30,6 +32,46 @@ namespace Jp.ParahumansOfTheWormverse.Legend
                 TriggerTiming.Before,
                 outOfPlayTrigger: true
             );
+
+            AddTrigger<DealDamageAction>(
+                dda=> dda.CardSource.Card == Card &&
+                    dda.DamageSource.Card == CharacterCard &&
+                    GameController.PreviewMode &&
+                    dda.DamageModifiers.Count(mdda => mdda is ImmuneToDamageAction) > 0 &&
+                    ! dda.CanDealDamage,
+                dda => FixupPreview(dda),
+                TriggerType.MakeImmuneToDamage,
+                TriggerTiming.Before,
+                priority: TriggerPriority.Low,
+                outOfPlayTrigger: true
+            );
+        }
+
+        private IEnumerator FixupPreview(DealDamageAction dda)
+        {
+            if (dda.DamageModifiers.Count(mdda => mdda is ImmuneToDamageAction) <= 0 || ! GameController.PreviewMode)
+            {
+                yield break;
+            }
+
+            // Force triggermanager to see this as ambiguous outcome            
+            var e = GameController.MakeYesNoCardDecision(DecisionMaker, SelectionType.AmbiguousDecision, Card, cardSource: GetCardSource());
+            if (UseUnityCoroutines)
+            {
+                yield return GameController.StartCoroutine(e);
+            }
+            else
+            {
+                GameController.ExhaustCoroutine(e);
+            }
+
+            // This is super hacky and questionable but maybe it's okay because it's only for previews?
+            dda.Amount = dda.OriginalAmount;
+            dda.CanDealDamage = true;
+            foreach (var md in dda.DamageModifiers.Where(mdda => !(mdda is ImmuneToDamageAction)))
+            {
+                md.ModifyDamage();
+            }           
         }
 
         private IEnumerator DoCurveshot(DealDamageAction dda)
