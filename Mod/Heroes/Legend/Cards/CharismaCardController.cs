@@ -16,7 +16,7 @@ namespace Jp.ParahumansOfTheWormverse.Legend
         {
             // Each hero may either regain 2 HP or play a card
             var e = EachPlayerSelectsFunction(
-                httc => true,
+                httc => ! httc.IsIncapacitatedOrOutOfGame,
                 httc => new Function[]
                 {
                     new Function(httc, "Regain 2 HP", SelectionType.GainHP, () => RegainHP(httc)),
