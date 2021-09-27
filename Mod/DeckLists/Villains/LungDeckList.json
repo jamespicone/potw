@@ -9,15 +9,14 @@
       "body": "Gang Leader",
       "count": 1,
       "character": true,
-      "icons": [],
+      "icons": [ "FlipFaceDown" ],
       "hitpoints": 80,
-      "nemesisIdentifiers": [ "Skitter" ],
+      "nemesisIdentifiers": [ "" ],
       "backgroundColor": "ffffff",
       "setup": [ "At the start of the game {LungCharacter} enters play Gang Leader side up. Put [i]Brute[/i] into play, Gang Leader side up." ],
       "gameplay": [ "When the villain deck is empty and a villain card would be played, flip [i]Brute[/i], and flip {LungCharacter}." ],
-      "icons": [],
       "openingLines": {
-        "default": "blargh"
+        "default": " I always have my vengeance"
       },
       "difficulty": 2,
       "advanced": "At the end of the villain turn, discard the top card of the villain deck.",

@@ -7,6 +7,9 @@
       "identifier": "CoilCharacter",
       "title": "Coil",
       "body": "Evil Mastermind",
+      "openingLines": {
+        "default": "My power is to control my own destiny, to reshape and cultivate it"
+      },
       "count": 1,
       "character": true,
       "icons": [],

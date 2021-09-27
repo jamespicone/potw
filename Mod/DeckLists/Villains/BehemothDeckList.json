@@ -22,7 +22,6 @@
 			"character": true,
 			"hitpoints": 100,
 			"nemesisIdentifiers": [
-				"Alexandria"
 			],
 			"setup": [
 				"Put {BehemothCharacter} into play, 'Herokiller' side up. Put {HeroTacticsCharacter} into play, 'Standard Protocols' side up. Shuffle all Movement cards and put them face down under this one as the Movement deck."
@@ -40,7 +39,7 @@
 				"DealDamage"
 			],
 			"advancedIcons": [
-				""
+				"FlipFaceDown"
 			],
 			"flippedBody": "Herokiller, Desperate",
 			"flippedGameplay": [
@@ -58,11 +57,11 @@
 				"DealDamage"
 			],
 			"flippedAdvancedIcons": [
-				""
+				"FlipFaceDown"
 			],
 			"difficulty": 2,
 			"openingLines": {
-				"default": ""
+				"default": "RRRRROOOOOAAARRRRRR!"
 			}
 		},
 		{

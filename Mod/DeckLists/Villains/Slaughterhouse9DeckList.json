@@ -15,7 +15,7 @@
       "setup": [ "Search the Villain deck for all Nine cards, shuffle them, and put them under this card. Move the top H cards from under this card into the villain play area." ],
       "gameplay": [ "Whenever a Nine card would be destroyed, flip it instead. Whenever no villain targets are in play, the heroes win the game" ],
       "openingLines": {
-        "default": "blargh"
+        "default": "Do your worst. Because if you don't, we will."
       },
       "difficulty": 2,
       "advanced": "At the end of the villain turn move the top card under this card into the villain play area.",
