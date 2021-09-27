@@ -13,9 +13,9 @@
       "powers": [ "Each Dog in play may deal 2 melee damage to a target." ],
       "character": true,
       "backgroundColor": "ffffff",
-      "openingLines": {
-        "default": "blargh"
-      },
+			"openingLines": {
+				"default": "We going to have a problem?"
+			},
       "complexity": 1,
       "incapacitatedAbilities": [
         "One target regains 2 HP.",
