@@ -2,7 +2,7 @@
   "title": "Parahumans of the Wormverse",
   "author": "James Picone",
   "description": [ "Mod bringing characters and locations from JC McCrae's (Wildbow's) Parahumans universe into Sentinels. Not associated with or endorsed by JC McCrae." ],
-  "version": "0.15.1",
+  "version": "0.15.2",
   "credits": [ "- JC McCrae/Wildbow, of course, author of Worm and Ward", "- Bart KF, who has done a lot of the programming work and has contributed significantly to deck and card design", "- Softman, PiconeN, AristoWan, and others for playtesting and deck design thoughts", "- James Picone, deck design, some project management, some programming, all the mistakes and bad decisions" ],
   "dll": "ParahumansOfTheWormverse.dll",
   "namespace": "Jp.ParahumansOfTheWormverse",
