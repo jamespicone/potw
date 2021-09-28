@@ -37,7 +37,7 @@
 			],
 			"complexity": 2,
 			"openingLines": {
-				"default": ""
+				"default": "Armed and ready"
 			}
 		},
 		{
@@ -326,7 +326,7 @@
 			],
 			"complexity": 2,
 			"openingLines": {
-				"default": ""
+				"default": "Form up around me!"
 			}
 		}
 	]

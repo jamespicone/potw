@@ -22,7 +22,7 @@
       "isReal": false,
       "backgroundColor": "ffffff",
       "openingLines": {
-        "default": "blargh"
+        "default": "How can I help?"
       },
       "complexity": 1,
       "incapacitatedAbilities": [
@@ -323,7 +323,7 @@
       "isReal": false,
       "backgroundColor": "ffffff",
       "openingLines": {
-        "default": "blargh"
+        "default": "How can I help?"
       },
       "complexity": 1,
       "flippedIcons": [
@@ -349,7 +349,7 @@
       "isReal": false,
       "backgroundColor": "ffffff",
       "openingLines": {
-        "default": "blargh"
+        "default": "How can I help?"
       },
       "complexity": 1,
       "flippedIcons": [
