@@ -7,6 +7,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+using Jp.ParahumansOfTheWormverse.Utility;
+
 namespace Jp.ParahumansOfTheWormverse.Behemoth
 {
     public class NoSafetyCardController : MovementCardController
@@ -52,7 +54,7 @@ namespace Jp.ParahumansOfTheWormverse.Behemoth
                     }
                 }
                 // Each other player with at least 1 token passes a token to addingTT
-                IEnumerable<TurnTaker> removingTurnTakers = base.GameController.FindTurnTakersWhere((TurnTaker tt) => tt.IsHero && !tt.IsIncapacitatedOrOutOfGame && tt != addingTT && ProximityPool(tt).CurrentValue > 0);
+                IEnumerable<TurnTaker> removingTurnTakers = base.GameController.FindTurnTakersWhere((TurnTaker tt) => this.HasAlignment(tt, CardAlignment.Hero) && !tt.IsIncapacitatedOrOutOfGame && tt != addingTT && ProximityPool(tt).CurrentValue > 0);
                 IEnumerator passCoroutine = base.GameController.SelectTurnTakersAndDoAction(DecisionMaker, new LinqTurnTakerCriteria((TurnTaker tt) => removingTurnTakers.Contains(tt)), SelectionType.RemoveTokens, (TurnTaker tt) => PassProximityTokens(tt, addingTT, 1), allowAutoDecide: true, numberOfCards: 1, cardSource: GetCardSource());
                 if (UseUnityCoroutines)
                 {

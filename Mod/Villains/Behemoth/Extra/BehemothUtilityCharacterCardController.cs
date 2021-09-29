@@ -51,16 +51,18 @@ namespace Jp.ParahumansOfTheWormverse.Behemoth
 
         public int? ProximityTokens(Card c)
         {
-            if (c != null && c.IsHero)
+            if (c == null) { return 0; }
+
+            TurnTaker player = c.Owner;
+            TokenPool proximity = ProximityPool(player);
+            if (proximity != null)
             {
-                TurnTaker player = c.Owner;
-                TokenPool proximity = ProximityPool(player);
-                if (proximity != null)
-                {
-                    return proximity.CurrentValue;
-                }
+                return proximity.CurrentValue;
             }
-            return 0;
+            else
+            {
+                return 0;
+            }
         }
 
         public bool AllProximityPoolsEmpty()

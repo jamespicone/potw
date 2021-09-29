@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+using Jp.ParahumansOfTheWormverse.Utility;
+
 namespace Jp.ParahumansOfTheWormverse.Bitch
 {
     public class HaveARideCardController : CardController
@@ -15,12 +17,7 @@ namespace Jp.ParahumansOfTheWormverse.Bitch
         public override void AddTriggers()
         {
             // Reduce damage dealt to hero targets by environment cards by 1
-            AddReduceDamageTrigger(damage => damage.DamageSource.IsEnvironmentSource && damage.Target.IsHero, damage => 1);
-        }
-
-        public override System.Collections.IEnumerator Play()
-        {
-            yield break;
+            AddReduceDamageTrigger(damage => damage.DamageSource.IsEnvironmentSource && this.HasAlignment(damage.Target, CardAlignment.Hero, CardTarget.Target), damage => 1);
         }
     }
 }

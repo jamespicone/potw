@@ -7,6 +7,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+using Jp.ParahumansOfTheWormverse.Utility;
+
 namespace Jp.ParahumansOfTheWormverse.Behemoth
 {
     public class BehemothUtilityCardController : CardController
@@ -25,7 +27,7 @@ namespace Jp.ParahumansOfTheWormverse.Behemoth
 
         public TokenPool ProximityPool(TurnTaker tt)
         {
-            if (tt.IsHero && !tt.IsIncapacitatedOrOutOfGame)
+            if (this.HasAlignment(tt, CardAlignment.Hero) && !tt.IsIncapacitatedOrOutOfGame)
             {
                 Card proximityMarker = base.GameController.FindCardsWhere(new LinqCardCriteria((Card c) => c.Identifier == ProximityMarkerIdentifier && c.Location == tt.PlayArea), realCardsOnly: false).FirstOrDefault();
                 if (proximityMarker != null)
@@ -52,16 +54,16 @@ namespace Jp.ParahumansOfTheWormverse.Behemoth
 
         public int? ProximityTokens(Card c)
         {
-            if (c.IsHero)
+            TurnTaker player = c.Owner;
+            TokenPool proximity = ProximityPool(player);
+            if (proximity != null)
             {
-                TurnTaker player = c.Owner;
-                TokenPool proximity = ProximityPool(player);
-                if (proximity != null)
-                {
-                    return proximity.CurrentValue;
-                }
+                return proximity.CurrentValue;
             }
-            return 0;
+            else
+            {
+                return 0;
+            }
         }
 
         public bool AllProximityPoolsEmpty()

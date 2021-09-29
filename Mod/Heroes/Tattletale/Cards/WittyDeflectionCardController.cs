@@ -44,7 +44,7 @@ namespace Jp.ParahumansOfTheWormverse.Tattletale
         {
             // "Select a hero target."
             List<SelectCardDecision> choice = new List<SelectCardDecision>();
-            IEnumerator chooseCoroutine = base.GameController.SelectCardAndStoreResults(base.HeroTurnTakerController, SelectionType.RedirectDamageDirectedAtTarget, new LinqCardCriteria((Card c) => c.IsInPlay && c.IsHeroTarget(), "hero target", useCardsSuffix: false, useCardsPrefix: false, "hero target", "hero targets"), choice, false, cardSource: GetCardSource());
+            IEnumerator chooseCoroutine = base.GameController.SelectCardAndStoreResults(base.HeroTurnTakerController, SelectionType.RedirectDamageDirectedAtTarget, new LinqCardCriteria((Card c) => c.IsInPlay && this.HasAlignment(c, CardAlignment.Hero, CardTarget.Target), "hero target", useCardsSuffix: false, useCardsPrefix: false, "hero target", "hero targets"), choice, false, cardSource: GetCardSource());
             if (UseUnityCoroutines)
             {
                 yield return GameController.StartCoroutine(chooseCoroutine);
@@ -85,7 +85,7 @@ namespace Jp.ParahumansOfTheWormverse.Tattletale
         {
             // "... you may redirect that damage to another hero target."
             List<SelectCardDecision> selectTarget = new List<SelectCardDecision>();
-            IEnumerator selectCoroutine = base.GameController.SelectTargetAndRedirectDamage(base.HeroTurnTakerController, (Card c) => c.IsInPlay && c.IsHeroTarget() && c != dd.Target, dd, optional: true, selectTarget, cardSource: GetCardSource());
+            IEnumerator selectCoroutine = base.GameController.SelectTargetAndRedirectDamage(base.HeroTurnTakerController, (Card c) => c.IsInPlay && this.HasAlignment(c, CardAlignment.Hero, CardTarget.Target) && c != dd.Target, dd, optional: true, selectTarget, cardSource: GetCardSource());
             if (UseUnityCoroutines)
             {
                 yield return GameController.StartCoroutine(selectCoroutine);

@@ -7,6 +7,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+using Jp.ParahumansOfTheWormverse.Utility;
+
 namespace Jp.ParahumansOfTheWormverse.MissMilitia
 {
     public class MissMilitiaProtectorateCaptainCharacterCardController : MissMilitiaUtilityCharacterCardController
@@ -116,7 +118,7 @@ namespace Jp.ParahumansOfTheWormverse.MissMilitia
             var e = GameController.SelectCardAndStoreResults(
                 HeroTurnTakerController,
                 SelectionType.CardToDealDamage,
-                new LinqCardCriteria((c) => c.IsInPlay && c.IsHeroCharacterCard, "hero", useCardsSuffix: false, singular: "hero", plural: "heroes"),
+                new LinqCardCriteria((c) => c.IsInPlay && this.HasAlignmentCharacter(c, CardAlignment.Hero, CardTarget.Target), "hero", useCardsSuffix: false, singular: "hero", plural: "heroes"),
                 chooseHeroTarget,
                 optional: false,
                 cardSource: GetCardSource()
@@ -160,7 +162,7 @@ namespace Jp.ParahumansOfTheWormverse.MissMilitia
             var e = GameController.SelectAndGainHP(
                 HeroTurnTakerController,
                 amount: 2,
-                additionalCriteria: (c) => c.IsHeroCharacterCard,
+                additionalCriteria: (c) => this.HasAlignmentCharacter(c, CardAlignment.Hero, CardTarget.Target),
                 requiredDecisions: 1, cardSource: GetCardSource()
             );
             if (UseUnityCoroutines)

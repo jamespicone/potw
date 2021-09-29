@@ -23,7 +23,7 @@ namespace Jp.ParahumansOfTheWormverse.MissMilitia
             // "{MissMilitiaCharacter} deals each non-hero target 2 projectile damage."
             var e = DealDamage(
                 CharacterCard,
-                (c) => ! c.IsHeroTarget(),
+                (c) => this.HasAlignment(c, CardAlignment.Nonhero, CardTarget.Target),
                 amount: 2,
                 DamageType.Projectile
             );

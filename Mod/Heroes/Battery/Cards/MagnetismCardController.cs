@@ -7,6 +7,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+using Jp.ParahumansOfTheWormverse.Utility;
+
 namespace Jp.ParahumansOfTheWormverse.Battery
 {
     public class MagnetismCardController : BatteryUtilityCardController
@@ -43,7 +45,8 @@ namespace Jp.ParahumansOfTheWormverse.Battery
             // "If {BatteryCharacter} is {Discharged}, put an Equipment card from a hero trash into play."
             if (!IsBatteryCharged())
             {
-                IEnumerator playCoroutine = base.GameController.SelectAndPlayCard(base.HeroTurnTakerController, (Card c) => c.DoKeywordsContain("equipment") && c.IsHero && c.IsInTrash, false, true, cardSource: GetCardSource());
+                // TODO: This should be cards from a hero trash, not hero cards from a trash
+                IEnumerator playCoroutine = base.GameController.SelectAndPlayCard(base.HeroTurnTakerController, (Card c) => c.DoKeywordsContain("equipment") && this.HasAlignment(c, CardAlignment.Hero) && c.IsInTrash, false, true, cardSource: GetCardSource());
                 if (base.UseUnityCoroutines)
                 {
                     yield return base.GameController.StartCoroutine(playCoroutine);

@@ -7,6 +7,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+using Jp.ParahumansOfTheWormverse.Utility;
+
 namespace Jp.ParahumansOfTheWormverse.JessicaYamada
 {
     class SupportAndStabilityCardController : CardController
@@ -21,7 +23,7 @@ namespace Jp.ParahumansOfTheWormverse.JessicaYamada
         {
             // "The first time each turn a hero would deal themselves damage, you may prevent that damage"
             AddTrigger<DealDamageAction>(
-                dda => dda.Target.IsHeroCharacterCard && dda.Target == dda.DamageSource.Card,
+                dda => this.HasAlignmentCharacter(dda.Target, CardAlignment.Hero, CardTarget.Target) && dda.Target == dda.DamageSource.Card,
                 dda => MaybePrevent(dda),
                 TriggerType.CancelAction,
                 TriggerTiming.Before

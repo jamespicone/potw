@@ -7,6 +7,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+using Jp.ParahumansOfTheWormverse.Utility;
+
 namespace Jp.ParahumansOfTheWormverse.Behemoth
 {
     public class WildfireCardController : BehemothUtilityCardController
@@ -67,7 +69,7 @@ namespace Jp.ParahumansOfTheWormverse.Behemoth
                 GameController.ExhaustCoroutine(damageCharactersCoroutine);
             }
             // "{BehemothCharacter} deals each non-character card hero target {H} damage."
-            IEnumerator damageNonCharacterCoroutine = base.GameController.DealDamage(DecisionMaker, base.CharacterCard, (Card c) => c.IsHero && !c.IsCharacter, H, GetBehemothDamageType(), cardSource: GetCardSource());
+            IEnumerator damageNonCharacterCoroutine = base.GameController.DealDamage(DecisionMaker, base.CharacterCard, (Card c) => this.HasAlignment(c, CardAlignment.Hero, CardTarget.Hero) && !c.IsCharacter, H, GetBehemothDamageType(), cardSource: GetCardSource());
             if (UseUnityCoroutines)
             {
                 yield return GameController.StartCoroutine(damageNonCharacterCoroutine);

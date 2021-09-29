@@ -22,10 +22,20 @@ namespace Jp.ParahumansOfTheWormverse.NewDelhi
         public override void AddTriggers()
         {
             // "Whenever damage is redirected from one hero target to another, increase that damage by 2."
-            AddTrigger<RedirectDamageAction>((RedirectDamageAction rda) => rda.NewTarget.IsHeroTarget() && rda.OldTarget.IsHeroTarget(), IncreaseDamageResponse, TriggerType.IncreaseDamage, TriggerTiming.Before);
+            AddTrigger<RedirectDamageAction>((RedirectDamageAction rda) => this.HasAlignment(rda.NewTarget, CardAlignment.Hero, CardTarget.Target) && this.HasAlignment(rda.OldTarget, CardAlignment.Hero, CardTarget.Target), IncreaseDamageResponse, TriggerType.IncreaseDamage, TriggerTiming.Before);
+
             // "When a hero target deals damage to another hero target, destroy this card."
-            AddTrigger<DealDamageAction>((DealDamageAction dda) => dda.DidDealDamage && dda.DamageSource != null && dda.DamageSource.Card.IsHeroTarget() && dda.Target.IsHeroTarget() && dda.Target != dda.DamageSource.Card, base.DestroyThisCardResponse, TriggerType.DestroySelf, TriggerTiming.After);
-            base.AddTriggers();
+            AddTrigger<DealDamageAction>(
+                (DealDamageAction dda) => dda.DidDealDamage &&
+                    dda.DamageSource != null &&
+                    dda.DamageSource.Card != null &&
+                    this.HasAlignment(dda.DamageSource.Card, CardAlignment.Hero, CardTarget.Target) &&
+                    this.HasAlignment(dda.Target, CardAlignment.Hero, CardTarget.Target) &&
+                    dda.Target != dda.DamageSource.Card,
+                base.DestroyThisCardResponse,
+                TriggerType.DestroySelf,
+                TriggerTiming.After
+            );
         }
 
         public IEnumerator IncreaseDamageResponse(RedirectDamageAction rda)
@@ -40,7 +50,6 @@ namespace Jp.ParahumansOfTheWormverse.NewDelhi
             {
                 base.GameController.ExhaustCoroutine(increaseCoroutine);
             }
-            yield break;
         }
     }
 }

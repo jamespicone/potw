@@ -8,12 +8,15 @@ using System.Text;
 
 using UnityEngine;
 
+using Jp.ParahumansOfTheWormverse.Utility;
+
 namespace Jp.ParahumansOfTheWormverse.JessicaYamada
 {
     public class JessicaYamadaCharacterEnvironmentCardController : JessicaYamadaCharacterBase
     {
         public JessicaYamadaCharacterEnvironmentCardController(Card card, TurnTakerController controller) : base(card, controller)
         {
+            // TODO: Indestructible?
         }
 
         public override void AddSideTriggers()

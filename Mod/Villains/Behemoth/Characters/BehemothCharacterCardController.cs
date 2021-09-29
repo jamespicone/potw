@@ -7,6 +7,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+using Jp.ParahumansOfTheWormverse.Utility;
+
 namespace Jp.ParahumansOfTheWormverse.Behemoth
 {
     public class BehemothCharacterCardController : BehemothUtilityCharacterCardController
@@ -35,7 +37,7 @@ namespace Jp.ParahumansOfTheWormverse.Behemoth
                 }
                 else
                 {
-                    return IsLowestHitPointsUnique((Card c) => c.IsHero);
+                    return IsLowestHitPointsUnique((Card c) => this.HasAlignment(c, CardAlignment.Hero, CardTarget.Target));
                 }
             }
         }
@@ -231,7 +233,7 @@ namespace Jp.ParahumansOfTheWormverse.Behemoth
         {
             // "... redirect that damage to the hero target with the lowest HP."
             List<Card> lowestResults = new List<Card>();
-            IEnumerator findCoroutine = base.GameController.FindTargetWithLowestHitPoints(1, (Card c) => c.IsHero && base.GameController.IsCardVisibleToCardSource(c, GetCardSource()), lowestResults, dda, cardSource: GetCardSource());
+            IEnumerator findCoroutine = base.GameController.FindTargetWithLowestHitPoints(1, (Card c) => this.HasAlignment(c, CardAlignment.Hero, CardTarget.Target) && base.GameController.IsCardVisibleToCardSource(c, GetCardSource()), lowestResults, dda, cardSource: GetCardSource());
             if (UseUnityCoroutines)
             {
                 yield return GameController.StartCoroutine(findCoroutine);
@@ -293,9 +295,9 @@ namespace Jp.ParahumansOfTheWormverse.Behemoth
                 message1 = player.NameRespectingVariant + " has " + ProximityPool(player).CurrentValue + " proximity tokens!";
                 message2 = base.Card.Title + " has caught " + player.NameRespectingVariant + " within his instant kill aura! " + player.NameRespectingVariant + " is out of the fight!";
             }
-            IEnumerator messageCoroutine1 = base.GameController.SendMessageAction(message1, Priority.High, GetCardSource(), associatedCards: base.GameController.FindCardsWhere(new LinqCardCriteria((Card c) => c.IsHeroCharacterCard && c.Owner == player)), showCardSource: true);
-            IEnumerator messageCoroutine2 = base.GameController.SendMessageAction(message2, Priority.High, GetCardSource(), associatedCards: base.GameController.FindCardsWhere(new LinqCardCriteria((Card c) => c.IsHeroCharacterCard && c.Owner == player)), showCardSource: true);
-            IEnumerator incapCoroutine = base.GameController.DestroyCards(DecisionMaker, new LinqCardCriteria((Card c) => c.IsHeroCharacterCard && c.Owner == mta.TokenPool.CardWithTokenPool.Location.HighestRecursiveLocation.OwnerTurnTaker && c.Owner.IsHero && !c.IsIncapacitatedOrOutOfGame), selectionType: SelectionType.IncapacitateHero, cardSource: GetCardSource());
+            IEnumerator messageCoroutine1 = base.GameController.SendMessageAction(message1, Priority.High, GetCardSource(), associatedCards: base.GameController.FindCardsWhere(new LinqCardCriteria((Card c) => this.HasAlignmentCharacter(c, CardAlignment.Hero) && c.Owner == player)), showCardSource: true);
+            IEnumerator messageCoroutine2 = base.GameController.SendMessageAction(message2, Priority.High, GetCardSource(), associatedCards: base.GameController.FindCardsWhere(new LinqCardCriteria((Card c) => this.HasAlignmentCharacter(c, CardAlignment.Hero) && c.Owner == player)), showCardSource: true);
+            IEnumerator incapCoroutine = base.GameController.DestroyCards(DecisionMaker, new LinqCardCriteria((Card c) => this.HasAlignmentCharacter(c, CardAlignment.Hero) && c.Owner == mta.TokenPool.CardWithTokenPool.Location.HighestRecursiveLocation.OwnerTurnTaker && c.Owner.IsHero && !c.IsIncapacitatedOrOutOfGame), selectionType: SelectionType.IncapacitateHero, cardSource: GetCardSource());
             if (UseUnityCoroutines)
             {
                 yield return GameController.StartCoroutine(messageCoroutine1);

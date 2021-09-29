@@ -7,6 +7,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+using Jp.ParahumansOfTheWormverse.Utility;
+
 namespace Jp.ParahumansOfTheWormverse.JessicaYamada
 {
     class ComfortableOfficeCardController : CardController
@@ -31,7 +33,7 @@ namespace Jp.ParahumansOfTheWormverse.JessicaYamada
             var e = GameController.SelectAndGainHP(
                 HeroTurnTakerController,
                 3,
-                additionalCriteria: c => c.IsHeroCharacterCard,
+                additionalCriteria: c => this.HasAlignmentCharacter(c, CardAlignment.Hero, CardTarget.Target),
                 cardSource: GetCardSource()
             );
             if (UseUnityCoroutines)
