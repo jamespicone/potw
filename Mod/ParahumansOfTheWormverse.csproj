@@ -443,6 +443,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\**\*.txt" />
+	<None Include="Assets\**\*.jpg" />
+	<None Include="Assets\**\*.png" />
+	<None Include="Assets\**\*.json" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Villains\TheSimurgh\Cards\" />
