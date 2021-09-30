@@ -448,6 +448,13 @@
 	<None Include="Assets\**\*.json" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="AssetsTrimmed\**\*.txt" />
+	<None Include="AssetsTrimmed\**\*.jpg" />
+	<None Include="AssetsTrimmed\**\*.png" />
+	<None Include="AssetsTrimmed\**\*.json" />
+	<None Include="AssetsTrimmed\**\*.tps" />
+  </ItemGroup>
+  <ItemGroup>
     <Folder Include="Villains\TheSimurgh\Cards\" />
     <Folder Include="Villains\TheSimurgh\Characters\" />
   </ItemGroup>
