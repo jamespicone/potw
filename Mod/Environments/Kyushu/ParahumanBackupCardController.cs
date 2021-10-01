@@ -27,7 +27,7 @@ namespace Jp.ParahumansOfTheWormverse.Kyushu
         public override IEnumerator Play()
         {
             // "When this card enters play, each player may draw a card."
-            IEnumerator drawCoroutine = EachPlayerDrawsACard((HeroTurnTaker htt) => this.HasAlignment(htt, CardAlignment.Hero) && !htt.IsIncapacitatedOrOutOfGame, optional: true);
+            IEnumerator drawCoroutine = EachPlayerDrawsACard((HeroTurnTaker htt) => ! htt.IsIncapacitatedOrOutOfGame, optional: true);
             if (base.UseUnityCoroutines)
             {
                 yield return base.GameController.StartCoroutine(drawCoroutine);

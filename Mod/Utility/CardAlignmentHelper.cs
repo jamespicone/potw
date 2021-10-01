@@ -91,16 +91,17 @@ namespace Jp.ParahumansOfTheWormverse.Utility
 
             if (helper.card != null)
             {
-                if (helper.character.GetValueOrDefault(false))
-                {
-                    return helper.controller.HasAlignmentCharacter(helper.card, helper.alignment.Value, helper.target);
-                }
-
-                return helper.controller.HasAlignment(helper.card, helper.alignment.Value, helper.target) && (!helper.card.IsCharacter || helper.character == null);
+                return helper.controller.HasAlignment(helper.card, helper.alignment.Value, helper.target) &&
+                    (helper.character == null || helper.character.Value == helper.card.IsCharacter);
             }
 
             if (helper.turntaker != null)
             {
+                if (helper.target == CardTarget.Target)
+                {
+                    return false;
+                }
+
                 return helper.controller.HasAlignment(helper.turntaker, helper.alignment.Value);
             }
 

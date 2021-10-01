@@ -22,7 +22,7 @@ namespace Jp.ParahumansOfTheWormverse.Tattletale
         public override void AddTriggers()
         {
             // "Damage dealt by hero targets is irreducible."
-            AddMakeDamageIrreducibleTrigger((DealDamageAction dda) => dda.DamageSource.IsHero);
+            AddMakeDamageIrreducibleTrigger((DealDamageAction dda) => dda.DamageSource.Alignment().Hero().Target());
             // "At the start of your turn, destroy this card."
             AddStartOfTurnTrigger((TurnTaker tt) => tt == base.TurnTaker, (PhaseChangeAction pca) => base.GameController.DestroyCard(base.HeroTurnTakerController, base.Card, responsibleCard: base.Card, cardSource: GetCardSource()), TriggerType.DestroySelf);
             base.AddTriggers();
