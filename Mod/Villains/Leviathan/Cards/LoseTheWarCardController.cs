@@ -129,7 +129,7 @@ namespace Jp.ParahumansOfTheWormverse.Leviathan
             // Any time a player skips a phase, they may take a card from the environment trash and shuffle it back into the environment deck
             e = GameController.SelectAndMoveCard(
                 DecisionMaker,
-                c => c.IsEnvironment && c.Location.IsTrash,
+                c => c.Alignment().Environment() && c.Location.IsTrash,
                 FindEnvironment().TurnTaker.Deck,
                 cardSource: GetCardSource()
             );

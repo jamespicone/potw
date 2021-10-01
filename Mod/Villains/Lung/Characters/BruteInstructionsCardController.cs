@@ -34,7 +34,7 @@ namespace Jp.ParahumansOfTheWormverse.Lung
         {
             if (Card.IsFlipped)
             {
-                AddSideTrigger(AddImmuneToDamageTrigger(dda => dda.DamageSource.IsEnvironmentSource && dda.Target == TurnTaker.CharacterCard));
+                AddSideTrigger(AddImmuneToDamageTrigger(dda => dda.DamageSource.Alignment().Environment() && dda.Target == CharacterCard));
                 AddSideTrigger(AddDealDamageAtEndOfTurnTrigger(TurnTaker, TurnTaker.CharacterCard, c => c.Alignment().Hero().Target(), TargetType.All, 6, DamageType.Melee));
                 AddSideTrigger(AddDealDamageAtEndOfTurnTrigger(TurnTaker, TurnTaker.CharacterCard, c => c.Alignment().Hero().Target(), TargetType.All, 2, DamageType.Fire, isIrreducible: true));
             }

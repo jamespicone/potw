@@ -40,7 +40,7 @@ namespace Jp.ParahumansOfTheWormverse.CoilsBase
             var e = DealDamageToHighestHP(
                 Card,
                 ranking: 1,
-                targetCriteria: c => !c.IsEnvironmentTarget,
+                targetCriteria: c => c.Alignment().NonEnvironment().Target(),
                 c => 2,
                 DamageType.Projectile,
                 numberOfTargets: () => Game.H

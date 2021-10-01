@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+using Jp.ParahumansOfTheWormverse.Utility;
+
 namespace Jp.ParahumansOfTheWormverse.Legend
 {
     public class EnergyConversionCardController : CardController
@@ -16,7 +18,7 @@ namespace Jp.ParahumansOfTheWormverse.Legend
         {
             // "Whenever Legend is dealt damage by a villain or environment target, you may draw a card or play a card"
             AddTrigger<DealDamageAction>(
-                dda => dda.DidDealDamage && dda.Target == CharacterCard && (dda.DamageSource.IsEnvironmentTarget || dda.DamageSource.IsVillainTarget),
+                dda => dda.DidDealDamage && dda.Target == CharacterCard && (dda.DamageSource.Alignment().Environment().Target() || dda.DamageSource.Alignment(this).Villain().Target()),
                 dda => DrawACardOrPlayACard(HeroTurnTakerController, optional: true),
                 new TriggerType[] { TriggerType.DrawCard, TriggerType.PlayCard },
                 TriggerTiming.After

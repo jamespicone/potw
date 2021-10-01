@@ -44,7 +44,7 @@ namespace Jp.ParahumansOfTheWormverse.Slaughterhouse9
             var destroyActions = new List<DestroyCardAction>();
             var e = GameController.DestroyCards(
                 DecisionMaker,
-                new LinqCardCriteria(c => c.IsEnvironment, "environment"),
+                new LinqCardCriteria(c => c.Alignment().Environment(), "environment"),
                 storedResults: destroyActions,
                 cardSource: GetCardSource()
             );
@@ -60,7 +60,7 @@ namespace Jp.ParahumansOfTheWormverse.Slaughterhouse9
             e = DealDamage(
                 Card,
                 c => !c.IsVillainTarget && c.IsTarget,
-                1 + destroyActions.Count(dca => dca.WasCardDestroyed && dca.CardToDestroy.Card.IsEnvironment),
+                1 + destroyActions.Count(dca => dca.WasCardDestroyed && dca.CardToDestroy.Card.Alignment().Environment()),
                 DamageType.Fire
             );
             if (UseUnityCoroutines)

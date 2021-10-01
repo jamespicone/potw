@@ -32,7 +32,7 @@ namespace Jp.ParahumansOfTheWormverse.Behemoth
                 GameController.ExhaustCoroutine(meleeCoroutine);
             }
             // "Destroy all environment cards."
-            IEnumerator destroyEnvCoroutine = base.GameController.DestroyCards(DecisionMaker, new LinqCardCriteria((Card c) => c.IsEnvironment, "environment"), cardSource: GetCardSource());
+            IEnumerator destroyEnvCoroutine = base.GameController.DestroyCards(DecisionMaker, new LinqCardCriteria((Card c) => c.Alignment().Environment(), "environment"), cardSource: GetCardSource());
             if (UseUnityCoroutines)
             {
                 yield return GameController.StartCoroutine(destroyEnvCoroutine);

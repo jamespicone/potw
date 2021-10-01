@@ -7,6 +7,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+using Jp.ParahumansOfTheWormverse.Utility;
+
 namespace Jp.ParahumansOfTheWormverse.BrocktonBay
 {
     public class TheDocksCardController : SuburbCardController
@@ -20,7 +22,7 @@ namespace Jp.ParahumansOfTheWormverse.BrocktonBay
         public override void AddTriggers()
         {
             // "Increase damage dealt by environment targets by 1."
-            AddIncreaseDamageTrigger((DealDamageAction dda) => dda.DamageSource.Card.IsEnvironmentTarget, (DealDamageAction dda) => 1);
+            AddIncreaseDamageTrigger((DealDamageAction dda) => dda.DamageSource.Alignment().Environment().Target(), (DealDamageAction dda) => 1);
             base.AddTriggers();
         }
     }

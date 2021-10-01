@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+using Jp.ParahumansOfTheWormverse.Utility;
+
 namespace Jp.ParahumansOfTheWormverse.Dauntless
 {
     public class ArcshieldCardController : CardController
@@ -95,7 +97,7 @@ namespace Jp.ParahumansOfTheWormverse.Dauntless
             if (card != Card) { return null; }
             if (cardSource.Card == null) { return null; }
 
-            if (cardSource.Card.IsVillain || cardSource.Card.IsEnvironment) { return false; }
+            if (cardSource.Card.Alignment(this).Villain() || cardSource.Card.Alignment().Environment()) { return false; }
 
             return null;
         }

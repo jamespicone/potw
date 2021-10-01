@@ -21,7 +21,7 @@ namespace Jp.ParahumansOfTheWormverse.Leviathan
             var stored = new List<DestroyCardAction>();
             var e = GameController.DestroyCards(
                 DecisionMaker,
-                new LinqCardCriteria(c => c.IsEnvironmentTarget, "environment targets"),
+                new LinqCardCriteria(c => c.Alignment().Environment().Target(), "environment targets"),
                 storedResults: stored,
                 cardSource: GetCardSource()
             );

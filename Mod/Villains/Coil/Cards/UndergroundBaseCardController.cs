@@ -7,6 +7,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+using Jp.ParahumansOfTheWormverse.Utility;
+
 namespace Jp.ParahumansOfTheWormverse.Coil
 {
     public class UndergroundBaseCardController : CardController
@@ -19,7 +21,7 @@ namespace Jp.ParahumansOfTheWormverse.Coil
         public override void AddTriggers()
         {
             // Villain targets are immune to damage from Environment cards
-            AddImmuneToDamageTrigger(dda => dda.DamageSource.IsEnvironmentSource && dda.Target.IsVillainTarget);
+            AddImmuneToDamageTrigger(dda => dda.DamageSource.Alignment().Environment() && dda.Target.Alignment(this).Villain().Target());
         }
     }
 }

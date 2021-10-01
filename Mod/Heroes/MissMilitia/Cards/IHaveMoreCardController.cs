@@ -7,6 +7,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+using Jp.ParahumansOfTheWormverse.Utility;
+
 namespace Jp.ParahumansOfTheWormverse.MissMilitia
 {
     public class IHaveMoreCardController : MissMilitiaUtilityCardController
@@ -44,7 +46,7 @@ namespace Jp.ParahumansOfTheWormverse.MissMilitia
             // "Destroy up to 2 Ongoing and/or environment cards."
             e = GameController.SelectAndDestroyCards(
                 HeroTurnTakerController,
-                new LinqCardCriteria((c) => c.IsOngoing || c.IsEnvironment, "ongoing or environment"),
+                new LinqCardCriteria((c) => c.IsOngoing || c.Alignment().Environment(), "ongoing or environment"),
                 numberOfCards: 2,
                 optional: false,
                 requiredDecisions: 0,

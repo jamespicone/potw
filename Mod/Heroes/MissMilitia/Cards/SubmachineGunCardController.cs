@@ -51,7 +51,7 @@ namespace Jp.ParahumansOfTheWormverse.MissMilitia
             {
                 e = GameController.SelectAndDestroyCard(
                     HeroTurnTakerController,
-                    new LinqCardCriteria((c) => c.DoKeywordsContain("ongoing") || c.IsEnvironment, "Ongoing or environment"),
+                    new LinqCardCriteria((c) => c.DoKeywordsContain("ongoing") || c.Alignment().Environment(), "Ongoing or environment"),
                     optional: true,
                     responsibleCard: Card,
                     cardSource: GetCardSource()
