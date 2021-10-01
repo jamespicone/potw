@@ -7,6 +7,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+using Jp.ParahumansOfTheWormverse.Utility;
+
 namespace Jp.ParahumansOfTheWormverse.Slaughterhouse9
 {
     public class LessThanHumanCardController : CardController
@@ -19,7 +21,7 @@ namespace Jp.ParahumansOfTheWormverse.Slaughterhouse9
         public override void AddTriggers()
         {
             // Reduce damage dealt to villain targets by 1
-            AddReduceDamageTrigger(c => c.IsVillainTarget, 1);
+            AddReduceDamageTrigger(c => c.Alignment(this).Villain().Target(), 1);
         }
     }
 }

@@ -6,6 +6,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+using Jp.ParahumansOfTheWormverse.Utility;
+
 namespace Jp.ParahumansOfTheWormverse.Coil
 {
     public class CoilSchemingCharacterCardController : SubCoilCharacterCardController
@@ -52,7 +54,7 @@ namespace Jp.ParahumansOfTheWormverse.Coil
         {
             return GameController.GainHP(
                 DecisionMaker,
-                c => c.IsVillainTarget,
+                c => c.Alignment(this).Villain().Target(),
                 2,
                 cardSource: GetCardSource()
             );

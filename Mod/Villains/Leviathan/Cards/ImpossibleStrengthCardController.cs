@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+using Jp.ParahumansOfTheWormverse.Utility;
+
 namespace Jp.ParahumansOfTheWormverse.Leviathan
 {
     public class ImpossibleStrengthCardController : CardController
@@ -15,7 +17,7 @@ namespace Jp.ParahumansOfTheWormverse.Leviathan
         public override void AddTriggers()
         {
             // Increase damage dealt by villain cards by 1
-            AddIncreaseDamageTrigger((dda) => dda.DamageSource != null && dda.DamageSource.IsVillain, 1);
+            AddIncreaseDamageTrigger((dda) => dda.DamageSource != null && dda.DamageSource.Alignment(this).Villain(), 1);
         }
     }
 }

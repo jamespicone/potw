@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+using Jp.ParahumansOfTheWormverse.Utility;
+
 namespace Jp.ParahumansOfTheWormverse.Legend
 {
     public class BarrageCardController : CardController
@@ -18,7 +20,7 @@ namespace Jp.ParahumansOfTheWormverse.Legend
             var e = GameController.DealDamage(
                 HeroTurnTakerController,
                 CharacterCard,
-                c => c.IsVillainTarget,
+                c => c.Alignment(this).Villain(),
                 amount: 3,
                 DamageType.Energy,
                 cardSource: GetCardSource()

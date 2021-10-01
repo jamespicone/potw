@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using UnityEngine;
 
+using Jp.ParahumansOfTheWormverse.Utility;
+
 namespace Jp.ParahumansOfTheWormverse.Armsmaster
 {
     [Serializable]
@@ -52,7 +54,7 @@ namespace Jp.ParahumansOfTheWormverse.Armsmaster
         {
             AddTrigger<PlayCardAction>(
                 pca => 
-                    pca.CardToPlay.IsVillain && 
+                    pca.CardToPlay.Alignment(this).Villain() && 
                     !pca.IsPutIntoPlay && 
                     StatusEffectIsActive() &&
                     GameController.IsCardLocationVisibleToSource(FindCardController(pca.CardToPlay), GetCardSource()) &&
@@ -121,18 +123,6 @@ namespace Jp.ParahumansOfTheWormverse.Armsmaster
             }
 
             if (GetNumberOfCardsDiscarded(discardResults) < 2) { yield break; }
-
-            // This doesn't work because the engine doesn't appear to use NumberOfUses for
-            // CannotPlayCardsStatusEffect. It looks like it does in code so it must be a dead
-            // path or something.
-
-            // TODO: Do a 'manual status effect' with an out-of-play trigger that relies on a status effect being present
-
-            //var cannotPlayCardsEffect = new CannotPlayCardsStatusEffect();
-
-            //cannotPlayCardsEffect.CardCriteria.IsVillain = true;
-            //cannotPlayCardsEffect.NumberOfUses = 1;
-            //cannotPlayCardsEffect.CardSource = Card;
 
             var cannotPlayCardsEffect = new StasisEffectorStatusEffect(Card, nameof(NoOpEffect), Card);
             e = AddStatusEffect(cannotPlayCardsEffect);

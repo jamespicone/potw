@@ -24,7 +24,7 @@ namespace Jp.ParahumansOfTheWormverse.Slaughterhouse9
                 AddSideTrigger(AddDealDamageAtEndOfTurnTrigger(
                     TurnTaker,
                     Card,
-                    c => c.IsTarget && !c.IsVillainTarget,
+                    c => c.Alignment(this).NonVillain().Target(),
                     TargetType.All,
                     1,
                     DamageType.Projectile

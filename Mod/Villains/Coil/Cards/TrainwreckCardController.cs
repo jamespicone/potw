@@ -7,6 +7,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+using Jp.ParahumansOfTheWormverse.Utility;
+
 namespace Jp.ParahumansOfTheWormverse.Coil
 {
     public class TrainwreckCardController : CardController
@@ -20,7 +22,7 @@ namespace Jp.ParahumansOfTheWormverse.Coil
         {
             //"Whenever a non-villain target would damage a villain target other than Trainwreck redirect that damage to Trainwreck.",
             AddRedirectDamageTrigger(
-                dda => !dda.DamageSource.IsVillainTarget && dda.Target.IsVillainTarget && dda.Target != Card,
+                dda => dda.DamageSource.Alignment(this).NonVillain().Target() && dda.Target.Alignment(this).Villain().Target() && dda.Target != Card,
                 () => Card
             );
 

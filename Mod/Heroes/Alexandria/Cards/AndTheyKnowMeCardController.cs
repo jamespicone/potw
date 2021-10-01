@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+using Jp.ParahumansOfTheWormverse.Utility;
+
 namespace Jp.ParahumansOfTheWormverse.Alexandria
 {
     public class AndTheyKnowMeCardController : CardController
@@ -20,7 +22,7 @@ namespace Jp.ParahumansOfTheWormverse.Alexandria
             var results = new List<Card>();
             var e = GameController.FindTargetWithHighestHitPoints(
                 1,
-                c => c.IsVillain,
+                c => c.Alignment(this).Villain().Target(),
                 results,
                 cardSource: GetCardSource()
             );
@@ -51,7 +53,7 @@ namespace Jp.ParahumansOfTheWormverse.Alexandria
             results = new List<Card>();
             e = GameController.FindTargetWithHighestHitPoints(
                 1,
-                c => c.IsVillain,
+                c => c.Alignment(this).Villain().Target(),
                 results,
                 cardSource: GetCardSource()
             );

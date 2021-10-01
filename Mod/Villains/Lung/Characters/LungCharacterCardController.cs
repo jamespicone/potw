@@ -6,6 +6,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+using Jp.ParahumansOfTheWormverse.Utility;
+
 namespace Jp.ParahumansOfTheWormverse.Lung
 {
     public class LungCharacterCardController : VillainCharacterCardController
@@ -32,8 +34,8 @@ namespace Jp.ParahumansOfTheWormverse.Lung
             if (Card.IsFlipped)
             {
                 AddSideTrigger(AddReduceDamageTrigger(c => c == Card, 1));
-                AddSideTrigger(AddTrigger<PhaseChangeAction>(pca => pca.ToPhase.Phase == Phase.PlayCard && pca.ToPhase.TurnTaker.IsVillain, pca => GameController.SetPhaseActionCount(pca.ToPhase, null, GetCardSource()), TriggerType.SetPhaseActionCount, TriggerTiming.After));
-                AddSideTrigger(AddTrigger<PlayCardAction>(pca => pca.CardToPlay.IsVillain && !pca.IsPutIntoPlay, pca => PreventVillainPlays(pca), TriggerType.CancelAction, TriggerTiming.Before));
+                AddSideTrigger(AddTrigger<PhaseChangeAction>(pca => pca.ToPhase.Phase == Phase.PlayCard && pca.ToPhase.IsVillain, pca => GameController.SetPhaseActionCount(pca.ToPhase, null, GetCardSource()), TriggerType.SetPhaseActionCount, TriggerTiming.After));
+                AddSideTrigger(AddTrigger<PlayCardAction>(pca => pca.CardToPlay.Alignment(this).Villain() && !pca.IsPutIntoPlay, pca => PreventVillainPlays(pca), TriggerType.CancelAction, TriggerTiming.Before));
             }
             else
             {
@@ -99,7 +101,7 @@ namespace Jp.ParahumansOfTheWormverse.Lung
                 }
             }
 
-            e = GameController.DestroyCards(DecisionMaker, new LinqCardCriteria(c => c.IsVillain && !c.IsCharacter), cardSource: GetCardSource());
+            e = GameController.DestroyCards(DecisionMaker, new LinqCardCriteria(c => c.Alignment(this).Villain().Noncharacter()), cardSource: GetCardSource());
             if (UseUnityCoroutines)
             {
                 yield return GameController.StartCoroutine(e);

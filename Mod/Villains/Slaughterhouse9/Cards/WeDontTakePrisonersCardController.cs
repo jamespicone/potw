@@ -23,8 +23,8 @@ namespace Jp.ParahumansOfTheWormverse.Slaughterhouse9
             // Whenever a target is destroyed by a villain card each hero character deals themselves 2 psychic damage.
             AddTrigger<DestroyCardAction>(
                 dca => dca.CardToDestroy.Card.IsTarget && (
-                    dca.ResponsibleCard.IsVillain ||
-                    ((dca.ActionSource is DealDamageAction) && (dca.ActionSource as DealDamageAction).DamageSource.IsVillain)
+                    dca.ResponsibleCard.Alignment(this).Villain() ||
+                    ((dca.ActionSource is DealDamageAction) && (dca.ActionSource as DealDamageAction).DamageSource.Alignment(this).Villain())
                 ),
                 dca => HurtHeroes(),
                 TriggerType.DealDamage,

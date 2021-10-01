@@ -39,7 +39,7 @@ namespace Jp.ParahumansOfTheWormverse.Leviathan
             e = GameController.DealDamage(
                 DecisionMaker,
                 CharacterCard,
-                c => c.IsTarget && c.IsInPlay && !c.IsVillainTarget,
+                c => c.IsInPlay && c.Alignment(this).NonVillain().Target(),
                 amount: x,
                 DamageType.Cold,
                 cardSource: GetCardSource()

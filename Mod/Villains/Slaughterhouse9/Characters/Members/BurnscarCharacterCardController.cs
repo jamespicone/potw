@@ -23,7 +23,7 @@ namespace Jp.ParahumansOfTheWormverse.Slaughterhouse9
                 AddSideTrigger(AddDealDamageAtEndOfTurnTrigger(
                     TurnTaker,
                     Card,
-                    c => !c.IsVillainTarget && c.IsTarget,
+                    c => c.Alignment(this).NonVillain().Target(),
                     TargetType.All,
                     1,
                     DamageType.Fire
@@ -59,7 +59,7 @@ namespace Jp.ParahumansOfTheWormverse.Slaughterhouse9
 
             e = DealDamage(
                 Card,
-                c => !c.IsVillainTarget && c.IsTarget,
+                c => c.Alignment(this).NonVillain().Target(),
                 1 + destroyActions.Count(dca => dca.WasCardDestroyed && dca.CardToDestroy.Card.Alignment().Environment()),
                 DamageType.Fire
             );

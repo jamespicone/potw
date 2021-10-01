@@ -7,6 +7,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+using Jp.ParahumansOfTheWormverse.Utility;
+
 namespace Jp.ParahumansOfTheWormverse.TheMerchants
 {
     public class FestivalOfBloodCardController : TheMerchantsUtilityCardController
@@ -20,7 +22,7 @@ namespace Jp.ParahumansOfTheWormverse.TheMerchants
         public override void AddTriggers()
         {
             // "Increase damage dealt by villain targets by 1."
-            AddIncreaseDamageTrigger((DealDamageAction dda) => dda.DamageSource != null && dda.DamageSource.Card.IsVillainTarget, (DealDamageAction dda) => 1);
+            AddIncreaseDamageTrigger((DealDamageAction dda) => dda.DamageSource != null && dda.DamageSource.Alignment(this).Villain().Target(), (DealDamageAction dda) => 1);
             base.AddTriggers();
         }
     }

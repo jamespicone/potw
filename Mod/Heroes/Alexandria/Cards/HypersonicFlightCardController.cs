@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+using Jp.ParahumansOfTheWormverse.Utility;
+
 namespace Jp.ParahumansOfTheWormverse.Alexandria
 {
     public class HypersonicFlightCardController : CardController
@@ -39,7 +41,7 @@ namespace Jp.ParahumansOfTheWormverse.Alexandria
         {
             // "When {AlexandriaCharacter} deals damage to a villain target you may destroy a Device or Ongoing card"
             AddTrigger<DealDamageAction>(
-                dda => dda.DidDealDamage && dda.DamageSource.Card == CharacterCard && dda.Target.IsVillainTarget,
+                dda => dda.DidDealDamage && dda.DamageSource.Card == CharacterCard && dda.Target.Alignment(this).Villain().Target(),
                 dda => DestroyACard(),
                 TriggerType.DestroyCard,
                 TriggerTiming.After
