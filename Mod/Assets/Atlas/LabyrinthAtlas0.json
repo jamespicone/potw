@@ -1,0 +1,20 @@
+{"frames": {
+
+"LabyrinthDeckBack.jpg":
+{
+	"frame": {"x":0,"y":0,"w":178,"h":256},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":178,"h":256},
+	"sourceSize": {"w":178,"h":256}
+}},
+"meta": {
+	"app": "https://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "LabyrinthAtlas0.png",
+	"format": "RGBA8888",
+	"size": {"w":256,"h":256},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:6064d69441c25577647aa7a638eeb25f:f37c87796069e41be47a6dfbb8531c3b:dbddf135a7b72fbc7164518ace0dc1be$"
+}
+}
