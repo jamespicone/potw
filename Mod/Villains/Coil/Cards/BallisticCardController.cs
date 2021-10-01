@@ -22,7 +22,7 @@ namespace Jp.ParahumansOfTheWormverse.Coil
         {
             // "Whenever a hero character is dealt damage by this card, destroy a noncharacter card belonging to that hero.",
             AddTrigger<DealDamageAction>(
-                dda => dda.DamageSource.IsSameCard(Card) && dda.Target.IsHeroCharacterCard,
+                dda => dda.DamageSource.IsSameCard(Card) && this.HasAlignmentCharacter(dda.Target, CardAlignment.Hero, CardTarget.Target),
                 dda => DestroyHeroCard(dda),
                 TriggerType.DestroyCard,
                 TriggerTiming.After
@@ -32,7 +32,7 @@ namespace Jp.ParahumansOfTheWormverse.Coil
             AddDealDamageAtEndOfTurnTrigger(
                 TurnTaker,
                 Card,
-                c => c.IsHeroTarget(),
+                c => this.HasAlignment(c, CardAlignment.Hero, CardTarget.Target),
                 TargetType.HighestHP,
                 H + 1,
                 DamageType.Projectile

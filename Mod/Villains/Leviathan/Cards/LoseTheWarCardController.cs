@@ -6,6 +6,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+using Jp.ParahumansOfTheWormverse.Utility;
+
 namespace Jp.ParahumansOfTheWormverse.Leviathan
 {
     public class LoseTheWarCardController : CardController
@@ -40,7 +42,7 @@ namespace Jp.ParahumansOfTheWormverse.Leviathan
 
             // Players may skip any of their phases (play, power, draw).
             AddPhaseChangeTrigger(
-                tt => tt.IsHero,
+                tt => tt.Alignment().Hero(),
                 p => p == Phase.PlayCard || p == Phase.UsePower || p == Phase.DrawCard,
                 pca => true,
                 pca => ShoreUpEnvironment(pca),

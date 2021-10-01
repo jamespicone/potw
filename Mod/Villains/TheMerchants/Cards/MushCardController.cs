@@ -7,6 +7,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+using Jp.ParahumansOfTheWormverse.Utility;
+
 namespace Jp.ParahumansOfTheWormverse.TheMerchants
 {
     public class MushCardController : TheMerchantsUtilityCardController
@@ -22,7 +24,7 @@ namespace Jp.ParahumansOfTheWormverse.TheMerchants
             // "This card is immune to melee and projectile damage."
             AddImmuneToDamageTrigger((DealDamageAction dda) => dda.Target == base.Card && (dda.DamageType == DamageType.Melee || dda.DamageType == DamageType.Projectile));
             // "At the end of the villain turn, this card deals each hero target 1 melee damage."
-            AddEndOfTurnTrigger((TurnTaker tt) => tt == base.TurnTaker, (PhaseChangeAction pca) => DealDamage(base.Card, (Card c) => c.IsHero, 1, DamageType.Melee), TriggerType.DealDamage);
+            AddEndOfTurnTrigger((TurnTaker tt) => tt == base.TurnTaker, (PhaseChangeAction pca) => DealDamage(base.Card, (Card c) => c.Alignment().Hero().Target(), 1, DamageType.Melee), TriggerType.DealDamage);
             base.AddTriggers();
         }
     }

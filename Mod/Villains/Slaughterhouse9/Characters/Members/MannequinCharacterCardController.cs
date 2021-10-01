@@ -6,6 +6,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+using Jp.ParahumansOfTheWormverse.Utility;
+
 namespace Jp.ParahumansOfTheWormverse.Slaughterhouse9
 {
     public class MannequinCharacterCardController : Slaughterhouse9MemberCharacterCardController
@@ -88,7 +90,7 @@ namespace Jp.ParahumansOfTheWormverse.Slaughterhouse9
         {
             return GameController.SelectAndDestroyCard(
                 DecisionMaker,
-                new LinqCardCriteria(c => c.IsHero && (c.IsOngoing || c.DoKeywordsContain("equipment")), "Hero Ongoing or Equipment"),
+                new LinqCardCriteria(c => c.Alignment().Hero() && (c.IsOngoing || c.DoKeywordsContain("equipment")), "Hero Ongoing or Equipment"),
                 optional: false,
                 responsibleCard: Card,
                 cardSource: GetCardSource()

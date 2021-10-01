@@ -7,6 +7,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+using Jp.ParahumansOfTheWormverse.Utility;
+
 namespace Jp.ParahumansOfTheWormverse.TheMerchants
 {
     public class SadistCardController : TheMerchantsUtilityCardController
@@ -20,7 +22,7 @@ namespace Jp.ParahumansOfTheWormverse.TheMerchants
         public override void AddTriggers()
         {
             // "At the end of the villain turn, this card deals the hero target with the lowest HP 2 melee damage."
-            AddEndOfTurnTrigger((TurnTaker tt) => tt == base.TurnTaker, (PhaseChangeAction pca) => DealDamageToLowestHP(base.Card, 1, (Card c) => c.IsHero, (Card c) => 2, DamageType.Melee), TriggerType.DealDamage);
+            AddEndOfTurnTrigger((TurnTaker tt) => tt == base.TurnTaker, (PhaseChangeAction pca) => DealDamageToLowestHP(base.Card, 1, (Card c) => c.Alignment().Hero().Target(), (Card c) => 2, DamageType.Melee), TriggerType.DealDamage);
             base.AddTriggers();
         }
     }

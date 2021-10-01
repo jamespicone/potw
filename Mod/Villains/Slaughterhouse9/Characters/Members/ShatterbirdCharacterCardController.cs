@@ -46,7 +46,7 @@ namespace Jp.ParahumansOfTheWormverse.Slaughterhouse9
             var e = DealDamageToHighestHP(
                 Card,
                 1,
-                c => c.IsHeroTarget(),
+                c => c.Alignment().Hero().Target(),
                 c => 2,
                 DamageType.Projectile,
                 numberOfTargets: () => H - 1

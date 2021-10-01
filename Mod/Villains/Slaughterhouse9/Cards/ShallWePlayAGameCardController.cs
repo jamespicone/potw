@@ -50,7 +50,7 @@ namespace Jp.ParahumansOfTheWormverse.Slaughterhouse9
             if (! jack.IsInPlayAndHasGameText || jack.IsIncapacitatedOrOutOfGame) { yield break; }
             var e2 = DealDamage(
                 jack,
-                c => c.IsHeroTarget(),
+                c => c.Alignment().Hero().Target(),
                 2,
                 DamageType.Psychic
             );

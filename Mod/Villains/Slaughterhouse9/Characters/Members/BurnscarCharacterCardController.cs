@@ -78,7 +78,7 @@ namespace Jp.ParahumansOfTheWormverse.Slaughterhouse9
             var e = DealDamageToLowestHP(
                 Card,
                 ranking: 1,
-                c => c.IsHeroTarget(),
+                c => c.Alignment().Hero().Target(),
                 c => 3,
                 DamageType.Fire
             );
@@ -93,7 +93,7 @@ namespace Jp.ParahumansOfTheWormverse.Slaughterhouse9
 
             e = GameController.SelectAndDestroyCard(
                 DecisionMaker,
-                new LinqCardCriteria(c => c.IsHero && !c.IsCharacter, "non-character hero card"),
+                new LinqCardCriteria(c => c.Alignment().Hero().Noncharacter(), "non-character hero card"),
                 optional: false,
                 responsibleCard: Card,
                 cardSource: GetCardSource()

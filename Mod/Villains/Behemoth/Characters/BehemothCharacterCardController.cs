@@ -297,7 +297,7 @@ namespace Jp.ParahumansOfTheWormverse.Behemoth
             }
             IEnumerator messageCoroutine1 = base.GameController.SendMessageAction(message1, Priority.High, GetCardSource(), associatedCards: base.GameController.FindCardsWhere(new LinqCardCriteria((Card c) => this.HasAlignmentCharacter(c, CardAlignment.Hero) && c.Owner == player)), showCardSource: true);
             IEnumerator messageCoroutine2 = base.GameController.SendMessageAction(message2, Priority.High, GetCardSource(), associatedCards: base.GameController.FindCardsWhere(new LinqCardCriteria((Card c) => this.HasAlignmentCharacter(c, CardAlignment.Hero) && c.Owner == player)), showCardSource: true);
-            IEnumerator incapCoroutine = base.GameController.DestroyCards(DecisionMaker, new LinqCardCriteria((Card c) => this.HasAlignmentCharacter(c, CardAlignment.Hero) && c.Owner == mta.TokenPool.CardWithTokenPool.Location.HighestRecursiveLocation.OwnerTurnTaker && c.Owner.IsHero && !c.IsIncapacitatedOrOutOfGame), selectionType: SelectionType.IncapacitateHero, cardSource: GetCardSource());
+            IEnumerator incapCoroutine = base.GameController.DestroyCards(DecisionMaker, new LinqCardCriteria((Card c) => c.Owner == mta.TokenPool.CardWithTokenPool.Location.HighestRecursiveLocation.OwnerTurnTaker && !c.IsIncapacitatedOrOutOfGame), selectionType: SelectionType.IncapacitateHero, cardSource: GetCardSource());
             if (UseUnityCoroutines)
             {
                 yield return GameController.StartCoroutine(messageCoroutine1);

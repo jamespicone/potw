@@ -7,6 +7,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+using Jp.ParahumansOfTheWormverse.Utility;
+
 namespace Jp.ParahumansOfTheWormverse.Coil
 {
     public class DinahCardController : CardController
@@ -25,7 +27,7 @@ namespace Jp.ParahumansOfTheWormverse.Coil
 
             // "Whenever this card is dealt damage during a hero's turn that player discards a card"
             AddTrigger<DealDamageAction>(
-                dda => dda.Target == Card && Game.ActiveTurnTaker.IsHero,
+                dda => dda.Target == Card && this.HasAlignment(Game.ActiveTurnTaker, CardAlignment.Hero),
                 dda => HeroDiscards(dda),
                 TriggerType.DiscardCard,
                 TriggerTiming.After

@@ -35,8 +35,8 @@ namespace Jp.ParahumansOfTheWormverse.Lung
             if (Card.IsFlipped)
             {
                 AddSideTrigger(AddImmuneToDamageTrigger(dda => dda.DamageSource.IsEnvironmentSource && dda.Target == TurnTaker.CharacterCard));
-                AddSideTrigger(AddDealDamageAtEndOfTurnTrigger(TurnTaker, TurnTaker.CharacterCard, c => c.IsHeroTarget(), TargetType.All, 6, DamageType.Melee));
-                AddSideTrigger(AddDealDamageAtEndOfTurnTrigger(TurnTaker, TurnTaker.CharacterCard, c => c.IsHeroTarget(), TargetType.All, 2, DamageType.Fire, isIrreducible: true));
+                AddSideTrigger(AddDealDamageAtEndOfTurnTrigger(TurnTaker, TurnTaker.CharacterCard, c => c.Alignment().Hero().Target(), TargetType.All, 6, DamageType.Melee));
+                AddSideTrigger(AddDealDamageAtEndOfTurnTrigger(TurnTaker, TurnTaker.CharacterCard, c => c.Alignment().Hero().Target(), TargetType.All, 2, DamageType.Fire, isIrreducible: true));
             }
             else
             {
@@ -71,7 +71,7 @@ namespace Jp.ParahumansOfTheWormverse.Lung
                     GameController.ExhaustCoroutine(e);
                 }
 
-                e = GameController.SelectAndDestroyCards(DecisionMaker, new LinqCardCriteria(c => c.IsHero && (c.IsOngoing || c.DoKeywordsContain("equipment"))), numberOfCards: Game.H - 1, optional: false, responsibleCard: Card, cardSource: GetCardSource());
+                e = GameController.SelectAndDestroyCards(DecisionMaker, new LinqCardCriteria(c => c.Alignment().Hero() && (c.IsOngoing || c.DoKeywordsContain("equipment"))), numberOfCards: Game.H - 1, optional: false, responsibleCard: Card, cardSource: GetCardSource());
                 if (UseUnityCoroutines)
                 {
                     yield return GameController.StartCoroutine(e);
@@ -99,7 +99,7 @@ namespace Jp.ParahumansOfTheWormverse.Lung
                     - If there are 15 or more cards in the villain trash, {Lung} regains 1 HP."
                 */
                 int damage = 1 + TurnTaker.Trash.NumberOfCards / 5;
-                e = GameController.DealDamage(DecisionMaker, TurnTaker.CharacterCard, c => c.IsHeroTarget() && c.IsInPlay, damage, DamageType.Melee, cardSource: GetCardSource());
+                e = GameController.DealDamage(DecisionMaker, TurnTaker.CharacterCard, c => c.Alignment().Hero().Target() && c.IsInPlay, damage, DamageType.Melee, cardSource: GetCardSource());
                 if (UseUnityCoroutines)
                 {
                     yield return GameController.StartCoroutine(e);

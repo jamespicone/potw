@@ -36,12 +36,44 @@ namespace Jp.ParahumansOfTheWormverse.Utility
             return controller.HasAlignment(c, alignment, target) && c.IsCharacter;
         }
 
+        public static CardAlignmentHelper Alignment(this Card c, CardController controller = null)
+        {
+            return new CardAlignmentHelper(c, controller);
+        }
+
+        public static CardAlignmentHelper Alignment(this TurnTaker t, CardController controller = null)
+        {
+            return new CardAlignmentHelper(t, controller);
+        }
+
+        public static CardAlignmentHelper Alignment(this TurnTakerController t, CardController controller = null)
+        {
+            return new CardAlignmentHelper(t.TurnTaker, controller);
+        }
+
+        public static CardAlignmentHelper Alignment(this DamageSource source, CardController controller = null)
+        {
+            if (source.IsCard)
+            {
+                return source.Card.Alignment(controller);
+            }
+            else
+            {
+                return source.TurnTaker.Alignment(controller);
+            }
+        }
+
         public static bool HasAlignment(this CardController controller, Card c, CardAlignment alignment, CardTarget target = CardTarget.Either)
         {
             if (c == null) { return false; }
 
             // CardAlignment enum is deliberately set up so that the bottom bit is 'non-'.
             var baseAlignment = (CardAlignment)(((int)alignment) & ~1);
+
+            if (controller == null && baseAlignment == CardAlignment.Villain)
+            {
+                throw new InvalidOperationException("HasAlignment called with null controller and villain alignment");
+            }
 
             bool hasBaseAlignment = false;
             switch(baseAlignment)
