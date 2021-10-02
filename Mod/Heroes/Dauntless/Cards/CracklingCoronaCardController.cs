@@ -19,7 +19,7 @@ namespace Jp.ParahumansOfTheWormverse.Dauntless
             // {DauntlessCharacter} deals 1 energy damage to all villain targets"
             var e = DealDamage(
                 CharacterCard,
-                c => c.Alignment(this).Villain().Target(),
+                c => c.Is(this).Villain().Target(),
                 1,
                 DamageType.Energy
             );

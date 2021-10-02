@@ -22,7 +22,7 @@ namespace Jp.ParahumansOfTheWormverse.TheMerchants
         public override void AddTriggers()
         {
             // "Reduce damage dealt to villain targets by 1."
-            AddReduceDamageTrigger((Card c) => c.Alignment(this).Villain().Target(), 1);
+            AddReduceDamageTrigger((Card c) => c.Is(this).Villain().Target(), 1);
             base.AddTriggers();
         }
     }

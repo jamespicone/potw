@@ -97,7 +97,7 @@ namespace Jp.ParahumansOfTheWormverse.Dauntless
             if (card != Card) { return null; }
             if (cardSource.Card == null) { return null; }
 
-            if (cardSource.Card.Alignment(this).Villain() || cardSource.Card.Alignment().Environment()) { return false; }
+            if (cardSource.Card.Is(this).Villain() || cardSource.Card.Is().Environment()) { return false; }
 
             return null;
         }

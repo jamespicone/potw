@@ -17,7 +17,7 @@ namespace Jp.ParahumansOfTheWormverse.Lung
         {
             // "Whenever a hero is dealt fire damage by {Lung}, destroy 1 hero ongoing or equipment card.",
             AddTrigger<DealDamageAction>(
-                dda => dda.DamageType == DamageType.Fire && dda.Target.Alignment().Hero().Target().Character() && dda.DamageSource.Card == CharacterCard && dda.DidDealDamage,
+                dda => dda.DamageType == DamageType.Fire && dda.Target.Is().Hero().Target().Character() && dda.DamageSource.Card == CharacterCard && dda.DidDealDamage,
                 dda => RespondToFireDamage(), 
                 TriggerType.AddStatusEffectToDamage,
                 TriggerTiming.After,
@@ -25,12 +25,12 @@ namespace Jp.ParahumansOfTheWormverse.Lung
             );
 
             // "At the end of the villain turn, {Lung} deals the hero target with the highest HP {H - 2} fire damage"
-            AddDealDamageAtEndOfTurnTrigger(TurnTaker, CharacterCard, c => c.Alignment().Hero().Target() && c.IsInPlay, TargetType.HighestHP, Game.H - 2, DamageType.Fire);
+            AddDealDamageAtEndOfTurnTrigger(TurnTaker, CharacterCard, c => c.Is().Hero().Target() && c.IsInPlay, TargetType.HighestHP, Game.H - 2, DamageType.Fire);
         }
 
         public IEnumerator RespondToFireDamage()
         {
-            var e = GameController.SelectAndDestroyCard(DecisionMaker, new LinqCardCriteria(c => c.Alignment().Hero() && (c.IsOngoing || c.DoKeywordsContain("equipment"))), optional: false, responsibleCard: Card, cardSource: GetCardSource());
+            var e = GameController.SelectAndDestroyCard(DecisionMaker, new LinqCardCriteria(c => c.Is().Hero() && (c.IsOngoing || c.DoKeywordsContain("equipment"))), optional: false, responsibleCard: Card, cardSource: GetCardSource());
             if (UseUnityCoroutines)
             {
                 yield return GameController.StartCoroutine(e);

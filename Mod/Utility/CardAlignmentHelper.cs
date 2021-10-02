@@ -82,6 +82,12 @@ namespace Jp.ParahumansOfTheWormverse.Utility
             return this;
         }
 
+        public CardAlignmentHelper AccordingTo(CardController _controller)
+        {
+            controller = _controller;
+            return this;
+        }
+
         public static implicit operator bool(CardAlignmentHelper helper)
         {
             if (! helper.alignment.HasValue)

@@ -33,7 +33,7 @@ namespace Jp.ParahumansOfTheWormverse.JessicaYamada
             var e = GameController.SelectAndGainHP(
                 HeroTurnTakerController,
                 3,
-                additionalCriteria: c => this.HasAlignmentCharacter(c, CardAlignment.Hero, CardTarget.Target),
+                additionalCriteria: c => c.Is().Hero().Target().Character(),
                 cardSource: GetCardSource()
             );
             if (UseUnityCoroutines)

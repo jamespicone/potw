@@ -22,7 +22,7 @@ namespace Jp.ParahumansOfTheWormverse.Coil
         {
             //"Whenever a non-villain target would damage a villain target other than Trainwreck redirect that damage to Trainwreck.",
             AddRedirectDamageTrigger(
-                dda => dda.DamageSource.Alignment(this).NonVillain().Target() && dda.Target.Alignment(this).Villain().Target() && dda.Target != Card,
+                dda => dda.DamageSource.Is(this).NonVillain().Target() && dda.Target.Is(this).Villain().Target() && dda.Target != Card,
                 () => Card
             );
 

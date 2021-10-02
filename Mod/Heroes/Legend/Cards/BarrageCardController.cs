@@ -20,7 +20,7 @@ namespace Jp.ParahumansOfTheWormverse.Legend
             var e = GameController.DealDamage(
                 HeroTurnTakerController,
                 CharacterCard,
-                c => c.Alignment(this).Villain(),
+                c => c.Is(this).Villain(),
                 amount: 3,
                 DamageType.Energy,
                 cardSource: GetCardSource()

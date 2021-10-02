@@ -30,7 +30,7 @@ namespace Jp.ParahumansOfTheWormverse.BrocktonBay
         {
             // "... this card deals the non-environment target with the second highest HP X projectile damage, where X is 2 times the number of Scum in play."
             int x = base.GameController.FindCardsWhere(new LinqCardCriteria((Card c) => c.IsInPlayAndHasGameText && c.DoKeywordsContain("scum"), "scum", useCardsSuffix: false), visibleToCard: GetCardSource()).Count() * 2;
-            IEnumerator damageCoroutine = DealDamageToHighestHP(base.Card, 2, (Card c) => c.Alignment().NonEnvironment().Target(), (Card c) => x, DamageType.Projectile);
+            IEnumerator damageCoroutine = DealDamageToHighestHP(base.Card, 2, (Card c) => c.Is().NonEnvironment().Target(), (Card c) => x, DamageType.Projectile);
             if (base.UseUnityCoroutines)
             {
                 yield return base.GameController.StartCoroutine(damageCoroutine);

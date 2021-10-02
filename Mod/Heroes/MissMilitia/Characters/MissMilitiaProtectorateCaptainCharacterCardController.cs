@@ -118,7 +118,7 @@ namespace Jp.ParahumansOfTheWormverse.MissMilitia
             var e = GameController.SelectCardAndStoreResults(
                 HeroTurnTakerController,
                 SelectionType.CardToDealDamage,
-                new LinqCardCriteria((c) => c.IsInPlay && this.HasAlignmentCharacter(c, CardAlignment.Hero, CardTarget.Target), "hero", useCardsSuffix: false, singular: "hero", plural: "heroes"),
+                new LinqCardCriteria((c) => c.IsInPlay && c.Is().Hero().Target().Character(), "hero", useCardsSuffix: false, singular: "hero", plural: "heroes"),
                 chooseHeroTarget,
                 optional: false,
                 cardSource: GetCardSource()
@@ -162,7 +162,7 @@ namespace Jp.ParahumansOfTheWormverse.MissMilitia
             var e = GameController.SelectAndGainHP(
                 HeroTurnTakerController,
                 amount: 2,
-                additionalCriteria: (c) => this.HasAlignmentCharacter(c, CardAlignment.Hero, CardTarget.Target),
+                additionalCriteria: (c) => c.Is().Hero().Target().Character(),
                 requiredDecisions: 1, cardSource: GetCardSource()
             );
             if (UseUnityCoroutines)

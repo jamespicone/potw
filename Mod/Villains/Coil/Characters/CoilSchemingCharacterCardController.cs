@@ -54,7 +54,7 @@ namespace Jp.ParahumansOfTheWormverse.Coil
         {
             return GameController.GainHP(
                 DecisionMaker,
-                c => c.Alignment(this).Villain().Target(),
+                c => c.Is(this).Villain().Target(),
                 2,
                 cardSource: GetCardSource()
             );

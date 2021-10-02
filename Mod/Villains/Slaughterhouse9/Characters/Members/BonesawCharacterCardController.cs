@@ -21,7 +21,7 @@ namespace Jp.ParahumansOfTheWormverse.Slaughterhouse9
             if (Card.IsFlipped)
             {
                 // At the end of the villain turn the villain target with the lowest HP regains 1 HP
-                AddSideTrigger(AddEndOfTurnTrigger(tt => tt.Alignment(this).Villain().Target(), pca => RestoreHP(), TriggerType.GainHP));
+                AddSideTrigger(AddEndOfTurnTrigger(tt => tt.Is(this).Villain().Target(), pca => RestoreHP(), TriggerType.GainHP));
             }
             else
             {
@@ -38,7 +38,7 @@ namespace Jp.ParahumansOfTheWormverse.Slaughterhouse9
             var lowestCard = new List<Card>();
             var e = GameController.FindTargetWithLowestHitPoints(
                 ranking: 1,
-                c => c.Alignment(this).Villain().Target(),
+                c => c.Is(this).Villain().Target(),
                 lowestCard,
                 cardSource: GetCardSource()
             );           
@@ -71,7 +71,7 @@ namespace Jp.ParahumansOfTheWormverse.Slaughterhouse9
         {
             var e = GameController.GainHP(
                 DecisionMaker,
-                c => c.Alignment(this).Villain().Target(),
+                c => c.Is(this).Villain().Target(),
                 2,
                 cardSource: GetCardSource()
             );
@@ -89,7 +89,7 @@ namespace Jp.ParahumansOfTheWormverse.Slaughterhouse9
         {
             var e = DealDamage(
                 Card,
-                c => c.Alignment(this).NonVillain().Target(),
+                c => c.Is(this).NonVillain().Target(),
                 2,
                 DamageType.Toxic
             );

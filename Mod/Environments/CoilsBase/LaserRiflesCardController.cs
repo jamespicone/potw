@@ -21,10 +21,10 @@ namespace Jp.ParahumansOfTheWormverse.CoilsBase
         public override void AddTriggers()
         {
             // "Increase damage dealt by villain targets by 1."
-            AddIncreaseDamageTrigger(dda => dda.DamageSource != null && dda.DamageSource.Alignment(this).Villain().Target(), dda => 1);
+            AddIncreaseDamageTrigger(dda => dda.DamageSource != null && dda.DamageSource.Is(this).Villain().Target(), dda => 1);
 
             // "Change the type of that damage to energy."
-            AddChangeDamageTypeTrigger(dda => dda.DamageSource != null && dda.DamageSource.Alignment(this).Villain().Target(), DamageType.Energy);
+            AddChangeDamageTypeTrigger(dda => dda.DamageSource != null && dda.DamageSource.Is(this).Villain().Target(), DamageType.Energy);
         }
     }
 }

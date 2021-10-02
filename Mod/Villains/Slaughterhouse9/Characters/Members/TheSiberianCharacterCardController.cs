@@ -16,7 +16,7 @@ namespace Jp.ParahumansOfTheWormverse.Slaughterhouse9
         {
         }
 
-        public override bool AllowFastCoroutinesDuringPretend => IsLowestHitPointsUnique((c) => c.Alignment(this).Villain().Target());
+        public override bool AllowFastCoroutinesDuringPretend => IsLowestHitPointsUnique((c) => c.Is(this).Villain().Target());
 
         public override void AddSideTriggers()
         {
@@ -27,8 +27,8 @@ namespace Jp.ParahumansOfTheWormverse.Slaughterhouse9
                 // "The villain target with the lowest HP is immune to melee damage"
                 AddSideTrigger(AddTrigger<DealDamageAction>(
                     dda => dda.DamageType == DamageType.Melee &&
-                        dda.Target.Alignment(this).Villain().Target() &&
-                        CanCardBeConsideredLowestHitPoints(dda.Target, c => c.Alignment(this).Villain().Target()),
+                        dda.Target.Is(this).Villain().Target() &&
+                        CanCardBeConsideredLowestHitPoints(dda.Target, c => c.Is(this).Villain().Target()),
                     dda => MaybeImmune(dda),
                     TriggerType.ImmuneToDamage,
                     TriggerTiming.Before
@@ -72,7 +72,7 @@ namespace Jp.ParahumansOfTheWormverse.Slaughterhouse9
                 var e = DetermineIfGivenCardIsTargetWithLowestOrHighestHitPoints(
                     dda.Target,
                     highest: false,
-                    c => c.Alignment(this).Villain().Target(),
+                    c => c.Is(this).Villain().Target(),
                     dda,
                     wasLowest
                 );

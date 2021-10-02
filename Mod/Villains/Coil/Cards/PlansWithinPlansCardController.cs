@@ -21,7 +21,7 @@ namespace Jp.ParahumansOfTheWormverse.Coil
         public override void AddTriggers()
         {
             // "Reduce damage dealt to villain targets by 2"
-            AddReduceDamageTrigger(c => c.Alignment(this).Villain().Target(), 2);
+            AddReduceDamageTrigger(c => c.Is(this).Villain().Target(), 2);
         }
     }
 }

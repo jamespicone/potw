@@ -42,7 +42,7 @@ namespace Jp.ParahumansOfTheWormverse.Leviathan
 
             // Players may skip any of their phases (play, power, draw).
             AddPhaseChangeTrigger(
-                tt => tt.Alignment().Hero(),
+                tt => tt.Is().Hero(),
                 p => p == Phase.PlayCard || p == Phase.UsePower || p == Phase.DrawCard,
                 pca => true,
                 pca => ShoreUpEnvironment(pca),
@@ -129,7 +129,7 @@ namespace Jp.ParahumansOfTheWormverse.Leviathan
             // Any time a player skips a phase, they may take a card from the environment trash and shuffle it back into the environment deck
             e = GameController.SelectAndMoveCard(
                 DecisionMaker,
-                c => c.Alignment().Environment() && c.Location.IsTrash,
+                c => c.Is().Environment() && c.Location.IsTrash,
                 FindEnvironment().TurnTaker.Deck,
                 cardSource: GetCardSource()
             );

@@ -23,7 +23,7 @@ namespace Jp.ParahumansOfTheWormverse.JessicaYamada
         {
             // "The first time each turn a hero would deal themselves damage, you may prevent that damage"
             AddTrigger<DealDamageAction>(
-                dda => this.HasAlignmentCharacter(dda.Target, CardAlignment.Hero, CardTarget.Target) && dda.Target == dda.DamageSource.Card,
+                dda =>dda.Target.Is().Hero().Target().Character() && dda.Target == dda.DamageSource.Card,
                 dda => MaybePrevent(dda),
                 TriggerType.CancelAction,
                 TriggerTiming.Before

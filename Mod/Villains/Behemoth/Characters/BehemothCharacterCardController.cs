@@ -295,8 +295,8 @@ namespace Jp.ParahumansOfTheWormverse.Behemoth
                 message1 = player.NameRespectingVariant + " has " + ProximityPool(player).CurrentValue + " proximity tokens!";
                 message2 = base.Card.Title + " has caught " + player.NameRespectingVariant + " within his instant kill aura! " + player.NameRespectingVariant + " is out of the fight!";
             }
-            IEnumerator messageCoroutine1 = base.GameController.SendMessageAction(message1, Priority.High, GetCardSource(), associatedCards: base.GameController.FindCardsWhere(new LinqCardCriteria((Card c) => this.HasAlignmentCharacter(c, CardAlignment.Hero) && c.Owner == player)), showCardSource: true);
-            IEnumerator messageCoroutine2 = base.GameController.SendMessageAction(message2, Priority.High, GetCardSource(), associatedCards: base.GameController.FindCardsWhere(new LinqCardCriteria((Card c) => this.HasAlignmentCharacter(c, CardAlignment.Hero) && c.Owner == player)), showCardSource: true);
+            IEnumerator messageCoroutine1 = base.GameController.SendMessageAction(message1, Priority.High, GetCardSource(), associatedCards: base.GameController.FindCardsWhere(new LinqCardCriteria((Card c) => c.Is().Hero().Character() && c.Owner == player)), showCardSource: true);
+            IEnumerator messageCoroutine2 = base.GameController.SendMessageAction(message2, Priority.High, GetCardSource(), associatedCards: base.GameController.FindCardsWhere(new LinqCardCriteria((Card c) => c.Is().Hero().Character() && c.Owner == player)), showCardSource: true);
             IEnumerator incapCoroutine = base.GameController.DestroyCards(DecisionMaker, new LinqCardCriteria((Card c) => c.Owner == mta.TokenPool.CardWithTokenPool.Location.HighestRecursiveLocation.OwnerTurnTaker && !c.IsIncapacitatedOrOutOfGame), selectionType: SelectionType.IncapacitateHero, cardSource: GetCardSource());
             if (UseUnityCoroutines)
             {

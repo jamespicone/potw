@@ -23,7 +23,7 @@ namespace Jp.ParahumansOfTheWormverse.Behemoth
         {
             // "The player whose hero has the highest HP puts 1 proximity token on their hero."
             List<Card> highest = new List<Card>();
-            IEnumerator findCoroutine = base.GameController.FindTargetWithHighestHitPoints(1, (Card c) => this.HasAlignmentCharacter(c, CardAlignment.Hero, CardTarget.Target), highest, cardSource: GetCardSource());
+            IEnumerator findCoroutine = base.GameController.FindTargetWithHighestHitPoints(1, (Card c) => c.Is().Hero().Target().Character(), highest, cardSource: GetCardSource());
             if (UseUnityCoroutines)
             {
                 yield return GameController.StartCoroutine(findCoroutine);

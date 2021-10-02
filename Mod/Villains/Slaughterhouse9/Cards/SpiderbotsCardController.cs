@@ -24,7 +24,7 @@ namespace Jp.ParahumansOfTheWormverse.Slaughterhouse9
             AddDealDamageAtEndOfTurnTrigger(
                 TurnTaker,
                 Card,
-                c => c.Alignment().Hero().Target(),
+                c => c.Is().Hero().Target(),
                 TargetType.LowestHP,
                 1,
                 DamageType.Melee,

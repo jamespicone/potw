@@ -22,7 +22,7 @@ namespace Jp.ParahumansOfTheWormverse.Alexandria
             var results = new List<Card>();
             var e = GameController.FindTargetWithHighestHitPoints(
                 1,
-                c => c.Alignment(this).Villain().Target(),
+                c => c.Is(this).Villain().Target(),
                 results,
                 cardSource: GetCardSource()
             );
@@ -53,7 +53,7 @@ namespace Jp.ParahumansOfTheWormverse.Alexandria
             results = new List<Card>();
             e = GameController.FindTargetWithHighestHitPoints(
                 1,
-                c => c.Alignment(this).Villain().Target(),
+                c => c.Is(this).Villain().Target(),
                 results,
                 cardSource: GetCardSource()
             );

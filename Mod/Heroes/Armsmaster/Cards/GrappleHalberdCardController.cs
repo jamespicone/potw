@@ -19,7 +19,7 @@ namespace Jp.ParahumansOfTheWormverse.Armsmaster
             // You may destroy an environment card.
             var e = GameController.SelectAndDestroyCard(
                 HeroTurnTakerController,
-                new LinqCardCriteria(c => c.Alignment().Environment(), "Environment"),
+                new LinqCardCriteria(c => c.Is().Environment(), "Environment"),
                 optional: true,
                 responsibleCard: Card,
                 cardSource: GetCardSource()

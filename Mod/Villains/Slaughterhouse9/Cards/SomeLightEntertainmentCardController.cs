@@ -23,11 +23,11 @@ namespace Jp.ParahumansOfTheWormverse.Slaughterhouse9
             // Each villain target in play deals 2 melee damage to the hero target with the highest HP
             return this.SelectTargetsToDealDamageToTarget(
                 DecisionMaker,
-                c => c.Alignment(this).Villain(),
+                c => c.Is(this).Villain(),
                 damageDealer => DealDamageToHighestHP(
                     damageDealer,
                     1,
-                    c => c.Alignment().Hero().Target(),
+                    c => c.Is().Hero().Target(),
                     c => 2,
                     DamageType.Melee
                 )

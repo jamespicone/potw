@@ -29,7 +29,7 @@ namespace Jp.ParahumansOfTheWormverse.BrocktonBay
         public IEnumerator AttackHealResponse(PhaseChangeAction pca)
         {
             // "... this card deals the non-environment target with the highest HP 2 melee damage."
-            IEnumerator damageCoroutine = DealDamageToHighestHP(base.Card, 1, (Card c) => c.Alignment().NonEnvironment().Target(), (Card c) => 2, DamageType.Melee);
+            IEnumerator damageCoroutine = DealDamageToHighestHP(base.Card, 1, (Card c) => c.Is().NonEnvironment().Target(), (Card c) => 2, DamageType.Melee);
             if (base.UseUnityCoroutines)
             {
                 yield return base.GameController.StartCoroutine(damageCoroutine);

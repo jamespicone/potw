@@ -25,7 +25,7 @@ namespace Jp.ParahumansOfTheWormverse.JessicaYamada
 
             if (! Card.IsFlipped)
             {
-                AddSideTrigger(AddPreventDamageTrigger(dda => dda.Target == Card && dda.DamageSource.Alignment().Hero()));
+                AddSideTrigger(AddPreventDamageTrigger(dda => dda.Target == Card && dda.DamageSource.Is().Hero()));
             }
         }
     }

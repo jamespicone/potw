@@ -19,7 +19,7 @@ namespace Jp.ParahumansOfTheWormverse.Legend
         public override bool? AskIfCardIsVisibleToCardSource(Card card, CardSource cardSource)
         {
             if (card.Owner != TurnTaker) { return null; }
-            if (! cardSource.Card.Alignment().Environment()) { return null; }
+            if (! cardSource.Card.Is().Environment()) { return null; }
 
             return false;
         }

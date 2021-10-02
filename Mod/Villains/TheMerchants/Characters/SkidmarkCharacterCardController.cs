@@ -43,14 +43,14 @@ namespace Jp.ParahumansOfTheWormverse.TheMerchants
                 if (IsGameAdvanced)
                 {
                     // "Reduce damage dealt to villain targets by 1."
-                    base.AddSideTrigger(AddReduceDamageTrigger((Card c) => c.Alignment(this).Villain().Target(), 1));
+                    base.AddSideTrigger(AddReduceDamageTrigger((Card c) => c.Is(this).Villain().Target(), 1));
                 }
             }
             else
             {
                 // Defeated Drug Lord
                 // "[b]The heroes cannot win the game as long as there is a villain target in play.[/b]"
-                base.AddSideTrigger(AddTrigger((GameOverAction goa) => goa.ResultIsVictory && base.GameController.FindCardsWhere(new LinqCardCriteria((Card c) => c.Alignment(this).Villain().Target() && c.IsInPlayAndHasGameText), visibleToCard: GetCardSource()).Any(), CancelVictoryResponse, TriggerType.CancelAction, TriggerTiming.Before));
+                base.AddSideTrigger(AddTrigger((GameOverAction goa) => goa.ResultIsVictory && base.GameController.FindCardsWhere(new LinqCardCriteria((Card c) => c.Is(this).Villain().Target() && c.IsInPlayAndHasGameText), visibleToCard: GetCardSource()).Any(), CancelVictoryResponse, TriggerType.CancelAction, TriggerTiming.Before));
                 // "At the start of the villain turn, if the Thug deck is empty, the Merchants have grown out of control. [b]GAME OVER.[/b]"
                 base.AddSideTrigger(AddStartOfTurnTrigger((TurnTaker tt) => tt == base.TurnTaker, GameOverResponse, TriggerType.GameOver, additionalCriteria: (PhaseChangeAction pca) => !ThugDeck.HasCards));
                 // "At the end of the villain turn, play the top card of the Thug deck."
@@ -109,7 +109,7 @@ namespace Jp.ParahumansOfTheWormverse.TheMerchants
             // "[b]The heroes cannot win the game as long as there is a villain target in play.[/b]"
             if (!HasBeenSetToTrueThisGame(nameof(HeroesCannotWinMessage)))
             {
-                IEnumerator messageCoroutine = base.GameController.SendMessageAction(base.Card.Title + " has been defeated, but his followers continue to rampage as long as there is a villain target in play!", Priority.Critical, GetCardSource(), base.GameController.FindCardsWhere(new LinqCardCriteria((Card c) => c.Alignment(this).Villain().Target() && c.IsInPlayAndHasGameText), visibleToCard: GetCardSource()), showCardSource: true);
+                IEnumerator messageCoroutine = base.GameController.SendMessageAction(base.Card.Title + " has been defeated, but his followers continue to rampage as long as there is a villain target in play!", Priority.Critical, GetCardSource(), base.GameController.FindCardsWhere(new LinqCardCriteria((Card c) => c.Is(this).Villain().Target() && c.IsInPlayAndHasGameText), visibleToCard: GetCardSource()), showCardSource: true);
                 if (base.UseUnityCoroutines)
                 {
                     yield return base.GameController.StartCoroutine(messageCoroutine);
@@ -138,7 +138,7 @@ namespace Jp.ParahumansOfTheWormverse.TheMerchants
             if (!base.GameController.AllHeroControllers.All((HeroTurnTakerController httc) => httc.IsIncapacitatedOrOutOfGame))
             {
                 //Log.Debug("There's at least one active hero...");
-                IEnumerable<Card> activeVillainTargets = base.GameController.GetAllCards().Where((Card c) => c.IsInPlayAndHasGameText && c.Alignment(this).Villain().Target());
+                IEnumerable<Card> activeVillainTargets = base.GameController.GetAllCards().Where((Card c) => c.IsInPlayAndHasGameText && c.Is(this).Villain().Target());
                 Log.Debug("activeVillainTargets.Count(): " + activeVillainTargets.Count().ToString());
                 if (activeVillainTargets.Count() > 0)
                 {
@@ -147,7 +147,7 @@ namespace Jp.ParahumansOfTheWormverse.TheMerchants
                         Log.Debug("active villain target: " + c.Title);
                     }
                 }
-                return !base.GameController.GetAllCards().Any((Card c) => c.IsInPlayAndHasGameText && c.Alignment(this).Villain().Target());
+                return !base.GameController.GetAllCards().Any((Card c) => c.IsInPlayAndHasGameText && c.Is(this).Villain().Target());
             }
             else
             {

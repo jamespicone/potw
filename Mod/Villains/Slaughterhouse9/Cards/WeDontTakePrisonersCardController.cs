@@ -23,8 +23,8 @@ namespace Jp.ParahumansOfTheWormverse.Slaughterhouse9
             // Whenever a target is destroyed by a villain card each hero character deals themselves 2 psychic damage.
             AddTrigger<DestroyCardAction>(
                 dca => dca.CardToDestroy.Card.IsTarget && (
-                    dca.ResponsibleCard.Alignment(this).Villain() ||
-                    ((dca.ActionSource is DealDamageAction) && (dca.ActionSource as DealDamageAction).DamageSource.Alignment(this).Villain())
+                    dca.ResponsibleCard.Is(this).Villain() ||
+                    ((dca.ActionSource is DealDamageAction) && (dca.ActionSource as DealDamageAction).DamageSource.Is(this).Villain())
                 ),
                 dca => HurtHeroes(),
                 TriggerType.DealDamage,
@@ -34,7 +34,7 @@ namespace Jp.ParahumansOfTheWormverse.Slaughterhouse9
 
         private IEnumerator HurtHeroes()
         {
-            var cards = FindCardsWhere(new LinqCardCriteria(c => c.Alignment().Hero().Target().Character() && c.IsInPlayAndHasGameText), GetCardSource());
+            var cards = FindCardsWhere(new LinqCardCriteria(c => c.Is().Hero().Target().Character() && c.IsInPlayAndHasGameText), GetCardSource());
 
             var e = GameController.SelectTargetsToDealDamageToSelf(
                 DecisionMaker,
@@ -44,7 +44,7 @@ namespace Jp.ParahumansOfTheWormverse.Slaughterhouse9
                 optional: false,
                 allowAutoDecide: true,
                 requiredTargets: null,
-                additionalCriteria: c => c.Alignment().Hero().Target().Character(),
+                additionalCriteria: c => c.Is().Hero().Target().Character(),
                 cardSource: GetCardSource()
             );
 

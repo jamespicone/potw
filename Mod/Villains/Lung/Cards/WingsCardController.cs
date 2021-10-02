@@ -17,7 +17,7 @@ namespace Jp.ParahumansOfTheWormverse.Lung
         public override void AddTriggers()
         {
             // {Lung} is immune to damage from Environment cards
-            AddImmuneToDamageTrigger(dda => dda.DamageSource.Alignment().Environment() && dda.Target == CharacterCard);
+            AddImmuneToDamageTrigger(dda => dda.DamageSource.Is().Environment() && dda.Target == CharacterCard);
         }
     }
 }

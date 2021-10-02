@@ -30,36 +30,30 @@ namespace Jp.ParahumansOfTheWormverse.Utility
 
     public static class ExtensionMethods
     {
-
-        public static bool HasAlignmentCharacter(this CardController controller, Card c, CardAlignment alignment, CardTarget target = CardTarget.Either)
-        {
-            return controller.HasAlignment(c, alignment, target) && c.IsCharacter;
-        }
-
-        public static CardAlignmentHelper Alignment(this Card c, CardController controller = null)
+        public static CardAlignmentHelper Is(this Card c, CardController controller = null)
         {
             return new CardAlignmentHelper(c, controller);
         }
 
-        public static CardAlignmentHelper Alignment(this TurnTaker t, CardController controller = null)
+        public static CardAlignmentHelper Is(this TurnTaker t, CardController controller = null)
         {
             return new CardAlignmentHelper(t, controller);
         }
 
-        public static CardAlignmentHelper Alignment(this TurnTakerController t, CardController controller = null)
+        public static CardAlignmentHelper Is(this TurnTakerController t, CardController controller = null)
         {
             return new CardAlignmentHelper(t.TurnTaker, controller);
         }
 
-        public static CardAlignmentHelper Alignment(this DamageSource source, CardController controller = null)
+        public static CardAlignmentHelper Is(this DamageSource source, CardController controller = null)
         {
             if (source.IsCard)
             {
-                return source.Card.Alignment(controller);
+                return source.Card.Is(controller);
             }
             else
             {
-                return source.TurnTaker.Alignment(controller);
+                return source.TurnTaker.Is(controller);
             }
         }
 
@@ -238,8 +232,6 @@ namespace Jp.ParahumansOfTheWormverse.Utility
                     c.GameController.ExhaustCoroutine(e);
                 }
             }
-
-            yield break;
         }
     }
 }

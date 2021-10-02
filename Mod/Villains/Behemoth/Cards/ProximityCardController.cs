@@ -54,7 +54,7 @@ namespace Jp.ParahumansOfTheWormverse.Behemoth
 
         public IEnumerable<Card> RelevantCharacters()
         {
-            IEnumerable<Card> relevant = base.GameController.FindCardsWhere(new LinqCardCriteria((Card c) => this.HasAlignmentCharacter(c, CardAlignment.Hero, CardTarget.Target) && c.Owner == base.Card.Location.HighestRecursiveLocation.OwnerTurnTaker), false);
+            IEnumerable<Card> relevant = base.GameController.FindCardsWhere(new LinqCardCriteria((Card c) => c.Is().Hero().Target().Character() && c.Owner == base.Card.Location.HighestRecursiveLocation.OwnerTurnTaker), false);
             return relevant;
         }
 

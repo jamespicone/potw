@@ -22,7 +22,7 @@ namespace Jp.ParahumansOfTheWormverse.BrocktonBay
         public override void AddTriggers()
         {
             // "Increase damage dealt by environment targets by 1."
-            AddIncreaseDamageTrigger((DealDamageAction dda) => dda.DamageSource.Alignment().Environment().Target(), (DealDamageAction dda) => 1);
+            AddIncreaseDamageTrigger((DealDamageAction dda) => dda.DamageSource.Is().Environment().Target(), (DealDamageAction dda) => 1);
             base.AddTriggers();
         }
     }

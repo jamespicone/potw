@@ -18,7 +18,7 @@ namespace Jp.ParahumansOfTheWormverse.Legend
         {
             // "Whenever Legend is dealt damage by a villain or environment target, you may draw a card or play a card"
             AddTrigger<DealDamageAction>(
-                dda => dda.DidDealDamage && dda.Target == CharacterCard && (dda.DamageSource.Alignment().Environment().Target() || dda.DamageSource.Alignment(this).Villain().Target()),
+                dda => dda.DidDealDamage && dda.Target == CharacterCard && (dda.DamageSource.Is().Environment().Target() || dda.DamageSource.Is(this).Villain().Target()),
                 dda => DrawACardOrPlayACard(HeroTurnTakerController, optional: true),
                 new TriggerType[] { TriggerType.DrawCard, TriggerType.PlayCard },
                 TriggerTiming.After

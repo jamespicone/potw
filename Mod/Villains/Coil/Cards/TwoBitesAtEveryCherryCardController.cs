@@ -21,10 +21,10 @@ namespace Jp.ParahumansOfTheWormverse.Coil
         public override void AddTriggers()
         {
             //"Increase damage dealt by villain targets by 1",
-            AddIncreaseDamageTrigger(dda => dda.DamageSource.Alignment(this).Villain().Target(), 1);
+            AddIncreaseDamageTrigger(dda => dda.DamageSource.Is(this).Villain().Target(), 1);
 
             //"Damage dealt by villain targets is irreducible"
-            AddMakeDamageIrreducibleTrigger(dda => dda.DamageSource.Alignment(this).Villain().Target());
+            AddMakeDamageIrreducibleTrigger(dda => dda.DamageSource.Is(this).Villain().Target());
         }
     }
 }

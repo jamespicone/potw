@@ -21,7 +21,7 @@ namespace Jp.ParahumansOfTheWormverse.CoilsBase
         public override void AddTriggers()
         {
             // Redirect any damage that would be dealt by a nonenvironment source to a target other than this target to this card.
-            AddRedirectDamageTrigger(dda => dda.DamageSource.Alignment().NonEnvironment() && dda.Target != Card, () => Card);
+            AddRedirectDamageTrigger(dda => dda.DamageSource.Is().NonEnvironment() && dda.Target != Card, () => Card);
 
             // "Reduce damage dealt to this card by 1."
             AddReduceDamageTrigger(c => c == Card, 1);

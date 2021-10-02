@@ -54,7 +54,7 @@ namespace Jp.ParahumansOfTheWormverse.Armsmaster
         {
             AddTrigger<PlayCardAction>(
                 pca => 
-                    pca.CardToPlay.Alignment(this).Villain() && 
+                    pca.CardToPlay.Is(this).Villain() && 
                     !pca.IsPutIntoPlay && 
                     StatusEffectIsActive() &&
                     GameController.IsCardLocationVisibleToSource(FindCardController(pca.CardToPlay), GetCardSource()) &&

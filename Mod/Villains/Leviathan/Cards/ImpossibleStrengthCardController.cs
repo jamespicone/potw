@@ -17,7 +17,7 @@ namespace Jp.ParahumansOfTheWormverse.Leviathan
         public override void AddTriggers()
         {
             // Increase damage dealt by villain cards by 1
-            AddIncreaseDamageTrigger((dda) => dda.DamageSource != null && dda.DamageSource.Alignment(this).Villain(), 1);
+            AddIncreaseDamageTrigger((dda) => dda.DamageSource != null && dda.DamageSource.Is(this).Villain(), 1);
         }
     }
 }

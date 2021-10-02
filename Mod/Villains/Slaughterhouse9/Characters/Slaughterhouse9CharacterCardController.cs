@@ -25,7 +25,7 @@ namespace Jp.ParahumansOfTheWormverse.Slaughterhouse9
                     !(g is GameOverAction) &&
                     !(g is IncrementAchievementAction) &&
                     !(g is CancelAction) &&
-                    FindCardsWhere((c) => c.IsInPlayAndHasGameText && c.Alignment(this).Villain().Target()).Count() == 0,
+                    FindCardsWhere((c) => c.IsInPlayAndHasGameText && c.Is(this).Villain().Target()).Count() == 0,
                 (g) => DefeatedResponse(g),
                 new TriggerType[2] { TriggerType.GameOver, TriggerType.Hidden },
                 TriggerTiming.After

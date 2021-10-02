@@ -16,7 +16,7 @@ namespace Jp.ParahumansOfTheWormverse.Slaughterhouse9
         {
         }
 
-        public override bool AllowFastCoroutinesDuringPretend => IsLowestHitPointsUnique((c) => c.Alignment(this).Villain().Target());
+        public override bool AllowFastCoroutinesDuringPretend => IsLowestHitPointsUnique((c) => c.Is(this).Villain().Target());
 
         public override void AddSideTriggers()
         {
@@ -24,7 +24,7 @@ namespace Jp.ParahumansOfTheWormverse.Slaughterhouse9
             {
                 // "Reduce damage dealt to the villain target with the lowest HP by 1"
                 reduceDamageTrigger = AddTrigger<DealDamageAction>(
-                    dda => dda.Target.Alignment(this).Villain().Target() && CanCardBeConsideredLowestHitPoints(dda.Target, c => c.Alignment(this).Villain().Target()),
+                    dda => dda.Target.Is(this).Villain().Target() && CanCardBeConsideredLowestHitPoints(dda.Target, c => c.Is(this).Villain().Target()),
                     MaybeReduceDamage,
                     TriggerType.ReduceDamage,
                     TriggerTiming.Before
@@ -50,7 +50,7 @@ namespace Jp.ParahumansOfTheWormverse.Slaughterhouse9
                 var e = DetermineIfGivenCardIsTargetWithLowestOrHighestHitPoints(
                     dda.Target,
                     highest: false,
-                    c => c.Alignment(this).Villain().Target(),
+                    c => c.Is(this).Villain().Target(),
                     dda,
                     wasLowest
                 );
@@ -90,7 +90,7 @@ namespace Jp.ParahumansOfTheWormverse.Slaughterhouse9
         {
             return GameController.SelectAndDestroyCard(
                 DecisionMaker,
-                new LinqCardCriteria(c => c.Alignment().Hero() && (c.IsOngoing || c.DoKeywordsContain("equipment")), "Hero Ongoing or Equipment"),
+                new LinqCardCriteria(c => c.Is().Hero() && (c.IsOngoing || c.DoKeywordsContain("equipment")), "Hero Ongoing or Equipment"),
                 optional: false,
                 responsibleCard: Card,
                 cardSource: GetCardSource()

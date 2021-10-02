@@ -21,7 +21,7 @@ namespace Jp.ParahumansOfTheWormverse.Slaughterhouse9
         public override void AddTriggers()
         {
             // Increase damage dealt by villain cards by 1
-            AddIncreaseDamageTrigger(dda => dda.DamageSource.Alignment(this).Villain(), 1);
+            AddIncreaseDamageTrigger(dda => dda.DamageSource.Is(this).Villain(), 1);
         }
     }
 }

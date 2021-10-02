@@ -30,7 +30,7 @@ namespace Jp.ParahumansOfTheWormverse.Kyushu
         {
             // "... this card deals the non-environment target with the highest HP X energy damage, where X is 2 times the number of Sentai Elite in play."
             int x = FindCardsWhere(new LinqCardCriteria((Card c) => c.Identifier == base.Card.Identifier && c.IsInPlayAndHasGameText), GetCardSource()).Count() * 2;
-            IEnumerator damageCoroutine = DealDamageToHighestHP(base.Card, 1, (Card c) => c.Alignment().NonEnvironment().Target(), (Card c) => x, DamageType.Energy);
+            IEnumerator damageCoroutine = DealDamageToHighestHP(base.Card, 1, (Card c) => c.Is().NonEnvironment().Target(), (Card c) => x, DamageType.Energy);
             if (base.UseUnityCoroutines)
             {
                 yield return base.GameController.StartCoroutine(damageCoroutine);

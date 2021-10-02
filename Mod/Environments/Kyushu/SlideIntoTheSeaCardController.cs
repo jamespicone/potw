@@ -22,7 +22,7 @@ namespace Jp.ParahumansOfTheWormverse.Kyushu
 
         public LinqCardCriteria OtherEnvironmentCards()
         {
-            return new LinqCardCriteria((Card c) => c.Alignment().Environment() && c != base.Card && c.IsInPlay && !c.IsBeingDestroyed && base.GameController.IsCardVisibleToCardSource(c, GetCardSource()), "environment cards other than " + base.Card.Title, false, false, "environment card other than " + base.Card.Title, "environment cards other than " + base.Card.Title);
+            return new LinqCardCriteria((Card c) => c.Is().Environment() && c != base.Card && c.IsInPlay && !c.IsBeingDestroyed && base.GameController.IsCardVisibleToCardSource(c, GetCardSource()), "environment cards other than " + base.Card.Title, false, false, "environment card other than " + base.Card.Title, "environment cards other than " + base.Card.Title);
         }
 
         public override void AddTriggers()
