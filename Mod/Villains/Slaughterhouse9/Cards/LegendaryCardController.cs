@@ -7,6 +7,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+using Jp.ParahumansOfTheWormverse.Utility;
+
 namespace Jp.ParahumansOfTheWormverse.Slaughterhouse9
 {
     public class LegendaryCardController : CardController
@@ -19,7 +21,7 @@ namespace Jp.ParahumansOfTheWormverse.Slaughterhouse9
         public override void AddTriggers()
         {
             // Increase damage dealt by villain cards by 1
-            AddIncreaseDamageTrigger(dda => dda.DamageSource.IsVillain, 1);
+            AddIncreaseDamageTrigger(dda => dda.DamageSource.Is(this).Villain(), 1);
         }
     }
 }

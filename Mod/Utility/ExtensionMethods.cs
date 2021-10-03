@@ -9,16 +9,140 @@ using Handelabra.Sentinels.Engine.Controller;
 
 namespace Jp.ParahumansOfTheWormverse.Utility
 {
+    // The values are deliberately set up so that the bottom bit is on for the 'non' case.
+    // It's not a full bitflags thing.
+    public enum CardAlignment
+    {
+        Hero = 0,
+        Nonhero = 1,
+        Environment = 2,
+        Nonenvironment = 3,
+        Villain = 4,
+        Nonvillain = 5
+    };
+
+    public enum CardTarget
+    {
+        Either,
+        Target,
+        Nontarget
+    };
+
     public static class ExtensionMethods
     {
-        // Same as IsEnvironmentTarget and IsVillainTarget but checks hero-target status
-        // (This may be different to hero-ness because of targetKind decklist property)
-        public static bool IsHeroTarget(this Card c)
+        public static CardAlignmentHelper Is(this Card c, CardController controller = null)
         {
-			if (c.TargetKind == DeckDefinition.DeckKind.Hero) { return true; }
+            return new CardAlignmentHelper(c, controller);
+        }
 
-			return c.IsHero && c.IsTarget;
-		}
+        public static CardAlignmentHelper Is(this TurnTaker t, CardController controller = null)
+        {
+            return new CardAlignmentHelper(t, controller);
+        }
+
+        public static CardAlignmentHelper Is(this TurnTakerController t, CardController controller = null)
+        {
+            return new CardAlignmentHelper(t.TurnTaker, controller);
+        }
+
+        public static CardAlignmentHelper Is(this DamageSource source, CardController controller = null)
+        {
+            if (source.IsCard)
+            {
+                return source.Card.Is(controller);
+            }
+            else
+            {
+                return source.TurnTaker.Is(controller);
+            }
+        }
+
+        public static bool HasAlignment(this CardController controller, Card c, CardAlignment alignment, CardTarget target = CardTarget.Either)
+        {
+            if (c == null) { return false; }
+
+            // CardAlignment enum is deliberately set up so that the bottom bit is 'non-'.
+            var baseAlignment = (CardAlignment)(((int)alignment) & ~1);
+
+            if (controller == null && baseAlignment == CardAlignment.Villain)
+            {
+                throw new InvalidOperationException("HasAlignment called with null controller and villain alignment");
+            }
+
+            bool hasBaseAlignment = false;
+            switch(baseAlignment)
+            {
+                case CardAlignment.Hero:
+                    if (target == CardTarget.Target) { hasBaseAlignment = c.TargetKind == DeckDefinition.DeckKind.Hero || c.IsHero; }
+                    else { hasBaseAlignment = c.IsHero; }
+                    break;
+
+                case CardAlignment.Villain:
+                    if (target == CardTarget.Target) { hasBaseAlignment = controller.GameController.AskCardControllersIfIsVillainTarget(c, controller.GetCardSource()); }
+                    else { hasBaseAlignment = controller.GameController.AskCardControllersIfIsVillain(c, controller.GetCardSource()); }
+                    break;
+
+                case CardAlignment.Environment:
+                    if (target == CardTarget.Target) { hasBaseAlignment = c.IsEnvironmentTarget; }
+                    else { hasBaseAlignment = c.IsEnvironment; }
+                    break;
+
+                default:
+                    break;
+            }
+
+            var isNonCase = (((int)alignment) & 1) > 0;
+            if (isNonCase)
+            {
+                hasBaseAlignment = !hasBaseAlignment;
+            }
+
+            switch(target)
+            {
+                case CardTarget.Target: hasBaseAlignment = hasBaseAlignment && c.IsTarget; break;
+                case CardTarget.Nontarget: hasBaseAlignment = hasBaseAlignment && ! c.IsTarget; break;
+                case CardTarget.Either:
+                default:
+                    break;
+            }
+
+            return hasBaseAlignment;
+        }
+
+        public static bool HasAlignment(this CardController controller, TurnTaker t, CardAlignment alignment)
+        {
+            if (t == null) { return false; }
+
+            // CardAlignment enum is deliberately set up so that the bottom bit is 'non-'.
+            var baseAlignment = (CardAlignment)(((int)alignment) & ~1);
+
+            bool hasBaseAlignment = false;
+            switch (baseAlignment)
+            {
+                case CardAlignment.Hero:
+                    hasBaseAlignment = t.IsHero;
+                    break;
+
+                case CardAlignment.Villain:
+                    hasBaseAlignment = controller.IsVillain(t);
+                    break;
+
+                case CardAlignment.Environment:
+                    hasBaseAlignment = t.IsEnvironment;
+                    break;
+
+                default:
+                    break;
+            }
+
+            var isNonCase = (((int)alignment) & 1) > 0;
+            if (isNonCase)
+            {
+                hasBaseAlignment = !hasBaseAlignment;
+            }
+
+            return hasBaseAlignment;
+        }
 
         public static IEnumerator SelectTargetsToDealDamageToTarget(
             this CardController c,
@@ -108,8 +232,6 @@ namespace Jp.ParahumansOfTheWormverse.Utility
                     c.GameController.ExhaustCoroutine(e);
                 }
             }
-
-            yield break;
         }
     }
 }

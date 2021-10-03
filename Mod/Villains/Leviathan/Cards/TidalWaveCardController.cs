@@ -21,7 +21,7 @@ namespace Jp.ParahumansOfTheWormverse.Leviathan
             var stored = new List<DestroyCardAction>();
             var e = GameController.DestroyCards(
                 DecisionMaker,
-                new LinqCardCriteria(c => c.IsEnvironmentTarget, "environment targets"),
+                new LinqCardCriteria(c => c.Is().Environment().Target(), "environment targets"),
                 storedResults: stored,
                 cardSource: GetCardSource()
             );
@@ -39,7 +39,7 @@ namespace Jp.ParahumansOfTheWormverse.Leviathan
             e = GameController.DealDamage(
                 DecisionMaker,
                 CharacterCard,
-                c => c.IsTarget && c.IsInPlay && !c.IsVillainTarget,
+                c => c.IsInPlay && c.Is(this).NonVillain().Target(),
                 amount: x,
                 DamageType.Cold,
                 cardSource: GetCardSource()

@@ -6,6 +6,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+using Jp.ParahumansOfTheWormverse.Utility;
+
 namespace Jp.ParahumansOfTheWormverse.JessicaYamada
 {
     public class JessicaYamadaCharacterTargetCardController : JessicaYamadaCharacterBase
@@ -21,8 +23,8 @@ namespace Jp.ParahumansOfTheWormverse.JessicaYamada
             if (!Card.IsFlipped)
             {
                 AddSideTrigger(AddTrigger<DealDamageAction>(
-                    dda => dda.Target == Card && ! dda.DamageSource.IsHero,
-                    dda => RedirectDamage(dda, TargetType.LowestHP, c => c != Card && c.IsHeroCharacterCard && !c.IsIncapacitatedOrOutOfGame && c.IsInPlay && c.IsRealCard),
+                    dda => dda.Target == Card && dda.DamageSource.Is().NonHero(),
+                    dda => RedirectDamage(dda, TargetType.LowestHP, c => c != Card && c.Is().Hero().Target().Character() && !c.IsIncapacitatedOrOutOfGame && c.IsInPlay && c.IsRealCard),
                     TriggerType.RedirectDamage,
                     TriggerTiming.Before
                 ));

@@ -6,6 +6,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+using Jp.ParahumansOfTheWormverse.Utility;
+
 namespace Jp.ParahumansOfTheWormverse.Slaughterhouse9
 {
     public class CherishCharacterCardController : Slaughterhouse9MemberCharacterCardController
@@ -20,7 +22,7 @@ namespace Jp.ParahumansOfTheWormverse.Slaughterhouse9
             {
                 // Whenever a target is destroyed during a hero's turn, that hero deals themselves 1 psychic damage
                 AddSideTrigger(AddTrigger<DestroyCardAction>(
-                    dca => dca.CardToDestroy.Card.IsTarget && dca.WasCardDestroyed && GameController.ActiveTurnTaker.IsHero,
+                    dca => dca.CardToDestroy.Card.IsTarget && dca.WasCardDestroyed && GameController.ActiveTurnTaker.Is().Hero(),
                     dca => TargetDestroyedResponse(dca),
                     TriggerType.DealDamage,
                     TriggerTiming.After

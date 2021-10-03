@@ -29,7 +29,7 @@ namespace Jp.ParahumansOfTheWormverse.MissMilitia
                 numberOfTargets: 1,
                 optional: false,
                 requiredTargets: 1,
-                additionalCriteria: (c) => ! c.IsHeroTarget(),
+                additionalCriteria: (c) => this.HasAlignment(c, CardAlignment.Nonhero, CardTarget.Target),
                 cardSource: GetCardSource()
             );
             if (UseUnityCoroutines)
@@ -46,7 +46,7 @@ namespace Jp.ParahumansOfTheWormverse.MissMilitia
                 HeroTurnTakerController,
                 amount: 2,
                 optional: false,
-                (c) => c.IsHeroTarget(),
+                (c) => this.HasAlignment(c, CardAlignment.Hero, CardTarget.Target),
                 numberOfTargets: 1,
                 cardSource: GetCardSource()
             );

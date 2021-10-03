@@ -7,6 +7,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+using Jp.ParahumansOfTheWormverse.Utility;
+
 namespace Jp.ParahumansOfTheWormverse.Behemoth
 {
     public class FocusCardController : MovementCardController
@@ -21,7 +23,7 @@ namespace Jp.ParahumansOfTheWormverse.Behemoth
         {
             // "The player whose hero has the highest HP puts 1 proximity token on their hero."
             List<Card> highest = new List<Card>();
-            IEnumerator findCoroutine = base.GameController.FindTargetWithHighestHitPoints(1, (Card c) => c.IsHeroCharacterCard, highest, cardSource: GetCardSource());
+            IEnumerator findCoroutine = base.GameController.FindTargetWithHighestHitPoints(1, (Card c) => c.Is().Hero().Target().Character(), highest, cardSource: GetCardSource());
             if (UseUnityCoroutines)
             {
                 yield return GameController.StartCoroutine(findCoroutine);

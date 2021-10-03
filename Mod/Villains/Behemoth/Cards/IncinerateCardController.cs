@@ -7,6 +7,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+using Jp.ParahumansOfTheWormverse.Utility;
+
 namespace Jp.ParahumansOfTheWormverse.Behemoth
 {
     public class IncinerateCardController : BehemothUtilityCardController
@@ -31,7 +33,7 @@ namespace Jp.ParahumansOfTheWormverse.Behemoth
             }
             // "Destroy 2 hero Ongoing cards."
             List<DestroyCardAction> results = new List<DestroyCardAction>();
-            IEnumerator destroyCoroutine = base.GameController.SelectAndDestroyCards(DecisionMaker, new LinqCardCriteria((Card c) => c.IsHero && c.DoKeywordsContain("ongoing"), "hero ongoing"), 2, storedResultsAction: results, responsibleCard: base.Card, cardSource: GetCardSource());
+            IEnumerator destroyCoroutine = base.GameController.SelectAndDestroyCards(DecisionMaker, new LinqCardCriteria((Card c) => this.HasAlignment(c, CardAlignment.Hero) && c.DoKeywordsContain("ongoing"), "hero ongoing"), 2, storedResultsAction: results, responsibleCard: base.Card, cardSource: GetCardSource());
             if (UseUnityCoroutines)
             {
                 yield return GameController.StartCoroutine(destroyCoroutine);
@@ -72,7 +74,7 @@ namespace Jp.ParahumansOfTheWormverse.Behemoth
                     }
                     // passingTT gets to choose who to pass to
                     List<SelectTurnTakerDecision> receivingChoice = new List<SelectTurnTakerDecision>();
-                    IEnumerator chooseCoroutine = base.GameController.SelectTurnTaker(base.GameController.FindHeroTurnTakerController(passingTT.ToHero()), SelectionType.AddTokens, receivingChoice, additionalCriteria: (TurnTaker tt) => tt.IsHero && !tt.IsIncapacitatedOrOutOfGame && tt != passingTT, numberOfCards: 1, cardSource: GetCardSource());
+                    IEnumerator chooseCoroutine = base.GameController.SelectTurnTaker(base.GameController.FindHeroTurnTakerController(passingTT.ToHero()), SelectionType.AddTokens, receivingChoice, additionalCriteria: (TurnTaker tt) => this.HasAlignment(tt, CardAlignment.Hero) && !tt.IsIncapacitatedOrOutOfGame && tt != passingTT, numberOfCards: 1, cardSource: GetCardSource());
                     if (UseUnityCoroutines)
                     {
                         yield return GameController.StartCoroutine(chooseCoroutine);

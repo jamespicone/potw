@@ -24,7 +24,7 @@ namespace Jp.ParahumansOfTheWormverse.Coil
             AddDealDamageAtEndOfTurnTrigger(
                 TurnTaker,
                 Card,
-                c => c.IsHeroTarget(),
+                c => this.HasAlignment(c, CardAlignment.Hero, CardTarget.Target),
                 TargetType.HighestHP,
                 H - 1,
                 DamageType.Energy,

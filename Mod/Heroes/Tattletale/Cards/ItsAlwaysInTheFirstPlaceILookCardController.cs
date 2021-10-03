@@ -7,6 +7,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+using Jp.ParahumansOfTheWormverse.Utility;
+
 namespace Jp.ParahumansOfTheWormverse.Tattletale
 {
     public class ItsAlwaysInTheFirstPlaceILookCardController : CardController
@@ -27,7 +29,7 @@ namespace Jp.ParahumansOfTheWormverse.Tattletale
             // "A player may search their deck for a card and put it into their hand, then shuffle their deck."
             // Choose a player
             List<SelectTurnTakerDecision> chosen = new List<SelectTurnTakerDecision>();
-            IEnumerator chooseCoroutine = base.GameController.SelectTurnTaker(base.HeroTurnTakerController, SelectionType.SearchDeck, chosen, additionalCriteria: (TurnTaker tt) => tt.IsHero && GameController.IsTurnTakerVisibleToCardSource(tt, GetCardSource()) && tt.Deck.HasCards, cardSource: GetCardSource());
+            IEnumerator chooseCoroutine = base.GameController.SelectTurnTaker(base.HeroTurnTakerController, SelectionType.SearchDeck, chosen, additionalCriteria: (TurnTaker tt) => this.HasAlignment(tt, CardAlignment.Hero) && GameController.IsTurnTakerVisibleToCardSource(tt, GetCardSource()) && tt.Deck.HasCards, cardSource: GetCardSource());
             if (UseUnityCoroutines)
             {
                 yield return GameController.StartCoroutine(chooseCoroutine);

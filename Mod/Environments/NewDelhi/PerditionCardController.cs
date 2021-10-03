@@ -7,6 +7,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+using Jp.ParahumansOfTheWormverse.Utility;
+
 namespace Jp.ParahumansOfTheWormverse.NewDelhi
 {
     public class PerditionCardController : CardController
@@ -28,7 +30,7 @@ namespace Jp.ParahumansOfTheWormverse.NewDelhi
         {
             // "... play the top card of the villain trash."
             List<SelectLocationDecision> trashChoice = new List<SelectLocationDecision>();
-            IEnumerator selectCoroutine = base.GameController.SelectATrash(DecisionMaker, SelectionType.PlayTopCard, (Location l) => IsVillain(l.OwnerTurnTaker) && l.HasCards, trashChoice, noValidLocationsMessage: "There are no cards in any villain trash for " + base.Card.Title + " to play.", cardSource: GetCardSource());
+            IEnumerator selectCoroutine = base.GameController.SelectATrash(DecisionMaker, SelectionType.PlayTopCard, (Location l) => l.OwnerTurnTaker.Is(this).Villain() && l.HasCards, trashChoice, noValidLocationsMessage: "There are no cards in any villain trash for " + base.Card.Title + " to play.", cardSource: GetCardSource());
             if (base.UseUnityCoroutines)
             {
                 yield return base.GameController.StartCoroutine(selectCoroutine);

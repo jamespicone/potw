@@ -7,6 +7,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+using Jp.ParahumansOfTheWormverse.Utility;
+
 namespace Jp.ParahumansOfTheWormverse.Slaughterhouse9
 {
     public class HatchetFaceCardController : CardController
@@ -19,7 +21,7 @@ namespace Jp.ParahumansOfTheWormverse.Slaughterhouse9
         public override void AddTriggers()
         {
             // Heroes may not use powers
-            AddPreventPhaseActionTrigger(Phase.UsePower, ttc => ttc.IsHero);
+            AddPreventPhaseActionTrigger(Phase.UsePower, ttc => ttc.Is().Hero());
         }
     }
 }

@@ -21,7 +21,7 @@ namespace Jp.ParahumansOfTheWormverse.Leviathan
             var e = DealDamageToHighestHP(
                 CharacterCard,
                 ranking: 1,
-                c => c.IsHeroTarget() && c.IsInPlay,
+                c => this.HasAlignment(c, CardAlignment.Hero, CardTarget.Target) && c.IsInPlay,
                 c => 5,
                 DamageType.Melee,
                 isIrreducible: true

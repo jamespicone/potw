@@ -7,6 +7,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+using Jp.ParahumansOfTheWormverse.Utility;
+
 namespace Jp.ParahumansOfTheWormverse.Behemoth
 {
     public class ProximityCardController : BehemothUtilityCardController
@@ -24,7 +26,7 @@ namespace Jp.ParahumansOfTheWormverse.Behemoth
             string summary = "";
             int numTokens = base.Card.FindTokenPool(ProximityPoolIdentifier).CurrentValue;
             TurnTaker tt = base.Card.Location.HighestRecursiveLocation.OwnerTurnTaker;
-            if (tt != null && tt.IsHero && !tt.IsIncapacitatedOrOutOfGame)
+            if (tt != null && this.HasAlignment(tt, CardAlignment.Hero) && !tt.IsIncapacitatedOrOutOfGame)
             {
                 string ttName = tt.NameRespectingVariant;
                 if (numTokens == 1)
@@ -52,7 +54,7 @@ namespace Jp.ParahumansOfTheWormverse.Behemoth
 
         public IEnumerable<Card> RelevantCharacters()
         {
-            IEnumerable<Card> relevant = base.GameController.FindCardsWhere(new LinqCardCriteria((Card c) => c.IsHeroCharacterCard && c.Owner == base.Card.Location.HighestRecursiveLocation.OwnerTurnTaker), false);
+            IEnumerable<Card> relevant = base.GameController.FindCardsWhere(new LinqCardCriteria((Card c) => c.Is().Hero().Target().Character() && c.Owner == base.Card.Location.HighestRecursiveLocation.OwnerTurnTaker), false);
             return relevant;
         }
 
@@ -74,7 +76,7 @@ namespace Jp.ParahumansOfTheWormverse.Behemoth
             // "This card exists to mark your hero's proximity token pool. It's indestructible as long as you have an active hero."
             if (card == base.Card)
             {
-                return AssociatedTurnTaker().IsHero && !AssociatedTurnTaker().IsIncapacitatedOrOutOfGame;
+                return this.HasAlignment(AssociatedTurnTaker(), CardAlignment.Hero) && !AssociatedTurnTaker().IsIncapacitatedOrOutOfGame;
             }
             return base.AskIfCardIsIndestructible(card);
         }

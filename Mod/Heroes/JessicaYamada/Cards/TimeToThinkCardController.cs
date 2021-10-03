@@ -9,6 +9,8 @@ using System.Text;
 
 using UnityEngine;
 
+using Jp.ParahumansOfTheWormverse.Utility;
+
 namespace Jp.ParahumansOfTheWormverse.JessicaYamada
 {
     class TimeToThinkCardController : CardController
@@ -26,7 +28,7 @@ namespace Jp.ParahumansOfTheWormverse.JessicaYamada
                 "Whenever a player skips a phase, they may draw a card"
             */
             AddPhaseChangeTrigger(
-                tt => tt.IsHero,
+                tt => this.HasAlignment(tt, CardAlignment.Hero),
                 p => true,
                 pca => 
                     pca.FromPhase.WasSkipped ||

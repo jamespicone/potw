@@ -21,7 +21,7 @@ namespace Jp.ParahumansOfTheWormverse.Leviathan
             var e = DealDamageToLowestHP(
                 CharacterCard,
                 1,
-                c => c.IsHeroTarget() && c.IsInPlay,
+                c => this.HasAlignment(c, CardAlignment.Hero, CardTarget.Target) && c.IsInPlay,
                 c => 2,
                 DamageType.Melee,
                 numberOfTargets: 2

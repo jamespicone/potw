@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+using Jp.ParahumansOfTheWormverse.Utility;
+
 namespace Jp.ParahumansOfTheWormverse.Legend
 {
     public class PreciseTargetingCardController : CardController
@@ -17,7 +19,7 @@ namespace Jp.ParahumansOfTheWormverse.Legend
             // Destroy an Ongoing or Environment card
             var e = GameController.SelectAndDestroyCard(
                 HeroTurnTakerController,
-                new LinqCardCriteria(c => c.IsOngoing || c.IsEnvironment, "ongoing or environment"),
+                new LinqCardCriteria(c => c.IsOngoing || c.Is().Environment(), "ongoing or environment"),
                 optional: false,
                 responsibleCard: Card,
                 cardSource: GetCardSource()

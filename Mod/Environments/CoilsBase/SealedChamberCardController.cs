@@ -7,6 +7,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+using Jp.ParahumansOfTheWormverse.Utility;
+
 namespace Jp.ParahumansOfTheWormverse.CoilsBase
 {
     public class SealedChamberCardController : CardController
@@ -22,7 +24,7 @@ namespace Jp.ParahumansOfTheWormverse.CoilsBase
             AddWhenDestroyedTrigger(OnDestroyResponse, TriggerType.GameOver);
 
             // "At the start of their turn, a player may skip the rest of their turn. If they do, this card regains 5 HP."
-            AddStartOfTurnTrigger(tt => tt.IsHero, SkipTheirTurnToHealThisCardResponse, new TriggerType[] { TriggerType.SkipTurn, TriggerType.GainHP });
+            AddStartOfTurnTrigger(tt => this.HasAlignment(tt, CardAlignment.Hero), SkipTheirTurnToHealThisCardResponse, new TriggerType[] { TriggerType.SkipTurn, TriggerType.GainHP });
         }
 
         private IEnumerator OnDestroyResponse(DestroyCardAction dca)

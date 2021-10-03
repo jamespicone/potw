@@ -323,6 +323,7 @@
     <Compile Include="Heroes\MissMilitia\Extra\MissMilitiaUtilityCardController.cs" />
     <Compile Include="Heroes\MissMilitia\Extra\MissMilitiaUtilityCharacterCardController.cs" />
     <Compile Include="Heroes\MissMilitia\Extra\WeaponCardController.cs" />
+    <Compile Include="Utility\CardAlignmentHelper.cs" />
     <Compile Include="Utility\DelayedDamageStatusEffect.cs" />
     <Compile Include="Utility\ExtensionMethods.cs" />
     <Compile Include="Villains\Behemoth\Cards\AdvanceCardController.cs" />

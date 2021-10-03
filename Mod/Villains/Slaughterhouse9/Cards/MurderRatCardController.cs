@@ -21,7 +21,7 @@ namespace Jp.ParahumansOfTheWormverse.Slaughterhouse9
         public override void AddTriggers()
         {
             // At the end of the villain turn Murder Rat deals 2 melee damage to the hero target with the lowest HP
-            AddDealDamageAtEndOfTurnTrigger(TurnTaker, Card, c => c.IsHeroTarget(), TargetType.LowestHP, 2, DamageType.Melee);
+            AddDealDamageAtEndOfTurnTrigger(TurnTaker, Card, c => c.Is().Hero().Target(), TargetType.LowestHP, 2, DamageType.Melee);
         }
     }
 }

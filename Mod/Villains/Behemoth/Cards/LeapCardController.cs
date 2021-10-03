@@ -7,6 +7,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+using Jp.ParahumansOfTheWormverse.Utility;
+
 namespace Jp.ParahumansOfTheWormverse.Behemoth
 {
     public class LeapCardController : MovementCardController
@@ -34,7 +36,7 @@ namespace Jp.ParahumansOfTheWormverse.Behemoth
             {
                 TurnTaker mostCardsTT = mostCardsResults.First();
                 // Get their neighbors in turn order
-                TurnTaker[] activeHeroTurnOrder = base.GameController.FindTurnTakersWhere((TurnTaker tt) => tt.IsHero && !tt.IsIncapacitatedOrOutOfGame).ToArray();
+                TurnTaker[] activeHeroTurnOrder = base.GameController.FindTurnTakersWhere((TurnTaker tt) => this.HasAlignment(tt, CardAlignment.Hero) && !tt.IsIncapacitatedOrOutOfGame).ToArray();
                 int mostCardsIndex = Array.IndexOf(activeHeroTurnOrder, mostCardsTT);
                 int prevIndex = (mostCardsIndex - 1 + activeHeroTurnOrder.Length) % activeHeroTurnOrder.Length;
                 int nextIndex = (mostCardsIndex + 1 + activeHeroTurnOrder.Length) % activeHeroTurnOrder.Length;

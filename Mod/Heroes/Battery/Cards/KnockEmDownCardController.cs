@@ -22,7 +22,9 @@ namespace Jp.ParahumansOfTheWormverse.Battery
         public override IEnumerator Play()
         {
             // "{BatteryCharacter} deals 1 non-hero target 2 melee damage."
-            IEnumerator singleCoroutine = base.GameController.SelectTargetsAndDealDamage(base.HeroTurnTakerController, new DamageSource(base.GameController, base.CharacterCard), 2, DamageType.Melee, 1, false, 1, cardSource: GetCardSource());
+            IEnumerator singleCoroutine = base.GameController.SelectTargetsAndDealDamage(base.HeroTurnTakerController, new DamageSource(base.GameController, base.CharacterCard), 2, DamageType.Melee, 1, false, 1, 
+                additionalCriteria: c => this.HasAlignment(c, CardAlignment.Nonhero, CardTarget.Target),
+                cardSource: GetCardSource());
             if (base.UseUnityCoroutines)
             {
                 yield return base.GameController.StartCoroutine(singleCoroutine);
@@ -34,7 +36,7 @@ namespace Jp.ParahumansOfTheWormverse.Battery
             // "If {BatteryCharacter} is {Charged}, she deals each non-hero target 2 melee damage."
             if (IsBatteryCharged())
             {
-                IEnumerator massCoroutine = base.GameController.DealDamage(base.HeroTurnTakerController, base.CharacterCard, (Card c) => c.IsTarget && !c.IsHeroTarget() && base.GameController.IsCardVisibleToCardSource(c, GetCardSource()), 2, DamageType.Melee, cardSource: GetCardSource());
+                IEnumerator massCoroutine = base.GameController.DealDamage(base.HeroTurnTakerController, base.CharacterCard, (Card c) => this.HasAlignment(c, CardAlignment.Nonhero, CardTarget.Target) && base.GameController.IsCardVisibleToCardSource(c, GetCardSource()), 2, DamageType.Melee, cardSource: GetCardSource());
                 if (base.UseUnityCoroutines)
                 {
                     yield return base.GameController.StartCoroutine(massCoroutine);
@@ -44,7 +46,6 @@ namespace Jp.ParahumansOfTheWormverse.Battery
                     base.GameController.ExhaustCoroutine(massCoroutine);
                 }
             }
-            yield break;
         }
     }
 }

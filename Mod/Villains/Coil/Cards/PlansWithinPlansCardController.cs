@@ -7,6 +7,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+using Jp.ParahumansOfTheWormverse.Utility;
+
 namespace Jp.ParahumansOfTheWormverse.Coil
 {
     public class PlansWithinPlansCardController : CardController
@@ -19,7 +21,7 @@ namespace Jp.ParahumansOfTheWormverse.Coil
         public override void AddTriggers()
         {
             // "Reduce damage dealt to villain targets by 2"
-            AddReduceDamageTrigger(c => c.IsVillainTarget, 2);
+            AddReduceDamageTrigger(c => c.Is(this).Villain().Target(), 2);
         }
     }
 }
