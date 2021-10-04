@@ -1,0 +1,180 @@
+{
+  "name": "Grue",
+  "kind": "Hero",
+  "initialCardIdentifiers": [ "GrueCharacter" ],
+  "cards": [
+    {
+      "identifier": "GrueCharacter",
+      "title": "Grue",
+      "count": 1,
+      "body": "Darkness",
+      "hitpoints": 30,
+      "powers": [ "Select a target. Until the start of your next turn reduce damage dealt to that target and to Grue by 1" ],
+      "icons": [
+        "HasPower",
+        "ReduceDamageDealt"
+      ],
+      "character": true,
+      "backgroundColor": "999999",
+      "openingLines": {
+        "default": "Let's go, quick and professional"
+      },
+      "complexity": 2,
+      "incapacitatedAbilities": [
+        "Select a target. Reduce the next damage dealt to that target by 1",
+        "{GrueCharacter} deals 2 melee damage to a target",
+        "Destroy an Ongoing card"
+      ],
+      "flippedIcons": [
+        "ReduceDamageDealt",
+        "DealDamageMelee",
+        "DestroyOngoing"
+      ]
+    },
+    {
+      "identifier": "Blinding",
+      "title": "Blinding",
+      "keywords": [ "one-shot" ],
+      "body": [
+        "{GrueCharacter} deals 2 melee damage to a non-hero target. If you deal damage in this way you may destroy an Ongoing card"
+      ],
+      "icons": [ "DealDamageMelee", "DestroyOngoing" ],
+      "count": 4
+    },
+    {
+      "identifier": "CannyCombatant",
+      "title": "Canny Combatant",
+      "keywords": [ "one-shot" ],
+      "body": [
+        "{GrueCharacter} deals X melee damage to a non-hero target, where X = 2 + the number of Ongoing cards in play"
+      ],
+      "icons": [ "DealDamageMelee" ],
+      "count": 3
+    },
+    {
+      "identifier": "HideAndRecover",
+      "title": "Hide and Recover",
+      "keywords": [ "one-shot" ],
+      "body": [
+        "Each player may draw a card"
+      ],
+      "icons": [ "DrawCardNow" ],
+      "count": 3
+    },
+    {
+      "identifier": "HandToHandAssault",
+      "title": "Hand-to-Hand Assault",
+      "keywords": [ "one-shot" ],
+      "body": [
+        "{GrueCharacter} deals 2 melee damage to a non-hero target. If you used a power on your character card since your last turn {GrueCharacter} deals that target 2 melee damage"
+      ],
+      "icons": [ "DealDamageMelee" ],
+      "count": 3
+    },
+    {
+      "identifier": "DarkenTheArea",
+      "title": "Darken the Area",
+      "keywords": [ "one-shot" ],
+      "body": [
+        "Until the start of your next turn Environment cards cannot be played"
+      ],
+      "icons": [],
+      "count": 3
+    },
+    {
+      "identifier": "SnatchAndGrab",
+      "title": "Snatch and Grab",
+      "keywords": [ "one-shot" ],
+      "body": [
+        "Destroy up to 2 Ongoing cards"
+      ],
+      "icons": [ "DestroyOngoing" ],
+      "count": 3
+    },
+    {
+      "identifier": "CoverTheGetaway",
+      "title": "Cover the Getaway",
+      "keywords": [ "one-shot" ],
+      "body": [
+        "Destroy all Environment cards"
+      ],
+      "icons": [ "DestroyEnvironment" ],
+      "count": 4
+    },
+    {
+      "identifier": "SkullHelmet",
+      "title": "Skull Helmet",
+      "keywords": [ "equipment", "limited" ],
+      "body": [
+        "Whenever a non-hero target enters play, {GrueCharacter} may deal it 1 psychic damage"
+      ],
+      "icons": [ "DealDamagePsychic" ],
+      "count": 3
+    },
+    {
+      "identifier": "Leathers",
+      "title": "Leathers",
+      "keywords": [ "equipment", "limited" ],
+      "body": [
+        "Reduce non-psychic damage dealt to {GrueCharacter} by 1"
+      ],
+      "icons": [ "ReduceDamageDealt" ],
+      "count": 3
+    },
+    {
+      "identifier": "SecondTrigger",
+      "title": "Second Trigger",
+      "keywords": [ "ongoing", "limited" ],
+      "body": [
+        "Increase damage dealt to {GrueCharacter} by 1",
+        "This card is indestructible"
+      ],
+      "powers": [ "Select a player. They may use a power now" ],
+      "icons": [ "HasPower", "IncreaseDamageDealt", "Indestructible", "UsePowerNow" ],
+      "count": 1
+    },
+    {
+      "identifier": "Leadership",
+      "title": "Leadership",
+      "keywords": [ "ongoing", "limited" ],
+      "body": [
+        "Increase damage dealt by hero targets by 1"
+      ],
+      "icons": [ "IncreaseDamageDealt" ],
+      "count": 3
+    },
+    {
+      "identifier": "Stillness",
+      "title": "Stillness",
+      "keywords": [ "ongoing", "limited" ],
+      "body": [
+        "Reduce all fire, sonic, lightning, and energy damage that would be dealt by 1"
+      ],
+      "icons": [ "ReduceDamageDealt" ],
+      "count": 2
+    },
+    {
+      "identifier": "MartialTalent",
+      "title": "Martial Talent",
+      "keywords": [ "ongoing", "limited" ],
+      "body": [
+        "Increase melee damage dealt by {GrueCharacter} by 1"
+      ],
+      "powers": [ "{GrueCharacter} deals a target 2 melee damage" ],
+      "icons": [ "DealDamageMelee", "IncreaseDamageDealt" ],
+      "count": 2
+    },
+    {
+      "identifier": "SpewDarkness",
+      "title": "Spew Darkness",
+      "keywords": [ "ongoing" ],
+      "body": [
+        "When this card enters play {GrueCharacter} deals himself 3 psychic damage",
+        "Hero targets are immune to damage dealt by nonhero targets",
+        "At the start of your turn destroy this card"
+      ],
+      "icons": [ ],
+      "count": 3
+    }
+  ]
+}

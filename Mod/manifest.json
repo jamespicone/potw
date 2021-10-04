@@ -8,7 +8,7 @@
   "namespace": "Jp.ParahumansOfTheWormverse",
   "decks": {
     "environments": [ "BrocktonBay", "CoilsBase", "Kyushu", "NewDelhi" ],
-    "heroes": [ "Bitch", "Armsmaster", "Battery", "Tattletale", "JessicaYamada", "Dragon", "Dauntless", "Alexandria", "MissMilitia", "Legend" ],
+    "heroes": [ "Bitch", "Armsmaster", "Battery", "Tattletale", "JessicaYamada", "Dragon", "Dauntless", "Alexandria", "MissMilitia", "Legend", "Grue" ],
     "villains": [ "Behemoth", "Lung", "TheMerchants", "Slaughterhouse9", "Leviathan", "Coil" ]
   },
   "publishedFileId": 2438415990
