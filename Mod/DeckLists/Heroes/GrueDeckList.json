@@ -2,14 +2,19 @@
   "name": "Grue",
   "kind": "Hero",
   "initialCardIdentifiers": [ "GrueCharacter" ],
+  "initialOffToTheSideIdentifiers": [ "Darkness" ],
   "cards": [
     {
       "identifier": "GrueCharacter",
       "title": "Grue",
       "count": 1,
-      "body": "Darkness",
+      "body": "Darkness // Second Trigger",
       "hitpoints": 30,
-      "powers": [ "Select a target. Until the start of your next turn reduce damage dealt to that target and to Grue by 1" ],
+      "text": "At the end of your turn remove every Darkness card that didn't enter play this turn from the game",
+      "powers": [
+        "Put a Darkness card into play next to {GrueCharacter}. Put a Darkness card into play next to another target.",
+        "Use this power only if you can use {Trigger} powers{BR}Select a player. That player may use a power now"
+      ],
       "icons": [
         "HasPower",
         "ReduceDamageDealt"
@@ -32,11 +37,25 @@
       ]
     },
     {
+      "identifier": "Darkness",
+      "title": "Darkness",
+      "keywords": [ "ongoing" ],
+      "body": [
+        "This card doesn't reduce damage dealt by {GrueCharacter}",
+        "Reduce the first damage that would be dealt each turn by the card next to this card by 1",
+        "Reduce the first damage that would be dealt each turn to the card next to this card by 1",
+        "At the end of {GrueCharacter}'s next turn remove this card from the game"
+      ],
+      "icons": [ "ReduceDamageDealt", "ReduceDamageTaken", "DestroySelf" ],
+      "count": 1
+    },
+    {
       "identifier": "Blinding",
       "title": "Blinding",
       "keywords": [ "one-shot" ],
       "body": [
-        "{GrueCharacter} deals 2 melee damage to a non-hero target. If you deal damage in this way you may destroy an Ongoing card"
+        "{GrueCharacter} deals 2 melee damage to a non-hero target.",
+        "If you deal damage to a target with a Darkness card next to it you may destroy an Ongoing card"
       ],
       "icons": [ "DealDamageMelee", "DestroyOngoing" ],
       "count": 4
@@ -56,7 +75,8 @@
       "title": "Hide and Recover",
       "keywords": [ "one-shot" ],
       "body": [
-        "Each player may draw a card"
+        "Put a Darkness card in play next to a hero character card.",
+        "That hero regains 2 HP and that hero's player may draw 2 cards"
       ],
       "icons": [ "DrawCardNow" ],
       "count": 3
@@ -66,7 +86,7 @@
       "title": "Hand-to-Hand Assault",
       "keywords": [ "one-shot" ],
       "body": [
-        "{GrueCharacter} deals 2 melee damage to a non-hero target. If you used a power on your character card since your last turn {GrueCharacter} deals that target 2 melee damage"
+        "{GrueCharacter} deals 2 melee damage to a non-hero target. If that target has a Darkness card next to it {GrueCharacter} deals that target another 2 melee damage"
       ],
       "icons": [ "DealDamageMelee" ],
       "count": 3
@@ -76,7 +96,8 @@
       "title": "Darken the Area",
       "keywords": [ "one-shot" ],
       "body": [
-        "Until the start of your next turn Environment cards cannot be played"
+        "Until the start of your next turn whenever an environment target enters play put a Darkness card next to it",
+        "You may destroy an environment card"
       ],
       "icons": [],
       "count": 3
@@ -96,7 +117,8 @@
       "title": "Cover the Getaway",
       "keywords": [ "one-shot" ],
       "body": [
-        "Destroy all Environment cards"
+        "Put a Darkness card next to each hero character card",
+        "You may destroy an Environment card"
       ],
       "icons": [ "DestroyEnvironment" ],
       "count": 4
@@ -106,7 +128,7 @@
       "title": "Skull Helmet",
       "keywords": [ "equipment", "limited" ],
       "body": [
-        "Whenever a non-hero target enters play, {GrueCharacter} may deal it 1 psychic damage"
+        "Whenever a Darkness card is placed next to a target, {GrueCharacter} may deal it 1 psychic damage"
       ],
       "icons": [ "DealDamagePsychic" ],
       "count": 3
@@ -124,13 +146,13 @@
     {
       "identifier": "SecondTrigger",
       "title": "Second Trigger",
-      "keywords": [ "ongoing", "limited" ],
+      "keywords": [ "one-shot" ],
       "body": [
-        "Increase damage dealt to {GrueCharacter} by 1",
-        "This card is indestructible"
+        "For the rest of the game increase damage dealt to {GrueCharacter} by 1",
+        "For the rest of the game you may use {Trigger} powers",
+        "Remove this card from the game"
       ],
-      "powers": [ "Select a player. They may use a power now" ],
-      "icons": [ "HasPower", "IncreaseDamageDealt", "Indestructible", "UsePowerNow" ],
+      "icons": [ "IncreaseDamageDealt" ],
       "count": 1
     },
     {
@@ -148,7 +170,7 @@
       "title": "Stillness",
       "keywords": [ "ongoing", "limited" ],
       "body": [
-        "Reduce all fire, sonic, lightning, and energy damage that would be dealt by 1"
+        "Reduce all fire, sonic, lightning, and energy damage that would be dealt to or by a target with a Darkness card next to it by 1"
       ],
       "icons": [ "ReduceDamageDealt" ],
       "count": 2
@@ -169,8 +191,8 @@
       "title": "Spew Darkness",
       "keywords": [ "ongoing" ],
       "body": [
-        "When this card enters play {GrueCharacter} deals himself 3 psychic damage",
-        "Hero targets are immune to damage dealt by nonhero targets",
+        "When this card enters play {GrueCharacter} deals himself 3 psychic damage; then put a Darkness card into play.",
+        "Hero targets with a Darkness card next to them are immune to damage dealt by non-hero targets.",
         "At the start of your turn destroy this card"
       ],
       "icons": [ ],

@@ -246,6 +246,7 @@
     <Compile Include="Heroes\Dragon\Extra\DragonExtensionMethods.cs" />
     <Compile Include="Heroes\Dragon\Extra\IFocusPoolController.cs" />
     <Compile Include="Heroes\Dragon\Characters\DragonCharacterCardController.cs" />
+    <Compile Include="Heroes\Grue\Cards\DarknessCardController.cs" />
     <Compile Include="Heroes\Grue\Cards\SpewDarknessCardController.cs" />
     <Compile Include="Heroes\Grue\Cards\MartialTalentCardController.cs" />
     <Compile Include="Heroes\Grue\Cards\StillnessCardController.cs" />
@@ -261,6 +262,7 @@
     <Compile Include="Heroes\Grue\Cards\CannyCombatantCardController.cs" />
     <Compile Include="Heroes\Grue\Cards\BlindingCardController.cs" />
     <Compile Include="Heroes\Grue\Characters\GrueCharacterCardController.cs" />
+    <Compile Include="Heroes\Grue\Extra\GrueUtility.cs" />
     <Compile Include="Heroes\JessicaYamada\Cards\StrategyAndSuggestionCardController.cs" />
     <Compile Include="Heroes\JessicaYamada\Cards\ResilienceAndRespectCardController.cs" />
     <Compile Include="Heroes\JessicaYamada\Cards\NothingIsLostCardController.cs" />

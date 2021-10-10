@@ -30,7 +30,7 @@ namespace Jp.ParahumansOfTheWormverse.Grue
 
         public override IEnumerator UsePower(int index = 0)
         {
-            yield break;
+            return this.PutDarknessIntoPlay(CharacterCard);
         }
     }
 }
