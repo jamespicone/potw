@@ -8,12 +8,14 @@
       "identifier": "GrueCharacter",
       "title": "Grue",
       "count": 1,
-      "body": "Darkness // Second Trigger",
+      "body": "Darkness",
       "hitpoints": 30,
-      "text": "At the end of your turn remove every Darkness card that didn't enter play this turn from the game",
+      "gameplay": [
+        "If you can use {Trigger} powers this card gains the power:",
+        "[b]Power:[/b] Select a player. That player may use a{BR}        power now"
+      ],
       "powers": [
-        "Put a Darkness card into play next to {GrueCharacter}. Put a Darkness card into play next to another target.",
-        "Use this power only if you can use {Trigger} powers{BR}Select a player. That player may use a power now"
+        "Put a Darkness card into play next to {GrueCharacter}. Put a Darkness card into play next to another target."
       ],
       "icons": [
         "HasPower",

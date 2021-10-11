@@ -22,11 +22,7 @@ namespace Jp.ParahumansOfTheWormverse.Grue
         // If a Darkness card is out of the game we use that one, otherwise one is synthesised
         public static IEnumerator PutDarknessIntoPlay(this CardController co, Card target)
         {
-            var darknessOutOfPlay = co.GameController.FindCardsWhere(
-                c => c.Identifier == "Darkness" &&
-                    c.Definition.ParentDeck.Namespace == "Jp.ParahumansOfTheWormverse" &&
-                    c.Location.IsOutOfGame
-            );
+            var darknessOutOfPlay = co.GameController.FindCardsWhere(c => c.IsGrueDarkness() && c.Location.IsOutOfGame);
 
             Card cardToMove;
             if (darknessOutOfPlay.Count() > 0)
@@ -36,7 +32,7 @@ namespace Jp.ParahumansOfTheWormverse.Grue
             else
             {
                 // Need to synthesise a card.
-                var darknessCard = co.GameController.FindCardsWhere(c => c.Identifier == "Darkness" && c.Definition.ParentDeck.Namespace == "Jp.ParahumansOfTheWormverse").First();
+                var darknessCard = co.GameController.FindCardsWhere(c => c.IsGrueDarkness()).First();
                 if (darknessCard == null)
                 {
                     throw new InvalidOperationException("Couldn't find any darkness cards");
@@ -58,6 +54,16 @@ namespace Jp.ParahumansOfTheWormverse.Grue
                 responsibleTurnTaker: co.TurnTaker,
                 cardSource: co.GetCardSource()
             );
+        }
+
+        public static bool IsGrueDarkness(this Card c)
+        {
+            return c.Identifier == "Darkness" && c.Definition.ParentDeck.Namespace == "Jp.ParahumansOfTheWormverse";
+        }
+
+        public static bool DoesTargetHaveDarknessAdjacent(this CardController co, Card target)
+        {
+            return target.GetAllNextToCards(false).Count(c => c.IsGrueDarkness()) > 0;
         }
     }
 }
