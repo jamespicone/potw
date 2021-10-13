@@ -27,6 +27,7 @@ namespace Jp.ParahumansOfTheWormverse.Grue
                 numberOfTargets: 1,
                 optional: false,
                 requiredTargets: 1,
+                addStatusEffect: dda => DestroyOngoingIfTargetDarknessed(dda),
                 cardSource: GetCardSource()
             );
             if (UseUnityCoroutines)
@@ -37,9 +38,31 @@ namespace Jp.ParahumansOfTheWormverse.Grue
             {
                 GameController.ExhaustCoroutine(e);
             }
+        }
 
+        private IEnumerator DestroyOngoingIfTargetDarknessed(DealDamageAction dda)
+        {
             // "If you deal damage to a target with a Darkness card next to it you may destroy an Ongoing card"
-            yield break;
+            if (! this.DoesTargetHaveDarknessAdjacent(dda.Target))
+            {
+                yield break;
+            }
+
+            var e = GameController.SelectAndDestroyCard(
+                HeroTurnTakerController,
+                new LinqCardCriteria(c => c.IsOngoing, "ongoing"),
+                optional: true,
+                responsibleCard: Card,
+                cardSource: GetCardSource()
+            );
+            if (UseUnityCoroutines)
+            {
+                yield return GameController.StartCoroutine(e);
+            }
+            else
+            {
+                GameController.ExhaustCoroutine(e);
+            }
         }
     }
 }
