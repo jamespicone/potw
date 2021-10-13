@@ -24,6 +24,7 @@ namespace Jp.ParahumansOfTheWormverse.Grue
                 new DamageSource(GameController, CharacterCard),
                 2,
                 DamageType.Melee,
+                additionalCriteria: c => c.Is().NonHero().Target(),
                 numberOfTargets: 1,
                 optional: false,
                 requiredTargets: 1,
