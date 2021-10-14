@@ -68,5 +68,7 @@ namespace Jp.ParahumansOfTheWormverse.Grue
                 GameController.ExhaustCoroutine(e);
             }
         }
+
+        public override bool DoNotMoveOneShotToTrash => true;
     }
 }
