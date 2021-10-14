@@ -15,5 +15,26 @@ namespace Jp.ParahumansOfTheWormverse.Grue
     {
         public MartialTalentCardController(Card card, TurnTakerController controller) : base(card, controller)
         { }
+
+        public override void AddTriggers()
+        {
+            // Increase melee damage dealt by {GrueCharacter} by 1
+            AddIncreaseDamageTrigger(dda => dda.DamageSource.Card == CharacterCard && dda.DamageType == DamageType.Melee, 1);
+        }
+
+        public override IEnumerator UsePower(int index = 0)
+        {
+            // {GrueCharacter} deals a target 2 melee damage
+            return GameController.SelectTargetsAndDealDamage(
+                HeroTurnTakerController,
+                new DamageSource(GameController, CharacterCard),
+                2,
+                DamageType.Melee,
+                numberOfTargets: 1,
+                optional: false,
+                requiredTargets: 1,
+                cardSource: GetCardSource()
+            );
+        }
     }
 }

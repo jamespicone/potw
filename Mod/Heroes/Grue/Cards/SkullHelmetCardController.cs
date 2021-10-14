@@ -15,5 +15,28 @@ namespace Jp.ParahumansOfTheWormverse.Grue
     {
         public SkullHelmetCardController(Card card, TurnTakerController controller) : base(card, controller)
         { }
+
+        public override void AddTriggers()
+        {
+            // Whenever a Darkness card is placed next to a target, {GrueCharacter} may deal that target 1 psychic damage
+            AddTrigger<PlayCardAction>(
+                pca => pca.CardToPlay.IsGrueDarkness() && pca.IsSuccessful && pca.OverridePlayLocation.IsNextToCard,
+                pca => MaybeHurtTarget(pca),
+                TriggerType.DealDamage,
+                TriggerTiming.After
+            );
+        }
+
+        private IEnumerator MaybeHurtTarget(PlayCardAction pca)
+        {
+            return DealDamage(
+                CharacterCard,
+                pca.OverridePlayLocation.OwnerCard,
+                1,
+                DamageType.Psychic,
+                optional: true,
+                cardSource: GetCardSource()
+            );
+        }
     }
 }

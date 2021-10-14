@@ -43,6 +43,8 @@ namespace Jp.ParahumansOfTheWormverse.Grue
                 TriggerType.RemoveFromGame,
                 pca => IsGruesNextTurn(pca)
             );
+
+            AddIfTheTargetThatThisCardIsNextToLeavesPlayDestroyThisCardTrigger();
         }
 
         private IEnumerator ReduceFirstEachTurnByOneSource(DealDamageAction dda)

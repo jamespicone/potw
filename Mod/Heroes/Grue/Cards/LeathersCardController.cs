@@ -15,5 +15,11 @@ namespace Jp.ParahumansOfTheWormverse.Grue
     {
         public LeathersCardController(Card card, TurnTakerController controller) : base(card, controller)
         { }
+
+        public override void AddTriggers()
+        {
+            // Reduce non-psychic damage dealt to {GrueCharacter} by 1
+            AddReduceDamageTrigger(dda => dda.Target == CharacterCard && dda.DamageType != DamageType.Psychic, dda => 1);
+        }
     }
 }

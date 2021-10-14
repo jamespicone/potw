@@ -44,18 +44,19 @@ namespace Jp.ParahumansOfTheWormverse.Grue
         private IEnumerator DealExtraDamageIfDarkness(DealDamageAction dda)
         {
             // If that target has a Darkness card next to it {GrueCharacter} deals that target another 2 melee damage
-            if (!this.DoesTargetHaveDarknessAdjacent(dda.Target))
+            if (!this.DoesTargetHaveDarknessAdjacent(dda.OriginalTarget))
             {
                 yield break;
             }
 
-            var e = GameController.SelectAndDestroyCard(
-                HeroTurnTakerController,
-                new LinqCardCriteria(c => c.IsOngoing, "ongoing"),
-                optional: true,
-                responsibleCard: Card,
+            var e = DealDamage(
+                CharacterCard,
+                dda.OriginalTarget,
+                2,
+                DamageType.Melee,
                 cardSource: GetCardSource()
             );
+
             if (UseUnityCoroutines)
             {
                 yield return GameController.StartCoroutine(e);

@@ -63,6 +63,7 @@ namespace Jp.ParahumansOfTheWormverse.Grue
 
         public static bool DoesTargetHaveDarknessAdjacent(this CardController co, Card target)
         {
+            if (target == null) { return false; }
             return target.GetAllNextToCards(false).Count(c => c.IsGrueDarkness()) > 0;
         }
     }

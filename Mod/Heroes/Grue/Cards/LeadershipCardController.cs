@@ -15,5 +15,11 @@ namespace Jp.ParahumansOfTheWormverse.Grue
     {
         public LeadershipCardController(Card card, TurnTakerController controller) : base(card, controller)
         { }
+
+        public override void AddTriggers()
+        {
+            // "Increase damage dealt by hero targets by 1"
+            AddIncreaseDamageTrigger(dda => dda.DamageSource.Is().Hero().Target(), 1);
+        }
     }
 }

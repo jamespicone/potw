@@ -2,7 +2,7 @@
   "name": "Grue",
   "kind": "Hero",
   "initialCardIdentifiers": [ "GrueCharacter" ],
-  "initialOffToTheSideIdentifiers": [ "Darkness" ],
+  "initialOffToTheSideCardIdentifiers": [ "Darkness" ],
   "cards": [
     {
       "identifier": "GrueCharacter",
@@ -130,7 +130,7 @@
       "title": "Skull Helmet",
       "keywords": [ "equipment", "limited" ],
       "body": [
-        "Whenever a Darkness card is placed next to a target, {GrueCharacter} may deal it 1 psychic damage"
+        "Whenever a Darkness card is placed next to a target, {GrueCharacter} may deal that target 1 psychic damage"
       ],
       "icons": [ "DealDamagePsychic" ],
       "count": 3
@@ -197,7 +197,7 @@
         "Hero targets with a Darkness card next to them are immune to damage dealt by non-hero targets.",
         "At the start of your turn destroy this card"
       ],
-      "icons": [ ],
+      "icons": [],
       "count": 3
     }
   ]
