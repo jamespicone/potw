@@ -193,7 +193,7 @@
       "title": "Spew Darkness",
       "keywords": [ "ongoing" ],
       "body": [
-        "When this card enters play {GrueCharacter} deals himself 3 psychic damage; then put a Darkness card into play.",
+        "When this card enters play {GrueCharacter} deals himself 3 psychic damage; then put a Darkness card into play next to a hero character card.",
         "Hero targets with a Darkness card next to them are immune to damage dealt by non-hero targets.",
         "At the start of your turn destroy this card"
       ],

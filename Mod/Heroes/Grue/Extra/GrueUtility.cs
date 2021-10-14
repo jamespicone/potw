@@ -66,5 +66,15 @@ namespace Jp.ParahumansOfTheWormverse.Grue
             if (target == null) { return false; }
             return target.GetAllNextToCards(false).Count(c => c.IsGrueDarkness()) > 0;
         }
+
+        public static void SetGrueCanUseTriggerPowers(this CardController co)
+        {
+            co.SetCardPropertyToTrueIfRealAction("GrueSecondTrigger");
+        }
+
+        public static bool CanGrueUseTriggerPowers(this CardController co)
+        {
+            return co.GetCardPropertyJournalEntryBoolean("GrueSecondTrigger").GetValueOrDefault(false);
+        }
     }
 }

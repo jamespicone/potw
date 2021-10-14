@@ -21,7 +21,7 @@ namespace Jp.ParahumansOfTheWormverse.Grue
         {
             if (cardController != this) { return null; }
 
-            // if (we haven't second triggered) { return null; }
+            if (! this.CanGrueUseTriggerPowers()) { return null; }
 
             return new Power[] {
                 new Power(
