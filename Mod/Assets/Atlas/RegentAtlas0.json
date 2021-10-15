@@ -1,0 +1,20 @@
+{"frames": {
+
+"RegentDeckBack.jpg":
+{
+	"frame": {"x":0,"y":0,"w":178,"h":256},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":178,"h":256},
+	"sourceSize": {"w":178,"h":256}
+}},
+"meta": {
+	"app": "https://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "RegentAtlas0.png",
+	"format": "RGBA8888",
+	"size": {"w":256,"h":256},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:a19c10d437345b99ccdf3236d024c57b:e853982d32165df39f53ba16d6b65cd5:49a1aad715bfdb6af07feba520fa157e$"
+}
+}
