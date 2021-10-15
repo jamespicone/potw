@@ -16,7 +16,7 @@ namespace Jp.ParahumansOfTheWormverse.Armsmaster
         {
             // Reveal the top 3 cards of the villain deck and put them back in any order
             var storedLocation = new List<SelectLocationDecision>();
-            var e = FindVillainDeck(HeroTurnTakerController, SelectionType.RevealCardsFromDeck, storedLocation, l => l.IsVillain);
+            var e = FindVillainDeck(HeroTurnTakerController, SelectionType.RevealCardsFromDeck, storedLocation, l => true);
             if (UseUnityCoroutines)
             {
                 yield return GameController.StartCoroutine(e);

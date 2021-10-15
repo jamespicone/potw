@@ -24,7 +24,7 @@ namespace Jp.ParahumansOfTheWormverse.Slaughterhouse9
                 AddSideTrigger(AddDealDamageAtEndOfTurnTrigger(
                     TurnTaker,
                     Card,
-                    c => c.IsTarget && !c.IsVillainTarget,
+                    c => c.Is(this).NonVillain().Target(),
                     TargetType.All,
                     1,
                     DamageType.Projectile
@@ -46,7 +46,7 @@ namespace Jp.ParahumansOfTheWormverse.Slaughterhouse9
             var e = DealDamageToHighestHP(
                 Card,
                 1,
-                c => c.IsHeroTarget(),
+                c => c.Is().Hero().Target(),
                 c => 2,
                 DamageType.Projectile,
                 numberOfTargets: () => H - 1

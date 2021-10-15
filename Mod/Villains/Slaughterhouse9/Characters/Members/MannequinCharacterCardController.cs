@@ -6,6 +6,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+using Jp.ParahumansOfTheWormverse.Utility;
+
 namespace Jp.ParahumansOfTheWormverse.Slaughterhouse9
 {
     public class MannequinCharacterCardController : Slaughterhouse9MemberCharacterCardController
@@ -14,7 +16,7 @@ namespace Jp.ParahumansOfTheWormverse.Slaughterhouse9
         {
         }
 
-        public override bool AllowFastCoroutinesDuringPretend => IsLowestHitPointsUnique((c) => c.IsVillainTarget);
+        public override bool AllowFastCoroutinesDuringPretend => IsLowestHitPointsUnique((c) => c.Is(this).Villain().Target());
 
         public override void AddSideTriggers()
         {
@@ -22,7 +24,7 @@ namespace Jp.ParahumansOfTheWormverse.Slaughterhouse9
             {
                 // "Reduce damage dealt to the villain target with the lowest HP by 1"
                 reduceDamageTrigger = AddTrigger<DealDamageAction>(
-                    dda => dda.Target.IsVillainTarget && CanCardBeConsideredLowestHitPoints(dda.Target, c => c.IsVillainTarget),
+                    dda => dda.Target.Is(this).Villain().Target() && CanCardBeConsideredLowestHitPoints(dda.Target, c => c.Is(this).Villain().Target()),
                     MaybeReduceDamage,
                     TriggerType.ReduceDamage,
                     TriggerTiming.Before
@@ -48,7 +50,7 @@ namespace Jp.ParahumansOfTheWormverse.Slaughterhouse9
                 var e = DetermineIfGivenCardIsTargetWithLowestOrHighestHitPoints(
                     dda.Target,
                     highest: false,
-                    c => c.IsVillainTarget,
+                    c => c.Is(this).Villain().Target(),
                     dda,
                     wasLowest
                 );
@@ -88,7 +90,7 @@ namespace Jp.ParahumansOfTheWormverse.Slaughterhouse9
         {
             return GameController.SelectAndDestroyCard(
                 DecisionMaker,
-                new LinqCardCriteria(c => c.IsHero && (c.IsOngoing || c.DoKeywordsContain("equipment")), "Hero Ongoing or Equipment"),
+                new LinqCardCriteria(c => c.Is().Hero() && (c.IsOngoing || c.DoKeywordsContain("equipment")), "Hero Ongoing or Equipment"),
                 optional: false,
                 responsibleCard: Card,
                 cardSource: GetCardSource()

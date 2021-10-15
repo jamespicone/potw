@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+using Jp.ParahumansOfTheWormverse.Utility;
+
 namespace Jp.ParahumansOfTheWormverse.Dauntless
 {
     public class GloriousStandCardController : CardController
@@ -16,7 +18,7 @@ namespace Jp.ParahumansOfTheWormverse.Dauntless
         {
             // "Whenever a hero target would be dealt damage, redirect the damage to {DauntlessCharacter}",
             AddRedirectDamageTrigger(
-                dda => dda.Target.IsHero,
+                dda => this.HasAlignment(dda.Target, CardAlignment.Hero, CardTarget.Target),
                 () => CharacterCard
             );
 

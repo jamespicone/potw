@@ -7,6 +7,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+using Jp.ParahumansOfTheWormverse.Utility;
+
 namespace Jp.ParahumansOfTheWormverse.Kyushu
 {
     public class FatalismAndDespairCardController : KyushuOneShotCardController
@@ -25,7 +27,7 @@ namespace Jp.ParahumansOfTheWormverse.Kyushu
         public override IEnumerator Play()
         {
             // "When this card enters play, each hero target deals itself 2 psychic damage."
-            IEnumerator damageCoroutine = base.GameController.DealDamageToSelf(DecisionMaker, (Card c) => c.IsHero, 2, DamageType.Psychic, cardSource: GetCardSource());
+            IEnumerator damageCoroutine = base.GameController.DealDamageToSelf(DecisionMaker, (Card c) => this.HasAlignment(c, CardAlignment.Hero, CardTarget.Target), 2, DamageType.Psychic, cardSource: GetCardSource());
             if (base.UseUnityCoroutines)
             {
                 yield return base.GameController.StartCoroutine(damageCoroutine);

@@ -7,6 +7,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+using Jp.ParahumansOfTheWormverse.Utility;
+
 namespace Jp.ParahumansOfTheWormverse.Behemoth
 {
     public class DischargeCardController : BehemothUtilityCardController
@@ -30,7 +32,7 @@ namespace Jp.ParahumansOfTheWormverse.Behemoth
                 GameController.ExhaustCoroutine(energyCoroutine);
             }
             // "{BehemothCharacter} deals each hero target 2 damage."
-            IEnumerator damageCoroutine = base.GameController.DealDamage(DecisionMaker, base.CharacterCard, (Card c) => c.IsHero, 2, GetBehemothDamageType(), cardSource: GetCardSource());
+            IEnumerator damageCoroutine = base.GameController.DealDamage(DecisionMaker, base.CharacterCard, (Card c) => this.HasAlignment(c, CardAlignment.Hero, CardTarget.Target), 2, GetBehemothDamageType(), cardSource: GetCardSource());
             if (UseUnityCoroutines)
             {
                 yield return GameController.StartCoroutine(damageCoroutine);
@@ -40,7 +42,7 @@ namespace Jp.ParahumansOfTheWormverse.Behemoth
                 GameController.ExhaustCoroutine(damageCoroutine);
             }
             // "Each player may move 1 proximity token from their hero to another active hero."
-            IEnumerator selectCoroutine = base.GameController.SelectTurnTakersAndDoAction(DecisionMaker, new LinqTurnTakerCriteria((TurnTaker tt) => tt.IsHero && !tt.IsIncapacitatedOrOutOfGame), SelectionType.RemoveTokens, MayMoveOneTokenResponse, requiredDecisions: 0, allowAutoDecide: true, numberOfCards: 1, cardSource: GetCardSource());
+            IEnumerator selectCoroutine = base.GameController.SelectTurnTakersAndDoAction(DecisionMaker, new LinqTurnTakerCriteria((TurnTaker tt) => this.HasAlignment(tt, CardAlignment.Hero) && !tt.IsIncapacitatedOrOutOfGame), SelectionType.RemoveTokens, MayMoveOneTokenResponse, requiredDecisions: 0, allowAutoDecide: true, numberOfCards: 1, cardSource: GetCardSource());
             if (UseUnityCoroutines)
             {
                 yield return GameController.StartCoroutine(selectCoroutine);

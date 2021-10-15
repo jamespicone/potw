@@ -7,6 +7,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+using Jp.ParahumansOfTheWormverse.Utility;
+
 namespace Jp.ParahumansOfTheWormverse.TheMerchants
 {
     public class ToughCardController : TheMerchantsUtilityCardController
@@ -20,7 +22,7 @@ namespace Jp.ParahumansOfTheWormverse.TheMerchants
         public override void AddTriggers()
         {
             // "At the end of the villain turn, this card deals the 2 hero targets with the highest HP 2 melee damage each."
-            AddEndOfTurnTrigger((TurnTaker tt) => tt == base.TurnTaker, (PhaseChangeAction pca) => DealDamageToHighestHP(base.Card, 1, (Card c) => c.IsHero, (Card c) => 2, DamageType.Melee, numberOfTargets: () => 2), TriggerType.DealDamage);
+            AddEndOfTurnTrigger((TurnTaker tt) => tt == base.TurnTaker, (PhaseChangeAction pca) => DealDamageToHighestHP(base.Card, 1, (Card c) => c.Is().Hero().Target(), (Card c) => 2, DamageType.Melee, numberOfTargets: () => 2), TriggerType.DealDamage);
             base.AddTriggers();
         }
     }

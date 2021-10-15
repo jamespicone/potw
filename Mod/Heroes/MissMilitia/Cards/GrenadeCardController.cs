@@ -29,7 +29,7 @@ namespace Jp.ParahumansOfTheWormverse.MissMilitia
 
             var e = SelectTargetsAndDealMultipleInstancesOfDamage(
                 attacks,
-                (c) => ! c.IsHeroTarget(),
+                (c) => this.HasAlignment(c, CardAlignment.Nonhero, CardTarget.Target),
                 minNumberOfTargets: 1,
                 maxNumberOfTargets: 1,
                 storedResultsAction: storedResultsDamage

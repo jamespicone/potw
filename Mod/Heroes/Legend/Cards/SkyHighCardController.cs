@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+using Jp.ParahumansOfTheWormverse.Utility;
+
 namespace Jp.ParahumansOfTheWormverse.Legend
 {
     public class SkyHighCardController : CardController
@@ -17,7 +19,7 @@ namespace Jp.ParahumansOfTheWormverse.Legend
         public override bool? AskIfCardIsVisibleToCardSource(Card card, CardSource cardSource)
         {
             if (card.Owner != TurnTaker) { return null; }
-            if (! cardSource.Card.IsEnvironment) { return null; }
+            if (! cardSource.Card.Is().Environment()) { return null; }
 
             return false;
         }

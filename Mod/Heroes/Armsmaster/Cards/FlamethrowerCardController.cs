@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+using Jp.ParahumansOfTheWormverse.Utility;
+
 namespace Jp.ParahumansOfTheWormverse.Armsmaster
 {
     public class FlamethrowerCardController : ModuleCardController
@@ -23,7 +25,7 @@ namespace Jp.ParahumansOfTheWormverse.Armsmaster
                 1,
                 optional: false,
                 null,
-                additionalCriteria: c => !c.IsHero,
+                additionalCriteria: c => this.HasAlignment(c, CardAlignment.Nonhero, CardTarget.Target),
                 cardSource: GetCardSource()
             );
             if (UseUnityCoroutines)
@@ -41,7 +43,7 @@ namespace Jp.ParahumansOfTheWormverse.Armsmaster
             // "Destroy an Environment card"
             var e = GameController.SelectAndDestroyCard(
                 HeroTurnTakerController,
-                new LinqCardCriteria(c => c.IsEnvironment, "environment"),
+                new LinqCardCriteria(c => c.Is().Environment(), "environment"),
                 optional: false,
                 responsibleCard: Card,
                 cardSource: GetCardSource()

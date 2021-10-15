@@ -7,6 +7,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+using Jp.ParahumansOfTheWormverse.Utility;
+
 namespace Jp.ParahumansOfTheWormverse.Coil
 {
     public class TrickeryAndDeceitCardController : CardController
@@ -21,7 +23,7 @@ namespace Jp.ParahumansOfTheWormverse.Coil
             // "Destroy all hero Equipment cards"
             var e = GameController.DestroyCards(
                 DecisionMaker,
-                new LinqCardCriteria(c => c.DoKeywordsContain("equipment") && c.IsHero),
+                new LinqCardCriteria(c => c.DoKeywordsContain("equipment") && this.HasAlignment(c, CardAlignment.Hero)),
                 cardSource: GetCardSource()
             );
             if (UseUnityCoroutines)

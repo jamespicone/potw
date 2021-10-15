@@ -7,6 +7,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+using Jp.ParahumansOfTheWormverse.Utility;
+
 namespace Jp.ParahumansOfTheWormverse.CoilsBase
 {
     public class StrangerAndMasterProtocolsCardController : CoilsBaseSelfDestructCardController
@@ -22,14 +24,14 @@ namespace Jp.ParahumansOfTheWormverse.CoilsBase
 
         public override bool? AskIfCardIsVisibleToCardSource(Card card, CardSource source)
         {
-            if (! card.IsHero) { return null; }
+            if (!this.HasAlignment(card, CardAlignment.Hero)) { return null; }
             return AskIfTurnTakerIsVisibleToCardSource(card.Owner, source);
         }
 
         public override bool? AskIfTurnTakerIsVisibleToCardSource(TurnTaker tt, CardSource cardSource)
         {
-            if (! tt.IsHero) { return null; }
-            if (! (cardSource?.Card?.IsHero ?? false)) { return null; }
+            if (! this.HasAlignment(tt, CardAlignment.Hero)) { return null; }
+            if (! this.HasAlignment(cardSource?.Card, CardAlignment.Hero)) { return null; }
             if (cardSource.Card.Owner == tt) { return null; }
 
             return false;
@@ -44,7 +46,7 @@ namespace Jp.ParahumansOfTheWormverse.CoilsBase
                     if (hero1 == hero2) { continue; }
 
                     if (
-                        (gameAction.DoesFirstCardAffectSecondCard(c => c.Owner == hero1 && c.IsHero, c => c.Owner == hero2 && c.IsHero) ?? false) ||
+                        (gameAction.DoesFirstCardAffectSecondCard(c => c.Owner == hero1 && this.HasAlignment(c, CardAlignment.Hero), c => c.Owner == hero2 && this.HasAlignment(c, CardAlignment.Hero)) ?? false) ||
                         (gameAction.DoesFirstTurnTakerAffectSecondTurnTaker(tt => tt == hero1, tt => tt == hero2) ?? false))
                     {
                         return false;
@@ -66,7 +68,7 @@ namespace Jp.ParahumansOfTheWormverse.CoilsBase
             base.AddTriggers();
 
             AddTrigger<MakeDecisionsAction>(
-                mda => mda.CardSource?.Card?.IsHero ?? false,
+                mda => this.HasAlignment(mda.CardSource?.Card, CardAlignment.Hero),
                 mda => RemoveDecisions(mda),
                 TriggerType.RemoveDecision,
                 TriggerTiming.Before

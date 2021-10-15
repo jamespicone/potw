@@ -23,7 +23,7 @@ namespace Jp.ParahumansOfTheWormverse.Slaughterhouse9
                 AddSideTrigger(AddDealDamageAtEndOfTurnTrigger(
                     TurnTaker,
                     Card,
-                    c => !c.IsVillainTarget && c.IsTarget,
+                    c => c.Is(this).NonVillain().Target(),
                     TargetType.All,
                     1,
                     DamageType.Fire
@@ -44,7 +44,7 @@ namespace Jp.ParahumansOfTheWormverse.Slaughterhouse9
             var destroyActions = new List<DestroyCardAction>();
             var e = GameController.DestroyCards(
                 DecisionMaker,
-                new LinqCardCriteria(c => c.IsEnvironment, "environment"),
+                new LinqCardCriteria(c => c.Is().Environment(), "environment"),
                 storedResults: destroyActions,
                 cardSource: GetCardSource()
             );
@@ -59,8 +59,8 @@ namespace Jp.ParahumansOfTheWormverse.Slaughterhouse9
 
             e = DealDamage(
                 Card,
-                c => !c.IsVillainTarget && c.IsTarget,
-                1 + destroyActions.Count(dca => dca.WasCardDestroyed && dca.CardToDestroy.Card.IsEnvironment),
+                c => c.Is(this).NonVillain().Target(),
+                1 + destroyActions.Count(dca => dca.WasCardDestroyed && dca.CardToDestroy.Card.Is().Environment()),
                 DamageType.Fire
             );
             if (UseUnityCoroutines)
@@ -78,7 +78,7 @@ namespace Jp.ParahumansOfTheWormverse.Slaughterhouse9
             var e = DealDamageToLowestHP(
                 Card,
                 ranking: 1,
-                c => c.IsHeroTarget(),
+                c => c.Is().Hero().Target(),
                 c => 3,
                 DamageType.Fire
             );
@@ -93,7 +93,7 @@ namespace Jp.ParahumansOfTheWormverse.Slaughterhouse9
 
             e = GameController.SelectAndDestroyCard(
                 DecisionMaker,
-                new LinqCardCriteria(c => c.IsHero && !c.IsCharacter, "non-character hero card"),
+                new LinqCardCriteria(c => c.Is().Hero().Noncharacter(), "non-character hero card"),
                 optional: false,
                 responsibleCard: Card,
                 cardSource: GetCardSource()

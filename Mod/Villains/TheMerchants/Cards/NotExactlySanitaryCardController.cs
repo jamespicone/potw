@@ -7,6 +7,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+using Jp.ParahumansOfTheWormverse.Utility;
+
 namespace Jp.ParahumansOfTheWormverse.TheMerchants
 {
     public class NotExactlySanitaryCardController : TheMerchantsUtilityCardController
@@ -20,7 +22,7 @@ namespace Jp.ParahumansOfTheWormverse.TheMerchants
         public override void AddTriggers()
         {
             // "Whenever a villain target deals non-toxic damage to another target, that villain target also deals that target 1 toxic damage."
-            AddTrigger<DealDamageAction>((DealDamageAction dda) => dda.DamageSource != null && dda.DamageSource.Card.IsVillainTarget && dda.Target != null && dda.Target != dda.DamageSource.Card && dda.DidDealDamage && dda.DamageType != DamageType.Toxic, ToxicDamageResponse, TriggerType.DealDamage, TriggerTiming.After);
+            AddTrigger<DealDamageAction>((DealDamageAction dda) => dda.DamageSource != null && dda.DamageSource.IsCard && dda.DamageSource.Is(this).Villain().Target() && dda.Target != null && dda.Target != dda.DamageSource.Card && dda.DidDealDamage && dda.DamageType != DamageType.Toxic, ToxicDamageResponse, TriggerType.DealDamage, TriggerTiming.After);
             base.AddTriggers();
         }
 

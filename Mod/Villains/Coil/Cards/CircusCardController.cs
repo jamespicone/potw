@@ -7,6 +7,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+using Jp.ParahumansOfTheWormverse.Utility;
+
 namespace Jp.ParahumansOfTheWormverse.Coil
 {
     public class CircusCardController : CardController
@@ -20,7 +22,7 @@ namespace Jp.ParahumansOfTheWormverse.Coil
         {
             // Whenever a hero card is played this card deals the hero who played the card 1 projectile damage
             AddTrigger<PlayCardAction>(
-                pca => pca.CardToPlay.IsHero && pca.WasCardPlayed && pca.TurnTakerController.IsHero && !pca.IsPutIntoPlay,
+                pca => this.HasAlignment(pca.CardToPlay, CardAlignment.Hero) && pca.WasCardPlayed && this.HasAlignment(pca.TurnTakerController.TurnTaker, CardAlignment.Hero) && !pca.IsPutIntoPlay,
                 pca => HurtHero(pca),
                 TriggerType.DealDamage,
                 TriggerTiming.After

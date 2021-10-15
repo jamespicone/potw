@@ -7,6 +7,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+using Jp.ParahumansOfTheWormverse.Utility;
+
 namespace Jp.ParahumansOfTheWormverse.CoilsBase
 {
     public class TrappedChamberCardController : CardController
@@ -20,7 +22,7 @@ namespace Jp.ParahumansOfTheWormverse.CoilsBase
         public override void AddTriggers()
         {
             // "Heroes cannot use powers."
-            CannotUsePowers(ttc => ttc.IsHero);
+            CannotUsePowers(ttc => this.HasAlignment(ttc.TurnTaker, CardAlignment.Hero));
 
             // "At the start of the environment turn this card deals 2 projectile damage to the H nonenvironment targets with the highest HP"
             AddStartOfTurnTrigger(
@@ -38,7 +40,7 @@ namespace Jp.ParahumansOfTheWormverse.CoilsBase
             var e = DealDamageToHighestHP(
                 Card,
                 ranking: 1,
-                targetCriteria: c => !c.IsEnvironmentTarget,
+                targetCriteria: c => c.Is().NonEnvironment().Target(),
                 c => 2,
                 DamageType.Projectile,
                 numberOfTargets: () => Game.H

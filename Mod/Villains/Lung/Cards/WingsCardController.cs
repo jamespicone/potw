@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+using Jp.ParahumansOfTheWormverse.Utility;
+
 namespace Jp.ParahumansOfTheWormverse.Lung
 {
     public class WingsCardController : CardController
@@ -15,8 +17,7 @@ namespace Jp.ParahumansOfTheWormverse.Lung
         public override void AddTriggers()
         {
             // {Lung} is immune to damage from Environment cards
-            // TODO: Should I be checking identifiers?
-            AddImmuneToDamageTrigger(dda => dda.DamageSource.IsEnvironmentSource && dda.Target == TurnTaker.CharacterCard);
+            AddImmuneToDamageTrigger(dda => dda.DamageSource.Is().Environment() && dda.Target == CharacterCard);
         }
     }
 }

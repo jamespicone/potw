@@ -7,6 +7,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+using Jp.ParahumansOfTheWormverse.Utility;
+
 namespace Jp.ParahumansOfTheWormverse.Behemoth
 {
     public class ContinuousCrackleCardController : BehemothUtilityCardController
@@ -19,8 +21,9 @@ namespace Jp.ParahumansOfTheWormverse.Behemoth
 
         public override void AddTriggers()
         {
+            // TODO: IsOngoing etc.
             // "Whenever a hero Ongoing or Equipment card enters play, {BehemothCharacter} deals the associated hero 2 damage."
-            AddTrigger<CardEntersPlayAction>((CardEntersPlayAction cepa) => cepa.CardEnteringPlay.IsHero && (cepa.CardEnteringPlay.DoKeywordsContain("ongoing") || cepa.CardEnteringPlay.DoKeywordsContain("equipment")), DamageResponse, TriggerType.DealDamage, TriggerTiming.After);
+            AddTrigger<CardEntersPlayAction>((CardEntersPlayAction cepa) => this.HasAlignment(cepa.CardEnteringPlay, CardAlignment.Hero) && (cepa.CardEnteringPlay.DoKeywordsContain("ongoing") || cepa.CardEnteringPlay.DoKeywordsContain("equipment")), DamageResponse, TriggerType.DealDamage, TriggerTiming.After);
             base.AddTriggers();
         }
 

@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+using Jp.ParahumansOfTheWormverse.Utility;
+
 namespace Jp.ParahumansOfTheWormverse.Armsmaster
 {
     public class GrappleHalberdCardController : CardController
@@ -17,7 +19,7 @@ namespace Jp.ParahumansOfTheWormverse.Armsmaster
             // You may destroy an environment card.
             var e = GameController.SelectAndDestroyCard(
                 HeroTurnTakerController,
-                new LinqCardCriteria(c => c.IsEnvironment, "Environment"),
+                new LinqCardCriteria(c => c.Is().Environment(), "Environment"),
                 optional: true,
                 responsibleCard: Card,
                 cardSource: GetCardSource()

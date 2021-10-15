@@ -41,7 +41,7 @@ namespace Jp.ParahumansOfTheWormverse.Leviathan
                 AddSideTrigger(AddDealDamageAtEndOfTurnTrigger(
                     TurnTaker,
                     Card,
-                    c => c.IsHeroTarget() && c.IsInPlay,
+                    c => this.HasAlignment(c, CardAlignment.Hero, CardTarget.Target) && c.IsInPlay,
                     TargetType.All,
                     amount: 2,
                     DamageType.Melee
@@ -110,7 +110,7 @@ namespace Jp.ParahumansOfTheWormverse.Leviathan
                 // When flipped to this side, destroy {H} noncharacter hero cards.
                 e = GameController.SelectAndDestroyCards(
                     DecisionMaker,
-                    new LinqCardCriteria(c => c.IsHero && c.IsInPlay && ! c.IsCharacter),
+                    new LinqCardCriteria(c => this.HasAlignment(c, CardAlignment.Hero) && c.IsInPlay && ! c.IsCharacter),
                     numberOfCards: H,
                     responsibleCard: Card,
                     cardSource: GetCardSource()

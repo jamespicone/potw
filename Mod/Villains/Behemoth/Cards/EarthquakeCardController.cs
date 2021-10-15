@@ -7,6 +7,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+using Jp.ParahumansOfTheWormverse.Utility;
+
 namespace Jp.ParahumansOfTheWormverse.Behemoth
 {
     public class EarthquakeCardController : BehemothUtilityCardController
@@ -30,7 +32,7 @@ namespace Jp.ParahumansOfTheWormverse.Behemoth
                 GameController.ExhaustCoroutine(meleeCoroutine);
             }
             // "Destroy all environment cards."
-            IEnumerator destroyEnvCoroutine = base.GameController.DestroyCards(DecisionMaker, new LinqCardCriteria((Card c) => c.IsEnvironment, "environment"), cardSource: GetCardSource());
+            IEnumerator destroyEnvCoroutine = base.GameController.DestroyCards(DecisionMaker, new LinqCardCriteria((Card c) => c.Is().Environment(), "environment"), cardSource: GetCardSource());
             if (UseUnityCoroutines)
             {
                 yield return GameController.StartCoroutine(destroyEnvCoroutine);
@@ -60,7 +62,7 @@ namespace Jp.ParahumansOfTheWormverse.Behemoth
                 GameController.ExhaustCoroutine(destroyEqpCoroutine);
             }
             // "{BehemothCharacter} deals each hero target 2 damage."
-            IEnumerator damageCoroutine = base.GameController.DealDamage(DecisionMaker, base.CharacterCard, (Card c) => c.IsHero, 2, GetBehemothDamageType(), cardSource: GetCardSource());
+            IEnumerator damageCoroutine = base.GameController.DealDamage(DecisionMaker, base.CharacterCard, (Card c) => this.HasAlignment(c, CardAlignment.Hero, CardTarget.Target), 2, GetBehemothDamageType(), cardSource: GetCardSource());
             if (UseUnityCoroutines)
             {
                 yield return GameController.StartCoroutine(damageCoroutine);

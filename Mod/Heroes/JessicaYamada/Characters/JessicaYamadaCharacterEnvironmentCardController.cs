@@ -8,12 +8,15 @@ using System.Text;
 
 using UnityEngine;
 
+using Jp.ParahumansOfTheWormverse.Utility;
+
 namespace Jp.ParahumansOfTheWormverse.JessicaYamada
 {
     public class JessicaYamadaCharacterEnvironmentCardController : JessicaYamadaCharacterBase
     {
         public JessicaYamadaCharacterEnvironmentCardController(Card card, TurnTakerController controller) : base(card, controller)
         {
+            // TODO: Indestructible?
         }
 
         public override void AddSideTriggers()
@@ -22,7 +25,7 @@ namespace Jp.ParahumansOfTheWormverse.JessicaYamada
 
             if (! Card.IsFlipped)
             {
-                AddSideTrigger(AddPreventDamageTrigger(dda => dda.Target == Card && dda.DamageSource.IsHero));
+                AddSideTrigger(AddPreventDamageTrigger(dda => dda.Target == Card && dda.DamageSource.Is().Hero()));
             }
         }
     }

@@ -7,6 +7,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+using Jp.ParahumansOfTheWormverse.Utility;
+
 namespace Jp.ParahumansOfTheWormverse.Tattletale
 {
     public class MyEyeOnYouCardController : CardController
@@ -17,21 +19,11 @@ namespace Jp.ParahumansOfTheWormverse.Tattletale
 
         }
 
-        public override void AddTriggers()
-        {
-            base.AddTriggers();
-        }
-
-        public override IEnumerator Play()
-        {
-            yield break;
-        }
-
         public override IEnumerator UsePower(int index = 0)
         {
             // "One hero target regains 3 HP."
             int amount = GetPowerNumeral(0, 3);
-            IEnumerator healCoroutine = base.GameController.SelectAndGainHP(base.HeroTurnTakerController, amount, additionalCriteria: (Card c) => c.IsHero, cardSource: GetCardSource());
+            IEnumerator healCoroutine = base.GameController.SelectAndGainHP(base.HeroTurnTakerController, amount, additionalCriteria: (Card c) => this.HasAlignment(c, CardAlignment.Hero, CardTarget.Target), cardSource: GetCardSource());
             if (UseUnityCoroutines)
             {
                 yield return GameController.StartCoroutine(healCoroutine);
@@ -40,7 +32,6 @@ namespace Jp.ParahumansOfTheWormverse.Tattletale
             {
                 GameController.ExhaustCoroutine(healCoroutine);
             }
-            yield break;
         }
     }
 }

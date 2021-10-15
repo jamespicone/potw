@@ -34,7 +34,7 @@ namespace Jp.ParahumansOfTheWormverse.MissMilitia
                 numTargets,
                 false,
                 requiredTargets: 0,
-                additionalCriteria: (c) => ! c.IsHeroTarget(),
+                additionalCriteria: (c) => this.HasAlignment(c, CardAlignment.Nonhero, CardTarget.Target),
                 cardSource: GetCardSource()
             );
             if (UseUnityCoroutines)
@@ -51,7 +51,7 @@ namespace Jp.ParahumansOfTheWormverse.MissMilitia
             {
                 e = GameController.SelectAndDestroyCard(
                     HeroTurnTakerController,
-                    new LinqCardCriteria((c) => c.DoKeywordsContain("ongoing") || c.IsEnvironment, "Ongoing or environment"),
+                    new LinqCardCriteria((c) => c.DoKeywordsContain("ongoing") || c.Is().Environment(), "Ongoing or environment"),
                     optional: true,
                     responsibleCard: Card,
                     cardSource: GetCardSource()
@@ -73,7 +73,7 @@ namespace Jp.ParahumansOfTheWormverse.MissMilitia
                 e = GameController.SelectCardAndStoreResults(
                     HeroTurnTakerController,
                     SelectionType.MoveCardOnDeck,
-                    new LinqCardCriteria((c) => c.IsInPlayAndHasGameText && ! c.IsHeroTarget() && c.IsTarget && ! c.IsCharacter && GameController.IsCardVisibleToCardSource(c, GetCardSource()), "non-hero non-character targets", false, singular: "non-hero non-character target", plural: "non-hero non-character targets"),
+                    new LinqCardCriteria((c) => c.IsInPlayAndHasGameText && this.HasAlignment(c, CardAlignment.Nonhero, CardTarget.Target) && ! c.IsCharacter && GameController.IsCardVisibleToCardSource(c, GetCardSource()), "non-hero non-character targets", false, singular: "non-hero non-character target", plural: "non-hero non-character targets"),
                     cardChoices,
                     optional: true,
                     cardSource: GetCardSource()

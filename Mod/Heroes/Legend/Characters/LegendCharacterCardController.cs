@@ -38,7 +38,7 @@ namespace Jp.ParahumansOfTheWormverse.Legend
 
                 //"A player may use a power",
                 case 1:
-                    e = GameController.SelectHeroToPlayCard(HeroTurnTakerController, cardSource: GetCardSource());
+                    e = GameController.SelectHeroToUsePower(HeroTurnTakerController, cardSource: GetCardSource());
                     break;
 
                 //"A player may draw a card"
