@@ -42,8 +42,34 @@ namespace Jp.ParahumansOfTheWormverse.Grue
             switch(index)
             {
                 case 0:
+                    e = ReduceNextDamageToTarget();
+                    break;
+
                 case 1:
+                    // "{GrueCharacter} deals 2 melee damage to a target",
+                    e = GameController.SelectTargetsAndDealDamage(
+                        HeroTurnTakerController,
+                        new DamageSource(GameController, TurnTaker),
+                        2,
+                        DamageType.Melee,
+                        numberOfTargets: 1,
+                        optional: false,
+                        requiredTargets: 1,
+                        cardSource: GetCardSource()
+                    );
+                    break;
+
                 case 2:
+                    // "Destroy an Ongoing card"
+                    e = GameController.SelectAndDestroyCard(
+                        HeroTurnTakerController,
+                        new LinqCardCriteria(c => c.IsOngoing, "ongoing"),
+                        optional: false,
+                        responsibleCard: Card,
+                        cardSource: GetCardSource()
+                    );
+                    break;
+
                 default: yield break;
             }
         }
@@ -109,6 +135,46 @@ namespace Jp.ParahumansOfTheWormverse.Grue
         {
             // Use this power only if you can use {Trigger} powers{BR}Select a player. That player may use a power now
             return GameController.SelectHeroToUsePower(HeroTurnTakerController, cardSource: GetCardSource());
+        }
+
+        private IEnumerator ReduceNextDamageToTarget()
+        {
+            // "Select a target. Reduce the next damage dealt to that target by 1",
+            var selectedTarget = new List<SelectCardDecision>();
+            var e = GameController.SelectCardAndStoreResults(
+                HeroTurnTakerController,
+                SelectionType.MoveCardNextToCard,
+                new LinqCardCriteria(c => c.IsTarget && c.IsInPlay, "target"),
+                storedResults: selectedTarget,
+                optional: false,
+                cardSource: GetCardSource()
+            );
+            if (UseUnityCoroutines)
+            {
+                yield return GameController.StartCoroutine(e);
+            }
+            else
+            {
+                GameController.ExhaustCoroutine(e);
+            }
+
+            var target = GetSelectedCard(selectedTarget);
+            if (target == null) { yield break; }
+
+            var effect = new ReduceDamageStatusEffect(1);
+            effect.NumberOfUses = 1;
+            effect.TargetCriteria.IsSpecificCard = target;
+            effect.UntilTargetLeavesPlay(target);
+
+            e = AddStatusEffect(effect);
+            if (UseUnityCoroutines)
+            {
+                yield return GameController.StartCoroutine(e);
+            }
+            else
+            {
+                GameController.ExhaustCoroutine(e);
+            }
         }
     }
 }

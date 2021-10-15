@@ -28,7 +28,7 @@ namespace Jp.ParahumansOfTheWormverse.Grue
             return GameController.SelectTargetsAndDealDamage(
                 HeroTurnTakerController,
                 new DamageSource(GameController, CharacterCard),
-                2,
+                GetPowerNumeral(0, 2),
                 DamageType.Melee,
                 numberOfTargets: 1,
                 optional: false,
