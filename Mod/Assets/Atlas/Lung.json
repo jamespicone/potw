@@ -1,0 +1,20 @@
+{"frames": {
+
+"LungDeckBack.jpg":
+{
+	"frame": {"x":0,"y":0,"w":178,"h":256},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":178,"h":256},
+	"sourceSize": {"w":178,"h":256}
+}},
+"meta": {
+	"app": "https://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "Lung.png",
+	"format": "RGBA8888",
+	"size": {"w":256,"h":256},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:55da39f95689d0c1e984a5caf1bec738:3c3a2c7d3f435bd00cbd2397f8345dad:9eff6052298a8aebc9990abac70e252b$"
+}
+}

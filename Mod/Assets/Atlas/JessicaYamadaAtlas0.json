@@ -1,0 +1,20 @@
+{"frames": {
+
+"JessicaYamadaDeckBack.jpg":
+{
+	"frame": {"x":0,"y":0,"w":178,"h":256},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":178,"h":256},
+	"sourceSize": {"w":178,"h":256}
+}},
+"meta": {
+	"app": "https://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "JessicaYamadaAtlas0.png",
+	"format": "RGBA8888",
+	"size": {"w":256,"h":256},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:754c2d57a2d9afd3ec59e10a774822ac:b992de57492d30016c377eae785c7842:7ce82df8eb604cede51ef5fe0368aef9$"
+}
+}

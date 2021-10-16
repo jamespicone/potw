@@ -1,0 +1,20 @@
+{"frames": {
+
+"AssaultDeckBack.jpg":
+{
+	"frame": {"x":0,"y":0,"w":178,"h":256},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":178,"h":256},
+	"sourceSize": {"w":178,"h":256}
+}},
+"meta": {
+	"app": "https://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "AssaultAtlas0.png",
+	"format": "RGBA8888",
+	"size": {"w":256,"h":256},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:4f33f0cbe2a4dec079fd811de5b4008d:4875075630ea17ce3e19dd31922b2b54:c1c67e9cfb1b49c7f5addc3691f3bfa4$"
+}
+}

@@ -1,0 +1,20 @@
+{"frames": {
+
+"EchidnaDeckBack.jpg":
+{
+	"frame": {"x":0,"y":0,"w":178,"h":256},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":178,"h":256},
+	"sourceSize": {"w":178,"h":256}
+}},
+"meta": {
+	"app": "https://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "Echidna.png",
+	"format": "RGBA8888",
+	"size": {"w":256,"h":256},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:c55519abb6432cd8fccfa4e79fe02d24:7e98fa913a8ba8b3bc950f03e832e896:d6c05bd3aafd10d7cd69c086d70390ec$"
+}
+}

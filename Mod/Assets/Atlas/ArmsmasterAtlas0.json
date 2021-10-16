@@ -1,0 +1,20 @@
+{"frames": {
+
+"ArmsmasterDeckBack.jpg":
+{
+	"frame": {"x":0,"y":0,"w":178,"h":256},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":178,"h":256},
+	"sourceSize": {"w":178,"h":256}
+}},
+"meta": {
+	"app": "https://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "ArmsmasterAtlas0.png",
+	"format": "RGBA8888",
+	"size": {"w":256,"h":256},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:348772ddf63e5d7a1a8aed12d84feeb5:2936a0f48aacb704a69b7c6ddb7a273f:72941799990149b3dd6c79f52daf9e9f$"
+}
+}

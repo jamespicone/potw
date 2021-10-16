@@ -1,0 +1,20 @@
+{"frames": {
+
+"LeviathanDeckBack.jpg":
+{
+	"frame": {"x":0,"y":0,"w":178,"h":256},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":178,"h":256},
+	"sourceSize": {"w":178,"h":256}
+}},
+"meta": {
+	"app": "https://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "Leviathan.png",
+	"format": "RGBA8888",
+	"size": {"w":256,"h":256},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:d33482e188a41d704e08757eb5a46b43:4768c35555b17b0714fb634fe10f984d:9023f8cb81c834fd7c05d90e572bbb1a$"
+}
+}

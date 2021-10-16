@@ -1,0 +1,20 @@
+{"frames": {
+
+"GrueDeckBack.jpg":
+{
+	"frame": {"x":0,"y":0,"w":178,"h":256},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":178,"h":256},
+	"sourceSize": {"w":178,"h":256}
+}},
+"meta": {
+	"app": "https://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "GrueAtlas0.png",
+	"format": "RGBA8888",
+	"size": {"w":256,"h":256},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:3549c7191a02dd0ed09bdc79c0ea8ed3:fd134aaeaf3e280bff9772c658798e17:3af7e6715cc0724a2b825287afa842d0$"
+}
+}

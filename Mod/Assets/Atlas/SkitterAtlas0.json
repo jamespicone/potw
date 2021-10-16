@@ -1,0 +1,20 @@
+{"frames": {
+
+"SkitterDeckBack.jpg":
+{
+	"frame": {"x":0,"y":0,"w":178,"h":256},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":178,"h":256},
+	"sourceSize": {"w":178,"h":256}
+}},
+"meta": {
+	"app": "https://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "SkitterAtlas0.png",
+	"format": "RGBA8888",
+	"size": {"w":256,"h":256},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:bc3214d19740bacf09fd427632b970a3:029a361974817f03dfec4d2e3bc6207c:4fab52eb2668b7fbe9c74f2c0a6c6bfd$"
+}
+}

@@ -1,0 +1,20 @@
+{"frames": {
+
+"Slaughterhouse9DeckBack.jpg":
+{
+	"frame": {"x":0,"y":0,"w":178,"h":256},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":178,"h":256},
+	"sourceSize": {"w":178,"h":256}
+}},
+"meta": {
+	"app": "https://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "Slaughterhouse9.png",
+	"format": "RGBA8888",
+	"size": {"w":256,"h":256},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:0475ac647d0cc8b3335cf26436aac265:b26d5c556ba3924d34402f65cf093827:51f209dca1ca8134be9b1ea9f372db78$"
+}
+}
