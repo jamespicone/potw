@@ -44,7 +44,7 @@ namespace Jp.ParahumansOfTheWormverse.Grue
         private IEnumerator DestroyOngoingIfTargetDarknessed(DealDamageAction dda)
         {
             // "If you deal damage to a target with a Darkness card next to it you may destroy an Ongoing card"
-            if (! this.DoesTargetHaveDarknessAdjacent(dda.Target))
+            if (! this.DoesTargetHaveDarknessAdjacent(dda.Target) || ! dda.DidDealDamage)
             {
                 yield break;
             }
