@@ -1,0 +1,20 @@
+{"frames": {
+
+"BehemothDeckBack.jpg":
+{
+	"frame": {"x":0,"y":0,"w":178,"h":256},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":178,"h":256},
+	"sourceSize": {"w":178,"h":256}
+}},
+"meta": {
+	"app": "https://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "BehemothAtlas0.png",
+	"format": "RGBA8888",
+	"size": {"w":256,"h":256},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:22cf254bf8cc45c83fc4bc2f825b2110:cb1192ca602cc385cb6dfe9ea438b489:8647f252a78bd260dcc01db8a3241dfa$"
+}
+}
