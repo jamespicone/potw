@@ -56,7 +56,7 @@ namespace Jp.ParahumansOfTheWormverse.Leviathan
             var target = stored.FirstOrDefault();
             if (target == null) { yield break; }
 
-            e = DealDamage(CharacterCard, dca.HeroTurnTaker.CharacterCard, 1, DamageType.Cold, true);
+            e = DealDamage(CharacterCard, dca.HeroTurnTaker.CharacterCard, 1, DamageType.Cold);
             if (UseUnityCoroutines)
             {
                 yield return GameController.StartCoroutine(e);
