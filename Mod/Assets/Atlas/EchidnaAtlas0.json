@@ -1,6 +1,6 @@
 {"frames": {
 
-"LeviathanDeckBack.jpg":
+"EchidnaDeckBack.jpg":
 {
 	"frame": {"x":0,"y":0,"w":178,"h":256},
 	"rotated": false,
@@ -11,10 +11,10 @@
 "meta": {
 	"app": "https://www.codeandweb.com/texturepacker",
 	"version": "1.0",
-	"image": "Leviathan.png",
+	"image": "EchidnaAtlas0.png",
 	"format": "RGBA8888",
 	"size": {"w":256,"h":256},
 	"scale": "1",
-	"smartupdate": "$TexturePacker:SmartUpdate:d33482e188a41d704e08757eb5a46b43:4768c35555b17b0714fb634fe10f984d:9023f8cb81c834fd7c05d90e572bbb1a$"
+	"smartupdate": "$TexturePacker:SmartUpdate:4aa59d98086ee019a08835c1779d41a9:7e98fa913a8ba8b3bc950f03e832e896:96d2d6ae746e96a350452da2b479775f$"
 }
 }

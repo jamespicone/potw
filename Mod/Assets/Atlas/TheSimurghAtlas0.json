@@ -1,6 +1,6 @@
 {"frames": {
 
-"EchidnaDeckBack.jpg":
+"TheSimurghDeckBack.jpg":
 {
 	"frame": {"x":0,"y":0,"w":178,"h":256},
 	"rotated": false,
@@ -11,10 +11,10 @@
 "meta": {
 	"app": "https://www.codeandweb.com/texturepacker",
 	"version": "1.0",
-	"image": "Echidna.png",
+	"image": "TheSimurghAtlas0.png",
 	"format": "RGBA8888",
 	"size": {"w":256,"h":256},
 	"scale": "1",
-	"smartupdate": "$TexturePacker:SmartUpdate:c55519abb6432cd8fccfa4e79fe02d24:7e98fa913a8ba8b3bc950f03e832e896:d6c05bd3aafd10d7cd69c086d70390ec$"
+	"smartupdate": "$TexturePacker:SmartUpdate:0f4e6a86ebb2c94d5897c54e6c336f5f:c5d36d005277ad17d747c062bdaad318:120b5b23d7acf13dc0a5425f314a2ca5$"
 }
 }

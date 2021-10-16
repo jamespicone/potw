@@ -1,6 +1,6 @@
 {"frames": {
 
-"LungDeckBack.jpg":
+"TheMerchantsDeckBack.jpg":
 {
 	"frame": {"x":0,"y":0,"w":178,"h":256},
 	"rotated": false,
@@ -11,10 +11,10 @@
 "meta": {
 	"app": "https://www.codeandweb.com/texturepacker",
 	"version": "1.0",
-	"image": "Lung.png",
+	"image": "TheMerchantsAtlas0.png",
 	"format": "RGBA8888",
 	"size": {"w":256,"h":256},
 	"scale": "1",
-	"smartupdate": "$TexturePacker:SmartUpdate:55da39f95689d0c1e984a5caf1bec738:3c3a2c7d3f435bd00cbd2397f8345dad:9eff6052298a8aebc9990abac70e252b$"
+	"smartupdate": "$TexturePacker:SmartUpdate:1bd1ea1980d3c746a19d0389c980b931:35d5e81be147479b56975dea82120394:bb47b12bf255a65858a8e7657f872f7a$"
 }
 }

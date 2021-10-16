@@ -132,7 +132,7 @@
             <key>data</key>
             <struct type="DataFile">
                 <key>name</key>
-                <filename>../../../Assets/Atlas/TheMerchants.json</filename>
+                <filename>../../../Assets/Atlas/TheMerchantsAtlas0.json</filename>
             </struct>
         </map>
         <key>multiPack</key>
