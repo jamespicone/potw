@@ -40,7 +40,13 @@ namespace Jp.ParahumansOfTheWormverse.Lung
             }
             else
             {
-                damageReduceTrigger = AddTrigger<DealDamageAction>(dda => dda.Target == CharacterCard, dda => ReduceFirstDamage(dda), TriggerType.ReduceDamageLimited, TriggerTiming.Before);
+                damageReduceTrigger = AddReduceDamageTrigger(
+                    dda => TurnTaker.Trash.NumberOfCards >= 10 && ! HasBeenSetToTrueThisTurn("LungReduceDamage"),
+                    dda => ReduceFirstDamage(dda),
+                    c => c == CharacterCard,
+                    true
+                );
+
                 AddSideTrigger(damageReduceTrigger);
             }
 
@@ -145,10 +151,12 @@ namespace Jp.ParahumansOfTheWormverse.Lung
                 yield break;
             }
 
-            if (Journal.DealDamageEntriesThisRound().Where(j => j.TargetCard == TurnTaker.CharacterCard).Count() > 0)
+            if (HasBeenSetToTrueThisTurn("LungReduceDamage"))
             {
                 yield break;
             }
+
+            SetCardPropertyToTrueIfRealAction("LungReduceDamage", gameAction: action);
 
             var e = GameController.ReduceDamage(action, 1, damageReduceTrigger, cardSource: GetCardSource());
             if (UseUnityCoroutines)
