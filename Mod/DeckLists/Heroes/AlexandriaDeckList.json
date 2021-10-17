@@ -229,7 +229,7 @@
         "{AlexandriaCharacter} deals a target 4 projectile damage"
       ],
       "icons": [
-        "DealDamageMelee"
+        "DealDamageProjectile"
       ],
       "flavorQuotes": [
         {
