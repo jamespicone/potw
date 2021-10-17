@@ -22,7 +22,7 @@ namespace Jp.ParahumansOfTheWormverse.Grue
             // "This card doesn't reduce damage dealt by {GrueCharacter}",
             // "Reduce the first damage that would be dealt each turn by the card next to this card by 1",
             _reduceSourceTrigger = AddReduceDamageTrigger(
-                dda => ! IsPropertyTrue("FirstDamageDealtSource") && ! dda.DamageSource.IsGrueSource(CharacterCard) && Card.Location.IsNextToCard && dda.DamageSource.Card == GetCardThisCardIsNextTo(),
+                dda => ! HasBeenSetToTrueThisTurn("FirstDamageDealtSource") && ! dda.DamageSource.IsGrueSource(CharacterCard) && Card.Location.IsNextToCard && dda.DamageSource.Card == GetCardThisCardIsNextTo(),
                 dda => ReduceFirstEachTurnByOneSource(dda),
                 dda => true,
                 true
@@ -30,7 +30,7 @@ namespace Jp.ParahumansOfTheWormverse.Grue
 
             // "Reduce the first damage that would be dealt each turn to the card next to this card by 1",
             _reduceTargetTrigger = AddReduceDamageTrigger(
-                dda => !IsPropertyTrue("FirstDamageDealtTarget") && !dda.DamageSource.IsGrueSource(CharacterCard) && Card.Location.IsNextToCard && dda.Target == GetCardThisCardIsNextTo(),
+                dda => ! HasBeenSetToTrueThisTurn("FirstDamageDealtTarget") && ! dda.DamageSource.IsGrueSource(CharacterCard) && Card.Location.IsNextToCard && dda.Target == GetCardThisCardIsNextTo(),
                 dda => ReduceFirstEachTurnByOneTarget(dda),
                 dda => true,
                 true
