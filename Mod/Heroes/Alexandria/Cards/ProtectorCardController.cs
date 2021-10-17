@@ -75,6 +75,7 @@ namespace Jp.ParahumansOfTheWormverse.Alexandria
             effect.DamageAmountCriteria.GreaterThan = 0;
 
             effect.UntilTargetLeavesPlay(target);
+            effect.UntilTargetLeavesPlay(CharacterCard);
             effect.BeforeOrAfter = BeforeOrAfter.Before;
 
             e = GameController.AddStatusEffect(effect, showMessage: true, GetCardSource());
