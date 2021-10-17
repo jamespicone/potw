@@ -159,9 +159,9 @@
 			"flavorReference": "Migration 17.2"
 		},
 		{
-			"identifier": "ADefensePenetrated",
+			"identifier": "ADefencePenetrated",
 			"count": 1,
-			"title": "A Defense Penetrated",
+			"title": "A Defence Penetrated",
 			"keywords": [
 				"trap"
 			],
