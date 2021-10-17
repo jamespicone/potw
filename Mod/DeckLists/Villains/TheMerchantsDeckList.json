@@ -49,7 +49,7 @@
 				"LoseTheGame",
 				"PlayCardNow"
 			],
-			"difficulty": 2,
+			"difficulty": 1,
 			"openingLines": {
 				"default": "You quim-jockeys up for tonight's main event!?"
 			}
