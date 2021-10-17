@@ -49,7 +49,7 @@
         "Reduce the first damage that would be dealt each turn to the card next to this card by 1",
         "At the end of {GrueCharacter}'s next turn remove this card from the game"
       ],
-      "icons": [ "ReduceDamageDealt", "ReduceDamageTaken", "DestroySelf", "RemoveFromGame" ],
+      "icons": [ "ReduceDamageDealt", "ReduceDamageTaken", "DestroySelf", "EndOfTurnAction", "RemoveFromGame" ],
       "flavorText": "An absolute lack of light{BR}that left me unable to tell whether{BR}my eyes were open or shut,{BR}it was ominous.",
       "flavorReference": "Insinuation 2.8",
       "count": 1
@@ -217,9 +217,10 @@
       "title": "Stillness",
       "keywords": [ "ongoing", "limited" ],
       "body": [
-        "Reduce all fire, sonic, lightning, and energy damage that would be dealt to or by a target with a Darkness card next to it by 1"
+        "Reduce all fire, sonic, lightning, and energy damage that would be dealt to or by a target with a Darkness card next to it by 1",
+        "At the start of your turn put a Darkness card into play next to a target"
       ],
-      "icons": [ "ReduceDamageDealtFire", "ReduceDamageDealtSonic", "ReduceDamageDealtLightning", "ReduceDamageDealtEnergy" ],
+      "icons": [ "StartOfTurnAction", "ReduceDamageDealtFire", "ReduceDamageDealtSonic", "ReduceDamageDealtLightning", "ReduceDamageDealtEnergy", "PlayCardNow" ],
       "flavorQuotes": [
         {
           "identifier": "Tattletale",
@@ -251,7 +252,7 @@
         "Hero targets with a Darkness card next to them are immune to damage dealt by non-hero targets.",
         "At the start of your turn destroy this card"
       ],
-      "icons": [ "DealDamagePsychic", "PlayCardNow", "ImmuneToDamage", "DestroySelf" ],
+      "icons": [ "DealDamagePsychic", "PlayCardNow", "ImmuneToDamage", "StartOfTurnAction", "DestroySelf" ],
       "flavorText": "More of it just kept pouring{BR}from his hand, climbing upwards{BR}to cover the top of the room.",
       "flavorReference": "Insinuation 2.9",
       "count": 3

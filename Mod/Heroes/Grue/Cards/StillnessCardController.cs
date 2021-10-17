@@ -32,6 +32,46 @@ namespace Jp.ParahumansOfTheWormverse.Grue
                         dda.DamageType == DamageType.Energy
                     ),
                 dda => 1);
+
+            AddStartOfTurnTrigger(
+                tt => tt == TurnTaker,
+                pca => DarkenSomeone(),
+                TriggerType.PutIntoPlay
+            );
+        }
+
+        private IEnumerator DarkenSomeone()
+        {
+            var selectedTarget = new List<SelectCardDecision>();
+            var e = GameController.SelectCardAndStoreResults(
+                HeroTurnTakerController,
+                SelectionType.MoveCardNextToCard,
+                new LinqCardCriteria(c => c.IsTarget && c.IsInPlay, "target"),
+                storedResults: selectedTarget,
+                optional: false,
+                cardSource: GetCardSource()
+            );
+            if (UseUnityCoroutines)
+            {
+                yield return GameController.StartCoroutine(e);
+            }
+            else
+            {
+                GameController.ExhaustCoroutine(e);
+            }
+
+            var target = GetSelectedCard(selectedTarget);
+            if (target == null) { yield break; }
+
+            e = this.PutDarknessIntoPlay(target);
+            if (UseUnityCoroutines)
+            {
+                yield return GameController.StartCoroutine(e);
+            }
+            else
+            {
+                GameController.ExhaustCoroutine(e);
+            }
         }
     }
 }
