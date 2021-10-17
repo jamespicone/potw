@@ -343,6 +343,7 @@
     <Compile Include="Utility\CardAlignmentHelper.cs" />
     <Compile Include="Utility\DelayedDamageStatusEffect.cs" />
     <Compile Include="Utility\ExtensionMethods.cs" />
+    <None Include="Utility\TemplateCardController.cs" />
     <Compile Include="Villains\Behemoth\Cards\AdvanceCardController.cs" />
     <Compile Include="Villains\Behemoth\Cards\AShiftOfAttentionCardController.cs" />
     <Compile Include="Villains\Behemoth\Cards\ContinuousCrackleCardController.cs" />
@@ -461,20 +462,16 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\**\*.txt" />
-	<None Include="Assets\**\*.jpg" />
-	<None Include="Assets\**\*.png" />
-	<None Include="Assets\**\*.json" />
+    <None Include="Assets\**\*.jpg" />
+    <None Include="Assets\**\*.png" />
+    <None Include="Assets\**\*.json" />
   </ItemGroup>
   <ItemGroup>
     <None Include="AssetsTrimmed\**\*.txt" />
-	<None Include="AssetsTrimmed\**\*.jpg" />
-	<None Include="AssetsTrimmed\**\*.png" />
-	<None Include="AssetsTrimmed\**\*.json" />
-	<None Include="AssetsTrimmed\**\*.tps" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Villains\TheSimurgh\Cards\" />
-    <Folder Include="Villains\TheSimurgh\Characters\" />
+    <None Include="AssetsTrimmed\**\*.jpg" />
+    <None Include="AssetsTrimmed\**\*.png" />
+    <None Include="AssetsTrimmed\**\*.json" />
+    <None Include="AssetsTrimmed\**\*.tps" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions />
