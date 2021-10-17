@@ -256,7 +256,7 @@
         "PlayCardNow",
         "GainHP"
       ],
-      "body": "Each player may either have one of their characters regain 2 HP or play a card",
+      "body": "Each other player may either have one of their characters regain 2 HP or play a card",
       "flavorReference": "Legend, Extermination 8.2",
       "flavorQuotes": [
         {
