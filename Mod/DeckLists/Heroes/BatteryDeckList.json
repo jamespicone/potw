@@ -12,9 +12,11 @@
       "body": "Charge // Discharge",
       "backgroundColor": "99B0CF",
       "character": true,
-      "powers": [
-        "If {BatteryCharacter} is {Discharged}, {Charge} {BatteryCharacter} and draw a card.",
-        "If {BatteryCharacter} is {Charged}, {Discharge} {BatteryCharacter} and you may play a card."
+      "gameplay": [
+        "If {BatteryCharacter} is {Charged}, this card gains:",
+        "[b]Power:[/b] {Discharge} {BatteryCharacter} and you may play a card.",
+        "If {BatteryCharacter} is not {Charged}, this card gains:",
+        "[b]Power:[/b] {Charge} {BatteryCharacter} and draw a card."
       ],
       "icons": [
         "HasPower",
