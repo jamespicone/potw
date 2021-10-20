@@ -13,5 +13,6 @@ namespace Jp.ParahumansOfTheWormverse.TheSimurgh
 {
     public interface ISimurghDangerCard
     {
+        int Danger();
     }
 }
