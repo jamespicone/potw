@@ -365,6 +365,7 @@
     <Compile Include="Villains\TheSimurgh\Cards\Traps\ATerribleDefeatCardController.cs" />
     <Compile Include="Villains\TheSimurgh\Cards\Traps\ATragicEndCardController.cs" />
     <Compile Include="Villains\TheSimurgh\Characters\TheSimurghCharacterCardController.cs" />
+    <Compile Include="Villains\TheSimurgh\Characters\TheSimurghTurnTakerController.cs" />
     <Compile Include="Villains\TheSimurgh\Extras\ConditionCardController.cs" />
     <Compile Include="Villains\TheSimurgh\Extras\ISimurghDangerCard.cs" />
     <Compile Include="Villains\TheSimurgh\Extras\TrapCardController.cs" />

@@ -67,7 +67,7 @@
 			"openingLines": {
 				"default": "AAAAA"
 			},
-			"tokenPools":[
+			"tokenPools": [
 				{
 					"identifier": "TheSimurghTokenPool",
 					"name": "The Simurgh Pool",
@@ -77,23 +77,7 @@
 				}
 			]
 		},
-		{
-			"identifier": "ABackupSabotaged",
-			"count": 1,
-			"title": "A Backup Sabotaged",
-			"keywords": [
-				"condition"
-			],
-			"body": [
-				"If any hero has 2 cards in hand with the same name, flip a face-down villain card and remove this card from the game.",
-				"Otherwise, shuffle this card into the Condition deck."
-			],
-			"icons": [
-				"FlipFaceUp"
-			],
-			"flavorText": "The heroes had cut the power, and the Simurgh was still managing to activate the thing.",
-			"flavorReference": "Migration 17.2"
-		},
+		
 		{
 			"identifier": "ACapabilityRevealed",
 			"count": 2,
@@ -288,23 +272,6 @@
 			"flavorReference": "Myrddin, Migration 17.4"
 		},
 		{
-			"identifier": "ASurfeitOfOptions",
-			"count": 1,
-			"title": "A Surfeit of Options",
-			"keywords": [
-				"condition"
-			],
-			"body": [
-				"If there are at least {H} Ongoing cards in play, flip a face-down villain card and remove this card from the game.",
-				"Otherwise, shuffle this card into the Condition deck."
-			],
-			"icons": [
-				"FlipFaceUp"
-			],
-			"flavorText": "She requires resources. This requires patience.",
-			"flavorReference": "Interlude 28"
-		},
-		{
 			"identifier": "ATerribleDefeat",
 			"count": 1,
 			"title": "A Terrible Defeat",
@@ -358,23 +325,6 @@
 			"flavorReference": "Migration 17.2"
 		},
 		{
-			"identifier": "AWealthOfTargets",
-			"count": 1,
-			"title": "A Wealth of Targets",
-			"keywords": [
-				"condition"
-			],
-			"body": [
-				"If there are at least {H} non-character card targets in play, flip a face-down villain card and remove this card from the game.",
-				"Otherwise, shuffle this card into the Condition deck."
-			],
-			"icons": [
-				"FlipFaceUp"
-			],
-			"flavorText": "With study and precision, each ball can find its pocket. Spheres of resin meet a ledge covered by wool, perching on the edge as they spend their momentum.",
-			"flavorReference": "Interlude 28"
-		},
-		{
 			"identifier": "AnAmbushLaid",
 			"count": 4,
 			"title": "An Ambush Laid",
@@ -392,23 +342,7 @@
 			"flavorText": "The various fragments, the little things, the bodies and pieces of furniture, they became part of a protective maelstrom around the Simurgh.",
 			"flavorReference": "Migration 17.2"
 		},
-		{
-			"identifier": "AnAttackExpected",
-			"count": 1,
-			"title": "An Attack Expected",
-			"keywords": [
-				"condition"
-			],
-			"body": [
-				"If {TheSimurghCharacter} was dealt damage last round, flip a face-down villain card and remove this card from the game.",
-				"Otherwise, shuffle this card into the Condition deck."
-			],
-			"icons": [
-				"FlipFaceUp"
-			],
-			"flavorText": "She must be unmolested. This is given freely to her.",
-			"flavorReference": "Interlude 28"
-		},
+		
 		{
 			"identifier": "AnEnvironmentChosen",
 			"count": 4,
@@ -425,23 +359,7 @@
 			"flavorText": "Frame a situation to put a target under optimal fear and stress. Hormone secretions increase.",
 			"flavorReference": "Interlude 28"
 		},
-		{
-			"identifier": "AnUnfortunateMalfunction",
-			"count": 1,
-			"title": "An Unfortunate Malfunction",
-			"keywords": [
-				"condition"
-			],
-			"body": [
-				"If there are at least {H} Equipment cards in play, flip a face-down villain card and remove this card from the game.",
-				"Otherwise, shuffle this card into the Condition deck."
-			],
-			"icons": [
-				"FlipFaceUp"
-			],
-			"flavorText": "She requires access to particular information. This can be arranged by positioning targets carefully.",
-			"flavorReference": "Interlude 28"
-		},
+		
 		{
 			"identifier": "AnUnpleasantDiscovery",
 			"count": 1,
@@ -467,6 +385,100 @@
 				}
 			],
 			"flavorReference": "Myrddin, Migration 17.4"
+		}
+	],
+	"subdecks": [
+		{
+			"identifier": "ConditionDeck",
+			"name": "The Condition Deck",
+			"kind": "Villain",
+			"cards": [
+				{
+					"identifier": "ABackupSabotaged",
+					"count": 1,
+					"title": "A Backup Sabotaged",
+					"keywords": [
+						"condition"
+					],
+					"body": [
+						"If any hero has 2 cards in hand with the same name, flip a face-down villain card and remove this card from the game.",
+						"Otherwise, shuffle this card into the Condition deck."
+					],
+					"icons": [
+						"FlipFaceUp"
+					],
+					"flavorText": "The heroes had cut the power, and the Simurgh was still managing to activate the thing.",
+					"flavorReference": "Migration 17.2"
+				},
+				{
+					"identifier": "AnUnfortunateMalfunction",
+					"count": 1,
+					"title": "An Unfortunate Malfunction",
+					"keywords": [
+						"condition"
+					],
+					"body": [
+						"If there are at least {H} Equipment cards in play, flip a face-down villain card and remove this card from the game.",
+						"Otherwise, shuffle this card into the Condition deck."
+					],
+					"icons": [
+						"FlipFaceUp"
+					],
+					"flavorText": "She requires access to particular information. This can be arranged by positioning targets carefully.",
+					"flavorReference": "Interlude 28"
+				},
+				{
+					"identifier": "AnAttackExpected",
+					"count": 1,
+					"title": "An Attack Expected",
+					"keywords": [
+						"condition"
+					],
+					"body": [
+						"If {TheSimurghCharacter} was dealt damage last round, flip a face-down villain card and remove this card from the game.",
+						"Otherwise, shuffle this card into the Condition deck."
+					],
+					"icons": [
+						"FlipFaceUp"
+					],
+					"flavorText": "She must be unmolested. This is given freely to her.",
+					"flavorReference": "Interlude 28"
+				},
+				{
+					"identifier": "ASurfeitOfOptions",
+					"count": 1,
+					"title": "A Surfeit of Options",
+					"keywords": [
+						"condition"
+					],
+					"body": [
+						"If there are at least {H} Ongoing cards in play, flip a face-down villain card and remove this card from the game.",
+						"Otherwise, shuffle this card into the Condition deck."
+					],
+					"icons": [
+						"FlipFaceUp"
+					],
+					"flavorText": "She requires resources. This requires patience.",
+					"flavorReference": "Interlude 28"
+				},
+				{
+					"identifier": "AWealthOfTargets",
+					"count": 1,
+					"title": "A Wealth of Targets",
+					"keywords": [
+						"condition"
+					],
+					"body": [
+						"If there are at least {H} non-character card targets in play, flip a face-down villain card and remove this card from the game.",
+						"Otherwise, shuffle this card into the Condition deck."
+					],
+					"icons": [
+						"FlipFaceUp"
+					],
+					"flavorText": "With study and precision, each ball can find its pocket. Spheres of resin meet a ledge covered by wool, perching on the edge as they spend their momentum.",
+					"flavorReference": "Interlude 28"
+				}
+			]
 		}
 	]
 }
