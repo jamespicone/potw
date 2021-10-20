@@ -17,7 +17,87 @@ namespace Jp.ParahumansOfTheWormverse.Battery
             : base(card, turnTakerController)
         {
             DischargePowerIndex = 1;
+            AddAsPowerContributor();
         }
+
+        public override IEnumerable<Power> AskIfContributesPowersToCardController(CardController cardController)
+        {
+            if (cardController != this) { return null; }
+
+            var ret = new List<Power>();
+
+            if (IsBatteryCharged())
+            {
+                ret.Add(new Power(
+                    cardController.HeroTurnTakerController,
+                    cardController,
+                    "{Discharge} {BatteryCharacter} and you may play a card.",
+                    DischargePower(),
+                    1,
+                    null,
+                    GetCardSource()
+                ));
+            }
+            else
+            {
+                ret.Add(new Power(
+                    cardController.HeroTurnTakerController,
+                    cardController,
+                    "{Charge} {BatteryCharacter} and draw a card.",
+                    ChargePower(),
+                    0,
+                    null,
+                    GetCardSource()
+                ));
+            }
+
+            return ret;
+        }
+
+        private IEnumerator ChargePower()
+        {
+            IEnumerator chargeCoroutine = Charge(base.Card);
+            if (base.UseUnityCoroutines)
+            {
+                yield return base.GameController.StartCoroutine(chargeCoroutine);
+            }
+            else
+            {
+                base.GameController.ExhaustCoroutine(chargeCoroutine);
+            }
+            IEnumerator drawCoroutine = base.GameController.DrawCard(base.HeroTurnTaker, cardSource: GetCardSource());
+            if (base.UseUnityCoroutines)
+            {
+                yield return base.GameController.StartCoroutine(drawCoroutine);
+            }
+            else
+            {
+                base.GameController.ExhaustCoroutine(drawCoroutine);
+            }
+        }
+
+        private IEnumerator DischargePower()
+        {
+            IEnumerator dischargeCoroutine = RemoveCharge(base.Card);
+            if (base.UseUnityCoroutines)
+            {
+                yield return base.GameController.StartCoroutine(dischargeCoroutine);
+            }
+            else
+            {
+                base.GameController.ExhaustCoroutine(dischargeCoroutine);
+            }
+            IEnumerator playCoroutine = base.GameController.SelectAndPlayCardFromHand(base.HeroTurnTakerController, true, cardSource: GetCardSource());
+            if (base.UseUnityCoroutines)
+            {
+                yield return base.GameController.StartCoroutine(playCoroutine);
+            }
+            else
+            {
+                base.GameController.ExhaustCoroutine(playCoroutine);
+            }
+        }
+
 
         public override IEnumerator UsePower(int index = 0)
         {
@@ -27,23 +107,14 @@ namespace Jp.ParahumansOfTheWormverse.Battery
                     // "If {BatteryCharacter} is {Discharged}, {Charge} {BatteryCharacter} and draw a card."
                     if (!IsBatteryCharged())
                     {
-                        IEnumerator chargeCoroutine = Charge(base.Card);
-                        if (base.UseUnityCoroutines)
+                        var e = ChargePower();
+                        if (UseUnityCoroutines)
                         {
-                            yield return base.GameController.StartCoroutine(chargeCoroutine);
+                            yield return GameController.StartCoroutine(e);
                         }
                         else
                         {
-                            base.GameController.ExhaustCoroutine(chargeCoroutine);
-                        }
-                        IEnumerator drawCoroutine = base.GameController.DrawCard(base.HeroTurnTaker, cardSource: GetCardSource());
-                        if (base.UseUnityCoroutines)
-                        {
-                            yield return base.GameController.StartCoroutine(drawCoroutine);
-                        }
-                        else
-                        {
-                            base.GameController.ExhaustCoroutine(drawCoroutine);
+                            GameController.ExhaustCoroutine(e);
                         }
                     }
                     else
@@ -63,23 +134,14 @@ namespace Jp.ParahumansOfTheWormverse.Battery
                     // "If {BatteryCharacter} is {Charged}, {Discharge} {BatteryCharacter} and you may play a card."
                     if (IsBatteryCharged())
                     {
-                        IEnumerator dischargeCoroutine = RemoveCharge(base.Card);
-                        if (base.UseUnityCoroutines)
+                        var e = DischargePower();
+                        if (UseUnityCoroutines)
                         {
-                            yield return base.GameController.StartCoroutine(dischargeCoroutine);
+                            yield return GameController.StartCoroutine(e);
                         }
                         else
                         {
-                            base.GameController.ExhaustCoroutine(dischargeCoroutine);
-                        }
-                        IEnumerator playCoroutine = base.GameController.SelectAndPlayCardFromHand(base.HeroTurnTakerController, true, cardSource: GetCardSource());
-                        if (base.UseUnityCoroutines)
-                        {
-                            yield return base.GameController.StartCoroutine(playCoroutine);
-                        }
-                        else
-                        {
-                            base.GameController.ExhaustCoroutine(playCoroutine);
+                            GameController.ExhaustCoroutine(e);
                         }
                     }
                     else

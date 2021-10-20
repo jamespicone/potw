@@ -27,7 +27,7 @@ namespace Jp.ParahumansOfTheWormverse.Lung
         public BruteInstructionsCardController(Card card, TurnTakerController controller) : base(card, controller)
         {
             SpecialStringMaker.ShowNumberOfCardsAtLocation(base.TurnTaker.Trash).Condition = () => !base.Card.IsFlipped;
-            SpecialStringMaker.ShowIfElseSpecialString(() => Journal.DealDamageEntriesThisRound().Where(j => j.TargetCard == TurnTaker.CharacterCard).Count() > 0, () => base.Card.Title + " has already reduced damage this round.", () => base.Card.Title + " has not reduced damage this round.").Condition = () => !base.Card.IsFlipped && base.TurnTaker.Trash.NumberOfCards >= 10;
+            SpecialStringMaker.ShowIfElseSpecialString(() => HasBeenSetToTrueThisTurn("LungReduceDamage"), () => base.Card.Title + " has already reduced damage this round.", () => base.Card.Title + " has not reduced damage this round.").Condition = () => !base.Card.IsFlipped && base.TurnTaker.Trash.NumberOfCards >= 10;
         }
 
         public override void AddSideTriggers()
@@ -99,6 +99,8 @@ namespace Jp.ParahumansOfTheWormverse.Lung
                     GameController.ExhaustCoroutine(e);
                 }
 
+                if (Card.IsFlipped) { yield break; }
+
                 /*
                   {Lung} deals X melee damage to all hero targets, where X = 1 + the number of cards in the villain trash / 5, then,
                     - If there are 5 or more cards in the villain trash, {Lung} regains 1 HP, then,
@@ -115,6 +117,8 @@ namespace Jp.ParahumansOfTheWormverse.Lung
                     GameController.ExhaustCoroutine(e);
                 }
 
+                if (Card.IsFlipped) { yield break; }
+
                 if (TurnTaker.Trash.NumberOfCards >= 5)
                 {
                     e = GameController.GainHP(TurnTaker.CharacterCard, 1, cardSource: GetCardSource());
@@ -127,6 +131,8 @@ namespace Jp.ParahumansOfTheWormverse.Lung
                         GameController.ExhaustCoroutine(e);
                     }
                 }
+
+                if (Card.IsFlipped) { yield break; }
 
                 if (TurnTaker.Trash.NumberOfCards >= 15)
                 {
@@ -141,7 +147,6 @@ namespace Jp.ParahumansOfTheWormverse.Lung
                     }
                 }
             }
-            yield break;
         }
 
         public IEnumerator ReduceFirstDamage(DealDamageAction action)
