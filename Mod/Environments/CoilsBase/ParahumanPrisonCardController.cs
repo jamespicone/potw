@@ -23,7 +23,7 @@ namespace Jp.ParahumansOfTheWormverse.CoilsBase
         {
             // "Whenever a target is destroyed put it under this card face-down, then put any other cards under this card into play face-up",
             AddTrigger<DestroyCardAction>(
-                dca => dca.CardToDestroy.Card.IsTarget && dca.CardToDestroy.Card != Card && ! dca.CardToDestroy.Card.DoKeywordsContain("structure"),
+                dca => ! HasBeenSetToTrueThisTurn("CardJailed") && dca.CardToDestroy.Card.IsTarget && dca.CardToDestroy.Card != Card && ! dca.CardToDestroy.Card.DoKeywordsContain("structure"),
                 dca => JailTarget(dca),
                 TriggerType.ChangePostDestroyDestination,
                 TriggerTiming.Before
@@ -50,6 +50,8 @@ namespace Jp.ParahumansOfTheWormverse.CoilsBase
         private IEnumerator FreeCardsUnderThisCard(Card except = null)
         {
             var cardsToPlay = Card.UnderLocation.Cards.Where(c => c != except);
+            if (cardsToPlay.Count() <= 0) { yield break; }
+
             var e = GameController.PlayCards(
                 DecisionMaker,
                 c => cardsToPlay.Contains(c),
@@ -71,6 +73,7 @@ namespace Jp.ParahumansOfTheWormverse.CoilsBase
 
         private IEnumerator JailTarget(DestroyCardAction dca)
         {
+            SetCardPropertyToTrueIfRealAction("CardJailed");
             if (! dca.PostDestroyDestinationCanBeChanged) { yield break; }
 
             dca.SetPostDestroyDestination(

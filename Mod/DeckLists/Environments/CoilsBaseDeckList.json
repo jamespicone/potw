@@ -129,7 +129,7 @@
 			],
 			"hitpoints": 6,
 			"body": [
-				"Whenever a non-Structure target is destroyed put it under this card, then put any other cards under this card into play.",
+				"The first time each turn a non-Structure target is destroyed put it under this card, then put any other cards under this card into play.",
 				"When this card is destroyed put any cards under it into play.",
 				"Cards under this card can only be affected by this card."
 			],
