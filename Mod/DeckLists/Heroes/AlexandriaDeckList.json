@@ -116,7 +116,7 @@
       "keywords": [ "ongoing" ],
       "body": [
         "When this card enters play {AlexandriaCharacter} may deal 2 sonic damage to a target",
-        "When {AlexandriaCharacter} deals damage to a villain target you may destroy a Device or Ongoing card"
+        "When {AlexandriaCharacter} deals damage to a villain target you may destroy a noncharacter Device or Ongoing card"
       ],
       "icons": [
         "DealDamageMelee",

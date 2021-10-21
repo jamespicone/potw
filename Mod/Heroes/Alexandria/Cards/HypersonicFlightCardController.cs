@@ -39,7 +39,7 @@ namespace Jp.ParahumansOfTheWormverse.Alexandria
 
         public override void AddTriggers()
         {
-            // "When {AlexandriaCharacter} deals damage to a villain target you may destroy a Device or Ongoing card"
+            // "When {AlexandriaCharacter} deals damage to a villain target you may destroy a noncharacter Device or Ongoing card"
             AddTrigger<DealDamageAction>(
                 dda => dda.DidDealDamage && dda.DamageSource.Card == CharacterCard && dda.Target.Is(this).Villain().Target(),
                 dda => DestroyACard(),
@@ -52,7 +52,7 @@ namespace Jp.ParahumansOfTheWormverse.Alexandria
         {
             var e = GameController.SelectAndDestroyCard(
                 HeroTurnTakerController,
-                new LinqCardCriteria(c => c.IsDevice || c.IsOngoing, "device or ongoing"),
+                new LinqCardCriteria(c => ! c.IsCharacter && (c.IsDevice || c.IsOngoing), "noncharacter device or ongoing"),
                 optional: true,
                 responsibleCard: Card,
                 cardSource: GetCardSource()
