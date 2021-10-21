@@ -15,7 +15,7 @@ namespace Jp.ParahumansOfTheWormverse.Armsmaster
         public override IEnumerator DoPrimary()
         {
             //  "A hero other than Armsmaster may use a power"
-            var e = GameController.SelectHeroToUsePower(HeroTurnTakerController, cardSource: GetCardSource());
+            var e = GameController.SelectHeroToUsePower(HeroTurnTakerController, additionalCriteria: new LinqTurnTakerCriteria(tt => tt != TurnTaker), cardSource: GetCardSource());
             if (UseUnityCoroutines)
             {
                 yield return GameController.StartCoroutine(e);
