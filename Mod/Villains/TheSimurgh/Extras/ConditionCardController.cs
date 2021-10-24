@@ -46,6 +46,14 @@ namespace Jp.ParahumansOfTheWormverse.TheSimurgh
                 TurnTaker.OutOfGame,
                 cardSource: GetCardSource()
             );
+            if (UseUnityCoroutines)
+            {
+                yield return GameController.StartCoroutine(e);
+            }
+            else
+            {
+                GameController.ExhaustCoroutine(e);
+            }
         }
 
         public override bool DoNotMoveOneShotToTrash => !_trashMe;
