@@ -11,9 +11,38 @@ using Jp.ParahumansOfTheWormverse.Utility;
 
 namespace Jp.ParahumansOfTheWormverse.TheSimurgh
 {
-    public class AnAmbushLaidCardController : CardController
+    public class AnAmbushLaidCardController : SimurghPlayWhenRevealedCardController, ISimurghDangerCard
     {
+        // "When this card is revealed, play it.",
+
         public AnAmbushLaidCardController(Card card, TurnTakerController controller) : base(card, controller)
-        { }
+        {}
+
+        public int Danger()
+        {
+            // TODO
+            return 0;
+        }
+
+        protected override string SurpriseMessage()
+        {
+            return "The Simurgh laid an ambush!";
+        }
+
+        private int DamageAmount()
+        {
+            return FindCardsWhere(c => c.IsFaceUp && c.DoKeywordsContain("trap") && c.IsInPlay).Count() + 1;
+        }
+
+        public override IEnumerator Play()
+        {
+            // "{TheSimurghCharacter} deals each hero target X fire damage, where X is the number of face-up Trap cards plus 1."
+            return DealDamage(
+                CharacterCard,
+                c => c.Is().Hero().Target(),
+                c => DamageAmount(),
+                DamageType.Fire
+            );
+        }
     }
 }

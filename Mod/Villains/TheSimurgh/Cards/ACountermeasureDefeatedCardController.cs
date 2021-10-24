@@ -11,9 +11,68 @@ using Jp.ParahumansOfTheWormverse.Utility;
 
 namespace Jp.ParahumansOfTheWormverse.TheSimurgh
 {
-    public class ACountermeasureDefeatedCardController : CardController
+    public class ACountermeasureDefeatedCardController : CardController, ISimurghDangerCard
     {
         public ACountermeasureDefeatedCardController(Card card, TurnTakerController controller) : base(card, controller)
         { }
+
+        public int Danger()
+        {
+            // TODO
+            return 0;
+        }
+
+        public override IEnumerator Play()
+        {
+            // Reveal the top {H} cards of the villain trash.
+            var revealedCards = new List<Card>();
+            var e = GameController.RevealCards(
+                TurnTakerController,
+                TurnTaker.Trash,
+                H,
+                revealedCards,
+                revealedCardDisplay: RevealedCardDisplay.ShowRevealedCards,
+                cardSource: GetCardSource()
+            );
+            if (UseUnityCoroutines)
+            {
+                yield return GameController.StartCoroutine(e);
+            }
+            else
+            {
+                GameController.ExhaustCoroutine(e);
+            }
+
+            // Play the revealed card with the lowest {SimurghDanger}.
+            revealedCards.Sort(SimurghUtility.CompareSimurghDanger);
+            revealedCards.Reverse();
+
+            if (revealedCards.Count() > 0)
+            {
+                e = GameController.PlayCard(
+                    TurnTakerController,
+                    revealedCards.First(),
+                    cardSource: GetCardSource()
+                );
+                if (UseUnityCoroutines)
+                {
+                    yield return GameController.StartCoroutine(e);
+                }
+                else
+                {
+                    GameController.ExhaustCoroutine(e);
+                }
+            }
+
+            e = CleanupRevealedCards(TurnTaker.Revealed, TurnTaker.Trash);
+            if (UseUnityCoroutines)
+            {
+                yield return GameController.StartCoroutine(e);
+            }
+            else
+            {
+                GameController.ExhaustCoroutine(e);
+            }
+        }
     }
 }

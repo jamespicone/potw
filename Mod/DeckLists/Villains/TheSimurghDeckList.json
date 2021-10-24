@@ -48,10 +48,10 @@
 			"flippedGameplay": [
 				"Reduce damage dealt to {TheSimurghCharacter} by 2.",
 				"At the start of the villain turn, reveal the top {H + 1} cards of the villain deck. Put the revealed cards back in ascending order of {SimurghDanger}.",
-				"At the end of the villain turn, put a token on this card. Then, each hero target deals itself X psychic damage, where X is the number of tokens on this card."
+				"At the end of the villain turn, put a Scream token on this card. Then, this card deals each hero target X psychic damage, where X is the number of Scream tokens on this card."
 			],
 			"flippedAdvanced": [
-				"Players may not discuss strategy or tactics."
+				""
 			],
 			"flippedIcons": [
 				"ReduceDamageTaken",
@@ -69,8 +69,8 @@
 			},
 			"tokenPools": [
 				{
-					"identifier": "TheSimurghTokenPool",
-					"name": "The Simurgh Pool",
+					"identifier": "ScreamPool",
+					"name": "Scream Pool",
 					"initialValue": 0,
 					"minimumValue": 0,
 					"color": ""
@@ -184,11 +184,12 @@
 				"one-shot"
 			],
 			"body": [
-				"The environment deals 1 hero target 1 projectile damage. Repeat this effect [3/5/7] times for {H} = [3/4/5].",
-				"The environment deals 1 hero target 1 irreducible projectile damage. Repeat this effect [3/8/15] times for {H} = [3/4/5]."
+				"The Simurgh deals 1 projectile damage to all hero targets H-1 times.",
+				"The environment deals 1 irreducible melee damage to all hero targets H-2 times."
 			],
 			"icons": [
-				"DealDamageProjectile"
+				"DealDamageProjectile",
+				"DealDamageMelee"
 			],
 			"flavorQuotes": "Not one second after the barrier was in place, a pair of heroes flew around the corner.",
 			"flavorReference": "Migration 17.2"
@@ -201,8 +202,8 @@
 				"one-shot"
 			],
 			"body": [
-				"If there are {H} face-up Trap cards, play the top card of the villain deck.",
-				"Otherwise, flip a face-down villain card, then shuffle this card into the villain deck."
+				"If there are no face-down villain cards in play, play the top card of the villain deck.",
+				"Otherwise, flip a face-down villain card, then shuffle this card into the villain deck"
 			],
 			"icons": [
 				"PlayCardNow",
