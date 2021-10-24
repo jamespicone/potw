@@ -11,9 +11,18 @@ using Jp.ParahumansOfTheWormverse.Utility;
 
 namespace Jp.ParahumansOfTheWormverse.TheSimurgh
 {
-    public class AnAttackExpectedCardController : CardController
+    public class AnAttackExpectedCardController : ConditionCardController
     {
         public AnAttackExpectedCardController(Card card, TurnTakerController controller) : base(card, controller)
         { }
+
+        protected override bool IsConditionMet()
+        {
+            // If {TheSimurghCharacter} was dealt damage last round
+            return Journal.DealDamageEntriesToTargetSinceLastTurn(
+                CharacterCard,
+                TurnTaker
+            ).Where(ddje => ddje.Amount > 0).Count() > 0;
+        }
     }
 }

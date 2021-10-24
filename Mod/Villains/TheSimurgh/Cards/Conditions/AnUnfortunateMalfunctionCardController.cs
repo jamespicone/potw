@@ -11,9 +11,15 @@ using Jp.ParahumansOfTheWormverse.Utility;
 
 namespace Jp.ParahumansOfTheWormverse.TheSimurgh
 {
-    public class AnUnfortunateMalfunctionCardController : CardController
+    public class AnUnfortunateMalfunctionCardController : ConditionCardController
     {
         public AnUnfortunateMalfunctionCardController(Card card, TurnTakerController controller) : base(card, controller)
         { }
+
+        protected override bool IsConditionMet()
+        {
+            // If there are at least {H} Equipment cards in play
+            return FindCardsWhere(c => c.IsInPlay && c.DoKeywordsContain("equipment")).Count() >= H;
+        }
     }
 }

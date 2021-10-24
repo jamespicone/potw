@@ -11,9 +11,15 @@ using Jp.ParahumansOfTheWormverse.Utility;
 
 namespace Jp.ParahumansOfTheWormverse.TheSimurgh
 {
-    public class AWealthOfTargetsCardController : CardController
+    public class AWealthOfTargetsCardController : ConditionCardController
     {
         public AWealthOfTargetsCardController(Card card, TurnTakerController controller) : base(card, controller)
         { }
+
+        protected override bool IsConditionMet()
+        {
+            // If there are at least {H} non-character card targets in play
+            return FindCardsWhere(c => c.IsInPlay && c.Is().Noncharacter().Target()).Count() >= H;
+        }
     }
 }
