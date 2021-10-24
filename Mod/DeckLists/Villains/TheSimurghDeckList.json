@@ -399,7 +399,7 @@
 					"count": 1,
 					"title": "A Backup Sabotaged",
 					"keywords": [
-						"condition"
+						"condition", "one-shot"
 					],
 					"body": [
 						"If any hero has 2 cards in hand with the same name, flip a face-down villain card and remove this card from the game."
@@ -415,7 +415,8 @@
 					"count": 1,
 					"title": "An Unfortunate Malfunction",
 					"keywords": [
-						"condition"
+						"condition",
+						"one-shot"
 					],
 					"body": [
 						"If there are at least {H} Equipment cards in play, flip a face-down villain card and remove this card from the game."
@@ -431,7 +432,8 @@
 					"count": 1,
 					"title": "An Attack Expected",
 					"keywords": [
-						"condition"
+						"condition",
+						"one-shot"
 					],
 					"body": [
 						"If {TheSimurghCharacter} was dealt damage last round, flip a face-down villain card and remove this card from the game."
@@ -447,7 +449,8 @@
 					"count": 1,
 					"title": "A Surfeit of Options",
 					"keywords": [
-						"condition"
+						"condition",
+						"one-shot"
 					],
 					"body": [
 						"If there are at least {H} Ongoing cards in play, flip a face-down villain card and remove this card from the game."
@@ -463,7 +466,8 @@
 					"count": 1,
 					"title": "A Wealth of Targets",
 					"keywords": [
-						"condition"
+						"condition",
+						"one-shot"
 					],
 					"body": [
 						"If there are at least {H} non-character card targets in play, flip a face-down villain card and remove this card from the game."

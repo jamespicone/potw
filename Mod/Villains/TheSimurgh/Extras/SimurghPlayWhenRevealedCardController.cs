@@ -56,7 +56,7 @@ namespace Jp.ParahumansOfTheWormverse.TheSimurgh
             {
                 var storedResults = new List<Card>();
                 e = GameController.RevealCards(
-                    DecisionMaker,
+                    TurnTakerController,
                     rca.SearchLocation,
                     1,
                     storedResults, rca.FromBottom,

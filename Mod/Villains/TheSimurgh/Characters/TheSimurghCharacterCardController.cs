@@ -9,9 +9,11 @@ using Handelabra.Sentinels.Engine.Model;
 
 using Jp.ParahumansOfTheWormverse.Utility;
 
+using UnityEngine;
+
 namespace Jp.ParahumansOfTheWormverse.TheSimurgh
 {
-    public class TheSimurghCharacterCardController : CharacterCardController
+    public class TheSimurghCharacterCardController : VillainCharacterCardController
     {
         public TheSimurghCharacterCardController(Card card, TurnTakerController controller) : base(card, controller)
         {
@@ -30,6 +32,8 @@ namespace Jp.ParahumansOfTheWormverse.TheSimurgh
         {
             if (Card.IsFlipped)
             {
+                Debug.Log("SimurghDebug: Adding new triggers");
+
                 // Reduce damage dealt to {TheSimurghCharacter} by 2.
                 AddReduceDamageTrigger(c => c == Card, 2);
 
@@ -107,7 +111,7 @@ namespace Jp.ParahumansOfTheWormverse.TheSimurgh
             }
 
             // Then, if there are no face-down villain cards, flip this card."
-            if (FindCardsWhere(c => c.IsFaceDownNonCharacter && c.Is().Villain().AccordingTo(this)).Count() > 0)
+            if (FindCardsWhere(c => c.IsFaceDownNonCharacter && c.Is().Villain().AccordingTo(this)).Count() <= 0)
             {
                 e = FlipThisCharacterCardResponse(pca);
                 if (UseUnityCoroutines)
@@ -125,6 +129,8 @@ namespace Jp.ParahumansOfTheWormverse.TheSimurgh
         {
             // At the end of the villain turn, put a Scream token on this card...
             var pool = Card.FindTokenPool("ScreamPool");
+
+            Debug.Log($"SimurghDebug Pool: {pool}");
             if (pool == null) { yield break; }
 
             var e = GameController.AddTokensToPool(pool, 1, GetCardSource());
