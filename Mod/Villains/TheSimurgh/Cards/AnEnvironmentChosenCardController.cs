@@ -11,9 +11,32 @@ using Jp.ParahumansOfTheWormverse.Utility;
 
 namespace Jp.ParahumansOfTheWormverse.TheSimurgh
 {
-    public class AnEnvironmentChosenCardController : CardController
+    public class AnEnvironmentChosenCardController : CardController, ISimurghDangerCard
     {
         public AnEnvironmentChosenCardController(Card card, TurnTakerController controller) : base(card, controller)
         { }
+
+        public int Danger()
+        {
+            // TODO
+            return 0;
+        }
+
+        public override IEnumerator Play()
+        {
+            // Play the top {H} cards of the environment deck.
+            for (int i = 0; i < H; ++i)
+            {
+                var e = PlayTheTopCardOfTheEnvironmentDeckResponse(null);
+                if (UseUnityCoroutines)
+                {
+                    yield return GameController.StartCoroutine(e);
+                }
+                else
+                {
+                    GameController.ExhaustCoroutine(e);
+                }
+            }
+        }
     }
 }

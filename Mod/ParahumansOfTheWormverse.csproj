@@ -368,6 +368,7 @@
     <Compile Include="Villains\TheSimurgh\Characters\TheSimurghTurnTakerController.cs" />
     <Compile Include="Villains\TheSimurgh\Extras\ConditionCardController.cs" />
     <Compile Include="Villains\TheSimurgh\Extras\ISimurghDangerCard.cs" />
+    <Compile Include="Villains\TheSimurgh\Extras\SimurghPlayWhenRevealedCardController.cs" />
     <Compile Include="Villains\TheSimurgh\Extras\TrapCardController.cs" />
     <None Include="Utility\TemplateCardController.cs" />
     <Compile Include="Villains\Behemoth\Cards\AdvanceCardController.cs" />

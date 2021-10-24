@@ -34,10 +34,9 @@ namespace Jp.ParahumansOfTheWormverse.TheSimurgh
                 AddReduceDamageTrigger(c => c == Card, 2);
 
                 // At the start of the villain turn, reveal the top {H + 1} cards of the villain deck. Put the revealed cards back in ascending order of {SimurghDanger}.
-                AddStartOfTurnTrigger(tt => tt == TurnTaker, pca => StackDeck(H + 1), TriggerType.RevealCard);
+                AddStartOfTurnTrigger(tt => tt == TurnTaker, pca => TurnTakerController.StackDeck(H + 1, GetCardSource()), TriggerType.RevealCard);
 
-                // At the end of the villain turn, put a token on this card. Then, each hero target deals itself X psychic damage, where X is the number of tokens on this card.
-                // TODO
+                AddEndOfTurnTrigger(tt => tt == TurnTaker, pca => DoFlippedEndOfTurnStuff(pca), new TriggerType[] { TriggerType.DealDamage, TriggerType.AddTokensToPool });
             }
             else
             {
@@ -77,7 +76,7 @@ namespace Jp.ParahumansOfTheWormverse.TheSimurgh
             }
 
             // Then, reveal the top {H - 1} cards of the villain deck. Put the revealed cards back in ascending order of {SimurghDanger}.",
-            e = StackDeck(H - 1);
+            e = TurnTakerController.StackDeck(H - 1, GetCardSource());
             if (UseUnityCoroutines)
             {
                 yield return GameController.StartCoroutine(e);
@@ -122,16 +121,28 @@ namespace Jp.ParahumansOfTheWormverse.TheSimurgh
             }
         }
 
-        private IEnumerator StackDeck(int numberOfCards)
+        private IEnumerator DoFlippedEndOfTurnStuff(PhaseChangeAction pca)
         {
-            var revealedCards = new List<Card>();
-            var e = GameController.RevealCards(
-                TurnTakerController,
-                TurnTaker.Deck,
-                numberOfCards,
-                revealedCards,
-                revealedCardDisplay: RevealedCardDisplay.ShowRevealedCards,
-                cardSource: GetCardSource()
+            // At the end of the villain turn, put a Scream token on this card...
+            var pool = Card.FindTokenPool("ScreamPool");
+            if (pool == null) { yield break; }
+
+            var e = GameController.AddTokensToPool(pool, 1, GetCardSource());
+            if (UseUnityCoroutines)
+            {
+                yield return GameController.StartCoroutine(e);
+            }
+            else
+            {
+                GameController.ExhaustCoroutine(e);
+            }
+
+            // Then, this card deals each hero target X psychic damage, where X is the number of Scream tokens on this card.
+            e = DealDamage(
+                Card,
+                c => c.Is().Hero().Target(),
+                c => pool.CurrentValue,
+                DamageType.Psychic
             );
             if (UseUnityCoroutines)
             {
@@ -142,29 +153,6 @@ namespace Jp.ParahumansOfTheWormverse.TheSimurgh
                 GameController.ExhaustCoroutine(e);
             }
 
-            revealedCards.Sort(CompareSimurghDanger);
-            revealedCards.Reverse();
-            e = GameController.BulkMoveCards(TurnTakerController, revealedCards, TurnTaker.Deck, responsibleTurnTaker: TurnTaker, cardSource: GetCardSource());
-            if (UseUnityCoroutines)
-            {
-                yield return GameController.StartCoroutine(e);
-            }
-            else
-            {
-                GameController.ExhaustCoroutine(e);
-            }
-        }
-
-        private int CompareSimurghDanger(Card lhs, Card rhs)
-        {
-            var l = lhs as ISimurghDangerCard;
-            var r = rhs as ISimurghDangerCard;
-
-            if (l == null && r == null) { return 0; }
-            if (l == null) { return 1; }
-            if (r == null) { return -1; }
-
-            return l.Danger() - r.Danger();
         }
     }
 }
