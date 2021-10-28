@@ -119,10 +119,9 @@
 				"trap"
 			],
 			"body": [
-				"When this card is flipped face up, put {8 - H} tokens on it. If this card ever has no tokens on it, the heroes lose the game.",
-				"At the end of the villain turn, remove a token from this card.",
-				"Whenever a hero skips 2 phases of the same turn, put a token on this card.",
-				"This card is indestructible."
+				"This card is indestructible.{BR}When this card is flipped face up put {8 - H} tokens on it. If this card ever has no tokens on it, the heroes lose the game.",
+				"At the end of the villain turn remove a token from this card.",
+				"At the end of each hero turn if they have done at most one of play a card / use a power / draw a card put a token on this card."
 			],
 			"icons": [
 				"EndOfTurnAction",
@@ -220,7 +219,7 @@
 				"trap"
 			],
 			"body": [
-				"When this card is flipped face up, each player secretly chooses a hero, then all players reveal their choices simultaneously. If one hero has more votes than any other, that hero deals themself 5 psychic damage. Otherwise, each hero deals themself 5 psychic damage.",
+				"When this card is flipped face up the hero with the lowest HP deals the hero with the highest HP 5 irreducible projectile damage.",
 				"This card is indestructible."
 			],
 			"icons": [
@@ -256,7 +255,7 @@
 				"trap"
 			],
 			"body": [
-				"Whenever a hero target would deal more than {8 - H} damage, that target first deals itself 1 melee damage.",
+				"Whenever a hero target deals more than {8 - H} damage, that target deals itself 1 melee damage.",
 				"This card is indestructible."
 			],
 			"icons": [
@@ -280,7 +279,7 @@
 				"trap"
 			],
 			"body": [
-				"When this card is flipped face up, each player secretly chooses a hero, then all players reveal their choices simultaneously. If one hero has more votes than any other, destroy all of that hero's non-character cards. Otherwise, destroy all hero non-character cards.",
+				"When this card is flipped face up destroy every non-character card owned by the hero with the most cards in play.",
 				"This card is indestructible."
 			],
 			"icons": [

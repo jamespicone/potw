@@ -53,6 +53,7 @@ namespace Jp.ParahumansOfTheWormverse.TheSimurgh
                     new DamageSource(GameController, FindEnvironment().TurnTaker),
                     1,
                     DamageType.Melee,
+                    additionalCriteria: c => c.Is().Hero().Target(),
                     numberOfTargets: null,
                     optional: false,
                     requiredTargets: null,
