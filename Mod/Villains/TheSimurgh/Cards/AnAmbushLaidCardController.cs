@@ -30,7 +30,7 @@ namespace Jp.ParahumansOfTheWormverse.TheSimurgh
 
         private int DamageAmount()
         {
-            return FindCardsWhere(c => c.IsFaceUp && c.DoKeywordsContain("trap") && c.IsInPlay).Count() + 1;
+            return FindCardsWhere(c => ! c.IsFlipped && c.DoKeywordsContain("trap") && c.IsInPlay).Count() + 1;
         }
 
         public override IEnumerator Play()

@@ -26,7 +26,7 @@ namespace Jp.ParahumansOfTheWormverse.TheSimurgh
 
         public override void AddTriggers()
         {
-            // "When this card is flipped face up, put {8 - H} tokens on it. If this card ever has no tokens on it, the heroes lose the game.",
+            // "If this card ever has no tokens on it, the heroes lose the game.",
             AddTrigger<RemoveTokensFromPoolAction>(
                 pa => pa.TokenPool.CardWithTokenPool == Card && pa.TokenPool.CurrentValue == 0,
                 pa => SimurghSchemeSucceeded(pa),
@@ -55,6 +55,32 @@ namespace Jp.ParahumansOfTheWormverse.TheSimurgh
                 new TriggerType[] { TriggerType.AddTokensToPool },
                 additionalCriteria: pca => DidPlayerOnlyDoOneThing(pca)
             );
+
+            // Tell game that drawing isn't free
+            AddTrigger<DrawCardAction>(
+                dca => dca.IsSuccessful && dca.WillDrawCards && ItMattersIfTurnTakerDraws(dca.HeroTurnTaker),
+                dca => DoNothing(),
+                TriggerType.HiddenLast,
+                TriggerTiming.Before
+            );
+        }
+
+        public override IEnumerator Play()
+        {
+            // When this card is flipped face up, put {8 - H} tokens on it. 
+            // We start with 8 tokens, lose H.
+            var pool = Card.FindTokenPool("ACrucialHesitationPool");
+            if (pool == null) { yield break; }
+
+            var e = GameController.RemoveTokensFromPool(pool, H, cardSource: GetCardSource());
+            if (UseUnityCoroutines)
+            {
+                yield return GameController.StartCoroutine(e);
+            }
+            else
+            {
+                GameController.ExhaustCoroutine(e);
+            }
         }
 
         private IEnumerator SimurghSchemeSucceeded(GameAction action)
@@ -98,6 +124,25 @@ namespace Jp.ParahumansOfTheWormverse.TheSimurgh
             {
                 GameController.ExhaustCoroutine(e);
             }
+        }
+
+        private bool ItMattersIfTurnTakerDraws(HeroTurnTaker heroTurnTaker)
+        {
+            var didDraw = Journal.DrawCardEntriesThisTurn().Count(j => j.Hero == heroTurnTaker) > 0;
+            // Already drew, no reason not to draw more
+            if (didDraw) { return false; }
+
+            var didUsePower = Journal.UsePowerEntriesThisTurn().Count(j => j.PowerUser == heroTurnTaker) > 0;
+            var didPlay = Journal.PlayCardEntriesThisTurn().Count(j => j.ResponsibleTurnTaker == heroTurnTaker && ! j.IsPutIntoPlay) > 0;
+
+            // Already can't trigger the token add
+            if (didUsePower && didPlay) { return false; }
+
+            // Drawing won't prevent adding a token
+            if (! (didUsePower || didPlay)) { return false; }
+
+            // We've used a power xor played a card, so drawing or not drawing determines whether we trigger or not.
+            return true;
         }
 
         private bool DidPlayerOnlyDoOneThing(PhaseChangeAction pca)

@@ -9,6 +9,8 @@ using Handelabra.Sentinels.Engine.Model;
 
 using Jp.ParahumansOfTheWormverse.Utility;
 
+using UnityEngine;
+
 namespace Jp.ParahumansOfTheWormverse.TheSimurgh
 {
     public class AnUnpleasantDiscoveryCardController : CardController
@@ -43,6 +45,7 @@ namespace Jp.ParahumansOfTheWormverse.TheSimurgh
 
         private IEnumerator HurtHero(MoveCardAction mca)
         {
+            Debug.Log($"SimurghTrap: Hurting hero because {mca}");
             var heroToHurtTurnTaker = mca.CardToMove.Owner;
 
             var storedResults = new List<Card>();
@@ -129,20 +132,72 @@ namespace Jp.ParahumansOfTheWormverse.TheSimurgh
 
         private IEnumerator RevealAndDiscard(Location deck, string selectedKeyword)
         {
-            return RevealCards_MoveMatching_ReturnNonMatchingCards(
+            var reveal = new RevealCardsAction(
+                GetCardSource(),
                 TurnTakerController,
                 deck,
-                playMatchingCards: false,
-                putMatchingCardsIntoPlay: false,
-                moveMatchingCardsToHand: false,
-                new LinqCardCriteria(c => ! c.DoKeywordsContain(selectedKeyword)),
-                numberOfMatches: null,
-                numberOfCards: 2,
-                shuffleSourceAfterwards: false,
-                showMessage: true,
-                revealedCardDisplay: RevealedCardDisplay.ShowRevealedCards,
-                moveMatchingCardsToTrash: true
+                c => true,
+                numberOfMatches: 2,
+                fromBottom: false,
+                revealedCardsDisplay: RevealedCardDisplay.ShowMatchingCards
             );
+
+            var e = DoAction(reveal);
+            if (UseUnityCoroutines)
+            {
+                yield return GameController.StartCoroutine(e);
+            }
+            else
+            {
+                GameController.ExhaustCoroutine(e);
+            }
+
+            var revealedLocation = reveal.RevealedCards.Select(c => c.Location).FirstOrDefault();
+            if (revealedLocation == null) { yield break; }
+
+            // Matching cards are cards that have one of the selected keywords
+            e = GameController.BulkMoveCards(
+                TurnTakerController,
+                reveal.RevealedCards.Where(c => c.DoKeywordsContain(selectedKeyword)),
+                deck,
+                cardSource: GetCardSource()
+            );
+            if (UseUnityCoroutines)
+            {
+                yield return GameController.StartCoroutine(e);
+            }
+            else
+            {
+                GameController.ExhaustCoroutine(e);
+            }
+
+            // Non-matching cards 
+            e = GameController.MoveCards(
+                TurnTakerController,
+                revealedLocation.Cards,
+                FindTrashFromDeck(deck),
+                isDiscard: true,
+                cardSource: GetCardSource()
+            );
+            if (UseUnityCoroutines)
+            {
+                yield return GameController.StartCoroutine(e);
+            }
+            else
+            {
+                GameController.ExhaustCoroutine(e);
+            }
+
+            // paranoia
+            e = CleanupRevealedCards(revealedLocation, deck);
+            if (UseUnityCoroutines)
+            {
+                yield return GameController.StartCoroutine(e);
+            }
+            else
+            {
+                GameController.ExhaustCoroutine(e);
+            }
         }
     }
 }

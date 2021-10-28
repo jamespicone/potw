@@ -52,7 +52,7 @@ namespace Jp.ParahumansOfTheWormverse.TheSimurgh
             e = GameController.BulkMoveCards(
                 this,
                 TurnTaker.Revealed.Cards,
-                TurnTaker.OutOfGame
+                TurnTaker.OffToTheSide
             );
             if (UseUnityCoroutines)
             {

@@ -16,11 +16,8 @@
 			"backgroundColor": "",
 			"character": true,
 			"hitpoints": 50,
-			"nemesisIdentifiers": [
-				"Trickster"
-			],
 			"setup": [
-				"Put {TheSimurghCharacter} into play, 'The Strategist' side up. Set all Condition cards aside as the Condition deck. Shuffle all Trap cards and put the top {H} into play face down. Remove the other Trap cards from the game."
+				"Put {TheSimurghCharacter} into play, 'The Strategist' side up. Set all Condition cards aside as the Condition deck. Shuffle all Trap cards and put the top {H} into play face down. Put the other Trap cards off to the side."
 			],
 			"gameplay": [
 				"Reduce damage dealt to {TheSimurghCharacter} by 1.",
@@ -51,7 +48,7 @@
 				"At the end of the villain turn, put a Scream token on this card. Then, this card deals each hero target X psychic damage, where X is the number of Scream tokens on this card."
 			],
 			"flippedAdvanced": [
-				""
+				"At the end of the villain turn, put a Trap card from off to the side into play"
 			],
 			"flippedIcons": [
 				"ReduceDamageTaken",

@@ -41,6 +41,11 @@ namespace Jp.ParahumansOfTheWormverse.TheSimurgh
                 AddStartOfTurnTrigger(tt => tt == TurnTaker, pca => TurnTakerController.StackDeck(H + 1, GetCardSource()), TriggerType.RevealCard);
 
                 AddEndOfTurnTrigger(tt => tt == TurnTaker, pca => DoFlippedEndOfTurnStuff(pca), new TriggerType[] { TriggerType.DealDamage, TriggerType.AddTokensToPool });
+
+                if (IsGameAdvanced)
+                {
+                    AddEndOfTurnTrigger(tt => tt == TurnTaker, pca => GetATrap(pca), new TriggerType[] { TriggerType.PutIntoPlay });
+                }
             }
             else
             {
@@ -156,7 +161,46 @@ namespace Jp.ParahumansOfTheWormverse.TheSimurgh
             {
                 GameController.ExhaustCoroutine(e);
             }
+        }
 
+        private IEnumerator GetATrap(PhaseChangeAction pca)
+        {
+            var storedResults = new List<SelectCardDecision>();
+            var e = GameController.SelectCardAndStoreResults(
+                DecisionMaker,
+                SelectionType.PutIntoPlay,
+                new LinqCardCriteria(c => c.DoKeywordsContain("trap") && c.Location.IsOffToTheSide, "Trap card off to the side", useCardsSuffix: false),
+                storedResults,
+                optional: false,
+                gameAction: pca,
+                cardSource: GetCardSource()
+            );
+            if (UseUnityCoroutines)
+            {
+                yield return GameController.StartCoroutine(e);
+            }
+            else
+            {
+                GameController.ExhaustCoroutine(e);
+            }
+
+            var selectedCard = GetSelectedCard(storedResults);
+            if (selectedCard == null) { yield break; }
+
+            e = GameController.PlayCard(
+                TurnTakerController,
+                selectedCard,
+                isPutIntoPlay: true,
+                cardSource: GetCardSource()
+            );
+            if (UseUnityCoroutines)
+            {
+                yield return GameController.StartCoroutine(e);
+            }
+            else
+            {
+                GameController.ExhaustCoroutine(e);
+            }
         }
     }
 }
