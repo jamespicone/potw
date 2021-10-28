@@ -1,0 +1,20 @@
+{"frames": {
+
+"card-keywords-full.png":
+{
+	"frame": {"x":0,"y":0,"w":520,"h":527},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":520,"h":527},
+	"sourceSize": {"w":520,"h":527}
+}},
+"meta": {
+	"app": "https://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "FullCardKeywordsl.png",
+	"format": "RGBA8888",
+	"size": {"w":1024,"h":1024},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:2b059e241a80705cc5494f970483c927:df929d3fa4477273c52c4e6101fb74eb:9d42d560cc0362828d9cedf42991171b$"
+}
+}

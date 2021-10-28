@@ -1,0 +1,20 @@
+{"frames": {
+
+"button-labels.png":
+{
+	"frame": {"x":0,"y":0,"w":678,"h":649},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":678,"h":649},
+	"sourceSize": {"w":678,"h":649}
+}},
+"meta": {
+	"app": "https://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "ButtonGeneral.png",
+	"format": "RGBA8888",
+	"size": {"w":1024,"h":1024},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:01e2b7ab217995d4cf78f182a7b9b6c6:1adda01b0f4f268b8d8b2aedd07c3f81:a18e781645faf149cbba388043440a07$"
+}
+}

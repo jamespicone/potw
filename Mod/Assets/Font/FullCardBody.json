@@ -1,0 +1,28 @@
+{"frames": {
+
+"cardbodies_full.png":
+{
+	"frame": {"x":0,"y":0,"w":391,"h":342},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":391,"h":342},
+	"sourceSize": {"w":391,"h":342}
+},
+"SimurghDanger.png":
+{
+	"frame": {"x":394,"y":0,"w":45,"h":45},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":45,"h":45},
+	"sourceSize": {"w":45,"h":45}
+}},
+"meta": {
+	"app": "https://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "FullCardBody.png",
+	"format": "RGBA8888",
+	"size": {"w":512,"h":512},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:5c5c0d448c076e31a8f5846301935cad:8c8361c35f8a9c29f539efab4f8bd191:89c55f552016e3f6c8c145d926629d90$"
+}
+}
