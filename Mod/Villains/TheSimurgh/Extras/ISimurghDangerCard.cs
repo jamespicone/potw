@@ -18,16 +18,12 @@ namespace Jp.ParahumansOfTheWormverse.TheSimurgh
 
     public static class SimurghUtility
     {
-        public static int CompareSimurghDanger(Card lhs, Card rhs)
+        public static int SimurghDanger(this Card c, GameController g)
         {
-            var l = lhs as ISimurghDangerCard;
-            var r = rhs as ISimurghDangerCard;
+            var controller = g.FindCardController(c) as ISimurghDangerCard;
+            if (controller == null) { return int.MaxValue; }
 
-            if (l == null && r == null) { return 0; }
-            if (l == null) { return 1; }
-            if (r == null) { return -1; }
-
-            return l.Danger() - r.Danger();
+            return controller.Danger();
         }
 
         public static IEnumerator StackDeck(this TurnTakerController ttc, int numberOfCards, CardSource source)
@@ -50,9 +46,7 @@ namespace Jp.ParahumansOfTheWormverse.TheSimurgh
                 ttc.GameController.ExhaustCoroutine(e);
             }
 
-            revealedCards.Sort(CompareSimurghDanger);
-            revealedCards.Reverse();
-            e = ttc.GameController.BulkMoveCards(ttc, revealedCards, ttc.TurnTaker.Deck, responsibleTurnTaker: ttc.TurnTaker, cardSource: source);
+            e = ttc.GameController.BulkMoveCards(ttc, revealedCards.OrderBy(c => c.SimurghDanger(ttc.GameController)).Reverse(), ttc.TurnTaker.Deck, responsibleTurnTaker: ttc.TurnTaker, cardSource: source);
             if (ttc.UseUnityCoroutines)
             {
                 yield return ttc.GameController.StartCoroutine(e);

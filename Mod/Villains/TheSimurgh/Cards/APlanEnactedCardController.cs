@@ -18,8 +18,7 @@ namespace Jp.ParahumansOfTheWormverse.TheSimurgh
 
         public int Danger()
         {
-            // TODO
-            return 0;
+            return 1;
         }
 
         public override IEnumerator Play()

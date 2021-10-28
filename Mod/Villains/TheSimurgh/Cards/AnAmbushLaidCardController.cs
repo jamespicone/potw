@@ -20,8 +20,7 @@ namespace Jp.ParahumansOfTheWormverse.TheSimurgh
 
         public int Danger()
         {
-            // TODO
-            return 0;
+            return 6;
         }
 
         protected override string SurpriseMessage()

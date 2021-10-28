@@ -18,8 +18,7 @@ namespace Jp.ParahumansOfTheWormverse.TheSimurgh
 
         public int Danger()
         {
-            // TODO
-            return 0;
+            return 9;
         }
 
         public override IEnumerator Play()
@@ -44,14 +43,13 @@ namespace Jp.ParahumansOfTheWormverse.TheSimurgh
             }
 
             // Play the revealed card with the lowest {SimurghDanger}.
-            revealedCards.Sort(SimurghUtility.CompareSimurghDanger);
-            revealedCards.Reverse();
+            var orderedCards = revealedCards.OrderBy(c => c.SimurghDanger(GameController)).Reverse();
 
-            if (revealedCards.Count() > 0)
+            if (orderedCards.Count() > 0)
             {
                 e = GameController.PlayCard(
                     TurnTakerController,
-                    revealedCards.First(),
+                    orderedCards.First(),
                     cardSource: GetCardSource()
                 );
                 if (UseUnityCoroutines)
