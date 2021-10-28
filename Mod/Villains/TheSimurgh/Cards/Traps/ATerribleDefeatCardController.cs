@@ -22,5 +22,40 @@ namespace Jp.ParahumansOfTheWormverse.TheSimurgh
         {
             return card == Card;
         }
+
+        public override IEnumerator Play()
+        {
+            // When this card is flipped face up destroy every non-character card owned by the hero with the most cards in play.
+            var storedResults = new List<TurnTaker>();
+            var e = FindHeroWithMostCardsInPlay(
+                storedResults,
+                evenIfCannotDealDamage: true
+            );
+            if (UseUnityCoroutines)
+            {
+                yield return GameController.StartCoroutine(e);
+            }
+            else
+            {
+                GameController.ExhaustCoroutine(e);
+            }
+
+            var taker = storedResults.FirstOrDefault();
+            if (taker == null) { yield break; }
+
+            e = GameController.DestroyCards(
+                DecisionMaker,
+                new LinqCardCriteria(c => c.Owner == taker && !c.IsCharacter),
+                cardSource: GetCardSource()
+            );
+            if (UseUnityCoroutines)
+            {
+                yield return GameController.StartCoroutine(e);
+            }
+            else
+            {
+                GameController.ExhaustCoroutine(e);
+            }
+        }
     }
 }

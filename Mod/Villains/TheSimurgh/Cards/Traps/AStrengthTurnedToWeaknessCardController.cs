@@ -22,5 +22,28 @@ namespace Jp.ParahumansOfTheWormverse.TheSimurgh
         {
             return card == Card;
         }
+
+        public override void AddTriggers()
+        {
+            // "Whenever a hero target deals more than {8 - H} damage, that target deals itself 1 melee damage.",
+            AddTrigger<DealDamageAction>(
+                dda => dda.DamageSource.Is().Hero().Target() && dda.DidDealDamage && dda.Amount > (8 - H),
+                dda => SourcePunchesThemselves(dda),
+                TriggerType.DealDamage,
+                TriggerTiming.After
+            );
+        }
+
+        private IEnumerator SourcePunchesThemselves(DealDamageAction dda)
+        {
+            return DealDamage(
+                dda.DamageSource.Card,
+                dda.DamageSource.Card,
+                1,
+                DamageType.Melee,
+                isCounterDamage: true,
+                cardSource: GetCardSource()
+            );
+        }
     }
 }

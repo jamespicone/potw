@@ -21,6 +21,8 @@ namespace Jp.ParahumansOfTheWormverse.TheSimurgh
         }
 
         private Location ConditionDeck => TurnTaker.FindSubDeck("ConditionDeck");
+        
+        // TODO: Flipped advanced text
 
         public override bool AskIfCardIsIndestructible(Card card)
         {
@@ -32,8 +34,6 @@ namespace Jp.ParahumansOfTheWormverse.TheSimurgh
         {
             if (Card.IsFlipped)
             {
-                Debug.Log("SimurghDebug: Adding new triggers");
-
                 // Reduce damage dealt to {TheSimurghCharacter} by 2.
                 AddReduceDamageTrigger(c => c == Card, 2);
 
@@ -129,8 +129,6 @@ namespace Jp.ParahumansOfTheWormverse.TheSimurgh
         {
             // At the end of the villain turn, put a Scream token on this card...
             var pool = Card.FindTokenPool("ScreamPool");
-
-            Debug.Log($"SimurghDebug Pool: {pool}");
             if (pool == null) { yield break; }
 
             var e = GameController.AddTokensToPool(pool, 1, GetCardSource());
