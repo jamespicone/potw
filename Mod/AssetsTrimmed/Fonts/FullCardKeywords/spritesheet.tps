@@ -132,7 +132,7 @@
             <key>data</key>
             <struct type="DataFile">
                 <key>name</key>
-                <filename>../../../Assets/Font/SmallCardKeywords.json</filename>
+                <filename>../../../Assets/Fonts/FullCardKeywords.json</filename>
             </struct>
         </map>
         <key>multiPack</key>
@@ -181,7 +181,7 @@
         </struct>
         <key>individualSpriteSettings</key>
         <map type="IndividualSpriteSettingsMap">
-            <key type="filename">card-keywords-small.png</key>
+            <key type="filename">card-keywords-full.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
                 <point_f>0.5,0.5</point_f>
@@ -190,9 +190,9 @@
                 <key>scale9Enabled</key>
                 <false/>
                 <key>scale9Borders</key>
-                <rect>68,74,135,148</rect>
+                <rect>130,132,260,263</rect>
                 <key>scale9Paddings</key>
-                <rect>68,74,135,148</rect>
+                <rect>130,132,260,263</rect>
                 <key>scale9FromFile</key>
                 <false/>
             </struct>

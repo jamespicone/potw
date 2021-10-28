@@ -132,7 +132,7 @@
             <key>data</key>
             <struct type="DataFile">
                 <key>name</key>
-                <filename>../../../Assets/Font/RedStateBlueState.json</filename>
+                <filename>../../../Assets/Fonts/FullCardBody.json</filename>
             </struct>
         </map>
         <key>multiPack</key>
@@ -181,7 +181,7 @@
         </struct>
         <key>individualSpriteSettings</key>
         <map type="IndividualSpriteSettingsMap">
-            <key type="filename">RedStateBlueState-clean96.png</key>
+            <key type="filename">SimurghDanger.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
                 <point_f>0.5,0.5</point_f>
@@ -190,13 +190,13 @@
                 <key>scale9Enabled</key>
                 <false/>
                 <key>scale9Borders</key>
-                <rect>179,180,357,361</rect>
+                <rect>11,11,23,23</rect>
                 <key>scale9Paddings</key>
-                <rect>179,180,357,361</rect>
+                <rect>11,11,23,23</rect>
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
-            <key type="filename">RedStateBlueStateBold-clean96.png</key>
+            <key type="filename">cardbodies_full.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
                 <point_f>0.5,0.5</point_f>
@@ -205,24 +205,9 @@
                 <key>scale9Enabled</key>
                 <false/>
                 <key>scale9Borders</key>
-                <rect>211,192,421,383</rect>
+                <rect>98,86,195,171</rect>
                 <key>scale9Paddings</key>
-                <rect>211,192,421,383</rect>
-                <key>scale9FromFile</key>
-                <false/>
-            </struct>
-            <key type="filename">RedStateBlueStateItalic-clean96.png</key>
-            <struct type="IndividualSpriteSettings">
-                <key>pivotPoint</key>
-                <point_f>0.5,0.5</point_f>
-                <key>spriteScale</key>
-                <double>1</double>
-                <key>scale9Enabled</key>
-                <false/>
-                <key>scale9Borders</key>
-                <rect>197,179,393,358</rect>
-                <key>scale9Paddings</key>
-                <rect>197,179,393,358</rect>
+                <rect>98,86,195,171</rect>
                 <key>scale9FromFile</key>
                 <false/>
             </struct>

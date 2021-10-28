@@ -11,10 +11,10 @@
 "meta": {
 	"app": "https://www.codeandweb.com/texturepacker",
 	"version": "1.0",
-	"image": "FullCardKeywordsl.png",
+	"image": "FullCardKeywords.png",
 	"format": "RGBA8888",
 	"size": {"w":1024,"h":1024},
 	"scale": "1",
-	"smartupdate": "$TexturePacker:SmartUpdate:2b059e241a80705cc5494f970483c927:df929d3fa4477273c52c4e6101fb74eb:9d42d560cc0362828d9cedf42991171b$"
+	"smartupdate": "$TexturePacker:SmartUpdate:1bbf6accfa2453fc5cc348e4dca9f462:df929d3fa4477273c52c4e6101fb74eb:78a8fe050ee96964a4e5b33f95cb8cbd$"
 }
 }
