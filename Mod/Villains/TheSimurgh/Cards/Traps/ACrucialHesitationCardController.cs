@@ -14,15 +14,7 @@ namespace Jp.ParahumansOfTheWormverse.TheSimurgh
     public class ACrucialHesitationCardController : CardController
     {
         public ACrucialHesitationCardController(Card card, TurnTakerController controller) : base(card, controller)
-        {
-            AddThisCardControllerToList(CardControllerListType.MakesIndestructible);
-        }
-
-        public override bool AskIfCardIsIndestructible(Card card)
-        {
-            // "This card is indestructible."
-            return card == Card;
-        }
+        {}
 
         public override void AddTriggers()
         {

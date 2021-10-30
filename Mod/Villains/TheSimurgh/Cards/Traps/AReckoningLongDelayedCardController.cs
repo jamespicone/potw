@@ -14,14 +14,7 @@ namespace Jp.ParahumansOfTheWormverse.TheSimurgh
     public class AReckoningLongDelayedCardController : CardController
     {
         public AReckoningLongDelayedCardController(Card card, TurnTakerController controller) : base(card, controller)
-        {
-            AddThisCardControllerToList(CardControllerListType.MakesIndestructible);
-        }
-
-        public override bool AskIfCardIsIndestructible(Card card)
-        {
-            return card == Card;
-        }
+        {}
 
         public override IEnumerator Play()
         {

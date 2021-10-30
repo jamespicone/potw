@@ -14,14 +14,7 @@ namespace Jp.ParahumansOfTheWormverse.TheSimurgh
     public class AStrengthTurnedToWeaknessCardController : CardController
     {
         public AStrengthTurnedToWeaknessCardController(Card card, TurnTakerController controller) : base(card, controller)
-        {
-            AddThisCardControllerToList(CardControllerListType.MakesIndestructible);
-        }
-
-        public override bool AskIfCardIsIndestructible(Card card)
-        {
-            return card == Card;
-        }
+        {}
 
         public override void AddTriggers()
         {
