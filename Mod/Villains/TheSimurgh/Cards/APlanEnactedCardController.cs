@@ -29,7 +29,7 @@ namespace Jp.ParahumansOfTheWormverse.TheSimurgh
             if (faceDownVillains.Count() <= 0)
             {
                 // ...play the top card of the villain deck.
-                e = PlayTheTopCardOfTheVillainDeckWithMessageResponse(null);
+                e = GameController.PlayTopCardOfLocation(TurnTakerController, TurnTaker.Deck, cardSource: GetCardSource());
                 if (UseUnityCoroutines)
                 {
                     yield return GameController.StartCoroutine(e);

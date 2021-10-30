@@ -136,10 +136,9 @@ namespace Jp.ParahumansOfTheWormverse.TheSimurgh
                 GetCardSource(),
                 TurnTakerController,
                 deck,
-                c => true,
-                numberOfMatches: 2,
+                numberOfCards: 2,
                 fromBottom: false,
-                revealedCardsDisplay: RevealedCardDisplay.ShowMatchingCards
+                revealedCardsDisplay: RevealedCardDisplay.ShowRevealedCards
             );
 
             var e = DoAction(reveal);

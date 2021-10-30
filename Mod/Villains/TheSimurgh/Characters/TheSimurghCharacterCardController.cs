@@ -22,8 +22,6 @@ namespace Jp.ParahumansOfTheWormverse.TheSimurgh
 
         private Location ConditionDeck => TurnTaker.FindSubDeck("ConditionDeck");
         
-        // TODO: Flipped advanced text
-
         public override bool AskIfCardIsIndestructible(Card card)
         {
             // "Face-down villain cards are indestructible."
@@ -32,36 +30,39 @@ namespace Jp.ParahumansOfTheWormverse.TheSimurgh
 
         public override void AddSideTriggers()
         {
+            AddDefeatedIfDestroyedTriggers();
+            AddDefeatedIfMovedOutOfGameTriggers();
+
             if (Card.IsFlipped)
             {
                 // Reduce damage dealt to {TheSimurghCharacter} by 2.
-                AddReduceDamageTrigger(c => c == Card, 2);
+                AddSideTrigger(AddReduceDamageTrigger(c => c == Card, 2));
 
                 // At the start of the villain turn, reveal the top {H + 1} cards of the villain deck. Put the revealed cards back in ascending order of {SimurghDanger}.
-                AddStartOfTurnTrigger(tt => tt == TurnTaker, pca => TurnTakerController.StackDeck(H + 1, GetCardSource()), TriggerType.RevealCard);
+                AddSideTrigger(AddStartOfTurnTrigger(tt => tt == TurnTaker, pca => TurnTakerController.StackDeck(H + 1, GetCardSource()), TriggerType.RevealCard));
 
-                AddEndOfTurnTrigger(tt => tt == TurnTaker, pca => DoFlippedEndOfTurnStuff(pca), new TriggerType[] { TriggerType.DealDamage, TriggerType.AddTokensToPool });
+                AddSideTrigger(AddEndOfTurnTrigger(tt => tt == TurnTaker, pca => DoFlippedEndOfTurnStuff(pca), new TriggerType[] { TriggerType.DealDamage, TriggerType.AddTokensToPool }));
 
                 if (IsGameAdvanced)
                 {
-                    AddEndOfTurnTrigger(tt => tt == TurnTaker, pca => GetATrap(pca), new TriggerType[] { TriggerType.PutIntoPlay });
+                    AddSideTrigger(AddEndOfTurnTrigger(tt => tt == TurnTaker, pca => GetATrap(pca), new TriggerType[] { TriggerType.PutIntoPlay }));
                 }
             }
             else
             {
                 // Reduce damage dealt to {TheSimurghCharacter} by 1
-                AddReduceDamageTrigger(c => c == Card, 1);
-                AddStartOfTurnTrigger(tt => tt == TurnTaker, pca => DoStartOfTurnStuff(), new TriggerType[] { TriggerType.PlayCard, TriggerType.RevealCard });
-                AddEndOfTurnTrigger(tt => tt == TurnTaker, pca => DoEndOfTurnStuff(pca), new TriggerType[] { TriggerType.DealDamage, TriggerType.FlipCard });
+                AddSideTrigger(AddReduceDamageTrigger(c => c == Card, 1));
+                AddSideTrigger(AddStartOfTurnTrigger(tt => tt == TurnTaker, pca => DoStartOfTurnStuff(), new TriggerType[] { TriggerType.PlayCard, TriggerType.RevealCard }));
+                AddSideTrigger(AddEndOfTurnTrigger(tt => tt == TurnTaker, pca => DoEndOfTurnStuff(pca), new TriggerType[] { TriggerType.DealDamage, TriggerType.FlipCard }));
 
                 if (IsGameAdvanced)
                 {
                     // At the start of the villain turn, play the top card of the Condition deck.
-                    AddStartOfTurnTrigger(
+                    AddSideTrigger(AddStartOfTurnTrigger(
                         tt => tt == TurnTaker,
                         pca => GameController.PlayTopCardOfLocation(TurnTakerController, ConditionDeck, responsibleTurnTaker: TurnTaker, cardSource: GetCardSource()),
                         TriggerType.PlayCard
-                    );
+                    ));
                 }
             }
         }

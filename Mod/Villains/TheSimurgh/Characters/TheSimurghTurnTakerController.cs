@@ -32,12 +32,24 @@ namespace Jp.ParahumansOfTheWormverse.TheSimurgh
 
             for (int i = 0; i < GameController.Game.H; ++i)
             {
+                var card = TurnTaker.Revealed.TopCard;
+                var cardController = FindCardController(card);
+
+                e = GameController.FlipCard(cardController, allowBackToFront: false);
+                if (UseUnityCoroutines)
+                {
+                    yield return GameController.StartCoroutine(e);
+                }
+                else
+                {
+                    GameController.ExhaustCoroutine(e);
+                }
+
                 e = GameController.MoveCard(
                     this,
-                    TurnTaker.Revealed.TopCard,
+                    card,
                     TurnTaker.PlayArea,
-                    playCardIfMovingToPlayArea: false,
-                    flipFaceDown: true
+                    playCardIfMovingToPlayArea: false
                 );
                 if (UseUnityCoroutines)
                 {
