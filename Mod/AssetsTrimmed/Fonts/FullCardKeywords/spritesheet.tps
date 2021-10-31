@@ -182,6 +182,14 @@
         <key>individualSpriteSettings</key>
         <map type="IndividualSpriteSettingsMap">
             <key type="filename">SimurghDanger1.png</key>
+            <key type="filename">SimurghDanger2.png</key>
+            <key type="filename">SimurghDanger3.png</key>
+            <key type="filename">SimurghDanger4.png</key>
+            <key type="filename">SimurghDanger5.png</key>
+            <key type="filename">SimurghDanger6.png</key>
+            <key type="filename">SimurghDanger7.png</key>
+            <key type="filename">SimurghDanger8.png</key>
+            <key type="filename">SimurghDanger9.png</key>
             <key type="filename">SimurghDangerTemplate.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
