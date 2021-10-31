@@ -47,7 +47,7 @@
         "This card doesn't reduce damage dealt by {GrueCharacter}",
         "Reduce the first damage that would be dealt each turn by the card next to this card by 1",
         "Reduce the first damage that would be dealt each turn to the card next to this card by 1",
-        "At the end of {GrueCharacter}'s next turn remove this card from the game"
+        "At the end of {GrueCharacter}'s next turn or when this card leaves play remove this card from the game"
       ],
       "icons": [ "ReduceDamageDealt", "ReduceDamageTaken", "DestroySelf", "EndOfTurnAction", "RemoveFromGame" ],
       "flavorText": "An absolute lack of light{BR}that left me unable to tell whether{BR}my eyes were open or shut,{BR}it was ominous.",

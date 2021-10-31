@@ -45,6 +45,20 @@ namespace Jp.ParahumansOfTheWormverse.Grue
             );
 
             AddIfTheTargetThatThisCardIsNextToLeavesPlayDestroyThisCardTrigger();
+
+            AddTrigger<MoveCardAction>(
+                mca => mca.CardToMove == Card && !mca.Destination.IsOutOfGame && !mca.Destination.IsInPlay,
+                mca => GoOutOfPlay(mca),
+                TriggerType.RemoveFromGame,
+                TriggerTiming.Before
+            );
+
+            AddTrigger<DestroyCardAction>(
+                dca => dca.CardToDestroy == this && dca.IsSuccessful,
+                dca => GoOutOfPlay(dca),
+                TriggerType.ChangePostDestroyDestination,
+                TriggerTiming.Before
+            );
         }
 
         private IEnumerator ReduceFirstEachTurnByOneSource(DealDamageAction dda)
@@ -61,18 +75,14 @@ namespace Jp.ParahumansOfTheWormverse.Grue
 
         private bool IsGruesNextTurn(PhaseChangeAction pca)
         {
-            Debug.Log($"Checking if Grue's next turn is [{pca}]");
-
             // If this card entered play this turn it's not Grue's *next* turn yet.
             if (Journal.CardEntersPlayEntriesThisTurn().Where(je => je.Card == Card).Count() > 0)
             {
-                Debug.Log("Card entered play this turn");
                 return false;
             }
 
             if (pca.ToPhase.TurnTaker != TurnTaker || pca.ToPhase.Phase != Phase.End)
             {
-                Debug.Log("Not Grue's turn or not end phase");
                 return false;
             }
 
@@ -81,13 +91,24 @@ namespace Jp.ParahumansOfTheWormverse.Grue
 
         private IEnumerator RemoveSelfFromGame(PhaseChangeAction pca)
         {
-            Debug.Log("Removing darkness from game");
             return GameController.MoveCard(
                 TurnTakerController,
                 Card,
                 TurnTaker.OutOfGame,
                 cardSource: GetCardSource()
             );
+        }
+
+        private IEnumerator GoOutOfPlay(MoveCardAction mca)
+        {
+            mca.SetDestination(TurnTaker.OutOfGame, destinationCanBeChanged: true);
+            yield break;
+        }
+
+        private IEnumerator GoOutOfPlay(DestroyCardAction dca)
+        {
+            dca.OverridePostDestroyDestination(TurnTaker.OutOfGame, cardSource: GetCardSource());
+            yield break;
         }
 
         private ITrigger _reduceSourceTrigger;
