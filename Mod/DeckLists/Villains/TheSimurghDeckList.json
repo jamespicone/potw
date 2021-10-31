@@ -89,7 +89,7 @@
 				"DestroyEquipment",
 				"Manipulate"
 			],
-			"flavorText": "Pieces of machinery began to flow out of a gaping hole in the side of the building nearest where she'd landed, stopping when they reached her immediate vicinity.",
+			"flavorText": "Pieces of machinery began to{BR}flow out of a gaping hole in the side{BR}of the building nearest where she'd{BR}landed, stopping when they reached{BR}her immediate vicinity.",
 			"flavorReference": "Migration 17.2"
 		},
 		{
@@ -105,7 +105,7 @@
 			"icons": [
 				"PlayCardNow"
 			],
-			"flavorText": "Telekinesis. She'd created a false image of herself out of snow and ice, baiting Scion away.",
+			"flavorText": "Telekinesis.{BR}She'd created a false image of herself{BR}out of snow and ice, baiting Scion away.",
 			"flavorReference": "Migration 17.2"
 		},
 		{
@@ -135,7 +135,7 @@
 					"color": ""
 				}
 			],
-			"flavorText": "The bubble-man formed another shield around himself, but he left his companion out of it.",
+			"flavorText": "The bubble-man formed{BR}another shield around himself,{BR}but he left his companion out of it.",
 			"flavorReference": "Migration 17.2"
 		},
 		{
@@ -153,7 +153,7 @@
 				"MakeDamageUnredirectable",
 				"Indestructible"
 			],
-			"flavorText": "The resulting shards and flakes of crystal turned around in the air and condensed in a thick shell around the force field.",
+			"flavorText": "The resulting shards and flakes{BR}of crystal turned around in the air{BR}and condensed in a thick shell{BR}around the force field.",
 			"flavorReference": "Migration 17.2"
 		},
 		{
@@ -169,7 +169,7 @@
 			"icons": [
 				"DealDamageSonic"
 			],
-			"flavorText": "The result is hallucinations, momentary or sustained. Hearing sounds, seeing things, smelling something, where none truly exist.",
+			"flavorText": "The result is hallucinations,{BR}momentary or sustained. Hearing sounds,{BR}seeing things, smelling something,{BR}where none truly exist.",
 			"flavorReference": "Interlude 28"
 		},
 		{
@@ -187,7 +187,7 @@
 				"DealDamageProjectile",
 				"DealDamageMelee"
 			],
-			"flavorQuotes": "Not one second after the barrier was in place, a pair of heroes flew around the corner.",
+			"flavorText": "Not one second after the barrier{BR}was in place, a pair of heroes{BR}flew around the corner.",
 			"flavorReference": "Migration 17.2"
 		},
 		{
@@ -205,7 +205,7 @@
 				"PlayCardNow",
 				"FlipFaceUp"
 			],
-			"flavorText": "He glanced over his shoulder, saw the various components of the circle crackling with current as it rose behind the Simurgh, like a gargantuan halo.",
+			"flavorText": "He glanced over his shoulder,{BR}saw the various components of the{BR}circle crackling with current as it rose{BR}behind the Simurgh,{BR}like a gargantuan halo.",
 			"flavorReference": "Migration 17.2"
 		},
 		{
@@ -223,7 +223,7 @@
 				"DealDamagePsychic",
 				"Indestructible"
 			],
-			"flavorText": "An obstacle must be removed. This is critical, but she is blind to it. This is the greatest problem she faces.",
+			"flavorText": "An obstacle must be removed.{BR}This is critical, but she is blind to it.{BR}This is the greatest problem she faces.",
 			"flavorReference": "Interlude 28"
 		},
 		{
@@ -241,7 +241,7 @@
 				"PlayCardNow",
 				"DestroyOngoing"
 			],
-			"flavorText": "Pretercognition. Spread out over several targets at once. Each target is conceptualized in the context of twelve to eighty years of history.",
+			"flavorText": "Pretercognition. Spread out{BR}over several targets at once.{BR}Each target is conceptualized in the{BR}context of twelve to eighty years{BR}of history.",
 			"flavorReference": "Interlude 28"
 		},
 		{
@@ -263,7 +263,7 @@
 			"flavorQuotes": [
 				{
 					"identifier": "Myrddin",
-					"text": "It's going to backfire. I've said it before, I'll say it now, and I'll remind you all I said it with every chance I get until the day I die. It's going to backfire."
+					"text": "It's going to backfire.{BR}I've said it before, I'll say it now,{BR}and I'll remind you all I said it{BR}with every chance I get until the day I die.{BR}It's going to backfire."
 				}
 			],
 			"flavorReference": "Myrddin, Migration 17.4"
@@ -283,7 +283,7 @@
 				"DestroyHero",
 				"Indestructible"
 			],
-			"flavorText": "The indistinct and distant noises of the heroes firing on the Simurgh had stopped all at once, as the heroes were killed or left reeling from the aftershock.",
+			"flavorText": "The indistinct and distant{BR}noises of the heroes firing on the{BR}Simurgh had stopped all at once,{BR}as the heroes were killed or{BR}left reeling from the aftershock.",
 			"flavorReference": "Migration 17.2"
 		},
 		{
@@ -299,7 +299,7 @@
 			"icons": [
 				"RedirectDamage"
 			],
-			"flavorQuotes": "Possibilities, as another jumble of images. These clarify as the others do, as eventualities are discarded, the targets around her coming into focus.",
+			"flavorText": "Possibilities, as another{BR}jumble of images. These clarify{BR}as the others do, as eventualities{BR}are discarded, the targets around her{BR}coming into focus.",
 			"flavorReference": "Interlude 28"
 		},
 		{
@@ -318,7 +318,7 @@
 				"DealDamageProjectile",
 				"Indestructible"
 			],
-			"flavorText": "A tide of snow and ice hit him like a truck, driving him into the ragged edge of the building.",
+			"flavorText": "A tide of snow and ice{BR}hit him like a truck,{BR}driving him into the ragged{BR}edge of the building.",
 			"flavorReference": "Migration 17.2"
 		},
 		{
@@ -336,7 +336,7 @@
 				"PlayCardNow",
 				"DealDamageFire"
 			],
-			"flavorText": "The various fragments, the little things, the bodies and pieces of furniture, they became part of a protective maelstrom around the Simurgh.",
+			"flavorText": "The various fragments, the{BR}little things, the bodies and pieces{BR}of furniture, they became part of{BR}a protective maelstrom around{BR}the Simurgh.",
 			"flavorReference": "Migration 17.2"
 		},
 		
@@ -353,7 +353,7 @@
 			"icons": [
 				"PlayCardNow"
 			],
-			"flavorText": "Frame a situation to put a target under optimal fear and stress. Hormone secretions increase.",
+			"flavorText": "Frame a situation to put a target{BR}under optimal fear and stress.{BR}Hormone secretions increase.",
 			"flavorReference": "Interlude 28"
 		},
 		
@@ -378,7 +378,7 @@
 			"flavorQuotes": [
 				{
 					"identifier": "Myrddin",
-					"text": "If she's answering questions for us, we don't want to know."
+					"text": "If she's answering questions for us,{BR}we don't want to know."
 				}
 			],
 			"flavorReference": "Myrddin, Migration 17.4"
@@ -395,7 +395,8 @@
 					"count": 1,
 					"title": "A Backup Sabotaged",
 					"keywords": [
-						"condition", "one-shot"
+						"condition",
+						"one-shot"
 					],
 					"body": [
 						"If any hero has 2 cards in hand with the same name, flip a face-down villain card and remove this card from the game."
@@ -403,7 +404,7 @@
 					"icons": [
 						"FlipFaceUp"
 					],
-					"flavorText": "The heroes had cut the power, and the Simurgh was still managing to activate the thing.",
+					"flavorText": "The heroes had cut the power,{BR}and the Simurgh was [b]still[/b] managing{BR}to activate the thing.",
 					"flavorReference": "Migration 17.2"
 				},
 				{
@@ -420,7 +421,7 @@
 					"icons": [
 						"FlipFaceUp"
 					],
-					"flavorText": "She requires access to particular information. This can be arranged by positioning targets carefully.",
+					"flavorText": "She requires access to{BR}particular information.{BR}This can be arranged by{BR}positioning targets carefully.",
 					"flavorReference": "Interlude 28"
 				},
 				{
@@ -437,7 +438,7 @@
 					"icons": [
 						"FlipFaceUp"
 					],
-					"flavorText": "She must be unmolested. This is given freely to her.",
+					"flavorText": "She must be unmolested.{BR}This is given freely to her.",
 					"flavorReference": "Interlude 28"
 				},
 				{
@@ -454,7 +455,7 @@
 					"icons": [
 						"FlipFaceUp"
 					],
-					"flavorText": "She requires resources. This requires patience.",
+					"flavorText": "She requires resources.{BR}This requires patience.",
 					"flavorReference": "Interlude 28"
 				},
 				{
@@ -471,7 +472,7 @@
 					"icons": [
 						"FlipFaceUp"
 					],
-					"flavorText": "With study and precision, each ball can find its pocket. Spheres of resin meet a ledge covered by wool, perching on the edge as they spend their momentum.",
+					"flavorText": "With study and precision,{BR}each ball can find its pocket.{BR}Spheres of resin meet a ledge covered{BR}by wool, perching on the edge{BR}as they spend their momentum.",
 					"flavorReference": "Interlude 28"
 				}
 			]
