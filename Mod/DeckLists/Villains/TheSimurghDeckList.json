@@ -13,7 +13,7 @@
 				"villain"
 			],
 			"body": "The Strategist",
-			"backgroundColor": "",
+			"backgroundColor": "ffffff",
 			"character": true,
 			"hitpoints": 50,
 			"setup": [

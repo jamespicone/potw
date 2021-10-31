@@ -22,7 +22,7 @@ namespace Jp.ParahumansOfTheWormverse.TheSimurgh
             var results = new List<DestroyCardAction>();
             var e = GameController.DestroyCards(
                 DecisionMaker,
-                new LinqCardCriteria(c => c.Is().Noncharacter().Target(), "non-character targets", useCardsSuffix: false),
+                new LinqCardCriteria(c => c.IsTarget && !c.IsCharacter, "non-character targets", useCardsSuffix: false),
                 storedResults: results,
                 cardSource: GetCardSource()
             );
