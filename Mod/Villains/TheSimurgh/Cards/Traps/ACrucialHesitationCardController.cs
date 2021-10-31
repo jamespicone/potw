@@ -120,6 +120,9 @@ namespace Jp.ParahumansOfTheWormverse.TheSimurgh
 
         private bool ItMattersIfTurnTakerDraws(HeroTurnTaker heroTurnTaker)
         {
+            // If it's not your turn it doesn't matter
+            if (GameController.ActiveTurnTaker != heroTurnTaker) { return false; }
+
             var didDraw = Journal.DrawCardEntriesThisTurn().Count(j => j.Hero == heroTurnTaker) > 0;
             // Already drew, no reason not to draw more
             if (didDraw) { return false; }
