@@ -80,7 +80,8 @@
 			"count": 2,
 			"title": "A Capability Revealed",
 			"keywords": [
-				"one-shot"
+				"one-shot",
+				"{SimurghDanger3}"
 			],
 			"body": [
 				"Destroy all Equipment cards. Reveal the top X cards of the villain deck, where X is the number of cards destroyed this way. Put the revealed cards back in ascending order of {SimurghDanger}."
@@ -97,7 +98,8 @@
 			"count": 4,
 			"title": "A Countermeasure Defeated",
 			"keywords": [
-				"one-shot"
+				"one-shot",
+				"{SimurghDanger9}"
 			],
 			"body": [
 				"Reveal the top {H} cards of the villain trash. Play the revealed card with the lowest {SimurghDanger}."
@@ -161,7 +163,8 @@
 			"count": 3,
 			"title": "A Fate Selected",
 			"keywords": [
-				"one-shot"
+				"one-shot",
+				"{SimurghDanger7}"
 			],
 			"body": [
 				"{TheSimurghCharacter} deals the hero with the fewest cards in play {H} sonic damage."
@@ -177,7 +180,8 @@
 			"count": 3,
 			"title": "A Million Coincidences",
 			"keywords": [
-				"one-shot"
+				"one-shot",
+				"{SimurghDanger2}"
 			],
 			"body": [
 				"The Simurgh deals 1 projectile damage to all hero targets H-1 times.",
@@ -195,7 +199,8 @@
 			"count": 1,
 			"title": "A Plan Enacted",
 			"keywords": [
-				"one-shot"
+				"one-shot",
+				"{SimurghDanger1}"
 			],
 			"body": [
 				"If there are no face-down villain cards in play, play the top card of the villain deck.",
@@ -231,7 +236,8 @@
 			"count": 2,
 			"title": "A Response Prepared",
 			"keywords": [
-				"one-shot"
+				"one-shot",
+				"{SimurghDanger4}"
 			],
 			"body": [
 				"When this card is revealed, play it.",
@@ -291,7 +297,8 @@
 			"count": 2,
 			"title": "A Threat Foreseen",
 			"keywords": [
-				"ongoing"
+				"ongoing",
+				"{SimurghDanger5}"
 			],
 			"body": [
 				"The first time {TheSimurghCharacter} would be dealt damage each round, redirect that damage to the hero with the lowest HP."
@@ -326,7 +333,8 @@
 			"count": 4,
 			"title": "An Ambush Laid",
 			"keywords": [
-				"one-shot"
+				"one-shot",
+				"{SimurghDanger6}"
 			],
 			"body": [
 				"When this card is revealed, play it.",
@@ -345,7 +353,8 @@
 			"count": 4,
 			"title": "An Environment Chosen",
 			"keywords": [
-				"one-shot"
+				"one-shot",
+				"{SimurghDanger8}"
 			],
 			"body": [
 				"Play the top {H} cards of the environment deck."
