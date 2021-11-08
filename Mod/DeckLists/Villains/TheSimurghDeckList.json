@@ -397,7 +397,7 @@
 		{
 			"identifier": "ConditionDeck",
 			"name": "The Condition Deck",
-			"kind": "Villain",
+			"kind": "Other",
 			"cards": [
 				{
 					"identifier": "ABackupSabotaged",
