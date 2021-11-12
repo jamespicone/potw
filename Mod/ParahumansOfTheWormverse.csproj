@@ -357,6 +357,7 @@
     <Compile Include="Villains\TheSimurgh\Cards\Conditions\AnUnfortunateMalfunctionCardController.cs" />
     <Compile Include="Villains\TheSimurgh\Cards\Conditions\ASurfeitOfOptionsCardController.cs" />
     <Compile Include="Villains\TheSimurgh\Cards\Conditions\AWealthOfTargetsCardController.cs" />
+    <Compile Include="Villains\TheSimurgh\Cards\ThinkerCountermeasuresCardController.cs" />
     <Compile Include="Villains\TheSimurgh\Cards\Traps\ACrucialHesitationCardController.cs" />
     <Compile Include="Villains\TheSimurgh\Cards\Traps\ADefencePenetratedCardController.cs" />
     <Compile Include="Villains\TheSimurgh\Cards\Traps\AnUnpleasantDiscoveryCardController.cs" />

@@ -109,7 +109,7 @@ namespace Jp.ParahumansOfTheWormverse.TheSimurgh
             e = GameController.SelectLocationsAndDoAction(
                 DecisionMaker,
                 SelectionType.RevealCardsFromDeck,
-                l => l.IsDeck && l.IsHero,
+                l => l.IsDeck && l.IsHero && ! l.OwnerTurnTaker.IsIncapacitatedOrOutOfGame,
                 l => RevealAndDiscard(l, selectedKeyword),
                 cardSource: GetCardSource()
             );

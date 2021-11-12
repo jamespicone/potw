@@ -19,7 +19,7 @@ namespace Jp.ParahumansOfTheWormverse.TheSimurgh
         protected override bool IsConditionMet()
         {
             // If there are at least {H} non-character card targets in play
-            return FindCardsWhere(c => c.IsInPlay && c.Is().Noncharacter().Target()).Count() >= H;
+            return FindCardsWhere(c => c.IsInPlay && c.IsTarget && ! c.IsCharacter).Count() >= H;
         }
     }
 }

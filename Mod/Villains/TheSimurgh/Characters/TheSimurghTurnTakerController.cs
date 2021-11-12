@@ -30,7 +30,7 @@ namespace Jp.ParahumansOfTheWormverse.TheSimurgh
                 GameController.ExhaustCoroutine(e);
             }
 
-            for (int i = 0; i < GameController.Game.H; ++i)
+            for (int i = 0; i < 4; ++i)
             {
                 var card = TurnTaker.Revealed.TopCard;
                 var cardController = FindCardController(card);
@@ -65,6 +65,45 @@ namespace Jp.ParahumansOfTheWormverse.TheSimurgh
                 this,
                 TurnTaker.Revealed.Cards,
                 TurnTaker.OffToTheSide
+            );
+            if (UseUnityCoroutines)
+            {
+                yield return GameController.StartCoroutine(e);
+            }
+            else
+            {
+                GameController.ExhaustCoroutine(e);
+            }
+
+            var countermeasures = FindCardsWhere(c => c.Owner == TurnTaker && c.Identifier == "ThinkerCountermeasures");
+            for (int i = 0; i < (5 - GameController.Game.H); ++i)
+            {
+                if (countermeasures.Count() <= 0)
+                {
+                    break;
+                }
+
+                e = GameController.PlayCard(
+                    this,
+                    countermeasures.First(),
+                    isPutIntoPlay: true
+                );
+                if (UseUnityCoroutines)
+                {
+                    yield return GameController.StartCoroutine(e);
+                }
+                else
+                {
+                    GameController.ExhaustCoroutine(e);
+                }
+
+                countermeasures = countermeasures.Skip(1);
+            }
+
+            e = GameController.BulkMoveCards(
+                this,
+                countermeasures,
+                TurnTaker.InTheBox
             );
             if (UseUnityCoroutines)
             {

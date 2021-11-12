@@ -17,7 +17,7 @@
 			"character": true,
 			"hitpoints": 50,
 			"setup": [
-				"Put {TheSimurghCharacter} into play, 'The Strategist' side up. Set all Condition cards aside as the Condition deck. Shuffle all Trap cards and put the top {H} into play face down. Put the other Trap cards off to the side."
+				"Put {TheSimurghCharacter} into play, 'The Strategist' side up. Set all Condition cards aside as the Condition deck. Shuffle all Trap cards and put the top 4 into play face down. Put the other Trap cards off to the side. Put {5 - H} Thinker Countermeasure cards into play and the rest back in the box."
 			],
 			"gameplay": [
 				"Reduce damage dealt to {TheSimurghCharacter} by 1.",
@@ -365,7 +365,7 @@
 			"flavorText": "Frame a situation to put a target{BR}under optimal fear and stress.{BR}Hormone secretions increase.",
 			"flavorReference": "Interlude 28"
 		},
-		
+
 		{
 			"identifier": "AnUnpleasantDiscovery",
 			"count": 1,
@@ -391,6 +391,19 @@
 				}
 			],
 			"flavorReference": "Myrddin, Migration 17.4"
+		},
+		{
+			"identifier": "ThinkerCountermeasures",
+			"count": 2,
+			"title": "Thinker Countermeasures",
+			"body": [
+				"Whenever a face-down villain card would be flipped instead remove this card from the game"
+			],
+			"icons": [
+				"DestroySelf"
+			],
+			"flavorText": "",
+			"flavorReference": ""
 		}
 	],
 	"subdecks": [
