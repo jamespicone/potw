@@ -72,6 +72,15 @@ namespace Jp.ParahumansOfTheWormverse.Grue
 
                 default: yield break;
             }
+
+            if (UseUnityCoroutines)
+            {
+                yield return GameController.StartCoroutine(e);
+            }
+            else
+            {
+                GameController.ExhaustCoroutine(e);
+            }
         }
 
         public override IEnumerator UsePower(int index = 0)
