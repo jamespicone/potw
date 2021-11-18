@@ -23,7 +23,7 @@ namespace Jp.ParahumansOfTheWormverse.Grue
             var e = GameController.SelectCardAndStoreResults(
                 HeroTurnTakerController,
                 SelectionType.MoveCardNextToCard,
-                new LinqCardCriteria(c => c.Is().Hero().Character(), "hero character"),
+                new LinqCardCriteria(c => c.Is().Hero().Character() && c.IsInPlay, "hero character"),
                 storedResults: selectedCardList,
                 optional: false,
                 cardSource: GetCardSource()
