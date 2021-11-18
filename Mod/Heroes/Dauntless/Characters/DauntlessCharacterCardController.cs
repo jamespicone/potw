@@ -43,7 +43,7 @@ namespace Jp.ParahumansOfTheWormverse.Dauntless
                     e = GameController.SelectCardAndStoreResults(
                         HeroTurnTakerController,
                         SelectionType.MakeIndestructible,
-                        new LinqCardCriteria(c => c.DoKeywordsContain("equipment")),
+                        new LinqCardCriteria(c => c.DoKeywordsContain("equipment") && c.IsInPlay),
                         storedResults,
                         optional: false,
                         cardSource: GetCardSource()
