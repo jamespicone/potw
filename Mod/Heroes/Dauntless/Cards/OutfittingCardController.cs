@@ -65,29 +65,34 @@ namespace Jp.ParahumansOfTheWormverse.Dauntless
                 GameController.ExhaustCoroutine(e);
             }
 
-            if (reveals.Count() <= 0) { yield break; }
-            if (! reveals.First().FoundMatchingCards) { yield break; }
-            if (reveals.First().MatchingCards.Count() <= 0) { yield break; }
+            while (true)
+            {
+                if (reveals.Count() <= 0) { break; }
+                if (!reveals.First().FoundMatchingCards) { break; }
+                if (reveals.First().MatchingCards.Count() <= 0) { break; }
 
-            // They may put that card into play or into their hand.
-            e = GameController.SelectLocationAndMoveCard(
-                selectedHeroController,
-                reveals.First().MatchingCards.First(),
-                new MoveCardDestination[] {
+                // They may put that card into play or into their hand.
+                e = GameController.SelectLocationAndMoveCard(
+                    selectedHeroController,
+                    reveals.First().MatchingCards.First(),
+                    new MoveCardDestination[] {
                     new MoveCardDestination(selectedHero.PlayArea),
                     new MoveCardDestination(selectedHero.Hand)
-                },
-                isPutIntoPlay: true,
-                responsibleTurnTaker: TurnTaker,
-                cardSource: GetCardSource()
-            );
-            if (UseUnityCoroutines)
-            {
-                yield return GameController.StartCoroutine(e);
-            }
-            else
-            {
-                GameController.ExhaustCoroutine(e);
+                    },
+                    isPutIntoPlay: true,
+                    responsibleTurnTaker: TurnTaker,
+                    cardSource: GetCardSource()
+                );
+                if (UseUnityCoroutines)
+                {
+                    yield return GameController.StartCoroutine(e);
+                }
+                else
+                {
+                    GameController.ExhaustCoroutine(e);
+                }
+
+                break;
             }
 
             // Shuffle the other revealed cards back into their deck"
