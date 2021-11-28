@@ -15,7 +15,7 @@
         "DealDamageEnergy"
       ],
       "character": true,
-      "backgroundColor": "ffffff",
+      "backgroundColor": "d4af37",
       "openingLines": {
         "default": "For my family."
       },
