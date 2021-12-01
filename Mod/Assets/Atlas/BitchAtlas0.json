@@ -1,8 +1,24 @@
 {"frames": {
 
-"BitchDeckBack.jpg":
+"BitchCharacter.jpg":
 {
 	"frame": {"x":0,"y":0,"w":178,"h":256},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":178,"h":256},
+	"sourceSize": {"w":178,"h":256}
+},
+"BitchCharacterBack.jpg":
+{
+	"frame": {"x":181,"y":0,"w":178,"h":256},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":178,"h":256},
+	"sourceSize": {"w":178,"h":256}
+},
+"BitchDeckBack.jpg":
+{
+	"frame": {"x":362,"y":0,"w":178,"h":256},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":178,"h":256},
@@ -13,8 +29,8 @@
 	"version": "1.0",
 	"image": "BitchAtlas0.png",
 	"format": "RGBA8888",
-	"size": {"w":256,"h":256},
+	"size": {"w":1024,"h":1024},
 	"scale": "1",
-	"smartupdate": "$TexturePacker:SmartUpdate:a7ed188009f21b6da6f70a8e8bf2496b:86935be62209f2f78834a15b93b21ef9:44a7058675830849f4eda66346ea45cd$"
+	"smartupdate": "$TexturePacker:SmartUpdate:6a90c16072442b74ae9f127b0348475a:3eade8cc9802773ecdb67a539b36ad79:44a7058675830849f4eda66346ea45cd$"
 }
 }

@@ -1,8 +1,24 @@
 {"frames": {
 
-"DauntlessDeckBack.jpg":
+"DauntlessCharacter.jpg":
 {
 	"frame": {"x":0,"y":0,"w":178,"h":256},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":178,"h":256},
+	"sourceSize": {"w":178,"h":256}
+},
+"DauntlessCharacterBack.jpg":
+{
+	"frame": {"x":181,"y":0,"w":178,"h":256},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":178,"h":256},
+	"sourceSize": {"w":178,"h":256}
+},
+"DauntlessDeckBack.jpg":
+{
+	"frame": {"x":362,"y":0,"w":178,"h":256},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":178,"h":256},
@@ -13,8 +29,8 @@
 	"version": "1.0",
 	"image": "DauntlessAtlas0.png",
 	"format": "RGBA8888",
-	"size": {"w":256,"h":256},
+	"size": {"w":1024,"h":1024},
 	"scale": "1",
-	"smartupdate": "$TexturePacker:SmartUpdate:c60b1d1808b4def49f40235f8a444f30:028f2f523a8328cc8f9b32472d45a65a:eb438c8da862ffe76732e4954ddd46f4$"
+	"smartupdate": "$TexturePacker:SmartUpdate:120373f81b157fa9df5c8957933720df:e7d4420c5f4312bb717cdb45a41893fe:eb438c8da862ffe76732e4954ddd46f4$"
 }
 }

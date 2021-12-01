@@ -181,6 +181,8 @@
         </struct>
         <key>individualSpriteSettings</key>
         <map type="IndividualSpriteSettingsMap">
+            <key type="filename">BitchCharacter.jpg</key>
+            <key type="filename">BitchCharacterBack.jpg</key>
             <key type="filename">BitchDeckBack.jpg</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>

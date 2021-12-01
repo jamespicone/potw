@@ -132,7 +132,7 @@
             <key>data</key>
             <struct type="DataFile">
                 <key>name</key>
-                <filename>../../../Assets/Atlas/DauntlessAtlas0.json</filename>
+                <filename>../../../Assets/Atlas/EndGameHeroes0.json</filename>
             </struct>
         </map>
         <key>multiPack</key>
@@ -181,9 +181,7 @@
         </struct>
         <key>individualSpriteSettings</key>
         <map type="IndividualSpriteSettingsMap">
-            <key type="filename">DauntlessCharacter.jpg</key>
-            <key type="filename">DauntlessCharacterBack.jpg</key>
-            <key type="filename">DauntlessDeckBack.jpg</key>
+            <key type="filename">BitchCharacter.jpg</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
                 <point_f>0.5,0.5</point_f>
@@ -195,6 +193,23 @@
                 <rect>45,64,89,128</rect>
                 <key>scale9Paddings</key>
                 <rect>45,64,89,128</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">BitchCharacterFlipped.jpg</key>
+            <key type="filename">DauntlessCharacter.jpg</key>
+            <key type="filename">DauntlessCharacterFlipped.jpg</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>spriteScale</key>
+                <double>1</double>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>100,50,200,100</rect>
+                <key>scale9Paddings</key>
+                <rect>100,50,200,100</rect>
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
