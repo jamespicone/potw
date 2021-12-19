@@ -1,6 +1,6 @@
 {"frames": {
 
-"BitchCharacter.jpg":
+"AlexandriaCharacter.jpg":
 {
 	"frame": {"x":0,"y":0,"w":400,"h":200},
 	"rotated": false,
@@ -8,7 +8,7 @@
 	"spriteSourceSize": {"x":0,"y":0,"w":400,"h":200},
 	"sourceSize": {"w":400,"h":200}
 },
-"BitchCharacterFlipped.jpg":
+"AlexandriaCharacterFlipped.jpg":
 {
 	"frame": {"x":403,"y":0,"w":400,"h":200},
 	"rotated": false,
@@ -16,7 +16,7 @@
 	"spriteSourceSize": {"x":0,"y":0,"w":400,"h":200},
 	"sourceSize": {"w":400,"h":200}
 },
-"DauntlessCharacter.jpg":
+"ArmsmasterCharacter.jpg":
 {
 	"frame": {"x":0,"y":203,"w":400,"h":200},
 	"rotated": false,
@@ -24,9 +24,41 @@
 	"spriteSourceSize": {"x":0,"y":0,"w":400,"h":200},
 	"sourceSize": {"w":400,"h":200}
 },
-"DauntlessCharacterFlipped.jpg":
+"ArmsmasterCharacterFlipped.jpg":
 {
 	"frame": {"x":403,"y":203,"w":400,"h":200},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":400,"h":200},
+	"sourceSize": {"w":400,"h":200}
+},
+"BitchCharacter.jpg":
+{
+	"frame": {"x":0,"y":406,"w":400,"h":200},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":400,"h":200},
+	"sourceSize": {"w":400,"h":200}
+},
+"BitchCharacterFlipped.jpg":
+{
+	"frame": {"x":403,"y":406,"w":400,"h":200},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":400,"h":200},
+	"sourceSize": {"w":400,"h":200}
+},
+"DauntlessCharacter.jpg":
+{
+	"frame": {"x":0,"y":609,"w":400,"h":200},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":400,"h":200},
+	"sourceSize": {"w":400,"h":200}
+},
+"DauntlessCharacterFlipped.jpg":
+{
+	"frame": {"x":403,"y":609,"w":400,"h":200},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":400,"h":200},
@@ -39,6 +71,6 @@
 	"format": "RGBA8888",
 	"size": {"w":1024,"h":1024},
 	"scale": "1",
-	"smartupdate": "$TexturePacker:SmartUpdate:c96a251b560fbe715a8ce1e6825523b6:c3ef239eb83f1a62a095f106fbe6db82:e92652cff04ed6c8e37f7bc0458ec814$"
+	"smartupdate": "$TexturePacker:SmartUpdate:febcd97d3498cbfe5cf6c1792fbf9f9c:9b291b32be773fc0d3edc1ab30ebc107:e92652cff04ed6c8e37f7bc0458ec814$"
 }
 }
