@@ -187,18 +187,18 @@ namespace Jp.ParahumansOfTheWormverse.Dragon
 
             if (fromPhase.TurnTaker != TurnTaker) { return null; }
             if (fromPhase.IsBeforeStart || fromPhase.IsAfterEnd) { return null; }
-            if (toPhase.IsBeforeStart || toPhase.IsAfterEnd) { return null; }
+            if (toPhase.IsAfterEnd) { return null; }
 
-            if (toPhase.TurnTaker == TurnTaker)
+            if (fromPhase.Phase != Phase.Unknown && toPhase.TurnTaker == TurnTaker)
             {
                 // From dragon -> to dragon implies we've had our first phase.
                 return new TurnPhase(HeroTurnTaker, Phase.Unknown);
             }
 
-            if (fromPhase.Phase == Phase.Unknown && toPhase.TurnTaker != TurnTaker)
+            if (fromPhase.Phase == Phase.Unknown && fromPhase.TurnTaker == TurnTaker)
             {
-                // From dragon -> to someone else means we've just had our focus phase
-                return new TurnPhase(HeroTurnTaker, GameController.FindLastPhase(TurnTaker));
+                // From dragon's unknown phase means we've just had our focus phase
+                return FindTurnPhase(TurnTaker, GameController.FindLastPhase(TurnTaker));
             }
 
             return null;
