@@ -132,7 +132,7 @@
             <key>data</key>
             <struct type="DataFile">
                 <key>name</key>
-                <filename>../../../Assets/Atlas/SetupGame0.json</filename>
+                <filename>../../../Assets/Atlas/KyushuAtlas0.json</filename>
             </struct>
         </map>
         <key>multiPack</key>
@@ -181,30 +181,7 @@
         </struct>
         <key>individualSpriteSettings</key>
         <map type="IndividualSpriteSettingsMap">
-            <key type="filename">AlexandriaCharacter.jpg</key>
-            <key type="filename">ArmsmasterCharacter.jpg</key>
-            <key type="filename">AssaultCharacter.jpg</key>
-            <key type="filename">BatteryCharacter.jpg</key>
-            <key type="filename">BehemothCharacter.jpg</key>
-            <key type="filename">BitchCharacter.jpg</key>
-            <key type="filename">CoilCharacter.jpg</key>
-            <key type="filename">DauntlessCharacter.jpg</key>
-            <key type="filename">DragonCharacter.jpg</key>
-            <key type="filename">EchidnaCharacter.jpg</key>
-            <key type="filename">GrueCharacter.jpg</key>
-            <key type="filename">JessicaYamadaInstructionsTarget.jpg</key>
             <key type="filename">KyushuDeckBack.jpg</key>
-            <key type="filename">LabyrinthCharacter.jpg</key>
-            <key type="filename">LegendCharacter.jpg</key>
-            <key type="filename">LeviathanCharacter.jpg</key>
-            <key type="filename">LungCharacter.jpg</key>
-            <key type="filename">MissMilitiaCharacter.jpg</key>
-            <key type="filename">RegentCharacter.jpg</key>
-            <key type="filename">SkidmarkCharacter.jpg</key>
-            <key type="filename">SkitterCharacter.jpg</key>
-            <key type="filename">Slaughterhouse9Character.jpg</key>
-            <key type="filename">TattletaleCharacter.jpg</key>
-            <key type="filename">TheSimurghCharacter.jpg</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
                 <point_f>0.5,0.5</point_f>
