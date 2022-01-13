@@ -16,25 +16,35 @@
       "setup": [ "Put {Leviathan} into play 'Citykiller' side up. Reveal cards from the top of the villain deck until you reveal a Tactic card; put it into play. Shuffle the other cards back into the villain deck" ],
       "gameplay": [
         "When flipped to this side, destroy {H} noncharacter hero cards.",
+        "When Leviathan is dealt {8 - H} damage put a Retaliation token on Leviathan.",
         "At the end of the villain turn, {Leviathan} deals 2 melee damage to all hero targets.",
-        "At the end of the villain turn, if {Leviathan} has been dealt {8 - H} damage in one instance last round, flip {Leviathan}"
+        "At the end of the villain turn, if {Leviathan} has any Retaliation tokens remove all of them then flip Leviathan."
       ],
       "flippedIcons": [],
       "openingLines": {
         "default": "..."
       },
       "difficulty": 2,
-      "advanced": "Reduce damage dealt to Leviathan by 1",
+      "advanced": "Reduce damage dealt to Leviathan by 1.",
       "advancedIcons": "",
       "flippedBody": "Citykiller Retaliates",
       "flippedGameplay": [
         "When flipped to this side reveal cards from the top of the villain deck until you reveal a Tactic card. Put it into play; shuffle the rest of the revealed cards back into the villain deck.",
-        "At the start of the villain turn flip {Leviathan}",
-        "Reduce damage dealt to Leviathan by 1"
+        "At the start of the villain turn flip {Leviathan}.",
+        "Reduce damage dealt to Leviathan by 1."
       ],
-      "flippedAdvanced": "The first time Leviathan would flip each turn play the top card of the villain deck first",
+      "flippedAdvanced": "The first time Leviathan would flip each turn play the top card of the villain deck first.",
       "flippedAdvancedIcons": [],
-      "flippedNemesisIdentifiers": [ "" ]
+      "flippedNemesisIdentifiers": [ "" ],
+      "tokenPools": [
+        {
+          "identifier": "RetaliationPool",
+          "name": "Retaliation Pool",
+          "initialValue": 0,
+          "minimumValue": 0,
+          "color": ""
+        }
+      ]
     },
     {
       "identifier": "WaterShadow",
