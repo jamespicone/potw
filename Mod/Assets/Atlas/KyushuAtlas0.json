@@ -1,20 +1,44 @@
 {"frames": {
 
+"CollapsingBuilding.jpg":
+{
+	"frame": {"x":0,"y":0,"w":256,"h":198},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":256,"h":198},
+	"sourceSize": {"w":256,"h":198}
+},
+"FatalismAndDespair.jpg":
+{
+	"frame": {"x":259,"y":0,"w":256,"h":198},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":256,"h":198},
+	"sourceSize": {"w":256,"h":198}
+},
 "KyushuDeckBack.jpg":
 {
-	"frame": {"x":0,"y":0,"w":178,"h":256},
+	"frame": {"x":518,"y":0,"w":178,"h":256},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":178,"h":256},
 	"sourceSize": {"w":178,"h":256}
+},
+"OnlyTheIndomitableRemain.jpg":
+{
+	"frame": {"x":699,"y":0,"w":256,"h":198},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":256,"h":198},
+	"sourceSize": {"w":256,"h":198}
 }},
 "meta": {
 	"app": "https://www.codeandweb.com/texturepacker",
 	"version": "1.0",
 	"image": "KyushuAtlas0.png",
 	"format": "RGBA8888",
-	"size": {"w":256,"h":256},
+	"size": {"w":1024,"h":1024},
 	"scale": "1",
-	"smartupdate": "$TexturePacker:SmartUpdate:7bd5ac4190d80101108621368007ac9a:ce06702bc85b14dd302671ca8b4ae9bb:e0fe699741bc8cf1a2317851e44eacdc$"
+	"smartupdate": "$TexturePacker:SmartUpdate:2c0745a7fa8bc73039596925388b5d2b:19f968113a63c67199799f9ed017d8b5:e0fe699741bc8cf1a2317851e44eacdc$"
 }
 }
