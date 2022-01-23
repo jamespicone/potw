@@ -181,6 +181,8 @@
         </struct>
         <key>individualSpriteSettings</key>
         <map type="IndividualSpriteSettingsMap">
+            <key type="filename">BatteryCharacter.jpg</key>
+            <key type="filename">BatteryCharacterBack.jpg</key>
             <key type="filename">BatteryDeckBack.jpg</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>

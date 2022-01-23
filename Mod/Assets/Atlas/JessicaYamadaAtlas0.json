@@ -1,8 +1,56 @@
 {"frames": {
 
-"JessicaYamadaDeckBack.jpg":
+"JessicaYamadaCharacterEnvironment.jpg":
 {
 	"frame": {"x":0,"y":0,"w":178,"h":256},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":178,"h":256},
+	"sourceSize": {"w":178,"h":256}
+},
+"JessicaYamadaCharacterEnvironmentBack.jpg":
+{
+	"frame": {"x":181,"y":0,"w":178,"h":256},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":178,"h":256},
+	"sourceSize": {"w":178,"h":256}
+},
+"JessicaYamadaCharacterNotTarget.jpg":
+{
+	"frame": {"x":362,"y":0,"w":178,"h":256},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":178,"h":256},
+	"sourceSize": {"w":178,"h":256}
+},
+"JessicaYamadaCharacterNotTargetBack.jpg":
+{
+	"frame": {"x":543,"y":0,"w":178,"h":256},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":178,"h":256},
+	"sourceSize": {"w":178,"h":256}
+},
+"JessicaYamadaCharacterTarget.jpg":
+{
+	"frame": {"x":724,"y":0,"w":178,"h":256},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":178,"h":256},
+	"sourceSize": {"w":178,"h":256}
+},
+"JessicaYamadaCharacterTargetBack.jpg":
+{
+	"frame": {"x":0,"y":259,"w":178,"h":256},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":178,"h":256},
+	"sourceSize": {"w":178,"h":256}
+},
+"JessicaYamadaDeckBack.jpg":
+{
+	"frame": {"x":181,"y":259,"w":178,"h":256},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":178,"h":256},
@@ -13,8 +61,8 @@
 	"version": "1.0",
 	"image": "JessicaYamadaAtlas0.png",
 	"format": "RGBA8888",
-	"size": {"w":256,"h":256},
+	"size": {"w":1024,"h":1024},
 	"scale": "1",
-	"smartupdate": "$TexturePacker:SmartUpdate:754c2d57a2d9afd3ec59e10a774822ac:b992de57492d30016c377eae785c7842:7ce82df8eb604cede51ef5fe0368aef9$"
+	"smartupdate": "$TexturePacker:SmartUpdate:8120dfc831223363c374303341c3e71c:9c2c4610897143f24e009e85ae297313:7ce82df8eb604cede51ef5fe0368aef9$"
 }
 }

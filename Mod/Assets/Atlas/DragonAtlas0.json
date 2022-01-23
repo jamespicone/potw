@@ -1,8 +1,24 @@
 {"frames": {
 
-"DragonDeckBack.jpg":
+"DragonCharacter.jpg":
 {
 	"frame": {"x":0,"y":0,"w":178,"h":256},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":178,"h":256},
+	"sourceSize": {"w":178,"h":256}
+},
+"DragonCharacterBack.jpg":
+{
+	"frame": {"x":181,"y":0,"w":178,"h":256},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":178,"h":256},
+	"sourceSize": {"w":178,"h":256}
+},
+"DragonDeckBack.jpg":
+{
+	"frame": {"x":362,"y":0,"w":178,"h":256},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":178,"h":256},
@@ -13,8 +29,8 @@
 	"version": "1.0",
 	"image": "DragonAtlas0.png",
 	"format": "RGBA8888",
-	"size": {"w":256,"h":256},
+	"size": {"w":1024,"h":1024},
 	"scale": "1",
-	"smartupdate": "$TexturePacker:SmartUpdate:32ef328d449fd0fe44574477cb83ba1d:3795f6034581d6ba88a90de3687b02be:ca8fc8773302e2e094e04490b832281c$"
+	"smartupdate": "$TexturePacker:SmartUpdate:f7cd5611ae67031a8a5c6963fc4f4afb:17b002afc9f5a213653c78530a6d192c:ca8fc8773302e2e094e04490b832281c$"
 }
 }

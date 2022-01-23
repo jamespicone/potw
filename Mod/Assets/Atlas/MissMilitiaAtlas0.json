@@ -1,8 +1,24 @@
 {"frames": {
 
-"MissMilitiaDeckBack.jpg":
+"MissMilitiaCharacter.jpg":
 {
 	"frame": {"x":0,"y":0,"w":178,"h":256},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":178,"h":256},
+	"sourceSize": {"w":178,"h":256}
+},
+"MissMilitiaCharacterBack.jpg":
+{
+	"frame": {"x":181,"y":0,"w":178,"h":256},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":178,"h":256},
+	"sourceSize": {"w":178,"h":256}
+},
+"MissMilitiaDeckBack.jpg":
+{
+	"frame": {"x":362,"y":0,"w":178,"h":256},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":178,"h":256},
@@ -13,8 +29,8 @@
 	"version": "1.0",
 	"image": "MissMilitiaAtlas0.png",
 	"format": "RGBA8888",
-	"size": {"w":256,"h":256},
+	"size": {"w":1024,"h":1024},
 	"scale": "1",
-	"smartupdate": "$TexturePacker:SmartUpdate:8ccd4e2505b13c60e8b8dbc91d5e1206:8d6a22488937547a7ca2071ccc74bf6c:ef087702b3f605792d2aa71f7be8c6ea$"
+	"smartupdate": "$TexturePacker:SmartUpdate:f8b8011bd08d1c17751f3e3e74e49953:62235b848be3553e1f82eb2e4d0664af:ef087702b3f605792d2aa71f7be8c6ea$"
 }
 }

@@ -18,7 +18,7 @@
 },
 "ArmsmasterCharacter.jpg":
 {
-	"frame": {"x":0,"y":203,"w":400,"h":200},
+	"frame": {"x":806,"y":0,"w":400,"h":200},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":400,"h":200},
@@ -26,7 +26,7 @@
 },
 "ArmsmasterCharacterFlipped.jpg":
 {
-	"frame": {"x":403,"y":203,"w":400,"h":200},
+	"frame": {"x":1209,"y":0,"w":400,"h":200},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":400,"h":200},
@@ -34,7 +34,7 @@
 },
 "BitchCharacter.jpg":
 {
-	"frame": {"x":0,"y":406,"w":400,"h":200},
+	"frame": {"x":1612,"y":0,"w":400,"h":200},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":400,"h":200},
@@ -42,7 +42,7 @@
 },
 "BitchCharacterFlipped.jpg":
 {
-	"frame": {"x":403,"y":406,"w":400,"h":200},
+	"frame": {"x":0,"y":203,"w":400,"h":200},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":400,"h":200},
@@ -50,7 +50,7 @@
 },
 "DauntlessCharacter.jpg":
 {
-	"frame": {"x":0,"y":609,"w":400,"h":200},
+	"frame": {"x":403,"y":203,"w":400,"h":200},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":400,"h":200},
@@ -58,7 +58,39 @@
 },
 "DauntlessCharacterFlipped.jpg":
 {
-	"frame": {"x":403,"y":609,"w":400,"h":200},
+	"frame": {"x":806,"y":203,"w":400,"h":200},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":400,"h":200},
+	"sourceSize": {"w":400,"h":200}
+},
+"DragonCharacter.jpg":
+{
+	"frame": {"x":1209,"y":203,"w":400,"h":200},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":400,"h":200},
+	"sourceSize": {"w":400,"h":200}
+},
+"DragonCharacterFlipped.jpg":
+{
+	"frame": {"x":1612,"y":203,"w":400,"h":200},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":400,"h":200},
+	"sourceSize": {"w":400,"h":200}
+},
+"LegendCharacter.jpg":
+{
+	"frame": {"x":0,"y":406,"w":400,"h":200},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":400,"h":200},
+	"sourceSize": {"w":400,"h":200}
+},
+"LegendCharacterFlipped.jpg":
+{
+	"frame": {"x":403,"y":406,"w":400,"h":200},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":400,"h":200},
@@ -69,8 +101,8 @@
 	"version": "1.0",
 	"image": "EndGameHeroes0.png",
 	"format": "RGBA8888",
-	"size": {"w":1024,"h":1024},
+	"size": {"w":2048,"h":2048},
 	"scale": "1",
-	"smartupdate": "$TexturePacker:SmartUpdate:febcd97d3498cbfe5cf6c1792fbf9f9c:9b291b32be773fc0d3edc1ab30ebc107:e92652cff04ed6c8e37f7bc0458ec814$"
+	"smartupdate": "$TexturePacker:SmartUpdate:966565f51bc2864b3aea735c52d0d9d9:22ef1bd4a5af1f0a93b3351243270253:e92652cff04ed6c8e37f7bc0458ec814$"
 }
 }

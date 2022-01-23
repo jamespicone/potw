@@ -1,8 +1,24 @@
 {"frames": {
 
-"TattletaleDeckBack.jpg":
+"TattletaleCharacter.jpg":
 {
 	"frame": {"x":0,"y":0,"w":178,"h":256},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":178,"h":256},
+	"sourceSize": {"w":178,"h":256}
+},
+"TattletaleCharacterBack.jpg":
+{
+	"frame": {"x":181,"y":0,"w":178,"h":256},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":178,"h":256},
+	"sourceSize": {"w":178,"h":256}
+},
+"TattletaleDeckBack.jpg":
+{
+	"frame": {"x":362,"y":0,"w":178,"h":256},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":178,"h":256},
@@ -13,8 +29,8 @@
 	"version": "1.0",
 	"image": "TattletaleAtlas0.png",
 	"format": "RGBA8888",
-	"size": {"w":256,"h":256},
+	"size": {"w":1024,"h":1024},
 	"scale": "1",
-	"smartupdate": "$TexturePacker:SmartUpdate:a88de0f348c19fd23a48cb84067c7e57:178bc910881c3a0dfa199456cff84d64:7aa3d61ba32db6d2f47f6c3ecc37dd4e$"
+	"smartupdate": "$TexturePacker:SmartUpdate:7ef7f16fe82d34b583572cbccdcbf532:abda12d16f9dbdd7bee3772ada9f0abd:7aa3d61ba32db6d2f47f6c3ecc37dd4e$"
 }
 }
