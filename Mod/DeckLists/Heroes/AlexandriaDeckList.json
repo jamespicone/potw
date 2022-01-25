@@ -99,7 +99,7 @@
       "title": "Invincible",
       "keywords": [ "ongoing", "limited" ],
       "body": [
-        "From when this card enters play until the start of your next turn, when {AlexandriaCharacter} would be dalt damage you may discard a card. If you do, prevent the damage.",
+        "From when this card enters play until the start of your next turn, when {AlexandriaCharacter} would be dealt damage you may discard a card. If you do, prevent the damage.",
         "Reduce damage dealt to {AlexandriaCharacter} by 1"
       ],
       "icons": [
