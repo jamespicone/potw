@@ -31,6 +31,30 @@
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":256,"h":198},
 	"sourceSize": {"w":256,"h":198}
+},
+"ParahumanBackup.jpg":
+{
+	"frame": {"x":0,"y":259,"w":256,"h":198},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":256,"h":198},
+	"sourceSize": {"w":256,"h":198}
+},
+"SentaiElite.jpg":
+{
+	"frame": {"x":259,"y":259,"w":256,"h":198},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":256,"h":198},
+	"sourceSize": {"w":256,"h":198}
+},
+"TidalWaveKyushu.jpg":
+{
+	"frame": {"x":518,"y":259,"w":256,"h":198},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":256,"h":198},
+	"sourceSize": {"w":256,"h":198}
 }},
 "meta": {
 	"app": "https://www.codeandweb.com/texturepacker",
@@ -39,6 +63,6 @@
 	"format": "RGBA8888",
 	"size": {"w":1024,"h":1024},
 	"scale": "1",
-	"smartupdate": "$TexturePacker:SmartUpdate:2c0745a7fa8bc73039596925388b5d2b:19f968113a63c67199799f9ed017d8b5:e0fe699741bc8cf1a2317851e44eacdc$"
+	"smartupdate": "$TexturePacker:SmartUpdate:b1497ff5f962c236112d515eb981175b:2762c6185b150d6463f1c691a0d2dead:e0fe699741bc8cf1a2317851e44eacdc$"
 }
 }

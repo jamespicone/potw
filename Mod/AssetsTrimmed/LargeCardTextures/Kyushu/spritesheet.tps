@@ -184,6 +184,9 @@
             <key type="filename">CollapsingBuilding.jpg</key>
             <key type="filename">FatalismAndDespair.jpg</key>
             <key type="filename">OnlyTheIndomitableRemain.jpg</key>
+            <key type="filename">ParahumanBackup.jpg</key>
+            <key type="filename">SentaiElite.jpg</key>
+            <key type="filename">TidalWaveKyushu.jpg</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
                 <point_f>0.5,0.5</point_f>
