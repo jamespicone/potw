@@ -18,7 +18,7 @@
 },
 "KyushuDeckBack.jpg":
 {
-	"frame": {"x":518,"y":0,"w":178,"h":256},
+	"frame": {"x":259,"y":402,"w":178,"h":256},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":178,"h":256},
@@ -26,7 +26,7 @@
 },
 "OnlyTheIndomitableRemain.jpg":
 {
-	"frame": {"x":699,"y":0,"w":256,"h":198},
+	"frame": {"x":518,"y":0,"w":256,"h":198},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":256,"h":198},
@@ -34,7 +34,7 @@
 },
 "ParahumanBackup.jpg":
 {
-	"frame": {"x":0,"y":259,"w":256,"h":198},
+	"frame": {"x":0,"y":201,"w":256,"h":198},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":256,"h":198},
@@ -42,7 +42,15 @@
 },
 "SentaiElite.jpg":
 {
-	"frame": {"x":259,"y":259,"w":256,"h":198},
+	"frame": {"x":259,"y":201,"w":256,"h":198},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":256,"h":198},
+	"sourceSize": {"w":256,"h":198}
+},
+"SlideIntoTheSea.jpg":
+{
+	"frame": {"x":518,"y":201,"w":256,"h":198},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":256,"h":198},
@@ -50,7 +58,7 @@
 },
 "TidalWaveKyushu.jpg":
 {
-	"frame": {"x":518,"y":259,"w":256,"h":198},
+	"frame": {"x":0,"y":402,"w":256,"h":198},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":256,"h":198},
@@ -63,6 +71,6 @@
 	"format": "RGBA8888",
 	"size": {"w":1024,"h":1024},
 	"scale": "1",
-	"smartupdate": "$TexturePacker:SmartUpdate:b1497ff5f962c236112d515eb981175b:2762c6185b150d6463f1c691a0d2dead:e0fe699741bc8cf1a2317851e44eacdc$"
+	"smartupdate": "$TexturePacker:SmartUpdate:62b1d55874d2766f7b6b6de59fe16114:01577a4c26ad77d39fef227131876427:e0fe699741bc8cf1a2317851e44eacdc$"
 }
 }

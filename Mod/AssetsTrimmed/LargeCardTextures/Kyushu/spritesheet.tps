@@ -186,6 +186,7 @@
             <key type="filename">OnlyTheIndomitableRemain.jpg</key>
             <key type="filename">ParahumanBackup.jpg</key>
             <key type="filename">SentaiElite.jpg</key>
+            <key type="filename">SlideIntoTheSea.jpg</key>
             <key type="filename">TidalWaveKyushu.jpg</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
