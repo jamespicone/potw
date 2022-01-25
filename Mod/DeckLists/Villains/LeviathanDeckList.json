@@ -16,7 +16,7 @@
       "setup": [ "Put {Leviathan} into play 'Citykiller' side up. Reveal cards from the top of the villain deck until you reveal a Tactic card; put it into play. Shuffle the other cards back into the villain deck" ],
       "gameplay": [
         "When flipped to this side, destroy {H} noncharacter hero cards.",
-        "When Leviathan is dealt {8 - H} damage put a Retaliation token on Leviathan.",
+        "When Leviathan is dealt {8 - H} or more damage put a Retaliation token on Leviathan.",
         "At the end of the villain turn, {Leviathan} deals 2 melee damage to all hero targets.",
         "At the end of the villain turn, if {Leviathan} has any Retaliation tokens remove all of them then flip Leviathan."
       ],
