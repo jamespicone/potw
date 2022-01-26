@@ -181,6 +181,8 @@
         </struct>
         <key>individualSpriteSettings</key>
         <map type="IndividualSpriteSettingsMap">
+            <key type="filename">LegendCharacter.jpg</key>
+            <key type="filename">LegendCharacterBack.jpg</key>
             <key type="filename">LegendDeckBack.jpg</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>

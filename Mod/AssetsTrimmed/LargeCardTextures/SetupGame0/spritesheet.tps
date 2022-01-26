@@ -193,6 +193,7 @@
             <key type="filename">EchidnaCharacter.jpg</key>
             <key type="filename">GrueCharacter.jpg</key>
             <key type="filename">JessicaYamadaInstructionsTarget.jpg</key>
+            <key type="filename">KyushuDeckBack.jpg</key>
             <key type="filename">LabyrinthCharacter.jpg</key>
             <key type="filename">LegendCharacter.jpg</key>
             <key type="filename">LeviathanCharacter.jpg</key>

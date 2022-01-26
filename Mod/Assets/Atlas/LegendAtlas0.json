@@ -1,8 +1,24 @@
 {"frames": {
 
-"LegendDeckBack.jpg":
+"LegendCharacter.jpg":
 {
 	"frame": {"x":0,"y":0,"w":178,"h":256},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":178,"h":256},
+	"sourceSize": {"w":178,"h":256}
+},
+"LegendCharacterBack.jpg":
+{
+	"frame": {"x":181,"y":0,"w":178,"h":256},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":178,"h":256},
+	"sourceSize": {"w":178,"h":256}
+},
+"LegendDeckBack.jpg":
+{
+	"frame": {"x":362,"y":0,"w":178,"h":256},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":178,"h":256},
@@ -13,8 +29,8 @@
 	"version": "1.0",
 	"image": "LegendAtlas0.png",
 	"format": "RGBA8888",
-	"size": {"w":256,"h":256},
+	"size": {"w":1024,"h":1024},
 	"scale": "1",
-	"smartupdate": "$TexturePacker:SmartUpdate:a13bebd73ae12752a6d627f6afa10068:07e1b3141881bb3386197517c8e52998:ac2cc23f9ea62298ce33833ff3c6b926$"
+	"smartupdate": "$TexturePacker:SmartUpdate:781caef614556c73f9f8bd51ca123b9c:2807984e85ba44dd754c4340752c11cc:ac2cc23f9ea62298ce33833ff3c6b926$"
 }
 }

@@ -1,0 +1,20 @@
+{"frames": {
+
+"KyushuDeckBack.jpg":
+{
+	"frame": {"x":0,"y":0,"w":400,"h":200},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":400,"h":200},
+	"sourceSize": {"w":400,"h":200}
+}},
+"meta": {
+	"app": "https://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "EndGameEnvironments0.png",
+	"format": "RGBA8888",
+	"size": {"w":512,"h":512},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:b761e1912218c340ae10456dd0b2fd58:2b3ccf52339b55b6da7ad8376bb1be66:54d17c0efaf99c3cc33a2aed1483935b$"
+}
+}

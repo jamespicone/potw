@@ -96,7 +96,7 @@
 	"spriteSourceSize": {"x":0,"y":0,"w":178,"h":256},
 	"sourceSize": {"w":178,"h":256}
 },
-"LabyrinthCharacter.jpg":
+"KyushuDeckBack.jpg":
 {
 	"frame": {"x":181,"y":259,"w":178,"h":256},
 	"rotated": false,
@@ -104,7 +104,7 @@
 	"spriteSourceSize": {"x":0,"y":0,"w":178,"h":256},
 	"sourceSize": {"w":178,"h":256}
 },
-"LegendCharacter.jpg":
+"LabyrinthCharacter.jpg":
 {
 	"frame": {"x":362,"y":259,"w":178,"h":256},
 	"rotated": false,
@@ -112,7 +112,7 @@
 	"spriteSourceSize": {"x":0,"y":0,"w":178,"h":256},
 	"sourceSize": {"w":178,"h":256}
 },
-"LeviathanCharacter.jpg":
+"LegendCharacter.jpg":
 {
 	"frame": {"x":543,"y":259,"w":178,"h":256},
 	"rotated": false,
@@ -120,7 +120,7 @@
 	"spriteSourceSize": {"x":0,"y":0,"w":178,"h":256},
 	"sourceSize": {"w":178,"h":256}
 },
-"LungCharacter.jpg":
+"LeviathanCharacter.jpg":
 {
 	"frame": {"x":724,"y":259,"w":178,"h":256},
 	"rotated": false,
@@ -128,7 +128,7 @@
 	"spriteSourceSize": {"x":0,"y":0,"w":178,"h":256},
 	"sourceSize": {"w":178,"h":256}
 },
-"MissMilitiaCharacter.jpg":
+"LungCharacter.jpg":
 {
 	"frame": {"x":905,"y":259,"w":178,"h":256},
 	"rotated": false,
@@ -136,7 +136,7 @@
 	"spriteSourceSize": {"x":0,"y":0,"w":178,"h":256},
 	"sourceSize": {"w":178,"h":256}
 },
-"RegentCharacter.jpg":
+"MissMilitiaCharacter.jpg":
 {
 	"frame": {"x":1086,"y":259,"w":178,"h":256},
 	"rotated": false,
@@ -144,7 +144,7 @@
 	"spriteSourceSize": {"x":0,"y":0,"w":178,"h":256},
 	"sourceSize": {"w":178,"h":256}
 },
-"SkidmarkCharacter.jpg":
+"RegentCharacter.jpg":
 {
 	"frame": {"x":1267,"y":259,"w":178,"h":256},
 	"rotated": false,
@@ -152,7 +152,7 @@
 	"spriteSourceSize": {"x":0,"y":0,"w":178,"h":256},
 	"sourceSize": {"w":178,"h":256}
 },
-"SkitterCharacter.jpg":
+"SkidmarkCharacter.jpg":
 {
 	"frame": {"x":1448,"y":259,"w":178,"h":256},
 	"rotated": false,
@@ -160,7 +160,7 @@
 	"spriteSourceSize": {"x":0,"y":0,"w":178,"h":256},
 	"sourceSize": {"w":178,"h":256}
 },
-"Slaughterhouse9Character.jpg":
+"SkitterCharacter.jpg":
 {
 	"frame": {"x":1629,"y":259,"w":178,"h":256},
 	"rotated": false,
@@ -168,7 +168,7 @@
 	"spriteSourceSize": {"x":0,"y":0,"w":178,"h":256},
 	"sourceSize": {"w":178,"h":256}
 },
-"TattletaleCharacter.jpg":
+"Slaughterhouse9Character.jpg":
 {
 	"frame": {"x":1810,"y":259,"w":178,"h":256},
 	"rotated": false,
@@ -176,9 +176,17 @@
 	"spriteSourceSize": {"x":0,"y":0,"w":178,"h":256},
 	"sourceSize": {"w":178,"h":256}
 },
-"TheSimurghCharacter.jpg":
+"TattletaleCharacter.jpg":
 {
 	"frame": {"x":0,"y":518,"w":178,"h":256},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":178,"h":256},
+	"sourceSize": {"w":178,"h":256}
+},
+"TheSimurghCharacter.jpg":
+{
+	"frame": {"x":181,"y":518,"w":178,"h":256},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":178,"h":256},
@@ -191,6 +199,6 @@
 	"format": "RGBA8888",
 	"size": {"w":2048,"h":2048},
 	"scale": "1",
-	"smartupdate": "$TexturePacker:SmartUpdate:68f59e0c3f2847bf715f20499fc1d1e4:68825295aff5c3e5c8bb57b99f2b7077:4ee285c32a91b7652e02ac049f918b2a$"
+	"smartupdate": "$TexturePacker:SmartUpdate:db5fb096a856c89ae54b12e9185a48b1:90bc42d9cb6a236a27a17736a75e84c1:4ee285c32a91b7652e02ac049f918b2a$"
 }
 }

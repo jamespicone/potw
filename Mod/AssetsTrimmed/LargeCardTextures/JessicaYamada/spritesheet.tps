@@ -181,6 +181,12 @@
         </struct>
         <key>individualSpriteSettings</key>
         <map type="IndividualSpriteSettingsMap">
+            <key type="filename">JessicaYamadaCharacterEnvironment.jpg</key>
+            <key type="filename">JessicaYamadaCharacterEnvironmentBack.jpg</key>
+            <key type="filename">JessicaYamadaCharacterNotTarget.jpg</key>
+            <key type="filename">JessicaYamadaCharacterNotTargetBack.jpg</key>
+            <key type="filename">JessicaYamadaCharacterTarget.jpg</key>
+            <key type="filename">JessicaYamadaCharacterTargetBack.jpg</key>
             <key type="filename">JessicaYamadaDeckBack.jpg</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>

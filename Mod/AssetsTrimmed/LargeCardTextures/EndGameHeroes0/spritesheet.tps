@@ -188,6 +188,10 @@
             <key type="filename">BitchCharacterFlipped.jpg</key>
             <key type="filename">DauntlessCharacter.jpg</key>
             <key type="filename">DauntlessCharacterFlipped.jpg</key>
+            <key type="filename">DragonCharacter.jpg</key>
+            <key type="filename">DragonCharacterFlipped.jpg</key>
+            <key type="filename">LegendCharacter.jpg</key>
+            <key type="filename">LegendCharacterFlipped.jpg</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
                 <point_f>0.5,0.5</point_f>
