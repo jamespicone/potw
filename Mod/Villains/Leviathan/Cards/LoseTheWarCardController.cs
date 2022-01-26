@@ -25,29 +25,11 @@ namespace Jp.ParahumansOfTheWormverse.Leviathan
 
         public override void AddTriggers()
         {
-            // If the environment deck is ever empty, the heroes lose the game.
-            AddTrigger<GameAction>(
-                ga => !(ga is GameOverAction) && FindEnvironment().TurnTaker.Deck.IsEmpty,
-                ga => GameOver(ga),
-                TriggerType.GameOver,
-                TriggerTiming.After
-            );
-
-            // At the end of the villain turn, remove the top card of the environment deck from the game
-            AddEndOfTurnTrigger(
+            // At the start of the villain turn...
+            AddStartOfTurnTrigger(
                 tt => tt == TurnTaker,
                 pca => ExileEnvironment(pca),
                 TriggerType.RemoveFromGame
-            );
-
-            // Players may skip any of their phases (play, power, draw).
-            AddPhaseChangeTrigger(
-                tt => tt.Is().Hero(),
-                p => p == Phase.PlayCard || p == Phase.UsePower || p == Phase.DrawCard,
-                pca => true,
-                pca => ShoreUpEnvironment(pca),
-                new TriggerType[] { TriggerType.SkipPhase },
-                TriggerTiming.After
             );
         }
 
@@ -72,106 +54,72 @@ namespace Jp.ParahumansOfTheWormverse.Leviathan
 
         private IEnumerator ExileEnvironment(PhaseChangeAction pca)
         {
+            // Remove the top card of the environment deck from the game.
+            IEnumerator e;
             var cardToMove = FindEnvironment().TurnTaker.Deck.TopCard;
-            if (cardToMove == null) { yield break; }
+            if (cardToMove == null) {
+                // Failing that, remove the top card of the environment trash.
+                e = GameController.SendMessageAction("The environment deck is empty...", Priority.Medium, GetCardSource(), showCardSource: true);
+                if (UseUnityCoroutines) { yield return GameController.StartCoroutine(e); }
+                else { GameController.ExhaustCoroutine(e); }
 
-            var e = GameController.MoveCard(
-                TurnTakerController,
-                cardToMove,
-                TurnTaker.OutOfGame,
-                showMessage: true,
-                responsibleTurnTaker: TurnTaker,
-                actionSource: pca,
-                cardSource: GetCardSource()
-            );
+                cardToMove = FindEnvironment().TurnTaker.Trash.TopCard;
+                if (cardToMove == null)
+                {
+                    // Failing that, remove an environment card in play.
+                    e = GameController.SendMessageAction("The environment trash is empty...", Priority.Medium, GetCardSource(), showCardSource: true);
+                    if (UseUnityCoroutines) { yield return GameController.StartCoroutine(e); }
+                    else { GameController.ExhaustCoroutine(e); }
 
-            if (UseUnityCoroutines)
-            {
-                yield return GameController.StartCoroutine(e);
-            }
-            else
-            {
-                GameController.ExhaustCoroutine(e);
-            }
-        }
+                    var storedCard = new List<SelectCardDecision>();
+                    e = GameController.SelectCardAndStoreResults(
+                        DecisionMaker,
+                        SelectionType.RemoveCardFromGame,
+                        new LinqCardCriteria(c => c.IsEnvironment && c.IsInPlay, "environment"),
+                        storedResults: storedCard,
+                        optional: false,
+                        cardSource: GetCardSource()
+                    );
 
-        private IEnumerator ShoreUpEnvironment(PhaseChangeAction pca)
-        {
-            var hero = pca.ToPhase.TurnTaker.ToHero();
-            if (hero == null) { yield break; }
+                    if (UseUnityCoroutines) { yield return GameController.StartCoroutine(e); }
+                    else { GameController.ExhaustCoroutine(e); }
 
-            var heroController = FindHeroTurnTakerController(hero);
-            if (heroController == null) { yield break; }
-
-            var stored = new List<YesNoCardDecision>();
-            var e = GameController.MakeYesNoCardDecision(
-                heroController,
-                SelectionType.Custom,
-                Card,
-                pca,
-                stored,
-                cardSource: GetCardSource()
-            );
-            if (UseUnityCoroutines)
-            {
-                yield return GameController.StartCoroutine(e);
-            }
-            else
-            {
-                GameController.ExhaustCoroutine(e);
+                    cardToMove = GetSelectedCard(storedCard);
+                }
             }
 
-            var decision = stored.FirstOrDefault();
-            if (decision == null) { yield break; }
+            var moveResults = new List<MoveCardAction>();
 
-            if (!DidPlayerAnswerYes(decision)) { yield break; }
+            if (cardToMove != null)
+            {
+                e = GameController.MoveCard(
+                    TurnTakerController,
+                    cardToMove,
+                    TurnTaker.OutOfGame,
+                    showMessage: true,
+                    responsibleTurnTaker: TurnTaker,
+                    actionSource: pca,
+                    storedResults: moveResults,
+                    cardSource: GetCardSource()
+                );
 
-            // Any time a player skips a phase, they may take a card from the environment trash and shuffle it back into the environment deck
-            e = GameController.SelectAndMoveCard(
-                DecisionMaker,
-                c => c.Is().Environment() && c.Location.IsTrash,
-                FindEnvironment().TurnTaker.Deck,
-                cardSource: GetCardSource()
-            );
-            if (UseUnityCoroutines)
-            {
-                yield return GameController.StartCoroutine(e);
-            }
-            else
-            {
-                GameController.ExhaustCoroutine(e);
+                if (UseUnityCoroutines) { yield return GameController.StartCoroutine(e); }
+                else { GameController.ExhaustCoroutine(e); }
             }
 
-            e = GameController.ShuffleLocation(FindEnvironment().TurnTaker.Deck, cardSource: GetCardSource());
-            if (UseUnityCoroutines)
+            // If no cards were removed the heroes lose the game.
+            if (GetNumberOfCardsMoved(moveResults) <= 0)
             {
-                yield return GameController.StartCoroutine(e);
-            }
-            else
-            {
-                GameController.ExhaustCoroutine(e);
-            }
+                e = GameController.GameOver(
+                    EndingResult.AlternateDefeat,
+                    "Leviathan has destroyed your surroundings!",
+                    actionSource: pca,
+                    cardSource: GetCardSource()
+                );
 
-            //var nextPhase = GameController.FindNextTurnPhase(pca.ToPhase);
-            e = GameController.PreventPhaseAction(pca.ToPhase, cardSource: GetCardSource());
-            if (UseUnityCoroutines)
-            {
-                yield return GameController.StartCoroutine(e);
+                if (UseUnityCoroutines) { yield return GameController.StartCoroutine(e); }
+                else { GameController.ExhaustCoroutine(e); }
             }
-            else
-            {
-                GameController.ExhaustCoroutine(e);
-            }
-        }
-
-        public override CustomDecisionText GetCustomDecisionText(IDecision decision)
-        {
-            return new CustomDecisionText(
-                "Skip the next phase?",
-                decision.HeroTurnTakerController.CharacterCard.Title + " is deciding whether to skip a phase",
-                "Vote for skipping the next phase",
-                "Whether to skip the next phase"
-            );
         }
     }
 }

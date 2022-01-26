@@ -15,7 +15,7 @@ namespace Jp.ParahumansOfTheWormverse.Leviathan
 
         public override void AddTriggers()
         {
-            // At the start of the villain turn, reveal cards from the top of the villain trash until you reveal a one-shot.
+            // At the start of the villain turn, shuffle the villain trash then reveal cards from the top of the villain trash until you reveal a one-shot.
             // Play it, and then shuffle the other revealed cards back into the villain trash
             AddStartOfTurnTrigger(
                 tt => tt == TurnTaker,
@@ -26,7 +26,11 @@ namespace Jp.ParahumansOfTheWormverse.Leviathan
 
         private IEnumerator FindOneShot(PhaseChangeAction pca)
         {
-            return RevealCards_MoveMatching_ReturnNonMatchingCards(
+            var e = ShuffleDeck(DecisionMaker, TurnTaker.Trash);
+            if (UseUnityCoroutines) { yield return GameController.StartCoroutine(e); }
+            else { GameController.ExhaustCoroutine(e); }
+
+            e = RevealCards_MoveMatching_ReturnNonMatchingCards(
                 TurnTakerController,
                 TurnTaker.Trash,
                 playMatchingCards: true,
@@ -36,6 +40,8 @@ namespace Jp.ParahumansOfTheWormverse.Leviathan
                 numberOfMatches: 1,
                 revealedCardDisplay: RevealedCardDisplay.ShowMatchingCards
             );
+            if (UseUnityCoroutines) { yield return GameController.StartCoroutine(e); }
+            else { GameController.ExhaustCoroutine(e); }
         }
     }
 }

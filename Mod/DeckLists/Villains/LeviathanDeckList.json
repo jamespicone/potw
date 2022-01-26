@@ -73,10 +73,8 @@
       "count": 1,
       "keywords": [ "tactic" ],
       "body": [
-        "This card is indestructible",
-        "If the environment deck is ever empty {LeviathanCharacter} has destroyed the area. [b]GAME OVER[/b].",
-        "At the end of the villain turn remove the top card of the environment deck from the game.",
-        "Players may skip any of their phases to take a card from the environment trash and shuffle it into the environment deck"
+        "This card is indestructible.",
+        "At the start of the villain turn remove the top card of the environment deck from the game. Failing that, remove the top card of the environment trash. Failing that, remove an environment card in play. If no cards were removed the heroes lose the game."
       ],
       "flavorQuotes": [
         {
@@ -123,7 +121,7 @@
       "title": "Impossible Endurance",
       "count": 2,
       "keywords": [ "ongoing" ],
-      "body": "At the start of the villain turn reveal cards from the top of the villain trash until you reveal a one-shot. Play it and then shuffle the other revealed cards back into the villain trash",
+      "body": "At the start of the villain turn shuffle the villain trash, then reveal cards from the top of the villain trash until you reveal a one-shot. Play it and then shuffle the other revealed cards back into the villain trash",
       "flavorText": "The Endbringer stood, showing none{BR}of the frailty or pain it had{BR}been displaying seconds ago.",
       "flavorReference": "Extermination 8.4"
     },
