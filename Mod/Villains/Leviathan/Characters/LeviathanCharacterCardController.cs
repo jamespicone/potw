@@ -47,11 +47,19 @@ namespace Jp.ParahumansOfTheWormverse.Leviathan
                     DamageType.Melee
                 ));
 
-                // At the end of the villain turn, if {Leviathan} has been dealt {8 - H} damage in one instance last round, flip {Leviathan}
+                // When Leviathan is dealt {8 - H} or more damage put a Retaliation token on Leviathan.
+                AddSideTrigger(AddTrigger<DealDamageAction>(
+                    dda => dda.Target == CharacterCard && dda.DidDealDamage && dda.Amount >= 8 - H,
+                    dda => GainRetaliationToken(dda),
+                    TriggerType.AddTokensToPool,
+                    TriggerTiming.After
+                ));
+
+                // At the end of the villain turn, if {Leviathan} has any Retaliation tokens remove all of them then flip Leviathan.
                 AddSideTrigger(AddEndOfTurnTrigger(
                     tt => tt == TurnTaker,
                     pca => MaybeFlip(pca),
-                    TriggerType.FlipCard
+                    new TriggerType[] { TriggerType.FlipCard, TriggerType.ModifyTokens }
                 ));
             }
         }
@@ -127,14 +135,20 @@ namespace Jp.ParahumansOfTheWormverse.Leviathan
             }
         }
 
-        private IEnumerator MaybeFlip(PhaseChangeAction pca)
+        private IEnumerator GainRetaliationToken(DealDamageAction dda)
         {
-            if (Journal.
-                DealDamageEntriesToTargetSinceLastTurn(CharacterCard, TurnTaker).
-                Where(ddje => ddje.Amount >= (8 - H)).
-                Count() > 0)
+            var pool = Card.FindTokenPool("RetaliationPool");
+            if (pool == null) { yield break; }
+
+            IEnumerator e;
+            if (pool.CurrentValue <= 0)
             {
-                var e = FlipThisCharacterCardResponse(pca);
+                e = GameController.SendMessageAction(
+                    $"{CharacterCard.Title} was dealt {dda.Amount} damage and will retaliate!",
+                    Priority.Medium,
+                    GetCardSource(),
+                    showCardSource: true
+                );
                 if (UseUnityCoroutines)
                 {
                     yield return GameController.StartCoroutine(e);
@@ -143,6 +157,44 @@ namespace Jp.ParahumansOfTheWormverse.Leviathan
                 {
                     GameController.ExhaustCoroutine(e);
                 }
+            }
+
+            e = GameController.AddTokensToPool(pool, 1, GetCardSource());
+            if (UseUnityCoroutines)
+            {
+                yield return GameController.StartCoroutine(e);
+            }
+            else
+            {
+                GameController.ExhaustCoroutine(e);
+            }
+        }
+
+        private IEnumerator MaybeFlip(PhaseChangeAction pca)
+        {
+            var pool = Card.FindTokenPool("RetaliationPool");
+            if (pool == null) { yield break; }
+
+            if (pool.CurrentValue <= 0) { yield break; }
+
+            var e = GameController.RemoveTokensFromPool(pool, pool.CurrentValue, gameAction: pca, cardSource: GetCardSource());
+            if (UseUnityCoroutines)
+            {
+                yield return GameController.StartCoroutine(e);
+            }
+            else
+            {
+                GameController.ExhaustCoroutine(e);
+            }
+
+            e = FlipThisCharacterCardResponse(pca);
+            if (UseUnityCoroutines)
+            {
+                yield return GameController.StartCoroutine(e);
+            }
+            else
+            {
+                GameController.ExhaustCoroutine(e);
             }
         }
     }
