@@ -183,6 +183,7 @@
         <map type="IndividualSpriteSettingsMap">
             <key type="filename">CollapsingBuilding.jpg</key>
             <key type="filename">FatalismAndDespair.jpg</key>
+            <key type="filename">LungKyushu.jpg</key>
             <key type="filename">OnlyTheIndomitableRemain.jpg</key>
             <key type="filename">ParahumanBackup.jpg</key>
             <key type="filename">SentaiElite.jpg</key>
