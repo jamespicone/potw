@@ -13,7 +13,7 @@
       "hitpoints": 100,
       "nemesisIdentifiers": [ "" ],
       "backgroundColor": "00cccc",
-      "setup": [ "Put {Leviathan} into play 'Citykiller' side up. Reveal cards from the top of the villain deck until you reveal a Tactic card; put it into play. Shuffle the other cards back into the villain deck" ],
+      "setup": [ "Put {Leviathan} into play 'Citykiller' side up. Reveal cards from the top of the villain deck until you reveal a Tactic card; put it into play. Shuffle the other cards back into the villain deck." ],
       "gameplay": [
         "When flipped to this side, destroy {H} noncharacter hero cards.",
         "When Leviathan is dealt {8 - H} or more damage put a Retaliation token on Leviathan.",
@@ -89,7 +89,7 @@
       "title": "Faster Than You'd Think",
       "count": 1,
       "keywords": [ "tactic" ],
-      "body": [ "This card is indestructible", "The first time {LeviathanCharacter} would be dealt damage each round prevent that damage." ],
+      "body": [ "This card is indestructible.", "The first time {LeviathanCharacter} would be dealt damage each round prevent that damage." ],
       "flavorQuotes": [
         {
           "identifier": "Legend",
@@ -103,7 +103,7 @@
       "title": "Impossible Strength",
       "count": 2,
       "keywords": [ "ongoing" ],
-      "body": "Increase damage dealt by villain cards by 1",
+      "body": "Increase damage dealt by villain cards by 1.",
       "flavorText": "Leviathan grabbed a car, twisted his{BR}entire upper body to toss it in{BR}the style of an olympic hammer-throw.",
       "flavorReference": "Extermination 8.5"
     },
@@ -112,7 +112,7 @@
       "title": "Impossible Toughness",
       "count": 2,
       "keywords": [ "ongoing" ],
-      "body": "Reduce damage dealt to {LeviathanCharacter} by 1",
+      "body": "Reduce damage dealt to {LeviathanCharacter} by 1.",
       "flavorText": "Leviathan, nonstandard cardiac,{BR}nervous systems: irregular biology.{BR}No standard organs or weak points.",
       "flavorReference": "Interlude 8 (Bonus)"
     },
@@ -121,7 +121,7 @@
       "title": "Impossible Endurance",
       "count": 2,
       "keywords": [ "ongoing" ],
-      "body": "At the start of the villain turn shuffle the villain trash, then reveal cards from the top of the villain trash until you reveal a one-shot. Play it and then shuffle the other revealed cards back into the villain trash",
+      "body": "At the start of the villain turn shuffle the villain trash, then reveal cards from the top of the villain trash until you reveal a one-shot. Play it and then shuffle the other revealed cards back into the villain trash.",
       "flavorText": "The Endbringer stood, showing none{BR}of the frailty or pain it had{BR}been displaying seconds ago.",
       "flavorReference": "Extermination 8.4"
     },
@@ -130,7 +130,7 @@
       "title": "Tidal Wave",
       "count": 3,
       "keywords": [ "one-shot" ],
-      "body": [ "Destroy all environment targets.", "{LeviathanCharacter} deals X cold damage to all non-villain targets where X = 1 + the number of cards destroyed in this way" ],
+      "body": [ "Destroy all environment targets.", "{LeviathanCharacter} deals X cold damage to all non-villain targets where X = 1 + the number of cards destroyed in this way." ],
       "flavorText": "The building rocked with an impact,{BR}the forcefields to the left collapsed,{BR}and the water began to rush in",
       "flavorReference": "Extermination 8.2"
     },
@@ -139,7 +139,7 @@
       "title": "Cunning",
       "count": 3,
       "keywords": [ "one-shot" ],
-      "body": "Play the top 2 cards of the villain deck",
+      "body": "Play the top 2 cards of the villain deck.",
       "flavorQuotes": [
         {
           "identifier": "Legend",
@@ -153,7 +153,7 @@
       "title": "Anyone Can Die",
       "count": 3,
       "keywords": [ "one-shot" ],
-      "body": "{LeviathanCharacter} deals the hero target with the highest HP 5 irreducible melee damage",
+      "body": "{LeviathanCharacter} deals the hero target with the highest HP 5 irreducible melee damage.",
       "flavorText": "Jotun deceased, CD-6{BR}Dauntless deceased, CD-6.{BR}Alabaster deceased, CD-6.",
       "flavorReference": "Extermination 8.3"
     },
@@ -162,7 +162,7 @@
       "title": "Guile",
       "count": 3,
       "keywords": [ "one-shot" ],
-      "body": "Flip {LeviathanCharacter}",
+      "body": "Flip {LeviathanCharacter}.",
       "flavorQuotes": [
         {
           "identifier": "Legend",
@@ -176,7 +176,7 @@
       "title": "Whipping Tail",
       "count": 3,
       "keywords": [ "one-shot" ],
-      "body": "{LeviathanCharacter} deals 2 melee damage to the 2 hero targets with the lowest HP",
+      "body": "{LeviathanCharacter} deals 2 melee damage to the 2 hero targets with the lowest HP.",
       "flavorText": "Leviathan retaliated with a whiplike{BR}lash of his tail, bisecting the man. Of the{BR}twelve or so that had been on the roof{BR}a minute ago, only three remained.",
       "flavorReference": "Interlude 8 (Bonus)"
     }
