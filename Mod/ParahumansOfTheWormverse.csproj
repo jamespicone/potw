@@ -484,15 +484,10 @@
     <Compile Include="Villains\TheMerchants\Extra\TheMerchantsUtilityCardController.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="manifest.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Assets\**\*.txt" />
-    <None Include="Assets\**\*.jpg" />
-    <None Include="Assets\**\*.png" />
-    <None Include="Assets\**\*.json" />
+    <ModAssets Include="Assets\**\*.txt" />
+    <ModAssets Include="Assets\**\*.jpg" />
+    <ModAssets Include="Assets\**\*.png" />
+    <ModAssets Include="Assets\**\*.json" />
   </ItemGroup>
   <ItemGroup>
     <None Include="AssetsTrimmed\**\*.txt" />
@@ -503,10 +498,23 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions />
-  <PropertyGroup>
-    <PostBuildEvent>mkdir $(SolutionDir)\ParahumansOfTheWormverse
-copy $(TargetPath) $(SolutionDir)\ParahumansOfTheWormverse
-copy $(ProjectDir)\manifest.json $(SolutionDir)\ParahumansOfTheWormverse
-xcopy $(ProjectDir)\Assets\* $(SolutionDir)\ParahumansOfTheWormverse /E/H/Y</PostBuildEvent>
-  </PropertyGroup>
+ 
+  <Target Name="SetupModFolder" AfterTargets="Build">
+	<Message Text="Setting up mod folder" Importance="high" />
+	<Copy
+		SourceFiles="$(TargetPath)"
+		DestinationFolder="$(SolutionDir)ParahumansOfTheWormverse"
+		SkipUnchangedFiles="True"
+	/>
+	<Copy
+		SourceFiles="@(ModAssets)"
+		DestinationFiles="@(ModAssets->'$(SolutionDir)ParahumansOfTheWormverse\%(RecursiveDir)%(Filename)%(Extension)')"
+		SkipUnchangedFiles="True"
+	/>
+  </Target>
+  
+  <Target Name="CleanModFolder" BeforeTargets="CoreClean">
+	<Message Text="Deleting the mod folder" Importance="high" />
+	<RemoveDir Directories="$(SolutionDir)ParahumansOfTheWormverse" />
+  </Target>
 </Project>
