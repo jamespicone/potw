@@ -9,7 +9,6 @@
       "body": "Citykiller",
       "count": 1,
       "character": true,
-      "icons": [],
       "hitpoints": 100,
       "nemesisIdentifiers": [ "" ],
       "backgroundColor": "00cccc",
@@ -20,21 +19,32 @@
         "At the end of the villain turn, {Leviathan} deals 2 melee damage to all hero targets.",
         "At the end of the villain turn, if {Leviathan} has any Retaliation tokens remove all of them then flip Leviathan."
       ],
-      "flippedIcons": [],
+      "icons": [
+        "EndOfTurnAction",
+        "DestroyHero",
+        "AddTokens",
+        "DealDamageMelee",
+        "RemoveTokens"
+      ],
       "openingLines": {
         "default": "..."
       },
       "difficulty": 2,
       "advanced": "Reduce damage dealt to Leviathan by 1.",
-      "advancedIcons": "",
+      "advancedIcons": [ "ReduceDamageTaken" ],
       "flippedBody": "Citykiller Retaliates",
       "flippedGameplay": [
         "When flipped to this side reveal cards from the top of the villain deck until you reveal a Tactic card. Put it into play; shuffle the rest of the revealed cards back into the villain deck.",
         "At the start of the villain turn flip {Leviathan}.",
         "Reduce damage dealt to Leviathan by 1."
       ],
+      "flippedIcons": [
+        "Search",
+        "PlayCardNow",
+        "ReduceDamageTaken"
+      ],
       "flippedAdvanced": "The first time Leviathan would flip each turn play the top card of the villain deck first.",
-      "flippedAdvancedIcons": [],
+      "flippedAdvancedIcons": [ "PlayCardNow" ],
       "flippedNemesisIdentifiers": [ "" ],
       "tokenPools": [
         {
@@ -55,6 +65,7 @@
         "This card is indestructible.",
         "Whenever {LeviathanCharacter} deals melee damage to a target this card deals that target 2 irreducible melee damage."
       ],
+      "icons": [ "Indestructible", "DealDamageMelee" ],
       "flavorText": "Gallons of water poured around{BR}him in the wake of his movements, roughly{BR}the same amount of mass as the body part{BR}that had just occupied the space.",
       "flavorReference": "Extermination 8.2"
     },
@@ -64,6 +75,7 @@
       "count": 1,
       "keywords": [ "tactic" ],
       "body": [ "This card is indestructible.", "Whenever a player draws a card {LeviathanCharacter} deals that player's hero 1 cold damage." ],
+      "icons": [ "Indestructible", "DealDamageCold" ],
       "flavorText": "The windows were rattling with{BR}the force of the rain against them.",
       "flavorReference": "Extermination 8.2"
     },
@@ -76,6 +88,7 @@
         "This card is indestructible.",
         "At the start of the villain turn remove the top card of the environment deck from the game. Failing that, remove the top card of the environment trash. Failing that, remove an environment card in play. If no cards were removed the heroes lose the game."
       ],
+      "icons": [ "StartOfTurnAction", "Indestructible", "RemoveFromGame", "LoseTheGame" ],
       "flavorQuotes": [
         {
           "identifier": "Legend",
@@ -90,6 +103,7 @@
       "count": 1,
       "keywords": [ "tactic" ],
       "body": [ "This card is indestructible.", "The first time {LeviathanCharacter} would be dealt damage each round prevent that damage." ],
+      "icons": [ "Indestructible", "CancelledDamageRed" ],
       "flavorQuotes": [
         {
           "identifier": "Legend",
@@ -104,6 +118,7 @@
       "count": 2,
       "keywords": [ "ongoing" ],
       "body": "Increase damage dealt by villain cards by 1.",
+      "icons": [ "IncreaseDamageDealt" ],
       "flavorText": "Leviathan grabbed a car, twisted his{BR}entire upper body to toss it in{BR}the style of an olympic hammer-throw.",
       "flavorReference": "Extermination 8.5"
     },
@@ -113,6 +128,7 @@
       "count": 2,
       "keywords": [ "ongoing" ],
       "body": "Reduce damage dealt to {LeviathanCharacter} by 1.",
+      "icons": [ "ReduceDamageTaken" ],
       "flavorText": "Leviathan, nonstandard cardiac,{BR}nervous systems: irregular biology.{BR}No standard organs or weak points.",
       "flavorReference": "Interlude 8 (Bonus)"
     },
@@ -122,6 +138,7 @@
       "count": 2,
       "keywords": [ "ongoing" ],
       "body": "At the start of the villain turn shuffle the villain trash, then reveal cards from the top of the villain trash until you reveal a one-shot. Play it and then shuffle the other revealed cards back into the villain trash.",
+      "icons": [ "StartOfTurnAction", "Search", "PlayCardNow" ],
       "flavorText": "The Endbringer stood, showing none{BR}of the frailty or pain it had{BR}been displaying seconds ago.",
       "flavorReference": "Extermination 8.4"
     },
@@ -131,6 +148,7 @@
       "count": 3,
       "keywords": [ "one-shot" ],
       "body": [ "Destroy all environment targets.", "{LeviathanCharacter} deals X cold damage to all non-villain targets where X = 1 + the number of cards destroyed in this way." ],
+      "icons": [ "DestroyEnvironment", "DealDamageCold" ],
       "flavorText": "The building rocked with an impact,{BR}the forcefields to the left collapsed,{BR}and the water began to rush in",
       "flavorReference": "Extermination 8.2"
     },
@@ -140,6 +158,7 @@
       "count": 3,
       "keywords": [ "one-shot" ],
       "body": "Play the top 2 cards of the villain deck.",
+      "icons": [ "PlayCardNow" ],
       "flavorQuotes": [
         {
           "identifier": "Legend",
@@ -154,6 +173,7 @@
       "count": 3,
       "keywords": [ "one-shot" ],
       "body": "{LeviathanCharacter} deals the hero target with the highest HP 5 irreducible melee damage.",
+      "icons": [ "DealDamageMelee" ],
       "flavorText": "Jotun deceased, CD-6{BR}Dauntless deceased, CD-6.{BR}Alabaster deceased, CD-6.",
       "flavorReference": "Extermination 8.3"
     },
@@ -163,6 +183,7 @@
       "count": 3,
       "keywords": [ "one-shot" ],
       "body": "Flip {LeviathanCharacter}.",
+      "icons": [ ],
       "flavorQuotes": [
         {
           "identifier": "Legend",
@@ -177,6 +198,7 @@
       "count": 3,
       "keywords": [ "one-shot" ],
       "body": "{LeviathanCharacter} deals 2 melee damage to the 2 hero targets with the lowest HP.",
+      "icons": [ "DealDamageMelee" ],
       "flavorText": "Leviathan retaliated with a whiplike{BR}lash of his tail, bisecting the man. Of the{BR}twelve or so that had been on the roof{BR}a minute ago, only three remained.",
       "flavorReference": "Interlude 8 (Bonus)"
     }
