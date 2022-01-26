@@ -181,6 +181,7 @@
         </struct>
         <key>individualSpriteSettings</key>
         <map type="IndividualSpriteSettingsMap">
+            <key type="filename">BlackKaze.jpg</key>
             <key type="filename">CollapsingBuilding.jpg</key>
             <key type="filename">FatalismAndDespair.jpg</key>
             <key type="filename">LungKyushu.jpg</key>

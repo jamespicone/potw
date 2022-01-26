@@ -1,6 +1,6 @@
 {"frames": {
 
-"CollapsingBuilding.jpg":
+"BlackKaze.jpg":
 {
 	"frame": {"x":0,"y":0,"w":256,"h":198},
 	"rotated": false,
@@ -8,7 +8,7 @@
 	"spriteSourceSize": {"x":0,"y":0,"w":256,"h":198},
 	"sourceSize": {"w":256,"h":198}
 },
-"FatalismAndDespair.jpg":
+"CollapsingBuilding.jpg":
 {
 	"frame": {"x":259,"y":0,"w":256,"h":198},
 	"rotated": false,
@@ -16,15 +16,7 @@
 	"spriteSourceSize": {"x":0,"y":0,"w":256,"h":198},
 	"sourceSize": {"w":256,"h":198}
 },
-"KyushuDeckBack.jpg":
-{
-	"frame": {"x":518,"y":402,"w":178,"h":256},
-	"rotated": false,
-	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":178,"h":256},
-	"sourceSize": {"w":178,"h":256}
-},
-"LungKyushu.jpg":
+"FatalismAndDespair.jpg":
 {
 	"frame": {"x":518,"y":0,"w":256,"h":198},
 	"rotated": false,
@@ -32,9 +24,25 @@
 	"spriteSourceSize": {"x":0,"y":0,"w":256,"h":198},
 	"sourceSize": {"w":256,"h":198}
 },
+"KyushuDeckBack.jpg":
+{
+	"frame": {"x":777,"y":0,"w":178,"h":256},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":178,"h":256},
+	"sourceSize": {"w":178,"h":256}
+},
+"LungKyushu.jpg":
+{
+	"frame": {"x":0,"y":259,"w":256,"h":198},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":256,"h":198},
+	"sourceSize": {"w":256,"h":198}
+},
 "OnlyTheIndomitableRemain.jpg":
 {
-	"frame": {"x":0,"y":201,"w":256,"h":198},
+	"frame": {"x":259,"y":259,"w":256,"h":198},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":256,"h":198},
@@ -42,7 +50,7 @@
 },
 "ParahumanBackup.jpg":
 {
-	"frame": {"x":259,"y":201,"w":256,"h":198},
+	"frame": {"x":518,"y":259,"w":256,"h":198},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":256,"h":198},
@@ -50,7 +58,7 @@
 },
 "SentaiElite.jpg":
 {
-	"frame": {"x":518,"y":201,"w":256,"h":198},
+	"frame": {"x":0,"y":460,"w":256,"h":198},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":256,"h":198},
@@ -58,7 +66,7 @@
 },
 "SlideIntoTheSea.jpg":
 {
-	"frame": {"x":0,"y":402,"w":256,"h":198},
+	"frame": {"x":259,"y":460,"w":256,"h":198},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":256,"h":198},
@@ -66,7 +74,7 @@
 },
 "TidalWaveKyushu.jpg":
 {
-	"frame": {"x":259,"y":402,"w":256,"h":198},
+	"frame": {"x":518,"y":460,"w":256,"h":198},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":256,"h":198},
@@ -79,6 +87,6 @@
 	"format": "RGBA8888",
 	"size": {"w":1024,"h":1024},
 	"scale": "1",
-	"smartupdate": "$TexturePacker:SmartUpdate:fb1c8c1cfe46e8d28b5a26922e9adca3:2c53aee5ed9ce33fe60c11cb597cadd1:e0fe699741bc8cf1a2317851e44eacdc$"
+	"smartupdate": "$TexturePacker:SmartUpdate:2aa4b4f4ba801520cb916da6cddb2151:7095898581733085199110b075e62b43:e0fe699741bc8cf1a2317851e44eacdc$"
 }
 }
