@@ -85,6 +85,8 @@ namespace Jp.ParahumansOfTheWormverse.Tattletale
         {
             // "... you may redirect that damage to another hero target."
             List<SelectCardDecision> selectTarget = new List<SelectCardDecision>();
+
+            AddInhibitorException(ga => ga is RedirectDamageAction);
             IEnumerator selectCoroutine = base.GameController.SelectTargetAndRedirectDamage(base.HeroTurnTakerController, (Card c) => c.IsInPlay && this.HasAlignment(c, CardAlignment.Hero, CardTarget.Target) && c != dd.Target, dd, optional: true, selectTarget, cardSource: GetCardSource());
             if (UseUnityCoroutines)
             {
@@ -94,7 +96,7 @@ namespace Jp.ParahumansOfTheWormverse.Tattletale
             {
                 GameController.ExhaustCoroutine(selectCoroutine);
             }
-            yield break;
+            RemoveInhibitorException();
         }
     }
 }
