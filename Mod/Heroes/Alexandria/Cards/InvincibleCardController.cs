@@ -52,7 +52,7 @@ namespace Jp.ParahumansOfTheWormverse.Alexandria
 
         public IEnumerator DiscardToPreventDamage(DealDamageAction dda, TurnTaker hero, StatusEffect effect, int[] powerNumerals = null)
         {
-            if (GameController.PretendMode || preventDamage == null)
+            if (!preventInfo.HasValue || preventInfo.Value.identifier != dda.InstanceIdentifier)
             {
                 var discardResult = new List<DiscardCardAction>();
                 var e = SelectAndDiscardCards(
@@ -72,12 +72,49 @@ namespace Jp.ParahumansOfTheWormverse.Alexandria
                     GameController.ExhaustCoroutine(e);
                 }
 
-                preventDamage = DidDiscardCards(discardResult);
+                if (DidDiscardCards(discardResult))
+                {
+                    Card cardToDiscard = null;
+                    if (discardResult.Any(dca => dca.IsPretend))
+                    {
+                        cardToDiscard = discardResult.First().CardToDiscard;
+                    }
+
+                    preventInfo = new PreventInfo
+                    {
+                        toDiscard = cardToDiscard,
+                        identifier = dda.InstanceIdentifier
+                    };
+                }
+                else
+                {
+                    preventInfo = null;
+                }
             }
 
-            if (preventDamage.GetValueOrDefault(false))
+            if (preventInfo.HasValue)
             {
-                var e = GameController.CancelAction(dda, isPreventEffect: true, cardSource: GetCardSource());
+                IEnumerator e;
+                if (preventInfo.Value.toDiscard != null)
+                {
+                    e = GameController.DiscardCard(
+                        HeroTurnTakerController,
+                        preventInfo.Value.toDiscard,
+                        null,
+                        TurnTaker,
+                        cardSource: GetCardSource()
+                    );
+                    if (UseUnityCoroutines)
+                    {
+                        yield return GameController.StartCoroutine(e);
+                    }
+                    else
+                    {
+                        GameController.ExhaustCoroutine(e);
+                    }
+                }
+
+                e = GameController.CancelAction(dda, isPreventEffect: true, cardSource: GetCardSource());
                 if (UseUnityCoroutines)
                 {
                     yield return GameController.StartCoroutine(e);
@@ -90,10 +127,16 @@ namespace Jp.ParahumansOfTheWormverse.Alexandria
 
             if (! GameController.PretendMode)
             {
-                preventDamage = null;
+                preventInfo = null;
             }
         }
 
-        private bool? preventDamage;
+        private struct PreventInfo
+        {
+            public Card toDiscard;
+            public System.Guid identifier;
+        };
+
+        private PreventInfo? preventInfo;
     }
 }
