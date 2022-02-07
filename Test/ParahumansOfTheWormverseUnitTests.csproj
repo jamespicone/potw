@@ -14,8 +14,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{AFE958F0-3C90-4493-A425-48A660B58E76}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <RootNamespace>MyModTest</RootNamespace>
-    <AssemblyName>MyModTest</AssemblyName>
+    <RootNamespace>Jp.ParahumansOfTheWormverse.UnitTest</RootNamespace>
+    <AssemblyName>ParahumansOfTheWormverseUnitTests</AssemblyName>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -45,6 +45,8 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Alexandria\InvincibleTests.cs" />
+    <Compile Include="Tattletale\WittyDeflectionTests.cs" />
     <Compile Include="Test.cs" />
     <Compile Include="BaseTest.cs" />
     <Compile Include="Setup.cs" />
@@ -58,6 +60,7 @@
       <Name>ParahumansOfTheWormverse</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParahumansOfTheWormverse", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyModConsole", "Console\MyModConsole.csproj", "{79F7ED14-FC8A-4625-A297-2CC51C5D803D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyModTest", "Test\MyModTest.csproj", "{AFE958F0-3C90-4493-A425-48A660B58E76}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParahumansOfTheWormverseUnitTests", "Test\ParahumansOfTheWormverseUnitTests.csproj", "{AFE958F0-3C90-4493-A425-48A660B58E76}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

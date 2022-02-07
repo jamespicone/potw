@@ -7,7 +7,7 @@ using System.Collections;
 using Handelabra.Sentinels.UnitTest;
 using Jp.ParahumansOfTheWormverse.Bitch;
 
-namespace Jp.ParahumansOfTheWormverse.Test
+namespace Jp.ParahumansOfTheWormverse.UnitTest
 {
     [TestFixture()]
     public class BitchTest : BaseTest
