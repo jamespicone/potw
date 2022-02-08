@@ -25,7 +25,7 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.Tattletale
                 "BaronBlade",
                 "Jp.ParahumansOfTheWormverse.Tattletale",
                 "Tachyon",
-                "Metropolis"
+                "Megalopolis"
             );
 
             StartGame();
@@ -52,7 +52,7 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.Tattletale
                 "BaronBlade",
                 "Jp.ParahumansOfTheWormverse.Tattletale",
                 "Tachyon",
-                "Metropolis"
+                "Megalopolis"
             );
 
             StartGame();
