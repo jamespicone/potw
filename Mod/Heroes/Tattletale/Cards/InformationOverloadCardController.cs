@@ -17,23 +17,8 @@ namespace Jp.ParahumansOfTheWormverse.Tattletale
 
         }
 
-        public override void AddTriggers()
-        {
-            base.AddTriggers();
-        }
-
         public override IEnumerator Play()
         {
-            // "{TattletaleCharacter} may use any number of powers this turn."
-            IEnumerator powersCoroutine = AdditionalPhaseActionThisTurn(base.TurnTaker, Phase.UsePower, 9999);
-            if (UseUnityCoroutines)
-            {
-                yield return GameController.StartCoroutine(powersCoroutine);
-            }
-            else
-            {
-                GameController.ExhaustCoroutine(powersCoroutine);
-            }
             // "Whenever {TattletaleCharacter} uses a power this turn, she deals herself 1 psychic damage."
             DealDamageAfterUsePowerStatusEffect backlashStatus = new DealDamageAfterUsePowerStatusEffect(base.HeroTurnTaker, base.CharacterCard, base.CharacterCard, 1, DamageType.Psychic, 1, false);
             backlashStatus.UntilThisTurnIsOver(base.Game);
@@ -46,6 +31,18 @@ namespace Jp.ParahumansOfTheWormverse.Tattletale
             {
                 GameController.ExhaustCoroutine(statusCoroutine);
             }
+
+            // "{TattletaleCharacter} may use any number of powers this turn."
+            IEnumerator powersCoroutine = AdditionalPhaseActionThisTurn(base.TurnTaker, Phase.UsePower, 9999);
+            if (UseUnityCoroutines)
+            {
+                yield return GameController.StartCoroutine(powersCoroutine);
+            }
+            else
+            {
+                GameController.ExhaustCoroutine(powersCoroutine);
+            }
+            
             yield break;
         }
     }

@@ -130,8 +130,8 @@
         "one-shot"
       ],
       "body": [
-        "{TattletaleCharacter} may use any number of powers this turn.",
-        "Whenever {TattletaleCharacter} uses a power this turn, she deals herself 1 psychic damage."
+        "Whenever {TattletaleCharacter} uses a power this turn, she deals herself 1 psychic damage.",
+        "{TattletaleCharacter} may use any number of powers this turn."
       ],
       "icons": [
         "UsePowerExtra",
