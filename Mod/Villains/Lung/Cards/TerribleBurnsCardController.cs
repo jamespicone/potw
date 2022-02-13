@@ -2,7 +2,7 @@
 using Handelabra.Sentinels.Engine.Model;
 using System.Collections;
 
-using Jp.ParahumansOfTheWormverse.Utility;
+using Jp.SOTMUtilities;
 
 namespace Jp.ParahumansOfTheWormverse.Lung
 {

@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-using Jp.ParahumansOfTheWormverse.Utility;
+using Jp.SOTMUtilities;
 
 namespace Jp.ParahumansOfTheWormverse.JessicaYamada
 {
@@ -133,7 +133,7 @@ namespace Jp.ParahumansOfTheWormverse.JessicaYamada
                 yield break;
             }
 
-            if (GameController.FindTargetsInPlay(c => this.HasAlignment(c, CardAlignment.Hero, CardTarget.Target) && c.Location != TurnTaker.PlayArea).Count() > 0) { yield break; }
+            if (GameController.FindTargetsInPlay(c => c.Is().Hero().Target() && c.Location != TurnTaker.PlayArea).Count() > 0) { yield break; }
 
             var e = GameController.DestroyCard(null, CharacterCard);
             if (UseUnityCoroutines)

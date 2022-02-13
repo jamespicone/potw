@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-using Jp.ParahumansOfTheWormverse.Utility;
+using Jp.SOTMUtilities;
 
 namespace Jp.ParahumansOfTheWormverse.Behemoth
 {
@@ -26,7 +26,7 @@ namespace Jp.ParahumansOfTheWormverse.Behemoth
             string summary = "";
             int numTokens = base.Card.FindTokenPool(ProximityPoolIdentifier).CurrentValue;
             TurnTaker tt = base.Card.Location.HighestRecursiveLocation.OwnerTurnTaker;
-            if (tt != null && this.HasAlignment(tt, CardAlignment.Hero) && !tt.IsIncapacitatedOrOutOfGame)
+            if (tt != null && tt.Is().Hero() && !tt.IsIncapacitatedOrOutOfGame)
             {
                 string ttName = tt.NameRespectingVariant;
                 if (numTokens == 1)
@@ -76,7 +76,7 @@ namespace Jp.ParahumansOfTheWormverse.Behemoth
             // "This card exists to mark your hero's proximity token pool. It's indestructible as long as you have an active hero."
             if (card == base.Card)
             {
-                return this.HasAlignment(AssociatedTurnTaker(), CardAlignment.Hero) && !AssociatedTurnTaker().IsIncapacitatedOrOutOfGame;
+                return AssociatedTurnTaker().Is().Hero() && !AssociatedTurnTaker().IsIncapacitatedOrOutOfGame;
             }
             return base.AskIfCardIsIndestructible(card);
         }

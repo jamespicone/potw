@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-using Jp.ParahumansOfTheWormverse.Utility;
+using Jp.SOTMUtilities;
 
 namespace Jp.ParahumansOfTheWormverse.Tattletale
 {
@@ -41,7 +41,7 @@ namespace Jp.ParahumansOfTheWormverse.Tattletale
                 }
                 // That player draws and discards
                 TurnTaker chosen = (from d in storedDecisions where d.Completed select d.SelectedTurnTaker).FirstOrDefault();
-                if (chosen != null && this.HasAlignment(chosen, CardAlignment.Hero) && !chosen.IsIncapacitatedOrOutOfGame)
+                if (chosen != null && chosen.Is().Hero() && !chosen.IsIncapacitatedOrOutOfGame)
                 {
                     IEnumerator drawDiscardCoroutine = DrawDiscardResponse(chosen, numDraws, numDiscards);
                     if (UseUnityCoroutines)

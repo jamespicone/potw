@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-using Jp.ParahumansOfTheWormverse.Utility;
+using Jp.SOTMUtilities;
 
 namespace Jp.ParahumansOfTheWormverse.Battery
 {
@@ -30,7 +30,7 @@ namespace Jp.ParahumansOfTheWormverse.Battery
         public IEnumerator LightningDamageResponse(PhaseChangeAction pca)
         {
             // "... {BatteryCharacter} deals each non-hero target 2 lightning damage."
-            IEnumerator damageCoroutine = base.GameController.DealDamage(base.HeroTurnTakerController, base.CharacterCard, (Card c) => this.HasAlignment(c, CardAlignment.Nonhero, CardTarget.Target), 2, DamageType.Lightning, cardSource: GetCardSource());
+            IEnumerator damageCoroutine = base.GameController.DealDamage(base.HeroTurnTakerController, base.CharacterCard, (Card c) => c.Is().NonHero().Target(), 2, DamageType.Lightning, cardSource: GetCardSource());
             if (base.UseUnityCoroutines)
             {
                 yield return base.GameController.StartCoroutine(damageCoroutine);

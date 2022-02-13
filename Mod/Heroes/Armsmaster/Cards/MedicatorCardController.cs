@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-using Jp.ParahumansOfTheWormverse.Utility;
+using Jp.SOTMUtilities;
 
 namespace Jp.ParahumansOfTheWormverse.Armsmaster
 {
@@ -17,7 +17,7 @@ namespace Jp.ParahumansOfTheWormverse.Armsmaster
         public override IEnumerator DoPrimary()
         {
             // All hero targets regain 1 HP
-            var e = GameController.GainHP(HeroTurnTakerController, c => this.HasAlignment(c, CardAlignment.Hero, CardTarget.Target), 1, cardSource: GetCardSource());
+            var e = GameController.GainHP(HeroTurnTakerController, c => c.Is().Hero().Target(), 1, cardSource: GetCardSource());
             if (UseUnityCoroutines)
             {
                 yield return GameController.StartCoroutine(e);

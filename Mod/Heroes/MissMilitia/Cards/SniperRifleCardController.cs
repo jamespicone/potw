@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-using Jp.ParahumansOfTheWormverse.Utility;
+using Jp.SOTMUtilities;
 
 namespace Jp.ParahumansOfTheWormverse.MissMilitia
 {
@@ -71,7 +71,7 @@ namespace Jp.ParahumansOfTheWormverse.MissMilitia
                     Card
                 );
 
-                effect.DealDamageToTargetAtStartOfNextTurn(TurnTaker, targeted, amount);
+                effect.DealDamageToTargetAtStartOfNextTurn(TurnTaker, targeted, amount, DamageType.Projectile);
                 e = GameController.AddStatusEffect(effect, true, GetCardSource());
                 if (UseUnityCoroutines)
                 {

@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-using Jp.ParahumansOfTheWormverse.Utility;
+using Jp.SOTMUtilities;
 
 namespace Jp.ParahumansOfTheWormverse.CoilsBase
 {
@@ -22,7 +22,7 @@ namespace Jp.ParahumansOfTheWormverse.CoilsBase
         public override void AddTriggers()
         {
             // "Heroes cannot use powers."
-            CannotUsePowers(ttc => this.HasAlignment(ttc.TurnTaker, CardAlignment.Hero));
+            CannotUsePowers(ttc => ttc.TurnTaker.Is().Hero());
 
             // "At the start of the environment turn this card deals 2 projectile damage to the H nonenvironment targets with the highest HP"
             AddStartOfTurnTrigger(

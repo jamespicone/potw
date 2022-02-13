@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-using Jp.ParahumansOfTheWormverse.Utility;
+using Jp.SOTMUtilities;
 
 namespace Jp.ParahumansOfTheWormverse.CoilsBase
 {
@@ -24,14 +24,14 @@ namespace Jp.ParahumansOfTheWormverse.CoilsBase
 
         public override bool? AskIfCardIsVisibleToCardSource(Card card, CardSource source)
         {
-            if (!this.HasAlignment(card, CardAlignment.Hero)) { return null; }
+            if (card.Is().NonHero()) { return null; }
             return AskIfTurnTakerIsVisibleToCardSource(card.Owner, source);
         }
 
         public override bool? AskIfTurnTakerIsVisibleToCardSource(TurnTaker tt, CardSource cardSource)
         {
-            if (! this.HasAlignment(tt, CardAlignment.Hero)) { return null; }
-            if (! this.HasAlignment(cardSource?.Card, CardAlignment.Hero)) { return null; }
+            if (tt.Is().NonHero()) { return null; }
+            if (cardSource?.Card.Is().NonHero()) { return null; }
             if (cardSource.Card.Owner == tt) { return null; }
 
             return false;
@@ -46,7 +46,7 @@ namespace Jp.ParahumansOfTheWormverse.CoilsBase
                     if (hero1 == hero2) { continue; }
 
                     if (
-                        (gameAction.DoesFirstCardAffectSecondCard(c => c.Owner == hero1 && this.HasAlignment(c, CardAlignment.Hero), c => c.Owner == hero2 && this.HasAlignment(c, CardAlignment.Hero)) ?? false) ||
+                        (gameAction.DoesFirstCardAffectSecondCard(c => c.Owner == hero1 && c.Is().Hero(), c => c.Owner == hero2 && c.Is().Hero()) ?? false) ||
                         (gameAction.DoesFirstTurnTakerAffectSecondTurnTaker(tt => tt == hero1, tt => tt == hero2) ?? false))
                     {
                         return false;
@@ -68,7 +68,7 @@ namespace Jp.ParahumansOfTheWormverse.CoilsBase
             base.AddTriggers();
 
             AddTrigger<MakeDecisionsAction>(
-                mda => this.HasAlignment(mda.CardSource?.Card, CardAlignment.Hero),
+                mda => mda.CardSource?.Card.Is().Hero(),
                 mda => RemoveDecisions(mda),
                 TriggerType.RemoveDecision,
                 TriggerTiming.Before

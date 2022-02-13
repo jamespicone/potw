@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-using Jp.ParahumansOfTheWormverse.Utility;
+using Jp.SOTMUtilities;
 
 namespace Jp.ParahumansOfTheWormverse.Coil
 {
@@ -27,7 +27,7 @@ namespace Jp.ParahumansOfTheWormverse.Coil
             AddDealDamageAtEndOfTurnTrigger(
                 TurnTaker,
                 Card,
-                c => this.HasAlignment(c, CardAlignment.Hero, CardTarget.Target),
+                c => c.Is().Hero().Target(),
                 TargetType.All,
                 2,
                 DamageType.Fire

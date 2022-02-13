@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-using Jp.ParahumansOfTheWormverse.Utility;
+using Jp.SOTMUtilities;
 
 namespace Jp.ParahumansOfTheWormverse.Leviathan
 {
@@ -21,7 +21,7 @@ namespace Jp.ParahumansOfTheWormverse.Leviathan
             var e = DealDamageToLowestHP(
                 CharacterCard,
                 1,
-                c => this.HasAlignment(c, CardAlignment.Hero, CardTarget.Target) && c.IsInPlay,
+                c => c.Is().Hero().Target() && c.IsInPlay,
                 c => 2,
                 DamageType.Melee,
                 numberOfTargets: 2

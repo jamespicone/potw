@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-using Jp.ParahumansOfTheWormverse.Utility;
+using Jp.SOTMUtilities;
 
 namespace Jp.ParahumansOfTheWormverse.MissMilitia
 {
@@ -84,7 +84,7 @@ namespace Jp.ParahumansOfTheWormverse.MissMilitia
             var e = GameController.SelectCardAndStoreResults(
                 HeroTurnTakerController,
                 SelectionType.CardToDealDamage,
-                new LinqCardCriteria((c) => c.IsInPlay && this.HasAlignment(c, CardAlignment.Hero, CardTarget.Target), "hero target", useCardsSuffix: false),
+                new LinqCardCriteria((c) => c.IsInPlay && c.Is().Hero().Target(), "hero target", useCardsSuffix: false),
                 chooseHeroTarget,
                 optional: false,
                 cardSource: GetCardSource()

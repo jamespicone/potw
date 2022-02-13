@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-using Jp.ParahumansOfTheWormverse.Utility;
+using Jp.SOTMUtilities;
 
 namespace Jp.ParahumansOfTheWormverse.MissMilitia
 {
@@ -32,7 +32,7 @@ namespace Jp.ParahumansOfTheWormverse.MissMilitia
                 numberOfTargets: 1,
                 optional: false,
                 requiredTargets: 1,
-                additionalCriteria: (c) => this.HasAlignment(c, CardAlignment.Nonhero, CardTarget.Target),
+                additionalCriteria: (c) => c.Is().NonHero().Target(),
                 cardSource: GetCardSource()
             );
             if (UseUnityCoroutines)

@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-using Jp.ParahumansOfTheWormverse.Utility;
+using Jp.SOTMUtilities;
 
 namespace Jp.ParahumansOfTheWormverse.Dragon
 {
@@ -23,7 +23,7 @@ namespace Jp.ParahumansOfTheWormverse.Dragon
             // 1 hero target deals a target either 2 projectile or 2 melee damage
             var e = GameController.SelectTargetAndStoreResults(
                 HeroTurnTakerController,
-                FindCardsWhere(new LinqCardCriteria(c => this.HasAlignment(c, CardAlignment.Hero, CardTarget.Target) && c.IsInPlay)),
+                FindCardsWhere(new LinqCardCriteria(c => c.Is().Hero().Target() && c.IsInPlay)),
                 storedTargets,
                 selectionType: SelectionType.CardToDealDamage,
                 cardSource: GetCardSource()

@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-using Jp.ParahumansOfTheWormverse.Utility;
+using Jp.SOTMUtilities;
 
 namespace Jp.ParahumansOfTheWormverse.CoilsBase
 {
@@ -21,7 +21,7 @@ namespace Jp.ParahumansOfTheWormverse.CoilsBase
         public override void AddTriggers()
         {
             // "At the start of their turn, a player may skip the rest of their turn to destroy this card."
-            AddStartOfTurnTrigger(tt => this.HasAlignment(tt, CardAlignment.Hero), SkipTheirTurnToDestroyThisCardResponse, new TriggerType[] { TriggerType.SkipTurn, TriggerType.DestroySelf });
+            AddStartOfTurnTrigger(tt => tt.Is().Hero(), SkipTheirTurnToDestroyThisCardResponse, new TriggerType[] { TriggerType.SkipTurn, TriggerType.DestroySelf });
         }
     }
 }

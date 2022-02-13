@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-using Jp.ParahumansOfTheWormverse.Utility;
+using Jp.SOTMUtilities;
 
 namespace Jp.ParahumansOfTheWormverse.NewDelhi
 {
@@ -27,7 +27,7 @@ namespace Jp.ParahumansOfTheWormverse.NewDelhi
         public override IEnumerator Play()
         {
             // "When this card enters play, deal each hero target 3 lightning damage."
-            IEnumerator damageCoroutine = base.GameController.DealDamage(DecisionMaker, base.Card, (Card c) => this.HasAlignment(c, CardAlignment.Hero, CardTarget.Target), 3, DamageType.Lightning, cardSource: GetCardSource());
+            IEnumerator damageCoroutine = base.GameController.DealDamage(DecisionMaker, base.Card, (Card c) => c.Is().Hero().Target(), 3, DamageType.Lightning, cardSource: GetCardSource());
             if (base.UseUnityCoroutines)
             {
                 yield return base.GameController.StartCoroutine(damageCoroutine);

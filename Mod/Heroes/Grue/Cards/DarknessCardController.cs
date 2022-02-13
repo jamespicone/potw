@@ -7,7 +7,7 @@ using System.Collections;
 using Handelabra.Sentinels.Engine.Controller;
 using Handelabra.Sentinels.Engine.Model;
 
-using Jp.ParahumansOfTheWormverse.Utility;
+using Jp.SOTMUtilities;
 using UnityEngine;
 
 namespace Jp.ParahumansOfTheWormverse.Grue

@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-using Jp.ParahumansOfTheWormverse.Utility;
+using Jp.SOTMUtilities;
 
 namespace Jp.ParahumansOfTheWormverse.Armsmaster
 {
@@ -21,7 +21,7 @@ namespace Jp.ParahumansOfTheWormverse.Armsmaster
                 HeroTurnTakerController,
                 AllCards,
                 storedResults,
-                additionalCriteria: c => this.HasAlignment(c, CardAlignment.Hero, CardTarget.Target) && c.IsInPlay,
+                additionalCriteria: c => c.Is().Hero().Target() && c.IsInPlay,
                 selectionType: SelectionType.IncreaseNextDamage,
                 cardSource: GetCardSource()
             );
@@ -123,7 +123,7 @@ namespace Jp.ParahumansOfTheWormverse.Armsmaster
                     Card
                 );
 
-            effect.DealDamageToTargetAtStartOfNextTurn(TurnTaker, target, amount);
+            effect.DealDamageToTargetAtStartOfNextTurn(TurnTaker, target, amount, DamageType.Projectile);
             e = GameController.AddStatusEffect(effect, true, GetCardSource());
             if (UseUnityCoroutines)
             {

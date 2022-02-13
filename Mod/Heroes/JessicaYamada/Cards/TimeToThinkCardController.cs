@@ -9,7 +9,7 @@ using System.Text;
 
 using UnityEngine;
 
-using Jp.ParahumansOfTheWormverse.Utility;
+using Jp.SOTMUtilities;
 
 namespace Jp.ParahumansOfTheWormverse.JessicaYamada
 {
@@ -28,7 +28,7 @@ namespace Jp.ParahumansOfTheWormverse.JessicaYamada
                 "Whenever a player skips a phase, they may draw a card"
             */
             AddPhaseChangeTrigger(
-                tt => this.HasAlignment(tt, CardAlignment.Hero),
+                tt => tt.Is().Hero(),
                 p => true,
                 pca => 
                     pca.FromPhase.WasSkipped ||
