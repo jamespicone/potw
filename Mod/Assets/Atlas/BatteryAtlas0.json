@@ -1,14 +1,14 @@
 {"frames": {
 
-"BatteryCharacter.jpg":
+"BatteryCauldronCapeCharacter.jpg":
 {
-	"frame": {"x":0,"y":0,"w":178,"h":256},
+	"frame": {"x":0,"y":0,"w":178,"h":257},
 	"rotated": false,
 	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":178,"h":256},
-	"sourceSize": {"w":178,"h":256}
+	"spriteSourceSize": {"x":0,"y":0,"w":178,"h":257},
+	"sourceSize": {"w":178,"h":257}
 },
-"BatteryCharacterBack.jpg":
+"BatteryCauldronCapeCharacterBack.jpg":
 {
 	"frame": {"x":181,"y":0,"w":178,"h":256},
 	"rotated": false,
@@ -16,9 +16,25 @@
 	"spriteSourceSize": {"x":0,"y":0,"w":178,"h":256},
 	"sourceSize": {"w":178,"h":256}
 },
+"BatteryCharacter.jpg":
+{
+	"frame": {"x":362,"y":0,"w":178,"h":257},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":178,"h":257},
+	"sourceSize": {"w":178,"h":257}
+},
+"BatteryCharacterBack.jpg":
+{
+	"frame": {"x":543,"y":0,"w":178,"h":256},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":178,"h":256},
+	"sourceSize": {"w":178,"h":256}
+},
 "BatteryDeckBack.jpg":
 {
-	"frame": {"x":362,"y":0,"w":178,"h":256},
+	"frame": {"x":724,"y":0,"w":178,"h":256},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":178,"h":256},
@@ -31,6 +47,6 @@
 	"format": "RGBA8888",
 	"size": {"w":1024,"h":1024},
 	"scale": "1",
-	"smartupdate": "$TexturePacker:SmartUpdate:653086f21ad5d0364f699223a49fcec0:efd9f788ff7ee3dbcdee71b1a3806cc9:329180770cfb2e2bfcdcd11c40d502c7$"
+	"smartupdate": "$TexturePacker:SmartUpdate:875d5a345ca76d1475abe5bfe5e42444:f12d8c0deeb6b12ca35e8d675668b4f4:329180770cfb2e2bfcdcd11c40d502c7$"
 }
 }

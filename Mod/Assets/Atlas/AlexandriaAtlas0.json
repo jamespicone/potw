@@ -2,11 +2,11 @@
 
 "AlexandriaCharacter.jpg":
 {
-	"frame": {"x":0,"y":0,"w":178,"h":256},
+	"frame": {"x":0,"y":0,"w":178,"h":257},
 	"rotated": false,
 	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":178,"h":256},
-	"sourceSize": {"w":178,"h":256}
+	"spriteSourceSize": {"x":0,"y":0,"w":178,"h":257},
+	"sourceSize": {"w":178,"h":257}
 },
 "AlexandriaCharacterBack.jpg":
 {
@@ -31,6 +31,6 @@
 	"format": "RGBA8888",
 	"size": {"w":1024,"h":1024},
 	"scale": "1",
-	"smartupdate": "$TexturePacker:SmartUpdate:92c20f7be0e26dcf4a18473fd632585a:324d96ca879a46d26ad775d12871dae9:371151756ebac35a08c043d4dd85708f$"
+	"smartupdate": "$TexturePacker:SmartUpdate:ba36bd816d2ee125f12a783b4c8b4c98:dfba6f0d4831725c658e5e727c00342c:371151756ebac35a08c043d4dd85708f$"
 }
 }

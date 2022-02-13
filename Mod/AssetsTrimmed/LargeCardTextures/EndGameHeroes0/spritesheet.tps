@@ -185,11 +185,17 @@
             <key type="filename">AlexandriaCharacterFlipped.jpg</key>
             <key type="filename">ArmsmasterCharacter.jpg</key>
             <key type="filename">ArmsmasterCharacterFlipped.jpg</key>
+            <key type="filename">BatteryCharacter.jpg</key>
+            <key type="filename">BatteryCharacterFlipped.jpg</key>
             <key type="filename">BitchCharacterFlipped.jpg</key>
             <key type="filename">DauntlessCharacter.jpg</key>
             <key type="filename">DauntlessCharacterFlipped.jpg</key>
             <key type="filename">DragonCharacter.jpg</key>
             <key type="filename">DragonCharacterFlipped.jpg</key>
+            <key type="filename">GrueCharacter.jpg</key>
+            <key type="filename">GrueCharacterFlipped.jpg</key>
+            <key type="filename">JessicaYamadaCharacter.jpg</key>
+            <key type="filename">JessicaYamadaCharacterFlipped.jpg</key>
             <key type="filename">LegendCharacter.jpg</key>
             <key type="filename">LegendCharacterFlipped.jpg</key>
             <struct type="IndividualSpriteSettings">

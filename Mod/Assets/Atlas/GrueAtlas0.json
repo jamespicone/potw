@@ -2,11 +2,11 @@
 
 "GrueCharacter.jpg":
 {
-	"frame": {"x":0,"y":0,"w":178,"h":256},
+	"frame": {"x":0,"y":0,"w":178,"h":257},
 	"rotated": false,
 	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":178,"h":256},
-	"sourceSize": {"w":178,"h":256}
+	"spriteSourceSize": {"x":0,"y":0,"w":178,"h":257},
+	"sourceSize": {"w":178,"h":257}
 },
 "GrueCharacterBack.jpg":
 {
@@ -31,6 +31,6 @@
 	"format": "RGBA8888",
 	"size": {"w":1024,"h":1024},
 	"scale": "1",
-	"smartupdate": "$TexturePacker:SmartUpdate:5f7b895e270a47ee4a0aaf98fe3fad02:1fed04afd50cbe8c03c37c41102fcd85:3af7e6715cc0724a2b825287afa842d0$"
+	"smartupdate": "$TexturePacker:SmartUpdate:3dcfd7be69a039dc02362ea768e2bdad:bbf0f647acd68473528661f126b03182:3af7e6715cc0724a2b825287afa842d0$"
 }
 }
