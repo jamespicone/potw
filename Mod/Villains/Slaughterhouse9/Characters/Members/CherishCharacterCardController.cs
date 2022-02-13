@@ -33,8 +33,17 @@ namespace Jp.ParahumansOfTheWormverse.Slaughterhouse9
                 // The first time a Defence card would enter the trash each turn the hero with the most cards in hand discards 2 cards
                 AddSideTrigger(AddDefenceTrigger(() => DiscardResponse(), new TriggerType[] { TriggerType.DiscardCard }, "CherishDiscard"));
 
-                // Whenever Cherish is dealt damage, Cherish deals 2 psychic damage to the target that dealt her damage
-                AddSideTrigger(AddCounterDamageTrigger(dda => dda.Target == Card, () => Card, () => Card, oncePerTargetPerTurn: false, 2, DamageType.Psychic));
+                // Whenever Cherish has more than 0 HP and is dealt damage by a non-villain target, Cherish deals 2 psychic damage to that target
+                AddSideTrigger(
+                    AddCounterDamageTrigger(
+                        dda => dda.Target == Card && dda.DamageSource.Is().NonVillain().Target().AccordingTo(this) && Card.HitPoints > 0,
+                        () => Card,
+                        () => Card,
+                        oncePerTargetPerTurn: false,
+                        2,
+                        DamageType.Psychic
+                    )
+                );
             }
         }
 

@@ -186,7 +186,7 @@
       "flippedBody": "Incapacitated",
       "gameplay": [
         "Once per turn, when a Defence card enters the trash the hero with the most cards in hand discards 2 cards",
-        "Whenever Cherish is dealt damage, Cherish deals 2 psychic damage to the target that dealt her damage"
+        "Whenever Cherish has more than 0 HP and is dealt damage by a non-villain target, Cherish deals 2 psychic damage to that target"
       ],
       "flippedGameplay": [
         "Whenever a target is destroyed during a hero's turn, that hero deals themselves 1 psychic damage"
