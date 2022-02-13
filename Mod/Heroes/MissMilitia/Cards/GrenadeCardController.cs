@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-using Jp.ParahumansOfTheWormverse.Utility;
+using Jp.SOTMUtilities;
 
 namespace Jp.ParahumansOfTheWormverse.MissMilitia
 {
@@ -29,7 +29,7 @@ namespace Jp.ParahumansOfTheWormverse.MissMilitia
 
             var e = SelectTargetsAndDealMultipleInstancesOfDamage(
                 attacks,
-                (c) => this.HasAlignment(c, CardAlignment.Nonhero, CardTarget.Target),
+                (c) => c.Is().NonHero().Target(),
                 minNumberOfTargets: 1,
                 maxNumberOfTargets: 1,
                 storedResultsAction: storedResultsDamage

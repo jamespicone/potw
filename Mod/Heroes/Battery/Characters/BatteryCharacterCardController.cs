@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-using Jp.ParahumansOfTheWormverse.Utility;
+using Jp.SOTMUtilities;
 
 namespace Jp.ParahumansOfTheWormverse.Battery
 {
@@ -222,7 +222,7 @@ namespace Jp.ParahumansOfTheWormverse.Battery
         {
             // "One hero target deals 1 target 2 lightning damage."
             List<SelectCardDecision> chooseHeroTarget = new List<SelectCardDecision>();
-            IEnumerator chooseHeroCoroutine = base.GameController.SelectCardAndStoreResults(base.HeroTurnTakerController, SelectionType.CardToDealDamage, new LinqCardCriteria((Card c) => c.IsInPlay && this.HasAlignment(c, CardAlignment.Hero, CardTarget.Target), "hero target", useCardsSuffix: false), chooseHeroTarget, false, cardSource: GetCardSource());
+            IEnumerator chooseHeroCoroutine = base.GameController.SelectCardAndStoreResults(base.HeroTurnTakerController, SelectionType.CardToDealDamage, new LinqCardCriteria((Card c) => c.IsInPlay && c.Is().Hero().Target(), "hero target", useCardsSuffix: false), chooseHeroTarget, false, cardSource: GetCardSource());
             if (base.UseUnityCoroutines)
             {
                 yield return base.GameController.StartCoroutine(chooseHeroCoroutine);

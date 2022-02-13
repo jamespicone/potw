@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-using Jp.ParahumansOfTheWormverse.Utility;
+using Jp.SOTMUtilities;
 
 namespace Jp.ParahumansOfTheWormverse.Armsmaster
 {
@@ -27,7 +27,7 @@ namespace Jp.ParahumansOfTheWormverse.Armsmaster
                 1,
                 optional: false,
                 null,
-                additionalCriteria: c => this.HasAlignment(c, CardAlignment.Nonhero, CardTarget.Target),
+                additionalCriteria: c => c.Is().NonHero().Target(),
                 cardSource: GetCardSource()
             );
             if (UseUnityCoroutines)

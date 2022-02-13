@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-using Jp.ParahumansOfTheWormverse.Utility;
+using Jp.SOTMUtilities;
 
 namespace Jp.ParahumansOfTheWormverse.Behemoth
 {
@@ -26,7 +26,7 @@ namespace Jp.ParahumansOfTheWormverse.Behemoth
 
         public TokenPool ProximityPool(TurnTaker tt)
         {
-            if (tt != null && this.HasAlignment(tt, CardAlignment.Hero) && !tt.IsIncapacitatedOrOutOfGame)
+            if (tt != null && tt.Is().Hero() && !tt.IsIncapacitatedOrOutOfGame)
             {
                 Card proximityMarker = base.GameController.FindCardsWhere(new LinqCardCriteria((Card c) => c.Identifier == ProximityMarkerIdentifier && c.Location == tt.PlayArea), realCardsOnly: false).FirstOrDefault();
                 if (proximityMarker != null)

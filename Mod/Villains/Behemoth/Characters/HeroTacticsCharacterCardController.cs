@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-using Jp.ParahumansOfTheWormverse.Utility;
+using Jp.SOTMUtilities;
 
 namespace Jp.ParahumansOfTheWormverse.Behemoth
 {
@@ -39,15 +39,15 @@ namespace Jp.ParahumansOfTheWormverse.Behemoth
             {
                 // Standard Protocols
                 // "At the start of a player's turn, that player may skip the rest of their turn to remove 2 proximity tokens from their hero."
-                base.AddSideTrigger(AddStartOfTurnTrigger((TurnTaker tt) => this.HasAlignment(tt, CardAlignment.Hero) && !tt.IsIncapacitatedOrOutOfGame, SkipTurnOptionResponse, new TriggerType[] { TriggerType.SkipTurn, TriggerType.ModifyTokens }));
+                base.AddSideTrigger(AddStartOfTurnTrigger((TurnTaker tt) => tt.Is().Hero() && !tt.IsIncapacitatedOrOutOfGame, SkipTurnOptionResponse, new TriggerType[] { TriggerType.SkipTurn, TriggerType.ModifyTokens }));
                 // "At the end of the environment turn, choose one:{BR}* Each player may move a proximity token from their hero to another active hero.{BR}* One player may move 2 proximity tokens from their hero to the active hero after them in the turn order.{BR}* One player may remove a proximity token from their hero."
-                base.AddSideTrigger(AddEndOfTurnTrigger((TurnTaker tt) => this.HasAlignment(tt, CardAlignment.Environment), StandardHeroMovementResponse, TriggerType.ModifyTokens));
+                base.AddSideTrigger(AddEndOfTurnTrigger((TurnTaker tt) => tt.Is().Environment(), StandardHeroMovementResponse, TriggerType.ModifyTokens));
             }
             else
             {
                 // Panicked
                 // "At the end of the environment turn, choose one:{BR}* Each player may move a proximity token from their hero to another active hero.{BR}* One player may move 2 proximity tokens from their hero to the active hero after them in the turn order."
-                base.AddSideTrigger(AddEndOfTurnTrigger((TurnTaker tt) => this.HasAlignment(tt, CardAlignment.Environment), PanickedHeroMovementResponse, TriggerType.ModifyTokens));
+                base.AddSideTrigger(AddEndOfTurnTrigger((TurnTaker tt) => tt.Is().Environment(), PanickedHeroMovementResponse, TriggerType.ModifyTokens));
             }
         }
 
@@ -137,7 +137,7 @@ namespace Jp.ParahumansOfTheWormverse.Behemoth
         public IEnumerator EachPlayerMayMoveOneToken()
         {
             // "Each player may move a proximity token from their hero to another active hero."
-            IEnumerator selectCoroutine = base.GameController.SelectTurnTakersAndDoAction(DecisionMaker, new LinqTurnTakerCriteria((TurnTaker tt) => this.HasAlignment(tt, CardAlignment.Hero) && !tt.IsIncapacitatedOrOutOfGame), SelectionType.RemoveTokens, MayMoveOneTokenResponse, requiredDecisions: 0, allowAutoDecide: true, numberOfCards: 1, cardSource: GetCardSource());
+            IEnumerator selectCoroutine = base.GameController.SelectTurnTakersAndDoAction(DecisionMaker, new LinqTurnTakerCriteria((TurnTaker tt) => tt.Is().Hero() && !tt.IsIncapacitatedOrOutOfGame), SelectionType.RemoveTokens, MayMoveOneTokenResponse, requiredDecisions: 0, allowAutoDecide: true, numberOfCards: 1, cardSource: GetCardSource());
             if (UseUnityCoroutines)
             {
                 yield return GameController.StartCoroutine(selectCoroutine);
@@ -156,7 +156,7 @@ namespace Jp.ParahumansOfTheWormverse.Behemoth
             if (passingPool != null && passingPool.CurrentValue > 0)
             {
                 List<SelectTurnTakerDecision> choice = new List<SelectTurnTakerDecision>();
-                IEnumerator chooseCoroutine = base.GameController.SelectTurnTaker(base.GameController.FindHeroTurnTakerController(passingTT.ToHero()), SelectionType.AddTokens, choice, optional: true, additionalCriteria: (TurnTaker tt) => this.HasAlignment(tt, CardAlignment.Hero) && !tt.IsIncapacitatedOrOutOfGame && tt != passingTT, numberOfCards: 1, cardSource: GetCardSource());
+                IEnumerator chooseCoroutine = base.GameController.SelectTurnTaker(base.GameController.FindHeroTurnTakerController(passingTT.ToHero()), SelectionType.AddTokens, choice, optional: true, additionalCriteria: (TurnTaker tt) => tt.Is().Hero() && !tt.IsIncapacitatedOrOutOfGame && tt != passingTT, numberOfCards: 1, cardSource: GetCardSource());
                 if (UseUnityCoroutines)
                 {
                     yield return GameController.StartCoroutine(chooseCoroutine);
@@ -212,7 +212,7 @@ namespace Jp.ParahumansOfTheWormverse.Behemoth
                     if (passingProximity != null && passingProximity.CurrentValue > 0)
                     {
                         // Find the next active hero in turn order
-                        TurnTaker[] activeHeroTurnOrder = base.GameController.FindTurnTakersWhere((TurnTaker tt) => this.HasAlignment(tt, CardAlignment.Hero) && !tt.IsIncapacitatedOrOutOfGame).ToArray();
+                        TurnTaker[] activeHeroTurnOrder = base.GameController.FindTurnTakersWhere((TurnTaker tt) => tt.Is().Hero() && !tt.IsIncapacitatedOrOutOfGame).ToArray();
                         int passingIndex = Array.IndexOf(activeHeroTurnOrder, passingTT);
                         int receivingIndex = -1;
                         if (passingIndex == activeHeroTurnOrder.Length - 1)
@@ -318,7 +318,7 @@ namespace Jp.ParahumansOfTheWormverse.Behemoth
 
         public IEnumerator AddProximityTokens(TurnTaker tt, int numTokens, CardSource cardSource = null, bool showUpdatedValue = false)
         {
-            if (tt == null || !this.HasAlignment(tt, CardAlignment.Hero) || tt.IsIncapacitatedOrOutOfGame)
+            if (tt == null || !tt.Is().Hero() || tt.IsIncapacitatedOrOutOfGame)
             {
                 yield break;
             }
@@ -393,7 +393,7 @@ namespace Jp.ParahumansOfTheWormverse.Behemoth
 
         public IEnumerator RemoveProximityTokens(TurnTaker tt, int numTokens, CardSource cardSource = null, bool showUpdatedValue = false, List<RemoveTokensFromPoolAction> storedResults = null)
         {
-            if (tt == null || !this.HasAlignment(tt, CardAlignment.Hero) || tt.IsIncapacitatedOrOutOfGame)
+            if (tt == null || !tt.Is().Hero() || tt.IsIncapacitatedOrOutOfGame)
             {
                 yield break;
             }

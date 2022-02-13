@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-using Jp.ParahumansOfTheWormverse.Utility;
+using Jp.SOTMUtilities;
 
 namespace Jp.ParahumansOfTheWormverse.Behemoth
 {
@@ -33,7 +33,7 @@ namespace Jp.ParahumansOfTheWormverse.Behemoth
             }
             // "Destroy 2 non-character hero cards."
             List<DestroyCardAction> destroyResults = new List<DestroyCardAction>();
-            IEnumerator destroyCoroutine = base.GameController.SelectAndDestroyCards(DecisionMaker, new LinqCardCriteria((Card c) => this.HasAlignment(c, CardAlignment.Hero) && !c.IsCharacter && !base.GameController.IsCardIndestructible(c), "hero non-character"), 2, optional: false, requiredDecisions: 2, storedResultsAction: destroyResults, responsibleCard: base.Card, cardSource: GetCardSource());
+            IEnumerator destroyCoroutine = base.GameController.SelectAndDestroyCards(DecisionMaker, new LinqCardCriteria((Card c) => c.Is().Hero().Noncharacter() && !base.GameController.IsCardIndestructible(c), "hero non-character"), 2, optional: false, requiredDecisions: 2, storedResultsAction: destroyResults, responsibleCard: base.Card, cardSource: GetCardSource());
             if (UseUnityCoroutines)
             {
                 yield return GameController.StartCoroutine(destroyCoroutine);

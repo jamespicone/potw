@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-using Jp.ParahumansOfTheWormverse.Utility;
+using Jp.SOTMUtilities;
 
 namespace Jp.ParahumansOfTheWormverse.Coil
 {
@@ -103,7 +103,7 @@ namespace Jp.ParahumansOfTheWormverse.Coil
             var e = DealDamageToHighestHP(
                 Card,
                 1,
-                c => this.HasAlignment(c, CardAlignment.Hero, CardTarget.Target),
+                c => c.Is().Hero().Target(),
                 c => damageAmount,
                 DamageType.Energy
             );

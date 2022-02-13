@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-using Jp.ParahumansOfTheWormverse.Utility;
+using Jp.SOTMUtilities;
 
 namespace Jp.ParahumansOfTheWormverse.JessicaYamada
 {
@@ -22,7 +22,7 @@ namespace Jp.ParahumansOfTheWormverse.JessicaYamada
         {
             // "Reduce psychic damage dealt to hero targets by 1"
             AddReduceDamageTrigger(
-                dda => dda.DamageType == DamageType.Psychic && this.HasAlignment(dda.Target, CardAlignment.Hero, CardTarget.Target),
+                dda => dda.DamageType == DamageType.Psychic && dda.Target.Is().Hero().Target(),
                 dda => 1
             );
         }

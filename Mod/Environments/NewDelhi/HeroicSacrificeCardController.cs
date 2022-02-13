@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-using Jp.ParahumansOfTheWormverse.Utility;
+using Jp.SOTMUtilities;
 
 namespace Jp.ParahumansOfTheWormverse.NewDelhi
 {
@@ -22,15 +22,15 @@ namespace Jp.ParahumansOfTheWormverse.NewDelhi
         public override void AddTriggers()
         {
             // "Whenever damage is redirected from one hero target to another, increase that damage by 2."
-            AddTrigger<RedirectDamageAction>((RedirectDamageAction rda) => this.HasAlignment(rda.NewTarget, CardAlignment.Hero, CardTarget.Target) && this.HasAlignment(rda.OldTarget, CardAlignment.Hero, CardTarget.Target), IncreaseDamageResponse, TriggerType.IncreaseDamage, TriggerTiming.Before);
+            AddTrigger<RedirectDamageAction>((RedirectDamageAction rda) => rda.NewTarget.Is().Hero().Target() && rda.OldTarget.Is().Hero().Target(), IncreaseDamageResponse, TriggerType.IncreaseDamage, TriggerTiming.Before);
 
             // "When a hero target deals damage to another hero target, destroy this card."
             AddTrigger<DealDamageAction>(
                 (DealDamageAction dda) => dda.DidDealDamage &&
                     dda.DamageSource != null &&
                     dda.DamageSource.Card != null &&
-                    this.HasAlignment(dda.DamageSource.Card, CardAlignment.Hero, CardTarget.Target) &&
-                    this.HasAlignment(dda.Target, CardAlignment.Hero, CardTarget.Target) &&
+                    dda.DamageSource.Is().Hero().Target() &&
+                    dda.Target.Is().Hero().Target() &&
                     dda.Target != dda.DamageSource.Card,
                 base.DestroyThisCardResponse,
                 TriggerType.DestroySelf,

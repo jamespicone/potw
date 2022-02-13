@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-using Jp.ParahumansOfTheWormverse.Utility;
+using Jp.SOTMUtilities;
 
 namespace Jp.ParahumansOfTheWormverse.Behemoth
 {
@@ -54,7 +54,7 @@ namespace Jp.ParahumansOfTheWormverse.Behemoth
                     }
                 }
                 // Find the active hero 2 turns earlier in turn order
-                TurnTaker[] activeHeroTurnOrder = base.GameController.FindTurnTakersWhere((TurnTaker tt) => this.HasAlignment(tt, CardAlignment.Hero) && !tt.IsIncapacitatedOrOutOfGame).ToArray();
+                TurnTaker[] activeHeroTurnOrder = base.GameController.FindTurnTakersWhere((TurnTaker tt) => tt.Is().Hero() && !tt.IsIncapacitatedOrOutOfGame).ToArray();
                 int removingIndex = Array.IndexOf(activeHeroTurnOrder, removingTT);
                 int addingIndex = -1;
                 if (removingIndex >= 2)

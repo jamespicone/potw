@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-using Jp.ParahumansOfTheWormverse.Utility;
+using Jp.SOTMUtilities;
 
 namespace Jp.ParahumansOfTheWormverse.Tattletale
 {
@@ -22,7 +22,7 @@ namespace Jp.ParahumansOfTheWormverse.Tattletale
         public override void AddTriggers()
         {
             // "At the start of your turn, {TattletaleCharacter} deals each non-hero target 1 psychic damage."
-            base.AddDealDamageAtStartOfTurnTrigger(base.TurnTaker, base.CharacterCard, (Card c) => this.HasAlignment(c, CardAlignment.Nonhero, CardTarget.Target) && base.GameController.IsCardVisibleToCardSource(c, GetCardSource()), TargetType.All, 1, DamageType.Psychic);
+            base.AddDealDamageAtStartOfTurnTrigger(base.TurnTaker, base.CharacterCard, (Card c) => c.Is().NonHero().Target() && base.GameController.IsCardVisibleToCardSource(c, GetCardSource()), TargetType.All, 1, DamageType.Psychic);
             base.AddTriggers();
         }
     }

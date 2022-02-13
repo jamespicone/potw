@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-using Jp.ParahumansOfTheWormverse.Utility;
+using Jp.SOTMUtilities;
 
 namespace Jp.ParahumansOfTheWormverse.Behemoth
 {
@@ -62,7 +62,7 @@ namespace Jp.ParahumansOfTheWormverse.Behemoth
                 GameController.ExhaustCoroutine(destroyEqpCoroutine);
             }
             // "{BehemothCharacter} deals each hero target 2 damage."
-            IEnumerator damageCoroutine = base.GameController.DealDamage(DecisionMaker, base.CharacterCard, (Card c) => this.HasAlignment(c, CardAlignment.Hero, CardTarget.Target), 2, GetBehemothDamageType(), cardSource: GetCardSource());
+            IEnumerator damageCoroutine = base.GameController.DealDamage(DecisionMaker, base.CharacterCard, (Card c) => c.Is().Hero().Target(), 2, GetBehemothDamageType(), cardSource: GetCardSource());
             if (UseUnityCoroutines)
             {
                 yield return GameController.StartCoroutine(damageCoroutine);

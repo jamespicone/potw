@@ -54,6 +54,9 @@
       <HintPath>C:\Program Files (x86)\Steam\steamapps\common\Sentinels of the Multiverse\Sentinels_Data\Managed\EngineCommon.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="JpSOTMUtilities">
+      <HintPath>..\..\sotm_utilities\bin\Release\JpSOTMUtilities.dll</HintPath>
+    </Reference>
     <Reference Include="SentinelsEngine">
       <HintPath>C:\Program Files (x86)\Steam\steamapps\common\Sentinels of the Multiverse\Sentinels_Data\Managed\SentinelsEngine.dll</HintPath>
       <Private>False</Private>
@@ -340,9 +343,6 @@
     <Compile Include="Heroes\MissMilitia\Extra\MissMilitiaUtilityCardController.cs" />
     <Compile Include="Heroes\MissMilitia\Extra\MissMilitiaUtilityCharacterCardController.cs" />
     <Compile Include="Heroes\MissMilitia\Extra\WeaponCardController.cs" />
-    <Compile Include="Utility\CardAlignmentHelper.cs" />
-    <Compile Include="Utility\DelayedDamageStatusEffect.cs" />
-    <Compile Include="Utility\ExtensionMethods.cs" />
     <Compile Include="Villains\TheSimurgh\Cards\ACapabilityRevealedCardController.cs" />
     <Compile Include="Villains\TheSimurgh\Cards\ACountermeasureDefeatedCardController.cs" />
     <Compile Include="Villains\TheSimurgh\Cards\AFateSelectedCardController.cs" />
@@ -498,23 +498,13 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions />
- 
   <Target Name="SetupModFolder" AfterTargets="Build">
-	<Message Text="Setting up mod folder" Importance="high" />
-	<Copy
-		SourceFiles="$(TargetPath)"
-		DestinationFolder="$(SolutionDir)ParahumansOfTheWormverse"
-		SkipUnchangedFiles="True"
-	/>
-	<Copy
-		SourceFiles="@(ModAssets)"
-		DestinationFiles="@(ModAssets->'$(SolutionDir)ParahumansOfTheWormverse\%(RecursiveDir)%(Filename)%(Extension)')"
-		SkipUnchangedFiles="True"
-	/>
+    <Message Text="Setting up mod folder" Importance="high" />
+    <Copy SourceFiles="$(TargetPath);$(TargetDir)\JpSOTMUtilities.dll" DestinationFolder="$(SolutionDir)ParahumansOfTheWormverse" SkipUnchangedFiles="True" />
+    <Copy SourceFiles="@(ModAssets)" DestinationFiles="@(ModAssets->'$(SolutionDir)ParahumansOfTheWormverse\%(RecursiveDir)%(Filename)%(Extension)')" SkipUnchangedFiles="True" />
   </Target>
-  
   <Target Name="CleanModFolder" BeforeTargets="CoreClean">
-	<Message Text="Deleting the mod folder" Importance="high" />
-	<RemoveDir Directories="$(SolutionDir)ParahumansOfTheWormverse" />
+    <Message Text="Deleting the mod folder" Importance="high" />
+    <RemoveDir Directories="$(SolutionDir)ParahumansOfTheWormverse" />
   </Target>
 </Project>

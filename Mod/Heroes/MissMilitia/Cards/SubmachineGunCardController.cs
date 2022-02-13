@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-using Jp.ParahumansOfTheWormverse.Utility;
+using Jp.SOTMUtilities;
 
 namespace Jp.ParahumansOfTheWormverse.MissMilitia
 {
@@ -34,7 +34,7 @@ namespace Jp.ParahumansOfTheWormverse.MissMilitia
                 numTargets,
                 false,
                 requiredTargets: 0,
-                additionalCriteria: (c) => this.HasAlignment(c, CardAlignment.Nonhero, CardTarget.Target),
+                additionalCriteria: (c) => c.Is().NonHero().Target(),
                 cardSource: GetCardSource()
             );
             if (UseUnityCoroutines)
@@ -73,7 +73,7 @@ namespace Jp.ParahumansOfTheWormverse.MissMilitia
                 e = GameController.SelectCardAndStoreResults(
                     HeroTurnTakerController,
                     SelectionType.MoveCardOnDeck,
-                    new LinqCardCriteria((c) => c.IsInPlayAndHasGameText && this.HasAlignment(c, CardAlignment.Nonhero, CardTarget.Target) && ! c.IsCharacter && GameController.IsCardVisibleToCardSource(c, GetCardSource()), "non-hero non-character targets", false, singular: "non-hero non-character target", plural: "non-hero non-character targets"),
+                    new LinqCardCriteria((c) => c.IsInPlayAndHasGameText && c.Is().NonHero().Target() && ! c.IsCharacter && GameController.IsCardVisibleToCardSource(c, GetCardSource()), "non-hero non-character targets", false, singular: "non-hero non-character target", plural: "non-hero non-character targets"),
                     cardChoices,
                     optional: true,
                     cardSource: GetCardSource()

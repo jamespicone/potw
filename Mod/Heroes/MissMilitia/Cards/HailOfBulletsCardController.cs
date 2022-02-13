@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-using Jp.ParahumansOfTheWormverse.Utility;
+using Jp.SOTMUtilities;
 
 namespace Jp.ParahumansOfTheWormverse.MissMilitia
 {
@@ -23,7 +23,7 @@ namespace Jp.ParahumansOfTheWormverse.MissMilitia
             // "{MissMilitiaCharacter} deals each non-hero target 2 projectile damage."
             var e = DealDamage(
                 CharacterCard,
-                (c) => this.HasAlignment(c, CardAlignment.Nonhero, CardTarget.Target),
+                (c) => c.Is().NonHero().Target(),
                 amount: 2,
                 DamageType.Projectile
             );

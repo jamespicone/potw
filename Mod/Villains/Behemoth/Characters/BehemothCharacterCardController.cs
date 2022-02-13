@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-using Jp.ParahumansOfTheWormverse.Utility;
+using Jp.SOTMUtilities;
 
 namespace Jp.ParahumansOfTheWormverse.Behemoth
 {
@@ -37,7 +37,7 @@ namespace Jp.ParahumansOfTheWormverse.Behemoth
                 }
                 else
                 {
-                    return IsLowestHitPointsUnique((Card c) => this.HasAlignment(c, CardAlignment.Hero, CardTarget.Target));
+                    return IsLowestHitPointsUnique((Card c) => c.Is().Hero().Target());
                 }
             }
         }
@@ -233,7 +233,7 @@ namespace Jp.ParahumansOfTheWormverse.Behemoth
         {
             // "... redirect that damage to the hero target with the lowest HP."
             List<Card> lowestResults = new List<Card>();
-            IEnumerator findCoroutine = base.GameController.FindTargetWithLowestHitPoints(1, (Card c) => this.HasAlignment(c, CardAlignment.Hero, CardTarget.Target) && base.GameController.IsCardVisibleToCardSource(c, GetCardSource()), lowestResults, dda, cardSource: GetCardSource());
+            IEnumerator findCoroutine = base.GameController.FindTargetWithLowestHitPoints(1, (Card c) => c.Is().Hero().Target() && base.GameController.IsCardVisibleToCardSource(c, GetCardSource()), lowestResults, dda, cardSource: GetCardSource());
             if (UseUnityCoroutines)
             {
                 yield return GameController.StartCoroutine(findCoroutine);

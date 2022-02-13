@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-using Jp.ParahumansOfTheWormverse.Utility;
+using Jp.SOTMUtilities;
 
 namespace Jp.ParahumansOfTheWormverse.Dauntless
 {
@@ -18,7 +18,7 @@ namespace Jp.ParahumansOfTheWormverse.Dauntless
         {
             // "Whenever a hero target would be dealt damage, redirect the damage to {DauntlessCharacter}",
             AddRedirectDamageTrigger(
-                dda => this.HasAlignment(dda.Target, CardAlignment.Hero, CardTarget.Target),
+                dda => dda.Target.Is().Hero().Target(),
                 () => CharacterCard
             );
 
