@@ -54,8 +54,8 @@
       <HintPath>C:\Program Files (x86)\Steam\steamapps\common\Sentinels of the Multiverse\Sentinels_Data\Managed\EngineCommon.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="JpSOTMUtilities">
-      <HintPath>..\..\sotm_utilities\bin\Release\JpSOTMUtilities.dll</HintPath>
+    <Reference Include="JpSOTMUtilities, Version=1.0.0.0, Culture=neutral, PublicKeyToken=6b305b73ec5cf856, processorArchitecture=MSIL">
+      <HintPath>..\packages\JpSOTMUtilities.1.0.0\lib\net35\JpSOTMUtilities.dll</HintPath>
     </Reference>
     <Reference Include="SentinelsEngine">
       <HintPath>C:\Program Files (x86)\Steam\steamapps\common\Sentinels of the Multiverse\Sentinels_Data\Managed\SentinelsEngine.dll</HintPath>
@@ -371,6 +371,7 @@
     <Compile Include="Villains\TheSimurgh\Extras\ISimurghDangerCard.cs" />
     <Compile Include="Villains\TheSimurgh\Extras\SimurghPlayWhenRevealedCardController.cs" />
     <Compile Include="Villains\TheSimurgh\Extras\TrapCardController.cs" />
+    <None Include="packages.config" />
     <None Include="Utility\TemplateCardController.cs" />
     <Compile Include="Villains\Behemoth\Cards\AdvanceCardController.cs" />
     <Compile Include="Villains\Behemoth\Cards\AShiftOfAttentionCardController.cs" />

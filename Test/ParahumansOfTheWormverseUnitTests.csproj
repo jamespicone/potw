@@ -49,6 +49,7 @@
   <ItemGroup>
     <Compile Include="Alexandria\InvincibleTests.cs" />
     <Compile Include="Slaughterhouse9\CherishTests.cs" />
+    <Compile Include="Tattletale\InformationOverload.cs" />
     <Compile Include="Tattletale\WittyDeflectionTests.cs" />
     <Compile Include="Test.cs" />
     <Compile Include="BaseTest.cs" />
