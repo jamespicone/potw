@@ -2,11 +2,11 @@
 
 "card-keywords-full.png":
 {
-	"frame": {"x":0,"y":73,"w":520,"h":527},
+	"frame": {"x":0,"y":73,"w":529,"h":528},
 	"rotated": false,
 	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":520,"h":527},
-	"sourceSize": {"w":520,"h":527}
+	"spriteSourceSize": {"x":0,"y":0,"w":529,"h":528},
+	"sourceSize": {"w":529,"h":528}
 },
 "SimurghDanger1.png":
 {
@@ -95,6 +95,6 @@
 	"format": "RGBA8888",
 	"size": {"w":1024,"h":1024},
 	"scale": "1",
-	"smartupdate": "$TexturePacker:SmartUpdate:720726f2dcca193a773a81a66cf585a4:1aac37f60ea5edd1697bd64462d86845:78a8fe050ee96964a4e5b33f95cb8cbd$"
+	"smartupdate": "$TexturePacker:SmartUpdate:d213d9853d3f3e2fef75a9686677615d:ebc2b106e9072fcff395e4860a945065:78a8fe050ee96964a4e5b33f95cb8cbd$"
 }
 }
