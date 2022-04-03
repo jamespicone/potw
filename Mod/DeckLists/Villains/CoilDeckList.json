@@ -236,7 +236,7 @@
       "hitpoints": 8,
       "keywords": [ "device" ],
       "body": [
-        "At the start of the villain turn reveal cards from the top of the villain deck until you have revealed H non-Device targets. Put any revealed non-Device targets into play and shuffle the rest of the revealed cards back into the villain deck"
+        "At the start of the villain turn reveal cards from the top of the villain deck until you have revealed {H} non-Device targets. Put any revealed non-Device targets into play and shuffle the rest of the revealed cards back into the villain deck"
       ],
       "flavorText": "He snapped his fingers,{BR}and soldiers began to teleport{BR}down to the edges of the market.",
       "flavorReference": "Monarch 16.13"
