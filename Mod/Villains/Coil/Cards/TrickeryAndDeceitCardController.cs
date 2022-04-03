@@ -23,7 +23,7 @@ namespace Jp.ParahumansOfTheWormverse.Coil
             // "Destroy all hero Equipment cards"
             var e = GameController.DestroyCards(
                 DecisionMaker,
-                new LinqCardCriteria(c => c.Is().Hero().WithKeyword("equipment")),
+                new LinqCardCriteria(c => c.Is().Hero().WithKeyword("equipment").AccordingTo(this)),
                 cardSource: GetCardSource()
             );
             if (UseUnityCoroutines)

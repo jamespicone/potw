@@ -24,7 +24,7 @@ namespace Jp.ParahumansOfTheWormverse.Behemoth
             // TODO: IsOngoing etc.
             // "Whenever a hero Ongoing or Equipment card enters play, {BehemothCharacter} deals the associated hero 2 damage."
             AddTrigger<CardEntersPlayAction>(
-                (CardEntersPlayAction cepa) => cepa.CardEnteringPlay.Is().Hero().WithKeyword("ongoing") || cepa.CardEnteringPlay.Is().Hero().WithKeyword("equipment"), DamageResponse, TriggerType.DealDamage, TriggerTiming.After);
+                (CardEntersPlayAction cepa) => cepa.CardEnteringPlay.Is(this).Hero().WithKeyword("ongoing") || cepa.CardEnteringPlay.Is(this).Hero().WithKeyword("equipment"), DamageResponse, TriggerType.DealDamage, TriggerTiming.After);
             base.AddTriggers();
         }
 

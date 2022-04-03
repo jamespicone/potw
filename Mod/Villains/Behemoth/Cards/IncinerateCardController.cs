@@ -33,7 +33,7 @@ namespace Jp.ParahumansOfTheWormverse.Behemoth
             }
             // "Destroy 2 hero Ongoing cards."
             List<DestroyCardAction> results = new List<DestroyCardAction>();
-            IEnumerator destroyCoroutine = base.GameController.SelectAndDestroyCards(DecisionMaker, new LinqCardCriteria((Card c) => c.Is().Hero().WithKeyword("ongoing"), "hero ongoing"), 2, storedResultsAction: results, responsibleCard: base.Card, cardSource: GetCardSource());
+            IEnumerator destroyCoroutine = base.GameController.SelectAndDestroyCards(DecisionMaker, new LinqCardCriteria((Card c) => c.Is().Hero().WithKeyword("ongoing").AccordingTo(this), "hero ongoing"), 2, storedResultsAction: results, responsibleCard: base.Card, cardSource: GetCardSource());
             if (UseUnityCoroutines)
             {
                 yield return GameController.StartCoroutine(destroyCoroutine);
