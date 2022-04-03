@@ -7,6 +7,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+using Jp.SOTMUtilities;
+
 namespace Jp.ParahumansOfTheWormverse.CoilsBase
 {
     public class MercenariesCardController : CardController
@@ -20,7 +22,7 @@ namespace Jp.ParahumansOfTheWormverse.CoilsBase
         public override void AddTriggers()
         {
             // "At the end of the environment turn, this card deals the 2 targets with the highest HP {H - 1} energy damage each."
-            AddDealDamageAtEndOfTurnTrigger(TurnTaker, Card, c => true, TargetType.HighestHP, H - 1, DamageType.Energy, numberOfTargets: 2);
+            AddDealDamageAtEndOfTurnTrigger(TurnTaker, Card, c => c.Is().NonEnvironment(), TargetType.HighestHP, H - 1, DamageType.Energy, numberOfTargets: 2);
         }
     }
 }

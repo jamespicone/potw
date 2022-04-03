@@ -112,7 +112,7 @@
 			"title": "Mercenaries",
 			"hitpoints": 6,
 			"body": [
-				"At the end of the environment turn, this card deals the 2 targets with the highest HP {H - 1} energy damage each."
+				"At the end of the environment turn, this card deals the 2 non-environment targets with the highest HP {H - 1} energy damage each."
 			],
 			"icons": [
 				"EndOfTurnAction",
