@@ -2,11 +2,11 @@
 
 "TattletaleCharacter.jpg":
 {
-	"frame": {"x":0,"y":0,"w":178,"h":256},
+	"frame": {"x":0,"y":0,"w":178,"h":257},
 	"rotated": false,
 	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":178,"h":256},
-	"sourceSize": {"w":178,"h":256}
+	"spriteSourceSize": {"x":0,"y":0,"w":178,"h":257},
+	"sourceSize": {"w":178,"h":257}
 },
 "TattletaleCharacterBack.jpg":
 {
@@ -31,6 +31,6 @@
 	"format": "RGBA8888",
 	"size": {"w":1024,"h":1024},
 	"scale": "1",
-	"smartupdate": "$TexturePacker:SmartUpdate:7ef7f16fe82d34b583572cbccdcbf532:abda12d16f9dbdd7bee3772ada9f0abd:7aa3d61ba32db6d2f47f6c3ecc37dd4e$"
+	"smartupdate": "$TexturePacker:SmartUpdate:ef476daaf322b0c6b8c522ab2d12c2c2:e1a89667344c3633e5d3fb7aee101444:7aa3d61ba32db6d2f47f6c3ecc37dd4e$"
 }
 }

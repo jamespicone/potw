@@ -198,6 +198,10 @@
             <key type="filename">JessicaYamadaCharacterFlipped.jpg</key>
             <key type="filename">LegendCharacter.jpg</key>
             <key type="filename">LegendCharacterFlipped.jpg</key>
+            <key type="filename">MissMilitiaCharacter.jpg</key>
+            <key type="filename">MissMilitiaCharacterFlipped.jpg</key>
+            <key type="filename">TattletaleCharacter.jpg</key>
+            <key type="filename">TattletaleCharacterFlipped.jpg</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
                 <point_f>0.5,0.5</point_f>

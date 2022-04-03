@@ -2,7 +2,7 @@
 
 "AlexandriaCharacter.jpg":
 {
-	"frame": {"x":0,"y":0,"w":178,"h":257},
+	"frame": {"x":1448,"y":259,"w":178,"h":257},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":178,"h":257},
@@ -10,7 +10,7 @@
 },
 "ArmsmasterCharacter.jpg":
 {
-	"frame": {"x":181,"y":0,"w":178,"h":256},
+	"frame": {"x":0,"y":0,"w":178,"h":256},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":178,"h":256},
@@ -18,7 +18,7 @@
 },
 "AssaultCharacter.jpg":
 {
-	"frame": {"x":362,"y":0,"w":178,"h":256},
+	"frame": {"x":181,"y":0,"w":178,"h":256},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":178,"h":256},
@@ -26,7 +26,7 @@
 },
 "BatteryCharacter.jpg":
 {
-	"frame": {"x":543,"y":0,"w":178,"h":257},
+	"frame": {"x":1629,"y":259,"w":178,"h":257},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":178,"h":257},
@@ -34,7 +34,7 @@
 },
 "BehemothCharacter.jpg":
 {
-	"frame": {"x":724,"y":0,"w":178,"h":256},
+	"frame": {"x":362,"y":0,"w":178,"h":256},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":178,"h":256},
@@ -42,7 +42,7 @@
 },
 "BitchCharacter.jpg":
 {
-	"frame": {"x":905,"y":0,"w":178,"h":256},
+	"frame": {"x":543,"y":0,"w":178,"h":256},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":178,"h":256},
@@ -50,7 +50,7 @@
 },
 "CoilCharacter.jpg":
 {
-	"frame": {"x":1086,"y":0,"w":178,"h":256},
+	"frame": {"x":724,"y":0,"w":178,"h":256},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":178,"h":256},
@@ -58,7 +58,7 @@
 },
 "DauntlessCharacter.jpg":
 {
-	"frame": {"x":1267,"y":0,"w":178,"h":256},
+	"frame": {"x":905,"y":0,"w":178,"h":256},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":178,"h":256},
@@ -66,7 +66,7 @@
 },
 "DragonCharacter.jpg":
 {
-	"frame": {"x":1448,"y":0,"w":178,"h":256},
+	"frame": {"x":1086,"y":0,"w":178,"h":256},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":178,"h":256},
@@ -74,7 +74,7 @@
 },
 "EchidnaCharacter.jpg":
 {
-	"frame": {"x":1629,"y":0,"w":178,"h":256},
+	"frame": {"x":1267,"y":0,"w":178,"h":256},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":178,"h":256},
@@ -82,7 +82,7 @@
 },
 "GrueCharacter.jpg":
 {
-	"frame": {"x":1810,"y":0,"w":178,"h":257},
+	"frame": {"x":1810,"y":259,"w":178,"h":257},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":178,"h":257},
@@ -90,7 +90,7 @@
 },
 "JessicaYamadaInstructionsTarget.jpg":
 {
-	"frame": {"x":0,"y":260,"w":178,"h":256},
+	"frame": {"x":1448,"y":0,"w":178,"h":256},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":178,"h":256},
@@ -98,7 +98,7 @@
 },
 "KyushuDeckBack.jpg":
 {
-	"frame": {"x":181,"y":260,"w":178,"h":256},
+	"frame": {"x":1629,"y":0,"w":178,"h":256},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":178,"h":256},
@@ -106,7 +106,7 @@
 },
 "LabyrinthCharacter.jpg":
 {
-	"frame": {"x":362,"y":260,"w":178,"h":256},
+	"frame": {"x":1810,"y":0,"w":178,"h":256},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":178,"h":256},
@@ -114,7 +114,7 @@
 },
 "LegendCharacter.jpg":
 {
-	"frame": {"x":543,"y":260,"w":178,"h":256},
+	"frame": {"x":0,"y":259,"w":178,"h":256},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":178,"h":256},
@@ -122,7 +122,7 @@
 },
 "LeviathanCharacter.jpg":
 {
-	"frame": {"x":724,"y":260,"w":178,"h":256},
+	"frame": {"x":181,"y":259,"w":178,"h":256},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":178,"h":256},
@@ -130,7 +130,7 @@
 },
 "LungCharacter.jpg":
 {
-	"frame": {"x":905,"y":260,"w":178,"h":256},
+	"frame": {"x":362,"y":259,"w":178,"h":256},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":178,"h":256},
@@ -138,15 +138,15 @@
 },
 "MissMilitiaCharacter.jpg":
 {
-	"frame": {"x":1086,"y":260,"w":178,"h":256},
+	"frame": {"x":0,"y":519,"w":178,"h":257},
 	"rotated": false,
 	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":178,"h":256},
-	"sourceSize": {"w":178,"h":256}
+	"spriteSourceSize": {"x":0,"y":0,"w":178,"h":257},
+	"sourceSize": {"w":178,"h":257}
 },
 "RegentCharacter.jpg":
 {
-	"frame": {"x":1267,"y":260,"w":178,"h":256},
+	"frame": {"x":543,"y":259,"w":178,"h":256},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":178,"h":256},
@@ -154,7 +154,7 @@
 },
 "SkidmarkCharacter.jpg":
 {
-	"frame": {"x":1448,"y":260,"w":178,"h":256},
+	"frame": {"x":724,"y":259,"w":178,"h":256},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":178,"h":256},
@@ -162,7 +162,7 @@
 },
 "SkitterCharacter.jpg":
 {
-	"frame": {"x":1629,"y":260,"w":178,"h":256},
+	"frame": {"x":905,"y":259,"w":178,"h":256},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":178,"h":256},
@@ -170,7 +170,7 @@
 },
 "Slaughterhouse9Character.jpg":
 {
-	"frame": {"x":1810,"y":260,"w":178,"h":256},
+	"frame": {"x":1086,"y":259,"w":178,"h":256},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":178,"h":256},
@@ -178,15 +178,15 @@
 },
 "TattletaleCharacter.jpg":
 {
-	"frame": {"x":0,"y":519,"w":178,"h":256},
+	"frame": {"x":181,"y":519,"w":178,"h":257},
 	"rotated": false,
 	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":178,"h":256},
-	"sourceSize": {"w":178,"h":256}
+	"spriteSourceSize": {"x":0,"y":0,"w":178,"h":257},
+	"sourceSize": {"w":178,"h":257}
 },
 "TheSimurghCharacter.jpg":
 {
-	"frame": {"x":181,"y":519,"w":178,"h":256},
+	"frame": {"x":1267,"y":259,"w":178,"h":256},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":178,"h":256},
@@ -199,6 +199,6 @@
 	"format": "RGBA8888",
 	"size": {"w":2048,"h":2048},
 	"scale": "1",
-	"smartupdate": "$TexturePacker:SmartUpdate:5e8d32070c7967603372d79e16e1b155:d3bec88f22d6c5dace2867c98f6ad5e9:4ee285c32a91b7652e02ac049f918b2a$"
+	"smartupdate": "$TexturePacker:SmartUpdate:e68f378ed1317222799642a57440c620:3fb83e0c6da395f53f1124ecfc4ced90:4ee285c32a91b7652e02ac049f918b2a$"
 }
 }

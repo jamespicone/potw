@@ -143,6 +143,38 @@
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":400,"h":200},
 	"sourceSize": {"w":400,"h":200}
+},
+"MissMilitiaCharacter.jpg":
+{
+	"frame": {"x":1209,"y":609,"w":400,"h":200},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":400,"h":200},
+	"sourceSize": {"w":400,"h":200}
+},
+"MissMilitiaCharacterFlipped.jpg":
+{
+	"frame": {"x":1612,"y":609,"w":400,"h":200},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":400,"h":200},
+	"sourceSize": {"w":400,"h":200}
+},
+"TattletaleCharacter.jpg":
+{
+	"frame": {"x":0,"y":812,"w":400,"h":200},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":400,"h":200},
+	"sourceSize": {"w":400,"h":200}
+},
+"TattletaleCharacterFlipped.jpg":
+{
+	"frame": {"x":403,"y":812,"w":400,"h":200},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":400,"h":200},
+	"sourceSize": {"w":400,"h":200}
 }},
 "meta": {
 	"app": "https://www.codeandweb.com/texturepacker",
@@ -151,6 +183,6 @@
 	"format": "RGBA8888",
 	"size": {"w":2048,"h":2048},
 	"scale": "1",
-	"smartupdate": "$TexturePacker:SmartUpdate:ad3695abb280e5f530c7f4d13da80dcb:7e8cbe572fe8c700248062d8daa804d3:e92652cff04ed6c8e37f7bc0458ec814$"
+	"smartupdate": "$TexturePacker:SmartUpdate:356c4da08a53606fe09d66177a34d623:d410e9ca63857ac519242207e9e3df47:e92652cff04ed6c8e37f7bc0458ec814$"
 }
 }

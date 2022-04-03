@@ -2,11 +2,11 @@
 
 "MissMilitiaCharacter.jpg":
 {
-	"frame": {"x":0,"y":0,"w":178,"h":256},
+	"frame": {"x":0,"y":0,"w":178,"h":257},
 	"rotated": false,
 	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":178,"h":256},
-	"sourceSize": {"w":178,"h":256}
+	"spriteSourceSize": {"x":0,"y":0,"w":178,"h":257},
+	"sourceSize": {"w":178,"h":257}
 },
 "MissMilitiaCharacterBack.jpg":
 {
@@ -31,6 +31,6 @@
 	"format": "RGBA8888",
 	"size": {"w":1024,"h":1024},
 	"scale": "1",
-	"smartupdate": "$TexturePacker:SmartUpdate:f8b8011bd08d1c17751f3e3e74e49953:62235b848be3553e1f82eb2e4d0664af:ef087702b3f605792d2aa71f7be8c6ea$"
+	"smartupdate": "$TexturePacker:SmartUpdate:67088a4bd789cb2f694f7226c2deae7e:6b26a92d0c5ae14bd72dbaa41aefaa48:ef087702b3f605792d2aa71f7be8c6ea$"
 }
 }
