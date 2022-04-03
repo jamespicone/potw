@@ -16,6 +16,7 @@ namespace Jp.ParahumansOfTheWormverse.Tattletale
         public InformationOverloadCardController(Card card, TurnTakerController turnTakerController)
             : base(card, turnTakerController)
         {
+            AddThisCardControllerToList(CardControllerListType.CanCauseDamageOutOfPlay);
         }
 
         public override void AddTriggers()

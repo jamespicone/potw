@@ -19,58 +19,33 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.Tattletale
         protected TurnTakerController tattle { get { return FindHero("Tattletale"); } }
 
         [Test()]
-        public void TestBasicUse()
+        public void TestSelfDamage()
         {
             SetupGameController(
                 "BaronBlade",
                 "Jp.ParahumansOfTheWormverse.Tattletale",
-                "Tachyon",
+                "Jp.ParahumansOfTheWormverse.JessicaYamada",
                 "Megalopolis"
             );
 
             StartGame();
 
-            DecisionSelectCard = tachyon.CharacterCard;
+            PlayCard("InformationOverload");
+            PlayCard("SupportAndStability");
 
-            var deflect = PlayCard("WittyDeflection");
-            UsePower(deflect);
+            var power1 = PlayCard("Reading");
+            var power2 = PlayCard("Reading");
+            var power3 = PlayCard("Reading");
 
-            DecisionRedirectTarget = tattle.CharacterCard;
+            DecisionYesNo = true;
 
-            QuickHPStorage(tachyon.CharacterCard, tattle.CharacterCard);
-            AssertDecisionIsOptional(SelectionType.RedirectDamage);
-
-            DealDamage(baron.CharacterCard, tachyon.CharacterCard, 1, DamageType.Melee);
-
-            QuickHPCheck(0, -1);
-        }
-
-        [Test()]
-        public void TestAfterBeingDestroyed()
-        {
-            SetupGameController(
-                "BaronBlade",
-                "Jp.ParahumansOfTheWormverse.Tattletale",
-                "Tachyon",
-                "Megalopolis"
-            );
-
-            StartGame();
-
-            DecisionSelectCard = tachyon.CharacterCard;
-
-            var deflect = PlayCard("WittyDeflection");
-            UsePower(deflect);
-            DestroyCard(deflect);
-
-            DecisionRedirectTarget = tattle.CharacterCard;
-
-            QuickHPStorage(tachyon.CharacterCard, tattle.CharacterCard);
-            AssertDecisionIsOptional(SelectionType.RedirectDamage);
-
-            DealDamage(baron.CharacterCard, tachyon.CharacterCard, 1, DamageType.Melee);
-
-            QuickHPCheck(0, -1);
+            QuickHPStorage(tattle.CharacterCard);
+            UsePower(power1);
+            QuickHPCheck(0);
+            UsePower(power2);
+            QuickHPCheck(-1);
+            UsePower(power3);
+            QuickHPCheck(-1);
         }
     }
 }
