@@ -6,13 +6,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+using Jp.SOTMUtilities;
+
 namespace Jp.ParahumansOfTheWormverse.JessicaYamada
 {
     public class JessicaYamadaCharacterBase : HeroCharacterCardController
     {
         public JessicaYamadaCharacterBase(Card card, TurnTakerController controller) : base(card, controller)
         {
-            AddThisCardControllerToList(CardControllerListType.MakesIndestructible);
         }
 
         public override IEnumerator UseIncapacitatedAbility(int index)
@@ -136,11 +137,6 @@ namespace Jp.ParahumansOfTheWormverse.JessicaYamada
             {
                 GameController.ExhaustCoroutine(e);
             }
-        }
-
-        public override bool AskIfCardIsIndestructible(Card card)
-        {
-            return card == Card && card.HitPoints > 0;
         }
     }
 }

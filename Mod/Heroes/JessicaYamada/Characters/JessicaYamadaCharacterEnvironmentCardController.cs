@@ -16,7 +16,7 @@ namespace Jp.ParahumansOfTheWormverse.JessicaYamada
     {
         public JessicaYamadaCharacterEnvironmentCardController(Card card, TurnTakerController controller) : base(card, controller)
         {
-            // TODO: Indestructible?
+            AddThisCardControllerToList(CardControllerListType.MakesIndestructible);
         }
 
         public override void AddSideTriggers()
@@ -27,6 +27,12 @@ namespace Jp.ParahumansOfTheWormverse.JessicaYamada
             {
                 AddSideTrigger(AddPreventDamageTrigger(dda => dda.Target == Card && dda.DamageSource.Is().Hero()));
             }
+        }
+
+        public override bool AskIfCardIsIndestructible(Card card)
+        {
+            if (GameController.FindTargetsInPlay(c => c.Is().Hero().Target() && c.Location != TurnTaker.PlayArea).Count() <= 0) { return false; }
+            return card == Card && card.HitPoints > 0;
         }
     }
 }

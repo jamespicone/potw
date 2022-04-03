@@ -51,6 +51,7 @@
     <Compile Include="CoilsBase\MercenariesTests.cs" />
     <Compile Include="Coil\IKnowAllYourTricksTests.cs" />
     <Compile Include="Coil\TrickeryAndDeceitTests.cs" />
+    <Compile Include="JessicaYamada\JessicaYamadaTests.cs" />
     <Compile Include="Slaughterhouse9\CherishTests.cs" />
     <Compile Include="Tattletale\InformationOverload.cs" />
     <Compile Include="Tattletale\WittyDeflectionTests.cs" />
