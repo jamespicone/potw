@@ -208,7 +208,7 @@
 			"hitpoints": 6,
 			"body": [
 				"Heroes cannot use powers.",
-				"At the start of the environment turn this card deals 2 projectile damage to the H nonenvironment targets with the highest HP, then destroys itself"
+				"At the start of the environment turn this card deals 2 projectile damage to the {H} nonenvironment targets with the highest HP, then destroys itself"
 			],
 			"icons": [
 				"CannotUsePowers",
