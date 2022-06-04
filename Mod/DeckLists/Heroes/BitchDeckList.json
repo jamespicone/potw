@@ -1,4 +1,4 @@
-﻿{
+{
   "name": "Bitch",
   "kind": "Hero",
   "initialCardIdentifiers": [ "BitchCharacter" ],
@@ -87,7 +87,7 @@
 		"title": "Fetch!",
 		"keywords": [ "order", "one-shot" ],
 		"body": [
-			"Reveal the top X cards of a deck, where X = the number of Dog cards in play + 2. For each equipment or device card revealed in this way, either discard it or put it into play. Shuffle the other cards back into the deck.",
+			"Reveal the top X cards of a deck, where X = the number of Dog cards in play + 2. For each equipment or device card revealed in this way, either discard it or put it into play. Shuffle the other cards back into the deck."
 		],
 		"icons": [
 			"Search"
@@ -309,7 +309,7 @@
 		"title": "Whistle",
 		"body": [
 			"At the start of your turn, you may draw a card.",
-			"At the end of your turn, you may play an Order card.",
+			"At the end of your turn, you may play an Order card."
 		],
 		"icons": [
 			"StartAndEndOfTurnAction",
