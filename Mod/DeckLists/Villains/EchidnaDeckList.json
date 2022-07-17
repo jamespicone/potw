@@ -1,0 +1,278 @@
+{
+  "name": "Echidna",
+  "kind": "Villain",
+  "initialCardIdentifiers": [ "EchidnaCharacter" ],
+  "cards": [
+    {
+      "identifier": "EchidnaCharacter",
+      "title": "Echidna",
+      "body": "Mother of Monsters",
+      "flippedBody": "Noelle, Canny Tactician",
+      "hitpoints": 40,
+      "setup": "Put {EchidnaCharacter} into play, 'Mother of Monsters' side up. Shuffle all Twisted cards and put them aside as the Twisted deck. Put the top {H - 2} cards of the Twisted deck into play.",
+      "gameplay": [
+        "At the start of the villain turn {EchidnaCharacter} regains {H} HP.",
+        "At the end of the villain turn {EchidnaCharacter} deals {H - 1} melee damage to the 2 hero targets with the lowest HP.",
+        "At the end of the environment turn if no hero was dealt damage by a villain card this round flip {EchidnaCharacter}."
+      ],
+      "advanced": "Reduce damage dealt to {EchidnaCharacter} by 1.",
+      "flippedGameplay": [
+        "When {EchidnaCharacter} flips to this side destroy {H} noncharacter hero cards.",
+        "At the start of the villain turn search the villain deck for an 'Engulfed' card, put it into play, and shuffle the villain deck. Then flip {EchidnaCharacter}."
+      ],
+      "flippedAdvanced": "When {EchidnaCharacter} flips to this side search the villain deck for an 'Engulfed' card, put it into play, and shuffle the villain deck.",
+      "character": true,
+      "backgroundColor": "770612",
+      "openingLines": {
+        "default": "You smell delicious..."
+      },
+      "complexity": 3,
+      "icons": [
+      ],
+      "flippedIcons": [
+      ],
+      "count": 1
+    },
+    {
+      "identifier": "Engulfed",
+      "title": "Engulfed",
+      "keywords": [ "ongoing" ],
+      "body": [
+        "Play this card next to a hero that does not already have an 'Engulfed' next to them. If you do play the top card of the Twisted deck.",
+        "Whenever a power in this play area is used the target this card is next to deals themselves 2 psychic damage.",
+        "If the card this card is next to leaves play, destroy this card."
+      ],
+      "count": 5
+    },
+    {
+      "identifier": "ChimaericalNightmare",
+      "title": "Chimaerical Nightmare",
+      "keywords": [ "ongoing" ],
+      "body": [
+        "Whenever an environment target is destroyed play the top card of the villain deck."
+      ],
+      "count": 2
+    },
+    {
+      "identifier": "Experimentation",
+      "title": "Experimentation",
+      "keywords": [ "one-shot" ],
+      "body": [ "If {EchidnaCharacter} is on her 'Mother of Monsters' side you may flip her to her Canny Tactician side. Otherwise, play the top two cards of the Twisted deck.", "Shuffle the villain trash into the villain deck." ],
+      "count": 3
+    },
+    {
+      "identifier": "Bullrush",
+      "title": "Bullrush",
+      "keywords": [ "one-shot" ],
+      "body": [
+        "Echidna deals {H + 2} melee damage to the hero target with the lowest HP.",
+        "Search the villain deck for an 'Engulfed' card and put it into play. Shuffle the villain deck."
+      ],
+      "count": 3
+    },
+    {
+      "identifier": "SquadTactics",
+      "title": "Squad Tactics",
+      "keywords": [ "ongoing" ],
+      "body": "Increase damage dealt by villain targets by 1.",
+      "count": 2
+    },
+    {
+      "identifier": "Crush",
+      "title": "Crush",
+      "keywords": [ "one-shot" ],
+      "body": "{EchidnaCharacter} deals {H} melee damage to any hero target with an 'Engulfed' card next to them.",
+      "count": 3
+    },
+    {
+      "identifier": "PsychologicalWarfare",
+      "title": "Psychological Warfare",
+      "keywords": [ "ongoing" ],
+      "body": "At the start of the villain turn {EchidnaCharacter} deals 2 psychic damage to all hero targets.",
+      "count": 2
+    },
+    {
+      "identifier": "CloneArmy",
+      "title": "Clone Army",
+      "keywords": [ "ongoing" ],
+      "body": "At the end of the villain turn play the top card of the Twisted deck.",
+      "count": 2
+    },
+    {
+      "identifier": "Slippery",
+      "title": "Slippery",
+      "keywords": [ "one-shot" ],
+      "body": "A player may discard their hand. If no cards were discarded, {EchidnaCharacter} is immune to damage until the start of her next turn.",
+      "count": 3
+    }
+  ],
+  "subdecks": [
+    {
+      "identifier": "TwistedDeck",
+      "name": "Twisted Deck",
+      "kind": "Other",
+      "cards": [
+        {
+          "identifier": "ApocryphaTwisted",
+          "title": "Apocrypha",
+          "keywords": [ "twisted", "parahuman" ],
+          "kind": "Villain",
+          "hitpoints": 14,
+          "body": [
+            "At the end of the villain turn this card deals 2 melee damage to the hero with the highest HP.",
+            "The first time {EchidnaCharacter} would be dealt damage each round prevent that damage."
+          ],
+          "count": 1
+        },
+        {
+          "identifier": "SpearpointTwisted",
+          "title": "Spearpoint",
+          "keywords": [ "twisted", "parahuman" ],
+          "kind": "Villain",
+          "hitpoints": 10,
+          "body": [
+            "At the end of the villain turn destroy a hero Equipment card.",
+            "Whenever an Equipment card enters play this card regains 5 HP."
+          ],
+          "count": 1
+        },
+        {
+          "identifier": "ConvictionTwisted",
+          "title": "Conviction",
+          "keywords": [ "twisted", "parahuman" ],
+          "kind": "Villain",
+          "hitpoints": 10,
+          "body": [
+            "At the start of each hero turn this card deals that hero 1 melee damage.",
+            "This card is immune to melee damage."
+          ],
+          "count": 1
+        },
+        {
+          "identifier": "ResistanceTwisted",
+          "title": "Resistance",
+          "keywords": [ "twisted", "parahuman" ],
+          "kind": "Villain",
+          "hitpoints": 10,
+          "body": [
+            "At the start of the villain turn play the top card of the villain deck.",
+            "At the end of the villain turn this card deals 2 melee damage to the hero target with the lowest HP."
+          ],
+          "count": 1
+        },
+        {
+          "identifier": "RoutTwisted",
+          "title": "Rout",
+          "keywords": [ "twisted", "parahuman" ],
+          "kind": "Villain",
+          "hitpoints": 12,
+          "body": [
+            "At the end of the villain turn place a Charge token on this card.",
+            "At the start of the villain turn this card deals the hero target with the highest HP X energy damage, where X = 2 + the number of Charge tokens on this card."
+          ],
+          "count": 1,
+          "tokenPools": [
+            {
+              "identifier": "ChargePool",
+              "name": "Charge Pool",
+              "initialValue": 0,
+              "minimumValue": 0,
+              "color": ""
+            }
+          ]
+        },
+        {
+          "identifier": "IgnisFatuusTwisted",
+          "title": "Ignis Fatuus",
+          "keywords": [ "twisted", "parahuman" ],
+          "kind": "Villain",
+          "hitpoints": 8,
+          "body": [
+            "If this card would enter play during setup, put the top card of the Twisted deck into play then shuffle this card into the Twisted deck.",
+            "At the end of the villain turn this card deals 5 psychic damage to all hero targets.",
+            "At the start of the villain turn, if there's a Power token on this card, Ignis Fatuus has reached full power. [b]GAME OVER[/b]. Otherwise, put a Power token on this card."
+          ],
+          "count": 1,
+          "tokenPools": [
+            {
+              "identifier": "PowerPool",
+              "name": "Power Pool",
+              "initialValue": 0,
+              "minimumValue": 0,
+              "color": ""
+            }
+          ]
+        },
+        {
+          "identifier": "AbhorrorTwisted",
+          "title": "Abhorror",
+          "keywords": [ "twisted", "parahuman" ],
+          "kind": "Villain",
+          "hitpoints": 12,
+          "body": [
+            "At the end of the villain turn put the top card of the Twisted deck into play, then shuffle the Twisted with the lowest HP back into the Twisted deck.",
+            "Reduce damage dealt to villain targets by 1."
+          ],
+          "count": 1
+        },
+        {
+          "identifier": "HubrisTwisted",
+          "title": "Hubris",
+          "keywords": [ "twisted", "parahuman" ],
+          "kind": "Villain",
+          "hitpoints": 8,
+          "body": [
+            "At the end of the villain turn this card deals 1 psychic damage to all hero targets.",
+            "Prevent the first damage dealt to this card each round."
+          ],
+          "count": 1
+        },
+        {
+          "identifier": "PandemicTwisted",
+          "title": "Pandemic",
+          "keywords": [ "twisted", "parahuman" ],
+          "kind": "Villain",
+          "hitpoints": 6,
+          "body": [
+            "At the end of the villain turn all villain targets regain 2 HP.",
+            "The first time each round a villain target would be reduced to 0 or fewer HP restore that target's HP to 1."
+          ],
+          "count": 1
+        },
+        {
+          "identifier": "AriadneTwisted",
+          "title": "Ariadne",
+          "keywords": [ "twisted", "parahuman" ],
+          "kind": "Villain",
+          "hitpoints": 10,
+          "body": [
+            "Villain cards cannot be damaged or destroyed by Environment cards.",
+            "At the end of the villain turn put the top card of the Environment deck into play."
+          ],
+          "count": 1
+        },
+        {
+          "identifier": "PropagandaTwisted",
+          "title": "Propaganda",
+          "keywords": [ "twisted", "parahuman" ],
+          "kind": "Villain",
+          "hitpoints": 12,
+          "body": [
+            "At the end of the villain turn this card deals the hero target with the highest HP X irreducible energy damage, where X = 2 + the number of Energy tokens on this card. Then remove all Energy tokens from this card.",
+            "Whenever this card takes damage put an Energy token on it."
+          ],
+          "count": 1,
+          "tokenPools": [
+            {
+              "identifier": "EnergyPool",
+              "name": "Energy Pool",
+              "initialValue": 0,
+              "minimumValue": 0,
+              "color": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
