@@ -96,13 +96,17 @@ namespace Jp.ParahumansOfTheWormverse.Echidna
 
         public override IEnumerator AfterFlipCardImmediateResponse()
         {
+            var e = base.AfterFlipCardImmediateResponse();
+            if (UseUnityCoroutines) { yield return GameController.StartCoroutine(e); }
+            else { GameController.ExhaustCoroutine(e); }
+
             if (! Card.IsFlipped)
             {
                 yield break;
             }
 
             // When {EchidnaCharacter} flips to this side destroy {H} noncharacter hero cards.
-            var e = GameController.SelectAndDestroyCards(
+            e = GameController.SelectAndDestroyCards(
                 DecisionMaker,
                 new LinqCardCriteria(c => c.Is().Hero().Noncharacter(), "hero cards"),
                 numberOfCards: Game.H,

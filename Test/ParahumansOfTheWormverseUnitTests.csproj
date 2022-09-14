@@ -51,6 +51,7 @@
     <Compile Include="CoilsBase\MercenariesTests.cs" />
     <Compile Include="Coil\IKnowAllYourTricksTests.cs" />
     <Compile Include="Coil\TrickeryAndDeceitTests.cs" />
+    <Compile Include="Echidna\EchidnaCharacterTests.cs" />
     <Compile Include="Echidna\SquadTacticsTests.cs" />
     <Compile Include="Echidna\SlipperyTests.cs" />
     <Compile Include="Echidna\PsychologicalWarfareTests.cs" />
