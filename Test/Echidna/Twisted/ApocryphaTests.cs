@@ -53,10 +53,11 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.Echidna
                 "InsulaPrimalis"
             );
 
+            RemoveAllTwisted();
+
             StartGame();
             GoToPlayCardPhase(echidna);
-
-            ReturnAllTwisted();
+            
             DestroyNonCharacterVillainCards();
 
             var apocrypha = PlayCard("ApocryphaTwisted");

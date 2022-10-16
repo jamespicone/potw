@@ -108,6 +108,8 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.Echidna
                 "InsulaPrimalis"
             );
 
+
+            StackDeck("AriadneTwisted", "PandemicTwisted");
             StartGame();
             RemoveAllTwisted();
 
@@ -145,8 +147,8 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.Echidna
 
             DecisionNextToCard = legend.CharacterCard;
 
-            StartGame(false);
             RemoveAllTwisted();
+            StartGame(false);            
 
             AssertNotFlipped(echidna);
 
