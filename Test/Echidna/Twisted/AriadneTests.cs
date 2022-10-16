@@ -97,5 +97,31 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.Echidna
             AssertIsInPlay(ariadne);
             AssertHitPoints(ariadne, 1);
         }
+
+        [Test()]
+        public void TestDoesntPreventSelfDestroy()
+        {
+            SetupGameController(
+                "Jp.ParahumansOfTheWormverse.Echidna",
+                "Jp.ParahumansOfTheWormverse.Alexandria",
+                "Jp.ParahumansOfTheWormverse.Bitch",
+                "Jp.ParahumansOfTheWormverse.BrocktonBay"
+            );
+
+            StartGame();
+            DestroyNonCharacterVillainCards();
+            ReturnAllTwisted();
+            StackDeck("PsychologicalWarfare");
+
+            GoToDrawCardPhase(alexandria);
+
+            PlayCard("AriadneTwisted");
+            var bunker = PlayCard("Rooftops");
+
+            DecisionYesNo = true;
+            EnterNextTurnPhase();
+
+            AssertNotInPlay(bunker);
+        }
     }
 }

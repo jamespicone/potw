@@ -26,8 +26,10 @@ namespace Jp.ParahumansOfTheWormverse.Echidna
 
             AddTrigger<DestroyCardAction>(
                 dca => 
-                    (dca.ResponsibleCard != null && dca.ResponsibleCard.Is().Environment()) ||
-                    (dca.ResponsibleCard == null && dca.CardSource?.Card != null && dca.CardSource.Card.Is().Environment()) &&
+                    (
+                        (dca.ResponsibleCard != null && dca.ResponsibleCard.Is().Environment()) ||
+                        (dca.ResponsibleCard == null && dca.CardSource?.Card != null && dca.CardSource.Card.Is().Environment())
+                    ) &&
                     dca.CardToDestroy.Is().Villain().AccordingTo(this),
                 dca => CancelAction(dca),
                 TriggerType.CancelAction,
