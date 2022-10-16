@@ -62,6 +62,7 @@
     <Compile Include="Echidna\ChimaericalNightmareTests.cs" />
     <Compile Include="Echidna\BullrushTests.cs" />
     <Compile Include="Echidna\EchidnaBaseTest.cs" />
+    <Compile Include="Echidna\Twisted\IgnisFatuusTests.cs" />
     <Compile Include="Echidna\Twisted\PandemicTests.cs" />
     <Compile Include="Echidna\Twisted\HubrisTests.cs" />
     <Compile Include="Echidna\Twisted\ConvictionTests.cs" />

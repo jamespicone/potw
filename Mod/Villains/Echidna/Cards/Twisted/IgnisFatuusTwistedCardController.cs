@@ -43,6 +43,8 @@ namespace Jp.ParahumansOfTheWormverse.Echidna
                 pca => CheckForLoss(pca),
                 new TriggerType[] { TriggerType.GameOver, TriggerType.AddTokensToPool }
             );
+
+            AddAfterLeavesPlayAction(() => ResetTokenPool());
         }
 
         public override IEnumerator Play()
@@ -67,6 +69,16 @@ namespace Jp.ParahumansOfTheWormverse.Echidna
                 optional: false,
                 cardSource: GetCardSource()
             );
+            if (UseUnityCoroutines) { yield return GameController.StartCoroutine(e); }
+            else { GameController.ExhaustCoroutine(e); }
+        }
+
+        private IEnumerator ResetTokenPool()
+        {
+            var pool = Card.FindTokenPool("PowerPool");
+            if (pool == null) { yield break; }
+
+            var e = GameController.RemoveTokensFromPool(pool, pool.CurrentValue, cardSource: GetCardSource());
             if (UseUnityCoroutines) { yield return GameController.StartCoroutine(e); }
             else { GameController.ExhaustCoroutine(e); }
         }
