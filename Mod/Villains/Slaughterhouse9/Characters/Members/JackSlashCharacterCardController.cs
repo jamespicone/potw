@@ -93,9 +93,9 @@ namespace Jp.ParahumansOfTheWormverse.Slaughterhouse9
                 heroes.Remove(selectedTurnTaker);
 
                 var powerCount = FindCardsWhere(new LinqCardCriteria(
-                    c => c.Owner == selectedTurnTaker &&
+                    c => c.IsInPlayAndHasGameText && c.Owner == selectedTurnTaker &&
                         c.NumberOfPowers > 0
-                )).Sum(c => c.NumberOfPowers);
+                )).Sum(c => c.NumberOfPowers) * 2;
 
                 var storedCard = new List<Card>();
                 e = FindCharacterCardToTakeDamage(selectedTurnTaker, storedCard, Card, powerCount, DamageType.Melee);

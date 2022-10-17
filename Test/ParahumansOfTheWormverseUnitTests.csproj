@@ -70,6 +70,7 @@
     <Compile Include="Echidna\Twisted\ApocryphaTests.cs" />
     <Compile Include="Echidna\Twisted\AbhorrorTests.cs" />
     <Compile Include="JessicaYamada\JessicaYamadaTests.cs" />
+    <Compile Include="Slaughterhouse9\JackSlashTests.cs" />
     <Compile Include="Slaughterhouse9\HatchetFaceTests.cs" />
     <Compile Include="Slaughterhouse9\CherishTests.cs" />
     <Compile Include="Tattletale\InformationOverload.cs" />
