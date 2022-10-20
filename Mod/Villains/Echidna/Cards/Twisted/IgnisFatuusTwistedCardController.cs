@@ -78,11 +78,9 @@ namespace Jp.ParahumansOfTheWormverse.Echidna
             var pool = Card.FindTokenPool("PowerPool");
             if (pool == null) { yield break; }
 
-            var e = GameController.RemoveTokensFromPool(pool, pool.CurrentValue, cardSource: GetCardSource());
-            if (UseUnityCoroutines) { yield return GameController.StartCoroutine(e); }
-            else { GameController.ExhaustCoroutine(e); }
+            pool.SetToInitialValue();
+            yield break;
         }
-
         private IEnumerator CheckForLoss(PhaseChangeAction pca)
         {
             var pool = Card.FindTokenPool("PowerPool");

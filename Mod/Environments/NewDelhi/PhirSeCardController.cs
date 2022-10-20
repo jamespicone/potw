@@ -34,7 +34,7 @@ namespace Jp.ParahumansOfTheWormverse.NewDelhi
         public override IEnumerator Play()
         {
             // Enters play with 0 tokens
-            IEnumerator resetCoroutine = ResetTokenValue();
+            IEnumerator resetCoroutine = ResetTokenPool();
             if (base.UseUnityCoroutines)
             {
                 yield return base.GameController.StartCoroutine(resetCoroutine);
@@ -45,10 +45,13 @@ namespace Jp.ParahumansOfTheWormverse.NewDelhi
             }
         }
 
-        public IEnumerator ResetTokenValue()
+        private IEnumerator ResetTokenPool()
         {
-            base.Card.FindTokenPool(PoolIdentifier).SetToInitialValue();
-            yield return null;
+            var pool = Card.FindTokenPool(PoolIdentifier);
+            if (pool == null) { yield break; }
+
+            pool.SetToInitialValue();
+            yield break;
         }
 
         public IEnumerator MoveNextToResponse(PhaseChangeAction pca)
