@@ -1,6 +1,7 @@
 ﻿using Handelabra.Sentinels.Engine.Controller;
 using Handelabra.Sentinels.Engine.Model;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,11 +12,11 @@ namespace Jp.ParahumansOfTheWormverse.Bitch
     {
         public HeelCardController(Card card, TurnTakerController controller) : base(card, controller)
         {
-            SpecialStringMaker.ShowNumberOfCardsAtLocation(base.TurnTaker.Deck, new LinqCardCriteria((Card c) => c.DoKeywordsContain("dog"), "dog"));
-            SpecialStringMaker.ShowLocationOfCards(new LinqCardCriteria((Card c) => c.Identifier == "Bastard" && c.Owner == base.TurnTaker));
+            SpecialStringMaker.ShowNumberOfCardsAtLocation(TurnTaker.Deck, new LinqCardCriteria((Card c) => c.DoKeywordsContain("dog"), "dog"));
+            SpecialStringMaker.ShowLocationOfCards(new LinqCardCriteria((Card c) => c.Identifier == "Bastard" && c.Owner == TurnTaker));
         }
 
-        public override System.Collections.IEnumerator Play()
+        public override IEnumerator Play()
         {
             // "Reveal cards from the top of either your deck or your trash until you reveal a Dog. Put it into play. Return the other cards and shuffle your deck.",
             // "You may draw a card"
@@ -30,14 +31,8 @@ namespace Jp.ParahumansOfTheWormverse.Bitch
                 storedResults,
                 cardSource: GetCardSource()
             );
-            if (UseUnityCoroutines)
-            {
-                yield return GameController.StartCoroutine(e);
-            }
-            else
-            {
-                GameController.ExhaustCoroutine(e);
-            }
+            if (UseUnityCoroutines) { yield return GameController.StartCoroutine(e); }
+            else { GameController.ExhaustCoroutine(e); }
 
             var selectedLocation = GetSelectedLocation(storedResults);
             if (selectedLocation == null) { yield break; }
@@ -54,24 +49,12 @@ namespace Jp.ParahumansOfTheWormverse.Bitch
                 revealedCardDisplay: RevealedCardDisplay.ShowMatchingCards,
                 shuffleReturnedCards: true
             );
-            if (UseUnityCoroutines)
-            {
-                yield return GameController.StartCoroutine(e);
-            }
-            else
-            {
-                GameController.ExhaustCoroutine(e);
-            }
+            if (UseUnityCoroutines) { yield return GameController.StartCoroutine(e); }
+            else { GameController.ExhaustCoroutine(e); }
 
             e = DrawCard(HeroTurnTaker, optional: true);
-            if (UseUnityCoroutines)
-            {
-                yield return GameController.StartCoroutine(e);
-            }
-            else
-            {
-                GameController.ExhaustCoroutine(e);
-            }
+            if (UseUnityCoroutines) { yield return GameController.StartCoroutine(e); }
+            else { GameController.ExhaustCoroutine(e); }
         }
     }
 }

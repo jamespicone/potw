@@ -28,26 +28,14 @@ namespace Jp.ParahumansOfTheWormverse.Bitch
             {
                 case 0:
                     e = GameController.SelectAndGainHP(HeroTurnTakerController, 2, cardSource: GetCardSource());
-                    if (UseUnityCoroutines)
-                    {
-                        yield return GameController.StartCoroutine(e);
-                    }
-                    else
-                    {
-                        GameController.ExhaustCoroutine(e);
-                    }
+                    if (UseUnityCoroutines) { yield return GameController.StartCoroutine(e); }
+                    else { GameController.ExhaustCoroutine(e); }
                     break;
 
                 case 1:
                     e = GameController.SelectHeroToMoveCardFromTrash(HeroTurnTakerController, c => c.HeroTurnTaker.Hand, cardSource: GetCardSource());
-                    if (UseUnityCoroutines)
-                    {
-                        yield return GameController.StartCoroutine(e);
-                    }
-                    else
-                    {
-                        GameController.ExhaustCoroutine(e);
-                    }
+                    if (UseUnityCoroutines) { yield return GameController.StartCoroutine(e); }
+                    else { GameController.ExhaustCoroutine(e); }
                     break;
 
                 case 2:
@@ -55,14 +43,8 @@ namespace Jp.ParahumansOfTheWormverse.Bitch
                     status.UntilStartOfNextTurn(TurnTaker);
                     status.SourceCriteria.IsEnvironment = true;
                     e = GameController.AddStatusEffect(status, true, GetCardSource());
-                    if (UseUnityCoroutines)
-                    {
-                        yield return GameController.StartCoroutine(e);
-                    }
-                    else
-                    {
-                        GameController.ExhaustCoroutine(e);
-                    }
+                    if (UseUnityCoroutines) { yield return GameController.StartCoroutine(e); }
+                    else { GameController.ExhaustCoroutine(e); }
                     break;
             }
         }

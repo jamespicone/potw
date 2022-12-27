@@ -24,7 +24,8 @@ namespace Jp.ParahumansOfTheWormverse.Bitch
             var e = GameController.SelectAndDestroyCard(
                 HeroTurnTakerController,
                 new LinqCardCriteria(c => c.IsTarget && c.HitPoints <= dogCount * 2),
-                false
+                false,
+                cardSource: GetCardSource()
             );
             if (UseUnityCoroutines)
             {

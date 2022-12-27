@@ -1,6 +1,7 @@
 ﻿using Handelabra.Sentinels.Engine.Controller;
 using Handelabra.Sentinels.Engine.Model;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,7 +15,7 @@ namespace Jp.ParahumansOfTheWormverse.Bitch
             SpecialStringMaker.ShowNumberOfCardsInPlay(new LinqCardCriteria((Card c) => c.DoKeywordsContain("dog"), "dog"));
         }
 
-        public override System.Collections.IEnumerator Play()
+        public override IEnumerator Play()
         {
             // Deal a target X melee damage, where X = the number of Dog cards in play * 3
             // TODO: Make a dog do the damage
@@ -23,14 +24,8 @@ namespace Jp.ParahumansOfTheWormverse.Bitch
             var dogCount = cards.Count();
 
             var e = GameController.SelectTargetsAndDealDamage(HeroTurnTakerController, new DamageSource(GameController, CharacterCard), 3 * dogCount, DamageType.Melee, 1, false, 1, cardSource: GetCardSource());
-            if (UseUnityCoroutines)
-            {
-                yield return GameController.StartCoroutine(e);
-            }
-            else
-            {
-                GameController.ExhaustCoroutine(e);
-            }
+            if (UseUnityCoroutines) { yield return GameController.StartCoroutine(e); }
+            else { GameController.ExhaustCoroutine(e); }
         }
     }
 }

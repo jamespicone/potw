@@ -39,6 +39,8 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest
             GoToStartOfTurn(bitch);
             Assert.AreEqual(5, milk.HitPoints);
 
+            PlayCard(bitch, "Hold");
+
             PlayCard(bitch, "VeterinaryCare");
             Assert.AreEqual(6, milk.HitPoints);
         }
