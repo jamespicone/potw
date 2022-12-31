@@ -2,5 +2,6 @@ Name: Thomas Calvert
 Age: Forties
 Classification: Thinker
 Affiliation: Coil's Mercenaries
+Power: Splits timeline in two; keeps the better option
 First Appearance: Interlude 2
 Trigger Event: ???

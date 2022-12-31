@@ -1,0 +1,362 @@
+{
+  "name": "Skitter",
+  "kind": "Hero",
+  "initialCardIdentifiers": [ "SkitterCharacter" ],
+  "cards": [
+    {
+      "identifier": "SkitterCharacter",
+      "title": "Skitter",
+      "count": 1,
+      "gameplay": "Damage dealt by 'the swarm' is environment damage.",
+      "body": "Swarm",
+      "hitpoints": 25,
+      "powers": [ "Either place a Bug token on {SkitterCharacter} or play a Strategy. You may move a Bug token from one of your cards to {SkitterCharacter} or one of your Strategy cards." ],
+      "icons": [
+      ],
+      "character": true,
+      "backgroundColor": "cccccc",
+      "openingLines": {
+        "default": "Buzz."
+      },
+      "complexity": 2,
+      "incapacitatedAbilities": [
+        "The environment deals 1 toxic damage to a target.",
+        "One player draws a card.",
+        "Destroy a non-character target. Remove Skitter from the game."
+      ],
+      "flippedIcons": [
+      ],
+      "tokenPools": [
+        {
+          "identifier": "BugPool",
+          "name": "Bug pool",
+          "initialValue": 0,
+          "minimumValue": 0,
+          "color": "000000"
+        }
+      ]
+    },
+    {
+      "identifier": "UnrelentingStings",
+      "title": "Unrelenting Stings",
+      "keywords": [ "ongoing", "strategy" ],
+      "body": [
+        "At the end of your turn the swarm deals up to X targets 1 toxic damage, where X = 1 + the number of Bug tokens on this card."
+      ],
+      "icons": [
+      ],
+      "flavorText": "Just a heartbeat later, I{BR}realized my bugs had broken through.{BR}They found flesh to latch on to, flesh{BR}to bite, sting, claw and puncture",
+      "flavorReference": "Skitter, Agitation 3.12",
+      "count": 3,
+      "tokenPools": [
+        {
+          "identifier": "BugPool",
+          "name": "Bug pool",
+          "initialValue": 0,
+          "minimumValue": 0,
+          "color": "000000"
+        }
+      ]
+    },
+    {
+      "identifier": "BugClones",
+      "title": "Bug Clones",
+      "keywords": [ "ongoing", "strategy" ],
+      "body": [
+        "Whenever {SkitterCharacter} would be dealt damage you may prevent it. If you do, either remove 2 Bug tokens from this card or destroy it."
+      ],
+      "icons": [
+      ],
+      "flavorText": "When the bugs rose, they rose{BR}in the general shape of a person,{BR}of me.",
+      "flavorReference": "Monarch 16.11",
+      "count": 2,
+      "tokenPools": [
+        {
+          "identifier": "BugPool",
+          "name": "Bug pool",
+          "initialValue": 0,
+          "minimumValue": 0,
+          "color": "000000"
+        }
+      ]
+    },
+    {
+      "identifier": "TrackingBugs",
+      "title": "Tracking Bugs",
+      "keywords": [ "ongoing", "strategy" ],
+      "body": [
+        "X on this card = 1 + the number of Bug tokens on this card.",
+        "At the end of your turn you may reveal the top X cards of a deck, discard up to 1 of those cards, then return the cards in any order."
+      ],
+      "icons": [
+      ],
+      "flavorQuotes": [
+        {
+          "text": "So long as you have this,{BR}I'll know where you are,{BR}because I can keep an eye out{BR}for the fly in a box.",
+          "identifier": "Skitter"
+        }
+      ],
+      "flavorReference": "Plague 12.1",
+      "count": 3,
+      "tokenPools": [
+        {
+          "identifier": "BugPool",
+          "name": "Bug pool",
+          "initialValue": 0,
+          "minimumValue": 0,
+          "color": "000000"
+        }
+      ]
+    },
+    {
+      "identifier": "DeliveryService",
+      "title": "Delivery Service",
+      "keywords": [ "ongoing", "strategy" ],
+      "body": [
+        "At the end of your turn choose a player. That player draws up to X cards, where X = 1 + the number of Bug tokens on this card."
+      ],
+      "icons": [
+      ],
+      "flavorText": "I closed my hand around a pen{BR}as the cloud of airborne insects{BR}delivered it to me. They dispersed,{BR}and the pen remained behind.",
+      "flavorReference": "Plague 12.6",
+      "count": 2,
+      "tokenPools": [
+        {
+          "identifier": "BugPool",
+          "name": "Bug pool",
+          "initialValue": 0,
+          "minimumValue": 0,
+          "color": "000000"
+        }
+      ]
+    },
+    {
+      "identifier": "SabotageSwarm",
+      "title": "Sabotage Swarm",
+      "keywords": [ "ongoing", "strategy" ],
+      "body": [
+        "At the end of your turn you may destroy an Ongoing or Environment card. If you do, either remove 2 Bug tokens from this card or destroy it."
+      ],
+      "icons": [
+      ],
+      "flavorText": "The outlet that fed Kid Win's{BR}anti-bug drones... I found the wiring{BR}in the walls and ordered cockroaches{BR}to start chewing through it.",
+      "flavorReference": "Cell 22.3",
+      "count": 2,
+      "tokenPools": [
+        {
+          "identifier": "BugPool",
+          "name": "Bug pool",
+          "initialValue": 0,
+          "minimumValue": 0,
+          "color": "000000"
+        }
+      ]
+    },
+    {
+      "identifier": "DeadlySpiders",
+      "title": "Deadly Spiders",
+      "keywords": [ "ongoing", "strategy" ],
+      "body": [
+        "X on this card = the number of Bug tokens on this card or 3, whichever is lower.",
+        "At the end of your turn the swarm deals up to 1 target X + 1 toxic damage."
+      ],
+      "icons": [
+      ],
+      "flavorQuotes": [
+        {
+          "text": "She's a black widow spider.{BR}A single bite has been known{BR}to kill a full grown human,{BR}or put them into a coma.",
+          "identifier": "Skitter"
+        }
+      ],
+      "flavorReference": "Skitter, Agitation 3.7",
+      "count": 3,
+      "tokenPools": [
+        {
+          "identifier": "BugPool",
+          "name": "Bug pool",
+          "initialValue": 0,
+          "minimumValue": 0,
+          "color": "000000"
+        }
+      ]
+    },
+    {
+      "identifier": "Regroup",
+      "title": "Regroup",
+      "keywords": [ "one-shot" ],
+      "body": [
+        "Place a Bug token on Skitter.",
+        "You may move any number of Bug tokens from one of your cards to {SkitterCharacter} or a Strategy card, as many times as you would like.",
+        "You may play a card."
+      ],
+      "icons": [
+      ],
+      "flavorText": "Finally, everyone was working together.",
+      "flavorReference": "Speck 30.4",
+      "count": 3
+    },
+    {
+      "identifier": "AlwaysPlanning",
+      "title": "Always Planning",
+      "keywords": [ "ongoing" ],
+      "body": [
+        "At the start of the environment turn place a Bug token on {SkitterCharacter}."
+      ],
+      "powers": [
+        "Reveal cards from the top of your deck until you reveal a Strategy card. Put it into play and shuffle the other cards back into your deck."
+      ],
+      "icons": [
+      ],
+      "flavorQuotes": [
+        {
+          "text": "[i]Stop that![/i] Stop trying things!",
+          "identifer": "Defiant"
+        }
+      ],
+      "flavorReference": "Defiant, Cell 22.5",
+      "count": 2
+    },
+    {
+      "identifier": "StormOfStingers",
+      "title": "Storm of Stingers",
+      "keywords": [ "one-shot", "bug" ],
+      "body": [
+        "You may move a Bug token from one of your cards to {SkitterCharacter} or a Strategy card.",
+        "Remove any number of Bug tokens from {SkitterCharacter}. {SkitterCharacter} deals up to X targets 2 melee damage and 2 toxic damage, where X = 1 + the number of tokens you removed."
+      ],
+      "icons": [
+      ],
+      "flavorText": "Nearly seven hundred hornets exploded{BR}from underneath my panels of armor.",
+      "flavorReference": "Tangle 6.6",
+      "count": 4
+    },
+    {
+      "identifier": "SwarmOfFlies",
+      "title": "Swarm of Flies",
+      "keywords": [ "bug" ],
+      "hitpoints": 1,
+      "body": [
+        "Reduce melee and projectile damage dealt to targets in this play area by 1.",
+        "When this card enters play place 2 Bug tokens on {SkitterCharacter}.",
+        "When this card leaves play remove 1 Bug token from a card in this play area."
+      ],
+      "icons": [
+      ],
+      "flavorText": "I'd packed the entirety of the van,{BR}minus the driver and passenger seats,{BR}with bugs.",
+      "flavorReference": "Agitation 3.7",
+      "count": 2
+    },
+    {
+      "identifier": "VindictiveCreativity",
+      "title": "Vindictive Creativity",
+      "keywords": [ "ongoing", "limited" ],
+      "body": [
+        "Whenever the swarm deals damage to a villain target, increase that damage by 1.",
+        "Whenever the swarm deals damage, change the damage type to a type of your choice."
+      ],
+      "icons": [
+      ],
+      "flavorQuotes": [
+        {
+          "identifier": "Glenn Chambers",
+          "text": "If you told me that girl was{BR}a member of the Slaughterhouse Nine,{BR}I wouldn't have batted an eyelash."
+        }
+      ],
+      "flavorReference": "Glenn Chambers, Drone 23.3",
+      "count": 2
+    },
+    {
+      "identifier": "SweepTheArea",
+      "title": "Sweep the Area",
+      "keywords": [ "ongoing" ],
+      "powers": [
+        "Reveal the top 3 cards of a deck. Discard any revealed targets and return the remaining cards in any order.{BR}{SkitterCharacter} deals 1 psychic damage to all villain targets."
+      ],
+      "icons": [
+      ],
+      "flavorText": "My attention swept over my territory,{BR}with an emphasis on the centermost{BR}area near where I'd held my speech.",
+      "flavorReference": "Infestation 11.3",
+      "count": 2
+    },
+    {
+      "identifier": "SpidersilkArmour",
+      "title": "Spidersilk Armour",
+      "keywords": [ "equipment", "limited" ],
+      "body": [ "Reduce non-fire damage that would be dealt to {SkitterCharacter} by 1." ],
+      "icons": [
+      ],
+      "flavorQuotes": [
+        {
+          "text": "Set her on fire.{BR}Her costume is bulletproof,{BR}and I want this done.{BR}I need to attend to other matters.",
+          "identifier": "Coil"
+        }
+      ],
+      "flavorReference": "Coil, Monarch 16.11",
+      "count": 2
+    },
+    {
+      "identifier": "Atlas",
+      "title": "Atlas",
+      "keywords": [ "bug" ],
+      "hitpoints": 8,
+      "body": [
+        "{SkitterCharacter} is immune to damage from environment cards.",
+        "At the end of your turn draw a card"
+      ],
+      "icons": [
+      ],
+      "flavorText": "Six and a half feet long,{BR}five feet across and five feet tall.{BR}A giant beetle.",
+      "flavorReference": "Skitter, Prey 14.4",
+      "count": 1
+    },
+    {
+      "identifier": "BuryInBugs",
+      "title": "Bury in Bugs",
+      "keywords": [ "one-shot", "bug" ],
+      "body": [
+        "You may move a Bug token from one of your cards to {SkitterCharacter} or a Strategy card.",
+        "Remove any number of Bug tokens from {SkitterCharacter}. {SkitterCharacter} destroys up to X Ongoing cards, where X = 1 + the number of tokens you removed."
+      ],
+      "icons": [
+      ],
+      "flavorText": "Some entered the cloud,{BR}and the response was swift and brutal.{BR}{BR}The bugs consumed them.",
+      "flavorReference": "Skitter, Speck 30.3",
+      "count": 2
+    },
+    {
+      "identifier": "ImprovisationalIngenuity",
+      "title": "Improvisational Ingenuity",
+      "keywords": [ "ongoing", "limited" ],
+      "body": [
+        "The first time each turn {SkitterCharacter} or the swarm would deal damage but that damage is prevented, you may use a power."
+      ],
+      "powers": [
+        "Reveal the top 3 cards of your deck. Put 1 into your hand and shuffle the others back into your deck."
+      ],
+      "icons": [
+      ],
+      "flavorQuotes": [
+        {
+          "text": "Do [i]not[/i] use grenades.{BR}I assure you it does not work out{BR}the way you imagine it will.",
+          "identifier": "Coil"
+        }
+      ],
+      "flavorReference": "Coil, Monarch 16.11",
+      "count": 2
+    },
+    {
+      "identifier": "ImpeccableAim",
+      "title": "Impeccable Aim",
+      "keywords": [ "ongoing" ],
+      "powers": [
+        "{SkitterCharacter} deals a target 2 irreducible projectile damage. {SkitterCharacter} may deal another target 1 projectile damage.",
+        "Destroy an environment card."
+      ],
+      "icons": [
+      ],
+      "flavorText": "Having bugs over the entire area,{BR}I had a sense of the area, of the{BR}topography, of where everything was. It{BR}wasn't perfect, but it was an advantage.",
+      "flavorReference": "Skitter, Sting 26.6",
+      "count": 3
+    }
+  ]
+}

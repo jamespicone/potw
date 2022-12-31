@@ -1,0 +1,77 @@
+Bugs!
+
+Character:
+- Skitter is determined and driven
+- She escalates
+- She doesn't back down
+- She attacks from unexpected directions
+- She keeps trying novel approaches until something works
+- She's limited by the bugs she can find
+- She multitasks
+
+Themes:
+- Resource management
+- Weak attacks against lots of targets
+- Destroying environment
+- Destroying ongoings
+- Different damage types?
+- Giving players draws?
+- Reveals?
+
+Variants:
+- Skitter: Base, still learning, aggressive, hurts people, developing tactics?
+- Weaver: More experienced, more heroic, refining tactics, doesn't go for the throat quite so hard?
+- Khepri: Uses allies powers; hurts herself; sacrifices; doesn't cooperate well.
+
+40 cards, maybe 17 uniques.
+
+Central mechanic of having "strategies" that do things and can have Bug tokens put on them to make them do more things. Bit like omnitron-x but with scaling effects. 
+
+Base power:
+- Play a strategy, you may move a bug from a card to another card, or gain a bug.
+
+Incaps:
+- Environment deals 1 toxic
+- One player draws a card
+- Destroy a non character target. Remove skitter from the game.
+
+Strategies:
+- x=1+bugs, At end of turn environment deal 1 toxic to X targets (x3)
+- when skitter would be damaged, remove 2 bugs from this card, prevent it. (x2)
+- x=1+bugs, at end of turn reveal the top X cards of a deck, you may put one in the trash (x2)
+- x=1+bugs, at end of turn player draws x (x2)
+- at end of turn remove 2 bugs to destroy an ongoing or environment (x2)
+- x=1+bugs, at end of turn environment deal x toxic to 1 target (x3)
+(14 cards)
+
+Other cards:
+- Reshuffle all your bugs however you want ("You may move any number of bug tokens from one of your cards to another one of your cards. You may repeat the full text of this card.") (x3)
+- Start of the environment turn gain a bug. Power: reveal until you get a strategy (x2)
+- spend x tokens, skitter deals x targets 2 melee and 2 toxic (beeeesss!) (x4)
+- 1 hp, reduce melee and projectile dealt by 1, gain 2 bug when enters play, lose 1 bug when dies (x2)
+- Increase environment damage to villains by 1. When you deal damage choose damage type. (x2)
+- Power: Reveal top 3 cards of a deck; discard all revealed targets; return the remainder in any order. Skitters deals 1 psychic to all villains. (x2)
+- Reduce non-fire damage to skitter by 1 (x2)
+- Atlas; immune to environment damage, draw a card at end of turn. (x1)
+- Spend bugs, destroy x = 1 + bugs ongoings. (x2)
+- if your damage is prevented, you may use a power. Power: reveal 3 cards and draw one. (x3)
+- Power: Deal 2 irreducible projectile & 1 projectile (x3)
+(26 cards)
+
+
+
+TODO:
+- Special strings
+- Flavour quotes
+- Intro quote
+- Darker grey colour?
+- Balance changes to think about:
+	- Put "add bugs" on more stuff?
+	- add more move-bug effects?
+	- unit tests :'(
+	- 
+
+Variant thoughts:
+	- weaver: gain 2 bugs, move * tokens from card to card? play a bug somewhere in there? put a bug on up to 2 strategies?
+	- khepri: up to three other heroes use a power; for each power use lose a token or take 3 irreducible psychic? if no heroes gain a bug?
+	- "taylor hebert" variant maybe repping the period where she was sort of working for cauldron before khepri? maybe the "play a bug" goes in here?

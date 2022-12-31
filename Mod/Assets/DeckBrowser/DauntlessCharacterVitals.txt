@@ -2,5 +2,6 @@ Name: Shawn
 Age: Early thirties
 Classification: Striker / Trump
 Affiliation: Protectorate ENE
+Power: Charges objects with power
 First Appearance: Tangle 6.7
 Trigger Event: Trapped in mudslide

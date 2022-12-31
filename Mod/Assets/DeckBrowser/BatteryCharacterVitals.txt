@@ -1,5 +1,6 @@
 Age: 22
 Classification: Mover 4
 Affiliation: Protectorate ENE
+Power: Charges up superspeed/strength
 First Appearance: Agitation 3.5
 Trigger Event: ???

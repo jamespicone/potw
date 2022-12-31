@@ -2,5 +2,6 @@ Name: ???
 Age: ???
 Classification: Blaster, Mover, Breaker
 Affiliation: The Protectorate New York
+Power: Flight, shoots lasers
 First Appearance: Extermination 8.1
 Trigger Event: ???

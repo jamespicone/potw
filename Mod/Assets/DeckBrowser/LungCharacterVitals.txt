@@ -2,5 +2,6 @@ Name: Kenta
 Age: Thirties
 Classification: Brute 4-9, Blaster 2-6
 Affiliation: Azn Bad Boys
+Power: Turns into a dragon
 First Appearance: Gestation 1.3
 Trigger Event: Overdosed on drugs after losing a fight

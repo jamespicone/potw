@@ -2,5 +2,6 @@ Name: Hannah
 Age: Thirties
 Classification: Blaster
 Affiliation: Protectorate ENE
+Power: Creates weapons
 Trigger Event: Kidnapped; used as human minesweeper
 First Appearance: Agitation 3.2

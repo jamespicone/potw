@@ -1,5 +1,6 @@
 Name: Adam Mustain
 Classification: Shaker 2
 Affiliation: The Merchants
+Power: Makes zones that apply force
 First Appearance: Hive 5.1
 Trigger Event: ???

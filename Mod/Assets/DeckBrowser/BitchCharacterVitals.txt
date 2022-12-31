@@ -3,4 +3,5 @@ Age: 16
 Classification: Master 5
 Affiliation: Undersiders
 First Appearance: Gestation 1.5
+Power: Enhances dogs
 Trigger Event: Foster mother tried to kill her dog

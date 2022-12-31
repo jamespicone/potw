@@ -2,6 +2,7 @@ Name: Noelle
 Age: Twenties
 Classification: Master 10, Striker 10, Brute 8
 Affiliation: Travellers
+Power: Regeneration, copies living creatures, super strength
 First Appearance: Plague 12.3
 Trigger Event: Cauldron vial
 Threat class: S
