@@ -321,7 +321,7 @@
       "character": true,
       "powers": [
         "Put the top card of your deck into play face down.",
-        "{Charge} {BatteryCharacter} until the start of your next turn. Flip each face-down card in your play area, treating them as just put into play."
+        "{Charge} {BatteryCharacter} until the start of your next turn. Reveal each face-down card in your play area, then put them into play in any order."
       ],
       "hitpoints": 28,
       "nemesisIdentifiers": [
