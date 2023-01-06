@@ -14,7 +14,9 @@ namespace Jp.ParahumansOfTheWormverse.Skitter
     public class BugClonesCardController : CardController
     {
         public BugClonesCardController(Card card, TurnTakerController controller) : base(card, controller)
-        { }
+        {
+            AllowFastCoroutinesDuringPretend = false;
+        }
 
         public override void AddTriggers()
         {
