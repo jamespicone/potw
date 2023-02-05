@@ -50,5 +50,11 @@ namespace Jp.ParahumansOfTheWormverse.Skitter
             if (UseUnityCoroutines) { yield return GameController.StartCoroutine(e); }
             else { GameController.ExhaustCoroutine(e); }
         }
+
+        public override CustomDecisionText GetCustomDecisionText(IDecision decision)
+        {
+            return SkitterExtensions.GetMoveBugTokensCustomDecisionText(decision);
+        }
+
     }
 }

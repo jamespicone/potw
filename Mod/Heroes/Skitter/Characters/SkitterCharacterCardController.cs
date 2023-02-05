@@ -44,6 +44,11 @@ namespace Jp.ParahumansOfTheWormverse.Skitter
             }
         }
 
+        public override CustomDecisionText GetCustomDecisionText(IDecision decision)
+        {
+            return SkitterExtensions.GetMoveBugTokensCustomDecisionText(decision);
+        }
+
         public override IEnumerator UseIncapacitatedAbility(int index)
         {
             IEnumerator e;

@@ -52,6 +52,39 @@ namespace Jp.ParahumansOfTheWormverse.Skitter
             co.AddAfterLeavesPlayAction(() => { co.Card.FindBugPool()?.SetToInitialValue(); return co.GameController.DoNothing(); });
         }
 
+        public static CustomDecisionText GetMoveBugTokensCustomDecisionText(IDecision decision)
+        {
+            SelectCardDecision scd = decision as SelectCardDecision;
+            if (scd == null) { return null; }
+            if (scd.SelectionType != SelectionType.Custom) { return null; }
+
+            if (scd.SecondarySelectionType == SelectionType.RemoveTokens)
+            {
+                // Which card to move tokens from
+                return new CustomDecisionText(
+                    "Select the card to take Bug tokens from",
+                    "selecting the card to take Bug tokens from",
+                    "the card for {1} to select to take Bug tokens from",
+                    "Take Bug tokens from",
+                    fullCardPrimaryAction: "Take\nTokens"
+                );
+            }
+
+            if (scd.SecondarySelectionType == SelectionType.AddTokens)
+            {
+                // Which card to move tokens to
+                return new CustomDecisionText(
+                    "Select the card to move Bug tokens to",
+                    "selecting the card to move Bug tokens to",
+                    "the card for {1} to select to move Bug tokens to",
+                    "Move Bug tokens to",
+                    fullCardPrimaryAction: "Add\nTokens"
+                );
+            }
+
+            return null;
+        }
+
         public static IEnumerator MoveBugTokens(this CardController co, bool moveArbitraryAmount, bool isOptional, List<bool> didMove = null)
         {
             IEnumerator e;
@@ -87,12 +120,14 @@ namespace Jp.ParahumansOfTheWormverse.Skitter
             var bugSourceList = new List<SelectCardDecision>();
             e = co.GameController.SelectCardAndStoreResults(
                 co.HeroTurnTakerController,
-                SelectionType.RemoveTokens,
-                new LinqCardCriteria(possibleSource, useCardsSuffix: false, useCardsPrefix: true),
+                SelectionType.Custom,
+                co.FindCardsWhere(possibleSource, true, visibleToCard: co.GetCardSource()),
                 bugSourceList,
+                additionalCriteria: new LinqCardCriteria(possibleSource, useCardsSuffix: false, useCardsPrefix: true),
                 optional: isOptional,
+                secondarySelectionType: SelectionType.RemoveTokens,
                 cardSource: co.GetCardSource()
-            );
+            ); ;
             if (co.UseUnityCoroutines) { yield return co.GameController.StartCoroutine(e); }
             else { co.GameController.ExhaustCoroutine(e); }
 
@@ -102,10 +137,12 @@ namespace Jp.ParahumansOfTheWormverse.Skitter
             var bugTargetList = new List<SelectCardDecision>();
             e = co.GameController.SelectCardAndStoreResults(
                 co.HeroTurnTakerController,
-                SelectionType.AddTokens,
-                new LinqCardCriteria(possibleTarget, $"{co.CharacterCard.Title} or a Strategy"),
+                SelectionType.Custom,
+                co.FindCardsWhere(possibleTarget, true, visibleToCard: co.GetCardSource()),
                 bugTargetList,
-                optional: false,
+                additionalCriteria: new LinqCardCriteria(possibleTarget, $"{co.CharacterCard.Title} or a Strategy"),
+                optional: isOptional,
+                secondarySelectionType: SelectionType.AddTokens,
                 cardSource: co.GetCardSource()
             );
             if (co.UseUnityCoroutines) { yield return co.GameController.StartCoroutine(e); }
