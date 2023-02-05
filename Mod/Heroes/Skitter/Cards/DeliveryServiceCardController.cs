@@ -20,7 +20,14 @@ namespace Jp.ParahumansOfTheWormverse.Skitter
         {
             AddEndOfTurnTrigger(
                 tt => tt == TurnTaker,
-                pca => GameController.SelectHeroToDrawCards(HeroTurnTakerController, Card.BugTokenCount() + 1, optionalDrawCards: false, requiredDraws: 0, allowAutoDraw: true, cardSource: GetCardSource()),
+                pca => GameController.SelectHeroToDrawCards(
+                    HeroTurnTakerController,
+                    Math.Min(3, Card.BugTokenCount()) + 1,
+                    optionalDrawCards: false,
+                    requiredDraws: 0,
+                    allowAutoDraw: true,
+                    cardSource: GetCardSource()
+                ),
                 TriggerType.DrawCard
             );
 

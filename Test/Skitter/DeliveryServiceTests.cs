@@ -58,5 +58,68 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.Skitter
             GoToEndOfTurn(skitter);
             QuickHandCheck(0, 2);
         }
+
+        [Test()]
+        public void TwoTokensThreeDraws()
+        {
+            SetupGameController("BaronBlade", "Jp.ParahumansOfTheWormverse.Skitter", "Jp.ParahumansOfTheWormverse.Tattletale", "Megalopolis");
+
+            RemoveVillainTriggers();
+            StartGame();
+            RemoveMobileDefensePlatform();
+
+            var delivery = PlayCard("DeliveryService");
+
+            var bugpool = delivery.FindBugPool();
+            bugpool.AddTokens(2);
+            GoToDrawCardPhase(skitter);
+
+            QuickHandStorage(skitter, tattletale);
+            DecisionSelectTurnTaker = tattletale.TurnTaker;
+            GoToEndOfTurn(skitter);
+            QuickHandCheck(0, 3);
+        }
+
+        [Test()]
+        public void ThreeTokensFourDraws()
+        {
+            SetupGameController("BaronBlade", "Jp.ParahumansOfTheWormverse.Skitter", "Jp.ParahumansOfTheWormverse.Tattletale", "Megalopolis");
+
+            RemoveVillainTriggers();
+            StartGame();
+            RemoveMobileDefensePlatform();
+
+            var delivery = PlayCard("DeliveryService");
+
+            var bugpool = delivery.FindBugPool();
+            bugpool.AddTokens(3);
+            GoToDrawCardPhase(skitter);
+
+            QuickHandStorage(skitter, tattletale);
+            DecisionSelectTurnTaker = tattletale.TurnTaker;
+            GoToEndOfTurn(skitter);
+            QuickHandCheck(0, 4);
+        }
+
+        [Test()]
+        public void FourTokensFourDraws()
+        {
+            SetupGameController("BaronBlade", "Jp.ParahumansOfTheWormverse.Skitter", "Jp.ParahumansOfTheWormverse.Tattletale", "Megalopolis");
+
+            RemoveVillainTriggers();
+            StartGame();
+            RemoveMobileDefensePlatform();
+
+            var delivery = PlayCard("DeliveryService");
+
+            var bugpool = delivery.FindBugPool();
+            bugpool.AddTokens(4);
+            GoToDrawCardPhase(skitter);
+
+            QuickHandStorage(skitter, tattletale);
+            DecisionSelectTurnTaker = tattletale.TurnTaker;
+            GoToEndOfTurn(skitter);
+            QuickHandCheck(0, 4);
+        }
     }
 }

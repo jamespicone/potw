@@ -127,7 +127,8 @@
       "title": "Delivery Service",
       "keywords": [ "ongoing", "strategy" ],
       "body": [
-        "At the end of your turn choose a player. That player draws up to X cards, where X = 1 + the number of Bug tokens on this card."
+        "X on this card = the number of Bug tokens on this card or 3, whichever is lower.",
+        "At the end of your turn choose a player. That player draws up to 1 + X cards."
       ],
       "icons": [
         "EndOfTurnAction",
