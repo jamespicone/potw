@@ -12,11 +12,14 @@
       "hitpoints": 25,
       "powers": [ "Either place a Bug token on {SkitterCharacter} or play a Strategy. You may move a Bug token from one of your cards to {SkitterCharacter} or one of your Strategy cards." ],
       "icons": [
+        "AddTokens",
+        "AddOrRemoveTokens",
+        "PlayCardNow"
       ],
       "character": true,
       "backgroundColor": "cccccc",
       "openingLines": {
-        "default": "Buzz."
+        "default": "Don't underestimate me."
       },
       "complexity": 2,
       "incapacitatedAbilities": [
@@ -25,6 +28,10 @@
         "Destroy a non-character target. Remove Skitter from the game."
       ],
       "flippedIcons": [
+        "DealDamageToxic",
+        "DrawCardNow",
+        "DestroyTarget",
+        "RemoveFromGame"
       ],
       "tokenPools": [
         {
@@ -44,6 +51,8 @@
         "At the end of your turn the swarm deals up to X targets 1 toxic damage, where X = 1 + the number of Bug tokens on this card."
       ],
       "icons": [
+        "EndOfTurnAction",
+        "DealDamageToxic"
       ],
       "flavorText": "Just a heartbeat later, I{BR}realized my bugs had broken through.{BR}They found flesh to latch on to, flesh{BR}to bite, sting, claw and puncture",
       "flavorReference": "Skitter, Agitation 3.12",
@@ -66,6 +75,9 @@
         "Whenever {SkitterCharacter} would be dealt damage you may prevent it. If you do, either remove 2 Bug tokens from this card or destroy it."
       ],
       "icons": [
+        "CancelledDamageGreen",
+        "RemoveTokens",
+        "DestroySelf"
       ],
       "flavorText": "When the bugs rose, they rose{BR}in the general shape of a person,{BR}of me.",
       "flavorReference": "Monarch 16.11",
@@ -89,6 +101,8 @@
         "At the end of your turn you may reveal the top X cards of a deck, discard up to 1 of those cards, then return the cards in any order."
       ],
       "icons": [
+        "EndOfTurnAction",
+        "Manipulate"
       ],
       "flavorQuotes": [
         {
@@ -116,6 +130,8 @@
         "At the end of your turn choose a player. That player draws up to X cards, where X = 1 + the number of Bug tokens on this card."
       ],
       "icons": [
+        "EndOfTurnAction",
+        "DrawCardNow"
       ],
       "flavorText": "I closed my hand around a pen{BR}as the cloud of airborne insects{BR}delivered it to me. They dispersed,{BR}and the pen remained behind.",
       "flavorReference": "Plague 12.6",
@@ -138,6 +154,11 @@
         "At the end of your turn you may destroy an Ongoing or Environment card. If you do, either remove 2 Bug tokens from this card or destroy it."
       ],
       "icons": [
+        "EndOfTurnAction",
+        "DestroyOngoing",
+        "DestroyEnvironment",
+        "DestroySelf",
+        "RemoveTokens"
       ],
       "flavorText": "The outlet that fed Kid Win's{BR}anti-bug drones... I found the wiring{BR}in the walls and ordered cockroaches{BR}to start chewing through it.",
       "flavorReference": "Cell 22.3",
@@ -161,6 +182,8 @@
         "At the end of your turn the swarm deals up to 1 target X + 1 toxic damage."
       ],
       "icons": [
+        "EndOfTurnAction",
+        "DealDamageToxic"
       ],
       "flavorQuotes": [
         {
@@ -190,6 +213,9 @@
         "You may play a card."
       ],
       "icons": [
+        "AddTokens",
+        "AddOrRemoveTokens",
+        "PlayCardNow"
       ],
       "flavorText": "Finally, everyone was working together.",
       "flavorReference": "Speck 30.4",
@@ -206,6 +232,9 @@
         "Reveal cards from the top of your deck until you reveal a Strategy card. Put it into play and shuffle the other cards back into your deck."
       ],
       "icons": [
+        "StartOfTurnAction",
+        "AddTokens",
+        "Manipulate"
       ],
       "flavorQuotes": [
         {
@@ -225,6 +254,10 @@
         "Remove any number of Bug tokens from {SkitterCharacter}. {SkitterCharacter} deals up to X targets 2 melee damage and 2 toxic damage, where X = 1 + the number of tokens you removed."
       ],
       "icons": [
+        "AddOrRemoveTokens",
+        "RemoveTokens",
+        "DealDamageMelee",
+        "DealDamageToxic"
       ],
       "flavorText": "Nearly seven hundred hornets exploded{BR}from underneath my panels of armor.",
       "flavorReference": "Tangle 6.6",
@@ -241,6 +274,10 @@
         "When this card leaves play remove 1 Bug token from a card in this play area."
       ],
       "icons": [
+        "ReduceDamageTakenMelee",
+        "ReduceDamageTakenProjectile",
+        "AddTokens",
+        "RemoveTokens"
       ],
       "flavorText": "I'd packed the entirety of the van,{BR}minus the driver and passenger seats,{BR}with bugs.",
       "flavorReference": "Agitation 3.7",
@@ -255,6 +292,7 @@
         "Whenever the swarm deals damage, change the damage type to a type of your choice."
       ],
       "icons": [
+        "IncreaseDamageDealt"
       ],
       "flavorQuotes": [
         {
@@ -273,6 +311,8 @@
         "Reveal the top 3 cards of a deck. Discard any revealed targets and return the remaining cards in any order.{BR}{SkitterCharacter} deals 1 psychic damage to all villain targets."
       ],
       "icons": [
+        "Manipulate",
+        "DealDamagePsychic"
       ],
       "flavorText": "My attention swept over my territory,{BR}with an emphasis on the centermost{BR}area near where I'd held my speech.",
       "flavorReference": "Infestation 11.3",
@@ -284,6 +324,7 @@
       "keywords": [ "equipment", "limited" ],
       "body": [ "Reduce non-fire damage that would be dealt to {SkitterCharacter} by 1." ],
       "icons": [
+        "ReduceDamageTaken"
       ],
       "flavorQuotes": [
         {
@@ -304,6 +345,9 @@
         "At the end of your turn draw a card"
       ],
       "icons": [
+        "EndOfTurnAction",
+        "DrawCardNow",
+        "ImmuneToDamage"
       ],
       "flavorText": "Six and a half feet long,{BR}five feet across and five feet tall.{BR}A giant beetle.",
       "flavorReference": "Skitter, Prey 14.4",
@@ -318,6 +362,9 @@
         "Remove any number of Bug tokens from {SkitterCharacter}. {SkitterCharacter} destroys up to X Ongoing cards, where X = 1 + the number of tokens you removed."
       ],
       "icons": [
+        "AddOrRemoveTokens",
+        "RemoveTokens",
+        "DestroyOngoing"
       ],
       "flavorText": "Some entered the cloud,{BR}and the response was swift and brutal.{BR}{BR}The bugs consumed them.",
       "flavorReference": "Skitter, Speck 30.3",
@@ -334,6 +381,8 @@
         "Reveal the top 3 cards of your deck. Put 1 into your hand and shuffle the others back into your deck."
       ],
       "icons": [
+        "CancelledDamageGreen",
+        "UsePowerNow"
       ],
       "flavorQuotes": [
         {
@@ -353,6 +402,8 @@
         "Destroy an environment card."
       ],
       "icons": [
+        "DealDamageProjectile",
+        "DestroyEnvironment"
       ],
       "flavorText": "Having bugs over the entire area,{BR}I had a sense of the area, of the{BR}topography, of where everything was. It{BR}wasn't perfect, but it was an advantage.",
       "flavorReference": "Skitter, Sting 26.6",
