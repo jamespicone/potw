@@ -22,10 +22,11 @@ namespace Jp.ParahumansOfTheWormverse.Skitter
         {
             // Whenever {SkitterCharacter} would be dealt damage you may prevent it.
             AddTrigger<DealDamageAction>(
-                dda => dda.Target == CharacterCard,
+                dda => dda.Target == CharacterCard && dda.Amount > 0,
                 dda => MaybePreventDamage(dda),
-                new TriggerType[] { TriggerType.ImmuneToDamage, TriggerType.ModifyTokens },
-                TriggerTiming.Before
+                new TriggerType[] { TriggerType.CancelAction, TriggerType.ModifyTokens, TriggerType.WouldBeDealtDamage },
+                TriggerTiming.Before,
+                isActionOptional: true
             );
 
             this.AddResetTokenTrigger();

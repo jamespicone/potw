@@ -115,5 +115,22 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.Skitter
 
             AssertNotInPlay(clones);
         }
+
+        [Test()]
+        public void DontPreventZeroDamage()
+        {
+            SetupGameController("BaronBlade", "Jp.ParahumansOfTheWormverse.Skitter", "Megalopolis");
+
+            RemoveVillainTriggers();
+            StartGame();
+
+            AssertNoDecision(SelectionType.PreventDamage);
+
+            QuickHPStorage(skitter);
+            PlayCard("BugClones");
+            PlayCard("SpidersilkArmour");
+            DealDamage(skitter.CharacterCard, skitter.CharacterCard, 1, DamageType.Psychic);
+            QuickHPCheck(0);
+        }
     }
 }
