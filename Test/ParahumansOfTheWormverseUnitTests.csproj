@@ -48,6 +48,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Alexandria\InvincibleTests.cs" />
+    <Compile Include="Battery\BatteryCauldronCapeTests.cs" />
     <Compile Include="CoilsBase\MercenariesTests.cs" />
     <Compile Include="Coil\IKnowAllYourTricksTests.cs" />
     <Compile Include="Coil\TrickeryAndDeceitTests.cs" />

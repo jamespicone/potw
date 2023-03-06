@@ -93,23 +93,33 @@ namespace Jp.ParahumansOfTheWormverse.Battery
                     else { GameController.ExhaustCoroutine(e); }
 
                     var cardsToPlay = faceDownCards.ToList();
+                    
                     while (cardsToPlay.Count() > 0)
                     {
-                        var storedPlay = new List<PlayCardAction>();
-                        e = GameController.SelectAndPlayCard(
+                        var storedResults = new List<SelectCardDecision>();
+                        e = GameController.SelectCardAndStoreResults(
                             HeroTurnTakerController,
+                            SelectionType.PlayCard,
                             cardsToPlay,
-                            isPutIntoPlay: true,
-                            storedResults: storedPlay,
+                            storedResults,
                             cardSource: GetCardSource()
                         );
                         if (UseUnityCoroutines) { yield return GameController.StartCoroutine(e); }
                         else { GameController.ExhaustCoroutine(e); }
 
-                        var playedCard = storedPlay.FirstOrDefault().CardToPlay;
-                        if (playedCard == null) { break; }
+                        var cardToPlay = storedResults.FirstOrDefault()?.SelectedCard;
+                        if (cardToPlay == null) { break; }
 
-                        cardsToPlay.Remove(playedCard);
+                        cardsToPlay.Remove(cardToPlay);
+
+                        e = GameController.PlayCard(
+                            TurnTakerController,
+                            cardToPlay,
+                            isPutIntoPlay: true,
+                            cardSource: GetCardSource()
+                        );
+                        if (UseUnityCoroutines) { yield return GameController.StartCoroutine(e); }
+                        else { GameController.ExhaustCoroutine(e); }
                     }
 
                     e = CleanupCardsAtLocations(
