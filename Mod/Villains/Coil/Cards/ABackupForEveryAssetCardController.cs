@@ -20,7 +20,7 @@ namespace Jp.ParahumansOfTheWormverse.Coil
         {
             // "Take all Ongoing cards out of the villain trash and put them into play"
             // TODO: This should probably *select* a villain trash, although I guess that can't happen in a only-one-villain game
-            var cardsToMove = FindCardsWhere(new LinqCardCriteria(c => c.IsOngoing && c.Location.IsVillain && c.Location.IsTrash));
+            var cardsToMove = FindCardsWhere(new LinqCardCriteria(c => IsOngoing(c) && c.Location.IsVillain && c.Location.IsTrash));
             var e = GameController.MoveCards(TurnTakerController, cardsToMove, TurnTaker.PlayArea, isPutIntoPlay: true, cardSource: GetCardSource());
             if (UseUnityCoroutines)
             {

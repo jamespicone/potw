@@ -90,7 +90,7 @@ namespace Jp.ParahumansOfTheWormverse.Slaughterhouse9
         {
             return GameController.SelectAndDestroyCard(
                 DecisionMaker,
-                new LinqCardCriteria(c => c.Is().Hero() && (c.IsOngoing || c.DoKeywordsContain("equipment")), "Hero Ongoing or Equipment"),
+                new LinqCardCriteria(c => c.Is().Hero() && (IsOngoing(c) || c.DoKeywordsContain("equipment")), "Hero Ongoing or Equipment"),
                 optional: false,
                 responsibleCard: Card,
                 cardSource: GetCardSource()

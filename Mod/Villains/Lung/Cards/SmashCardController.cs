@@ -30,7 +30,7 @@ namespace Jp.ParahumansOfTheWormverse.Lung
                 GameController.ExhaustCoroutine(e);
             }
 
-            e = GameController.SelectAndDestroyCard(DecisionMaker, new LinqCardCriteria(c => c.Is().Hero() && (c.IsOngoing || c.DoKeywordsContain("equipment"))), optional: false, responsibleCard: Card, cardSource: GetCardSource());
+            e = GameController.SelectAndDestroyCard(DecisionMaker, new LinqCardCriteria(c => c.Is().Hero() && (IsOngoing(c) || c.DoKeywordsContain("equipment"))), optional: false, responsibleCard: Card, cardSource: GetCardSource());
             if (UseUnityCoroutines)
             {
                 yield return GameController.StartCoroutine(e);

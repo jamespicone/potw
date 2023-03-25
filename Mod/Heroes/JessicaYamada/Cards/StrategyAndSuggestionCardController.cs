@@ -51,7 +51,7 @@ namespace Jp.ParahumansOfTheWormverse.JessicaYamada
             e = GameController.RevealCards(
                 selectedPlayerController,
                 selectedPlayer.Deck,
-                c => c.IsOngoing,
+                c => IsOngoing(c),
                 1,
                 storedReveal,
                 RevealedCardDisplay.ShowMatchingCards,

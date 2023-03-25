@@ -46,7 +46,7 @@ namespace Jp.ParahumansOfTheWormverse.MissMilitia
             // "Destroy up to 2 Ongoing and/or environment cards."
             e = GameController.SelectAndDestroyCards(
                 HeroTurnTakerController,
-                new LinqCardCriteria((c) => c.IsOngoing || c.Is().Environment(), "ongoing or environment"),
+                new LinqCardCriteria((c) => IsOngoing(c) || c.Is().Environment(), "ongoing or environment"),
                 numberOfCards: 2,
                 optional: false,
                 requiredDecisions: 0,

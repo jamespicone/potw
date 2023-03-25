@@ -30,7 +30,7 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.Coil
             var megacomputer = PlayCard("FlameBarrier");
             var eyepiece = PlayCard("FleshOfTheSunGod");
             var stunbolt = PlayCard("ImbuedFire");
-
+            
             AssertNumberOfCardsInPlay(c => c.IsOngoing, 3);
             PlayCard("IKnowAllYourTricks");
             AssertNumberOfCardsInPlay(c => c.IsOngoing, 0);

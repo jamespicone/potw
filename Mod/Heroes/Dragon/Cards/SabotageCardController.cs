@@ -17,7 +17,7 @@ namespace Jp.ParahumansOfTheWormverse.Dragon
             // Destroy an Ongoing card
             var e = GameController.SelectAndDestroyCard(
                 HeroTurnTakerController,
-                new LinqCardCriteria(c => c.IsOngoing),
+                new LinqCardCriteria(c => IsOngoing(c)),
                 optional: false,
                 responsibleCard: Card,
                 cardSource: GetCardSource()

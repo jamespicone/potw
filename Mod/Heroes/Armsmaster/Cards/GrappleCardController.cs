@@ -43,7 +43,7 @@ namespace Jp.ParahumansOfTheWormverse.Armsmaster
             // "Destroy an Ongoing card"
             var e = GameController.SelectAndDestroyCard(
                 HeroTurnTakerController,
-                new LinqCardCriteria(c => c.IsOngoing, "ongoing"),
+                new LinqCardCriteria(c => IsOngoing(c), "ongoing"),
                 optional: false,
                 responsibleCard: Card,
                 cardSource: GetCardSource()

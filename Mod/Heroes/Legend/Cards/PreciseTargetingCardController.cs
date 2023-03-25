@@ -19,7 +19,7 @@ namespace Jp.ParahumansOfTheWormverse.Legend
             // Destroy an Ongoing or Environment card
             var e = GameController.SelectAndDestroyCard(
                 HeroTurnTakerController,
-                new LinqCardCriteria(c => c.IsOngoing || c.Is().Environment(), "ongoing or environment"),
+                new LinqCardCriteria(c => IsOngoing(c) || c.Is().Environment(), "ongoing or environment"),
                 optional: false,
                 responsibleCard: Card,
                 cardSource: GetCardSource()

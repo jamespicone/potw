@@ -66,7 +66,7 @@ namespace Jp.ParahumansOfTheWormverse.Lung
                 }
 
                 // If it is an Ongoing, each hero discards 1 card.
-                if (card.IsOngoing)
+                if (IsOngoing(card))
                 {
                     e = GameController.EachPlayerDiscardsCards(1, 1, cardSource: GetCardSource());
                     if (UseUnityCoroutines)

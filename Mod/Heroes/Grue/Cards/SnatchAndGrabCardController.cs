@@ -21,7 +21,7 @@ namespace Jp.ParahumansOfTheWormverse.Grue
             // "Destroy up to 2 Ongoing cards"
             return GameController.SelectAndDestroyCards(
                 HeroTurnTakerController,
-                new LinqCardCriteria(c => c.IsOngoing, "ongoing"),
+                new LinqCardCriteria(c => IsOngoing(c), "ongoing"),
                 numberOfCards: 2,
                 requiredDecisions: 0,
                 responsibleCard: Card,

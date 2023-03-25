@@ -19,7 +19,7 @@ namespace Jp.ParahumansOfTheWormverse.TheSimurgh
         protected override bool IsConditionMet()
         {
             // If there are at least {H} Ongoing cards in play
-            return FindCardsWhere(c => c.IsInPlay && c.IsOngoing).Count() >= H;
+            return FindCardsWhere(c => c.IsInPlay && IsOngoing(c)).Count() >= H;
         }
     }
 }

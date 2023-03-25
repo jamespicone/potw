@@ -15,7 +15,7 @@ namespace Jp.ParahumansOfTheWormverse.Grue
     {
         public CannyCombatantCardController(Card card, TurnTakerController controller) : base(card, controller)
         {
-            SpecialStringMaker.ShowNumberOfCardsInPlay(new LinqCardCriteria(c => c.IsOngoing, "Ongoing"));
+            SpecialStringMaker.ShowNumberOfCardsInPlay(new LinqCardCriteria(c => IsOngoing(c), "Ongoing"));
         }
 
         public override IEnumerator Play()
@@ -35,7 +35,7 @@ namespace Jp.ParahumansOfTheWormverse.Grue
 
         private int OngoingCardCount()
         {
-            return GameController.FindCardsWhere(c => c.IsOngoing && c.IsInPlay, visibleToCard: GetCardSource(), battleZone: CharacterCard.BattleZone).Count();
+            return GameController.FindCardsWhere(c => IsOngoing(c) && c.IsInPlay, visibleToCard: GetCardSource(), battleZone: CharacterCard.BattleZone).Count();
         }
     }
 }
