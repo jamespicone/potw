@@ -23,7 +23,7 @@ namespace Jp.ParahumansOfTheWormverse.Battery
         {
             // "{BatteryCharacter} deals 1 non-hero target 2 melee damage."
             IEnumerator singleCoroutine = base.GameController.SelectTargetsAndDealDamage(base.HeroTurnTakerController, new DamageSource(base.GameController, base.CharacterCard), 2, DamageType.Melee, 1, false, 1, 
-                additionalCriteria: c => c.Is().NonHero().Target(),
+                additionalCriteria: c => c.Is(this).NonHero().Target(),
                 cardSource: GetCardSource());
             if (base.UseUnityCoroutines)
             {
@@ -36,7 +36,7 @@ namespace Jp.ParahumansOfTheWormverse.Battery
             // "If {BatteryCharacter} is {Charged}, she deals each non-hero target 2 melee damage."
             if (IsBatteryCharged())
             {
-                IEnumerator massCoroutine = base.GameController.DealDamage(base.HeroTurnTakerController, base.CharacterCard, (Card c) => c.Is().NonHero().Target() && base.GameController.IsCardVisibleToCardSource(c, GetCardSource()), 2, DamageType.Melee, cardSource: GetCardSource());
+                IEnumerator massCoroutine = base.GameController.DealDamage(base.HeroTurnTakerController, base.CharacterCard, (Card c) => c.Is(this).NonHero().Target() && base.GameController.IsCardVisibleToCardSource(c, GetCardSource()), 2, DamageType.Melee, cardSource: GetCardSource());
                 if (base.UseUnityCoroutines)
                 {
                     yield return base.GameController.StartCoroutine(massCoroutine);

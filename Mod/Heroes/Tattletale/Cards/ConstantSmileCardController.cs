@@ -22,7 +22,7 @@ namespace Jp.ParahumansOfTheWormverse.Tattletale
         public override void AddTriggers()
         {
             // "At the start of your turn, {TattletaleCharacter} deals each non-hero target 1 psychic damage."
-            base.AddDealDamageAtStartOfTurnTrigger(base.TurnTaker, base.CharacterCard, (Card c) => c.Is().NonHero().Target() && base.GameController.IsCardVisibleToCardSource(c, GetCardSource()), TargetType.All, 1, DamageType.Psychic);
+            base.AddDealDamageAtStartOfTurnTrigger(base.TurnTaker, base.CharacterCard, (Card c) => c.Is(this).NonHero().Target() && base.GameController.IsCardVisibleToCardSource(c, GetCardSource()), TargetType.All, 1, DamageType.Psychic);
             base.AddTriggers();
         }
     }

@@ -20,7 +20,7 @@ namespace Jp.ParahumansOfTheWormverse.Echidna
         {
             // "At the start of each hero turn this card deals that hero 1 melee damage.",
             AddPhaseChangeTrigger(
-                tt => tt.Is().Hero(),
+                tt => tt.Is(this).Hero(),
                 p => p == Phase.Start,
                 pca => true,
                 pca => HurtHero(pca),
@@ -34,7 +34,7 @@ namespace Jp.ParahumansOfTheWormverse.Echidna
 
         private IEnumerator HurtHero(PhaseChangeAction pca)
         {
-            if (! pca.ToPhase.TurnTaker.Is().Hero()) { yield break; }
+            if (! pca.ToPhase.TurnTaker.Is(this).Hero()) { yield break; }
 
             var targetList = new List<Card>();
             var damage = new List<DealDamageAction>();

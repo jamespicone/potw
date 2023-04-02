@@ -74,7 +74,7 @@ namespace Jp.ParahumansOfTheWormverse.Behemoth
                     }
                     // passingTT gets to choose who to pass to
                     List<SelectTurnTakerDecision> receivingChoice = new List<SelectTurnTakerDecision>();
-                    IEnumerator chooseCoroutine = base.GameController.SelectTurnTaker(base.GameController.FindHeroTurnTakerController(passingTT.ToHero()), SelectionType.AddTokens, receivingChoice, additionalCriteria: (TurnTaker tt) => tt.Is().Hero() && !tt.IsIncapacitatedOrOutOfGame && tt != passingTT, numberOfCards: 1, cardSource: GetCardSource());
+                    IEnumerator chooseCoroutine = base.GameController.SelectTurnTaker(base.GameController.FindHeroTurnTakerController(passingTT.ToHero()), SelectionType.AddTokens, receivingChoice, additionalCriteria: (TurnTaker tt) => tt.Is(this).Hero() && !tt.IsIncapacitatedOrOutOfGame && tt != passingTT, numberOfCards: 1, cardSource: GetCardSource());
                     if (UseUnityCoroutines)
                     {
                         yield return GameController.StartCoroutine(chooseCoroutine);

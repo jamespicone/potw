@@ -32,7 +32,7 @@ namespace Jp.ParahumansOfTheWormverse.MissMilitia
                 numberOfTargets: 1,
                 optional: false,
                 requiredTargets: 1,
-                additionalCriteria: (c) => c.Is().NonHero().Target(),
+                additionalCriteria: (c) => c.Is(this).NonHero().Target(),
                 cardSource: GetCardSource()
             );
             if (UseUnityCoroutines)

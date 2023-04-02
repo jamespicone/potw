@@ -26,7 +26,7 @@ namespace Jp.ParahumansOfTheWormverse.Behemoth
             string summary = "";
             int numTokens = base.Card.FindTokenPool(ProximityPoolIdentifier).CurrentValue;
             TurnTaker tt = base.Card.Location.HighestRecursiveLocation.OwnerTurnTaker;
-            if (tt != null && tt.Is().Hero() && !tt.IsIncapacitatedOrOutOfGame)
+            if (tt != null && tt.Is(this).Hero() && !tt.IsIncapacitatedOrOutOfGame)
             {
                 string ttName = tt.NameRespectingVariant;
                 if (numTokens == 1)
@@ -54,7 +54,7 @@ namespace Jp.ParahumansOfTheWormverse.Behemoth
 
         public IEnumerable<Card> RelevantCharacters()
         {
-            IEnumerable<Card> relevant = base.GameController.FindCardsWhere(new LinqCardCriteria((Card c) => c.Is().Hero().Target().Character() && c.Owner == base.Card.Location.HighestRecursiveLocation.OwnerTurnTaker), false);
+            IEnumerable<Card> relevant = base.GameController.FindCardsWhere(new LinqCardCriteria((Card c) => c.Is(this).Hero().Target().Character() && c.Owner == base.Card.Location.HighestRecursiveLocation.OwnerTurnTaker), false);
             return relevant;
         }
 
@@ -76,7 +76,7 @@ namespace Jp.ParahumansOfTheWormverse.Behemoth
             // "This card exists to mark your hero's proximity token pool. It's indestructible as long as you have an active hero."
             if (card == base.Card)
             {
-                return AssociatedTurnTaker().Is().Hero() && !AssociatedTurnTaker().IsIncapacitatedOrOutOfGame;
+                return AssociatedTurnTaker().Is(this).Hero() && !AssociatedTurnTaker().IsIncapacitatedOrOutOfGame;
             }
             return base.AskIfCardIsIndestructible(card);
         }

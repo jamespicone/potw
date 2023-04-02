@@ -33,7 +33,7 @@ namespace Jp.ParahumansOfTheWormverse.TheSimurgh
             // "Destroy all hero Ongoing cards."
             return GameController.DestroyCards(
                 DecisionMaker,
-                new LinqCardCriteria(c => c.Is().Hero() && IsOngoing(c), "hero ongoing"),
+                new LinqCardCriteria(c => c.Is(this).Hero().Ongoing(), "hero ongoing"),
                 cardSource: GetCardSource()
             );
         }

@@ -24,7 +24,7 @@ namespace Jp.ParahumansOfTheWormverse.BrocktonBay
             // "Increase all damage by 1."
             AddIncreaseDamageTrigger((DealDamageAction dda) => true, 1);
             // "At the end of their turn, a player may discard 2 cards to destroy this card."
-            AddEndOfTurnTrigger((TurnTaker tt) => tt.Is().Hero(), DiscardToDestroyResponse, new TriggerType[] { TriggerType.DiscardCard, TriggerType.DestroySelf }, (PhaseChangeAction pca) => pca.ToPhase.TurnTaker.ToHero().Hand.Cards.Count() >= 2);
+            AddEndOfTurnTrigger((TurnTaker tt) => tt.Is(this).Hero(), DiscardToDestroyResponse, new TriggerType[] { TriggerType.DiscardCard, TriggerType.DestroySelf }, (PhaseChangeAction pca) => pca.ToPhase.TurnTaker.ToHero().Hand.Cards.Count() >= 2);
             base.AddTriggers();
         }
 
@@ -32,7 +32,7 @@ namespace Jp.ParahumansOfTheWormverse.BrocktonBay
         {
             // "... [player] may discard 2 cards to destroy this card."
             List<DiscardCardAction> discardResults = new List<DiscardCardAction>();
-            if (pca.ToPhase.TurnTaker.Is().Hero())
+            if (pca.ToPhase.TurnTaker.Is(this).Hero())
             {
                 IEnumerator discardCoroutine = SelectAndDiscardCards(base.GameController.FindHeroTurnTakerController(pca.ToPhase.TurnTaker.ToHero()), 2, optional: true, storedResults: discardResults, responsibleTurnTaker: base.TurnTaker);
                 if (base.UseUnityCoroutines)

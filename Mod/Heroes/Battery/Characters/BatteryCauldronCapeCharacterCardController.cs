@@ -178,7 +178,7 @@ namespace Jp.ParahumansOfTheWormverse.Battery
         {
             // "One hero target deals 1 target 2 melee damage."
             List<SelectCardDecision> chooseHeroTarget = new List<SelectCardDecision>();
-            IEnumerator chooseHeroCoroutine = GameController.SelectCardAndStoreResults(HeroTurnTakerController, SelectionType.CardToDealDamage, new LinqCardCriteria((Card c) => c.IsInPlay && c.Is().Hero().Target(), "hero target", useCardsSuffix: false), chooseHeroTarget, false, cardSource: GetCardSource());
+            IEnumerator chooseHeroCoroutine = GameController.SelectCardAndStoreResults(HeroTurnTakerController, SelectionType.CardToDealDamage, new LinqCardCriteria((Card c) => c.IsInPlay && c.Is(this).Hero().Target(), "hero target", useCardsSuffix: false), chooseHeroTarget, false, cardSource: GetCardSource());
             if (UseUnityCoroutines) { yield return GameController.StartCoroutine(chooseHeroCoroutine); }
             else { GameController.ExhaustCoroutine(chooseHeroCoroutine); }
 
@@ -194,7 +194,7 @@ namespace Jp.ParahumansOfTheWormverse.Battery
         private IEnumerator UseIncapOption3()
         {
             // "Destroy a non-character card Equipment or Device card."
-            IEnumerator destroyCoroutine = GameController.SelectAndDestroyCard(HeroTurnTakerController, new LinqCardCriteria((Card c) => !c.IsCharacter && (c.DoKeywordsContain("equipment") || c.IsDevice), "non-character Equipment or Device"), false, responsibleCard: Card, cardSource: GetCardSource());
+            IEnumerator destroyCoroutine = GameController.SelectAndDestroyCard(HeroTurnTakerController, new LinqCardCriteria((Card c) => !c.IsCharacter && (c.Is(this).Equipment() || c.IsDevice), "non-character Equipment or Device"), false, responsibleCard: Card, cardSource: GetCardSource());
             if (UseUnityCoroutines) { yield return GameController.StartCoroutine(destroyCoroutine); }
             else { GameController.ExhaustCoroutine(destroyCoroutine); }
         }

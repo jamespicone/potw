@@ -44,7 +44,7 @@ namespace Jp.ParahumansOfTheWormverse.TheSimurgh
             return RedirectDamage(
                 dda,
                 TargetType.LowestHP,
-                c => c.Is().Hero().Character().Target()
+                c => c.Is(this).Hero().Character().Target()
             );
         }
     }

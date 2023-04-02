@@ -24,7 +24,7 @@ namespace Jp.ParahumansOfTheWormverse.Grue
                 new DamageSource(GameController, CharacterCard),
                 2,
                 DamageType.Melee,
-                additionalCriteria: c => c.Is().NonHero().Target(),
+                additionalCriteria: c => c.Is(this).NonHero().Target(),
                 numberOfTargets: 1,
                 optional: false,
                 requiredTargets: 1,
@@ -51,7 +51,7 @@ namespace Jp.ParahumansOfTheWormverse.Grue
 
             var e = GameController.SelectAndDestroyCard(
                 HeroTurnTakerController,
-                new LinqCardCriteria(c => IsOngoing(c), "ongoing"),
+                new LinqCardCriteria(c => c.Is(this).Ongoing(), "ongoing"),
                 optional: true,
                 responsibleCard: Card,
                 cardSource: GetCardSource()

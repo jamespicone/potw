@@ -22,7 +22,7 @@ namespace Jp.ParahumansOfTheWormverse.Coil
         {
             // Whenever a hero card is played this card deals the hero who played the card 1 projectile damage
             AddTrigger<PlayCardAction>(
-                pca => pca.CardToPlay.Is().Hero() && pca.TurnTakerController.TurnTaker.Is().Hero() && pca.WasCardPlayed && !pca.IsPutIntoPlay,
+                pca => pca.CardToPlay.Is(this).Hero() && pca.TurnTakerController.TurnTaker.Is(this).Hero() && pca.WasCardPlayed && !pca.IsPutIntoPlay,
                 pca => HurtHero(pca),
                 TriggerType.DealDamage,
                 TriggerTiming.After

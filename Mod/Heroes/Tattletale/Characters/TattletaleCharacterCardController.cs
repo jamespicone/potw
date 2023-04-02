@@ -41,7 +41,7 @@ namespace Jp.ParahumansOfTheWormverse.Tattletale
                 }
                 // That player draws and discards
                 TurnTaker chosen = (from d in storedDecisions where d.Completed select d.SelectedTurnTaker).FirstOrDefault();
-                if (chosen != null && chosen.Is().Hero() && !chosen.IsIncapacitatedOrOutOfGame)
+                if (chosen != null && chosen.Is(this).Hero() && !chosen.IsIncapacitatedOrOutOfGame)
                 {
                     IEnumerator drawDiscardCoroutine = DrawDiscardResponse(chosen, numDraws, numDiscards);
                     if (UseUnityCoroutines)

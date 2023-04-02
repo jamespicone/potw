@@ -16,7 +16,7 @@ namespace Jp.ParahumansOfTheWormverse.Echidna
         public CrushCardController(Card card, TurnTakerController controller) : base(card, controller)
         {
             SpecialStringMaker.ShowListOfCardsInPlay(
-                new LinqCardCriteria(c => c.Is().Hero().Target() && c.IsEngulfed(), "engulfed hero target")
+                new LinqCardCriteria(c => c.Is(this).Hero().Target() && c.IsEngulfed(), "engulfed hero target")
             );
         }
 
@@ -25,7 +25,7 @@ namespace Jp.ParahumansOfTheWormverse.Echidna
             // {EchidnaCharacter} deals {H} melee damage to any hero target with an 'Engulfed' card next to them.
             return DealDamage(
                 CharacterCard,
-                c => c.Is().Hero().Target() && c.IsEngulfed(),
+                c => c.Is(this).Hero().Target() && c.IsEngulfed(),
                 c => H,
                 DamageType.Melee
             );

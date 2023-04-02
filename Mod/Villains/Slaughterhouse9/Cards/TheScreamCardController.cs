@@ -58,7 +58,7 @@ namespace Jp.ParahumansOfTheWormverse.Slaughterhouse9
 
             e = DealDamage(
                 NineSource,
-                c => c.Is().Hero().Target(),
+                c => c.Is(this).Hero().Target(),
                 c => 2 * EquipmentCardCount(),
                 DamageType.Projectile
             );

@@ -34,7 +34,7 @@ namespace Jp.ParahumansOfTheWormverse.Slaughterhouse9
 
         private IEnumerator HurtHeroes()
         {
-            var cards = FindCardsWhere(new LinqCardCriteria(c => c.Is().Hero().Target().Character() && c.IsInPlayAndHasGameText), GetCardSource());
+            var cards = FindCardsWhere(new LinqCardCriteria(c => c.Is(this).Hero().Target().Character() && c.IsInPlayAndHasGameText), GetCardSource());
 
             var e = GameController.SelectTargetsToDealDamageToSelf(
                 DecisionMaker,
@@ -44,7 +44,7 @@ namespace Jp.ParahumansOfTheWormverse.Slaughterhouse9
                 optional: false,
                 allowAutoDecide: true,
                 requiredTargets: null,
-                additionalCriteria: c => c.Is().Hero().Target().Character(),
+                additionalCriteria: c => c.Is(this).Hero().Target().Character(),
                 cardSource: GetCardSource()
             );
 

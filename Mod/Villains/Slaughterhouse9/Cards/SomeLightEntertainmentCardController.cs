@@ -27,7 +27,7 @@ namespace Jp.ParahumansOfTheWormverse.Slaughterhouse9
                 damageDealer => DealDamageToHighestHP(
                     damageDealer,
                     1,
-                    c => c.Is().Hero().Target(),
+                    c => c.Is(this).Hero().Target(),
                     c => 2,
                     DamageType.Melee
                 )

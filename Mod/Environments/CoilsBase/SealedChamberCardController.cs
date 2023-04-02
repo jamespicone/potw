@@ -24,7 +24,7 @@ namespace Jp.ParahumansOfTheWormverse.CoilsBase
             AddWhenDestroyedTrigger(OnDestroyResponse, TriggerType.GameOver);
 
             // "At the start of their turn, a player may skip the rest of their turn. If they do, this card regains 5 HP."
-            AddStartOfTurnTrigger(tt => tt.Is().Hero(), SkipTheirTurnToHealThisCardResponse, new TriggerType[] { TriggerType.SkipTurn, TriggerType.GainHP });
+            AddStartOfTurnTrigger(tt => tt.Is(this).Hero(), SkipTheirTurnToHealThisCardResponse, new TriggerType[] { TriggerType.SkipTurn, TriggerType.GainHP });
         }
 
         private IEnumerator OnDestroyResponse(DestroyCardAction dca)

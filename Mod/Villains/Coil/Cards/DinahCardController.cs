@@ -27,7 +27,7 @@ namespace Jp.ParahumansOfTheWormverse.Coil
 
             // "Whenever this card is dealt damage during a hero's turn that player discards a card"
             AddTrigger<DealDamageAction>(
-                dda => dda.Target == Card && Game.ActiveTurnTaker.Is().Hero(),
+                dda => dda.Target == Card && Game.ActiveTurnTaker.Is(this).Hero(),
                 dda => HeroDiscards(dda),
                 TriggerType.DiscardCard,
                 TriggerTiming.After

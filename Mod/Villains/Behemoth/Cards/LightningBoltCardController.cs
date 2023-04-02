@@ -33,7 +33,7 @@ namespace Jp.ParahumansOfTheWormverse.Behemoth
             }
             // "{BehemothCharacter} deals 1 hero 5 damage."
             List<SelectCardDecision> cardChoice = new List<SelectCardDecision>();
-            IEnumerator damageCoroutine = base.GameController.SelectTargetsAndDealDamage(DecisionMaker, new DamageSource(base.GameController, base.CharacterCard), 5, GetBehemothDamageType(), 1, false, 1, additionalCriteria: (Card c) => c.Is().Hero().Target().Character(), storedResultsDecisions: cardChoice, selectTargetsEvenIfCannotDealDamage: true, cardSource: GetCardSource());
+            IEnumerator damageCoroutine = base.GameController.SelectTargetsAndDealDamage(DecisionMaker, new DamageSource(base.GameController, base.CharacterCard), 5, GetBehemothDamageType(), 1, false, 1, additionalCriteria: (Card c) => c.Is(this).Hero().Target().Character(), storedResultsDecisions: cardChoice, selectTargetsEvenIfCannotDealDamage: true, cardSource: GetCardSource());
             if (UseUnityCoroutines)
             {
                 yield return GameController.StartCoroutine(damageCoroutine);

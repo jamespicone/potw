@@ -32,6 +32,8 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.Echidna
                 "Megalopolis"
             );
 
+            StackDeck("ApocryphaTwisted", "SpearpointTwisted", "ConvictionTwisted");
+
             StartGame();
             RemoveAllTwisted();
 

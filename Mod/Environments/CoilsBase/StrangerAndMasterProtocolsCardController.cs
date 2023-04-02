@@ -24,14 +24,14 @@ namespace Jp.ParahumansOfTheWormverse.CoilsBase
 
         public override bool? AskIfCardIsVisibleToCardSource(Card card, CardSource source)
         {
-            if (card.Is().NonHero()) { return null; }
+            if (card.Is(this).NonHero()) { return null; }
             return AskIfTurnTakerIsVisibleToCardSource(card.Owner, source);
         }
 
         public override bool? AskIfTurnTakerIsVisibleToCardSource(TurnTaker tt, CardSource cardSource)
         {
-            if (tt.Is().NonHero()) { return null; }
-            if (cardSource?.Card.Is().NonHero()) { return null; }
+            if (tt.Is(this).NonHero()) { return null; }
+            if (cardSource?.Card.Is(this).NonHero()) { return null; }
             if (cardSource.Card.Owner == tt) { return null; }
 
             return false;
@@ -46,7 +46,7 @@ namespace Jp.ParahumansOfTheWormverse.CoilsBase
                     if (hero1 == hero2) { continue; }
 
                     if (
-                        (gameAction.DoesFirstCardAffectSecondCard(c => c.Owner == hero1 && c.Is().Hero(), c => c.Owner == hero2 && c.Is().Hero()) ?? false) ||
+                        (gameAction.DoesFirstCardAffectSecondCard(c => c.Owner == hero1 && c.Is(this).Hero(), c => c.Owner == hero2 && c.Is(this).Hero()) ?? false) ||
                         (gameAction.DoesFirstTurnTakerAffectSecondTurnTaker(tt => tt == hero1, tt => tt == hero2) ?? false))
                     {
                         return false;
@@ -68,7 +68,7 @@ namespace Jp.ParahumansOfTheWormverse.CoilsBase
             base.AddTriggers();
 
             AddTrigger<MakeDecisionsAction>(
-                mda => mda.CardSource?.Card.Is().Hero(),
+                mda => mda.CardSource?.Card.Is(this).Hero(),
                 mda => RemoveDecisions(mda),
                 TriggerType.RemoveDecision,
                 TriggerTiming.Before

@@ -52,7 +52,7 @@ namespace Jp.ParahumansOfTheWormverse.Echidna
                 AddSideTrigger(AddDealDamageAtEndOfTurnTrigger(
                     TurnTaker,
                     Card,
-                    c => c.Is().Hero().Target(),
+                    c => c.Is(this).Hero().Target(),
                     TargetType.LowestHP,
                     H - 1,
                     DamageType.Melee,
@@ -78,7 +78,7 @@ namespace Jp.ParahumansOfTheWormverse.Echidna
         private bool NoHeroWasDamagedByVillain()
         {
             return Journal.DealDamageEntriesThisRound()
-                .Where(dd => dd.TargetCard.Is().Hero().Character())
+                .Where(dd => dd.TargetCard.Is(this).Hero().Character())
                 .Where(dd => dd.SourceCard.Is().Villain().AccordingTo(this))
                 .Count() <= 0;
         }
@@ -108,7 +108,7 @@ namespace Jp.ParahumansOfTheWormverse.Echidna
             // When {EchidnaCharacter} flips to this side destroy {H} noncharacter hero cards.
             e = GameController.SelectAndDestroyCards(
                 DecisionMaker,
-                new LinqCardCriteria(c => c.Is().Hero().Noncharacter(), "hero cards"),
+                new LinqCardCriteria(c => c.Is(this).Hero().Noncharacter(), "hero cards"),
                 numberOfCards: Game.H,
                 responsibleCard: Card,
                 cardSource: GetCardSource()

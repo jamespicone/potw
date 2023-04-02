@@ -20,8 +20,8 @@ namespace Jp.ParahumansOfTheWormverse.Grue
         {
             // "Hero targets with a Darkness card next to them are immune to damage dealt by non-hero targets.",
             AddImmuneToDamageTrigger(
-                dda => dda.DamageSource.Is().NonHero().Target() &&
-                    dda.Target.Is().Hero().Target() &&
+                dda => dda.DamageSource.Is(this).NonHero().Target() &&
+                    dda.Target.Is(this).Hero().Target() &&
                     this.DoesTargetHaveDarknessAdjacent(dda.Target)
             );
 
@@ -47,7 +47,7 @@ namespace Jp.ParahumansOfTheWormverse.Grue
             e = GameController.SelectCardAndStoreResults(
                 HeroTurnTakerController,
                 SelectionType.MoveCardNextToCard,
-                new LinqCardCriteria(c => c.Is().Hero().Character() && c.IsInPlay, "hero character"),
+                new LinqCardCriteria(c => c.Is(this).Hero().Character() && c.IsInPlay, "hero character"),
                 storedResults: selectedCardList,
                 optional: false,
                 cardSource: GetCardSource()

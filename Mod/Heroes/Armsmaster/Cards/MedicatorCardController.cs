@@ -17,7 +17,7 @@ namespace Jp.ParahumansOfTheWormverse.Armsmaster
         public override IEnumerator DoPrimary()
         {
             // All hero targets regain 1 HP
-            var e = GameController.GainHP(HeroTurnTakerController, c => c.Is().Hero().Target(), 1, cardSource: GetCardSource());
+            var e = GameController.GainHP(HeroTurnTakerController, c => c.Is(this).Hero().Target(), 1, cardSource: GetCardSource());
             if (UseUnityCoroutines)
             {
                 yield return GameController.StartCoroutine(e);

@@ -23,8 +23,8 @@ namespace Jp.ParahumansOfTheWormverse.JessicaYamada
             if (!Card.IsFlipped)
             {
                 AddSideTrigger(AddTrigger<DealDamageAction>(
-                    dda => dda.Target == Card && dda.DamageSource.Is().NonHero(),
-                    dda => RedirectDamage(dda, TargetType.LowestHP, c => c != Card && c.Is().Hero().Target().Character() && !c.IsIncapacitatedOrOutOfGame && c.IsInPlay && c.IsRealCard),
+                    dda => dda.Target == Card && dda.DamageSource.Is(this).NonHero(),
+                    dda => RedirectDamage(dda, TargetType.LowestHP, c => c != Card && c.Is(this).Hero().Target().Character() && !c.IsIncapacitatedOrOutOfGame && c.IsInPlay && c.IsRealCard),
                     TriggerType.RedirectDamage,
                     TriggerTiming.Before
                 ));

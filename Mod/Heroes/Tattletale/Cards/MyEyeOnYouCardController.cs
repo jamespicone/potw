@@ -23,7 +23,7 @@ namespace Jp.ParahumansOfTheWormverse.Tattletale
         {
             // "One hero target regains 3 HP."
             int amount = GetPowerNumeral(0, 3);
-            IEnumerator healCoroutine = base.GameController.SelectAndGainHP(base.HeroTurnTakerController, amount, additionalCriteria: (Card c) => c.Is().Hero().Target(), cardSource: GetCardSource());
+            IEnumerator healCoroutine = base.GameController.SelectAndGainHP(base.HeroTurnTakerController, amount, additionalCriteria: (Card c) => c.Is(this).Hero().Target(), cardSource: GetCardSource());
             if (UseUnityCoroutines)
             {
                 yield return GameController.StartCoroutine(healCoroutine);

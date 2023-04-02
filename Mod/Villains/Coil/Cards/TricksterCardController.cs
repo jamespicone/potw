@@ -40,7 +40,7 @@ namespace Jp.ParahumansOfTheWormverse.Coil
         {
             SetCardPropertyToTrueIfRealAction("TricksterRedirect");
 
-            var e = RedirectDamage(dda, TargetType.LowestHP, c => c.Is().Hero().Target());
+            var e = RedirectDamage(dda, TargetType.LowestHP, c => c.Is(this).Hero().Target());
             if (UseUnityCoroutines)
             {
                 yield return GameController.StartCoroutine(e);

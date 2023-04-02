@@ -32,7 +32,7 @@ namespace Jp.ParahumansOfTheWormverse.Dauntless
             e = GameController.SelectCardAndStoreResults(
                 HeroTurnTakerController,
                 SelectionType.RedirectDamageDirectedAtTarget,
-                new LinqCardCriteria(c => c.IsInPlay && c.Is().Hero().Target() && c != CharacterCard, "hero target", useCardsSuffix: false, useCardsPrefix: false, "hero target", "hero targets"),
+                new LinqCardCriteria(c => c.IsInPlay && c.Is(this).Hero().Target() && c != CharacterCard, "hero target", useCardsSuffix: false, useCardsPrefix: false, "hero target", "hero targets"),
                 choice,
                 optional: false,
                 cardSource: GetCardSource()

@@ -27,7 +27,7 @@ namespace Jp.ParahumansOfTheWormverse.Behemoth
 
         public TokenPool ProximityPool(TurnTaker tt)
         {
-            if (tt.Is().Hero() && !tt.IsIncapacitatedOrOutOfGame)
+            if (tt.Is(this).Hero() && !tt.IsIncapacitatedOrOutOfGame)
             {
                 Card proximityMarker = base.GameController.FindCardsWhere(new LinqCardCriteria((Card c) => c.Identifier == ProximityMarkerIdentifier && c.Location == tt.PlayArea), realCardsOnly: false).FirstOrDefault();
                 if (proximityMarker != null)
@@ -140,7 +140,7 @@ namespace Jp.ParahumansOfTheWormverse.Behemoth
             if (passingPool != null && passingPool.CurrentValue > 0)
             {
                 List<SelectTurnTakerDecision> choice = new List<SelectTurnTakerDecision>();
-                IEnumerator chooseCoroutine = base.GameController.SelectTurnTaker(base.GameController.FindHeroTurnTakerController(passingTT.ToHero()), SelectionType.AddTokens, choice, optional: true, additionalCriteria: (TurnTaker tt) => tt.Is().Hero() && !tt.IsIncapacitatedOrOutOfGame && tt != passingTT, numberOfCards: 1, cardSource: GetCardSource());
+                IEnumerator chooseCoroutine = base.GameController.SelectTurnTaker(base.GameController.FindHeroTurnTakerController(passingTT.ToHero()), SelectionType.AddTokens, choice, optional: true, additionalCriteria: (TurnTaker tt) => tt.Is(this).Hero() && !tt.IsIncapacitatedOrOutOfGame && tt != passingTT, numberOfCards: 1, cardSource: GetCardSource());
                 if (UseUnityCoroutines)
                 {
                     yield return GameController.StartCoroutine(chooseCoroutine);
@@ -177,7 +177,7 @@ namespace Jp.ParahumansOfTheWormverse.Behemoth
         public IEnumerator TakeProximityTokens(TurnTaker receivingTT, int numTokens)
         {
             // receivingTT gets [numTokens] tokens from another hero, but the group chooses which one
-            IEnumerable<TurnTaker> passOptions = FindTurnTakersWhere((TurnTaker tt) => tt.Is().Hero() && tt != receivingTT && !tt.IsIncapacitatedOrOutOfGame && ProximityPool(tt) != null && ProximityPool(tt).CurrentValue > 0);
+            IEnumerable<TurnTaker> passOptions = FindTurnTakersWhere((TurnTaker tt) => tt.Is(this).Hero() && tt != receivingTT && !tt.IsIncapacitatedOrOutOfGame && ProximityPool(tt) != null && ProximityPool(tt).CurrentValue > 0);
             if (passOptions.Count() > 0)
             {
                 TurnTaker passingTT = null;
@@ -246,7 +246,7 @@ namespace Jp.ParahumansOfTheWormverse.Behemoth
 
         public IEnumerator AddProximityTokens(TurnTaker tt, int numTokens, CardSource cardSource = null, bool showUpdatedValue = false)
         {
-            if (tt == null || !tt.Is().Hero() || tt.IsIncapacitatedOrOutOfGame)
+            if (tt == null || !tt.Is(this).Hero() || tt.IsIncapacitatedOrOutOfGame)
             {
                 yield break;
             }
@@ -321,7 +321,7 @@ namespace Jp.ParahumansOfTheWormverse.Behemoth
 
         public IEnumerator RemoveProximityTokens(TurnTaker tt, int numTokens, CardSource cardSource = null, bool showUpdatedValue = false, List<RemoveTokensFromPoolAction> storedResults = null)
         {
-            if (tt == null || !tt.Is().Hero() || tt.IsIncapacitatedOrOutOfGame)
+            if (tt == null || !tt.Is(this).Hero() || tt.IsIncapacitatedOrOutOfGame)
             {
                 yield break;
             }

@@ -19,7 +19,7 @@ namespace Jp.ParahumansOfTheWormverse.TheSimurgh
         public override void AddTriggers()
         {
             // Damage that would be dealt to hero targets cannot be redirected.
-            AddMakeDamageNotRedirectableTrigger(dda => dda.Target.Is().Hero().Target());
+            AddMakeDamageNotRedirectableTrigger(dda => dda.Target.Is(this).Hero().Target());
         }
     }
 }

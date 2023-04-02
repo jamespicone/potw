@@ -29,7 +29,7 @@ namespace Jp.ParahumansOfTheWormverse.TheSimurgh
                 var e = GameController.DealDamage(
                     DecisionMaker,
                     CharacterCard,
-                    c => c.Is().Hero().Target(),
+                    c => c.Is(this).Hero().Target(),
                     1,
                     DamageType.Projectile,
                     cardSource: GetCardSource()
@@ -52,7 +52,7 @@ namespace Jp.ParahumansOfTheWormverse.TheSimurgh
                     new DamageSource(GameController, FindEnvironment().TurnTaker),
                     1,
                     DamageType.Melee,
-                    additionalCriteria: c => c.Is().Hero().Target(),
+                    additionalCriteria: c => c.Is(this).Hero().Target(),
                     numberOfTargets: null,
                     optional: false,
                     requiredTargets: null,

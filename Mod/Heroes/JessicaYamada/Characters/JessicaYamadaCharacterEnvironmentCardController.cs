@@ -25,13 +25,13 @@ namespace Jp.ParahumansOfTheWormverse.JessicaYamada
 
             if (! Card.IsFlipped)
             {
-                AddSideTrigger(AddPreventDamageTrigger(dda => dda.Target == Card && dda.DamageSource.Is().Hero()));
+                AddSideTrigger(AddPreventDamageTrigger(dda => dda.Target == Card && dda.DamageSource.Is(this).Hero()));
             }
         }
 
         public override bool AskIfCardIsIndestructible(Card card)
         {
-            if (GameController.FindTargetsInPlay(c => c.Is().Hero().Target() && c.Location != TurnTaker.PlayArea).Count() <= 0) { return false; }
+            if (GameController.FindTargetsInPlay(c => c.Is(this).Hero().Target() && c.Location != TurnTaker.PlayArea).Count() <= 0) { return false; }
             return card == Card && card.HitPoints > 0;
         }
     }

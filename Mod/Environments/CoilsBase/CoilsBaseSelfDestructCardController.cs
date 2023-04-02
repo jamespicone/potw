@@ -21,7 +21,7 @@ namespace Jp.ParahumansOfTheWormverse.CoilsBase
         public override void AddTriggers()
         {
             // "At the start of their turn, a player may skip the rest of their turn to destroy this card."
-            AddStartOfTurnTrigger(tt => tt.Is().Hero(), SkipTheirTurnToDestroyThisCardResponse, new TriggerType[] { TriggerType.SkipTurn, TriggerType.DestroySelf });
+            AddStartOfTurnTrigger(tt => tt.Is(this).Hero(), SkipTheirTurnToDestroyThisCardResponse, new TriggerType[] { TriggerType.SkipTurn, TriggerType.DestroySelf });
         }
     }
 }

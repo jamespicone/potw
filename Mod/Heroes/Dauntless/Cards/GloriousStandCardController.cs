@@ -18,7 +18,7 @@ namespace Jp.ParahumansOfTheWormverse.Dauntless
         {
             // "Whenever a hero target would be dealt damage, redirect the damage to {DauntlessCharacter}",
             AddRedirectDamageTrigger(
-                dda => dda.Target.Is().Hero().Target(),
+                dda => dda.Target.Is(this).Hero().Target(),
                 () => CharacterCard
             );
 

@@ -32,7 +32,7 @@ namespace Jp.ParahumansOfTheWormverse.Kyushu
 			if (base.GameController.AllHeroes.Any((HeroTurnTaker hero) => hero.Hand.Cards.Count() >= 2))
 			{
 				List<SelectTurnTakerDecision> storedResults = new List<SelectTurnTakerDecision>();
-				IEnumerator coroutine = base.GameController.SelectHeroTurnTaker(null, SelectionType.DiscardCard, optional: true, allowAutoDecide: false, storedResults, new LinqTurnTakerCriteria((TurnTaker tt) => tt.Is().Hero() && tt.ToHero().Hand.Cards.Count() >= 2, "heroes with at least 2 cards in hand"), 2, allowIncapacitatedHeroes: false, null, null, canBeCancelled: true, null, GetCardSource());
+				IEnumerator coroutine = base.GameController.SelectHeroTurnTaker(null, SelectionType.DiscardCard, optional: true, allowAutoDecide: false, storedResults, new LinqTurnTakerCriteria((TurnTaker tt) => tt.Is(this).Hero() && tt.ToHero().Hand.Cards.Count() >= 2, "heroes with at least 2 cards in hand"), 2, allowIncapacitatedHeroes: false, null, null, canBeCancelled: true, null, GetCardSource());
 				if (base.UseUnityCoroutines)
 				{
 					yield return base.GameController.StartCoroutine(coroutine);

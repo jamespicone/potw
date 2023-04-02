@@ -19,7 +19,7 @@ namespace Jp.ParahumansOfTheWormverse.Grue
         public override void AddTriggers()
         {
             // "Increase damage dealt by hero targets by 1"
-            AddIncreaseDamageTrigger(dda => dda.DamageSource.Is().Hero().Target(), 1);
+            AddIncreaseDamageTrigger(dda => dda.DamageSource.Is(this).Hero().Target(), 1);
         }
     }
 }

@@ -103,7 +103,7 @@ namespace Jp.ParahumansOfTheWormverse.Coil
             var e = DealDamageToHighestHP(
                 Card,
                 1,
-                c => c.Is().Hero().Target(),
+                c => c.Is(this).Hero().Target(),
                 c => damageAmount,
                 DamageType.Energy
             );

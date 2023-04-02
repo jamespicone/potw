@@ -32,7 +32,7 @@ namespace Jp.ParahumansOfTheWormverse.Behemoth
                 GameController.ExhaustCoroutine(energyCoroutine);
             }
             // "{BehemothCharacter} deals each hero target 2 damage."
-            IEnumerator damageCoroutine = base.GameController.DealDamage(DecisionMaker, base.CharacterCard, (Card c) => c.Is().Hero().Target(), 2, GetBehemothDamageType(), cardSource: GetCardSource());
+            IEnumerator damageCoroutine = base.GameController.DealDamage(DecisionMaker, base.CharacterCard, (Card c) => c.Is(this).Hero().Target(), 2, GetBehemothDamageType(), cardSource: GetCardSource());
             if (UseUnityCoroutines)
             {
                 yield return GameController.StartCoroutine(damageCoroutine);
@@ -42,7 +42,7 @@ namespace Jp.ParahumansOfTheWormverse.Behemoth
                 GameController.ExhaustCoroutine(damageCoroutine);
             }
             // "Each player may move 1 proximity token from their hero to another active hero."
-            IEnumerator selectCoroutine = base.GameController.SelectTurnTakersAndDoAction(DecisionMaker, new LinqTurnTakerCriteria((TurnTaker tt) => tt.Is().Hero() && !tt.IsIncapacitatedOrOutOfGame), SelectionType.RemoveTokens, MayMoveOneTokenResponse, requiredDecisions: 0, allowAutoDecide: true, numberOfCards: 1, cardSource: GetCardSource());
+            IEnumerator selectCoroutine = base.GameController.SelectTurnTakersAndDoAction(DecisionMaker, new LinqTurnTakerCriteria((TurnTaker tt) => tt.Is(this).Hero() && !tt.IsIncapacitatedOrOutOfGame), SelectionType.RemoveTokens, MayMoveOneTokenResponse, requiredDecisions: 0, allowAutoDecide: true, numberOfCards: 1, cardSource: GetCardSource());
             if (UseUnityCoroutines)
             {
                 yield return GameController.StartCoroutine(selectCoroutine);

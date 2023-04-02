@@ -27,7 +27,7 @@ namespace Jp.ParahumansOfTheWormverse.TheSimurgh
             return DealDamageToMostCardsInPlay(
                 CharacterCard,
                 1,
-                new LinqCardCriteria(c => c.Is().Hero().Character().Target(), "hero"),
+                new LinqCardCriteria(c => c.Is(this).Hero().Character().Target(), "hero"),
                 H,
                 DamageType.Sonic,
                 mostFewestSelectionType: SelectionType.FewestCardsInPlay

@@ -52,7 +52,7 @@ namespace Jp.ParahumansOfTheWormverse.Echidna
             var e = DealDamageToHighestHP(
                 Card,
                 1,
-                c => c.Is().Hero().Target(),
+                c => c.Is(this).Hero().Target(),
                 c => 2 + tokenCount,
                 DamageType.Energy,
                 isIrreducible: true

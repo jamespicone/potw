@@ -38,7 +38,7 @@ namespace Jp.ParahumansOfTheWormverse.TheSimurgh
             // {TheSimurghCharacter} deals each hero target X projectile damage, where X is the number of targets destroyed this way.",
             var destroyedCount = results.Count(dca => dca.WasCardDestroyed);
 
-            e = DealDamage(CharacterCard, c => c.Is().Hero().Target(), destroyedCount, DamageType.Projectile);
+            e = DealDamage(CharacterCard, c => c.Is(this).Hero().Target(), destroyedCount, DamageType.Projectile);
             if (UseUnityCoroutines)
             {
                 yield return GameController.StartCoroutine(e);

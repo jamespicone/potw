@@ -17,7 +17,7 @@ namespace Jp.ParahumansOfTheWormverse.Bitch
         public override void AddTriggers()
         {
             // Reduce damage dealt to hero targets by environment cards by 1
-            AddReduceDamageTrigger(damage => damage.DamageSource.Is().Environment() && damage.Target.Is().Hero().Target(), damage => 1);
+            AddReduceDamageTrigger(damage => damage.DamageSource.Is().Environment() && damage.Target.Is(this).Hero().Target(), damage => 1);
         }
     }
 }

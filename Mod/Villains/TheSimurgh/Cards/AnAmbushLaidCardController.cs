@@ -38,7 +38,7 @@ namespace Jp.ParahumansOfTheWormverse.TheSimurgh
             // "{TheSimurghCharacter} deals each hero target X fire damage, where X is the number of face-up Trap cards plus 1."
             return DealDamage(
                 CharacterCard,
-                c => c.Is().Hero().Target(),
+                c => c.Is(this).Hero().Target(),
                 c => DamageAmount(),
                 DamageType.Fire
             );

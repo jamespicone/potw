@@ -27,7 +27,7 @@ namespace Jp.ParahumansOfTheWormverse.Kyushu
         public override IEnumerator Play()
         {
             // "When this card enters play, each hero target deals itself 2 psychic damage."
-            IEnumerator damageCoroutine = base.GameController.DealDamageToSelf(DecisionMaker, (Card c) => c.Is().Hero().Target(), 2, DamageType.Psychic, cardSource: GetCardSource());
+            IEnumerator damageCoroutine = base.GameController.DealDamageToSelf(DecisionMaker, (Card c) => c.Is(this).Hero().Target(), 2, DamageType.Psychic, cardSource: GetCardSource());
             if (base.UseUnityCoroutines)
             {
                 yield return base.GameController.StartCoroutine(damageCoroutine);

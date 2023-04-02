@@ -23,7 +23,7 @@ namespace Jp.ParahumansOfTheWormverse.Dragon
             // 1 hero target deals a target either 2 projectile or 2 melee damage
             var e = GameController.SelectTargetAndStoreResults(
                 HeroTurnTakerController,
-                FindCardsWhere(new LinqCardCriteria(c => c.Is().Hero().Target() && c.IsInPlay)),
+                FindCardsWhere(new LinqCardCriteria(c => c.Is(this).Hero().Target() && c.IsInPlay)),
                 storedTargets,
                 selectionType: SelectionType.CardToDealDamage,
                 cardSource: GetCardSource()

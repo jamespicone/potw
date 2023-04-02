@@ -26,7 +26,7 @@ namespace Jp.ParahumansOfTheWormverse.Behemoth
 
         public TokenPool ProximityPool(TurnTaker tt)
         {
-            if (tt != null && tt.Is().Hero() && !tt.IsIncapacitatedOrOutOfGame)
+            if (tt != null && tt.Is(this).Hero() && !tt.IsIncapacitatedOrOutOfGame)
             {
                 Card proximityMarker = base.GameController.FindCardsWhere(new LinqCardCriteria((Card c) => c.Identifier == ProximityMarkerIdentifier && c.Location == tt.PlayArea), realCardsOnly: false).FirstOrDefault();
                 if (proximityMarker != null)

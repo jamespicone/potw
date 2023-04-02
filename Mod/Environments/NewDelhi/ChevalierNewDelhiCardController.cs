@@ -24,7 +24,7 @@ namespace Jp.ParahumansOfTheWormverse.NewDelhi
             // "Reduce damage dealt to this card by 1."
             AddReduceDamageTrigger((Card c) => c == base.Card, 1);
             // "Whenever damage would be dealt to a hero, redirect it to this card."
-            AddRedirectDamageTrigger((DealDamageAction dda) => dda.Target.Is().Hero().Target().Character(), () => base.Card);
+            AddRedirectDamageTrigger((DealDamageAction dda) => dda.Target.Is(this).Hero().Target().Character(), () => base.Card);
             base.AddTriggers();
         }
     }

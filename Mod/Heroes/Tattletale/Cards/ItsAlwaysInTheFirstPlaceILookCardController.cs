@@ -29,7 +29,7 @@ namespace Jp.ParahumansOfTheWormverse.Tattletale
             // "A player may search their deck for a card and put it into their hand, then shuffle their deck."
             // Choose a player
             List<SelectTurnTakerDecision> chosen = new List<SelectTurnTakerDecision>();
-            IEnumerator chooseCoroutine = base.GameController.SelectTurnTaker(base.HeroTurnTakerController, SelectionType.SearchDeck, chosen, additionalCriteria: (TurnTaker tt) => tt.Is().Hero() && GameController.IsTurnTakerVisibleToCardSource(tt, GetCardSource()) && tt.Deck.HasCards, cardSource: GetCardSource());
+            IEnumerator chooseCoroutine = base.GameController.SelectTurnTaker(base.HeroTurnTakerController, SelectionType.SearchDeck, chosen, additionalCriteria: (TurnTaker tt) => tt.Is(this).Hero() && GameController.IsTurnTakerVisibleToCardSource(tt, GetCardSource()) && tt.Deck.HasCards, cardSource: GetCardSource());
             if (UseUnityCoroutines)
             {
                 yield return GameController.StartCoroutine(chooseCoroutine);

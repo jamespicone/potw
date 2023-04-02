@@ -54,7 +54,7 @@ namespace Jp.ParahumansOfTheWormverse.Coil
             AddDealDamageAtEndOfTurnTrigger(
                 TurnTaker,
                 Card,
-                c => c.Is().Hero().Target(),
+                c => c.Is(this).Hero().Target(),
                 TargetType.SelectTarget,
                 2,
                 DamageType.Toxic,

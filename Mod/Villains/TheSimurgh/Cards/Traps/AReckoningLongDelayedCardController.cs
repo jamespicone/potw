@@ -22,7 +22,7 @@ namespace Jp.ParahumansOfTheWormverse.TheSimurgh
             var storedResult = new List<Card>();
             var e = GameController.FindTargetWithLowestHitPoints(
                 1,
-                c => c.Is().Hero().Target().Character(),
+                c => c.Is(this).Hero().Target().Character(),
                 storedResult,
                 cardSource: GetCardSource()
             );
@@ -41,7 +41,7 @@ namespace Jp.ParahumansOfTheWormverse.TheSimurgh
             e = DealDamageToHighestHP(
                 source,
                 1,
-                c => c.Is().Hero().Target().Character(),
+                c => c.Is(this).Hero().Target().Character(),
                 c => 5,
                 DamageType.Projectile,
                 isIrreducible: true

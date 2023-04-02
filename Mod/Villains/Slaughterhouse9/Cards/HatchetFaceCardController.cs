@@ -21,7 +21,7 @@ namespace Jp.ParahumansOfTheWormverse.Slaughterhouse9
         public override void AddTriggers()
         {
             // Heroes may not use powers
-            CannotUsePowers(ttc => ttc.Is().Hero());
+            CannotUsePowers(ttc => ttc.Is(this).Hero());
         }
     }
 }

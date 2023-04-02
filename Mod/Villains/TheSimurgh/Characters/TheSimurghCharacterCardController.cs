@@ -103,7 +103,7 @@ namespace Jp.ParahumansOfTheWormverse.TheSimurgh
             var e = DealDamageToHighestHP(
                 CharacterCard,
                 1,
-                c => c.Is().Hero().Target(),
+                c => c.Is(this).Hero().Target(),
                 c => H - 1,
                 DamageType.Projectile
             );
@@ -150,7 +150,7 @@ namespace Jp.ParahumansOfTheWormverse.TheSimurgh
             // Then, this card deals each hero target X psychic damage, where X is the number of Scream tokens on this card.
             e = DealDamage(
                 Card,
-                c => c.Is().Hero().Target(),
+                c => c.Is(this).Hero().Target(),
                 c => pool.CurrentValue,
                 DamageType.Psychic
             );

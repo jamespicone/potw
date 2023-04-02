@@ -22,7 +22,7 @@ namespace Jp.ParahumansOfTheWormverse.JessicaYamada
         {
             // "Reduce psychic damage dealt to hero targets by 1"
             AddReduceDamageTrigger(
-                dda => dda.DamageType == DamageType.Psychic && dda.Target.Is().Hero().Target(),
+                dda => dda.DamageType == DamageType.Psychic && dda.Target.Is(this).Hero().Target(),
                 dda => 1
             );
         }

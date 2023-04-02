@@ -16,7 +16,7 @@ namespace Jp.ParahumansOfTheWormverse.Echidna
         public EngulfedCardController(Card card, TurnTakerController controller) : base(card, controller)
         {
             SpecialStringMaker.ShowListOfCardsInPlay(
-                new LinqCardCriteria(c => c.Is().Hero().Character() && !c.IsEngulfed(), "unengulfed hero")
+                new LinqCardCriteria(c => c.Is(this).Hero().Character() && !c.IsEngulfed(), "unengulfed hero")
             );
         }
 
@@ -32,7 +32,7 @@ namespace Jp.ParahumansOfTheWormverse.Echidna
             return SelectCardThisCardWillMoveNextTo(
                 new LinqCardCriteria(
                     c =>
-                        c.Is().Hero().Character() && ! c.IsEngulfed(),
+                        c.Is(this).Hero().Character() && ! c.IsEngulfed(),
                     "hero",
                     useCardsSuffix: true
                 ),

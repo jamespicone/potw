@@ -69,7 +69,7 @@ namespace Jp.ParahumansOfTheWormverse.Behemoth
                 GameController.ExhaustCoroutine(damageCharactersCoroutine);
             }
             // "{BehemothCharacter} deals each non-character card hero target {H} damage."
-            IEnumerator damageNonCharacterCoroutine = base.GameController.DealDamage(DecisionMaker, base.CharacterCard, (Card c) => c.Is().Hero().Target() && !c.IsCharacter, H, GetBehemothDamageType(), cardSource: GetCardSource());
+            IEnumerator damageNonCharacterCoroutine = base.GameController.DealDamage(DecisionMaker, base.CharacterCard, (Card c) => c.Is(this).Hero().Target().Noncharacter(), H, GetBehemothDamageType(), cardSource: GetCardSource());
             if (UseUnityCoroutines)
             {
                 yield return GameController.StartCoroutine(damageNonCharacterCoroutine);

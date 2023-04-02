@@ -32,7 +32,7 @@ namespace Jp.ParahumansOfTheWormverse.Battery
             // "If {BatteryCharacter} is {Charged}, destroy a non-character card Equipment or Device card."
             if (IsBatteryCharged())
             {
-                IEnumerator destroyCoroutine = base.GameController.SelectAndDestroyCard(base.HeroTurnTakerController, new LinqCardCriteria((Card c) => !c.IsCharacter && (c.DoKeywordsContain("equipment") || c.DoKeywordsContain("device")), "non-character Equipment or Device"), false, responsibleCard: base.Card, cardSource: GetCardSource());
+                IEnumerator destroyCoroutine = base.GameController.SelectAndDestroyCard(base.HeroTurnTakerController, new LinqCardCriteria((Card c) => !c.IsCharacter && (c.Is(this).Equipment() || c.Is(this).WithKeyword("device")), "non-character Equipment or Device"), false, responsibleCard: base.Card, cardSource: GetCardSource());
                 if (base.UseUnityCoroutines)
                 {
                     yield return base.GameController.StartCoroutine(destroyCoroutine);
@@ -46,7 +46,7 @@ namespace Jp.ParahumansOfTheWormverse.Battery
             if (!IsBatteryCharged())
             {
                 // TODO: This should be cards from a hero trash, not hero cards from a trash
-                IEnumerator playCoroutine = base.GameController.SelectAndPlayCard(base.HeroTurnTakerController, (Card c) => c.DoKeywordsContain("equipment") && c.Is().Hero() && c.IsInTrash, false, true, cardSource: GetCardSource());
+                IEnumerator playCoroutine = base.GameController.SelectAndPlayCard(base.HeroTurnTakerController, (Card c) => c.Is(this).Hero().Equipment() && c.IsInTrash, false, true, cardSource: GetCardSource());
                 if (base.UseUnityCoroutines)
                 {
                     yield return base.GameController.StartCoroutine(playCoroutine);

@@ -222,7 +222,7 @@ namespace Jp.ParahumansOfTheWormverse.Battery
         {
             // "One hero target deals 1 target 2 lightning damage."
             List<SelectCardDecision> chooseHeroTarget = new List<SelectCardDecision>();
-            IEnumerator chooseHeroCoroutine = base.GameController.SelectCardAndStoreResults(base.HeroTurnTakerController, SelectionType.CardToDealDamage, new LinqCardCriteria((Card c) => c.IsInPlay && c.Is().Hero().Target(), "hero target", useCardsSuffix: false), chooseHeroTarget, false, cardSource: GetCardSource());
+            IEnumerator chooseHeroCoroutine = base.GameController.SelectCardAndStoreResults(base.HeroTurnTakerController, SelectionType.CardToDealDamage, new LinqCardCriteria((Card c) => c.IsInPlay && c.Is(this).Hero().Target(), "hero target", useCardsSuffix: false), chooseHeroTarget, false, cardSource: GetCardSource());
             if (base.UseUnityCoroutines)
             {
                 yield return base.GameController.StartCoroutine(chooseHeroCoroutine);

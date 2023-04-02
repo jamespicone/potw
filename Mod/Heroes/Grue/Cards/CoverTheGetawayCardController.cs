@@ -21,7 +21,7 @@ namespace Jp.ParahumansOfTheWormverse.Grue
             // "Put a Darkness card next to each hero character card",
             var e = GameController.SelectCardsAndDoAction(
                 HeroTurnTakerController,
-                new LinqCardCriteria(c => c.Is().Hero().Character(), "hero character"),
+                new LinqCardCriteria(c => c.Is(this).Hero().Character(), "hero character"),
                 SelectionType.MoveCardNextToCard,
                 c => this.PutDarknessIntoPlay(c),
                 allowAutoDecide: true,
@@ -39,7 +39,7 @@ namespace Jp.ParahumansOfTheWormverse.Grue
             // "You may destroy an Environment card"
             e = GameController.SelectAndDestroyCard(
                 HeroTurnTakerController,
-                new LinqCardCriteria(c => c.Is().Environment(), "environment"),
+                new LinqCardCriteria(c => c.Is(this).Environment(), "environment"),
                 optional: true,
                 responsibleCard: Card,
                 cardSource: GetCardSource()

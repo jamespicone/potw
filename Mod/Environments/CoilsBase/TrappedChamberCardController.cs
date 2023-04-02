@@ -22,7 +22,7 @@ namespace Jp.ParahumansOfTheWormverse.CoilsBase
         public override void AddTriggers()
         {
             // "Heroes cannot use powers."
-            CannotUsePowers(ttc => ttc.TurnTaker.Is().Hero());
+            CannotUsePowers(ttc => ttc.TurnTaker.Is(this).Hero());
 
             // "At the start of the environment turn this card deals 2 projectile damage to the H nonenvironment targets with the highest HP"
             AddStartOfTurnTrigger(

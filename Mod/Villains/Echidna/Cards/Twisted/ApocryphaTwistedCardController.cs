@@ -24,7 +24,7 @@ namespace Jp.ParahumansOfTheWormverse.Echidna
             AddDealDamageAtEndOfTurnTrigger(
                 TurnTaker,
                 Card,
-                c => c.Is().Hero().Character(),
+                c => c.Is(this).Hero().Character(),
                 TargetType.HighestHP,
                 2,
                 DamageType.Melee

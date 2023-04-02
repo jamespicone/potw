@@ -22,7 +22,7 @@ namespace Jp.ParahumansOfTheWormverse.Echidna
             var e = DealDamageToLowestHP(
                 CharacterCard,
                 1,
-                c => c.Is().Hero().Target(),
+                c => c.Is(this).Hero().Target(),
                 c => H + 2,
                 DamageType.Melee
             );

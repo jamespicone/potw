@@ -29,7 +29,7 @@ namespace Jp.ParahumansOfTheWormverse.MissMilitia
 
             var e = SelectTargetsAndDealMultipleInstancesOfDamage(
                 attacks,
-                (c) => c.Is().NonHero().Target(),
+                (c) => c.Is(this).NonHero().Target(),
                 minNumberOfTargets: 1,
                 maxNumberOfTargets: 1,
                 storedResultsAction: storedResultsDamage
@@ -48,7 +48,7 @@ namespace Jp.ParahumansOfTheWormverse.MissMilitia
             {
                 e = GameController.SelectAndDestroyCard(
                     HeroTurnTakerController,
-                    new LinqCardCriteria((c) => c.DoKeywordsContain("ongoing"), "ongoing"),
+                    new LinqCardCriteria((c) => c.Is(this).Ongoing(), "ongoing"),
                     optional: true,
                     responsibleCard: Card,
                     cardSource: GetCardSource()

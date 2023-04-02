@@ -28,7 +28,7 @@ namespace Jp.ParahumansOfTheWormverse.JessicaYamada
                 "Whenever a player skips a phase, they may draw a card"
             */
             AddPhaseChangeTrigger(
-                tt => tt.Is().Hero(),
+                tt => tt.Is(this).Hero(),
                 p => true,
                 pca => 
                     pca.FromPhase.WasSkipped ||

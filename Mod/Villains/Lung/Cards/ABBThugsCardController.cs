@@ -15,7 +15,7 @@ namespace Jp.ParahumansOfTheWormverse.Lung
         public override void AddTriggers()
         {
             // At the end of the villain turn, ABB Thugs deal the hero target with the lowest HP 2 projectile damage
-            AddDealDamageAtEndOfTurnTrigger(TurnTaker, Card, c => c.Is().Hero().Target() && c.IsInPlay, TargetType.LowestHP, 2, DamageType.Projectile);
+            AddDealDamageAtEndOfTurnTrigger(TurnTaker, Card, c => c.Is(this).Hero().Target() && c.IsInPlay, TargetType.LowestHP, 2, DamageType.Projectile);
         }
     }
 }

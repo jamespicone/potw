@@ -22,15 +22,15 @@ namespace Jp.ParahumansOfTheWormverse.NewDelhi
         public override void AddTriggers()
         {
             // "Whenever damage is redirected from one hero target to another, increase that damage by 2."
-            AddTrigger<RedirectDamageAction>((RedirectDamageAction rda) => rda.NewTarget.Is().Hero().Target() && rda.OldTarget.Is().Hero().Target(), IncreaseDamageResponse, TriggerType.IncreaseDamage, TriggerTiming.Before);
+            AddTrigger<RedirectDamageAction>((RedirectDamageAction rda) => rda.NewTarget.Is(this).Hero().Target() && rda.OldTarget.Is(this).Hero().Target(), IncreaseDamageResponse, TriggerType.IncreaseDamage, TriggerTiming.Before);
 
             // "When a hero target deals damage to another hero target, destroy this card."
             AddTrigger<DealDamageAction>(
                 (DealDamageAction dda) => dda.DidDealDamage &&
                     dda.DamageSource != null &&
                     dda.DamageSource.Card != null &&
-                    dda.DamageSource.Is().Hero().Target() &&
-                    dda.Target.Is().Hero().Target() &&
+                    dda.DamageSource.Is(this).Hero().Target() &&
+                    dda.Target.Is(this).Hero().Target() &&
                     dda.Target != dda.DamageSource.Card,
                 base.DestroyThisCardResponse,
                 TriggerType.DestroySelf,

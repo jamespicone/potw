@@ -22,7 +22,7 @@ namespace Jp.ParahumansOfTheWormverse.Echidna
             AddDealDamageAtStartOfTurnTrigger(
                 TurnTaker,
                 CharacterCard,
-                c => c.Is().Hero().Target(),
+                c => c.Is(this).Hero().Target(),
                 TargetType.All,
                 2,
                 DamageType.Psychic

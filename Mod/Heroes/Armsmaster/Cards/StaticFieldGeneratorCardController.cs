@@ -27,7 +27,7 @@ namespace Jp.ParahumansOfTheWormverse.Armsmaster
                 1,
                 optional: false,
                 null,
-                additionalCriteria: c => c.Is().NonHero().Target(),
+                additionalCriteria: c => c.Is(this).NonHero().Target(),
                 cardSource: GetCardSource()
             );
             if (UseUnityCoroutines)
