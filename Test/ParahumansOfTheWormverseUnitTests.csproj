@@ -91,6 +91,12 @@
     <Compile Include="Skitter\AtlasTests.cs" />
     <Compile Include="Skitter\AlwaysPlanningTests.cs" />
     <Compile Include="Skitter\SkitterTests.cs" />
+    <Compile Include="Slaughterhouse9\CrawlerTests.cs" />
+    <Compile Include="Slaughterhouse9\MannequinTests.cs" />
+    <Compile Include="Slaughterhouse9\BurnscarTests.cs" />
+    <Compile Include="Slaughterhouse9\TheSiberianTests.cs" />
+    <Compile Include="Slaughterhouse9\ShatterbirdTests.cs" />
+    <Compile Include="Slaughterhouse9\BonesawTests.cs" />
     <Compile Include="Slaughterhouse9\JackSlashTests.cs" />
     <Compile Include="Slaughterhouse9\HatchetFaceTests.cs" />
     <Compile Include="Slaughterhouse9\CherishTests.cs" />

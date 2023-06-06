@@ -45,5 +45,21 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.Slaughterhouse9
 
             QuickHPCheck(-4);
         }
+
+        [Test()]
+        public void TestCanBeIncapped()
+        {
+            SetupGameController(
+                "Jp.ParahumansOfTheWormverse.Slaughterhouse9",
+                "Jp.ParahumansOfTheWormverse.Alexandria",
+                "Megalopolis"
+            );
+
+            PlayCard("JackSlashCharacter");
+
+            DealDamage(jack, jack, 30, DamageType.Melee);
+
+            AssertFlipped(jack);
+        }
     }
 }
