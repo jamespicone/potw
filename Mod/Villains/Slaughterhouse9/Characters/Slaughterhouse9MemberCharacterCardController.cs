@@ -62,35 +62,15 @@ namespace Jp.ParahumansOfTheWormverse.Slaughterhouse9
             var cardSource = flip.CardSource ?? (flip.ActionSource?.CardSource ?? GetCardSource());
 
             var e = GameController.RemoveTarget(Card, leavesPlayIfInPlay: true, cardSource);
-            if (UseUnityCoroutines)
-            {
-                yield return GameController.StartCoroutine(e);
-            }
-            else
-            {
-                GameController.ExhaustCoroutine(e);
-            }
+            if (UseUnityCoroutines) { yield return GameController.StartCoroutine(e); }
+            else { GameController.ExhaustCoroutine(e); }
         }
 
         public override IEnumerator DestroyAttempted(DestroyCardAction destroyCard)
         {
-            var action = new FlipCardAction(
-                GameController,
-                this,
-                treatAsPlayedIfFaceUp: false,
-                treatAsPutIntoPlayIfFaceUp: false,
-                destroyCard.ActionSource
-            );
-
-            var e = DoAction(action);
-            if (UseUnityCoroutines)
-            {
-                yield return GameController.StartCoroutine(e);
-            }
-            else
-            {
-                GameController.ExhaustCoroutine(e);
-            }
+            var e = GameController.FlipCard(this, actionSource: destroyCard, cardSource: GetCardSource());
+            if (UseUnityCoroutines) { yield return GameController.StartCoroutine(e); }
+            else { GameController.ExhaustCoroutine(e); }
         }
     }
 }
