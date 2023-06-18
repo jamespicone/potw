@@ -18,7 +18,7 @@ namespace Jp.ParahumansOfTheWormverse.Tattletale
 
         public IEnumerator FlipOverCards()
         {
-            var decks = FindLocationsWhere(l => l.IsDeck);
+            var decks = FindLocationsWhere(l => l.IsDeck && l.BattleZone == BattleZone);
             foreach (var deck in decks)
             {
                 if (deck.NumberOfCards > 0 && ! deck.TopCard.IsFaceUp)
