@@ -34,8 +34,8 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.Echidna
 
             StackDeck("ApocryphaTwisted", "SpearpointTwisted", "ConvictionTwisted");
 
-            StartGame();
             RemoveAllTwisted();
+            StartGame();            
 
             AssertNextDecisionChoices(
                 new Card[] { alexandria.CharacterCard, bitch.CharacterCard, legend.CharacterCard },
@@ -64,8 +64,8 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.Echidna
                 "Megalopolis"
             );
 
-            StartGame();
             RemoveAllTwisted();
+            StartGame();
 
             DecisionSelectCard = bitch.CharacterCard;
             PlayCard("Engulfed", 0);
@@ -88,6 +88,9 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.Echidna
                 "Jp.ParahumansOfTheWormverse.Alexandria",
                 "Megalopolis"
             );
+
+            StackDeck("PandemicTwisted");
+            StackDeck("HubrisTwisted");
 
             StartGame();
             ReturnAllTwisted();

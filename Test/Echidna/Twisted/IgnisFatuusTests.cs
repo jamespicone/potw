@@ -55,7 +55,7 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.Echidna
                 "InsulaPrimalis"
             );
 
-            StackDeck("IgnisFatuusTwisted");
+            StackDeck("PropagandaTwisted", "IgnisFatuusTwisted");
             StartGame();
 
             AssertNotInPlay("IgnisFatuusTwisted");

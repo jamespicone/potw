@@ -32,8 +32,8 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.Echidna
                 "Megalopolis"
             );
 
-            StartGame();
             RemoveAllTwisted();
+            StartGame();
 
             DecisionSelectCards = new Card[] { alexandria.CharacterCard, bitch.CharacterCard, legend.CharacterCard };
             PlayCard("Engulfed", 0);

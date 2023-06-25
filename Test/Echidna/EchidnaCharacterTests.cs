@@ -48,8 +48,8 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.Echidna
                 "InsulaPrimalis"
             );
 
-            StartGame();
             RemoveAllTwisted();
+            StartGame();            
 
             StackDeck(echidna, "ChimaericalNightmare");
 
@@ -77,8 +77,8 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.Echidna
                 "InsulaPrimalis"
             );
 
-            StartGame();
             RemoveAllTwisted();
+            StartGame();            
 
             StackDeck(echidna, "ChimaericalNightmare");
             StackDeck(env, "ObsidianField");
@@ -109,9 +109,8 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.Echidna
             );
 
 
-            StackDeck("AriadneTwisted", "PandemicTwisted");
-            StartGame();
             RemoveAllTwisted();
+            StartGame();            
 
             StackDeck(echidna, "ChimaericalNightmare");
             StackDeck(env, "ObsidianField");
