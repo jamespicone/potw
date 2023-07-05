@@ -50,7 +50,15 @@ namespace Jp.ParahumansOfTheWormverse.Slaughterhouse9
         private IEnumerator TargetDestroyedResponse(DestroyCardAction dca)
         {
             var selectedCard = new List<Card>();
-            var e = FindCharacterCardToTakeDamage(GameController.ActiveTurnTaker, selectedCard, Card, 1, DamageType.Psychic);
+
+            var e = GameController.FindCharacterCard(
+                FindTurnTakerController(GameController.ActiveTurnTaker).FindDecisionMaker(),
+                GameController.ActiveTurnTaker,
+                SelectionType.SelectTarget,
+                selectedCard,
+                damageInfo: new DealDamageAction[] { new DealDamageAction(GetCardSource(), null, null, 1, DamageType.Psychic) },
+                cardSource: GetCardSource()
+            );
             if (UseUnityCoroutines)
             {
                 yield return GameController.StartCoroutine(e);
@@ -63,7 +71,7 @@ namespace Jp.ParahumansOfTheWormverse.Slaughterhouse9
             if (selectedCard.Count <= 0) { yield break; }
 
             e = DealDamage(
-                Card,
+                selectedCard.First(),
                 selectedCard.First(),
                 1,
                 DamageType.Psychic,

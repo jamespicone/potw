@@ -104,6 +104,7 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.Slaughterhouse9
 
             StartGame();
             RemoveVillainCards();
+
             PlayCard("CherishCharacter");
             PlayCard("MannequinCharacter");
 
@@ -118,6 +119,35 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.Slaughterhouse9
             AssertNotDamageSource(cherish);
             DestroyCard(raptors);
             QuickHPCheck(-1);
+        }
+
+        [Test()]
+        public void TestFlipDamageSentinels()
+        {
+            SetupGameController(
+                "Jp.ParahumansOfTheWormverse.Slaughterhouse9",
+                "TheSentinels",
+                "InsulaPrimalis"
+            );
+
+            StartGame();
+            RemoveVillainCards();
+
+            PlayCard("CherishCharacter");
+            PlayCard("MannequinCharacter");
+
+            GoToStartOfTurn(sentinels);
+
+            DealDamage(cherish, cherish, 100, DamageType.Sonic);
+
+            var raptors = PlayCard("VelociraptorPack");
+
+            QuickHPStorage(mainstay, medico, idealist, writhe);
+
+            DecisionSelectCard = medico;
+            AssertNotDamageSource(cherish);
+            DestroyCard(raptors);
+            QuickHPCheck(0, -1, 0, 0);
         }
     }
 }
