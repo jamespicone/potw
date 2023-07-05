@@ -73,6 +73,7 @@
     <Compile Include="Echidna\Twisted\ApocryphaTests.cs" />
     <Compile Include="Echidna\Twisted\AbhorrorTests.cs" />
     <Compile Include="JessicaYamada\JessicaYamadaTests.cs" />
+    <Compile Include="MissMilitia\NonlethalMeasuresTests.cs" />
     <Compile Include="Skitter\VindictiveCreativityTests.cs" />
     <Compile Include="Skitter\UnrelentingStingsTests.cs" />
     <Compile Include="Skitter\TrackingBugsTests.cs" />
@@ -91,6 +92,7 @@
     <Compile Include="Skitter\AtlasTests.cs" />
     <Compile Include="Skitter\AlwaysPlanningTests.cs" />
     <Compile Include="Skitter\SkitterTests.cs" />
+    <Compile Include="Slaughterhouse9\WeDontTakePrisonersTests.cs" />
     <Compile Include="Slaughterhouse9\CrawlerTests.cs" />
     <Compile Include="Slaughterhouse9\MannequinTests.cs" />
     <Compile Include="Slaughterhouse9\BurnscarTests.cs" />

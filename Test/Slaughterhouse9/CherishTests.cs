@@ -92,5 +92,32 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.Slaughterhouse9
 
             AssertFlipped(cherish);
         }
+
+        [Test()]
+        public void TestFlipDamage()
+        {
+            SetupGameController(
+                "Jp.ParahumansOfTheWormverse.Slaughterhouse9",
+                "Jp.ParahumansOfTheWormverse.Alexandria",
+                "InsulaPrimalis"
+            );
+
+            StartGame();
+            RemoveVillainCards();
+            PlayCard("CherishCharacter");
+            PlayCard("MannequinCharacter");
+
+            GoToStartOfTurn(alexandria);
+
+            DealDamage(cherish, cherish, 100, DamageType.Sonic);
+
+            var raptors = PlayCard("VelociraptorPack");
+
+            QuickHPStorage(alexandria);
+
+            AssertNotDamageSource(cherish);
+            DestroyCard(raptors);
+            QuickHPCheck(-1);
+        }
     }
 }
