@@ -14,7 +14,7 @@ using Handelabra.Sentinels.Engine.Controller;
 namespace Jp.ParahumansOfTheWormverse.UnitTest.Slaughterhouse9
 {
     [TestFixture()]
-    public class NonlethalMeasuresTests : BaseTest
+    public class WeDontTakePrisonersTests : BaseTest
     {
         protected Card bonesaw { get { return FindCard(c => c.Identifier == "BonesawCharacter"); } }
 
