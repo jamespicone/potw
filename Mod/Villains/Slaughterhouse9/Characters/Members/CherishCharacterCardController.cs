@@ -51,40 +51,19 @@ namespace Jp.ParahumansOfTheWormverse.Slaughterhouse9
         {
             var selectedCard = new List<Card>();
 
-            var e = GameController.FindCharacterCard(
-                FindTurnTakerController(GameController.ActiveTurnTaker).FindDecisionMaker(),
-                GameController.ActiveTurnTaker,
-                SelectionType.SelectTarget,
-                selectedCard,
-                damageInfo: new DealDamageAction[] { new DealDamageAction(GetCardSource(), null, null, 1, DamageType.Psychic) },
-                cardSource: GetCardSource()
-            );
-            if (UseUnityCoroutines)
-            {
-                yield return GameController.StartCoroutine(e);
-            }
-            else
-            {
-                GameController.ExhaustCoroutine(e);
-            }
-
-            if (selectedCard.Count <= 0) { yield break; }
-
-            e = DealDamage(
-                selectedCard.First(),
-                selectedCard.First(),
+            var e = GameController.SelectTargetsToDealDamageToSelf(
+                HeroTurnTakerController,
                 1,
                 DamageType.Psychic,
+                1,
+                optional: false,
+                requiredTargets: 1,
+                additionalCriteria: c => GameController.ActiveTurnTaker.CharacterCards.Contains(c),
                 cardSource: GetCardSource()
             );
-            if (UseUnityCoroutines)
-            {
-                yield return GameController.StartCoroutine(e);
-            }
-            else
-            {
-                GameController.ExhaustCoroutine(e);
-            }
+
+            if (UseUnityCoroutines) { yield return GameController.StartCoroutine(e); }
+            else { GameController.ExhaustCoroutine(e); }
         }
 
         private IEnumerator DiscardResponse()
