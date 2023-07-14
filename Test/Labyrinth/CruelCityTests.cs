@@ -27,6 +27,9 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.Labyrinth
             DecisionSelectCard = baron.CharacterCard;
             DecisionSelectDamageType = DamageType.Infernal;
 
+            // Stack the deck so an unlucky play doesn't stall out the test
+            StackDeck("RiverOfLava");
+
             QuickHPStorage(baron);
             PlayCard("CruelCity");
             QuickHPCheck(-4);
@@ -47,6 +50,9 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.Labyrinth
             StackDeck("VelociraptorPack");
 
             AssertIsInPlay(garden);
+
+            // Stack the deck so an unlucky play doesn't stall out the test
+            StackDeck("RiverOfLava");
 
             DecisionSelectCards = new Card[] { baron.CharacterCard, garden, forcefield, null };
             AssertIsInPlay(forcefield);
@@ -79,6 +85,9 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.Labyrinth
             var garden = PlayCard("BeautifulGarden");
 
             AssertIsInPlay(garden);
+
+            // Stack the deck so an unlucky play doesn't stall out the test
+            StackDeck("RiverOfLava");
 
             DecisionDoNotSelectCard = SelectionType.DestroyCard;
             PlayCard("CruelCity");

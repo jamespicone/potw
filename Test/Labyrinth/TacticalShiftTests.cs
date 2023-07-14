@@ -27,6 +27,9 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.Labyrinth
 
             DecisionSelectCard = forcefield;
 
+            // Stack the deck so an unlucky play doesn't stall out the test
+            StackDeck("RiverOfLava");
+
             AssertIsInPlay(forcefield);
             PlayCard("TacticalShift");
             AssertInTrash(forcefield);
@@ -42,6 +45,9 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.Labyrinth
             var forcefield = PlayCard("LivingForceField");
 
             DecisionDoNotSelectCard = SelectionType.DestroyCard;
+
+            // Stack the deck so an unlucky play doesn't stall out the test
+            StackDeck("RiverOfLava");
 
             AssertIsInPlay(forcefield);
             PlayCard("TacticalShift");
@@ -71,6 +77,9 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.Labyrinth
             PlayCard("ObsidianField");
             var garden = PlayCard("BeautifulGarden");
 
+            // Stack the deck so an unlucky play doesn't stall out the test
+            StackDeck("RiverOfLava");
+
             AssertIsInPlay(garden);
 
             DecisionDoNotSelectCard = SelectionType.DestroyCard;
@@ -89,6 +98,9 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.Labyrinth
             PlayCard("ObsidianField");
             var garden = PlayCard("BeautifulGarden");
             var raptors = PlayCard("VelociraptorPack");
+
+            // Stack the deck so an unlucky play doesn't stall out the test
+            StackDeck("RiverOfLava");
 
             AssertIsInPlay(garden);
 

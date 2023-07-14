@@ -29,6 +29,9 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.Labyrinth
 
             DecisionSelectCard = battalion;
 
+            // Stack the deck so an unlucky play doesn't stall out the test
+            StackDeck("RiverOfLava");
+
             AssertIsInPlay(battalion);
             PlayCard("HostileTerrain");
             AssertInTrash(battalion);
@@ -44,6 +47,9 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.Labyrinth
             var battalion = PlayCard("BladeBattalion");
 
             DecisionDoNotSelectCard = SelectionType.DestroyCard;
+
+            // Stack the deck so an unlucky play doesn't stall out the test
+            StackDeck("RiverOfLava");
 
             AssertIsInPlay(battalion);
             PlayCard("HostileTerrain");
@@ -75,6 +81,9 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.Labyrinth
 
             AssertIsInPlay(garden);
 
+            // Stack the deck so an unlucky play doesn't stall out the test
+            StackDeck("RiverOfLava");
+
             DecisionDoNotSelectCard = SelectionType.DestroyCard;
             PlayCard("HostileTerrain");
 
@@ -99,24 +108,14 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.Labyrinth
 
             var raptors = PlayCard("VelociraptorPack");
 
-            Log.Debug("Played cards");
-
             AssertIsInPlay(garden);
 
-            Log.Debug("Garden in play?");
-
             StackDeck("EnragedTRex");
-
-            Log.Debug("Stacked");
 
             DecisionSelectCards = new Card[] { platform, garden, baron.CharacterCard, battalion1, battalion2, battalion3 };
             QuickHPStorage(battalion1, battalion2, battalion3, baron.CharacterCard, raptors);
 
-            Log.Debug("Playing card");
-
             PlayCard("HostileTerrain");
-
-            Log.Debug("Played card");
 
             QuickHPCheck(-2, -2, -2, -2, 0);
         }
