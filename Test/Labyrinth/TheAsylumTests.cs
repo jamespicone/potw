@@ -14,11 +14,8 @@ using Handelabra.Sentinels.Engine.Controller;
 namespace Jp.ParahumansOfTheWormverse.UnitTest.Labyrinth
 {
     [TestFixture()]
-    public class TheAsylumTests : BaseTest
+    public class TheAsylumTests : ParahumanTest
     {
-        protected HeroTurnTakerController labyrinth { get { return FindHero("Labyrinth"); } }
-        protected HeroTurnTakerController tattletale { get { return FindHero("Tattletale"); } }
-
         [Test()]
         public void TestDoesDamage()
         {

@@ -12,11 +12,8 @@ using Handelabra.Sentinels.Engine.Controller;
 namespace Jp.ParahumansOfTheWormverse.UnitTest.Echidna
 {
     [TestFixture()]
-    public class AbhorrorTests : EchidnaBaseTest
+    public class AbhorrorTests : ParahumanTest
     {
-        protected HeroTurnTakerController alexandria { get { return FindHero("Alexandria"); } }
-        protected HeroTurnTakerController bitch { get { return FindHero("Bitch"); } }
-
         [Test()]
         public void TestDamageReduction()
         {

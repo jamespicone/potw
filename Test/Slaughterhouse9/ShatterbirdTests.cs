@@ -14,12 +14,8 @@ using Handelabra.Sentinels.Engine.Controller;
 namespace Jp.ParahumansOfTheWormverse.UnitTest.Slaughterhouse9
 {
     [TestFixture()]
-    public class ShatterbirdTests : BaseTest
+    public class ShatterbirdTests : ParahumanTest
     {
-        protected Card shatterbird { get { return FindCard(c => c.Identifier == "ShatterbirdCharacter"); } }
-
-        protected HeroTurnTakerController alexandria { get { return FindHero("Alexandria"); } }
-
         [Test()]
         public void TestCanBeIncapped()
         {

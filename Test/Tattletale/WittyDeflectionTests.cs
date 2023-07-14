@@ -14,10 +14,8 @@ using Handelabra.Sentinels.Engine.Controller;
 namespace Jp.ParahumansOfTheWormverse.UnitTest.Tattletale
 {
     [TestFixture()]
-    public class WittyDeflectionTests : BaseTest
+    public class WittyDeflectionTests : ParahumanTest
     {
-        protected TurnTakerController tattle { get { return FindHero("Tattletale"); } }
-
         [Test()]
         public void TestBasicUse()
         {
@@ -35,9 +33,9 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.Tattletale
             var deflect = PlayCard("WittyDeflection");
             UsePower(deflect);
 
-            DecisionRedirectTarget = tattle.CharacterCard;
+            DecisionRedirectTarget = tattletale.CharacterCard;
 
-            QuickHPStorage(tachyon.CharacterCard, tattle.CharacterCard);
+            QuickHPStorage(tachyon.CharacterCard, tattletale.CharacterCard);
             AssertDecisionIsOptional(SelectionType.RedirectDamage);
 
             DealDamage(baron.CharacterCard, tachyon.CharacterCard, 1, DamageType.Melee);
@@ -63,9 +61,9 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.Tattletale
             UsePower(deflect);
             DestroyCard(deflect);
 
-            DecisionRedirectTarget = tattle.CharacterCard;
+            DecisionRedirectTarget = tattletale.CharacterCard;
 
-            QuickHPStorage(tachyon.CharacterCard, tattle.CharacterCard);
+            QuickHPStorage(tachyon.CharacterCard, tattletale.CharacterCard);
             AssertDecisionIsOptional(SelectionType.RedirectDamage);
 
             DealDamage(baron.CharacterCard, tachyon.CharacterCard, 1, DamageType.Melee);

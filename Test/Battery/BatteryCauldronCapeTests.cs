@@ -14,10 +14,8 @@ using Handelabra.Sentinels.Engine.Controller;
 namespace Jp.ParahumansOfTheWormverse.UnitTest.Battery
 {
     [TestFixture()]
-    public class BatteryCauldronCapeTests : BaseTest
+    public class BatteryCauldronCapeTests : ParahumanTest
     {
-        protected HeroTurnTakerController battery { get { return FindHero("Battery"); } }
-
         [Test()]
         public void TestFaceDownACard()
         {

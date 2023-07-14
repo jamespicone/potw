@@ -12,11 +12,8 @@ using Handelabra.Sentinels.Engine.Controller;
 namespace Jp.ParahumansOfTheWormverse.UnitTest.MissMilitia
 {
     [TestFixture()]
-    public class NonlethalMeasuresTests : BaseTest
+    public class NonlethalMeasuresTests : ParahumanTest
     {
-
-        protected HeroTurnTakerController missmilitia { get { return FindHero("MissMilitia"); } }
-
         [Test()]
         public void TestDestroyedByDamage()
         {

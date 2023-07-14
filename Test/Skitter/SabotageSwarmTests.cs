@@ -14,11 +14,8 @@ using Handelabra.Sentinels.Engine.Controller;
 namespace Jp.ParahumansOfTheWormverse.UnitTest.Skitter
 {
     [TestFixture()]
-    public class SabotageSwarmTests : BaseTest
+    public class SabotageSwarmTests : ParahumanTest
     {
-        protected HeroTurnTakerController skitter { get { return FindHero("Skitter"); } }
-        protected HeroTurnTakerController tattletale { get { return FindHero("Tattletale"); } }
-
         [Test()]
         public void ZeroTokensDestroyOngoing()
         {

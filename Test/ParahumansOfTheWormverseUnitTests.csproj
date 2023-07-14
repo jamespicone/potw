@@ -50,6 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Alexandria\InvincibleTests.cs" />
+    <Compile Include="ParahumanTest.cs" />
     <Compile Include="Battery\BatteryCauldronCapeTests.cs" />
     <Compile Include="CoilsBase\MercenariesTests.cs" />
     <Compile Include="Coil\IKnowAllYourTricksTests.cs" />
@@ -64,7 +65,6 @@
     <Compile Include="Echidna\CloneArmyTests.cs" />
     <Compile Include="Echidna\ChimaericalNightmareTests.cs" />
     <Compile Include="Echidna\BullrushTests.cs" />
-    <Compile Include="Echidna\EchidnaBaseTest.cs" />
     <Compile Include="Echidna\Twisted\IgnisFatuusTests.cs" />
     <Compile Include="Echidna\Twisted\PandemicTests.cs" />
     <Compile Include="Echidna\Twisted\HubrisTests.cs" />

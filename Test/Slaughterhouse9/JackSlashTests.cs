@@ -14,12 +14,8 @@ using Handelabra.Sentinels.Engine.Controller;
 namespace Jp.ParahumansOfTheWormverse.UnitTest.Slaughterhouse9
 {
     [TestFixture()]
-    public class JackSlashTests : BaseTest
+    public class JackSlashTests : ParahumanTest
     {
-        protected Card jack { get { return FindCard(c => c.Identifier == "JackSlashCharacter"); } }
-
-        protected HeroTurnTakerController alexandria { get { return FindHero("Alexandria"); } }
-
         [Test()]
         public void TestAttack()
         {
@@ -57,9 +53,9 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.Slaughterhouse9
 
             PlayCard("JackSlashCharacter");
 
-            DealDamage(jack, jack, 30, DamageType.Melee);
+            DealDamage(jackslash, jackslash, 30, DamageType.Melee);
 
-            AssertFlipped(jack);
+            AssertFlipped(jackslash);
         }
     }
 }

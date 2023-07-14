@@ -11,10 +11,8 @@ using Jp.ParahumansOfTheWormverse.Bitch;
 namespace Jp.ParahumansOfTheWormverse.UnitTest.JessicaYamada
 {
     [TestFixture()]
-    public class JessicaYamadaTests : BaseTest
+    public class JessicaYamadaTests : ParahumanTest
     {
-        protected HeroTurnTakerController jess { get { return FindHero("JessicaYamada"); } }
-
         [Test()]
         public void TestJessLoads()
         {
@@ -22,21 +20,21 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.JessicaYamada
 
             Assert.AreEqual(4, GameController.TurnTakerControllers.Count());
 
-            Assert.IsNotNull(jess);
-            Assert.IsInstanceOf(typeof(HeroTurnTakerController), jess);
+            Assert.IsNotNull(jessica);
+            Assert.IsInstanceOf(typeof(HeroTurnTakerController), jessica);
 
             Assert.IsNotNull(env);
 
-            AssertHitPoints(jess.CharacterCard, 12);
-            Assert.IsTrue(jess.CharacterCard.IsHero);
+            AssertHitPoints(jessica.CharacterCard, 12);
+            Assert.IsTrue(jessica.CharacterCard.IsHero);
 
             StartGame();
 
-            AssertNotIncapacitatedOrOutOfGame(jess);
+            AssertNotIncapacitatedOrOutOfGame(jessica);
 
             DestroyCard(tachyon);
 
-            AssertIncapacitated(jess);
+            AssertIncapacitated(jessica);
 
             AssertGameOver(EndingResult.HeroesDestroyedDefeat);
         }
@@ -54,21 +52,21 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.JessicaYamada
 
             Assert.AreEqual(4, GameController.TurnTakerControllers.Count());
 
-            Assert.IsNotNull(jess);
-            Assert.IsInstanceOf(typeof(HeroTurnTakerController), jess);
+            Assert.IsNotNull(jessica);
+            Assert.IsInstanceOf(typeof(HeroTurnTakerController), jessica);
 
             Assert.IsNotNull(env);
 
-            AssertNotTarget(jess.CharacterCard);
-            Assert.IsTrue(jess.CharacterCard.IsHero);
+            AssertNotTarget(jessica.CharacterCard);
+            Assert.IsTrue(jessica.CharacterCard.IsHero);
 
             StartGame();
 
-            AssertNotIncapacitatedOrOutOfGame(jess);
+            AssertNotIncapacitatedOrOutOfGame(jessica);
 
             DestroyCard(tachyon);
 
-            AssertIncapacitated(jess);
+            AssertIncapacitated(jessica);
 
             AssertGameOver(EndingResult.HeroesDestroyedDefeat);
         }
@@ -86,26 +84,26 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.JessicaYamada
 
             Assert.AreEqual(4, GameController.TurnTakerControllers.Count());
 
-            Assert.IsNotNull(jess);
-            Assert.IsInstanceOf(typeof(HeroTurnTakerController), jess);
+            Assert.IsNotNull(jessica);
+            Assert.IsInstanceOf(typeof(HeroTurnTakerController), jessica);
 
             Assert.IsNotNull(env);
 
-            AssertHitPoints(jess.CharacterCard, 12);
-            Assert.IsTrue(jess.CharacterCard.IsEnvironment);
+            AssertHitPoints(jessica.CharacterCard, 12);
+            Assert.IsTrue(jessica.CharacterCard.IsEnvironment);
 
             StartGame();
 
-            AssertNotIncapacitatedOrOutOfGame(jess);
+            AssertNotIncapacitatedOrOutOfGame(jessica);
 
             // has hp, is indestructible
-            DestroyCard(jess);
+            DestroyCard(jessica);
 
-            AssertNotIncapacitatedOrOutOfGame(jess);
+            AssertNotIncapacitatedOrOutOfGame(jessica);
 
             DestroyCard(tachyon);
 
-            AssertIncapacitated(jess);
+            AssertIncapacitated(jessica);
 
             AssertGameOver(EndingResult.HeroesDestroyedDefeat);
         }

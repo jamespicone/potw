@@ -14,7 +14,8 @@ using Handelabra.Sentinels.Engine.Controller;
 namespace Jp.ParahumansOfTheWormverse.UnitTest.Coil
 {
     [TestFixture()]
-    public class IKnowAllYourTricksTests : BaseTest
+    public class IKnowAllYourTricksTests : ParahumanTest
+
     {
         [Test()]
         public void TestPlay()

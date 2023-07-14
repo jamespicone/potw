@@ -14,13 +14,8 @@ using Handelabra.Sentinels.Engine.Controller;
 namespace Jp.ParahumansOfTheWormverse.UnitTest.Alexandria
 {
     [TestFixture()]
-    public class InvincibleTests : BaseTest
+    public class InvincibleTests : ParahumanTest
     {
-        protected HeroTurnTakerController alexandria { get { return FindHero("Alexandria"); } }
-        protected HeroTurnTakerController tattletale { get { return FindHero("Tattletale"); } }
-
-        // TODO: Redirect
-
         [Test()]
         public void TestStatusEffect()
         {

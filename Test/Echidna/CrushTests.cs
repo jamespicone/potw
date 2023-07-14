@@ -15,12 +15,8 @@ using Jp.ParahumansOfTheWormverse.Echidna;
 namespace Jp.ParahumansOfTheWormverse.UnitTest.Echidna
 {
     [TestFixture()]
-    public class CrushTests : EchidnaBaseTest
+    public class CrushTests : ParahumanTest
     {
-        protected HeroTurnTakerController alexandria { get { return FindHero("Alexandria"); } }
-        protected HeroTurnTakerController bitch { get { return FindHero("Bitch"); } }
-        protected HeroTurnTakerController legend { get { return FindHero("Legend"); } }
-
         [Test()]
         public void TestHitsRightTarget()
         {

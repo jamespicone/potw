@@ -14,12 +14,8 @@ using Handelabra.Sentinels.Engine.Controller;
 namespace Jp.ParahumansOfTheWormverse.UnitTest.Slaughterhouse9
 {
     [TestFixture()]
-    public class BurnscarTests : BaseTest
+    public class BurnscarTests : ParahumanTest
     {
-        protected Card burnscar { get { return FindCard(c => c.Identifier == "BurnscarCharacter"); } }
-
-        protected HeroTurnTakerController alexandria { get { return FindHero("Alexandria"); } }
-
         [Test()]
         public void TestCanBeIncapped()
         {

@@ -14,12 +14,8 @@ using Handelabra.Sentinels.Engine.Controller;
 namespace Jp.ParahumansOfTheWormverse.UnitTest.Slaughterhouse9
 {
     [TestFixture()]
-    public class CrawlerTests : BaseTest
+    public class CrawlerTests : ParahumanTest
     {
-        protected Card crawler { get { return FindCard(c => c.Identifier == "CrawlerCharacter"); } }
-
-        protected HeroTurnTakerController alexandria { get { return FindHero("Alexandria"); } }
-
         [Test()]
         public void TestCanBeIncapped()
         {

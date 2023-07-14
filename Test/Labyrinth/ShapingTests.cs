@@ -15,11 +15,8 @@ using Handelabra.Sentinels.Engine.Controller.GreazerTeam;
 namespace Jp.ParahumansOfTheWormverse.UnitTest.Labyrinth
 {
     [TestFixture()]
-    public class ShapingTests : BaseTest
+    public class ShapingTests : ParahumanTest
     {
-        protected HeroTurnTakerController labyrinth { get { return FindHero("Labyrinth"); } }
-        protected HeroTurnTakerController tattletale { get { return FindHero("Tattletale"); } }
-
         [Test()]
         public void TestNeedsEnvironmentBase()
         {

@@ -14,12 +14,8 @@ using Handelabra.Sentinels.Engine.Controller;
 namespace Jp.ParahumansOfTheWormverse.UnitTest.Slaughterhouse9
 {
     [TestFixture()]
-    public class HatchetFaceTests : BaseTest
+    public class HatchetFaceTests : ParahumanTest
     {
-        protected Card hatchetFace { get { return FindCard(c => c.Identifier == "HatchetFace"); } }
-
-        protected HeroTurnTakerController legend { get { return FindHero("Legend"); } }
-
         [Test()]
         public void TestPreventHeroPowerPhase()
         {

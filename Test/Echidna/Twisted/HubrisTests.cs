@@ -12,13 +12,8 @@ using Handelabra.Sentinels.Engine.Controller;
 namespace Jp.ParahumansOfTheWormverse.UnitTest.Echidna
 {
     [TestFixture()]
-    public class HubrisTests : EchidnaBaseTest
+    public class HubrisTests : ParahumanTest
     {
-        protected HeroTurnTakerController alexandria { get { return FindHero("Alexandria"); } }
-        protected HeroTurnTakerController bitch { get { return FindHero("Bitch"); } }
-
-        protected HeroTurnTakerController legend { get { return FindHero("Legend"); } }
-
         [Test()]
         public void TestImmuneToOneHit()
         {

@@ -14,10 +14,8 @@ using Handelabra.Sentinels.Engine.Controller;
 namespace Jp.ParahumansOfTheWormverse.UnitTest.Tattletale
 {
     [TestFixture()]
-    public class InformationOverloadTests : BaseTest
+    public class InformationOverloadTests : ParahumanTest
     {
-        protected TurnTakerController tattle { get { return FindHero("Tattletale"); } }
-
         [Test()]
         public void TestSelfDamage()
         {
@@ -39,7 +37,7 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.Tattletale
 
             DecisionYesNo = true;
 
-            QuickHPStorage(tattle.CharacterCard);
+            QuickHPStorage(tattletale.CharacterCard);
             UsePower(power1);
             QuickHPCheck(0);
             UsePower(power2);

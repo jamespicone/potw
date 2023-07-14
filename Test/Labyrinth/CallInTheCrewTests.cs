@@ -14,19 +14,8 @@ using Handelabra.Sentinels.Engine.Controller;
 namespace Jp.ParahumansOfTheWormverse.UnitTest.Labyrinth
 {
     [TestFixture()]
-    public class CallInTheCrewTests : BaseTest
+    public class CallInTheCrewTests : ParahumanTest
     {
-        protected HeroTurnTakerController labyrinth { get { return FindHero("Labyrinth"); } }
-        protected HeroTurnTakerController tattletale { get { return FindHero("Tattletale"); } }
-
-        /*
-         * "When you use a power on this card put a token on it. Powers with tokens on them cannot be used.",
-         * "Put a non-indestructible noncharacter target on top of its deck.
-         * {LabyrinthCharacter} deals 3 sonic damage to all non-hero targets.
-         * Select a damage type. Until the start of your next turn whenever damage of that type would be dealt reduce it by 1.
-         * {LabyrinthCharacter} deals a target 4 fire damage.
-         * All players draw a card.
-         */
         [Test()]
         public void TestFirstPower()
         {
