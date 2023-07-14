@@ -92,8 +92,8 @@
   <ItemGroup>
     <None Include="Environments\**\*.txt" />
     <None Include="Heroes\**\*.txt" />
-    <None Include="packages.config" />
     <None Include="Villains\**\*.txt" />
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Utility\TemplateCardController.cs" />

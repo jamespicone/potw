@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="..\packages\NUnit3TestAdapter.4.4.2\build\net462\NUnit3TestAdapter.props" Condition="Exists('..\packages\NUnit3TestAdapter.4.4.2\build\net462\NUnit3TestAdapter.props')" />
+  <Import Project="..\packages\NUnit3TestAdapter.4.5.0\build\net462\NUnit3TestAdapter.props" Condition="Exists('..\packages\NUnit3TestAdapter.4.5.0\build\net462\NUnit3TestAdapter.props')" />
   <Import Project="..\packages\NUnit.3.13.3\build\NUnit.props" Condition="Exists('..\packages\NUnit.3.13.3\build\NUnit.props')" />
   <Import Project="..\packages\ILRepack.MSBuild.Task.2.0.13\build\ILRepack.MSBuild.Task.props" Condition="Exists('..\packages\ILRepack.MSBuild.Task.2.0.13\build\ILRepack.MSBuild.Task.props')" />
   <Import Project="..\packages\ILRepack.2.0.18\build\ILRepack.props" Condition="Exists('..\packages\ILRepack.2.0.18\build\ILRepack.props')" />
@@ -73,7 +73,25 @@
     <Compile Include="Echidna\Twisted\ApocryphaTests.cs" />
     <Compile Include="Echidna\Twisted\AbhorrorTests.cs" />
     <Compile Include="JessicaYamada\JessicaYamadaTests.cs" />
+    <Compile Include="Labyrinth\BeautifulGardenTests.cs" />
+    <Compile Include="Labyrinth\CallInTheCrewTests.cs" />
+    <Compile Include="Labyrinth\CleanTheSlateTests.cs" />
+    <Compile Include="Labyrinth\CruelCityTests.cs" />
+    <Compile Include="Labyrinth\DefensiveButtressTests.cs" />
+    <Compile Include="Labyrinth\DeviousLabyrinthTests.cs" />
+    <Compile Include="Labyrinth\DisassociationTests.cs" />
+    <Compile Include="Labyrinth\ExplorationTests.cs" />
+    <Compile Include="Labyrinth\GiantChessboardTests.cs" />
+    <Compile Include="Labyrinth\HostileTerrainTests.cs" />
+    <Compile Include="Labyrinth\InspirationTests.cs" />
+    <Compile Include="Labyrinth\MightyCastleTests.cs" />
+    <Compile Include="Labyrinth\PageThroughTests.cs" />
+    <Compile Include="Labyrinth\TacticalShiftTests.cs" />
+    <Compile Include="Labyrinth\TheAsylumTests.cs" />
+    <Compile Include="Labyrinth\VantageTests.cs" />
     <Compile Include="MissMilitia\NonlethalMeasuresTests.cs" />
+    <Compile Include="Labyrinth\ShapingTests.cs" />
+    <Compile Include="Labyrinth\LabyrinthTests.cs" />
     <Compile Include="Skitter\VindictiveCreativityTests.cs" />
     <Compile Include="Skitter\UnrelentingStingsTests.cs" />
     <Compile Include="Skitter\TrackingBugsTests.cs" />
@@ -125,7 +143,7 @@
     <Error Condition="!Exists('..\packages\ILRepack.2.0.18\build\ILRepack.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\ILRepack.2.0.18\build\ILRepack.props'))" />
     <Error Condition="!Exists('..\packages\ILRepack.MSBuild.Task.2.0.13\build\ILRepack.MSBuild.Task.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\ILRepack.MSBuild.Task.2.0.13\build\ILRepack.MSBuild.Task.props'))" />
     <Error Condition="!Exists('..\packages\NUnit.3.13.3\build\NUnit.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\NUnit.3.13.3\build\NUnit.props'))" />
-    <Error Condition="!Exists('..\packages\NUnit3TestAdapter.4.4.2\build\net462\NUnit3TestAdapter.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\NUnit3TestAdapter.4.4.2\build\net462\NUnit3TestAdapter.props'))" />
+    <Error Condition="!Exists('..\packages\NUnit3TestAdapter.4.5.0\build\net462\NUnit3TestAdapter.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\NUnit3TestAdapter.4.5.0\build\net462\NUnit3TestAdapter.props'))" />
   </Target>
   <Target Name="RepackSOTMUtilities" AfterTargets="Build">
     <Message Text="Calling ILRepack" Importance="high" />

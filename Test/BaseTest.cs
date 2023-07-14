@@ -58,6 +58,7 @@ namespace Handelabra.Sentinels.UnitTest
         protected int? ExpectedDecisionChoiceCount { get; set; }
         protected Card DecisionNextToCard { get; set; }
         protected SelectionType? DecisionNextSelectionType { get; set; }
+        protected IEnumerable<Card> DecisionNextAssociatedCards { get; set; }
         protected Card[] DecisionRedirectTargets { get; set; }
         protected int DecisionRedirectTargetsIndex { get; set; }
         protected Card DecisionSelectPower { get; set; }
@@ -166,6 +167,19 @@ namespace Handelabra.Sentinels.UnitTest
         protected HeroTurnTakerController voidWrithe { get { return FindHero("VoidGuardWrithe"); } }
         protected HeroTurnTakerController wraith { get { return FindHero("TheWraith"); } }
 
+        protected HeroTurnTakerController thunder { get { return FindHero("CaptainThunder"); } }
+        protected HeroTurnTakerController bowman { get { return FindHero("Bowman"); } }
+        protected HeroTurnTakerController liberty { get { return FindHero("LadyLiberty"); } }
+        protected HeroTurnTakerController metro { get { return FindHero("DrMetropolis"); } }
+        protected HeroTurnTakerController siren { get { return FindHero("Siren"); } }
+        protected HeroTurnTakerController johnny { get { return FindHero("JohnnyRocket"); } }
+        protected HeroTurnTakerController daedalus { get { return FindHero("Daedalus"); } }
+        protected HeroTurnTakerController raven { get { return FindHero("TheRaven"); } }
+        protected HeroTurnTakerController pseudo { get { return FindHero("Pseudo"); } }
+        protected HeroTurnTakerController star { get { return FindHero("StarKnight"); } }
+        protected HeroTurnTakerController jack { get { return FindHero("LanternJack"); } }
+        protected HeroTurnTakerController eldritch { get { return FindHero("Eldritch"); } }
+
         // The Sentinels
         protected Card medico { get { return GetCard("DrMedicoCharacter"); } }
         protected Card mainstay { get { return GetCard("MainstayCharacter"); } }
@@ -197,6 +211,12 @@ namespace Handelabra.Sentinels.UnitTest
         protected TurnTakerController voss { get { return FindVillain("GrandWarlordVoss"); } }
         protected TurnTakerController wager { get { return FindVillain("WagerMaster"); } }
         protected TurnTakerController warfang { get { return FindVillain("KaargraWarfang"); } }
+
+        protected TurnTakerController hades { get { return FindVillain("Hades"); } }
+        protected TurnTakerController metamind { get { return FindVillain("MetaMind"); } }
+        protected TurnTakerController omega { get { return FindVillain("Omega"); } }
+        protected TurnTakerController argo { get { return FindVillain("Argo"); } }
+        protected TurnTakerController malador { get { return FindVillain("Malador"); } }
 
         // Team villains
         protected TurnTakerController baronTeam { get { return FindVillainTeamMember("BaronBlade"); } }
@@ -379,6 +399,7 @@ namespace Handelabra.Sentinels.UnitTest
             DecisionSelectFromBoxTurnTakerIdentifier = null;
             DecisionSelectFromBoxIndex = 0;
             DecisionNextSelectionType = null;
+            DecisionNextAssociatedCards = null;
             DecisionDoNotSelectLocation = false;
             DecisionRedirectTargets = null;
             DecisionRedirectTargetsIndex = 0;
@@ -3166,6 +3187,11 @@ namespace Handelabra.Sentinels.UnitTest
             Assert.IsTrue(card.HasGameText, card.Title + " should have game text.");
         }
 
+        protected bool IsVillainTarget(Card card, CardSource cardSource = null)
+        {
+            return this.GameController.AskCardControllersIfIsVillainTarget(card, cardSource);
+        }
+
         protected void AssertCardHasKeyword(Card card, string keyword, bool isAdditional)
         {
             Assert.IsTrue(this.GameController.DoesCardContainKeyword(card, keyword), "{0} should have keyword: {1}", card.Identifier, keyword);
@@ -4693,7 +4719,7 @@ namespace Handelabra.Sentinels.UnitTest
             this.GameController.AddTrigger(trigger);
         }
 
-        protected void StackDeckAfterShuffle(TurnTakerController ttc, IEnumerable<Card> cards, bool toBottom = false)
+        protected void StackDeckAfterShuffle(TurnTakerController ttc, IEnumerable<Card> cards, bool toBottom = false, CardController source = null)
         {
             ITrigger trigger = null;
             Func<ShuffleCardsAction, IEnumerator> StackDeckAndRemoveTriggerResponse = action =>
@@ -4703,7 +4729,8 @@ namespace Handelabra.Sentinels.UnitTest
                 return DoNothing();
             };
 
-            trigger = new Trigger<ShuffleCardsAction>(this.GameController, s => s.Location == ttc.TurnTaker.Deck, StackDeckAndRemoveTriggerResponse, new TriggerType[] { TriggerType.MoveCard }, TriggerTiming.After, new CardSource(ttc.CharacterCardController));
+            source = source ?? ttc.CharacterCardController;
+            trigger = new Trigger<ShuffleCardsAction>(this.GameController, s => s.Location == ttc.TurnTaker.Deck, StackDeckAndRemoveTriggerResponse, new TriggerType[] { TriggerType.MoveCard }, TriggerTiming.After, new CardSource(source));
             this.GameController.AddTrigger(trigger);
         }
 
@@ -4826,6 +4853,7 @@ namespace Handelabra.Sentinels.UnitTest
 
             BinaryFormatter formatter = new BinaryFormatter();
             formatter.AssemblyFormat = System.Runtime.Serialization.Formatters.FormatterAssemblyStyle.Simple;
+            formatter.Binder = new SerializableRandomDeserializationBinder();
             FileStream stream = null;
             try
             {
@@ -4865,6 +4893,7 @@ namespace Handelabra.Sentinels.UnitTest
             {
                 BinaryFormatter formatter = new BinaryFormatter();
                 formatter.AssemblyFormat = System.Runtime.Serialization.Formatters.FormatterAssemblyStyle.Simple;
+                formatter.Binder = new SerializableRandomDeserializationBinder();
                 FileStream stream = new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.Read);
                 try
                 {
@@ -4916,7 +4945,7 @@ namespace Handelabra.Sentinels.UnitTest
                 {
                     var dllpath = System.Reflection.Assembly.GetExecutingAssembly().CodeBase;
                     path = Path.GetDirectoryName(dllpath.Replace("file://", "")).Replace("\\D:", "D:").Replace("\\C:", "C:");
-                    path = Path.Combine(path, "..", "..", "DataFiles", name);
+                    path = new string[] { path, "..", "..", "DataFiles", name }.Aggregate((x, y) => Path.Combine(x, y));
                 }
                 else if (addTempPath)
                 {
@@ -4953,7 +4982,7 @@ namespace Handelabra.Sentinels.UnitTest
 
                 var dllpath = System.Reflection.Assembly.GetExecutingAssembly().CodeBase;
                 var path = Path.GetDirectoryName(dllpath.Replace("file://", "")).Replace("\\D:", "D:").Replace("\\C:", "C:");
-                path = Path.Combine(path, "..", "..", "DataFiles", name);
+                path = new string[] { path, "..", "..", "DataFiles", name }.Aggregate((x, y) => Path.Combine(x, y));
                 var savedGame = LoadGamePath(path);
 
                 if (savedGame != null)
@@ -5460,6 +5489,33 @@ namespace Handelabra.Sentinels.UnitTest
             this.DecisionSelectFromBoxIdentifiers = identifiers;
             this.DecisionSelectFromBoxTurnTakerIdentifier = turnTakerIdentifier;
             this.DecisionSelectFromBoxIndex = 0;
+        }
+
+        protected GameControllerDecisionEvent AssertNextDecisionAssociatedCards(IEnumerable<Card> cards)
+        {
+            this.DecisionNextAssociatedCards = cards;
+
+            GameControllerDecisionEvent decider = decision =>
+            {
+                if (this.DecisionNextAssociatedCards != null)
+                {
+                    Assert.NotNull(decision.AssociatedCards, "Associated cards should not be null");
+                    Assert.AreEqual(this.DecisionNextAssociatedCards.Count(), decision.AssociatedCards.Count(), "There should be {0} associated cards", this.DecisionNextAssociatedCards.Count());
+                    for (int i = 0; i < this.DecisionNextAssociatedCards.Count(); i++)
+                    {
+                        var expectedCard = this.DecisionNextAssociatedCards.ElementAt(i);
+                        var actualCard = decision.AssociatedCards.ElementAt(i);
+                        Assert.AreSame(expectedCard, actualCard);
+                    }
+
+                    this.DecisionNextAssociatedCards = null;
+                }
+
+                return this.MakeDecisions(decision);
+            };
+
+            ReplaceOnMakeDecisions(decider);
+            return decider;
         }
 
         protected GameControllerDecisionEvent AssertNextDecisionSelectionType(SelectionType type)
