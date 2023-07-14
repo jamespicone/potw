@@ -100,6 +100,7 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.Slaughterhouse9
 
             StartGame();
             RemoveVillainCards();
+            ReturnSiberian();
 
             PlayCard("CherishCharacter");
             PlayCard("MannequinCharacter");
@@ -128,6 +129,7 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.Slaughterhouse9
 
             StartGame();
             RemoveVillainCards();
+            ReturnSiberian();
 
             PlayCard("CherishCharacter");
             PlayCard("MannequinCharacter");
