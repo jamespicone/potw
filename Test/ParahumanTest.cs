@@ -28,7 +28,7 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest
         protected TurnTakerController echidna { get { return FindVillain("Echidna"); } }
         protected TurnTakerController leviathan { get { return FindVillain("Leviathan"); } }
         protected TurnTakerController lung { get { return FindVillain("Lung"); } }
-        protected TurnTakerController nine { get { return FindVillain("SlaughterhouseNine"); } }
+        protected TurnTakerController nine { get { return FindVillain("Slaughterhouse9"); } }
         protected TurnTakerController merchants { get { return FindVillain("TheMerchants"); } }
         protected TurnTakerController simurgh { get { return FindVillain("TheSimurgh"); } }
 
@@ -60,6 +60,15 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest
             if (twisted.Count() <= 0) { return; }
 
             MoveCards(echidna, twisted, twisted.First().Owner.OutOfGame);
+        }
+
+        // If the Siberian is in play, puts her under the Nine card.
+        public void ReturnSiberian()
+        {
+            if (siberian.IsInPlayAndNotUnderCard)
+            {
+                MoveCard(nine, siberian, nine.CharacterCard.UnderLocation, overrideIndestructible: true);
+            }
         }
     }
 }
