@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 
 using Jp.SOTMUtilities;
+using Handelabra;
 
 namespace Jp.ParahumansOfTheWormverse.JessicaYamada
 {
@@ -16,7 +17,7 @@ namespace Jp.ParahumansOfTheWormverse.JessicaYamada
         {
         }
 
-        public override void AddTriggers()
+        public override void AddSideTriggers()
         {
             if (!Card.IsFlipped)
             {
@@ -41,7 +42,7 @@ namespace Jp.ParahumansOfTheWormverse.JessicaYamada
             else
             {
                 AddSideTrigger(AddTrigger<GameAction>(
-                    (ga) => ((ga is FlipCardAction || ga is BulkRemoveTargetsAction || ga is MoveCardAction || ga is UnincapacitateHeroAction) && !CharacterCard.IsFlipped),
+                    (ga) => ((ga is FlipCardAction || ga is BulkRemoveTargetsAction || ga is MoveCardAction || ga is UnincapacitateHeroAction) && !CharacterCard.IsFlipped && Card.IsFlipped),
                     (ga) => ReviveInstructionCard(),
                     TriggerType.FirstTrigger,
                     TriggerTiming.After,

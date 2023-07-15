@@ -14,8 +14,8 @@
       "count": 1,
       "body": "Therapy",
       "gameplay": [
-        "Jessica Yamada cannot deal damage",
-        "If there are no hero targets in play outside your play area, incapacitate Jessica Yamada"
+        "Jessica Yamada cannot deal damage.",
+        "If there are no hero targets in play outside your play area, incapacitate Jessica Yamada."
       ],
       "icons": [ "CannotDealDamage", "FlipFaceDown" ],
       "character": true,
@@ -225,7 +225,7 @@
       "hitpoints": 12,
       "body": "Therapy",
       "gameplay": [
-        "Whenever Jessica Yamada would take damage from a non-hero card, redirect that damage to the hero with the lowest HP other than Jessica Yamada"
+        "Whenever Jessica Yamada would take damage from a non-hero card, redirect that damage to the hero with the lowest HP other than Jessica Yamada."
       ],
       "icons": [ "HasPower", "GainHP", "DrawCardNow" ],
       "powers": [ "Another player either regains 2 HP or draws a card" ],
@@ -253,9 +253,9 @@
       "hitpoints": 12,
       "body": "Therapy",
       "gameplay": [
-        "Jessica Yamada is an environment card",
-        "Jessica Yamada is immune to damage dealt by hero cards",
-        "Jessica Yamada is indestructible while she has more than 0 HP"
+        "Jessica Yamada is an environment target.",
+        "Jessica Yamada is immune to damage dealt by hero targets.",
+        "Jessica Yamada is indestructible while she has more than 0 HP."
       ],
       "icons": [ "HasPower", "GainHP", "DrawCardNow" ],
       "powers": [ "Another player either regains 2 HP or draws a card" ],
@@ -275,8 +275,7 @@
         "PlayCardNow",
         "GainHP"
       ],
-      "kind": "environment",
-      "flippedKind": "hero"
+      "targetKind": "environment"
     },
     {
       "identifier": "JessicaYamadaCharacterNotTarget",
@@ -284,7 +283,7 @@
       "count": 1,
       "body": "Therapy",
       "gameplay": [
-        "Jessica Yamada is not a target"
+        "Jessica Yamada is not a target."
       ],
       "icons": [ "HasPower", "GainHP", "DrawCardNow" ],
       "powers": [ "Another player either regains 2 HP or draws a card" ],
@@ -315,8 +314,8 @@
       "count": 1,
       "body": "Therapy",
       "gameplay": [
-        "Jessica Yamada cannot deal damage",
-        "If there are no hero targets in play, incapacitate Jessica Yamada"
+        "Jessica Yamada cannot deal damage.",
+        "If there are no hero targets in play, incapacitate Jessica Yamada."
       ],
       "icons": [ "CannotDealDamage", "FlipFaceDown" ],
       "character": true,
@@ -340,8 +339,8 @@
       "count": 1,
       "body": "Therapy",
       "gameplay": [
-        "Jessica Yamada cannot deal damage",
-        "If there are no hero targets in play, incapacitate Jessica Yamada"
+        "Jessica Yamada cannot deal damage.",
+        "If there are no hero targets in play, incapacitate Jessica Yamada."
       ],
       "icons": [ "HasPower", "GainHP", "DrawCardNow", "CannotDealDamage", "FlipFaceDown" ],
       "powers": [ "Another player either regains 2 HP or draws a card" ],

@@ -56,21 +56,16 @@ namespace Jp.ParahumansOfTheWormverse.JessicaYamada
                 GameController.ExhaustCoroutine(e);
             }
 
-            // I would like to banish cards back to the box so they can be used for other effects, but unfortunately
-            // the engine has a bug where TurnTakers with character cards that aren't hero/villain team cannot be incapacitated
-            // (See HeroTurnTaker.IsIncapacitatedOrOutOfGame)
-            //
-            // The check ignores characters OffToTheSide.
-            //
-            //e = GameController.MoveCards(this, TurnTaker.OffToTheSide.Cards, TurnTaker.InTheBox);
-            //if (UseUnityCoroutines)
-            //{
-            //    yield return GameController.StartCoroutine(e);
-            //}
-            //else
-            //{
-            //    GameController.ExhaustCoroutine(e);
-            //}
+            // Banish other variants to the box.
+            e = GameController.MoveCards(this, TurnTaker.OffToTheSide.Cards, TurnTaker.InTheBox);
+            if (UseUnityCoroutines)
+            {
+                yield return GameController.StartCoroutine(e);
+            }
+            else
+            {
+                GameController.ExhaustCoroutine(e);
+            }
 
             TurnTaker.SetCharacterCard(CharacterCard);
         }

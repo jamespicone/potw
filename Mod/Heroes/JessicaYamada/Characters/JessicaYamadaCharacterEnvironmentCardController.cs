@@ -17,6 +17,7 @@ namespace Jp.ParahumansOfTheWormverse.JessicaYamada
         public JessicaYamadaCharacterEnvironmentCardController(Card card, TurnTakerController controller) : base(card, controller)
         {
             AddThisCardControllerToList(CardControllerListType.MakesIndestructible);
+            AddThisCardControllerToList(CardControllerListType.ModifiesDeckKind);
         }
 
         public override void AddSideTriggers()
@@ -25,7 +26,7 @@ namespace Jp.ParahumansOfTheWormverse.JessicaYamada
 
             if (! Card.IsFlipped)
             {
-                AddSideTrigger(AddPreventDamageTrigger(dda => dda.Target == Card && dda.DamageSource.Is(this).Hero()));
+                AddSideTrigger(AddPreventDamageTrigger(dda => dda.Target == Card && dda.DamageSource.Is(this).Hero().Target()));
             }
         }
 
@@ -33,6 +34,13 @@ namespace Jp.ParahumansOfTheWormverse.JessicaYamada
         {
             if (GameController.FindTargetsInPlay(c => c.Is(this).Hero().Target() && c.Location != TurnTaker.PlayArea).Count() <= 0) { return false; }
             return card == Card && card.HitPoints > 0;
+        }
+
+        public override bool? AskIfIsHeroTarget(Card card, CardSource cardSource)
+        {
+            if (card != Card) return null;
+
+            return false;
         }
     }
 }
