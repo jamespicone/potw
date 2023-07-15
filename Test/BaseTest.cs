@@ -3187,9 +3187,24 @@ namespace Handelabra.Sentinels.UnitTest
             Assert.IsTrue(card.HasGameText, card.Title + " should have game text.");
         }
 
+        protected bool IsHero(Card card, CardSource cardSource = null)
+        {
+            return GameController.AskCardControllersIfIsHero(card, cardSource);
+        }
+
+        protected bool IsHeroTarget(Card card, CardSource cardSource = null)
+        {
+            return GameController.AskCardControllersIfIsHeroTarget(card, cardSource);
+        }
+
+        protected bool IsVillain(Card card, CardSource cardSource = null)
+        {
+            return GameController.AskCardControllersIfIsVillain(card, cardSource);
+        }
+
         protected bool IsVillainTarget(Card card, CardSource cardSource = null)
         {
-            return this.GameController.AskCardControllersIfIsVillainTarget(card, cardSource);
+            return GameController.AskCardControllersIfIsVillainTarget(card, cardSource);
         }
 
         protected void AssertCardHasKeyword(Card card, string keyword, bool isAdditional)
