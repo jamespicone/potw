@@ -228,7 +228,7 @@
         "Whenever Jessica Yamada would take damage from a non-hero card, redirect that damage to the hero with the lowest HP other than Jessica Yamada."
       ],
       "icons": [ "HasPower", "GainHP", "DrawCardNow" ],
-      "powers": [ "Another player either regains 2 HP or draws a card" ],
+      "powers": [ "Another hero either regains 2 HP or draws a card" ],
       "character": true,
       "backgroundColor": "ffffff",
       "openingLines": {
@@ -258,7 +258,7 @@
         "Jessica Yamada is indestructible while she has more than 0 HP."
       ],
       "icons": [ "HasPower", "GainHP", "DrawCardNow" ],
-      "powers": [ "Another player either regains 2 HP or draws a card" ],
+      "powers": [ "Another hero either regains 2 HP or draws a card" ],
       "character": true,
       "backgroundColor": "ffffff",
       "openingLines": {
@@ -286,7 +286,7 @@
         "Jessica Yamada is not a target."
       ],
       "icons": [ "HasPower", "GainHP", "DrawCardNow" ],
-      "powers": [ "Another player either regains 2 HP or draws a card" ],
+      "powers": [ "Another hero either regains 2 HP or draws a card" ],
       "character": true,
       "backgroundColor": "ffffff",
       "openingLines": {

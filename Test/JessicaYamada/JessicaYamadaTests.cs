@@ -402,5 +402,109 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.JessicaYamada
         }
 
         #endregion
+        #region PowerAvailable
+
+        [Test()]
+        public void TestJessCanUsePower()
+        {
+            SetupGameController(new[] { "BaronBlade", "Jp.ParahumansOfTheWormverse.JessicaYamada", "Legacy", "Megalopolis" },
+                promoIdentifiers: new Dictionary<string, string>
+                {
+                    { "Legacy", "AmericasGreatestLegacyCharacter" }
+                }
+            );
+
+            StartGame();
+
+            SetHitPoints(legacy, 10);
+
+            GoToUsePowerPhase(jessica);
+            AssertNumberOfUsablePowers(jessica, 1);
+
+            QuickHPStorage(legacy);
+            DecisionSelectTurnTaker = legacy.TurnTaker;
+            DecisionSelectFunction = 0;
+            UsePower(jessicaCharacter);
+            QuickHPCheck(2);
+
+            GoToUsePowerPhase(legacy);
+            DecisionSelectCard = jessicaCharacter;
+            DecisionSelectTurnTaker = legacy.TurnTaker;
+            DecisionSelectFunction = 1;
+            QuickHandStorage(legacy);
+            UsePower(legacy);
+            QuickHandCheck(1);            
+        }
+
+        [Test()]
+        [Ignore("Currently doesn't work because Legacy checks for incap status. Keeping around to find out if it works on later versions.")]
+        public void TestNontargetJessCanUsePower()
+        {
+            SetupGameController(
+                new[] { "BaronBlade", "Jp.ParahumansOfTheWormverse.JessicaYamada", "Legacy", "Megalopolis" },
+                promoIdentifiers: new Dictionary<string, string>
+                {
+                    { "Jp.ParahumansOfTheWormverse.JessicaYamada", "Jp.ParahumansOfTheWormverse.JessicaYamadaInstructionsNotTarget" },
+                    { "Legacy", "AmericasGreatestLegacyCharacter" }
+                }
+            );
+
+            StartGame();
+
+            SetHitPoints(legacy, 10);
+
+            GoToUsePowerPhase(jessica);
+            AssertNumberOfUsablePowers(jessica, 1);
+
+            QuickHPStorage(legacy);
+            DecisionSelectTurnTaker = legacy.TurnTaker;
+            DecisionSelectFunction = 0;
+            UsePower(jessicaCharacter);
+            QuickHPCheck(2);
+
+            GoToUsePowerPhase(legacy);
+            DecisionSelectCard = jessicaCharacter;
+            DecisionSelectTurnTaker = legacy.TurnTaker;
+            DecisionSelectFunction = 1;
+            QuickHandStorage(legacy);
+            UsePower(legacy);
+            QuickHandCheck(1);
+        }
+
+        [Test()]
+        public void TestEnvironmentJessCanUsePower()
+        {
+            SetupGameController(
+                new[] { "BaronBlade", "Jp.ParahumansOfTheWormverse.JessicaYamada", "Legacy", "Megalopolis" },
+                promoIdentifiers: new Dictionary<string, string>
+                {
+                    { "Jp.ParahumansOfTheWormverse.JessicaYamada", "Jp.ParahumansOfTheWormverse.JessicaYamadaInstructionsEnvironment" },
+                    { "Legacy", "AmericasGreatestLegacyCharacter" }
+                }
+            );
+
+            StartGame();
+
+            SetHitPoints(legacy, 10);
+
+            GoToUsePowerPhase(jessica);
+            AssertNumberOfUsablePowers(jessica, 1);
+
+            QuickHPStorage(legacy);
+            DecisionSelectTurnTaker = legacy.TurnTaker;
+            DecisionSelectFunction = 0;
+            UsePower(jessicaCharacter);
+            QuickHPCheck(2);
+
+            GoToUsePowerPhase(legacy);
+            DecisionSelectCard = jessicaCharacter;
+            DecisionSelectTurnTaker = legacy.TurnTaker;
+            DecisionSelectFunction = 1;
+            QuickHandStorage(legacy);
+            UsePower(legacy);
+            QuickHandCheck(1);
+        }
+
+        #endregion
     }
 }
