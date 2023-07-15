@@ -42,6 +42,11 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest
         protected Card shatterbird { get { return GetCard("ShatterbirdCharacter"); } }
         protected Card siberian { get { return GetCard("TheSiberianCharacter"); } }
 
+        // Jessica
+
+        protected Card jessicaCharacter { get { return jessica.CharacterCards.Where(c => c.IsRealCard).First(); } }
+        protected Card jessicaInstructions { get { return GetCard("JessicaYamadaInstructionsTarget"); } }
+
         // Helpers
 
         // Find all Twisted in play and move them back to their deck
