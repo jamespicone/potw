@@ -50,6 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Alexandria\InvincibleTests.cs" />
+    <Compile Include="JessicaYamada\TimeToThinkTests.cs" />
     <Compile Include="ParahumanTest.cs" />
     <Compile Include="Battery\BatteryCauldronCapeTests.cs" />
     <Compile Include="CoilsBase\MercenariesTests.cs" />

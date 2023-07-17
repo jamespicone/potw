@@ -7,17 +7,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-using UnityEngine;
-
 using Jp.SOTMUtilities;
 
 namespace Jp.ParahumansOfTheWormverse.JessicaYamada
 {
     class TimeToThinkCardController : CardController
     {
+        public override int AskPriority => 100;
+        private bool insideAskMethod = false;
+
         public TimeToThinkCardController(Card card, TurnTakerController turnTakerController)
             : base(card, turnTakerController)
         {
+            AddThisCardControllerToList(CardControllerListType.ChangesPhaseOrder);
         }
 
         public override void AddTriggers()
@@ -27,6 +29,14 @@ namespace Jp.ParahumansOfTheWormverse.JessicaYamada
                 "Whenever a player uses no powers during their power phase, they may draw a card",
                 "Whenever a player skips a phase, they may draw a card"
             */
+            AddTrigger<PhaseChangeAction>(
+                (p) =>
+                    p.ToPhase.Phase == Phase.Unknown && p.ToPhase.PhaseActionCountUsed == 42,
+                TurnIntoPlayPhase,
+                new TriggerType[1] { TriggerType.ChangePhaseOrder },
+                TriggerTiming.Before
+            );
+
             AddPhaseChangeTrigger(
                 tt => tt.Is(this).Hero(),
                 p => true,
@@ -45,9 +55,34 @@ namespace Jp.ParahumansOfTheWormverse.JessicaYamada
             );
         }
 
-        private IEnumerator PrintPCAInfo(PhaseChangeAction pca)
+        private IEnumerator TurnIntoPlayPhase(PhaseChangeAction pca)
         {
+            var playPhase = pca.ToPhase.TurnTaker.TurnPhases.Where(p => p.IsPlayCard).FirstOrDefault();
+            if (playPhase != null)
+            {
+                pca.ToPhase = playPhase;
+            }
             yield break;
+        }
+
+        public override TurnPhase AskIfTurnPhaseShouldBeChanged(TurnPhase fromPhase, TurnPhase toPhase)
+        {
+            if (insideAskMethod) return null;
+            insideAskMethod = true;
+            var expectedPhase = GameController.FindNextTurnPhase(fromPhase);
+            insideAskMethod = false;
+
+            if (expectedPhase.IsHero && expectedPhase.IsPlayCard)
+            {
+                return new TurnPhase(toPhase.TurnTaker, Phase.Unknown)
+                {
+                    PhaseActionCountUsed = 42 // secret flag
+                };
+            }
+            else
+            {
+                return expectedPhase;
+            }
         }
 
         public IEnumerator DrawCardResponse(PhaseChangeAction pca)
