@@ -26,8 +26,7 @@ namespace Jp.ParahumansOfTheWormverse.JessicaYamada
         {
             /*
                 "Whenever a player plays no cards during their play phase, they may draw a card",
-                "Whenever a player uses no powers during their power phase, they may draw a card",
-                "Whenever a player skips a phase, they may draw a card"
+                "Whenever a player uses no powers during their power phase, they may draw a card"
             */
             AddTrigger<PhaseChangeAction>(
                 (p) =>
@@ -41,13 +40,10 @@ namespace Jp.ParahumansOfTheWormverse.JessicaYamada
                 tt => tt.Is(this).Hero(),
                 p => true,
                 pca => 
-                    pca.FromPhase.WasSkipped ||
+                    (pca.FromPhase.PhaseActionCountUsed ?? 0) == 0 &&
                     (
-                        (pca.FromPhase.PhaseActionCountUsed ?? 0) == 0 &&
-                        (
-                            pca.FromPhase.Phase == Phase.PlayCard ||
-                            pca.FromPhase.Phase == Phase.UsePower
-                        )
+                        pca.FromPhase.Phase == Phase.PlayCard ||
+                        pca.FromPhase.Phase == Phase.UsePower
                     ),
                 pca => DrawCardResponse(pca),
                 new[] { TriggerType.FirstTrigger },

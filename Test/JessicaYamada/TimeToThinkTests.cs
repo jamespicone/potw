@@ -360,5 +360,51 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.JessicaYamada
             EnterNextTurnPhase();
             QuickHandCheck(0);
         }
+
+        [Test()]
+        public void TestTimeCrawlsPlay()
+        {
+            SetupGameController("BaronBlade", "Jp.ParahumansOfTheWormverse.JessicaYamada", "Legacy", "RealmOfDiscord");
+
+            StartGame();
+            RemoveVillainCards();
+            RemoveVillainTriggers();
+
+            GoToPlayCardPhaseAndPlayCard(jessica, "TimeToThink");
+            PlayCard("TimeCrawls");
+
+            GoToStartOfTurn(legacy);
+            QuickHandStorage(legacy);
+            EnterNextTurnPhase(); // enter play
+            PlayCard("DangerSense");
+            EnterNextTurnPhase(); // leave play / enter power
+            QuickHandCheck(0);
+            EnterNextTurnPhase(); // leave power
+            QuickHandCheck(1);
+        }
+
+        [Test()]
+        public void TestTimeCrawlsPower()
+        {
+            SetupGameController("BaronBlade", "Jp.ParahumansOfTheWormverse.JessicaYamada", "Legacy", "RealmOfDiscord");
+
+            StartGame();
+            RemoveVillainCards();
+            RemoveVillainTriggers();
+
+            GoToPlayCardPhaseAndPlayCard(jessica, "TimeToThink");
+            PlayCard("TimeCrawls");
+
+            GoToStartOfTurn(legacy);
+            QuickHandStorage(legacy);
+            EnterNextTurnPhase(); // enter play
+            EnterNextTurnPhase(); // leave play / enter power
+            QuickHandCheck(1);
+            UsePower(legacy);
+            EnterNextTurnPhase(); // leave power
+            QuickHandCheck(0);
+        }
+
+
     }
 }

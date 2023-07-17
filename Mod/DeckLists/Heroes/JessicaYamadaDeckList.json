@@ -205,8 +205,7 @@
       "keywords": [ "ongoing", "limited" ],
       "body": [
         "Whenever a player plays no cards during their play phase, they may draw a card.",
-        "Whenever a player uses no powers during their power phase, they may draw a card.",
-        "Whenever a player skips a phase, they may draw a card."
+        "Whenever a player uses no powers during their power phase, they may draw a card."
       ],
       "icons": [ "DrawCardNow" ],
       "flavorQuotes": [
