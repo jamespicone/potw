@@ -2,7 +2,7 @@
 	"name": "Kyushu",
 	"kind": "Environment",
 	"backgroundColor": "005D7F",
-	"difficulty": 1,
+	"difficulty": 2,
 	"cards": [
 		{
 			"identifier": "BlackKaze",

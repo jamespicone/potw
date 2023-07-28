@@ -2,7 +2,7 @@
 	"name": "Brockton Bay",
 	"kind": "Environment",
 	"backgroundColor": "",
-	"difficulty": 1,
+	"difficulty": 2,
 	"cards": [
 		{
 			"identifier": "Attention",

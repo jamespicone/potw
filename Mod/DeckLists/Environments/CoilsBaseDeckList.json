@@ -2,7 +2,7 @@
 	"name": "Coil's Base",
 	"kind": "Environment",
 	"backgroundColor": "CB5841",
-	"difficulty": 1,
+	"difficulty": 2,
 	"cards": [
 		{
 			"identifier": "AblativeCladding",
