@@ -97,7 +97,7 @@
         "Environment cards cannot destroy hero cards."
       ],
       "icons": [
-        "ImmuneToDamage",
+        "CancelDamageGreen",
         "DestroySelf"
       ],
       "flavorText": "...walls stripped away{BR}to become tendrils, tendrils{BR}became vines and vines twisted{BR}together into treelike forms.{BR}",
