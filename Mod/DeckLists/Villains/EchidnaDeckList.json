@@ -28,9 +28,21 @@
       },
       "difficulty": 3,
       "icons": [
+        "StartAndEndOfTurnAction",
+        "DealDamageMelee",
+        "GainHP"
       ],
       "flippedIcons": [
+        "DestroyCard",
+        "StartOfTurnAction",
+        "PlayCardNow",
+        "Search"
       ],
+      "advancedIcons": [
+        "ReduceDamageDealt",
+        "Search"
+      ],
+      "flippedAdvancedIcons": [],
       "count": 1
     },
     {
@@ -42,6 +54,10 @@
         "Whenever a power in this play area is used the target this card is next to deals themselves 2 psychic damage.",
         "If the card this card is next to leaves play, destroy this card."
       ],
+      "icons": [
+        "DealDamagePsychic",
+        "DestroySelf"
+      ],
       "count": 5
     },
     {
@@ -51,6 +67,9 @@
       "body": [
         "Whenever an environment target is destroyed play the top card of the villain deck."
       ],
+      "icons": [
+        "PlayCardNow"
+      ],
       "count": 2
     },
     {
@@ -58,6 +77,10 @@
       "title": "Experimentation",
       "keywords": [ "one-shot" ],
       "body": [ "If {EchidnaCharacter} is on her 'Mother of Monsters' side you may flip her to her Canny Tactician side. Otherwise, play the top two cards of the Twisted deck.", "Shuffle the villain trash into the villain deck." ],
+      "icons": [
+        "FlipFaceDown",
+        "PlayCardNow"
+      ],
       "count": 3
     },
     {
@@ -68,6 +91,11 @@
         "Echidna deals {H + 2} melee damage to the hero target with the lowest HP.",
         "Search the villain deck for an 'Engulfed' card and put it into play. Shuffle the villain deck."
       ],
+      "icons": [
+        "DealDamageMelee",
+        "Search",
+        "PlayCardNow"
+      ]
       "count": 3
     },
     {
@@ -75,6 +103,9 @@
       "title": "Squad Tactics",
       "keywords": [ "ongoing" ],
       "body": "Increase damage dealt by villain targets by 1.",
+      "icons": [
+        "IncreaseDamageDealt"
+      ],
       "count": 2
     },
     {
@@ -82,6 +113,9 @@
       "title": "Crush",
       "keywords": [ "one-shot" ],
       "body": "{EchidnaCharacter} deals {H} melee damage to any hero target with an 'Engulfed' card next to them.",
+      "icons": [
+        "DealDamageMelee"
+      ],
       "count": 3
     },
     {
@@ -89,6 +123,9 @@
       "title": "Psychological Warfare",
       "keywords": [ "ongoing" ],
       "body": "At the start of the villain turn {EchidnaCharacter} deals 2 psychic damage to all hero targets.",
+      "icons": [
+        "DealDamagePsychic"
+      ],
       "count": 2
     },
     {
@@ -96,6 +133,10 @@
       "title": "Clone Army",
       "keywords": [ "ongoing" ],
       "body": "At the end of the villain turn play the top card of the Twisted deck.",
+      "icons": [
+        "EndOfTurnAction",
+        "PlayCardNow"
+      ],
       "count": 2
     },
     {
@@ -103,6 +144,10 @@
       "title": "Slippery",
       "keywords": [ "one-shot" ],
       "body": "A player may discard their hand. If no cards were discarded, {EchidnaCharacter} is immune to damage until the start of her next turn.",
+      "icons": [
+        "Discard",
+        "ImmuneToDamage"
+      ],
       "count": 3
     }
   ],
@@ -122,6 +167,11 @@
             "At the end of the villain turn this card deals 2 melee damage to the hero with the highest HP.",
             "The first time {EchidnaCharacter} would be dealt damage each round prevent that damage."
           ],
+          "icons": [
+            "EndOfTurnAction",
+            "DealDamageMelee",
+            "CancelDamageRed"
+          ],
           "count": 1
         },
         {
@@ -133,6 +183,11 @@
           "body": [
             "At the end of the villain turn destroy a hero Equipment card.",
             "Whenever an Equipment card enters play this card regains 5 HP."
+          ],
+          "icons": [
+            "EndOfTurnAction",
+            "DestroyEquipment",
+            "GainHP"
           ],
           "count": 1
         },
@@ -146,6 +201,11 @@
             "At the start of each hero turn this card deals that hero 1 melee damage.",
             "This card is immune to melee damage."
           ],
+          "icons": [
+            "StartOfTurnAction",
+            "DealDamageMelee",
+            "ImmuneToDamageMelee"
+          ],
           "count": 1
         },
         {
@@ -158,6 +218,11 @@
             "At the start of the villain turn play the top card of the villain deck.",
             "At the end of the villain turn this card deals 2 melee damage to the hero target with the lowest HP."
           ],
+          "icons": [
+            "StartAndEndOfTurnAction",
+            "PlayCardNow",
+            "DealDamageMelee"
+          ],
           "count": 1
         },
         {
@@ -169,6 +234,11 @@
           "body": [
             "At the end of the villain turn place a Charge token on this card.",
             "At the start of the villain turn this card deals the hero target with the highest HP X energy damage, where X = 2 + the number of Charge tokens on this card."
+          ],
+          "icons": [
+            "StartAndEndOfTurnAction",
+            "AddTokens",
+            "DealDamageEnergy"
           ],
           "count": 1,
           "tokenPools": [
@@ -192,6 +262,13 @@
             "At the end of the villain turn this card deals 5 psychic damage to all hero targets.",
             "At the start of the villain turn, if there's a Power token on this card, Ignis Fatuus has reached full power. [b]GAME OVER[/b]. Otherwise, put a Power token on this card."
           ],
+          "icons": [
+            "StartAndEndOfTurnActions",
+            "DealDamagePsychic",
+            "LoseTheGame",
+            "AddTokens",
+            "Manipulate"
+          ],
           "count": 1,
           "tokenPools": [
             {
@@ -213,6 +290,12 @@
             "At the end of the villain turn put the top card of the Twisted deck into play, then shuffle the Twisted with the lowest HP back into the Twisted deck.",
             "Reduce damage dealt to villain targets by 1."
           ],
+          "icons": [
+            "EndOfTurnAction",
+            "PlayCardNow",
+            "Manipulate",
+            "ReduceDamageDealt"
+          ],
           "count": 1
         },
         {
@@ -224,6 +307,11 @@
           "body": [
             "At the end of the villain turn this card deals 1 psychic damage to all hero targets.",
             "Prevent the first damage dealt to this card each round."
+          ],
+          "icons": [
+            "EndOfTurnAction",
+            "DealDamagePsychic",
+            "CancelledDamageRed"
           ],
           "count": 1
         },
@@ -237,6 +325,10 @@
             "At the end of the villain turn all villain targets regain 2 HP.",
             "The first time each round a villain target would be reduced to 0 or fewer HP restore that target's HP to 1."
           ],
+          "icons": [
+            "EndTurnAction",
+            "GainHP"
+          ],
           "count": 1
         },
         {
@@ -249,6 +341,11 @@
             "Villain cards cannot be damaged or destroyed by Environment cards.",
             "At the end of the villain turn put the top card of the Environment deck into play."
           ],
+          "icons": [
+            "EndOfTurnAction",
+            "ImmuneToDamage",
+            "PlayCardNow"
+          ],
           "count": 1
         },
         {
@@ -260,6 +357,12 @@
           "body": [
             "At the end of the villain turn this card deals the hero target with the highest HP X irreducible energy damage, where X = 2 + the number of Energy tokens on this card. Then remove all Energy tokens from this card.",
             "Whenever this card takes damage put an Energy token on it."
+          ],
+          "icons": [
+            "EndOfTurnAction",
+            "DealDamageEnergy",
+            "AddTokens",
+            "RemoveTokens"
           ],
           "count": 1,
           "tokenPools": [
