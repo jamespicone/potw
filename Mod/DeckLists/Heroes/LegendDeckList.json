@@ -9,12 +9,12 @@
       "count": 1,
       "body": "Coruscation",
       "hitpoints": 28,
-      "powers": [ "Choose an effect, then apply it to a target" ],
-      "gameplay": "[u]effect[/u]: Legend deals 2 energy damage",
+      "powers": [ "Choose an effect, then apply it to a target." ],
+      "gameplay": "[u]effect[/u]: Legend deals 2 energy damage.",
       "activatableAbilities": [
         {
           "name": "effect",
-          "text": "Legend deals 2 energy damage"
+          "text": "Legend deals 2 energy damage."
         }
       ],
       "icons": [
@@ -28,9 +28,9 @@
       },
       "complexity": 2,
       "incapacitatedAbilities": [
-        "Legend deals 1 energy damage to a target",
-        "A player may use a power",
-        "A player may draw a card"
+        "Legend deals 1 energy damage to a target.",
+        "A player may use a power.",
+        "A player may draw a card."
       ],
       "flippedIcons": [
         "DealDamageEnergy",
@@ -48,7 +48,7 @@
         "MakeDamageUnredirectable"
       ],
       "powers": [
-        "Choose an effect, then apply it to a target.{BR}If any Effect you choose for this power does damage, that damage is irreducible, cannot be redirected, and damages targets that are immune to damage"
+        "Choose an effect, then apply it to a target.{BR}If any Effect you choose for this power does damage, that damage is irreducible, cannot be redirected, and damages targets that are immune to damage."
       ],
       "flavorReference": "Tattletale, Agitation 3.11",
       "flavorQuotes": [
@@ -67,7 +67,7 @@
         "HasPower"
       ],
       "powers": [
-        "Choose an effect, then apply it to up to 3 targets"
+        "Choose an effect, then apply it to up to 3 targets."
       ],
       "flavorText": "He raised one hand, and a laser beam{BR}shot forth, splitting into eight smaller{BR}beams that bent in the air.",
       "flavorReference": "Prey 14.7",
@@ -81,7 +81,7 @@
         "HasPower"
       ],
       "powers": [
-        "Choose an effect, then apply it to all targets except Legend"
+        "Choose an effect, then apply it to all targets except Legend."
       ],
       "flavorQuotes": [
         {
@@ -123,7 +123,7 @@
       "activatableAbilities": [
         {
           "name": "effect",
-          "text": "Legend deals 1 cold damage. Targets dealt damage in this way deal 1 less damage until the start of your next turn"
+          "text": "Legend deals 1 cold damage. Targets dealt damage in this way deal 1 less damage until the start of your next turn."
         }
       ],
       "flavorReference": "Interlude 12.5",
@@ -149,7 +149,7 @@
       "activatableAbilities": [
         {
           "name": "effect",
-          "text": "Select a damage type. Legend deals 2 damage of that type"
+          "text": "Select a damage type. Legend deals 2 damage of that type."
         }
       ],
       "flavorText": "A section of the street was torn{BR}free and flipped through the air.{BR}Legend blasted it out of existence{BR}with an indigo flash of light.",
@@ -166,7 +166,7 @@
       "activatableAbilities": [
         {
           "name": "effect",
-          "text": "Legend deals X energy damage, where X = 5 - the number of targets affected, minimum 1"
+          "text": "Legend deals X energy damage, where X = 5 - the number of targets affected, minimum 1."
         }
       ],
       "flavorText": "Veteran member and leader of{BR}the Protectorate, his lasers carried as{BR}much firepower as a battalion of tanks.",
@@ -178,7 +178,7 @@
       "title": "Burst",
       "keywords": [ "one-shot" ],
       "icons": [],
-      "body": "This turn, when you would choose an Effect, instead choose any number of Effects",
+      "body": "This turn, when you would choose an Effect, instead choose any number of Effects.",
       "flavorText": "Legend became a blur within{BR}the field. Then, in a matter of two{BR}or three seconds, the entire space{BR}filled with a red light.",
       "flavorReference": "Scarab 25.6",
       "count": 2
@@ -201,8 +201,8 @@
         }
       ],
       "body": [
-        "Whenever Legend takes damage place a Charge token on this card",
-        "Whenever Legend deals damage you may remove a Charge token from this card to increase the damage by 1"
+        "Whenever Legend takes damage place a Charge token on this card.",
+        "Whenever Legend deals damage you may remove a Charge token from this card to increase the damage by 1."
       ],
       "flavorText": "The whiplike tail struck Legend,{BR}and there was a firework display of light{BR}and sparks, Legend tumbling out of the{BR}sky, head over heels.",
       "flavorReference": "Extermination 8.3",
@@ -229,7 +229,7 @@
         "ImmuneToDamage"
       ],
       "body": [
-        "Legend and Legend's cards cannot be affected by Environment cards"
+        "Legend and Legend's cards cannot be affected by Environment cards."
       ],
       "flavorText": "He'd wondered sometimes if his ability{BR}to fly was meant for travel on{BR}an interstellar level.",
       "flavorReference": "Interlude 14.5",
@@ -243,7 +243,7 @@
         "DestroyEnvironment",
         "DestroyOngoing"
       ],
-      "body": "Destroy an Ongoing or Environment card",
+      "body": "Destroy an Ongoing or Environment card.",
       "flavorText": "The beams turned at right{BR}angles to strike Leviathan in precise{BR}areas, knocking his feet from under him,{BR}slamming him down into the road,{BR}catching him under the chin.",
       "flavorReference": "Extermination 8.3",
       "count": 3
@@ -256,7 +256,7 @@
         "PlayCardNow",
         "GainHP"
       ],
-      "body": "Each other player may either have one of their characters regain 2 HP or play a card",
+      "body": "Each other player may either have one of their characters regain 2 HP or play a card.",
       "flavorReference": "Legend, Extermination 8.2",
       "flavorQuotes": [
         {
@@ -278,10 +278,10 @@
         "DrawCardNow"
       ],
       "body": [
-        "You may use an additional power each turn",
-        "Reduce damage dealt by Legend by 1",
-        "Reduce damage dealt to Legend by 1",
-        "At the start of your turn you may destroy this card. If you do, draw a card"
+        "You may use an additional power each turn.",
+        "Reduce damage dealt by Legend by 1.",
+        "Reduce damage dealt to Legend by 1.",
+        "At the start of your turn you may destroy this card. If you do, draw a card."
       ],
       "flavorText": "A man who blazed with light{BR}stepped forward. He was a living bonfire,{BR}blue-white in color, with living etchings solid{BR}in the midst of it, white hot, a stylized mixture{BR}of flame and lightning in one shape,{BR}floating in the storm of energy.",
       "flavorReference": "",
@@ -294,7 +294,7 @@
       "icons": [
         "DealDamageEnergy"
       ],
-      "body": "Legend deals 3 energy damage to all villain targets",
+      "body": "Legend deals 3 energy damage to all villain targets.",
       "flavorText": "If Alexandria was the flying{BR}bruiser that just about every other flying{BR}bruiser strove to match up to, then{BR}Legend was at the head of the pack when{BR}it came to being flying artillery.",
       "flavorReference": "Extermination 8.1",
       "count": 4
@@ -308,7 +308,7 @@
         "PlayCardNow"
       ],
       "body": [
-        "Whenever Legend is dealt damage by a villain or environment target, you may draw a card or play a card"
+        "Whenever Legend is dealt damage by a villain or environment target, you may draw a card or play a card."
       ],
       "flavorText": "He absorbed energy of a variety{BR}of kinds, including the kinetic energy{BR}that was transferred with a punch{BR}or with a bullet.",
       "flavorReference": "Interlude 14.5",
@@ -322,8 +322,8 @@
         "PlayCardNow"
       ],
       "body": [
-        "You may play a card",
-        "You may play a card"
+        "You may play a card.",
+        "You may play a card."
       ],
       "flavorText": "Legend's flight powers let him{BR}accelerate to a speed that exceeded{BR}sound and continue accelerating,{BR}to no hard limit.",
       "flavorReference": "Interlude 14.5",

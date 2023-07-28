@@ -48,7 +48,7 @@
 				"At the end of the villain turn, put a Scream token on this card. Then, this card deals each hero target X psychic damage, where X is the number of Scream tokens on this card."
 			],
 			"flippedAdvanced": [
-				"At the end of the villain turn, put a Trap card from off to the side into play"
+				"At the end of the villain turn, put a Trap card from off to the side into play."
 			],
 			"flippedIcons": [
 				"ReduceDamageTaken",
@@ -204,7 +204,7 @@
 			],
 			"body": [
 				"If there are no face-down villain cards in play, play the top card of the villain deck.",
-				"Otherwise, flip a face-down villain card, then shuffle this card into the villain deck"
+				"Otherwise, flip a face-down villain card, then shuffle this card into the villain deck."
 			],
 			"icons": [
 				"PlayCardNow",
@@ -397,7 +397,7 @@
 			"count": 2,
 			"title": "Thinker Countermeasures",
 			"body": [
-				"Whenever a face-down villain card would be flipped instead remove this card from the game"
+				"Whenever a face-down villain card would be flipped instead remove this card from the game."
 			],
 			"icons": [
 				"DestroySelf"

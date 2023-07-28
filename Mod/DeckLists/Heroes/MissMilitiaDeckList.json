@@ -159,7 +159,7 @@
 				"weapon"
 			],
 			"powers": [
-				"Until the end of your next turn activate [b]Machete[/b] effects{BR}{MissMilitiaCharacter} deals a non-hero target 2 melee damage.{BR}[b]SMG[/b]: {MissMilitiaCharacter} deals that target 3 melee damage."
+				"Until the end of your next turn activate [b]Machete[/b] effects.{BR}{MissMilitiaCharacter} deals a non-hero target 2 melee damage.{BR}[b]SMG[/b]: {MissMilitiaCharacter} deals that target 3 melee damage."
 			],
 			"icons": [
 				"HasPower",
@@ -217,7 +217,7 @@
 				"weapon"
 			],
 			"powers": [
-				"Until the end of your next turn activate [b]Pistol[/b] effects{BR}{MissMilitiaCharacter} deals a non-hero target 2 projectile damage.{BR}[b]SMG:[/b] you may play a card."
+				"Until the end of your next turn activate [b]Pistol[/b] effects.{BR}{MissMilitiaCharacter} deals a non-hero target 2 projectile damage.{BR}[b]SMG:[/b] you may play a card."
 			],
 			"icons": [
 				"HasPower",
@@ -236,7 +236,7 @@
 				"weapon"
 			],
 			"powers": [
-				"Until the end of your next turn activate [b]Sniper[/b] effects{BR}Discard a card. Select a target. At the start of your next turn, {MissMilitiaCharacter} deals that target 4 projectile damage.{BR}[b]Pistol[/b]: draw 3 cards."
+				"Until the end of your next turn activate [b]Sniper[/b] effects.{BR}Discard a card. Select a target. At the start of your next turn, {MissMilitiaCharacter} deals that target 4 projectile damage.{BR}[b]Pistol[/b]: draw 3 cards."
 			],
 			"icons": [
 				"HasPower",
@@ -257,7 +257,7 @@
 				"weapon"
 			],
 			"powers": [
-				"Until the end of your next turn activate [b]SMG[/b] effects{BR}{MissMilitiaCharacter} deals up to 3 non-hero targets 1 projectile damage each.{BR}[b]Machete[/b]: you may destroy an Ongoing or environment card.{BR}[b]Sniper[/b]: you may put a non-hero non-character target in play on top of its deck."
+				"Until the end of your next turn activate [b]SMG[/b] effects.{BR}{MissMilitiaCharacter} deals up to 3 non-hero targets 1 projectile damage each.{BR}[b]Machete[/b]: you may destroy an Ongoing or environment card.{BR}[b]Sniper[/b]: you may put a non-hero non-character target in play on top of its deck."
 			],
 			"icons": [
 				"HasPower",

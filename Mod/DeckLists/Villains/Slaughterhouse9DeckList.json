@@ -13,7 +13,7 @@
       "icons": [],
       "backgroundColor": "ffffff",
       "setup": [ "Search the Villain deck for all Nine cards, shuffle them, and put them under this card. Move the top {H} cards from under this card into the villain play area." ],
-      "gameplay": [ "Whenever a Nine card would be destroyed, flip it instead. Whenever no villain targets are in play, the heroes win the game" ],
+      "gameplay": [ "Whenever a Nine card would be destroyed, flip it instead. Whenever no villain targets are in play, the heroes win the game." ],
       "openingLines": {
         "default": "Do your worst. Because if you don't, we will."
       },
@@ -39,11 +39,11 @@
       "nemesisIdentifiers": [ "Skitter" ],
       "flippedBody": "Incapacitated",
       "gameplay": [
-        "Once per turn, when an Attack card enters the trash, this card deals X melee damage to each hero, where X = 2 * the number of Powers controlled by that player",
-        "Once per turn, when a Special card enters the trash, play the top card of the villain deck"
+        "Once per turn, when an Attack card enters the trash, this card deals X melee damage to each hero, where X = 2 * the number of Powers controlled by that player.",
+        "Once per turn, when a Special card enters the trash, play the top card of the villain deck."
       ],
       "flippedGameplay": [
-        "Whenever a hero uses a power this card deals that hero 1 melee damage"
+        "Whenever a hero uses a power this card deals that hero 1 melee damage."
       ],
       "icons": [],
       "flippedIcons": []
@@ -60,11 +60,11 @@
       "nemesisIdentifiers": [ "Grue", "GutsAndGlory" ],
       "flippedBody": "Incapacitated",
       "gameplay": [
-        "Once per turn, when a Defence card enters the trash each villain target regains 2 HP",
-        "Once per turn, when a Special card enters the trash this card deals 2 toxic damage to all non-villain targets"
+        "Once per turn, when a Defence card enters the trash each villain target regains 2 HP.",
+        "Once per turn, when a Special card enters the trash this card deals 2 toxic damage to all non-villain targets."
       ],
       "flippedGameplay": [
-        "At the end of the villain turn the villain target with the lowest HP regains 1 HP"
+        "At the end of the villain turn the villain target with the lowest HP regains 1 HP."
       ],
       "icons": [],
       "flippedIcons": []
@@ -83,10 +83,10 @@
       "gameplay": [
         "Whenever Crawler is dealt damage he becomes immune to that damage type until the next time he takes damage.",
         "Once per turn, when an Attack card enters the trash this card deals 2 toxic damage and 2 melee damage to the non-villain target with the highest HP.",
-        "Once per turn, when a Special card enters the trash this card regains 30 HP"
+        "Once per turn, when a Special card enters the trash this card regains 30 HP."
       ],
       "flippedGameplay": [
-        "At the end of the villain turn this card deals 2 melee damage to the hero target with the lowest HP"
+        "At the end of the villain turn this card deals 2 melee damage to the hero target with the lowest HP."
       ],
       "icons": [],
       "flippedIcons": []
@@ -103,11 +103,11 @@
       "nemesisIdentifiers": [ "Labyrinth" ],
       "flippedBody": "Incapacitated",
       "gameplay": [
-        "Once per turn, when a Special card enters the trash destroy all environment cards, then Burnscar deals X fire damage to all non-villain targets, where X = 1 + the number of environment cards destroyed in this way",
-        "Once per turn, when an Attack card enters the trash this card deals 3 fire damage to the hero target with the lowest HP, then destroy a noncharacter hero card"
+        "Once per turn, when a Special card enters the trash destroy all environment cards, then Burnscar deals X fire damage to all non-villain targets, where X = 1 + the number of environment cards destroyed in this way.",
+        "Once per turn, when an Attack card enters the trash this card deals 3 fire damage to the hero target with the lowest HP, then destroy a noncharacter hero card."
       ],
       "flippedGameplay": [
-        "At the end of the villain turn this card deals 1 fire damage to all non-villain targets"
+        "At the end of the villain turn this card deals 1 fire damage to all non-villain targets."
       ],
       "icons": [],
       "flippedIcons": []
@@ -124,11 +124,11 @@
       "nemesisIdentifiers": [ "Armsmaster" ],
       "flippedBody": "Incapacitated",
       "gameplay": [
-        "Reduce damage dealt to Mannequin by 1",
-        "Once per turn, when a Defence card enters the trash destroy 1 hero Ongoing or Equipment card"
+        "Reduce damage dealt to Mannequin by 1.",
+        "Once per turn, when a Defence card enters the trash destroy 1 hero Ongoing or Equipment card."
       ],
       "flippedGameplay": [
-        "Reduce damage dealt to the villain target with the lowest HP by 1"
+        "Reduce damage dealt to the villain target with the lowest HP by 1."
       ],
       "icons": [],
       "flippedIcons": []
@@ -145,10 +145,10 @@
       "nemesisIdentifiers": [ "Regent" ],
       "flippedBody": "Incapacitated",
       "gameplay": [
-        "Once per turn, when an Attack card enters the trash Shatterbird deals 2 projectile damage to the {H - 1} hero targets with the highest HP"
+        "Once per turn, when an Attack card enters the trash Shatterbird deals 2 projectile damage to the {H - 1} hero targets with the highest HP."
       ],
       "flippedGameplay": [
-        "At the end of the villain turn this card deals 1 projectile damage to all non-villain targets"
+        "At the end of the villain turn this card deals 1 projectile damage to all non-villain targets."
       ],
       "icons": [],
       "flippedIcons": []
@@ -165,10 +165,10 @@
       "nemesisIdentifiers": [ "Bitch" ],
       "flippedBody": "Incapacitated",
       "gameplay": [
-        "The Nine target played just before and just after The Siberian are immune to damage"
+        "The Nine target played just before and just after The Siberian are immune to damage."
       ],
       "flippedGameplay": [
-        "The villain target with the lowest HP is immune to melee damage"
+        "The villain target with the lowest HP is immune to melee damage."
       ],
       "icons": [],
       "flippedIcons": []
@@ -185,11 +185,11 @@
       "nemesisIdentifiers": [ "Regent" ],
       "flippedBody": "Incapacitated",
       "gameplay": [
-        "Once per turn, when a Defence card enters the trash the hero with the most cards in hand discards 2 cards",
-        "Whenever Cherish has more than 0 HP and is dealt damage by a non-villain target, Cherish deals 2 psychic damage to that target"
+        "Once per turn, when a Defence card enters the trash the hero with the most cards in hand discards 2 cards.",
+        "Whenever Cherish has more than 0 HP and is dealt damage by a non-villain target, Cherish deals 2 psychic damage to that target."
       ],
       "flippedGameplay": [
-        "Whenever a target is destroyed during a hero's turn, that hero deals themselves 1 psychic damage"
+        "Whenever a target is destroyed during a hero's turn, that hero deals themselves 1 psychic damage."
       ],
       "icons": [],
       "flippedIcons": []
@@ -200,7 +200,7 @@
       "title": "Murder Rat",
       "hitpoints": 8,
       "count": 1,
-      "body": "At the end of the villain turn Murder Rat deals 2 melee damage to the hero target with the lowest HP",
+      "body": "At the end of the villain turn Murder Rat deals 2 melee damage to the hero target with the lowest HP.",
       "keywords": [ "parahuman" ],
       "icons": [],
       "flavorText": "She pushed herself free of the vent,{BR}lunging, drawing her claws together as if{BR}she were diving into water from a height.",
@@ -211,7 +211,7 @@
       "title": "Hatchet Face",
       "hitpoints": 8,
       "count": 1,
-      "body": "Heroes may not use powers",
+      "body": "Heroes may not use powers.",
       "keywords": [ "parahuman" ],
       "icons": [],
       "flavorQuotes": [
@@ -227,7 +227,7 @@
       "title": "Spiderbots",
       "hitpoints": 4,
       "count": 4,
-      "body": "At the end of the villain turn this card deals X melee damage to the hero target with the lowest HP, where X = 1 + the number of Spiderbots in play",
+      "body": "At the end of the villain turn this card deals X melee damage to the hero target with the lowest HP, where X = 1 + the number of Spiderbots in play.",
       "keywords": [ "device" ],
       "nemesisIdentifiers": [ "Battery" ],
       "icons": [],
@@ -238,7 +238,7 @@
       "identifier": "TheyreAllBetterNow",
       "title": "They're All Better Now",
       "count": 1,
-      "body": "Flip the most recently defeated Nine card and set their HP to 10. If no cards are flipped in this way play the top card of the villain deck",
+      "body": "Flip the most recently defeated Nine card and set their HP to 10. If no cards are flipped in this way play the top card of the villain deck.",
       "keywords": [ "one-shot", "defence" ],
       "icons": [],
       "flavorText": "Her mind leaped into action,{BR}reaching for knowledge she hadn't had{BR}earlier in the night,{BR}knowledge of how to fix people.",
@@ -248,7 +248,7 @@
       "identifier": "YouveBeenAnticipated",
       "title": "You've Been Anticipated",
       "count": 2,
-      "body": "Each player discards 2 cards",
+      "body": "Each player discards 2 cards.",
       "keywords": [ "one-shot", "defence" ],
       "icons": [],
       "flavorText": "I fumbled for the gun,{BR}using my bugs to get a sense for where{BR}it was. In the same motion that I pointed{BR}it, Jack slapped it out of my hand{BR}with two slashes of his knife.",
@@ -258,7 +258,7 @@
       "identifier": "SomeLightEntertainment",
       "title": "Some Light Entertainment",
       "count": 2,
-      "body": "Each villain target in play deals 2 melee damage to the hero target with the highest HP",
+      "body": "Each villain target in play deals 2 melee damage to the hero target with the highest HP.",
       "keywords": [ "one-shot", "attack" ],
       "icons": [],
       "flavorText": "If and when the{BR}Slaughterhouse Nine do eliminate{BR}five of the six candidates, or if any{BR}candidates leave the city, the Nine are{BR}prepared to penalize the city for{BR}their failure",
@@ -270,7 +270,7 @@
       "count": 2,
       "body": [
         "Each hero may destroy any number of Equipment cards.",
-        "The Nine card with the highest HP deals each hero target X projectile damage, where X = 2 * the number of Equipment cards in play"
+        "The Nine card with the highest HP deals each hero target X projectile damage, where X = 2 * the number of Equipment cards in play."
       ],
       "keywords": [ "one-shot", "attack" ],
       "icons": [],
@@ -281,7 +281,7 @@
       "identifier": "Legendary",
       "title": "Legendary",
       "count": 2,
-      "body": "Increase damage dealt by villain cards by 1",
+      "body": "Increase damage dealt by villain cards by 1.",
       "keywords": [ "ongoing", "special" ],
       "icons": [],
       "flavorQuotes": [
@@ -296,7 +296,7 @@
       "identifier": "LessThanHuman",
       "title": "Less Than Human",
       "count": 2,
-      "body": "Reduce damage dealt to villain targets by 1",
+      "body": "Reduce damage dealt to villain targets by 1.",
       "keywords": [ "ongoing", "defence" ],
       "icons": [],
       "flavorText": "Bonesaw spat blood onto the ground.{BR}Being impaled in the heart{BR}hadn't put her down.",
@@ -306,7 +306,7 @@
       "identifier": "SomeMoreFriends",
       "title": "Some More Friends",
       "count": 2,
-      "body": "Move the top card under the Slaughterhouse 9 card into the villain play area. Play the top card of the villain deck",
+      "body": "Move the top card under the Slaughterhouse 9 card into the villain play area. Play the top card of the villain deck.",
       "keywords": [ "one-shot" ],
       "icons": [],
       "flavorText": "He raised one hand,{BR}and Burnscar slapped it{BR}in a lazy high-five",
@@ -316,7 +316,7 @@
       "identifier": "ShallWePlayAGame",
       "title": "Shall We Play a Game?",
       "count": 2,
-      "body": "If Jack Slash is not in play, find Jack Slash under the Slaughterhouse 9 card and put him into the villain play area. Jack Slash deals 2 psychic damage to all hero targets",
+      "body": "If Jack Slash is not in play, find Jack Slash under the Slaughterhouse 9 card and put him into the villain play area. Jack Slash deals 2 psychic damage to all hero targets.",
       "keywords": [ "one-shot", "special" ],
       "icons": [],
       "flavorText": "He smiled.{BR}These challenges, after all,{BR}served as his own carrot.",
@@ -327,8 +327,8 @@
       "title": "Change the Rules",
       "count": 2,
       "body": [
-        "The heroes can't win the game",
-        "Shuffle the Nine target with the lowest HP back under the Slaughterhouse 9 card. Move 2 cards from under the Slaughterhouse 9 card into the villain play area"
+        "The heroes can't win the game.",
+        "Shuffle the Nine target with the lowest HP back under the Slaughterhouse 9 card. Move 2 cards from under the Slaughterhouse 9 card into the villain play area."
       ],
       "keywords": [ "one-shot", "defence" ],
       "icons": [],

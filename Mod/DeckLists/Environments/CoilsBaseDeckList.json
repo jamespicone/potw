@@ -33,7 +33,7 @@
 			"hitpoints": 8,
 			"body": [
 				"Reduce all fire and projectile damage by X, where X is the number of times damage has been dealt this turn.",
-				"At the start of the environment turn this card deals itself 1 irreducible melee damage"
+				"At the start of the environment turn this card deals itself 1 irreducible melee damage."
 			],
 			"icons": [
 				"ReduceDamageTakenFire",
@@ -184,7 +184,7 @@
 			"count": 1,
 			"title": "Stranger and Master Protocols",
 			"body": [
-				"Hero cards cannot affect or be affected by other heroes' cards and effects",
+				"Hero cards cannot affect or be affected by other heroes' cards and effects.",
 				"At the start of their turn, a player may skip the rest of their turn to destroy this card."
 			],
 			"icons": [
@@ -208,7 +208,7 @@
 			"hitpoints": 6,
 			"body": [
 				"Heroes cannot use powers.",
-				"At the start of the environment turn this card deals 2 projectile damage to the {H} nonenvironment targets with the highest HP, then destroys itself"
+				"At the start of the environment turn this card deals 2 projectile damage to the {H} nonenvironment targets with the highest HP, then destroys itself."
 			],
 			"icons": [
 				"CannotUsePowers",

@@ -28,7 +28,7 @@
         "Reduce damage dealt to Lung by 1."
       ],
       "flippedIcons": ["Destroy", "CannotPlayCards", "ReduceDamageTaken"],
-      "flippedAdvanced": "When flipped to this side, the heroes lose the game",
+      "flippedAdvanced": "When flipped to this side, the heroes lose the game.",
       "flippedAdvancedIcons": ["LoseTheGame"],
       "flippedNemesisIdentifiers": [ "Skitter" ]
     },

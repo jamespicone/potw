@@ -12,7 +12,7 @@
       "hitpoints": 30,
       "gameplay": [
         "If you can use {Trigger} powers this card gains the power:",
-        "[b]Power:[/b] Select a player. That player may use a{BR}        power now"
+        "[b]Power:[/b] Select a player. That player may use a{BR}        power now."
       ],
       "powers": [
         "Put a Darkness card into play next to {GrueCharacter}. Put a Darkness card into play next to another target."
@@ -29,9 +29,9 @@
       },
       "complexity": 2,
       "incapacitatedAbilities": [
-        "Select a target. Reduce the next damage dealt to that target by 1",
-        "{GrueCharacter} deals 2 melee damage to a target",
-        "Destroy an Ongoing card"
+        "Select a target. Reduce the next damage dealt to that target by 1.",
+        "{GrueCharacter} deals 2 melee damage to a target.",
+        "Destroy an Ongoing card."
       ],
       "flippedIcons": [
         "ReduceDamageDealt",
@@ -44,10 +44,10 @@
       "title": "Darkness",
       "keywords": [ "ongoing" ],
       "body": [
-        "This card doesn't reduce damage dealt by {GrueCharacter}",
-        "Reduce the first damage that would be dealt each turn by the card next to this card by 1",
-        "Reduce the first damage that would be dealt each turn to the card next to this card by 1",
-        "At the end of {GrueCharacter}'s next turn or when this card leaves play remove this card from the game"
+        "This card doesn't reduce damage dealt by {GrueCharacter}.",
+        "Reduce the first damage that would be dealt each turn by the card next to this card by 1.",
+        "Reduce the first damage that would be dealt each turn to the card next to this card by 1.",
+        "At the end of {GrueCharacter}'s next turn or when this card leaves play remove this card from the game."
       ],
       "icons": [ "ReduceDamageDealt", "ReduceDamageTaken", "DestroySelf", "EndOfTurnAction", "RemoveFromGame" ],
       "flavorText": "An absolute lack of light{BR}that left me unable to tell whether{BR}my eyes were open or shut,{BR}it was ominous.",
@@ -60,7 +60,7 @@
       "keywords": [ "one-shot" ],
       "body": [
         "{GrueCharacter} deals 2 melee damage to a non-hero target.",
-        "If you deal damage to a target with a Darkness card next to it you may destroy an Ongoing card"
+        "If you deal damage to a target with a Darkness card next to it you may destroy an Ongoing card."
       ],
       "icons": [ "DealDamageMelee", "DestroyOngoing" ],
       "flavorText": "A shadow fell over my vision,{BR}like a jet black curtain sweeping{BR}in front of me,",
@@ -72,7 +72,7 @@
       "title": "Canny Combatant",
       "keywords": [ "one-shot" ],
       "body": [
-        "{GrueCharacter} deals X melee damage to a non-hero target, where X = 2 + the number of Ongoing cards in play"
+        "{GrueCharacter} deals X melee damage to a non-hero target, where X = 2 + the number of Ongoing cards in play."
       ],
       "icons": [ "DealDamageMelee" ],
       "flavorText": "An instant after I realized that{BR}I didn't actually have bugs on Browbeat,{BR}the figure struck Vista across the side{BR}of the head, laying her flat.",
@@ -85,7 +85,7 @@
       "keywords": [ "one-shot" ],
       "body": [
         "Put a Darkness card in play next to a hero character card.",
-        "That hero regains 2 HP and that hero's player may draw 2 cards"
+        "That hero regains 2 HP and that hero's player may draw 2 cards."
       ],
       "icons": [ "DrawCardNow", "GainHP" ],
       "flavorQuotes": [
@@ -102,7 +102,7 @@
       "title": "Hand-to-Hand Assault",
       "keywords": [ "one-shot" ],
       "body": [
-        "{GrueCharacter} deals 2 melee damage to a non-hero target. If that target has a Darkness card next to it {GrueCharacter} deals that target another 2 melee damage"
+        "{GrueCharacter} deals 2 melee damage to a non-hero target. If that target has a Darkness card next to it {GrueCharacter} deals that target another 2 melee damage."
       ],
       "icons": [ "DealDamageMelee" ],
       "flavorQuotes": [
@@ -119,8 +119,8 @@
       "title": "Darken the Area",
       "keywords": [ "one-shot" ],
       "body": [
-        "Until the start of your next turn whenever an environment target enters play put a Darkness card next to it",
-        "You may destroy an environment card"
+        "Until the start of your next turn whenever an environment target enters play put a Darkness card next to it.",
+        "You may destroy an environment card."
       ],
       "icons": [ "PlayCardNow", "DestroyEnvironment" ],
       "flavorText": "Grue raised his arms,{BR}and filled the street with darkness.",
@@ -132,7 +132,7 @@
       "title": "Snatch and Grab",
       "keywords": [ "one-shot" ],
       "body": [
-        "Destroy up to 2 Ongoing cards"
+        "Destroy up to 2 Ongoing cards."
       ],
       "icons": [ "DestroyOngoing" ],
       "flavorQuotes": [
@@ -149,8 +149,8 @@
       "title": "Cover the Getaway",
       "keywords": [ "one-shot" ],
       "body": [
-        "Put a Darkness card next to each hero character card",
-        "You may destroy an Environment card"
+        "Put a Darkness card next to each hero character card.",
+        "You may destroy an Environment card."
       ],
       "icons": [ "DestroyEnvironment", "PlayCardNow" ],
       "flavorText": "If Grue was doing what we'd{BR}planned, he was filling every street{BR}and side street we passed{BR}with darkness.",
@@ -162,7 +162,7 @@
       "title": "Skull Helmet",
       "keywords": [ "equipment", "limited" ],
       "body": [
-        "Whenever a Darkness card is placed next to a target, {GrueCharacter} may deal that target 1 psychic damage"
+        "Whenever a Darkness card is placed next to a target, {GrueCharacter} may deal that target 1 psychic damage."
       ],
       "icons": [ "DealDamagePsychic" ],
       "flavorText": "The full-face visor was sculpted{BR}to look like a stylized skull,{BR}and was as black as{BR}the rest of his costume",
@@ -174,7 +174,7 @@
       "title": "Leathers",
       "keywords": [ "equipment", "limited" ],
       "body": [
-        "Reduce non-psychic damage dealt to {GrueCharacter} by 1"
+        "Reduce non-psychic damage dealt to {GrueCharacter} by 1."
       ],
       "icons": [ "ReduceDamageDealt" ],
       "flavorText": "He was dressed entirely in black,{BR}a costume I realized was basically{BR}motorcycle leathers and a{BR}motorcycle helmet.",
@@ -186,9 +186,9 @@
       "title": "Second Trigger",
       "keywords": [ "one-shot" ],
       "body": [
-        "For the rest of the game increase damage dealt to {GrueCharacter} by 1",
-        "For the rest of the game you may use {Trigger} powers",
-        "Remove this card from the game"
+        "For the rest of the game increase damage dealt to {GrueCharacter} by 1.",
+        "For the rest of the game you may use {Trigger} powers.",
+        "Remove this card from the game."
       ],
       "icons": [ "IncreaseDamageDealt", "RemoveFromGame" ],
       "flavorQuotes": [
@@ -205,7 +205,7 @@
       "title": "Leadership",
       "keywords": [ "ongoing", "limited" ],
       "body": [
-        "Increase damage dealt by hero targets by 1"
+        "Increase damage dealt by hero targets by 1."
       ],
       "icons": [ "IncreaseDamageDealt" ],
       "flavorText": "Grue took a leadership role when{BR}needed, but he wasn't in charge of us.{BR}Not exactly.",
@@ -217,8 +217,8 @@
       "title": "Stillness",
       "keywords": [ "ongoing", "limited" ],
       "body": [
-        "Reduce all fire, sonic, lightning, and energy damage that would be dealt to or by a target with a Darkness card next to it by 1",
-        "At the start of your turn put a Darkness card into play next to a target"
+        "Reduce all fire, sonic, lightning, and energy damage that would be dealt to or by a target with a Darkness card next to it by 1.",
+        "At the start of your turn put a Darkness card into play next to a target."
       ],
       "icons": [ "StartOfTurnAction", "ReduceDamageDealtFire", "ReduceDamageDealtSonic", "ReduceDamageDealtLightning", "ReduceDamageDealtEnergy", "PlayCardNow" ],
       "flavorQuotes": [
@@ -235,9 +235,9 @@
       "title": "Martial Talent",
       "keywords": [ "ongoing", "limited" ],
       "body": [
-        "Increase melee damage dealt by {GrueCharacter} by 1"
+        "Increase melee damage dealt by {GrueCharacter} by 1."
       ],
-      "powers": [ "{GrueCharacter} deals a target 2 melee damage" ],
+      "powers": [ "{GrueCharacter} deals a target 2 melee damage." ],
       "icons": [ "DealDamageMelee", "IncreaseDamageDealt", "HasPower" ],
       "flavorText": "As he explained it, he was more{BR}interested in the broader strokes{BR}and philosophy of a given style{BR}than on the particulars.",
       "flavorReference": "Monarch 16.7",
@@ -250,7 +250,7 @@
       "body": [
         "When this card enters play {GrueCharacter} deals himself 3 psychic damage; then put a Darkness card into play next to a hero character card.",
         "Hero targets with a Darkness card next to them are immune to damage dealt by non-hero targets.",
-        "At the start of your turn destroy this card"
+        "At the start of your turn destroy this card."
       ],
       "icons": [ "DealDamagePsychic", "PlayCardNow", "ImmuneToDamage", "StartOfTurnAction", "DestroySelf" ],
       "flavorText": "More of it just kept pouring{BR}from his hand, climbing upwards{BR}to cover the top of the room.",

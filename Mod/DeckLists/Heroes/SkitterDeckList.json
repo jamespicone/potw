@@ -343,7 +343,7 @@
       "hitpoints": 8,
       "body": [
         "{SkitterCharacter} is immune to damage from environment cards.",
-        "At the end of your turn draw a card"
+        "At the end of your turn draw a card."
       ],
       "icons": [
         "EndOfTurnAction",

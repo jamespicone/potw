@@ -26,9 +26,9 @@
       },
       "complexity": 1,
       "incapacitatedAbilities": [
-        "1 player draws 1 card",
-        "1 player plays 1 card",
-        "1 player regains 2 HP"
+        "1 player draws 1 card.",
+        "1 player plays 1 card.",
+        "1 player regains 2 HP."
       ],
       "flippedIcons": [
         "DrawCardNow",
@@ -227,7 +227,7 @@
         "Whenever Jessica Yamada would take damage from a non-hero card, redirect that damage to the hero with the lowest HP other than Jessica Yamada."
       ],
       "icons": [ "HasPower", "GainHP", "DrawCardNow" ],
-      "powers": [ "Another hero either regains 2 HP or draws a card" ],
+      "powers": [ "Another hero either regains 2 HP or draws a card." ],
       "character": true,
       "backgroundColor": "ffffff",
       "openingLines": {
@@ -235,9 +235,9 @@
       },
       "complexity": 1,
       "incapacitatedAbilities": [
-        "1 player draws 1 card",
-        "1 player plays 1 card",
-        "1 player regains 2 HP"
+        "1 player draws 1 card.",
+        "1 player plays 1 card.",
+        "1 player regains 2 HP."
       ],
       "flippedIcons": [
         "DrawCardNow",
@@ -257,7 +257,7 @@
         "Jessica Yamada is indestructible while she has more than 0 HP."
       ],
       "icons": [ "HasPower", "GainHP", "DrawCardNow" ],
-      "powers": [ "Another hero either regains 2 HP or draws a card" ],
+      "powers": [ "Another hero either regains 2 HP or draws a card." ],
       "character": true,
       "backgroundColor": "ffffff",
       "openingLines": {
@@ -265,9 +265,9 @@
       },
       "complexity": 1,
       "incapacitatedAbilities": [
-        "1 player draws 1 card",
-        "1 player plays 1 card",
-        "1 player regains 2 HP"
+        "1 player draws 1 card.",
+        "1 player plays 1 card.",
+        "1 player regains 2 HP."
       ],
       "flippedIcons": [
         "DrawCardNow",
@@ -285,7 +285,7 @@
         "Jessica Yamada is not a target."
       ],
       "icons": [ "HasPower", "GainHP", "DrawCardNow" ],
-      "powers": [ "Another hero either regains 2 HP or draws a card" ],
+      "powers": [ "Another hero either regains 2 HP or draws a card." ],
       "character": true,
       "backgroundColor": "ffffff",
       "openingLines": {
@@ -293,9 +293,9 @@
       },
       "complexity": 1,
       "incapacitatedAbilities": [
-        "1 player draws 1 card",
-        "1 player plays 1 card",
-        "1 player regains 2 HP"
+        "1 player draws 1 card.",
+        "1 player plays 1 card.",
+        "1 player regains 2 HP."
       ],
       "flippedIcons": [
         "DrawCardNow",
@@ -342,7 +342,7 @@
         "If there are no hero targets in play, incapacitate Jessica Yamada."
       ],
       "icons": [ "HasPower", "GainHP", "DrawCardNow", "CannotDealDamage", "FlipFaceDown" ],
-      "powers": [ "Another player either regains 2 HP or draws a card" ],
+      "powers": [ "Another player either regains 2 HP or draws a card." ],
       "character": true,
       "isReal": false,
       "backgroundColor": "ffffff",

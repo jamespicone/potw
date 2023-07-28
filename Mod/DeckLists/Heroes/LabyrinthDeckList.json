@@ -73,7 +73,7 @@
       "body": [
         "This is an environment card",
         "Play this on top of an environment card. Cards under this card have no text. If there are no cards under this card, destroy it.",
-        "When a noncharacter target enters play you may destroy an Environment card. If you do, that target has no game text until the start of your next turn"
+        "When a noncharacter target enters play you may destroy an Environment card. If you do, that target has no game text until the start of your next turn."
       ],
       "icons": [
         "DestroyEnvironment",
