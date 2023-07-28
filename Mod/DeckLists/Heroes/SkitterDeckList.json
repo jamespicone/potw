@@ -21,7 +21,7 @@
       "openingLines": {
         "default": "Don't underestimate me."
       },
-      "complexity": 2,
+      "complexity": 3,
       "incapacitatedAbilities": [
         "The environment deals 1 toxic damage to a target.",
         "One player draws a card.",

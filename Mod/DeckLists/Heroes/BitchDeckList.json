@@ -16,17 +16,17 @@
 			"openingLines": {
 				"default": "We going to have a problem?"
 			},
-      "complexity": 1,
+      "complexity": 2,
       "incapacitatedAbilities": [
         "One target regains 2 HP.",
         "One player may take a card from their trash into their hand.",
         "Reduce damage dealt by environment targets by 2 until the start of your next turn."
       ],
       "flippedIcons": [
-	   "GainHP",
-	   "Manipulate",
-	   "ReduceDamageDealt"
-	  ]
+			 "GainHP",
+			 "Manipulate",
+			 "ReduceDamageDealt"
+			]
     },
 		{
 			"identifier": "Angelica",

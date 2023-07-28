@@ -19,7 +19,7 @@
       "openingLines": {
         "default": "This was over from the moment you stepped into the room."
       },
-      "complexity": 2,
+      "complexity": 3,
       "incapacitatedAbilities": [
         "One target regains 2 HP.",
         "{ArmsmasterCharacter} deals 1 irreducible melee damage to a target.",

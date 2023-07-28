@@ -20,7 +20,7 @@
       "openingLines": {
         "default": "When I say I'll do something, I make it happen"
       },
-      "complexity": 3,
+      "complexity": 2,
       "incapacitatedAbilities": [
         "Select a target. Until the start of your next turn reduce damage dealt to that target by 1",
         "One player may search their deck for a card and put it into their hand",

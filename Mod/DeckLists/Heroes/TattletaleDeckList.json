@@ -34,7 +34,7 @@
         "PlayCardNow",
         "DestroyOngoing"
       ],
-      "complexity": 2,
+      "complexity": 1,
       "openingLines": {
         "default": "Quit embarrassing yourself."
       }
