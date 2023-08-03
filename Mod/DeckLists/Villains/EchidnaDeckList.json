@@ -326,7 +326,7 @@
             "The first time each round a villain target would be reduced to 0 or fewer HP restore that target's HP to 1."
           ],
           "icons": [
-            "EndTurnAction",
+            "EndOfTurnAction",
             "GainHP"
           ],
           "count": 1
