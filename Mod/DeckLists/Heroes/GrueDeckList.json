@@ -40,21 +40,6 @@
       ]
     },
     {
-      "identifier": "Darkness",
-      "title": "Darkness",
-      "keywords": [ "ongoing" ],
-      "body": [
-        "This card doesn't reduce damage dealt by {GrueCharacter}.",
-        "Reduce the first damage that would be dealt each turn by the card next to this card by 1.",
-        "Reduce the first damage that would be dealt each turn to the card next to this card by 1.",
-        "At the end of {GrueCharacter}'s next turn or when this card leaves play remove this card from the game."
-      ],
-      "icons": [ "ReduceDamageDealt", "ReduceDamageTaken", "DestroySelf", "EndOfTurnAction", "RemoveFromGame" ],
-      "flavorText": "An absolute lack of light{BR}that left me unable to tell whether{BR}my eyes were open or shut,{BR}it was ominous.",
-      "flavorReference": "Insinuation 2.8",
-      "count": 1
-    },
-    {
       "identifier": "Blinding",
       "title": "Blinding",
       "keywords": [ "one-shot" ],
@@ -80,22 +65,45 @@
       "count": 3
     },
     {
-      "identifier": "HideAndRecover",
-      "title": "Hide and Recover",
+      "identifier": "CoverTheGetaway",
+      "title": "Cover the Getaway",
       "keywords": [ "one-shot" ],
       "body": [
-        "Put a Darkness card in play next to a hero character card.",
-        "That hero regains 2 HP and that hero's player may draw 2 cards."
+        "Put a Darkness card next to each hero character card.",
+        "You may destroy an Environment card."
       ],
-      "icons": [ "DrawCardNow", "GainHP" ],
-      "flavorQuotes": [
-        {
-          "identifier": "Grue",
-          "text": "Skitter is right. We retreat."
-        }
+      "icons": [ "DestroyEnvironment", "PlayCardNow" ],
+      "flavorText": "If Grue was doing what we'd{BR}planned, he was filling every street{BR}and side street we passed{BR}with darkness.",
+      "flavorReference": "Agitation 3.12",
+      "count": 4
+    },
+    {
+      "identifier": "DarkenTheArea",
+      "title": "Darken the Area",
+      "keywords": [ "one-shot" ],
+      "body": [
+        "Until the start of your next turn whenever an environment target enters play put a Darkness card next to it.",
+        "You may destroy an environment card."
       ],
-      "flavorReference": "Grue, Buzz 7.7",
+      "icons": [ "PlayCardNow", "DestroyEnvironment" ],
+      "flavorText": "Grue raised his arms,{BR}and filled the street with darkness.",
+      "flavorReference": "Agitation 3.12",
       "count": 3
+    },
+    {
+      "identifier": "Darkness",
+      "title": "Darkness",
+      "keywords": [ "ongoing" ],
+      "body": [
+        "This card doesn't reduce damage dealt by {GrueCharacter}.",
+        "Reduce the first damage that would be dealt each turn by the card next to this card by 1.",
+        "Reduce the first damage that would be dealt each turn to the card next to this card by 1.",
+        "At the end of {GrueCharacter}'s next turn or when this card leaves play remove this card from the game."
+      ],
+      "icons": [ "ReduceDamageDealt", "ReduceDamageTaken", "DestroySelf", "EndOfTurnAction", "RemoveFromGame" ],
+      "flavorText": "An absolute lack of light{BR}that left me unable to tell whether{BR}my eyes were open or shut,{BR}it was ominous.",
+      "flavorReference": "Insinuation 2.8",
+      "count": 1
     },
     {
       "identifier": "HandToHandAssault",
@@ -115,58 +123,33 @@
       "count": 3
     },
     {
-      "identifier": "DarkenTheArea",
-      "title": "Darken the Area",
+      "identifier": "HideAndRecover",
+      "title": "Hide and Recover",
       "keywords": [ "one-shot" ],
       "body": [
-        "Until the start of your next turn whenever an environment target enters play put a Darkness card next to it.",
-        "You may destroy an environment card."
+        "Put a Darkness card in play next to a hero character card.",
+        "That hero regains 2 HP and that hero's player may draw 2 cards."
       ],
-      "icons": [ "PlayCardNow", "DestroyEnvironment" ],
-      "flavorText": "Grue raised his arms,{BR}and filled the street with darkness.",
-      "flavorReference": "Agitation 3.12",
-      "count": 3
-    },
-    {
-      "identifier": "SnatchAndGrab",
-      "title": "Snatch and Grab",
-      "keywords": [ "one-shot" ],
-      "body": [
-        "Destroy up to 2 Ongoing cards."
-      ],
-      "icons": [ "DestroyOngoing" ],
+      "icons": [ "DrawCardNow", "GainHP" ],
       "flavorQuotes": [
         {
-          "identifier": "Tattletale",
-          "text": "Brian's new powers.{BR}He was copying powers from the people who were in the darkness, yeah?"
+          "identifier": "Grue",
+          "text": "Skitter is right. We retreat."
         }
       ],
-      "flavorReference": "Tattletale, Prey 14.1",
+      "flavorReference": "Grue, Buzz 7.7",
       "count": 3
     },
     {
-      "identifier": "CoverTheGetaway",
-      "title": "Cover the Getaway",
-      "keywords": [ "one-shot" ],
+      "identifier": "Leadership",
+      "title": "Leadership",
+      "keywords": [ "ongoing", "limited" ],
       "body": [
-        "Put a Darkness card next to each hero character card.",
-        "You may destroy an Environment card."
+        "Increase damage dealt by hero targets by 1."
       ],
-      "icons": [ "DestroyEnvironment", "PlayCardNow" ],
-      "flavorText": "If Grue was doing what we'd{BR}planned, he was filling every street{BR}and side street we passed{BR}with darkness.",
-      "flavorReference": "Agitation 3.12",
-      "count": 4
-    },
-    {
-      "identifier": "SkullHelmet",
-      "title": "Skull Helmet",
-      "keywords": [ "equipment", "limited" ],
-      "body": [
-        "Whenever a Darkness card is placed next to a target, {GrueCharacter} may deal that target 1 psychic damage."
-      ],
-      "icons": [ "DealDamagePsychic" ],
-      "flavorText": "The full-face visor was sculpted{BR}to look like a stylized skull,{BR}and was as black as{BR}the rest of his costume",
-      "flavorReference": "Gestation 1.5",
+      "icons": [ "IncreaseDamageDealt" ],
+      "flavorText": "Grue took a leadership role when{BR}needed, but he wasn't in charge of us.{BR}Not exactly.",
+      "flavorReference": "Hive 5.2",
       "count": 3
     },
     {
@@ -180,6 +163,19 @@
       "flavorText": "He was dressed entirely in black,{BR}a costume I realized was basically{BR}motorcycle leathers and a{BR}motorcycle helmet.",
       "flavorReference": "Gestation 1.5",
       "count": 3
+    },
+    {
+      "identifier": "MartialTalent",
+      "title": "Martial Talent",
+      "keywords": [ "ongoing", "limited" ],
+      "body": [
+        "Increase melee damage dealt by {GrueCharacter} by 1."
+      ],
+      "powers": [ "{GrueCharacter} deals a target 2 melee damage." ],
+      "icons": [ "DealDamageMelee", "IncreaseDamageDealt", "HasPower" ],
+      "flavorText": "As he explained it, he was more{BR}interested in the broader strokes{BR}and philosophy of a given style{BR}than on the particulars.",
+      "flavorReference": "Monarch 16.7",
+      "count": 2
     },
     {
       "identifier": "SecondTrigger",
@@ -201,15 +197,46 @@
       "count": 1
     },
     {
-      "identifier": "Leadership",
-      "title": "Leadership",
-      "keywords": [ "ongoing", "limited" ],
+      "identifier": "SkullHelmet",
+      "title": "Skull Helmet",
+      "keywords": [ "equipment", "limited" ],
       "body": [
-        "Increase damage dealt by hero targets by 1."
+        "Whenever a Darkness card is placed next to a target, {GrueCharacter} may deal that target 1 psychic damage."
       ],
-      "icons": [ "IncreaseDamageDealt" ],
-      "flavorText": "Grue took a leadership role when{BR}needed, but he wasn't in charge of us.{BR}Not exactly.",
-      "flavorReference": "Hive 5.2",
+      "icons": [ "DealDamagePsychic" ],
+      "flavorText": "The full-face visor was sculpted{BR}to look like a stylized skull,{BR}and was as black as{BR}the rest of his costume",
+      "flavorReference": "Gestation 1.5",
+      "count": 3
+    },
+    {
+      "identifier": "SnatchAndGrab",
+      "title": "Snatch and Grab",
+      "keywords": [ "one-shot" ],
+      "body": [
+        "Destroy up to 2 Ongoing cards."
+      ],
+      "icons": [ "DestroyOngoing" ],
+      "flavorQuotes": [
+        {
+          "identifier": "Tattletale",
+          "text": "Brian's new powers.{BR}He was copying powers from the people who were in the darkness, yeah?"
+        }
+      ],
+      "flavorReference": "Tattletale, Prey 14.1",
+      "count": 3
+    },
+    {
+      "identifier": "SpewDarkness",
+      "title": "Spew Darkness",
+      "keywords": [ "ongoing" ],
+      "body": [
+        "When this card enters play {GrueCharacter} deals himself 3 psychic damage; then put a Darkness card into play next to a hero character card.",
+        "Hero targets with a Darkness card next to them are immune to damage dealt by non-hero targets.",
+        "At the start of your turn destroy this card."
+      ],
+      "icons": [ "DealDamagePsychic", "PlayCardNow", "ImmuneToDamage", "StartOfTurnAction", "DestroySelf" ],
+      "flavorText": "More of it just kept pouring{BR}from his hand, climbing upwards{BR}to cover the top of the room.",
+      "flavorReference": "Insinuation 2.9",
       "count": 3
     },
     {
@@ -227,35 +254,8 @@
           "text": "It's not just hearing.{BR}It also cuts off radio signals{BR}and dampens the effects of radiation."
         }
       ],
-      "flavorReference": "Tattletale, Insinuation 2.9", 
+      "flavorReference": "Tattletale, Insinuation 2.9",
       "count": 2
-    },
-    {
-      "identifier": "MartialTalent",
-      "title": "Martial Talent",
-      "keywords": [ "ongoing", "limited" ],
-      "body": [
-        "Increase melee damage dealt by {GrueCharacter} by 1."
-      ],
-      "powers": [ "{GrueCharacter} deals a target 2 melee damage." ],
-      "icons": [ "DealDamageMelee", "IncreaseDamageDealt", "HasPower" ],
-      "flavorText": "As he explained it, he was more{BR}interested in the broader strokes{BR}and philosophy of a given style{BR}than on the particulars.",
-      "flavorReference": "Monarch 16.7",
-      "count": 2
-    },
-    {
-      "identifier": "SpewDarkness",
-      "title": "Spew Darkness",
-      "keywords": [ "ongoing" ],
-      "body": [
-        "When this card enters play {GrueCharacter} deals himself 3 psychic damage; then put a Darkness card into play next to a hero character card.",
-        "Hero targets with a Darkness card next to them are immune to damage dealt by non-hero targets.",
-        "At the start of your turn destroy this card."
-      ],
-      "icons": [ "DealDamagePsychic", "PlayCardNow", "ImmuneToDamage", "StartOfTurnAction", "DestroySelf" ],
-      "flavorText": "More of it just kept pouring{BR}from his hand, climbing upwards{BR}to cover the top of the room.",
-      "flavorReference": "Insinuation 2.9",
-      "count": 3
     }
   ]
 }
