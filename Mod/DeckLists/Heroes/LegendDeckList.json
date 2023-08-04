@@ -39,6 +39,92 @@
       ]
     },
     {
+      "identifier": "Barrage",
+      "title": "Barrage",
+      "keywords": [ "one-shot" ],
+      "icons": [
+        "DealDamageEnergy"
+      ],
+      "body": "Legend deals 3 energy damage to all villain targets.",
+      "flavorText": "If Alexandria was the flying{BR}bruiser that just about every other flying{BR}bruiser strove to match up to, then{BR}Legend was at the head of the pack when{BR}it came to being flying artillery.",
+      "flavorReference": "Extermination 8.1",
+      "count": 4
+    },
+    {
+      "identifier": "BounceBack",
+      "title": "Bounce Back",
+      "keywords": [ "ongoing", "limited" ],
+      "icons": [
+        "AddTokens",
+        "IncreaseDamageDealt"
+      ],
+      "tokenPools": [
+        {
+          "identifier": "ChargePool",
+          "name": "Charge Pool",
+          "initialValue": 0,
+          "minimumValue": 0,
+          "color": "0000ff"
+        }
+      ],
+      "body": [
+        "Whenever Legend takes damage place a Charge token on this card.",
+        "Whenever Legend deals damage you may remove a Charge token from this card to increase the damage by 1."
+      ],
+      "flavorText": "The whiplike tail struck Legend,{BR}and there was a firework display of light{BR}and sparks, Legend tumbling out of the{BR}sky, head over heels.",
+      "flavorReference": "Extermination 8.3",
+      "count": 2
+    },
+    {
+      "identifier": "BreakerState",
+      "title": "Breaker State",
+      "keywords": [ "ongoing", "limited" ],
+      "icons": [
+        "UsePowerExtra",
+        "ReduceDamageDealt",
+        "ReduceDamageTaken",
+        "DestroySelf",
+        "DrawCardNow"
+      ],
+      "body": [
+        "You may use an additional power each turn.",
+        "Reduce damage dealt by Legend by 1.",
+        "Reduce damage dealt to Legend by 1.",
+        "At the start of your turn you may destroy this card. If you do, draw a card."
+      ],
+      "flavorText": "A man who blazed with light{BR}stepped forward. He was a living bonfire,{BR}blue-white in color, with living etchings solid{BR}in the midst of it, white hot, a stylized mixture{BR}of flame and lightning in one shape,{BR}floating in the storm of energy.",
+      "flavorReference": "",
+      "count": 2
+    },
+    {
+      "identifier": "Burst",
+      "title": "Burst",
+      "keywords": [ "one-shot" ],
+      "icons": [],
+      "body": "This turn, when you would choose an Effect, instead choose any number of Effects.",
+      "flavorText": "Legend became a blur within{BR}the field. Then, in a matter of two{BR}or three seconds, the entire space{BR}filled with a red light.",
+      "flavorReference": "Scarab 25.6",
+      "count": 2
+    },
+    {
+      "identifier": "Charisma",
+      "title": "Charisma",
+      "keywords": [ "one-shot" ],
+      "icons": [
+        "PlayCardNow",
+        "GainHP"
+      ],
+      "body": "Each other player may either have one of their characters regain 2 HP or play a card.",
+      "flavorReference": "Legend, Extermination 8.2",
+      "flavorQuotes": [
+        {
+          "identifier": "Legend",
+          "text": "Capes!{BR}If you have faced an Endbringer before,{BR}[b]stand![/b]"
+        }
+      ],
+      "count": 3
+    },
+    {
       "identifier": "Curveshot",
       "title": "Curveshot",
       "keywords": [ "ongoing", "laser" ],
@@ -60,44 +146,18 @@
       "count": 2
     },
     {
-      "identifier": "Splitshot",
-      "title": "Splitshot",
-      "keywords": [ "ongoing", "laser" ],
+      "identifier": "EnergyConversion",
+      "title": "Energy Conversion",
+      "keywords": [ "ongoing" ],
       "icons": [
-        "HasPower"
+        "DrawCardNow",
+        "PlayCardNow"
       ],
-      "powers": [
-        "Choose an effect, then apply it to up to 3 targets."
+      "body": [
+        "Whenever Legend is dealt damage by a villain or environment target, you may draw a card or play a card."
       ],
-      "flavorText": "He raised one hand, and a laser beam{BR}shot forth, splitting into eight smaller{BR}beams that bent in the air.",
-      "flavorReference": "Prey 14.7",
-      "count": 2
-    },
-    {
-      "identifier": "Scattershot",
-      "title": "Scattershot",
-      "keywords": [ "ongoing", "laser" ],
-      "icons": [
-        "HasPower"
-      ],
-      "powers": [
-        "Choose an effect, then apply it to all targets except Legend."
-      ],
-      "flavorQuotes": [
-        {
-          "identifier": "Antares",
-          "text": "Sleeper?"
-        },
-        {
-          "identifier": "Tattletale",
-          "text": "Restless but still around.{BR}Earth Zayin in the palm of his hand.{BR}He started to emerge, Legend faced him down."
-        },
-        {
-          "identifier": "Antares",
-          "text": "[b]How?[/b]"
-        }
-      ],
-      "flavorReference": "Sundown 17.9",
+      "flavorText": "He absorbed energy of a variety{BR}of kinds, including the kinetic energy{BR}that was transferred with a punch{BR}or with a bullet.",
+      "flavorReference": "Interlude 14.5",
       "count": 2
     },
     {
@@ -157,6 +217,47 @@
       "count": 2
     },
     {
+      "identifier": "Luminal",
+      "title": "Luminal",
+      "keywords": [ "one-shot" ],
+      "icons": [
+        "DrawCardNow",
+        "UsePowerExtra"
+      ],
+      "body": [ "Draw 3 cards.", "You may use an additional power this turn." ],
+      "flavorText": "He'd absorbed light, heat and{BR}ambient radiation while he flew, and he{BR}felt restored. Even the mildest wear and{BR}tear had been tended to, his body{BR}restored to peak condition.",
+      "flavorReference": "Interlude 14.5",
+      "count": 3
+    },
+    {
+      "identifier": "PreciseTargeting",
+      "title": "Precise Targeting",
+      "keywords": [ "one-shot" ],
+      "icons": [
+        "DestroyEnvironment",
+        "DestroyOngoing"
+      ],
+      "body": "Destroy an Ongoing or Environment card.",
+      "flavorText": "The beams turned at right{BR}angles to strike Leviathan in precise{BR}areas, knocking his feet from under him,{BR}slamming him down into the road,{BR}catching him under the chin.",
+      "flavorReference": "Extermination 8.3",
+      "count": 3
+    },
+    {
+      "identifier": "Relativistic",
+      "title": "Relativistic",
+      "keywords": [ "one-shot" ],
+      "icons": [
+        "PlayCardNow"
+      ],
+      "body": [
+        "You may play a card.",
+        "You may play a card."
+      ],
+      "flavorText": "Legend's flight powers let him{BR}accelerate to a speed that exceeded{BR}sound and continue accelerating,{BR}to no hard limit.",
+      "flavorReference": "Interlude 14.5",
+      "count": 3
+    },
+    {
       "identifier": "Scatterblast",
       "title": "Scatterblast",
       "keywords": [ "ongoing", "laser" ],
@@ -174,52 +275,31 @@
       "count": 2
     },
     {
-      "identifier": "Burst",
-      "title": "Burst",
-      "keywords": [ "one-shot" ],
-      "icons": [],
-      "body": "This turn, when you would choose an Effect, instead choose any number of Effects.",
-      "flavorText": "Legend became a blur within{BR}the field. Then, in a matter of two{BR}or three seconds, the entire space{BR}filled with a red light.",
-      "flavorReference": "Scarab 25.6",
-      "count": 2
-    },
-    {
-      "identifier": "BounceBack",
-      "title": "Bounce Back",
-      "keywords": [ "ongoing", "limited" ],
+      "identifier": "Scattershot",
+      "title": "Scattershot",
+      "keywords": [ "ongoing", "laser" ],
       "icons": [
-        "AddTokens",
-        "IncreaseDamageDealt"
+        "HasPower"
       ],
-      "tokenPools": [
+      "powers": [
+        "Choose an effect, then apply it to all targets except Legend."
+      ],
+      "flavorQuotes": [
         {
-          "identifier": "ChargePool",
-          "name": "Charge Pool",
-          "initialValue": 0,
-          "minimumValue": 0,
-          "color": "0000ff"
+          "identifier": "Antares",
+          "text": "Sleeper?"
+        },
+        {
+          "identifier": "Tattletale",
+          "text": "Restless but still around.{BR}Earth Zayin in the palm of his hand.{BR}He started to emerge, Legend faced him down."
+        },
+        {
+          "identifier": "Antares",
+          "text": "[b]How?[/b]"
         }
       ],
-      "body": [
-        "Whenever Legend takes damage place a Charge token on this card.",
-        "Whenever Legend deals damage you may remove a Charge token from this card to increase the damage by 1."
-      ],
-      "flavorText": "The whiplike tail struck Legend,{BR}and there was a firework display of light{BR}and sparks, Legend tumbling out of the{BR}sky, head over heels.",
-      "flavorReference": "Extermination 8.3",
+      "flavorReference": "Sundown 17.9",
       "count": 2
-    },
-    {
-      "identifier": "Luminal",
-      "title": "Luminal",
-      "keywords": [ "one-shot" ],
-      "icons": [
-        "DrawCardNow",
-        "UsePowerExtra"
-      ],
-      "body": [ "Draw 3 cards.", "You may use an additional power this turn." ],
-      "flavorText": "He'd absorbed light, heat and{BR}ambient radiation while he flew, and he{BR}felt restored. Even the mildest wear and{BR}tear had been tended to, his body{BR}restored to peak condition.",
-      "flavorReference": "Interlude 14.5",
-      "count": 3
     },
     {
       "identifier": "SkyHigh",
@@ -236,98 +316,18 @@
       "count": 2
     },
     {
-      "identifier": "PreciseTargeting",
-      "title": "Precise Targeting",
-      "keywords": [ "one-shot" ],
+      "identifier": "Splitshot",
+      "title": "Splitshot",
+      "keywords": [ "ongoing", "laser" ],
       "icons": [
-        "DestroyEnvironment",
-        "DestroyOngoing"
+        "HasPower"
       ],
-      "body": "Destroy an Ongoing or Environment card.",
-      "flavorText": "The beams turned at right{BR}angles to strike Leviathan in precise{BR}areas, knocking his feet from under him,{BR}slamming him down into the road,{BR}catching him under the chin.",
-      "flavorReference": "Extermination 8.3",
-      "count": 3
-    },
-    {
-      "identifier": "Charisma",
-      "title": "Charisma",
-      "keywords": [ "one-shot" ],
-      "icons": [
-        "PlayCardNow",
-        "GainHP"
+      "powers": [
+        "Choose an effect, then apply it to up to 3 targets."
       ],
-      "body": "Each other player may either have one of their characters regain 2 HP or play a card.",
-      "flavorReference": "Legend, Extermination 8.2",
-      "flavorQuotes": [
-        {
-          "identifier": "Legend",
-          "text": "Capes!{BR}If you have faced an Endbringer before,{BR}[b]stand![/b]"
-        }
-      ],
-      "count": 3
-    },
-    {
-      "identifier": "BreakerState",
-      "title": "Breaker State",
-      "keywords": [ "ongoing", "limited" ],
-      "icons": [
-        "UsePowerExtra",
-        "ReduceDamageDealt",
-        "ReduceDamageTaken",
-        "DestroySelf",
-        "DrawCardNow"
-      ],
-      "body": [
-        "You may use an additional power each turn.",
-        "Reduce damage dealt by Legend by 1.",
-        "Reduce damage dealt to Legend by 1.",
-        "At the start of your turn you may destroy this card. If you do, draw a card."
-      ],
-      "flavorText": "A man who blazed with light{BR}stepped forward. He was a living bonfire,{BR}blue-white in color, with living etchings solid{BR}in the midst of it, white hot, a stylized mixture{BR}of flame and lightning in one shape,{BR}floating in the storm of energy.",
-      "flavorReference": "",
+      "flavorText": "He raised one hand, and a laser beam{BR}shot forth, splitting into eight smaller{BR}beams that bent in the air.",
+      "flavorReference": "Prey 14.7",
       "count": 2
-    },
-    {
-      "identifier": "Barrage",
-      "title": "Barrage",
-      "keywords": [ "one-shot" ],
-      "icons": [
-        "DealDamageEnergy"
-      ],
-      "body": "Legend deals 3 energy damage to all villain targets.",
-      "flavorText": "If Alexandria was the flying{BR}bruiser that just about every other flying{BR}bruiser strove to match up to, then{BR}Legend was at the head of the pack when{BR}it came to being flying artillery.",
-      "flavorReference": "Extermination 8.1",
-      "count": 4
-    },
-    {
-      "identifier": "EnergyConversion",
-      "title": "Energy Conversion",
-      "keywords": [ "ongoing" ],
-      "icons": [
-        "DrawCardNow",
-        "PlayCardNow"
-      ],
-      "body": [
-        "Whenever Legend is dealt damage by a villain or environment target, you may draw a card or play a card."
-      ],
-      "flavorText": "He absorbed energy of a variety{BR}of kinds, including the kinetic energy{BR}that was transferred with a punch{BR}or with a bullet.",
-      "flavorReference": "Interlude 14.5",
-      "count": 2
-    },
-    {
-      "identifier": "Relativistic",
-      "title": "Relativistic",
-      "keywords": [ "one-shot" ],
-      "icons": [
-        "PlayCardNow"
-      ],
-      "body": [
-        "You may play a card.",
-        "You may play a card."
-      ],
-      "flavorText": "Legend's flight powers let him{BR}accelerate to a speed that exceeded{BR}sound and continue accelerating,{BR}to no hard limit.",
-      "flavorReference": "Interlude 14.5",
-      "count": 3
     }
   ]
 }
