@@ -9,9 +9,9 @@ using Jp.SOTMUtilities;
 
 namespace Jp.ParahumansOfTheWormverse.Alexandria
 {
-    public class HypersonicFlightCardController : CardController
+    public class SupersonicFlightCardController : CardController
     {
-        public HypersonicFlightCardController(Card card, TurnTakerController controller) : base(card, controller)
+        public SupersonicFlightCardController(Card card, TurnTakerController controller) : base(card, controller)
         { }
 
         public override IEnumerator Play()
