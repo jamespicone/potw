@@ -42,48 +42,6 @@
       }
     },
     {
-      "identifier": "GiantChessboard",
-      "count": 2,
-      "title": "Giant Chessboard",
-      "keywords": [
-        "shaping"
-      ],
-      "body": [
-        "This is an environment card.",
-        "Play this on top of an environment card. Cards under this card have no text. If there are no cards under this card, destroy it.",
-        "At the end of {LabyrinthCharacter}'s turn you may destroy an Environment card. If you do, this card deals X melee damage to a target where X is the number of Shaping cards in play."
-      ],
-      "icons": [
-        "EndOfTurnAction",
-        "DealDamageMelee",
-        "DestroyEnvironment",
-        "DestroySelf"
-      ],
-      "flavorText": "Under our feet,{BR}the road began to shift in color,{BR}with some patches becoming paler,{BR}and others darkening.",
-      "flavorReference": "Hive 5.7",
-      "kind": "environment"
-    },
-    {
-      "identifier": "DeviousLabyrinth",
-      "count": 2,
-      "title": "Devious Labyrinth",
-      "keywords": [
-        "shaping"
-      ],
-      "body": [
-        "This is an environment card",
-        "Play this on top of an environment card. Cards under this card have no text. If there are no cards under this card, destroy it.",
-        "When a noncharacter target enters play you may destroy an Environment card. If you do, that target has no game text until the start of your next turn."
-      ],
-      "icons": [
-        "DestroyEnvironment",
-        "DestroySelf"
-      ],
-      "flavorText": "Stone walls heaved upward{BR}from the mounds of broken tile,{BR}blocking my path and stopping at a height{BR}of twelve or more feet.{BR}",
-      "flavorReference": "Infestation 11.7",
-      "kind": "environment"
-    },
-    {
       "identifier": "BeautifulGarden",
       "count": 2,
       "title": "Beautiful Garden",
@@ -103,69 +61,6 @@
       "flavorText": "...walls stripped away{BR}to become tendrils, tendrils{BR}became vines and vines twisted{BR}together into treelike forms.{BR}",
       "flavorReference": "Interlude 18",
       "kind": "environment"
-    },
-    {
-      "identifier": "TheAsylum",
-      "count": 2,
-      "title": "The Asylum",
-      "keywords": [
-        "shaping"
-      ],
-      "body": [
-        "This is an environment card",
-        "Play this on top of an environment card. Cards under this card have no text. If there are no cards under this card, destroy it.",
-        "At the end of {LabyrinthCharacter}'s turn this card deals 2 psychic damage to all villain targets.",
-        "At the end of {LabyrinthCharacter}'s turn this card deals 3 irreducible psychic damage to {LabyrinthCharacter}."
-      ],
-      "icons": [
-        "DealDamagePsychic",
-        "DestroySelf"
-      ],
-      "flavorText": "Her thoughts turned{BR}to the bad place, the biggest of{BR}her worlds, the world she had{BR}spent the most time in.{BR}",
-      "flavorReference": "Interlude 11c",
-      "kind": "environment"
-    },
-    {
-      "identifier": "MightyCastle",
-      "count": 2,
-      "title": "Mighty Castle",
-      "keywords": [
-        "shaping"
-      ],
-      "body": [
-        "This is an environment card",
-        "Play this on top of an environment card. Cards under this card have no text. If there are no cards under this card, destroy it.",
-        "At the end of {LabyrinthCharacter}'s turn pick a target. Until the start of Labyrinth's next turn, reduce damage dealt to that target by 1."
-      ],
-      "icons": [
-        "ReduceDamageDealt",
-        "DestroySelf"
-      ],
-      "flavorText": "The ground cracked{BR}and bulged upward as though{BR}a mole was tunneling at high speeds{BR}just beneath the tile.{BR}",
-      "flavorReference": "Infestation 11.7",
-      "kind": "environment"
-    },
-    {
-      "identifier": "PageThrough",
-      "count": 3,
-      "title": "Page Through",
-      "keywords": [
-        "ongoing"
-      ],
-      "body": [
-        "At the end of your turn put the top card of the environment deck under Labyrinth."
-      ],
-      "powers": [
-        "Draw 2 cards. Reveal the top 2 cards of the environment deck. Discard up to 1 card; put the rest into play in any order."
-      ],
-      "icons": [
-        "Manipulate",
-        "DrawCardNow",
-        "HasPower",
-        "EndOfTurnAction"
-      ],
-      "flavorText": "The lonely hallways... no.{BR}The burning towers.{BR}Definitely no.",
-      "flavorReference": "Interlude 11c."
     },
     {
       "identifier": "CallInTheCrew",
@@ -233,96 +128,6 @@
       ]
     },
     {
-      "identifier": "Disassociation",
-      "count": 2,
-      "title": "Disassociation",
-      "keywords": [
-        "ongoing",
-        "limited"
-      ],
-      "body": [
-        "{LabyrinthCharacter} is immune to psychic damage.",
-        "At the end of {LabyrinthCharacter}'s turn {LabyrinthCharacter} deals herself 2 irreducible melee damage, then may play a card.",
-        "Other players gain the following power:{BR}[b]Power:[/b] Destroy {Disassociation}."
-      ],
-      "powers": [
-        "Put a Shaping card into play with the top card of the Environment deck under it."
-      ],
-      "icons": [
-        "EndOfTurnAction",
-        "ImmuneToDamagePsychic",
-        "DealDamageMelee",
-        "PlayCardNow",
-        "HasPower",
-        "DestroySelf"
-      ],
-      "flavorText": "[y=0.9]On her worst days,{BR}the days when her view of the{BR}other worlds was so expansive that{BR}she could barely register the real world,{BR}she didn't have to put things together{BR}like this.              [/y]",
-      "flavorReference": "Interlude 11c"
-    },
-    {
-      "identifier": "Inspiration",
-      "count": 3,
-      "title": "Inspiration",
-      "keywords": [
-        "ongoing",
-        "limited"
-      ],
-      "body": [
-        "Whenever an Environment card enters play, you may draw a card."
-      ],
-      "powers": [ "Destroy an environment card. If you do, you may play a card." ],
-      "icons": [
-        "DrawCardNow",
-        "HasPower",
-        "DestroySelf",
-        "PlayCardNow"
-      ],
-      "flavorText": "They were lucid dreams{BR}that were big enough, detailed enough,{BR}intricate enough to swallow her up,{BR}as they so often did.",
-      "flavorReference": "Interlude 11c"
-    },
-    {
-      "identifier": "Vantage",
-      "count": 2,
-      "title": "Vantage",
-      "keywords": [
-        "ongoing",
-        "limited"
-      ],
-      "body": [
-        "At the start of your turn remove any tokens on this card.",
-        "At the start of each other hero's turn they may put a token on this card. If they do, they may use a power."
-      ],
-      "powers": [ "Destroy an environment card. If you do, another hero may play a card." ],
-      "icons": [
-        "StartOfTurnAction",
-        "AddOrRemoveTokens",
-        "HasPower",
-        "UsePowerNow",
-        "PlayCardNow",
-        "DestroyEnvironment"
-      ],
-      "flavorQuotes": [
-        {
-          "text": "[y=0.9]Mimi... Can I touch you?{BR}Anchor you? Don't want my power to hurt you.[/y]",
-          "identifier": "Labyrinth"
-        },
-        {
-          "text": "[y=0.9]So you want to keep me{BR}out of your world?[/y]",
-          "identifier": "Burnscar"
-        }
-      ],
-      "flavorReference": "Interlude 11c",
-      "tokenPools": [
-        {
-          "identifier": "VantagePool",
-          "name": "Vantage Pool",
-          "initialValue": 0,
-          "minimumValue": 0,
-          "color": "000000"
-        }
-      ]
-    },
-    {
       "identifier": "CleanTheSlate",
       "count": 4,
       "title": "Clean the Slate",
@@ -342,60 +147,6 @@
       ],
       "flavorText": "Like a gas in the air that{BR}had been ignited, the entire thing{BR}went up in a heartbeat.",
       "flavorReference": "Scourge 19.7"
-    },
-    {
-      "identifier": "Exploration",
-      "count": 4,
-      "title": "Exploration",
-      "keywords": [
-        "one-shot"
-      ],
-      "body": [
-        "You may draw a card.",
-        "Put the top card of the environment deck under Labyrinth.",
-        "Put the top card of the environment deck into play."
-      ],
-      "icons": [
-        "DrawCardNow",
-        "Manipulate"
-      ],
-      "flavorQuotes": [
-        {
-          "text": "There's so much there.{BR}Worlds that I didn't make.",
-          "identifier": "Labyrinth"
-        }
-      ],
-      "flavorReference": "Labyrinth, Scourge 19.7"
-    },
-    {
-      "identifier": "HostileTerrain",
-      "count": 3,
-      "title": "Hostile Terrain",
-      "keywords": [
-        "one-shot"
-      ],
-      "body": [
-        "You may destroy a non-character-card target.",
-        "You may destroy a Shaping card. If you do, the environment deals each villain target 2 irreducible projectile damage.",
-        "Put the top card of the environment deck into play."
-      ],
-      "icons": [
-        "DestroyCard",
-        "DealDamageProjectile",
-        "Manipulate"
-      ],
-      "flavorQuotes": [
-        {
-          "text": "Hallucinations?",
-          "identifier": "Skitter"
-        },
-        {
-          "omitQuotationMarks": true,
-          "text": "[b]{shakes head}[/b]",
-          "identifier": "Labyrinth"
-        }
-      ],
-      "flavorReference": "Hive 5.7"
     },
     {
       "identifier": "CruelCity",
@@ -438,6 +189,192 @@
       "flavorReference": "Interlude 11c"
     },
     {
+      "identifier": "DeviousLabyrinth",
+      "count": 2,
+      "title": "Devious Labyrinth",
+      "keywords": [
+        "shaping"
+      ],
+      "body": [
+        "This is an environment card",
+        "Play this on top of an environment card. Cards under this card have no text. If there are no cards under this card, destroy it.",
+        "When a noncharacter target enters play you may destroy an Environment card. If you do, that target has no game text until the start of your next turn."
+      ],
+      "icons": [
+        "DestroyEnvironment",
+        "DestroySelf"
+      ],
+      "flavorText": "Stone walls heaved upward{BR}from the mounds of broken tile,{BR}blocking my path and stopping at a height{BR}of twelve or more feet.{BR}",
+      "flavorReference": "Infestation 11.7",
+      "kind": "environment"
+    },
+    {
+      "identifier": "Disassociation",
+      "count": 2,
+      "title": "Disassociation",
+      "keywords": [
+        "ongoing",
+        "limited"
+      ],
+      "body": [
+        "{LabyrinthCharacter} is immune to psychic damage.",
+        "At the end of {LabyrinthCharacter}'s turn {LabyrinthCharacter} deals herself 2 irreducible melee damage, then may play a card.",
+        "Other players gain the following power:{BR}[b]Power:[/b] Destroy {Disassociation}."
+      ],
+      "powers": [
+        "Put a Shaping card into play with the top card of the Environment deck under it."
+      ],
+      "icons": [
+        "EndOfTurnAction",
+        "ImmuneToDamagePsychic",
+        "DealDamageMelee",
+        "PlayCardNow",
+        "HasPower",
+        "DestroySelf"
+      ],
+      "flavorText": "[y=0.9]On her worst days,{BR}the days when her view of the{BR}other worlds was so expansive that{BR}she could barely register the real world,{BR}she didn't have to put things together{BR}like this.              [/y]",
+      "flavorReference": "Interlude 11c"
+    },
+    {
+      "identifier": "Exploration",
+      "count": 4,
+      "title": "Exploration",
+      "keywords": [
+        "one-shot"
+      ],
+      "body": [
+        "You may draw a card.",
+        "Put the top card of the environment deck under Labyrinth.",
+        "Put the top card of the environment deck into play."
+      ],
+      "icons": [
+        "DrawCardNow",
+        "Manipulate"
+      ],
+      "flavorQuotes": [
+        {
+          "text": "There's so much there.{BR}Worlds that I didn't make.",
+          "identifier": "Labyrinth"
+        }
+      ],
+      "flavorReference": "Labyrinth, Scourge 19.7"
+    },
+    {
+      "identifier": "GiantChessboard",
+      "count": 2,
+      "title": "Giant Chessboard",
+      "keywords": [
+        "shaping"
+      ],
+      "body": [
+        "This is an environment card.",
+        "Play this on top of an environment card. Cards under this card have no text. If there are no cards under this card, destroy it.",
+        "At the end of {LabyrinthCharacter}'s turn you may destroy an Environment card. If you do, this card deals X melee damage to a target where X is the number of Shaping cards in play."
+      ],
+      "icons": [
+        "EndOfTurnAction",
+        "DealDamageMelee",
+        "DestroyEnvironment",
+        "DestroySelf"
+      ],
+      "flavorText": "Under our feet,{BR}the road began to shift in color,{BR}with some patches becoming paler,{BR}and others darkening.",
+      "flavorReference": "Hive 5.7",
+      "kind": "environment"
+    },
+    {
+      "identifier": "HostileTerrain",
+      "count": 3,
+      "title": "Hostile Terrain",
+      "keywords": [
+        "one-shot"
+      ],
+      "body": [
+        "You may destroy a non-character-card target.",
+        "You may destroy a Shaping card. If you do, the environment deals each villain target 2 irreducible projectile damage.",
+        "Put the top card of the environment deck into play."
+      ],
+      "icons": [
+        "DestroyCard",
+        "DealDamageProjectile",
+        "Manipulate"
+      ],
+      "flavorQuotes": [
+        {
+          "text": "Hallucinations?",
+          "identifier": "Skitter"
+        },
+        {
+          "omitQuotationMarks": true,
+          "text": "[b]{shakes head}[/b]",
+          "identifier": "Labyrinth"
+        }
+      ],
+      "flavorReference": "Hive 5.7"
+    },
+    {
+      "identifier": "Inspiration",
+      "count": 3,
+      "title": "Inspiration",
+      "keywords": [
+        "ongoing",
+        "limited"
+      ],
+      "body": [
+        "Whenever an Environment card enters play, you may draw a card."
+      ],
+      "powers": [ "Destroy an environment card. If you do, you may play a card." ],
+      "icons": [
+        "DrawCardNow",
+        "HasPower",
+        "DestroySelf",
+        "PlayCardNow"
+      ],
+      "flavorText": "They were lucid dreams{BR}that were big enough, detailed enough,{BR}intricate enough to swallow her up,{BR}as they so often did.",
+      "flavorReference": "Interlude 11c"
+    },
+    {
+      "identifier": "MightyCastle",
+      "count": 2,
+      "title": "Mighty Castle",
+      "keywords": [
+        "shaping"
+      ],
+      "body": [
+        "This is an environment card",
+        "Play this on top of an environment card. Cards under this card have no text. If there are no cards under this card, destroy it.",
+        "At the end of {LabyrinthCharacter}'s turn pick a target. Until the start of Labyrinth's next turn, reduce damage dealt to that target by 1."
+      ],
+      "icons": [
+        "ReduceDamageDealt",
+        "DestroySelf"
+      ],
+      "flavorText": "The ground cracked{BR}and bulged upward as though{BR}a mole was tunneling at high speeds{BR}just beneath the tile.{BR}",
+      "flavorReference": "Infestation 11.7",
+      "kind": "environment"
+    },
+    {
+      "identifier": "PageThrough",
+      "count": 3,
+      "title": "Page Through",
+      "keywords": [
+        "ongoing"
+      ],
+      "body": [
+        "At the end of your turn put the top card of the environment deck under Labyrinth."
+      ],
+      "powers": [
+        "Draw 2 cards. Reveal the top 2 cards of the environment deck. Discard up to 1 card; put the rest into play in any order."
+      ],
+      "icons": [
+        "Manipulate",
+        "DrawCardNow",
+        "HasPower",
+        "EndOfTurnAction"
+      ],
+      "flavorText": "The lonely hallways... no.{BR}The burning towers.{BR}Definitely no.",
+      "flavorReference": "Interlude 11c."
+    },
+    {
       "identifier": "TacticalShift",
       "count": 2,
       "title": "Tactical Shift",
@@ -455,6 +392,69 @@
       ],
       "flavorText": "Closing her eyes,{BR}she reached for the other worlds.",
       "flavorReference": "Interlude 11c"
+    },
+    {
+      "identifier": "TheAsylum",
+      "count": 2,
+      "title": "The Asylum",
+      "keywords": [
+        "shaping"
+      ],
+      "body": [
+        "This is an environment card",
+        "Play this on top of an environment card. Cards under this card have no text. If there are no cards under this card, destroy it.",
+        "At the end of {LabyrinthCharacter}'s turn this card deals 2 psychic damage to all villain targets.",
+        "At the end of {LabyrinthCharacter}'s turn this card deals 3 irreducible psychic damage to {LabyrinthCharacter}."
+      ],
+      "icons": [
+        "DealDamagePsychic",
+        "DestroySelf"
+      ],
+      "flavorText": "Her thoughts turned{BR}to the bad place, the biggest of{BR}her worlds, the world she had{BR}spent the most time in.{BR}",
+      "flavorReference": "Interlude 11c",
+      "kind": "environment"
+    },
+    {
+      "identifier": "Vantage",
+      "count": 2,
+      "title": "Vantage",
+      "keywords": [
+        "ongoing",
+        "limited"
+      ],
+      "body": [
+        "At the start of your turn remove any tokens on this card.",
+        "At the start of each other hero's turn they may put a token on this card. If they do, they may use a power."
+      ],
+      "powers": [ "Destroy an environment card. If you do, another hero may play a card." ],
+      "icons": [
+        "StartOfTurnAction",
+        "AddOrRemoveTokens",
+        "HasPower",
+        "UsePowerNow",
+        "PlayCardNow",
+        "DestroyEnvironment"
+      ],
+      "flavorQuotes": [
+        {
+          "text": "[y=0.9]Mimi... Can I touch you?{BR}Anchor you? Don't want my power to hurt you.[/y]",
+          "identifier": "Labyrinth"
+        },
+        {
+          "text": "[y=0.9]So you want to keep me{BR}out of your world?[/y]",
+          "identifier": "Burnscar"
+        }
+      ],
+      "flavorReference": "Interlude 11c",
+      "tokenPools": [
+        {
+          "identifier": "VantagePool",
+          "name": "Vantage Pool",
+          "initialValue": 0,
+          "minimumValue": 0,
+          "color": "000000"
+        }
+      ]
     }
   ]
 }
