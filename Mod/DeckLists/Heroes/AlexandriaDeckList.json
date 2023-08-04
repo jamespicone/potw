@@ -33,41 +33,40 @@
       ]
     },
     {
-      "identifier": "Protector",
-      "title": "Protector",
-      "keywords": [ "ongoing" ],
-      "body": [
-        "When this card enters play {AlexandriaCharacter} regains 2 HP.",
-        "At the end of your turn select a target. Until the start of your next turn, whenever that target would be dealt damage, redirect that damage to {AlexandriaCharacter}."
+      "identifier": "AlexandriasCape",
+      "title": "Alexandria's Cape",
+      "keywords": [ "equipment" ],
+      "powers": [
+        "{AlexandriaCharacter} deals 3 melee damage to a target. Return one of your noncharacter cards in play to your hand."
       ],
       "icons": [
-        "EndOfTurnAction",
-        "GainHP",
-        "RedirectDamage"
+        "DealDamageMelee",
+        "Manipulate"
       ],
-      "flavorText": "She flew forward, trying to draw{BR}his attention, interjecting herself{BR}between the Behemoth and the others.",
-      "flavorReference": "Interlude 15",
-      "count": 4
+      "flavorText": "Alexandria was something else.{BR}The heroic equivalent of a cruise missile.",
+      "flavorReference": "Cell 22.4",
+      "count": 3
     },
     {
-      "identifier": "NamedAfterTheLibrary",
-      "title": "Named After the Library",
-      "keywords": [ "ongoing", "limited" ],
+      "identifier": "AndTheyKnowMe",
+      "title": "...And They Know Me",
+      "keywords": [ "one-shot" ],
       "body": [
-        "When this card enters play shuffle your trash into your deck.",
-        "Whenever you would draw a card instead reveal the top 2 cards of your deck, put 1 into your hand, and return the other to the top of your deck."
+        "The villain target with the highest HP deals {AlexandriaCharacter} 5 psychic damage.",
+        "The villain target with the highest HP cannot deal damage until the start of your next turn."
       ],
       "icons": [
-        "Manipulate"
+        "DealDamagePsychic",
+        "CannotDealDamage"
       ],
       "flavorQuotes": [
         {
           "identifier": "Alexandria",
-          "text": "A reference to the burned{BR}library of Alexandria. It's been mythologized{BR}as that era's sum of human knowledge.{BR}I am much the same."
+          "text": "The creatures know me.{BR}They know how to fight me,{BR}and I know how to fight them.{BR}Yet I'm still here."
         }
       ],
       "flavorReference": "Alexandria, Cell 22.4",
-      "count": 2
+      "count": 3
     },
     {
       "identifier": "ColdReading",
@@ -95,6 +94,46 @@
       "count": 3
     },
     {
+      "identifier": "IKnowThem",
+      "title": "I Know Them",
+      "keywords": [ "one-shot" ],
+      "body": [
+        "{AlexandriaCharacter} deals 5 melee damage to the villain target with the highest HP."
+      ],
+      "icons": [
+        "DealDamageMelee"
+      ],
+      "flavorQuotes": [
+        {
+          "identifier": "Alexandria",
+          "text": "There have been fifty-six Endbringer{BR}attacks in the last nineteen years.{BR}I have personally participated in forty-nine of them"
+        }
+      ],
+      "flavorReference": "Alexandria, Cell 22.4",
+      "count": 4
+    },
+    {
+      "identifier": "ImperiousDemeanour",
+      "title": "Imperious Demeanour",
+      "keywords": [ "ongoing", "limited" ],
+      "body": [
+        "When this card enters play draw a card.",
+        "Whenever you use a power {AlexandriaCharacter} regains 3 HP."
+      ],
+      "icons": [
+        "DrawCardNow",
+        "GainHP"
+      ],
+      "flavorQuotes": [
+        {
+          "identifier": "Alexandria",
+          "text": "They tried to drown me.{BR}It didn't work.{BR}Others have tried the same thing,{BR}in many different variations."
+        }
+      ],
+      "flavorReference": "Alexandria, Cell 22.4",
+      "count": 4
+    },
+    {
       "identifier": "Invincible",
       "title": "Invincible",
       "keywords": [ "ongoing", "limited" ],
@@ -108,27 +147,6 @@
       ],
       "flavorText": "His flame burned through her,{BR}the sand was turning to glass around{BR}her, burning her costume,{BR}but it didn't burn her.",
       "flavorReference": "Interlude 15",
-      "count": 3
-    },
-    {
-      "identifier": "SupersonicFlight",
-      "title": "Supersonic Flight",
-      "keywords": [ "ongoing" ],
-      "body": [
-        "When this card enters play {AlexandriaCharacter} may deal 2 sonic damage to a target.",
-        "When {AlexandriaCharacter} deals damage to a villain target you may destroy a noncharacter Device or Ongoing card."
-      ],
-      "icons": [
-        "DealDamageMelee",
-        "DestroyOngoing"
-      ],
-      "flavorQuotes": [
-        {
-          "identifier": "Doctor Mother",
-          "text": "She's as strong as{BR}any parahuman we've recorded.{BR}Flies at speeds that match your own, Legend."
-        }
-      ],
-      "flavorReference": "Doctor Mother, Interlude 15",
       "count": 3
     },
     {
@@ -153,40 +171,24 @@
       "count": 3
     },
     {
-      "identifier": "ImperiousDemeanour",
-      "title": "Imperious Demeanour",
+      "identifier": "NamedAfterTheLibrary",
+      "title": "Named After the Library",
       "keywords": [ "ongoing", "limited" ],
       "body": [
-        "When this card enters play draw a card.",
-        "Whenever you use a power {AlexandriaCharacter} regains 3 HP."
+        "When this card enters play shuffle your trash into your deck.",
+        "Whenever you would draw a card instead reveal the top 2 cards of your deck, put 1 into your hand, and return the other to the top of your deck."
       ],
       "icons": [
-        "DrawCardNow",
-        "GainHP"
+        "Manipulate"
       ],
       "flavorQuotes": [
         {
           "identifier": "Alexandria",
-          "text": "They tried to drown me.{BR}It didn't work.{BR}Others have tried the same thing,{BR}in many different variations."
+          "text": "A reference to the burned{BR}library of Alexandria. It's been mythologized{BR}as that era's sum of human knowledge.{BR}I am much the same."
         }
       ],
       "flavorReference": "Alexandria, Cell 22.4",
-      "count": 4
-    },
-    {
-      "identifier": "AlexandriasCape",
-      "title": "Alexandria's Cape",
-      "keywords": [ "equipment" ],
-      "powers": [
-        "{AlexandriaCharacter} deals 3 melee damage to a target. Return one of your noncharacter cards in play to your hand."
-      ],
-      "icons": [
-        "DealDamageMelee",
-        "Manipulate"
-      ],
-      "flavorText": "Alexandria was something else.{BR}The heroic equivalent of a cruise missile.",
-      "flavorReference": "Cell 22.4",
-      "count": 3
+      "count": 2
     },
     {
       "identifier": "ProstheticEye",
@@ -204,22 +206,21 @@
       "count": 2
     },
     {
-      "identifier": "TimeLocked",
-      "title": "Time-Locked",
-      "keywords": [ "one-shot" ],
+      "identifier": "Protector",
+      "title": "Protector",
+      "keywords": [ "ongoing" ],
       "body": [
-        "Note down Alexandria's current HP.",
-        "At the start of your next turn, if {AlexandriaCharacter} is not incapacitated, set {AlexandriaCharacter}'s HP to the value you noted down."
+        "When this card enters play {AlexandriaCharacter} regains 2 HP.",
+        "At the end of your turn select a target. Until the start of your next turn, whenever that target would be dealt damage, redirect that damage to {AlexandriaCharacter}."
       ],
-      "icons": [],
-      "flavorQuotes": [
-        {
-          "identifier": "Pretender",
-          "text": "Her body's peculiar.{BR}Doesn't really age. Hair doesn't grow,{BR}nails don't grow.{BR}Wounds don't really heal or get worse."
-        }
+      "icons": [
+        "EndOfTurnAction",
+        "GainHP",
+        "RedirectDamage"
       ],
-      "flavorReference": "Pretender, Interlude 24",
-      "count": 2
+      "flavorText": "She flew forward, trying to draw{BR}his attention, interjecting herself{BR}between the Behemoth and the others.",
+      "flavorReference": "Interlude 15",
+      "count": 4
     },
     {
       "identifier": "PureStrength",
@@ -245,44 +246,43 @@
       "count": 4
     },
     {
-      "identifier": "IKnowThem",
-      "title": "I Know Them",
-      "keywords": [ "one-shot" ],
+      "identifier": "SupersonicFlight",
+      "title": "Supersonic Flight",
+      "keywords": [ "ongoing" ],
       "body": [
-        "{AlexandriaCharacter} deals 5 melee damage to the villain target with the highest HP."
+        "When this card enters play {AlexandriaCharacter} may deal 2 sonic damage to a target.",
+        "When {AlexandriaCharacter} deals damage to a villain target you may destroy a noncharacter Device or Ongoing card."
       ],
       "icons": [
-        "DealDamageMelee"
+        "DealDamageMelee",
+        "DestroyOngoing"
       ],
       "flavorQuotes": [
         {
-          "identifier": "Alexandria",
-          "text": "There have been fifty-six Endbringer{BR}attacks in the last nineteen years.{BR}I have personally participated in forty-nine of them"
+          "identifier": "Doctor Mother",
+          "text": "She's as strong as{BR}any parahuman we've recorded.{BR}Flies at speeds that match your own, Legend."
         }
       ],
-      "flavorReference": "Alexandria, Cell 22.4",
-      "count": 4
+      "flavorReference": "Doctor Mother, Interlude 15",
+      "count": 3
     },
     {
-      "identifier": "AndTheyKnowMe",
-      "title": "...And They Know Me",
+      "identifier": "TimeLocked",
+      "title": "Time-Locked",
       "keywords": [ "one-shot" ],
       "body": [
-        "The villain target with the highest HP deals {AlexandriaCharacter} 5 psychic damage.",
-        "The villain target with the highest HP cannot deal damage until the start of your next turn."
+        "Note down Alexandria's current HP.",
+        "At the start of your next turn, if {AlexandriaCharacter} is not incapacitated, set {AlexandriaCharacter}'s HP to the value you noted down."
       ],
-      "icons": [
-        "DealDamagePsychic",
-        "CannotDealDamage"
-      ],
+      "icons": [],
       "flavorQuotes": [
         {
-          "identifier": "Alexandria",
-          "text": "The creatures know me.{BR}They know how to fight me,{BR}and I know how to fight them.{BR}Yet I'm still here."
+          "identifier": "Pretender",
+          "text": "Her body's peculiar.{BR}Doesn't really age. Hair doesn't grow,{BR}nails don't grow.{BR}Wounds don't really heal or get worse."
         }
       ],
-      "flavorReference": "Alexandria, Cell 22.4",
-      "count": 3
+      "flavorReference": "Pretender, Interlude 24",
+      "count": 2
     }
   ]
 }
