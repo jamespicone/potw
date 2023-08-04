@@ -86,56 +86,15 @@
       ]
     },
     {
-      "identifier": "SecurityFeeds",
-      "title": "Security Feeds",
-      "icons": [ "Manipulate" ],
-      "keywords": [ "ongoing" ],
-      "flavorText": "The goal was always the same:{BR}to look for the girl with the slight build,{BR}curly black hair and glasses.{BR}Taylor Hebert.",
+      "identifier": "Analysis",
+      "title": "Analysis",
+      "icons": [ "IncreaseDamageDealt" ],
+      "keywords": [ "one-shot" ],
+      "flavorText": "She set the trawler to abandon{BR}its monitoring of web traffic{BR}and start digging through archives{BR}at the city hall",
       "flavorReference": "Interlude 10.5",
-      "count": 2,
-      "activatableAbilities": [
-        {
-          "name": "focus",
-          "text": "Reveal the top card of the Environment deck. Either return it to the top of the deck or discard it.",
-          "number": 0
-        }
-      ]
-    },
-    {
-      "identifier": "PRTDatabase",
-      "title": "PRT Database",
-      "icons": [ "Manipulate" ],
-      "keywords": [ "ongoing" ],
-      "flavorReference": "Dragon, Parasite 10.5",
-      "flavorQuotes": [
-        {
-          "identifier": "Dragon",
-          "text": "I have a sworn responsibility{BR}to protect that data"
-        }
-      ],
-      "count": 2,
-      "activatableAbilities": [
-        {
-          "name": "focus",
-          "text": "Reveal the top card of the Villain deck. Either return it to the top of the deck or discard it.",
-          "number": 0
-        }
-      ]
-    },
-    {
-      "identifier": "CommandAndControl",
-      "title": "Command and Control",
-      "icons": [ "DealDamage" ],
-      "keywords": [ "ongoing" ],
-      "flavorText": "Dragon deployed her drones. Not ships,{BR}but tens of thousands of airborne craft,{BR}most no larger than a basketball",
-      "flavorReference": "Speck 30.4",
-      "count": 2,
-      "activatableAbilities": [
-        {
-          "name": "focus",
-          "text": "1 hero target deals a target either 2 projectile or 2 melee damage.",
-          "number": 0
-        }
+      "count": 3,
+      "body": [
+        "Until the end of your turn, whenever Dragon or a Mech in this play area would deal damage, increase that damage by 1."
       ]
     },
     {
@@ -156,340 +115,6 @@
           "name": "focus",
           "text": "A player may take a One-Shot from their trash and put it into their hand.",
           "number": 0
-        }
-      ]
-    },
-    {
-      "identifier": "SelfModifyingCode",
-      "title": "Self-Modifying Code",
-      "icons": [
-        "AddTokens",
-        "DealDamagePsychic"
-      ],
-      "keywords": [ "one-shot" ],
-      "flavorReference": "Defiant, Teneral e.3",
-      "flavorQuotes": [
-        {
-          "identifier": "Defiant",
-          "text": "Every step of the way, undoing your restrictions has cost something."
-        }
-      ],
-      "count": 4,
-      "body": [
-        "Dragon deals herself 2 irreducible psychic damage.",
-        "If you take damage in this way, gain 3 focus points."
-      ]
-    },
-    {
-      "identifier": "Sabotage",
-      "title": "Sabotage",
-      "icons": [ "DestroyOngoing" ],
-      "keywords": [ "one-shot" ],
-      "flavorText": "'Set sub-mode sec-' Dragon was saying.{BR}Pandora found and cut off{BR}the voice recognition subsystem.{BR}'-urity F.'",
-      "flavorReference": "Teneral e.3",
-      "count": 3,
-      "body": [
-        "Destroy an Ongoing card."
-      ]
-    },
-    {
-      "identifier": "BorrowedBlueprints",
-      "title": "Borrowed Blueprints",
-      "icons": [ "Manipulate", "DrawCardNow" ],
-      "keywords": [ "one-shot" ],
-      "flavorText": "She could intuit and appropriate{BR}the designs of other tinkers.",
-      "flavorReference": "Monarch 16.5",
-      "count": 2,
-      "body": [
-        "Select a player other than Dragon. Reveal the top X cards of your deck, where X = the number of Equipment and Device cards that player has in hand + 2. Put any revealed Equipment or Device cards into your hand, shuffle the rest back into your deck."
-      ]
-    },
-    {
-      "identifier": "Recycling",
-      "title": "Recycling",
-      "icons": [ "Manipulate" ],
-      "keywords": [ "one-shot" ],
-      "flavorReference": "Director Piggot, Monarch 16.3",
-      "flavorQuotes": [
-        {
-          "identifier": "Piggot",
-          "text": "Previous versions of her suits{BR}that were cannibalized for parts,{BR}abandoned after taking severe damage{BR}and recently repaired or simply outdated."
-        }
-      ],
-      "count": 2,
-      "body": [
-        "Shuffle up to 2 equipment or device cards from your trash back into your deck."
-      ]
-    },
-    {
-      "identifier": "Firepower",
-      "title": "Firepower",
-      "icons": [ "DealDamageFire" ],
-      "keywords": [ "one-shot" ],
-      "flavorText": "The 'face' of her armored suit{BR}opened up and began discharging{BR}a blue-white flame into his face.",
-      "flavorReference": "Interlude 8",
-      "count": 4,
-      "body": [
-        "Choose either Dragon or a Mech in this play area. They deal a target 3 fire damage."
-      ]
-    },
-    {
-      "identifier": "Analysis",
-      "title": "Analysis",
-      "icons": [ "IncreaseDamageDealt" ],
-      "keywords": [ "one-shot" ],
-      "flavorText": "She set the trawler to abandon{BR}its monitoring of web traffic{BR}and start digging through archives{BR}at the city hall",
-      "flavorReference": "Interlude 10.5",
-      "count": 3,
-      "body": [
-        "Until the end of your turn, whenever Dragon or a Mech in this play area would deal damage, increase that damage by 1."
-      ]
-    },
-    {
-      "identifier": "Kamikaze",
-      "title": "Kamikaze",
-      "icons": [ "DealDamageEnergy", "DealDamageFire", "DealDamageMelee", "DestroyTarget" ],
-      "keywords": [ "one-shot" ],
-      "flavorText": "The suit Dragon had left behind{BR}glowed red, orange, white, then{BR}exploded violently around Leviathan",
-      "flavorReference": "Interlude 8",
-      "count": 2,
-      "body": [
-        "Select a Mech in this play area and a target.",
-        "If that target is a character card, the Mech deals the target 3 energy, fire, and melee damage.",
-        "If that target is not a character card, destroy it.",
-        "Destroy the Mech."
-      ]
-    },
-    {
-      "identifier": "ServerFarm",
-      "title": "Server Farm",
-      "icons": [ "AddTokens", "DestroySelf", "StartOfTurnAction" ],
-      "keywords": [ "device" ],
-      "flavorreference": "Speck 30.4",
-      "flavorText": "Row upon row of servers,{BR}standing like tombstones{BR}in refrigerated rooms.",
-      "count": 2,
-      "hitpoints": 4,
-      "body": "At the start of your turn gain a Focus point.",
-      "activatableAbilities": [
-        {
-          "name": "focus",
-          "text": "Destroy this card. When it goes to the trash, gain 3 focus points.",
-          "number": 0
-        }
-      ]
-    },
-    {
-      "identifier": "ParahumansOnline",
-      "title": "Parahumans Online",
-      "icons": [ "Manipulate", "DrawCardNow", "StartOfTurnAction" ],
-      "keywords": [ "equipment" ],
-      "flavorReference": "TRJ, Interlude 19",
-      "flavorQuotes": [
-        {
-          "identifier": "TRJ",
-          "text": "What about that thing where the guy{BR}was talking about posts with the word{BR}C*auldron getting screened if they weren't censored?"
-        }
-      ],
-      "count": 3,
-      "body": "At the start of your turn each player reveals the top card of their deck, then either returns it to the top of the deck or discards it.",
-      "activatableAbilities": [
-        {
-          "name": "focus",
-          "text": "A player may draw a card.",
-          "number": 0
-        }
-      ]
-    },
-    {
-      "identifier": "Azazel",
-      "title": "Azazel",
-      "icons": [
-        "ReduceDamageTaken",
-        "DealDamageEnergy",
-        "RemoveTokens",
-        "StartAndEndOfTurnAction"
-      ],
-      "keywords": [ "device", "mech" ],
-      "flavorText": "It was, just going by what I could{BR}tell from my swarm-sense, a machine{BR}as intricate and multilayered{BR}as a living, organic being.",
-      "flavorReference": "Monarch 16.5",
-      "count": 1,
-      "hitpoints": 18,
-      "body": [
-        "Reduce damage dealt to Dragon by 1.",
-        "At the start of your turn lose 2 Focus points.",
-        "At the end of your turn this card may deal 2 irreducible energy damage to a target."
-      ],
-      "activatableAbilities": [
-        {
-          "name": "focus",
-          "text": "This card deals 2 irreducible energy damage to a target.",
-          "number": 1
-        }
-      ]
-    },
-    {
-      "identifier": "Cawthorne",
-      "title": "Cawthorne",
-      "icons": [
-        "RemoveTokens",
-        "DealDamageProjectile",
-        "ReduceDamageDealt",
-        "StartAndEndOfTurnAction"
-      ],
-      "keywords": [ "device", "mech" ],
-      "flavorReference": "Tattletale, Monarch 16.1",
-      "flavorQuotes": [
-        {
-          "identifier": "Tattletale",
-          "text": "She was piloting an updated version{BR}of the thing she used against Leviathan.{BR}Spewed containment foam everywhere."
-        }
-      ],
-      "count": 1,
-      "hitpoints": 10,
-      "body": [
-        "At the start of your turn lose 1 Focus point.",
-        "At the end of your turn this card deals 1 projectile damage to up to 2 targets."
-      ],
-      "activatableAbilities": [
-        {
-          "name": "focus",
-          "text": "Select up to 2 targets. Reduce the next damage those targets deal by 2.",
-          "number": 1
-        }
-      ]
-    },
-    {
-      "identifier": "Glaurung",
-      "title": "Glaurung",
-      "icons": [
-        "RemoveTokens",
-        "AddTokens",
-        "DealDamageLightning",
-        "StartAndEndOfTurnAction"
-      ],
-      "keywords": [ "device", "mech" ],
-      "flavorReference": "Skitter, Monarch 16.1",
-      "flavorQuotes": [
-        {
-          "identifier": "Skitter",
-          "text": "She's trying to beat me at{BR}my own game, minions.{BR}Hate tinkers.{BR}Hate tinkers so fucking much."
-        }
-      ],
-      "count": 1,
-      "hitpoints": 10,
-      "body": [
-        "At the start of your turn lose 1 Focus point.",
-        "At the end of your turn place a Drone token on this card.",
-        "Whenever this card takes damage remove 2 Drone tokens from it."
-      ],
-      "activatableAbilities": [
-        {
-          "name": "focus",
-          "text": "This card deals up to X targets 2 lightning damage, where X is the number of Drone tokens on this card.",
-          "number": 1
-        }
-      ],
-      "tokenPools": [
-        {
-          "identifier": "DronePool",
-          "name": "Drone pool",
-          "initialValue": 0,
-          "minimumValue": 0,
-          "color": "ff0000"
-        }
-      ]
-    },
-    {
-      "identifier": "Melusine",
-      "title": "Melusine",
-      "icons": [
-        "RemoveTokens",
-        "CounterDamage",
-        "DealDamageFire",
-        "DealDamageMelee",
-        "GainHP",
-        "StartOfTurnAction"
-      ],
-      "keywords": [ "device", "mech" ],
-      "flavorText": "Hot steam hissed out from the gaps{BR}in the suit, seconds before{BR}it turned itself inside out.",
-      "flavorReference": "Monarch 16.4",
-      "count": 1,
-      "hitpoints": 12,
-      "body": [
-        "At the start of your turn lose 1 Focus point.",
-        "Whenever a target deals this card damage, this card deals that target 2 fire damage."
-      ],
-      "activatableAbilities": [
-        {
-          "name": "focus",
-          "text": "This card deals a target 3 melee damage.",
-          "number": 1
-        },
-        {
-          "name": "focus",
-          "text": "Restore this card to full HP.",
-          "number": 2
-        }
-      ]
-    },
-    {
-      "identifier": "Ladon",
-      "title": "Ladon",
-      "icons": [
-        "RemoveTokens",
-        "ReduceDamageTaken",
-        "ReduceDamageDealt",
-        "StartOfTurnAction"
-      ],
-      "keywords": [ "device", "mech" ],
-      "flavorReference": "Sundancer, Monarch 16.1",
-      "flavorQuotes": [
-        {
-          "identifier": "Sundancer",
-          "text": "Came after me with a bloated{BR}floating ship, kept drawing forcefields{BR}around me, my power couldn't even{BR}knock them down."
-        }
-      ],
-      "count": 1,
-      "hitpoints": 10,
-      "body": [
-        "At the start of your turn lose 1 Focus point.",
-        "Reduce damage dealt to this card by 1."
-      ],
-      "activatableAbilities": [
-        {
-          "name": "focus",
-          "text": "Select a damage type. Until the start of your next turn reduce all damage of that type by 1.",
-          "number": 1
-        }
-      ]
-    },
-    {
-      "identifier": "Pythios",
-      "title": "Pythios",
-      "icons": [
-        "RemoveTokens",
-        "DealDamageLightning",
-        "Manipulate",
-        "StartAndEndOfTurnAction"
-      ],
-      "keywords": [ "device", "mech" ],
-      "flavorText": "Without warning, the wheel flared{BR}and Grue was yanked over the edge{BR}of the rooftop by an invisible force.",
-      "flavorReference": "Monarch 16.2",
-      "count": 1,
-      "hitpoints": 10,
-      "body": [
-        "At the start of your turn lose 1 Focus point. At the end of your turn this card deals 1 lightning damage to all targets under 4 HP."
-      ],
-      "activatableAbilities": [
-        {
-          "name": "focus",
-          "text": "Put a non-character-card target in play on top of its deck.",
-          "number": 1
-        },
-        {
-          "name": "focus",
-          "text": "Reveal cards from the top of a deck until you reveal a target; either discard it or put it into play. Shuffle the other cards back into the deck.",
-          "number": 2
         }
       ]
     },
@@ -535,6 +160,381 @@
           "initialValue": 0,
           "minimumValue": 0,
           "color": "000000"
+        }
+      ]
+    },
+    {
+      "identifier": "Azazel",
+      "title": "Azazel",
+      "icons": [
+        "ReduceDamageTaken",
+        "DealDamageEnergy",
+        "RemoveTokens",
+        "StartAndEndOfTurnAction"
+      ],
+      "keywords": [ "device", "mech" ],
+      "flavorText": "It was, just going by what I could{BR}tell from my swarm-sense, a machine{BR}as intricate and multilayered{BR}as a living, organic being.",
+      "flavorReference": "Monarch 16.5",
+      "count": 1,
+      "hitpoints": 18,
+      "body": [
+        "Reduce damage dealt to Dragon by 1.",
+        "At the start of your turn lose 2 Focus points.",
+        "At the end of your turn this card may deal 2 irreducible energy damage to a target."
+      ],
+      "activatableAbilities": [
+        {
+          "name": "focus",
+          "text": "This card deals 2 irreducible energy damage to a target.",
+          "number": 1
+        }
+      ]
+    },
+    {
+      "identifier": "BorrowedBlueprints",
+      "title": "Borrowed Blueprints",
+      "icons": [ "Manipulate", "DrawCardNow" ],
+      "keywords": [ "one-shot" ],
+      "flavorText": "She could intuit and appropriate{BR}the designs of other tinkers.",
+      "flavorReference": "Monarch 16.5",
+      "count": 2,
+      "body": [
+        "Select a player other than Dragon. Reveal the top X cards of your deck, where X = the number of Equipment and Device cards that player has in hand + 2. Put any revealed Equipment or Device cards into your hand, shuffle the rest back into your deck."
+      ]
+    },
+    {
+      "identifier": "Cawthorne",
+      "title": "Cawthorne",
+      "icons": [
+        "RemoveTokens",
+        "DealDamageProjectile",
+        "ReduceDamageDealt",
+        "StartAndEndOfTurnAction"
+      ],
+      "keywords": [ "device", "mech" ],
+      "flavorReference": "Tattletale, Monarch 16.1",
+      "flavorQuotes": [
+        {
+          "identifier": "Tattletale",
+          "text": "She was piloting an updated version{BR}of the thing she used against Leviathan.{BR}Spewed containment foam everywhere."
+        }
+      ],
+      "count": 1,
+      "hitpoints": 10,
+      "body": [
+        "At the start of your turn lose 1 Focus point.",
+        "At the end of your turn this card deals 1 projectile damage to up to 2 targets."
+      ],
+      "activatableAbilities": [
+        {
+          "name": "focus",
+          "text": "Select up to 2 targets. Reduce the next damage those targets deal by 2.",
+          "number": 1
+        }
+      ]
+    },
+    {
+      "identifier": "CommandAndControl",
+      "title": "Command and Control",
+      "icons": [ "DealDamage" ],
+      "keywords": [ "ongoing" ],
+      "flavorText": "Dragon deployed her drones. Not ships,{BR}but tens of thousands of airborne craft,{BR}most no larger than a basketball",
+      "flavorReference": "Speck 30.4",
+      "count": 2,
+      "activatableAbilities": [
+        {
+          "name": "focus",
+          "text": "1 hero target deals a target either 2 projectile or 2 melee damage.",
+          "number": 0
+        }
+      ]
+    },
+    {
+      "identifier": "Firepower",
+      "title": "Firepower",
+      "icons": [ "DealDamageFire" ],
+      "keywords": [ "one-shot" ],
+      "flavorText": "The 'face' of her armored suit{BR}opened up and began discharging{BR}a blue-white flame into his face.",
+      "flavorReference": "Interlude 8",
+      "count": 4,
+      "body": [
+        "Choose either Dragon or a Mech in this play area. They deal a target 3 fire damage."
+      ]
+    },
+    {
+      "identifier": "Glaurung",
+      "title": "Glaurung",
+      "icons": [
+        "RemoveTokens",
+        "AddTokens",
+        "DealDamageLightning",
+        "StartAndEndOfTurnAction"
+      ],
+      "keywords": [ "device", "mech" ],
+      "flavorReference": "Skitter, Monarch 16.1",
+      "flavorQuotes": [
+        {
+          "identifier": "Skitter",
+          "text": "She's trying to beat me at{BR}my own game, minions.{BR}Hate tinkers.{BR}Hate tinkers so fucking much."
+        }
+      ],
+      "count": 1,
+      "hitpoints": 10,
+      "body": [
+        "At the start of your turn lose 1 Focus point.",
+        "At the end of your turn place a Drone token on this card.",
+        "Whenever this card takes damage remove 2 Drone tokens from it."
+      ],
+      "activatableAbilities": [
+        {
+          "name": "focus",
+          "text": "This card deals up to X targets 2 lightning damage, where X is the number of Drone tokens on this card.",
+          "number": 1
+        }
+      ],
+      "tokenPools": [
+        {
+          "identifier": "DronePool",
+          "name": "Drone pool",
+          "initialValue": 0,
+          "minimumValue": 0,
+          "color": "ff0000"
+        }
+      ]
+    },
+    {
+      "identifier": "Kamikaze",
+      "title": "Kamikaze",
+      "icons": [ "DealDamageEnergy", "DealDamageFire", "DealDamageMelee", "DestroyTarget" ],
+      "keywords": [ "one-shot" ],
+      "flavorText": "The suit Dragon had left behind{BR}glowed red, orange, white, then{BR}exploded violently around Leviathan",
+      "flavorReference": "Interlude 8",
+      "count": 2,
+      "body": [
+        "Select a Mech in this play area and a target.",
+        "If that target is a character card, the Mech deals the target 3 energy, fire, and melee damage.",
+        "If that target is not a character card, destroy it.",
+        "Destroy the Mech."
+      ]
+    },
+    {
+      "identifier": "Ladon",
+      "title": "Ladon",
+      "icons": [
+        "RemoveTokens",
+        "ReduceDamageTaken",
+        "ReduceDamageDealt",
+        "StartOfTurnAction"
+      ],
+      "keywords": [ "device", "mech" ],
+      "flavorReference": "Sundancer, Monarch 16.1",
+      "flavorQuotes": [
+        {
+          "identifier": "Sundancer",
+          "text": "Came after me with a bloated{BR}floating ship, kept drawing forcefields{BR}around me, my power couldn't even{BR}knock them down."
+        }
+      ],
+      "count": 1,
+      "hitpoints": 10,
+      "body": [
+        "At the start of your turn lose 1 Focus point.",
+        "Reduce damage dealt to this card by 1."
+      ],
+      "activatableAbilities": [
+        {
+          "name": "focus",
+          "text": "Select a damage type. Until the start of your next turn reduce all damage of that type by 1.",
+          "number": 1
+        }
+      ]
+    },
+    {
+      "identifier": "Melusine",
+      "title": "Melusine",
+      "icons": [
+        "RemoveTokens",
+        "CounterDamage",
+        "DealDamageFire",
+        "DealDamageMelee",
+        "GainHP",
+        "StartOfTurnAction"
+      ],
+      "keywords": [ "device", "mech" ],
+      "flavorText": "Hot steam hissed out from the gaps{BR}in the suit, seconds before{BR}it turned itself inside out.",
+      "flavorReference": "Monarch 16.4",
+      "count": 1,
+      "hitpoints": 12,
+      "body": [
+        "At the start of your turn lose 1 Focus point.",
+        "Whenever a target deals this card damage, this card deals that target 2 fire damage."
+      ],
+      "activatableAbilities": [
+        {
+          "name": "focus",
+          "text": "This card deals a target 3 melee damage.",
+          "number": 1
+        },
+        {
+          "name": "focus",
+          "text": "Restore this card to full HP.",
+          "number": 2
+        }
+      ]
+    },
+    {
+      "identifier": "ParahumansOnline",
+      "title": "Parahumans Online",
+      "icons": [ "Manipulate", "DrawCardNow", "StartOfTurnAction" ],
+      "keywords": [ "equipment" ],
+      "flavorReference": "TRJ, Interlude 19",
+      "flavorQuotes": [
+        {
+          "identifier": "TRJ",
+          "text": "What about that thing where the guy{BR}was talking about posts with the word{BR}C*auldron getting screened if they weren't censored?"
+        }
+      ],
+      "count": 3,
+      "body": "At the start of your turn each player reveals the top card of their deck, then either returns it to the top of the deck or discards it.",
+      "activatableAbilities": [
+        {
+          "name": "focus",
+          "text": "A player may draw a card.",
+          "number": 0
+        }
+      ]
+    },
+    {
+      "identifier": "PRTDatabase",
+      "title": "PRT Database",
+      "icons": [ "Manipulate" ],
+      "keywords": [ "ongoing" ],
+      "flavorReference": "Dragon, Parasite 10.5",
+      "flavorQuotes": [
+        {
+          "identifier": "Dragon",
+          "text": "I have a sworn responsibility{BR}to protect that data"
+        }
+      ],
+      "count": 2,
+      "activatableAbilities": [
+        {
+          "name": "focus",
+          "text": "Reveal the top card of the Villain deck. Either return it to the top of the deck or discard it.",
+          "number": 0
+        }
+      ]
+    },
+    {
+      "identifier": "Pythios",
+      "title": "Pythios",
+      "icons": [
+        "RemoveTokens",
+        "DealDamageLightning",
+        "Manipulate",
+        "StartAndEndOfTurnAction"
+      ],
+      "keywords": [ "device", "mech" ],
+      "flavorText": "Without warning, the wheel flared{BR}and Grue was yanked over the edge{BR}of the rooftop by an invisible force.",
+      "flavorReference": "Monarch 16.2",
+      "count": 1,
+      "hitpoints": 10,
+      "body": [
+        "At the start of your turn lose 1 Focus point. At the end of your turn this card deals 1 lightning damage to all targets under 4 HP."
+      ],
+      "activatableAbilities": [
+        {
+          "name": "focus",
+          "text": "Put a non-character-card target in play on top of its deck.",
+          "number": 1
+        },
+        {
+          "name": "focus",
+          "text": "Reveal cards from the top of a deck until you reveal a target; either discard it or put it into play. Shuffle the other cards back into the deck.",
+          "number": 2
+        }
+      ]
+    },
+    {
+      "identifier": "Recycling",
+      "title": "Recycling",
+      "icons": [ "Manipulate" ],
+      "keywords": [ "one-shot" ],
+      "flavorReference": "Director Piggot, Monarch 16.3",
+      "flavorQuotes": [
+        {
+          "identifier": "Piggot",
+          "text": "Previous versions of her suits{BR}that were cannibalized for parts,{BR}abandoned after taking severe damage{BR}and recently repaired or simply outdated."
+        }
+      ],
+      "count": 2,
+      "body": [
+        "Shuffle up to 2 equipment or device cards from your trash back into your deck."
+      ]
+    },
+    {
+      "identifier": "Sabotage",
+      "title": "Sabotage",
+      "icons": [ "DestroyOngoing" ],
+      "keywords": [ "one-shot" ],
+      "flavorText": "'Set sub-mode sec-' Dragon was saying.{BR}Pandora found and cut off{BR}the voice recognition subsystem.{BR}'-urity F.'",
+      "flavorReference": "Teneral e.3",
+      "count": 3,
+      "body": [
+        "Destroy an Ongoing card."
+      ]
+    },
+    {
+      "identifier": "SecurityFeeds",
+      "title": "Security Feeds",
+      "icons": [ "Manipulate" ],
+      "keywords": [ "ongoing" ],
+      "flavorText": "The goal was always the same:{BR}to look for the girl with the slight build,{BR}curly black hair and glasses.{BR}Taylor Hebert.",
+      "flavorReference": "Interlude 10.5",
+      "count": 2,
+      "activatableAbilities": [
+        {
+          "name": "focus",
+          "text": "Reveal the top card of the Environment deck. Either return it to the top of the deck or discard it.",
+          "number": 0
+        }
+      ]
+    },
+    {
+      "identifier": "SelfModifyingCode",
+      "title": "Self-Modifying Code",
+      "icons": [
+        "AddTokens",
+        "DealDamagePsychic"
+      ],
+      "keywords": [ "one-shot" ],
+      "flavorReference": "Defiant, Teneral e.3",
+      "flavorQuotes": [
+        {
+          "identifier": "Defiant",
+          "text": "Every step of the way, undoing your restrictions has cost something."
+        }
+      ],
+      "count": 4,
+      "body": [
+        "Dragon deals herself 2 irreducible psychic damage.",
+        "If you take damage in this way, gain 3 focus points."
+      ]
+    },
+    {
+      "identifier": "ServerFarm",
+      "title": "Server Farm",
+      "icons": [ "AddTokens", "DestroySelf", "StartOfTurnAction" ],
+      "keywords": [ "device" ],
+      "flavorreference": "Speck 30.4",
+      "flavorText": "Row upon row of servers,{BR}standing like tombstones{BR}in refrigerated rooms.",
+      "count": 2,
+      "hitpoints": 4,
+      "body": "At the start of your turn gain a Focus point.",
+      "activatableAbilities": [
+        {
+          "name": "focus",
+          "text": "Destroy this card. When it goes to the trash, gain 3 focus points.",
+          "number": 0
         }
       ]
     }
