@@ -5,21 +5,6 @@
 	"difficulty": 2,
 	"cards": [
 		{
-			"identifier": "AChaoticEnvironment",
-			"count": 1,
-			"title": "A Chaotic Environment",
-			"body": [
-				"At the end of the environment turn, play the top card of the environment deck.",
-				"At the start of the environment turn, if this is the only environment card in play, destroy it."
-			],
-			"icons": [
-				"StartAndEndOfTurnAction",
-				"PlayCardNow",
-				"DestroySelf"
-			],
-			"flavorText": "“We don't have the organization. Our command{BR}structure is down. Tattletale is gone, either{BR}dead or too hurt to fight.”"
-		},
-		{
 			"identifier": "AccordsPlan",
 			"count": 1,
 			"title": "Accord's Plan",
@@ -34,6 +19,21 @@
 				"DestroySelf"
 			],
 			"flavorText": "He'd drafted a document in the nine hours that{BR}followed, doing little more than typing and{BR}tracking down exact numbers. A hundred and{BR}fifty pages, formatted and clear."
+		},
+		{
+			"identifier": "AChaoticEnvironment",
+			"count": 1,
+			"title": "A Chaotic Environment",
+			"body": [
+				"At the end of the environment turn, play the top card of the environment deck.",
+				"At the start of the environment turn, if this is the only environment card in play, destroy it."
+			],
+			"icons": [
+				"StartAndEndOfTurnAction",
+				"PlayCardNow",
+				"DestroySelf"
+			],
+			"flavorText": "“We don't have the organization. Our command{BR}structure is down. Tattletale is gone, either{BR}dead or too hurt to fight.”"
 		},
 		{
 			"identifier": "ChevalierNewDelhi",
