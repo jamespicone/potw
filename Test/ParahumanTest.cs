@@ -2,6 +2,8 @@
 using System.Linq;
 using Handelabra.Sentinels.UnitTest;
 using Handelabra.Sentinels.Engine.Model;
+using NUnit.Framework;
+using System.Collections;
 
 namespace Jp.ParahumansOfTheWormverse.UnitTest
 {
@@ -73,6 +75,78 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest
             if (siberian.IsInPlayAndNotUnderCard)
             {
                 MoveCard(nine, siberian, nine.CharacterCard.UnderLocation, overrideIndestructible: true);
+            }
+        }
+
+        protected void AssertDamageSource(Card c)
+        {
+            InstallObserver();
+            expectedDamageSource = c;
+        }
+        protected void AssertDamageType(DamageType type)
+        {
+            InstallObserver();
+            expectedDamageType = type;
+        }
+
+        protected void AssertIrreducible()
+        {
+            InstallObserver();
+            expectedIrreducible = true;
+        }
+
+        protected void AssertNotIrreducible()
+        {
+            InstallObserver();
+            expectedIrreducible = false;
+        }
+
+        protected void IncapacitateCharacter(Card character, Card damageSource)
+        {
+            SetHitPoints(character, 1);
+            DealDamage(damageSource, character, 1, DamageType.Infernal, isIrreducible: true);
+        }
+
+
+        // Implementation
+        private bool hasInstalledHandler = false;
+
+        private DamageType? expectedDamageType = null;
+        private Card expectedDamageSource = null;
+        private bool? expectedIrreducible = null;
+
+        private IEnumerator ObserveAction(GameAction action)
+        {
+            if (action is DealDamageAction dda)
+            {
+                if (expectedDamageType != null)
+                {
+                    Assert.AreEqual(dda.DamageType, expectedDamageType.Value, $"{expectedDamageType} was the expected damage type");
+                    expectedDamageType = null;
+                }
+
+                if (expectedDamageSource != null)
+                {
+                    Assert.AreEqual(dda.DamageSource.Card, expectedDamageSource, $"{expectedDamageSource.Title} was the expected damage source");
+                    expectedDamageSource = null;
+                }
+
+                if (expectedIrreducible != null)
+                {
+                    Assert.AreEqual(dda.IsIrreducible, expectedIrreducible.Value, $"{expectedIrreducible.Value} was the expected irreducible status");
+                    expectedIrreducible = null;
+                }
+            }
+
+            yield break;
+        }
+
+        private void InstallObserver()
+        {
+            if (!hasInstalledHandler)
+            {
+                GameController.OnDidPerformAction += ObserveAction;
+                hasInstalledHandler = true;
             }
         }
     }
