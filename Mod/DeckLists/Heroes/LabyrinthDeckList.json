@@ -424,7 +424,7 @@
       ],
       "body": [
         "At the start of your turn remove any tokens on this card.",
-        "At the start of each other hero's turn they may put a token on this card. If they do, they may use a power."
+        "At the start of each other hero's turn, if there are no tokens on this card, they may put a token on this card. If they do, they may use a power."
       ],
       "powers": [ "Destroy an environment card. If you do, another hero may play a card." ],
       "icons": [
