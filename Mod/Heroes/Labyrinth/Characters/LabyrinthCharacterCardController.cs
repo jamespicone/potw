@@ -24,34 +24,11 @@ namespace Jp.ParahumansOfTheWormverse.Labyrinth
             AddThisCardControllerToList(CardControllerListType.ChangesTurnTakerOrder);
         }
 
-        public override int AskPriority => 1;
+        public override int AskPriority => 5;
 
-        private TurnTaker GetExpectedNextTurnTaker(TurnTaker active, TurnTaker next)
+        private TurnTaker GetExpectedNextTurnTaker(TurnTaker active)
         {
-            if (cachedAskAllCardControllersInList == null)
-            {
-                var method = GameController.GetType().GetMethod(
-                    "AskAllCardControllersInList",
-                    BindingFlags.NonPublic | BindingFlags.Instance
-                );
-
-                cachedAskAllCardControllersInList = method.MakeGenericMethod(typeof(TurnTaker));
-            }
-
-            var result = (TurnTaker)cachedAskAllCardControllersInList.Invoke(
-                GameController,
-                new object[] {
-                    CardControllerListType.ChangesTurnTakerOrder,
-                    (Func<CardController, TurnTaker>)(
-                        cc => cc == this || cc.AskPriority > AskPriority
-                                        ? null
-                                        : cc.AskIfTurnTakerOrderShouldBeChanged(active, next)),
-                    false,
-                    null
-                }
-            );
-
-            return result ?? next;
+            return GameController.FindNextAfterTurnTaker(active, cc => cc != this || cc.AskPriority <= AskPriority);
         }
 
         // {{Labyrinth}} takes her turn immediately after the first Environment turn, not in the usual hero turn order.
@@ -66,14 +43,12 @@ namespace Jp.ParahumansOfTheWormverse.Labyrinth
 
             currentlyChangingTurnOrder = true;
 
-            TurnTaker next = GetExpectedNextTurnTaker(fromTurnTaker, toTurnTaker);
+            TurnTaker next = GetExpectedNextTurnTaker(fromTurnTaker);
 
             // If we're going to our turn and the previous turntaker wasn't the environment, skip our turn.
             if (next == TurnTaker && fromTurnTaker != env)
             {
-                var index = Game.TurnTakers.IndexOf(next) ?? 0;
-                index = (index + 1) % Game.TurnTakers.Count();
-                next = GetExpectedNextTurnTaker(next, Game.TurnTakers.ElementAt(index));
+                next = GetExpectedNextTurnTaker(next);
             }
 
             // If we're leaving the environment, we're the next turn
@@ -85,9 +60,7 @@ namespace Jp.ParahumansOfTheWormverse.Labyrinth
             // If we're leaving our turn, we should go to whoever is after the environment.
             if (fromTurnTaker == TurnTaker)
             {
-                var index = Game.TurnTakers.IndexOf(env) ?? 0;
-                index = (index + 1) % Game.TurnTakers.Count();
-                next = GetExpectedNextTurnTaker(env, Game.TurnTakers.ElementAt(index));
+                next = GetExpectedNextTurnTaker(env);
             }
 
             currentlyChangingTurnOrder = false;
