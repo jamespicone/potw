@@ -1,5 +1,6 @@
 using Handelabra.Sentinels.Engine.Controller;
 using Handelabra.Sentinels.Engine.Model;
+using Jp.SOTMUtilities;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -36,7 +37,7 @@ namespace Jp.ParahumansOfTheWormverse.Alexandria
         {
             // "When {AlexandriaCharacter} destroys a target select a target. Until the start of your next turn that target cannot deal damage"
             AddTrigger<DestroyCardAction>(
-                dca => dca.ResponsibleCard == CharacterCard && dca.WasCardDestroyed,
+                dca => Card.IsResponsible(dca) && dca.WasCardDestroyed && dca.CardToDestroy.Card.IsTarget,
                 dca => PreventTargetDoingDamage(),
                 TriggerType.Other,
                 TriggerTiming.After

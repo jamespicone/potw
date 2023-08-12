@@ -1,6 +1,7 @@
 ﻿using Handelabra;
 using Handelabra.Sentinels.Engine.Controller;
 using Handelabra.Sentinels.Engine.Model;
+using Jp.SOTMUtilities;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -20,7 +21,7 @@ namespace Jp.ParahumansOfTheWormverse.Battery
         public override void AddTriggers()
         {
             // "Whenever {BatteryCharacter} destroys a target, you may draw a card and you may play a card."
-            base.AddTrigger<DestroyCardAction>((DestroyCardAction dca) => dca.WasCardDestroyed && dca.CardToDestroy.Card.IsTarget && dca.ResponsibleCard.Owner.CharacterCard == base.CharacterCard, DrawPlayResponse, new TriggerType[] { TriggerType.DrawCard, TriggerType.PlayCard }, TriggerTiming.After);
+            base.AddTrigger<DestroyCardAction>((DestroyCardAction dca) => dca.WasCardDestroyed && dca.CardToDestroy.Card.IsTarget && Card.IsResponsible(dca), DrawPlayResponse, new TriggerType[] { TriggerType.DrawCard, TriggerType.PlayCard }, TriggerTiming.After);
             base.AddTriggers();
         }
 
