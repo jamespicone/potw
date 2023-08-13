@@ -34,6 +34,15 @@ namespace Jp.ParahumansOfTheWormverse.Leviathan
                     c => c == CharacterCard,
                     1
                 ));
+
+                if (IsGameAdvanced)
+                {
+                    AddSideTrigger(AddEndOfTurnTrigger(
+                        tt => tt == TurnTaker,
+                        PlayTheTopCardOfTheVillainDeckResponse,
+                        TriggerType.PlayCard
+                    ));
+                }
             }
             else
             {
@@ -64,39 +73,11 @@ namespace Jp.ParahumansOfTheWormverse.Leviathan
             }
         }
 
-        public override IEnumerator BeforeFlipCardImmediateResponse(FlipCardAction flip)
-        {
-            if (IsGameAdvanced)
-            {
-                // The first time Leviathan would flip each turn, play the top card of the villain deck first
-                if (Journal.FlipCardEntries().Where(Journal.ThisTurn<FlipCardJournalEntry>()).Count() == 0)
-                {
-                    var e = PlayTheTopCardOfTheVillainDeckResponse(flip);
-                    if (UseUnityCoroutines)
-                    {
-                        yield return GameController.StartCoroutine(e);
-                    }
-                    else
-                    {
-                        GameController.ExhaustCoroutine(e);
-                    }
-                }
-            }
-
-            base.BeforeFlipCardImmediateResponse(flip);
-        }
-
         public override IEnumerator AfterFlipCardImmediateResponse()
         {
             var e = base.AfterFlipCardImmediateResponse();
-            if (UseUnityCoroutines)
-            {
-                yield return GameController.StartCoroutine(e);
-            }
-            else
-            {
-                GameController.ExhaustCoroutine(e);
-            }
+            if (UseUnityCoroutines) { yield return GameController.StartCoroutine(e); }
+            else { GameController.ExhaustCoroutine(e); }
 
             if (Card.IsFlipped)
             {

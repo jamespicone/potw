@@ -43,8 +43,8 @@
         "PlayCardNow",
         "ReduceDamageTaken"
       ],
-      "flippedAdvanced": "The first time Leviathan would flip each turn play the top card of the villain deck first.",
-      "flippedAdvancedIcons": [ "PlayCardNow" ],
+      "flippedAdvanced": "At the end of the villain turn play the top card of the villain deck.",
+      "flippedAdvancedIcons": [ "EndOfTurnAction" ],
       "flippedNemesisIdentifiers": [ "" ],
       "tokenPools": [
         {
