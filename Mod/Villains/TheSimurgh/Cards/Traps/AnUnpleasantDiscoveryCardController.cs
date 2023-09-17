@@ -38,7 +38,6 @@ namespace Jp.ParahumansOfTheWormverse.TheSimurgh
 
         private IEnumerator HurtHero(MoveCardAction mca)
         {
-            Debug.Log($"SimurghTrap: Hurting hero because {mca}");
             var heroToHurtTurnTaker = mca.CardToMove.Owner;
 
             var storedResults = new List<Card>();
