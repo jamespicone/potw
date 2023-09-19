@@ -20,5 +20,12 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.BrocktonBay
             RunGame(gc);
         }
 
+        [Test]
+        [Property("TestType", "Random")]
+        public void TestEnvRandomWithLabyrinth()
+        {
+            var gc = SetupRandomParahumanTestWithLabyrinth(overrideEnvironment: "Jp.ParahumansOfTheWormverse.BrocktonBay");
+            RunGame(gc);
+        }
     }
 }
