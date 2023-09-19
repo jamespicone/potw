@@ -63,6 +63,8 @@
     <Compile Include="Environment\BrocktonBay\LeetTests.cs" />
     <Compile Include="Environment\BrocktonBay\CiviliansTests.cs" />
     <Compile Include="Environment\BrocktonBay\AttentionTests.cs" />
+    <Compile Include="Environment\CoilsBase\RandomCoilsBaseTest.cs" />
+    <Compile Include="Environment\Kyushu\RandomKyushuTest.cs" />
     <Compile Include="Environment\Kyushu\TidalWaveKyushuTests.cs" />
     <Compile Include="Environment\Kyushu\SlideIntoTheSeaTests.cs" />
     <Compile Include="Environment\Kyushu\SentaiEliteTests.cs" />
@@ -72,6 +74,7 @@
     <Compile Include="Environment\Kyushu\FatalismAndDespairTests.cs" />
     <Compile Include="Environment\Kyushu\CollapsingBuildingTests.cs" />
     <Compile Include="Environment\Kyushu\BlackKazeTests.cs" />
+    <Compile Include="Environment\NewDelhi\RandomNewDelhiTest.cs" />
     <Compile Include="Environment\NewDelhi\YangbanNewDelhiTests.cs" />
     <Compile Include="Environment\NewDelhi\WildfiresTests.cs" />
     <Compile Include="Environment\NewDelhi\UnstoppableTests.cs" />

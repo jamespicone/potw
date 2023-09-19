@@ -10,13 +10,13 @@ using Handelabra.Sentinels.UnitTest;
 namespace Jp.ParahumansOfTheWormverse.UnitTest.BrocktonBay
 {
     [TestFixture()]
-    public class RandomBrocktonBayTests : RandomParahumanTest
+    public class RandomCoilsBaseTests : RandomParahumanTest
     {
         [Test]
         [Property("TestType", "Random")]
         public void TestEnvRandom()
         {
-            var gc = SetupRandomParahumanTest(overrideEnvironment: "Jp.ParahumansOfTheWormverse.BrocktonBay");
+            var gc = SetupRandomParahumanTest(overrideEnvironment: "Jp.ParahumansOfTheWormverse.CoilsBase");
             RunGame(gc);
         }
 
@@ -24,7 +24,7 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.BrocktonBay
         [Property("TestType", "Random")]
         public void TestEnvRandomWithLabyrinth()
         {
-            var gc = SetupRandomParahumanTestWithLabyrinth(overrideEnvironment: "Jp.ParahumansOfTheWormverse.BrocktonBay");
+            var gc = SetupRandomParahumanTestWithLabyrinth(overrideEnvironment: "Jp.ParahumansOfTheWormverse.CoilsBase");
             RunGame(gc);
         }
 
@@ -32,7 +32,7 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.BrocktonBay
         [Property("TestType", "Random")]
         public void TestEnvRandomWithPWT()
         {
-            var gc = SetupRandomParahumanTestWithPWTempest(overrideEnvironment: "Jp.ParahumansOfTheWormverse.BrocktonBay");
+            var gc = SetupRandomParahumanTestWithPWTempest(overrideEnvironment: "Jp.ParahumansOfTheWormverse.CoilsBase");
             RunGame(gc);
         }
     }
