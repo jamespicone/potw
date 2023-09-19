@@ -124,5 +124,30 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest
                 overrideVillain: overrideVillain
             );
         }
+
+        protected GameController SetupRandomParahumanTestWithLabyrinth(
+            string overrideEnvironment = null,
+            List<string> useHeroes = null,
+            Dictionary<string, string> overrideVariants = null,
+            string overrideVillain = null
+        )
+        {
+            Assert.Less(useHeroes.Count, 5);
+
+            useHeroes.Append("Labyrinth");
+            overrideVariants["Tempest"] = "LabyrinthCharacter";
+
+            return SetupRandomGameController(
+                reasonable: false,
+                availableHeroes: ParahumansHeroes.Concat(DeckDefinition.AvailableHeroes),
+                availableVillains: ParahumansVillains.Concat(DeckDefinition.AvailableVillains),
+                availableEnvironments: ParahumansEnvironments.Concat(DeckDefinition.AvailableEnvironments),
+                overrideEnvironment: overrideEnvironment,
+                useHeroes: useHeroes,
+                randomizeUseHeroes: true,
+                overrideVariants: overrideVariants,
+                overrideVillain: overrideVillain
+            );
+        }
     }
 }
