@@ -206,6 +206,13 @@ namespace Handelabra.Sentinels.UnitTest
             promosToCheck.AddRange(ModHelper.GetAllPromoDefinitions().Where((CardDefinition cd) => cd.Identifier.Contains(definition.Identifier)));
 
             var name = definition.Name;
+
+            if (definition.AllInitialCardIdentifiers.Contains(promoIdentifier))
+            {
+                promoIdentifiers.Remove(identifier);
+                return new Dictionary<string, string> { { identifier, name } };
+            }
+
             var promo = promosToCheck.FirstOrDefault((CardDefinition cd) => cd.PromoIdentifier == promoIdentifier);
 
             if (promo == null)

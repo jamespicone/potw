@@ -64,7 +64,7 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest
             Assert.Less(useHeroes.Count, 5);
 
             useHeroes.Add("Guise");
-            //overrideVariants["Guise"] = "GuiseCharacter";
+            overrideVariants["Guise"] = "GuiseCharacter";
 
             return SetupRandomGameController(
                 reasonable: false,
@@ -147,7 +147,7 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest
 
             Assert.Less(useHeroes.Count, 5);
             useHeroes.Add("Jp.ParahumansOfTheWormverse.Labyrinth");
-            //overrideVariants["Jp.ParahumansOfTheWormverse.Labyrinth"] = "LabyrinthCharacter";
+            overrideVariants["Jp.ParahumansOfTheWormverse.Labyrinth"] = "LabyrinthCharacter";
 
             Log.Debug($"UseHeroes: {useHeroes.PrintElements((s, i) => s)}");
 

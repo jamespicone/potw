@@ -91,6 +91,7 @@
     <Compile Include="Environment\NewDelhi\AChaoticEnvironmentTests.cs" />
     <Compile Include="Environment\NewDelhi\AccordsPlanTests.cs" />
     <Compile Include="Heroes\Alexandria\AlexandriaTests.cs" />
+    <Compile Include="Heroes\Alexandria\RandomAlexandriaTests.cs" />
     <Compile Include="Heroes\Alexandria\TimeLockedTests.cs" />
     <Compile Include="Heroes\Alexandria\SupersonicFlightTests.cs" />
     <Compile Include="Heroes\Alexandria\PureStrengthTests.cs" />
@@ -105,6 +106,7 @@
     <Compile Include="Heroes\Alexandria\InvincibleTests.cs" />
     <Compile Include="Heroes\Alexandria\AlexandriasCapeTests.cs" />
     <Compile Include="Heroes\Armsmaster\ArmsmasterTests.cs" />
+    <Compile Include="Heroes\Armsmaster\RandomArmsmasterTests.cs" />
     <Compile Include="Heroes\Armsmaster\TargetingComputerTests.cs" />
     <Compile Include="Heroes\Armsmaster\SurveyHalberdTests.cs" />
     <Compile Include="Heroes\Armsmaster\StaticFieldGeneratorTests.cs" />
@@ -124,6 +126,8 @@
     <Compile Include="Heroes\Armsmaster\CombatPredictionArrayTests.cs" />
     <Compile Include="Heroes\Armsmaster\AcceleratorTests.cs" />
     <Compile Include="Heroes\Battery\BatteryTests.cs" />
+    <Compile Include="Heroes\Battery\RandomBatteryCauldronCapeTests.cs" />
+    <Compile Include="Heroes\Battery\RandomBatteryTests.cs" />
     <Compile Include="Heroes\Battery\ThenPushingBeyondTests.cs" />
     <Compile Include="Heroes\Battery\StrengthTests.cs" />
     <Compile Include="Heroes\Battery\StaticChargeTests.cs" />
