@@ -68,7 +68,7 @@ namespace Handelabra.Sentinels.UnitTest
                 villainName = villainInfo.Values.FirstOrDefault();
             }
 
-            TestContext.Progress.WriteLine(villainName + " threatens the Multiverse!");
+            Log.Debug(villainName + " threatens the Multiverse!");
 
             // Choose an environment
             if (environment == null)
@@ -76,7 +76,7 @@ namespace Handelabra.Sentinels.UnitTest
                 environment = GetRandomEnvironment(availableEnvironments);
             }
 
-            TestContext.Progress.WriteLine(environment + " is the location of the conflict.");
+            Log.Debug(environment + " is the location of the conflict.");
 
             // Choose heroes
             var heroesLeft = availableHeroes.ToList();
@@ -105,7 +105,7 @@ namespace Handelabra.Sentinels.UnitTest
                     heroName = heroInfo.Values.FirstOrDefault();
                 }
 
-                TestContext.Progress.WriteLine(heroName + " joins the team!");
+                Log.Debug(heroName + " joins the team!");
                 heroes.Add(hero);
                 heroesLeft.Remove(hero);
             }
@@ -206,7 +206,6 @@ namespace Handelabra.Sentinels.UnitTest
             promosToCheck.AddRange(ModHelper.GetAllPromoDefinitions().Where((CardDefinition cd) => cd.Identifier.Contains(definition.Identifier)));
 
             var name = definition.Name;
-
             var promo = promosToCheck.FirstOrDefault((CardDefinition cd) => cd.PromoIdentifier == promoIdentifier);
 
             if (promo == null)
@@ -276,7 +275,7 @@ namespace Handelabra.Sentinels.UnitTest
                     {
                         PlayCard(gameController.ActiveTurnTakerController);
 
-                        TestContext.Progress.WriteLine("PLAY CARD SANITY: " + sanityCheck);
+                        Log.Debug("PLAY CARD SANITY: " + sanityCheck);
                         sanityCheck -= 1;
                         Assert.IsTrue(sanityCheck > 0, "Sanity check failed in " + gameController.ActiveTurnPhase);
                     }
@@ -288,7 +287,7 @@ namespace Handelabra.Sentinels.UnitTest
                     {
                         RunCoroutine(gameController.SelectAndUsePower(hero));
 
-                        TestContext.Progress.WriteLine("POWER SANITY: " + sanityCheck);
+                        Log.Debug("POWER SANITY: " + sanityCheck);
                         sanityCheck -= 1;
                         Assert.IsTrue(sanityCheck > 0, "Sanity check failed in " + gameController.ActiveTurnPhase);
                     }
@@ -299,7 +298,7 @@ namespace Handelabra.Sentinels.UnitTest
                     {
                         RunCoroutine(gameController.DrawCard(gameController.ActiveTurnTaker.ToHero()));
 
-                        TestContext.Progress.WriteLine("DRAW CARD SANITY: " + sanityCheck);
+                        Log.Debug("DRAW CARD SANITY: " + sanityCheck);
                         sanityCheck -= 1;
                         Assert.IsTrue(sanityCheck > 0, "Sanity check failed in " + gameController.ActiveTurnPhase);
                     }
@@ -310,7 +309,7 @@ namespace Handelabra.Sentinels.UnitTest
                     {
                         RunCoroutine(gameController.SelectAndUseIncapacitatedAbility(gameController.ActiveTurnTakerController.ToHero()));
 
-                        TestContext.Progress.WriteLine("INCAPACITATED SANITY: " + sanityCheck);
+                        Log.Debug("INCAPACITATED SANITY: " + sanityCheck);
                         sanityCheck -= 1;
                         Assert.IsTrue(sanityCheck > 0, "Sanity check failed in " + gameController.ActiveTurnPhase);
                     }
@@ -319,8 +318,8 @@ namespace Handelabra.Sentinels.UnitTest
 
             if (gameController.IsGameOver)
             {
-                TestContext.Progress.WriteLine("Game over!");
-                TestContext.Progress.WriteLine(gameController.Game);
+                Log.Debug("Game over!");
+                Log.Debug(gameController.Game.ToString());
             }
         }
 
@@ -462,11 +461,11 @@ namespace Handelabra.Sentinels.UnitTest
 
             if (result == null)
             {
-                TestContext.Progress.WriteLine("ChooseBestTarget had nothing to choose from!");
+                Log.Debug("ChooseBestTarget had nothing to choose from!");
             }
             else
             {
-                TestContext.Progress.WriteLine("ChooseBestTarget from <" + targets.Select(c => c.Title).ToRecursiveString() + "> choosing " + result.Title);
+                Log.Debug("ChooseBestTarget from <" + targets.Select(c => c.Title).ToRecursiveString() + "> choosing " + result.Title);
             }
 
             return result;
@@ -493,11 +492,11 @@ namespace Handelabra.Sentinels.UnitTest
 
             if (result == null)
             {
-                TestContext.Progress.WriteLine("ChooseDestroyCard had nothing to choose from!");
+                Log.Debug("ChooseDestroyCard had nothing to choose from!");
             }
             else
             {
-                TestContext.Progress.WriteLine("ChooseDestroyCard from <" + cards.Select(c => c.Title).ToRecursiveString() + "> choosing " + result.Title);
+                Log.Debug("ChooseDestroyCard from <" + cards.Select(c => c.Title).ToRecursiveString() + "> choosing " + result.Title);
             }
 
             return result;
@@ -556,7 +555,7 @@ namespace Handelabra.Sentinels.UnitTest
                             var card = selectCardDecision.Choices.FirstOrDefault(c => c.Identifier == identifier);
                             if (card != null && GameController.CanPlayCard(FindCardController(card)) == CanPlayCardResult.CanPlay)
                             {
-                                TestContext.Progress.WriteLine("Playing preferred card: " + identifier);
+                                Log.Debug("Playing preferred card: " + identifier);
                                 selectCardDecision.SelectedCard = card;
                                 break;
                             }

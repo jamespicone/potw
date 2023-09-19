@@ -5,6 +5,7 @@ using Handelabra.Sentinels.Engine.Model;
 using NUnit.Framework;
 using System.Collections;
 using System.Collections.Generic;
+using Handelabra;
 
 namespace Jp.ParahumansOfTheWormverse.UnitTest
 {
@@ -57,10 +58,13 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest
             string overrideVillain = null
         )
         {
+            if (useHeroes == null) useHeroes = new List<string>();
+            if (overrideVariants == null) overrideVariants = new Dictionary<string, string>();
+
             Assert.Less(useHeroes.Count, 5);
 
-            useHeroes.Append("Guise");
-            overrideVariants["Guise"] = "GuiseCharacter";
+            useHeroes.Add("Guise");
+            //overrideVariants["Guise"] = "GuiseCharacter";
 
             return SetupRandomGameController(
                 reasonable: false,
@@ -69,7 +73,7 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest
                 availableEnvironments: ParahumansEnvironments.Concat(DeckDefinition.AvailableEnvironments),
                 overrideEnvironment: overrideEnvironment,
                 useHeroes: useHeroes,
-                randomizeUseHeroes: true,
+                randomizeUseHeroes: false,
                 overrideVariants: overrideVariants,
                 overrideVillain: overrideVillain
             );
@@ -82,9 +86,12 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest
             string overrideVillain = null
         )
         {
+            if (useHeroes == null) useHeroes = new List<string>();
+            if (overrideVariants == null) overrideVariants = new Dictionary<string, string>();
+
             Assert.Less(useHeroes.Count, 5);
 
-            useHeroes.Append("Guise");
+            useHeroes.Add("Guise");
             overrideVariants["Guise"] = "CompletionistGuiseCharacter";
 
             return SetupRandomGameController(
@@ -107,9 +114,12 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest
             string overrideVillain = null
         )
         {
+            if (useHeroes == null) useHeroes = new List<string>();
+            if (overrideVariants == null) overrideVariants = new Dictionary<string, string>();
+
             Assert.Less(useHeroes.Count, 5);
 
-            useHeroes.Append("Tempest");
+            useHeroes.Add("Tempest");
             overrideVariants["Tempest"] = "PrimeWardensTempestCharacter";
 
             return SetupRandomGameController(
@@ -132,10 +142,14 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest
             string overrideVillain = null
         )
         {
-            Assert.Less(useHeroes.Count, 5);
+            if (useHeroes == null) useHeroes = new List<string>();
+            if (overrideVariants == null) overrideVariants = new Dictionary<string, string>();
 
-            useHeroes.Append("Labyrinth");
-            overrideVariants["Tempest"] = "LabyrinthCharacter";
+            Assert.Less(useHeroes.Count, 5);
+            useHeroes.Add("Jp.ParahumansOfTheWormverse.Labyrinth");
+            //overrideVariants["Jp.ParahumansOfTheWormverse.Labyrinth"] = "LabyrinthCharacter";
+
+            Log.Debug($"UseHeroes: {useHeroes.PrintElements((s, i) => s)}");
 
             return SetupRandomGameController(
                 reasonable: false,
