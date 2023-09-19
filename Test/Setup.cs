@@ -23,6 +23,7 @@ public class Setup
 
     protected void Output(string message)
     {
-        Console.WriteLine(message);
+        TestContext.Out.WriteLine(message);
+        TestContext.Progress.WriteLine(message);
     }
 }
