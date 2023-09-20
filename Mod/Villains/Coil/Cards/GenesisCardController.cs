@@ -30,7 +30,7 @@ namespace Jp.ParahumansOfTheWormverse.Coil
                 mca => mca.CardToMove == Card &&
                     mca.Destination.IsDeck &&
                     mca.Destination.IsVillain &&
-                    mca.DecisionSources.Count(d => d.CardSource.Card == Card) > 0 &&
+                    (mca.DecisionSources?.Count(d => d.CardSource?.Card == Card) ?? 0) > 0 &&
                     mca.CardSource == null &&
                     mca.Origin.IsPlayArea &&
                     mca.ActionSource == _actionThatDestroyedMe,

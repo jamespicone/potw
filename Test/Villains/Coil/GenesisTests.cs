@@ -17,5 +17,23 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.Coil
         {
             SetupGameController("Jp.ParahumansOfTheWormverse.Coil", "Tempest", "InsulaPrimalis");
         }
+
+        [Test()]
+        public void DestroyedByEnvDamage()
+        {
+            SetupGameController(
+                "Jp.ParahumansOfTheWormverse.Coil",
+                "Legacy",
+                "InsulaPrimalis"
+            );
+
+            StartGame();
+            RemoveVillainCards();
+            var genesis = PlayCard("Genesis");
+
+            DealDamage(FindEnvironment().TurnTaker, genesis, 20, DamageType.Infernal);
+
+            AssertInDeck(genesis);
+        }
     }
 }
