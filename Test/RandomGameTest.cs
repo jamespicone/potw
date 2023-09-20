@@ -48,6 +48,9 @@ namespace Handelabra.Sentinels.UnitTest
                 overrideVariants = new Dictionary<string, string>();
             }
 
+            if (useHeroes != null)
+                useHeroes = useHeroes.Distinct().ToList();
+
             // Choose a villain
             var villainName = "";
             if (villain != null)

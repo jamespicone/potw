@@ -43,7 +43,7 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest
                 availableHeroes: ParahumansHeroes.Concat(DeckDefinition.AvailableHeroes),
                 availableVillains: ParahumansVillains.Concat(DeckDefinition.AvailableVillains),
                 availableEnvironments: ParahumansEnvironments.Concat(DeckDefinition.AvailableEnvironments),
-                overrideEnvironment: "CelestialTribunal",
+                overrideEnvironment: "TheCelestialTribunal",
                 useHeroes: useHeroes,
                 randomizeUseHeroes: true,
                 overrideVariants: overrideVariants,
@@ -148,8 +148,6 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest
             Assert.Less(useHeroes.Count, 5);
             useHeroes.Add("Jp.ParahumansOfTheWormverse.Labyrinth");
             overrideVariants["Jp.ParahumansOfTheWormverse.Labyrinth"] = "LabyrinthCharacter";
-
-            Log.Debug($"UseHeroes: {useHeroes.PrintElements((s, i) => s)}");
 
             return SetupRandomGameController(
                 reasonable: false,
