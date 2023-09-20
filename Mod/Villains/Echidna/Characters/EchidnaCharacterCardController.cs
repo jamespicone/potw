@@ -8,6 +8,7 @@ using Handelabra.Sentinels.Engine.Controller;
 using Handelabra.Sentinels.Engine.Model;
 
 using Jp.SOTMUtilities;
+using Handelabra;
 
 namespace Jp.ParahumansOfTheWormverse.Echidna
 {
@@ -78,8 +79,8 @@ namespace Jp.ParahumansOfTheWormverse.Echidna
         private bool NoHeroWasDamagedByVillain()
         {
             return Journal.DealDamageEntriesThisRound()
-                .Where(dd => dd.TargetCard.Is(this).Hero().Character())
-                .Where(dd => dd.SourceCard.Is().Villain().AccordingTo(this))
+                .Where(dd => dd.TargetCard.Is().Hero().Character().AccordingTo(this))
+                .Where(dd => dd.SourceCard?.Is().Villain().AccordingTo(this) ?? false)
                 .Count() <= 0;
         }
 
