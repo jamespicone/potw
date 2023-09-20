@@ -2608,6 +2608,11 @@ namespace Handelabra.Sentinels.UnitTest
             this.RunCoroutine(this.GameController.DealDamageToTarget(new DamageSource(this.GameController, source), target, amount, type, isIrreducible, ignoreBattleZone: ignoreBattleZone, cardSource: new CardSource(this.GameController.FindCardController(source))));
         }
 
+        protected void DealDamage(TurnTaker source, Card target, int amount, DamageType type, bool isIrreducible = false, bool ignoreBattleZone = false)
+        {
+            this.RunCoroutine(this.GameController.DealDamageToTarget(new DamageSource(this.GameController, source), target, amount, type, isIrreducible, ignoreBattleZone: ignoreBattleZone, cardSource: new CardSource(this.GameController.FindCardController(target))));
+        }
+
         protected void DealDamage(Card source, TurnTakerController target, int amount, DamageType type, bool isIrreducible = false)
         {
             DealDamage(source, target.CharacterCard, amount, type);
