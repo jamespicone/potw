@@ -31,7 +31,7 @@ namespace Jp.ParahumansOfTheWormverse.Labyrinth
         {
             // destroy an Environment card
             AddToTemporaryTriggerList(AddTrigger<DestroyCardAction>(
-                dca => dca.CardSource.Card == Card && dca.PostDestroyDestinationCanBeChanged && dca.WasCardDestroyed,
+                dca => dca.CardSource?.Card == Card && dca.PostDestroyDestinationCanBeChanged && dca.WasCardDestroyed,
                 MoveUnderLabyrinthInstead,
                 TriggerType.ChangePostDestroyDestination,
                 TriggerTiming.After,
