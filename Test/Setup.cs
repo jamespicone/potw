@@ -6,6 +6,7 @@ using Jp.ParahumansOfTheWormverse.Bitch;
 using Handelabra;
 
 [SetUpFixture]
+[Parallelizable(ParallelScope.Fixtures)]
 public class Setup
 {
     [OneTimeSetUp]
@@ -23,6 +24,7 @@ public class Setup
 
     protected void Output(string message)
     {
-        Console.WriteLine(message);
+        TestContext.Out.WriteLine(message);
+        TestContext.Progress.WriteLine(message);
     }
 }

@@ -49,6 +49,41 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest
         protected Card jessicaCharacter { get { return jessica.CharacterCards.Where(c => c.IsRealCard).First(); } }
         protected Card jessicaInstructions { get { return GetCard("JessicaYamadaInstructionsTarget"); } }
 
+        // Available decks
+        protected static string[] ParahumansHeroes = new string[] {
+            "Jp.ParahumansOfTheWormverse.Alexandria",
+            "Jp.ParahumansOfTheWormverse.Armsmaster",
+            "Jp.ParahumansOfTheWormverse.Battery",
+            "Jp.ParahumansOfTheWormverse.Bitch",
+            "Jp.ParahumansOfTheWormverse.Dauntless",
+            "Jp.ParahumansOfTheWormverse.Dragon",
+            "Jp.ParahumansOfTheWormverse.Grue",
+            "Jp.ParahumansOfTheWormverse.JessicaYamada",
+            "Jp.ParahumansOfTheWormverse.Labyrinth",
+            "Jp.ParahumansOfTheWormverse.Legend",
+            "Jp.ParahumansOfTheWormverse.MissMilitia",
+            "Jp.ParahumansOfTheWormverse.Skitter",
+            "Jp.ParahumansOfTheWormverse.Tattletale"
+        };
+
+        protected static string[] ParahumansVillains = new string[] {
+            "Jp.ParahumansOfTheWormverse.Behemoth",
+            "Jp.ParahumansOfTheWormverse.Coil",
+            "Jp.ParahumansOfTheWormverse.Echidna",
+            "Jp.ParahumansOfTheWormverse.Leviathan",
+            "Jp.ParahumansOfTheWormverse.Lung",
+            "Jp.ParahumansOfTheWormverse.Slaughterhouse9",
+            "Jp.ParahumansOfTheWormverse.TheMerchants",
+            "Jp.ParahumansOfTheWormverse.TheSimurgh"
+        };
+
+        protected static string[] ParahumansEnvironments = new string[] {
+            "Jp.ParahumansOfTheWormverse.BrocktonBay",
+            "Jp.ParahumansOfTheWormverse.CoilsBase",
+            "Jp.ParahumansOfTheWormverse.Kyushu",
+            "Jp.ParahumansOfTheWormverse.NewDelhi"
+        };
+
         // Helpers
 
         // Find all Twisted in play and move them back to their deck

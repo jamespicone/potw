@@ -40,6 +40,9 @@
     <Reference Include="EngineCommon">
       <HintPath>C:\Program Files (x86)\Steam\steamapps\common\Sentinels of the Multiverse\Sentinels_Data\Managed\EngineCommon.dll</HintPath>
     </Reference>
+    <Reference Include="MathNet.Numerics, Version=5.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MathNet.Numerics.5.0.0\lib\net48\MathNet.Numerics.dll</HintPath>
+    </Reference>
     <Reference Include="nunit.framework, Version=3.13.3.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
       <HintPath>..\packages\NUnit.3.13.3\lib\net45\nunit.framework.dll</HintPath>
     </Reference>
@@ -83,7 +86,9 @@
     <Compile Include="Environment\NewDelhi\ChevalierNewDelhiTests.cs" />
     <Compile Include="Environment\NewDelhi\AChaoticEnvironmentTests.cs" />
     <Compile Include="Environment\NewDelhi\AccordsPlanTests.cs" />
+    <Compile Include="Environment\RandomEnvironmentTests.cs" />
     <Compile Include="Heroes\Alexandria\AlexandriaTests.cs" />
+    <Compile Include="Heroes\Alexandria\RandomAlexandriaTests.cs" />
     <Compile Include="Heroes\Alexandria\TimeLockedTests.cs" />
     <Compile Include="Heroes\Alexandria\SupersonicFlightTests.cs" />
     <Compile Include="Heroes\Alexandria\PureStrengthTests.cs" />
@@ -98,6 +103,7 @@
     <Compile Include="Heroes\Alexandria\InvincibleTests.cs" />
     <Compile Include="Heroes\Alexandria\AlexandriasCapeTests.cs" />
     <Compile Include="Heroes\Armsmaster\ArmsmasterTests.cs" />
+    <Compile Include="Heroes\Armsmaster\RandomArmsmasterTests.cs" />
     <Compile Include="Heroes\Armsmaster\TargetingComputerTests.cs" />
     <Compile Include="Heroes\Armsmaster\SurveyHalberdTests.cs" />
     <Compile Include="Heroes\Armsmaster\StaticFieldGeneratorTests.cs" />
@@ -117,6 +123,8 @@
     <Compile Include="Heroes\Armsmaster\CombatPredictionArrayTests.cs" />
     <Compile Include="Heroes\Armsmaster\AcceleratorTests.cs" />
     <Compile Include="Heroes\Battery\BatteryTests.cs" />
+    <Compile Include="Heroes\Battery\RandomBatteryCauldronCapeTests.cs" />
+    <Compile Include="Heroes\Battery\RandomBatteryTests.cs" />
     <Compile Include="Heroes\Battery\ThenPushingBeyondTests.cs" />
     <Compile Include="Heroes\Battery\StrengthTests.cs" />
     <Compile Include="Heroes\Battery\StaticChargeTests.cs" />
@@ -154,6 +162,9 @@
     <Compile Include="Environment\CoilsBase\CoilsBaseSelfDestructTests.cs" />
     <Compile Include="Environment\CoilsBase\BlastDoorsTests.cs" />
     <Compile Include="Environment\CoilsBase\AblativeCladdingTests.cs" />
+    <Compile Include="Heroes\RandomHeroTests.cs" />
+    <Compile Include="RandomGameTest.cs" />
+    <Compile Include="RandomParahumanTest.cs" />
     <Compile Include="Villains\Behemoth\BehemothTests.cs" />
     <Compile Include="Villains\Behemoth\WildfireTests.cs" />
     <Compile Include="Villains\Behemoth\UnstoppableAdvanceTests.cs" />
@@ -363,6 +374,7 @@
     <Compile Include="Villains\Lung\BurstOfFlameTests.cs" />
     <Compile Include="Villains\Lung\BakudaTests.cs" />
     <Compile Include="Villains\Lung\ABBThugsTests.cs" />
+    <Compile Include="Villains\RandomVillainTests.cs" />
     <Compile Include="Villains\Slaughterhouse9\YouveBeenAnticipatedTests.cs" />
     <Compile Include="Villains\Slaughterhouse9\TheyreAllBetterNowTests.cs" />
     <Compile Include="Villains\Slaughterhouse9\TheScreamTests.cs" />
@@ -398,7 +410,6 @@
     <Compile Include="Heroes\Tattletale\InformationOverloadTests.cs" />
     <Compile Include="Heroes\Tattletale\WittyDeflectionTests.cs" />
     <Compile Include="Heroes\Tattletale\ConfidenceTests.cs" />
-    <Compile Include="Test.cs" />
     <Compile Include="BaseTest.cs" />
     <Compile Include="Setup.cs" />
     <Compile Include="Villains\TheMerchants\SkidmarkTests.cs" />
