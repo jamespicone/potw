@@ -23,7 +23,7 @@ namespace Jp.ParahumansOfTheWormverse.Slaughterhouse9
             // Whenever a target is destroyed by a villain card each hero character deals themselves 2 psychic damage.
             AddTrigger<DestroyCardAction>(
                 dca => {
-                    var responsible = (dca.ResponsibleCard ?? dca.CardSource.Card);
+                    var responsible = (dca.ResponsibleCard ?? dca.CardSource?.Card);
                     if (responsible == null) { return false; }
                     return dca.CardToDestroy.Card.IsTarget && responsible.Is().Villain().AccordingTo(this);
                 },

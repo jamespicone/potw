@@ -38,6 +38,26 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.Slaughterhouse9
         }
 
         [Test()]
+        public void TestDestroyedByEnvDamage()
+        {
+            SetupGameController(
+                "Jp.ParahumansOfTheWormverse.Slaughterhouse9",
+                "Jp.ParahumansOfTheWormverse.Alexandria",
+                "Legacy",
+                "Tachyon",
+                "InsulaPrimalis"
+            );
+
+            RemoveVillainCards();
+            PlayCard("BonesawCharacter");
+            var raptors = PlayCard("VelociraptorPack");
+            
+            QuickHPStorage(alexandria, legacy, tachyon);
+            DealDamage(FindEnvironment().TurnTaker, raptors, 20, DamageType.Infernal);
+            QuickHPCheck(0, 0, 0);
+        }
+
+        [Test()]
         public void TestDestroyedByDestroyEffect()
         {
             SetupGameController(
