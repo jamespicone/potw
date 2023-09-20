@@ -7,7 +7,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Handelabra.Sentinels.UnitTest;
 
-namespace Jp.ParahumansOfTheWormverse.UnitTest.CoilsBase
+namespace Jp.ParahumansOfTheWormverse.UnitTest.Environment.CoilsBase
 {
     [TestFixture()]
     public class EarthingTests : ParahumanTest

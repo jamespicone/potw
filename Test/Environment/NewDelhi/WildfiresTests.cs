@@ -7,7 +7,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Handelabra.Sentinels.UnitTest;
 
-namespace Jp.ParahumansOfTheWormverse.UnitTest.NewDelhi
+namespace Jp.ParahumansOfTheWormverse.UnitTest.Environment.NewDelhi
 {
     [TestFixture()]
     public class WildfiresTests : ParahumanTest

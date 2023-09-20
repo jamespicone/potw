@@ -29,9 +29,9 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.Hero
             yield return TestData("Dauntless", "DauntlessCharacter", "Dauntless");
             yield return TestData("Dragon", "DragonCharacter", "Dragon");
             yield return TestData("Grue", "GrueCharacter", "Grue");
-            yield return TestData("JessicaYamada", "JessicaYamadaInstructionsTarget", "Jessica");
-            yield return TestData("JessicaYamada", "JessicaYamadaInstructionsEnvironment", "Jessica");
-            yield return TestData("JessicaYamada", "JessicaYamadaInstructionsNotTarget", "Jessica");
+            yield return TestData("JessicaYamada", "JessicaYamadaInstructionsTarget", "JessicaTarget");
+            yield return TestData("JessicaYamada", "JessicaYamadaInstructionsEnvironment", "JessicaEnv");
+            yield return TestData("JessicaYamada", "JessicaYamadaInstructionsNotTarget", "JessicaNotTarget");
             yield return TestData("Labyrinth", "LabyrinthCharacter", "Labyrinth");
             yield return TestData("Legend", "LegendCharacter", "Legend");
             yield return TestData("MissMilitia", "MissMilitiaCharacter", "Miss Militia");

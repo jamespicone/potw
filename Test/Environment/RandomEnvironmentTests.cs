@@ -13,22 +13,19 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.Environment
     [TestFixtureSource(nameof(RandomEnvironments))]
     public class _RandomEnvironmentTests : RandomParahumanTest
     {
-        static TestFixtureData TestData(string env)
+        static TestFixtureData TestData(string env, string name)
         {
-            var identifier = "Jp.ParahumansOfTheWormverse." + env;
-            var ret = new TestFixtureData(identifier);
-            var definition = DeckDefinitionCache.GetDeckDefinition(identifier);
-
-            ret.TestName = definition.Name + " Random Tests";
+            var ret = new TestFixtureData("Jp.ParahumansOfTheWormverse." + env);
+            ret.TestName = name + " Random Tests";
             return ret;
         }
 
         private static IEnumerable RandomEnvironments()
         {
-            yield return TestData("BrocktonBay");
-            yield return TestData("CoilsBase");
-            yield return TestData("Kyushu");
-            yield return TestData("NewDelhi");
+            yield return TestData("BrocktonBay", "Brockton Bay");
+            yield return TestData("CoilsBase", "Coil's Base");
+            yield return TestData("Kyushu", "Kyushu");
+            yield return TestData("NewDelhi", "New Delhi");
         }
 
         public _RandomEnvironmentTests(string env)

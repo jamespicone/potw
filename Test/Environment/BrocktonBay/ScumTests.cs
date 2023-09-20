@@ -7,7 +7,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Handelabra.Sentinels.UnitTest;
 
-namespace Jp.ParahumansOfTheWormverse.UnitTest.BrocktonBay
+namespace Jp.ParahumansOfTheWormverse.UnitTest.Environment.BrocktonBay
 {
     [TestFixture()]
     public class ScumTests : ParahumanTest

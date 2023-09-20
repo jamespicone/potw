@@ -7,7 +7,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Handelabra.Sentinels.UnitTest;
 
-namespace Jp.ParahumansOfTheWormverse.UnitTest.Kyushu
+namespace Jp.ParahumansOfTheWormverse.UnitTest.Environment.Kyushu
 {
     [TestFixture()]
     public class LungKyushuTests : ParahumanTest

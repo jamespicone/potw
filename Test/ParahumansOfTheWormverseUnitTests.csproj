@@ -410,7 +410,6 @@
     <Compile Include="Heroes\Tattletale\InformationOverloadTests.cs" />
     <Compile Include="Heroes\Tattletale\WittyDeflectionTests.cs" />
     <Compile Include="Heroes\Tattletale\ConfidenceTests.cs" />
-    <Compile Include="Test.cs" />
     <Compile Include="BaseTest.cs" />
     <Compile Include="Setup.cs" />
     <Compile Include="Villains\TheMerchants\SkidmarkTests.cs" />
