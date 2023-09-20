@@ -52,7 +52,6 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Environment\BrocktonBay\RandomBrocktonBayTest.cs" />
     <Compile Include="Environment\BrocktonBay\UberTests.cs" />
     <Compile Include="Environment\BrocktonBay\TheOutskirtsTests.cs" />
     <Compile Include="Environment\BrocktonBay\TheDocksTests.cs" />
@@ -63,8 +62,6 @@
     <Compile Include="Environment\BrocktonBay\LeetTests.cs" />
     <Compile Include="Environment\BrocktonBay\CiviliansTests.cs" />
     <Compile Include="Environment\BrocktonBay\AttentionTests.cs" />
-    <Compile Include="Environment\CoilsBase\RandomCoilsBaseTest.cs" />
-    <Compile Include="Environment\Kyushu\RandomKyushuTest.cs" />
     <Compile Include="Environment\Kyushu\TidalWaveKyushuTests.cs" />
     <Compile Include="Environment\Kyushu\SlideIntoTheSeaTests.cs" />
     <Compile Include="Environment\Kyushu\SentaiEliteTests.cs" />
@@ -74,7 +71,6 @@
     <Compile Include="Environment\Kyushu\FatalismAndDespairTests.cs" />
     <Compile Include="Environment\Kyushu\CollapsingBuildingTests.cs" />
     <Compile Include="Environment\Kyushu\BlackKazeTests.cs" />
-    <Compile Include="Environment\NewDelhi\RandomNewDelhiTest.cs" />
     <Compile Include="Environment\NewDelhi\YangbanNewDelhiTests.cs" />
     <Compile Include="Environment\NewDelhi\WildfiresTests.cs" />
     <Compile Include="Environment\NewDelhi\UnstoppableTests.cs" />
@@ -90,6 +86,7 @@
     <Compile Include="Environment\NewDelhi\ChevalierNewDelhiTests.cs" />
     <Compile Include="Environment\NewDelhi\AChaoticEnvironmentTests.cs" />
     <Compile Include="Environment\NewDelhi\AccordsPlanTests.cs" />
+    <Compile Include="Environment\RandomEnvironmentTests.cs" />
     <Compile Include="Heroes\Alexandria\AlexandriaTests.cs" />
     <Compile Include="Heroes\Alexandria\RandomAlexandriaTests.cs" />
     <Compile Include="Heroes\Alexandria\TimeLockedTests.cs" />
@@ -165,6 +162,7 @@
     <Compile Include="Environment\CoilsBase\CoilsBaseSelfDestructTests.cs" />
     <Compile Include="Environment\CoilsBase\BlastDoorsTests.cs" />
     <Compile Include="Environment\CoilsBase\AblativeCladdingTests.cs" />
+    <Compile Include="Heroes\RandomHeroTests.cs" />
     <Compile Include="RandomGameTest.cs" />
     <Compile Include="RandomParahumanTest.cs" />
     <Compile Include="Villains\Behemoth\BehemothTests.cs" />
@@ -376,6 +374,7 @@
     <Compile Include="Villains\Lung\BurstOfFlameTests.cs" />
     <Compile Include="Villains\Lung\BakudaTests.cs" />
     <Compile Include="Villains\Lung\ABBThugsTests.cs" />
+    <Compile Include="Villains\RandomVillainTests.cs" />
     <Compile Include="Villains\Slaughterhouse9\YouveBeenAnticipatedTests.cs" />
     <Compile Include="Villains\Slaughterhouse9\TheyreAllBetterNowTests.cs" />
     <Compile Include="Villains\Slaughterhouse9\TheScreamTests.cs" />
