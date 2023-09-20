@@ -365,6 +365,9 @@ namespace Handelabra.Sentinels.UnitTest
             {
                 var selectCardDecision = (SelectCardDecision)decision;
                 var choices = selectCardDecision.Choices;
+                if (selectCardDecision.SelectionType == SelectionType.PlayCard)
+                    choices = choices.Where(c => GameController.CanPlayCard(FindCardController(c)) == CanPlayCardResult.CanPlay).ToList();
+
                 selectCardDecision.SelectedCard = choices.ElementAtOrDefault(GetRandomNumber(choices.Count()));
             }
             else if (decision is YesNoDecision)

@@ -9,9 +9,9 @@ using Handelabra.Sentinels.UnitTest;
 
 namespace Jp.ParahumansOfTheWormverse.UnitTest.Villain
 {
-    [TestFixture(Category = "RandomCategory")]
+    [TestFixture()]
     [TestFixtureSource(nameof(RandomVillains))]
-    public class RandomVillainTests : RandomParahumanTest
+    public class _RandomVillainTests : RandomParahumanTest
     {
         static TestFixtureData TestData(string villain, string variant, string name)
         {
@@ -34,7 +34,7 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.Villain
 
 
 
-        public RandomVillainTests(string villain, string variant)
+        public _RandomVillainTests(string villain, string variant)
         {
             VillainToUse = villain;
             VariantToUse = variant;
@@ -44,7 +44,7 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.Villain
         private string VariantToUse = "";
 
         [Test]
-        [Property("TestType", "Random")]
+        [Category("Random")]
         public void TestRandom()
         {
             var gc = SetupRandomParahumanTest(
@@ -55,7 +55,7 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.Villain
         }
 
         [Test]
-        [Property("TestType", "Random")]
+        [Category("Random")]
         public void TestRandomWithLabyrinth()
         {
             var gc = SetupRandomParahumanTestWithLabyrinth(
@@ -66,7 +66,7 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.Villain
         }
 
         [Test]
-        [Property("TestType", "Random")]
+        [Category("Random")]
         public void TestRandomWithPWTempest()
         {
             var gc = SetupRandomParahumanTestWithPWTempest(
@@ -77,7 +77,7 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.Villain
         }
 
         [Test]
-        [Property("TestType", "Random")]
+        [Category("Random")]
         public void TestRandomWithTribunal()
         {
             var gc = SetupRandomParahumanTestWithTribunal(

@@ -15,7 +15,7 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.Alexandria
         private string HeroToUse = "Jp.ParahumansOfTheWormverse.Alexandria";
 
         [Test]
-        [Property("TestType", "Random")]
+        [Category("Random")]
         public void TestRandom()
         {
             var gc = SetupRandomParahumanTest(useHeroes: new List<string>{HeroToUse});
@@ -23,7 +23,7 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.Alexandria
         }
 
         [Test]
-        [Property("TestType", "Random")]
+        [Category("Random")]
         public void TestRandomWithLabyrinth()
         {
             var gc = SetupRandomParahumanTestWithLabyrinth(useHeroes: new List<string> { HeroToUse });
@@ -31,7 +31,7 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.Alexandria
         }
 
         [Test]
-        [Property("TestType", "Random")]
+        [Category("Random")]
         public void TestEnvRandomWithPWT()
         {
             var gc = SetupRandomParahumanTestWithPWTempest(useHeroes: new List<string> { HeroToUse });
@@ -39,7 +39,7 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.Alexandria
         }
 
         [Test]
-        [Property("TestType", "Random")]
+        [Category("Random")]
         public void TestEnvRandomWithGuise()
         {
             var gc = SetupRandomParahumanTestWithGuise(useHeroes: new List<string> { HeroToUse });
@@ -47,7 +47,7 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.Alexandria
         }
 
         [Test]
-        [Property("TestType", "Random")]
+        [Category("Random")]
         public void TestEnvRandomWithCompletionistGuise()
         {
             var gc = SetupRandomParahumanTestWithCompletionistGuise(useHeroes: new List<string> { HeroToUse });

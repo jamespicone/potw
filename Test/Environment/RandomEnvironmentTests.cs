@@ -9,9 +9,9 @@ using Handelabra.Sentinels.UnitTest;
 
 namespace Jp.ParahumansOfTheWormverse.UnitTest.Environment
 {
-    [TestFixture(Category = "RandomCategory")]
+    [TestFixture()]
     [TestFixtureSource(nameof(RandomEnvironments))]
-    public class RandomEnvironmentTests : RandomParahumanTest
+    public class _RandomEnvironmentTests : RandomParahumanTest
     {
         static TestFixtureData TestData(string env)
         {
@@ -31,7 +31,7 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.Environment
             yield return TestData("NewDelhi");
         }
 
-        public RandomEnvironmentTests(string env)
+        public _RandomEnvironmentTests(string env)
         {
             EnvToUse = env;
         }
@@ -39,7 +39,7 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.Environment
         private string EnvToUse = "";
 
         [Test]
-        [Property("TestType", "Random")]
+        [Category("Random")]
         public void TestEnvRandom()
         {
             var gc = SetupRandomParahumanTest(overrideEnvironment: EnvToUse);
@@ -47,7 +47,7 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.Environment
         }
 
         [Test]
-        [Property("TestType", "Random")]
+        [Category("Random")]
         public void TestEnvRandomWithLabyrinth()
         {
             var gc = SetupRandomParahumanTestWithLabyrinth(overrideEnvironment: EnvToUse);
@@ -55,7 +55,7 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.Environment
         }
 
         [Test]
-        [Property("TestType", "Random")]
+        [Category("Random")]
         public void TestEnvRandomWithPWT()
         {
             var gc = SetupRandomParahumanTestWithPWTempest(overrideEnvironment: EnvToUse);

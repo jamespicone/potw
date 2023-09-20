@@ -16,7 +16,7 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.Battery
         private string Promo = "BatteryCauldronCapeCharacter";
 
         [Test]
-        [Property("TestType", "Random")]
+        [Category("Random")]
         public void TestRandom()
         {
             var gc = SetupRandomParahumanTest(
@@ -27,7 +27,7 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.Battery
         }
 
         [Test]
-        [Property("TestType", "Random")]
+        [Category("Random")]
         public void TestRandomWithLabyrinth()
         {
             var gc = SetupRandomParahumanTestWithLabyrinth(
@@ -38,7 +38,7 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.Battery
         }
 
         [Test]
-        [Property("TestType", "Random")]
+        [Category("Random")]
         public void TestEnvRandomWithPWT()
         {
             var gc = SetupRandomParahumanTestWithPWTempest(
@@ -49,7 +49,7 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.Battery
         }
 
         [Test]
-        [Property("TestType", "Random")]
+        [Category("Random")]
         public void TestEnvRandomWithGuise()
         {
             var gc = SetupRandomParahumanTestWithGuise(
@@ -60,7 +60,7 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.Battery
         }
 
         [Test]
-        [Property("TestType", "Random")]
+        [Category("Random")]
         public void TestEnvRandomWithCompletionistGuise()
         {
             var gc = SetupRandomParahumanTestWithCompletionistGuise(

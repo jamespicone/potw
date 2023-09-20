@@ -9,9 +9,9 @@ using Handelabra.Sentinels.UnitTest;
 
 namespace Jp.ParahumansOfTheWormverse.UnitTest.Hero
 {
-    [TestFixture(Category = "RandomCategory")]
+    [TestFixture()]
     [TestFixtureSource(nameof(RandomHeroes))]
-    public class RandomHeroTests : RandomParahumanTest
+    public class _RandomHeroTests : RandomParahumanTest
     {
         static TestFixtureData TestData(string hero, string variant, string name)
         {
@@ -42,7 +42,7 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.Hero
             yield return TestData("Tattletale", "TattletaleHunterOfSecretsCharacter", "Tattletale");
         }
 
-        public RandomHeroTests(string hero, string variant)
+        public _RandomHeroTests(string hero, string variant)
         {
             HeroToUse = hero;
             VariantToUse = variant;
@@ -52,7 +52,7 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.Hero
         private string VariantToUse = "";
 
         [Test]
-        [Property("TestType", "Random")]
+        [Category("Random")]
         public void TestRandom()
         {
             var gc = SetupRandomParahumanTest(
@@ -63,7 +63,7 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.Hero
         }
 
         [Test]
-        [Property("TestType", "Random")]
+        [Category("Random")]
         public void TestRandomWithLabyrinth()
         {
             var gc = SetupRandomParahumanTestWithLabyrinth(
@@ -74,7 +74,7 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.Hero
         }
 
         [Test]
-        [Property("TestType", "Random")]
+        [Category("Random")]
         public void TestEnvRandomWithPWT()
         {
             var gc = SetupRandomParahumanTestWithPWTempest(
@@ -85,7 +85,7 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.Hero
         }
 
         [Test]
-        [Property("TestType", "Random")]
+        [Category("Random")]
         public void TestEnvRandomWithGuise()
         {
             var gc = SetupRandomParahumanTestWithGuise(
@@ -96,7 +96,7 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.Hero
         }
 
         [Test]
-        [Property("TestType", "Random")]
+        [Category("Random")]
         public void TestEnvRandomWithCompletionistGuise()
         {
             var gc = SetupRandomParahumanTestWithCompletionistGuise(
@@ -107,7 +107,7 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.Hero
         }
 
         [Test]
-        [Property("TestType", "Random")]
+        [Category("Random")]
         public void TestEnvRandomWithTribunal()
         {
             var gc = SetupRandomParahumanTestWithTribunal(
