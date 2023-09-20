@@ -125,6 +125,39 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.Echidna
         }
 
         [Test()]
+        public void TestDidDamageWontFlipEnvDamage()
+        {
+            SetupGameController(
+                "Jp.ParahumansOfTheWormverse.Echidna",
+                "Jp.ParahumansOfTheWormverse.Alexandria",
+                "Jp.ParahumansOfTheWormverse.Bitch",
+                "Jp.ParahumansOfTheWormverse.Armsmaster",
+                "Jp.ParahumansOfTheWormverse.Legend",
+                "InsulaPrimalis"
+            );
+
+            RemoveAllTwisted();
+            StartGame();
+
+            StackDeck(echidna, "ChimaericalNightmare");
+            StackDeck(env, "ObsidianField");
+
+            GoToStartOfTurn(env);
+
+            AssertNotFlipped(echidna);
+
+            DealDamage(FindEnvironment().TurnTaker, alexandria.CharacterCard, 50, DamageType.Infernal);
+
+            GoToEndOfTurn(env);
+
+            AssertNotFlipped(echidna);
+
+            GoToStartOfTurn(echidna);
+
+            AssertNotFlipped(echidna);
+        }
+
+        [Test()]
         public void TestFlippedFlipsBack()
         {
             SetupGameController(
