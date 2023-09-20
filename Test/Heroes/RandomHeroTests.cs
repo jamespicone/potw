@@ -38,8 +38,8 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.Hero
             yield return TestData("MissMilitia", "MissMilitiaProtectorateCaptainCharacter", "Miss Militia Protectorate Captain");
             yield return TestData("Skitter", "SkitterCharacter", "Skitter");
             yield return TestData("Tattletale", "TattletaleCharacter", "Tattletale");
-            yield return TestData("Tattletale", "TattletaleRulerOfBrocktonBayCharacter", "Tattletale");
-            yield return TestData("Tattletale", "TattletaleHunterOfSecretsCharacter", "Tattletale");
+            yield return TestData("Tattletale", "TattletaleRulerOfBrocktonBayCharacter", "Tattletale Ruler");
+            yield return TestData("Tattletale", "TattletaleHunterOfSecretsCharacter", "Tattletale Hunter");
         }
 
         public _RandomHeroTests(string hero, string variant)
