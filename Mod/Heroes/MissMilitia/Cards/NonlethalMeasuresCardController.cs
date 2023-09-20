@@ -20,7 +20,7 @@ namespace Jp.ParahumansOfTheWormverse.MissMilitia
         {
             // "Whenever {MissMilitiaCharacter} destroys a non-character card target, you may put that target on the bottom of its deck."
             AddTrigger<DestroyCardAction>(
-                (dca) => dca.WasCardDestroyed && dca.CardToDestroy.Card.IsTarget && ! dca.CardToDestroy.Card.IsCharacter && (dca.ResponsibleCard ?? dca.CardSource.Card)?.Owner == TurnTaker,
+                (dca) => dca.WasCardDestroyed && dca.CardToDestroy.Card.IsTarget && ! dca.CardToDestroy.Card.IsCharacter && (dca.ResponsibleCard ?? dca.CardSource?.Card)?.Owner == TurnTaker,
                 MoveToBottomOfDeckResponse,
                 TriggerType.MoveCard,
                 TriggerTiming.After

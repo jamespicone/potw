@@ -37,6 +37,28 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.MissMilitia
         }
 
         [Test()]
+        public void TestDestroyedByEnvDamage()
+        {
+            SetupGameController(
+                "BaronBlade",
+                "Jp.ParahumansOfTheWormverse.MissMilitia",
+                "Legacy",
+                "Tachyon",
+                "InsulaPrimalis"
+            );
+
+            RemoveVillainCards();
+
+            PlayCard("NonlethalMeasures");
+            var raptors = PlayCard("VelociraptorPack");
+
+            DecisionYesNo = true;
+            DealDamage(FindEnvironment().TurnTaker, raptors, 20, DamageType.Infernal);
+
+            AssertInTrash(raptors);
+        }
+
+        [Test()]
         public void TestDestroyedByDestroyEffect()
         {
             SetupGameController(
