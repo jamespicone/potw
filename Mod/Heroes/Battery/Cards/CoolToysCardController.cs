@@ -9,41 +9,49 @@ using System.Text;
 
 namespace Jp.ParahumansOfTheWormverse.Battery
 {
-    public class CoolToysCardController : BatteryUtilityCardController
+    public class CoolToysCardController : CardController
     {
         public CoolToysCardController(Card card, TurnTakerController turnTakerController)
             : base(card, turnTakerController)
         {
-            ShowBatteryChargedStatus();
-            SpecialStringMaker.ShowNumberOfCardsInPlay(new LinqCardCriteria((Card c) => c.IsInPlayAndHasGameText && (c.DoKeywordsContain("equipment") || c.DoKeywordsContain("device")), "Equipment or Device"));
+            this.ShowChargedStatus(SpecialStringMaker, CharacterCard);
+            SpecialStringMaker.ShowNumberOfCardsInPlay(EquipmentOrDevice());
         }
 
         public override IEnumerator Play()
         {
-            // "If {BatteryCharacter} is {Charged}, she deals 1 target X lightning damage, where X is the total number of Equipment and Device cards in play."
-            if (IsCharged(base.CharacterCard))
+            // If {BatteryCharacter} is {Charged}, she deals 1 target X lightning damage,
+            // where X is the total number of Equipment and Device cards in play.
+            if (this.IsCharged(CharacterCard))
             {
-                IEnumerator damageCoroutine = base.GameController.SelectTargetsAndDealDamage(base.HeroTurnTakerController, new DamageSource(base.GameController, base.CharacterCard), FindCardsWhere(new LinqCardCriteria((Card c) => c.IsInPlayAndHasGameText && (c.DoKeywordsContain("equipment") || c.DoKeywordsContain("device")), "Equipment or Device"), GetCardSource()).Count(), DamageType.Lightning, 1, false, 1, cardSource: GetCardSource());
-                if (base.UseUnityCoroutines)
-                {
-                    yield return base.GameController.StartCoroutine(damageCoroutine);
-                }
-                else
-                {
-                    base.GameController.ExhaustCoroutine(damageCoroutine);
-                }
+                var e = GameController.SelectTargetsAndDealDamage(
+                    HeroTurnTakerController,
+                    new DamageSource(GameController, CharacterCard),
+                    FindCardsWhere(EquipmentOrDevice(), GetCardSource()).Count(),
+                    DamageType.Lightning,
+                    numberOfTargets: 1,
+                    optional: false,
+                    requiredTargets: 1,
+                    cardSource: GetCardSource()
+                );
+                if (UseUnityCoroutines) { yield return GameController.StartCoroutine(e); }
+                else { GameController.ExhaustCoroutine(e); }
             }
-            // "{Discharge} {BatteryCharacter}."
-            IEnumerator dischargeCoroutine = RemoveCharge(base.CharacterCard);
-            if (base.UseUnityCoroutines)
+
+            // {Discharge} {BatteryCharacter}.
             {
-                yield return base.GameController.StartCoroutine(dischargeCoroutine);
+                var e = this.DischargeCard(CharacterCard);
+                if (UseUnityCoroutines) { yield return GameController.StartCoroutine(e); }
+                else { GameController.ExhaustCoroutine(e); }
             }
-            else
-            {
-                base.GameController.ExhaustCoroutine(dischargeCoroutine);
-            }
-            yield break;
+        }
+
+        private LinqCardCriteria EquipmentOrDevice()
+        {
+            return new LinqCardCriteria(
+                c => c.IsInPlayAndHasGameText && (c.DoKeywordsContain("equipment") || c.DoKeywordsContain("device")),
+                "Equipment or Device"
+            );
         }
     }
 }

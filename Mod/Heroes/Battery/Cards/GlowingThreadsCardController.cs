@@ -9,39 +9,34 @@ using System.Text;
 
 namespace Jp.ParahumansOfTheWormverse.Battery
 {
-    public class GlowingThreadsCardController : BatteryUtilityCardController
+    public class GlowingThreadsCardController : CardController
     {
         public GlowingThreadsCardController(Card card, TurnTakerController turnTakerController)
             : base(card, turnTakerController)
         {
-
         }
 
         public override void AddTriggers()
         {
-            // "Whenever {BatteryCharacter} uses her 'Discharge' power, reduce damage dealt to {BatteryCharacter} by 2 until the start of your next turn."
-            AddTrigger<UsePowerAction>((UsePowerAction upa) => IsBatteryUsingDischargePower(upa), ReduceDamageTakenResponse, TriggerType.CreateStatusEffect, TriggerTiming.After);
-            base.AddTriggers();
+            // Whenever {BatteryCharacter} uses her 'Discharge' power...
+            AddTrigger<UsePowerAction>(
+                upa => GameController.IsDischargePower(upa, HeroTurnTaker),
+                ReduceDamageTakenResponse,
+                TriggerType.CreateStatusEffect,
+                TriggerTiming.After
+            );
         }
 
         public IEnumerator ReduceDamageTakenResponse(UsePowerAction upa)
         {
-            // "... reduce damage dealt to {BatteryCharacter} by 2 until the start of your next turn."
-            ReduceDamageStatusEffect protectStatus = new ReduceDamageStatusEffect(2);
-            protectStatus.UntilStartOfNextTurn(base.TurnTaker);
-            protectStatus.TargetCriteria.IsSpecificCard = base.CharacterCard;
-            protectStatus.CardSource = base.Card;
+            // ... reduce damage dealt to {BatteryCharacter} by 2 until the start of your next turn.
+            var effect = new ReduceDamageStatusEffect(2);
+            effect.UntilStartOfNextTurn(TurnTaker);
+            effect.TargetCriteria.IsSpecificCard = CharacterCard;
 
-            IEnumerator protectCoroutine = AddStatusEffect(protectStatus, true);
-            if (base.UseUnityCoroutines)
-            {
-                yield return base.GameController.StartCoroutine(protectCoroutine);
-            }
-            else
-            {
-                base.GameController.ExhaustCoroutine(protectCoroutine);
-            }
-            yield break;
+            var e = AddStatusEffect(effect, true);
+            if (UseUnityCoroutines) { yield return GameController.StartCoroutine(e); }
+            else { GameController.ExhaustCoroutine(e); }
         }
     }
 }

@@ -14,37 +14,45 @@ namespace Jp.ParahumansOfTheWormverse.Battery
         public ShockAndAweCardController(Card card, TurnTakerController turnTakerController)
             : base(card, turnTakerController)
         {
-            ShowBatteryChargedStatus();
+            this.ShowChargedStatus(SpecialStringMaker, CharacterCard);
         }
 
         public override IEnumerator Play()
         {
-            // "{BatteryCharacter} deals 1 target 2 lightning damage."
-            List<DealDamageAction> firstStrike = new List<DealDamageAction>();
-            IEnumerator firstDamageCoroutine = base.GameController.SelectTargetsAndDealDamage(base.HeroTurnTakerController, new DamageSource(base.GameController, base.CharacterCard), 2, DamageType.Lightning, 1, false, 1, storedResultsDamage: firstStrike, cardSource: GetCardSource());
-            if (base.UseUnityCoroutines)
-            {
-                yield return base.GameController.StartCoroutine(firstDamageCoroutine);
-            }
-            else
-            {
-                base.GameController.ExhaustCoroutine(firstDamageCoroutine);
-            }
-            // "If {BatteryCharacter} is {Charged}, she deals up to 3 other targets 3 lightning damage each."
-            if (IsBatteryCharged())
+            // {BatteryCharacter} deals 1 target 2 lightning damage.
+            var firstStrike = new List<DealDamageAction>();
+            var e = GameController.SelectTargetsAndDealDamage(
+                HeroTurnTakerController,
+                new DamageSource(GameController, CharacterCard),
+                2,
+                DamageType.Lightning,
+                numberOfTargets: 1,
+                optional: false,
+                requiredTargets: 1,
+                storedResultsDamage: firstStrike,
+                cardSource: GetCardSource()
+            );
+            if (UseUnityCoroutines) { yield return GameController.StartCoroutine(e); }
+            else { GameController.ExhaustCoroutine(e); }
+
+            // If {BatteryCharacter} is {Charged}, she deals up to 3 other targets 3 lightning damage each.
+            if (this.IsCharged(CharacterCard))
             {
                 var previouslySelected = firstStrike.Select(dda => dda.OriginalTarget);
-                IEnumerator additionalDamageCoroutine = base.GameController.SelectTargetsAndDealDamage(base.HeroTurnTakerController, new DamageSource(base.GameController, base.CharacterCard), 3, DamageType.Lightning, 3, false, 0, additionalCriteria: (Card c) => ! previouslySelected.Contains(c), cardSource: GetCardSource());
-                if (base.UseUnityCoroutines)
-                {
-                    yield return base.GameController.StartCoroutine(additionalDamageCoroutine);
-                }
-                else
-                {
-                    base.GameController.ExhaustCoroutine(additionalDamageCoroutine);
-                }
+                e = GameController.SelectTargetsAndDealDamage(
+                    HeroTurnTakerController,
+                    new DamageSource(GameController, CharacterCard),
+                    3,
+                    DamageType.Lightning,
+                    numberOfTargets: 3,
+                    optional: false, 
+                    requiredTargets: 0,
+                    additionalCriteria: c => ! previouslySelected.Contains(c),
+                    cardSource: GetCardSource()
+                );
+                if (UseUnityCoroutines) { yield return GameController.StartCoroutine(e); }
+                else { GameController.ExhaustCoroutine(e); }
             }
-            yield break;
         }
     }
 }

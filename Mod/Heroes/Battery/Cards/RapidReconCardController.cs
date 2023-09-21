@@ -14,45 +14,30 @@ namespace Jp.ParahumansOfTheWormverse.Battery
         public RapidReconCardController(Card card, TurnTakerController turnTakerController)
             : base(card, turnTakerController)
         {
-            ShowBatteryChargedStatus();
+            this.ShowChargedStatus(SpecialStringMaker, CharacterCard);
         }
 
         public override IEnumerator Play()
         {
-            // "If {BatteryCharacter} is {Discharged}, each player may draw a card."
-            if (!IsBatteryCharged())
+            IEnumerator e;
+
+            // If {BatteryCharacter} is {Discharged}, each player may draw a card.
+            if (! this.IsCharged(CharacterCard))
             {
-                IEnumerator massDrawCoroutine = EachPlayerDrawsACard(optional: true);
-                if (base.UseUnityCoroutines)
-                {
-                    yield return base.GameController.StartCoroutine(massDrawCoroutine);
-                }
-                else
-                {
-                    base.GameController.ExhaustCoroutine(massDrawCoroutine);
-                }
+                e = EachPlayerDrawsACard(optional: true);
+                if (UseUnityCoroutines) { yield return GameController.StartCoroutine(e); }
+                else { GameController.ExhaustCoroutine(e); }
             }
+
             // "Draw a card."
-            IEnumerator singleDrawCoroutine = base.GameController.DrawCard(base.HeroTurnTaker, cardSource: GetCardSource());
-            if (base.UseUnityCoroutines)
-            {
-                yield return base.GameController.StartCoroutine(singleDrawCoroutine);
-            }
-            else
-            {
-                base.GameController.ExhaustCoroutine(singleDrawCoroutine);
-            }
+            e = DrawCard(HeroTurnTaker);
+            if (UseUnityCoroutines) { yield return GameController.StartCoroutine(e); }
+            else { GameController.ExhaustCoroutine(e); }
+
             // "You may play a card."
-            IEnumerator playCoroutine = base.GameController.SelectAndPlayCardFromHand(base.HeroTurnTakerController, true, cardSource: GetCardSource());
-            if (base.UseUnityCoroutines)
-            {
-                yield return base.GameController.StartCoroutine(playCoroutine);
-            }
-            else
-            {
-                base.GameController.ExhaustCoroutine(playCoroutine);
-            }
-            yield break;
+            e = SelectAndPlayCardFromHand(HeroTurnTakerController);
+            if (UseUnityCoroutines) { yield return GameController.StartCoroutine(e); }
+            else { GameController.ExhaustCoroutine(e); }
         }
     }
 }

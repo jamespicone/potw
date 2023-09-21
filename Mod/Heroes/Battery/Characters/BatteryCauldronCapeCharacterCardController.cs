@@ -65,7 +65,7 @@ namespace Jp.ParahumansOfTheWormverse.Battery
 
                 case 1:
                     // "{Charge} {BatteryCharacter}..."
-                    IEnumerator chargeCoroutine = Charge(Card);
+                    IEnumerator chargeCoroutine = this.ChargeCard(CharacterCard);
                     if (UseUnityCoroutines) { yield return GameController.StartCoroutine(chargeCoroutine); }
                     else { GameController.ExhaustCoroutine(chargeCoroutine); }
 
@@ -137,66 +137,49 @@ namespace Jp.ParahumansOfTheWormverse.Battery
         public IEnumerator ChargeExpiresResponse(PhaseChangeAction pca, OnPhaseChangeStatusEffect effect)
         {
             // It's the start of Battery's next turn, so remove Battery's Charge
-            IEnumerator removeCoroutine = RemoveCharge(Card);
-            if (UseUnityCoroutines) { yield return GameController.StartCoroutine(removeCoroutine); }
-            else { GameController.ExhaustCoroutine(removeCoroutine); }
+            return this.DischargeCard(CharacterCard);
         }
 
         public override IEnumerator UseIncapacitatedAbility(int index)
         {
-            IEnumerator incapCoroutine;
+            IEnumerator e;
             switch (index)
             {
+                // One player may draw a card now.
                 case 0:
-                    incapCoroutine = UseIncapOption1();
+                    e = GameController.SelectHeroToDrawCard(HeroTurnTakerController, cardSource: GetCardSource());
                     break;
 
+                // Battery deals 1 target 2 melee damage.
                 case 1:
-                    incapCoroutine = UseIncapOption2();
+                    e = GameController.SelectTargetsAndDealDamage(
+                        HeroTurnTakerController,
+                        new DamageSource(GameController, TurnTaker),
+                        2,
+                        DamageType.Lightning,
+                        numberOfTargets: 1,
+                        optional: false,
+                        requiredTargets: 1,
+                        cardSource: GetCardSource()
+                    );
                     break;
 
+                // Destroy a non-character card Equipment or Device card.
                 case 2:
-                    incapCoroutine = UseIncapOption3();
+                    e = GameController.SelectAndDestroyCard(
+                        HeroTurnTakerController,
+                        new LinqCardCriteria(c => !c.IsCharacter && (c.Is(this).Equipment() || c.IsDevice), "non-character Equipment or Device"),
+                        optional: false,
+                        responsibleCard: CharacterCard,
+                        cardSource: GetCardSource()
+                    );
                     break;
 
                 default: yield break;
             }
 
-            if (UseUnityCoroutines) { yield return GameController.StartCoroutine(incapCoroutine); }
-            else { GameController.ExhaustCoroutine(incapCoroutine); }
-        }
-
-        private IEnumerator UseIncapOption1()
-        {
-            // "One player may draw a card now."
-            IEnumerator drawCoroutine = GameController.SelectHeroToDrawCard(HeroTurnTakerController, cardSource: GetCardSource());
-            if (UseUnityCoroutines) { yield return base.GameController.StartCoroutine(drawCoroutine); }
-            else { GameController.ExhaustCoroutine(drawCoroutine); }
-        }
-
-        private IEnumerator UseIncapOption2()
-        {
-            // "One hero target deals 1 target 2 melee damage."
-            List<SelectCardDecision> chooseHeroTarget = new List<SelectCardDecision>();
-            IEnumerator chooseHeroCoroutine = GameController.SelectCardAndStoreResults(HeroTurnTakerController, SelectionType.CardToDealDamage, new LinqCardCriteria((Card c) => c.IsInPlay && c.Is(this).Hero().Target(), "hero target", useCardsSuffix: false), chooseHeroTarget, false, cardSource: GetCardSource());
-            if (UseUnityCoroutines) { yield return GameController.StartCoroutine(chooseHeroCoroutine); }
-            else { GameController.ExhaustCoroutine(chooseHeroCoroutine); }
-
-            SelectCardDecision choice = chooseHeroTarget.FirstOrDefault();
-            if (choice != null && choice.SelectedCard != null)
-            {
-                IEnumerator damageCoroutine = GameController.SelectTargetsAndDealDamage(DecisionMaker, new DamageSource(GameController, choice.SelectedCard), 2, DamageType.Melee, 1, false, 1, cardSource: GetCardSource());
-                if (UseUnityCoroutines) { yield return GameController.StartCoroutine(damageCoroutine); }
-                else { GameController.ExhaustCoroutine(damageCoroutine); }
-            }
-        }
-
-        private IEnumerator UseIncapOption3()
-        {
-            // "Destroy a non-character card Equipment or Device card."
-            IEnumerator destroyCoroutine = GameController.SelectAndDestroyCard(HeroTurnTakerController, new LinqCardCriteria((Card c) => !c.IsCharacter && (c.Is(this).Equipment() || c.IsDevice), "non-character Equipment or Device"), false, responsibleCard: Card, cardSource: GetCardSource());
-            if (UseUnityCoroutines) { yield return GameController.StartCoroutine(destroyCoroutine); }
-            else { GameController.ExhaustCoroutine(destroyCoroutine); }
+            if (UseUnityCoroutines) { yield return GameController.StartCoroutine(e); }
+            else { GameController.ExhaustCoroutine(e); }
         }
     }
 }

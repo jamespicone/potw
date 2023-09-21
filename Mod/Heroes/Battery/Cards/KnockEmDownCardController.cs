@@ -16,35 +16,37 @@ namespace Jp.ParahumansOfTheWormverse.Battery
         public KnockEmDownCardController(Card card, TurnTakerController turnTakerController)
             : base(card, turnTakerController)
         {
-            ShowBatteryChargedStatus();
+            this.ShowChargedStatus(SpecialStringMaker, CharacterCard);
         }
 
         public override IEnumerator Play()
         {
-            // "{BatteryCharacter} deals 1 non-hero target 2 melee damage."
-            IEnumerator singleCoroutine = base.GameController.SelectTargetsAndDealDamage(base.HeroTurnTakerController, new DamageSource(base.GameController, base.CharacterCard), 2, DamageType.Melee, 1, false, 1, 
-                additionalCriteria: c => c.Is(this).NonHero().Target(),
-                cardSource: GetCardSource());
-            if (base.UseUnityCoroutines)
+            // {BatteryCharacter} deals 1 non-hero target 2 melee damage.
+            var e = GameController.SelectTargetsAndDealDamage(
+                HeroTurnTakerController,
+                new DamageSource(GameController, CharacterCard),
+                2,
+                DamageType.Melee,
+                numberOfTargets: 1,
+                optional: false,
+                requiredTargets: 1, 
+                additionalCriteria: c => c.Is().NonHero().Target().AccordingTo(this),
+                cardSource: GetCardSource()
+            );
+            if (UseUnityCoroutines) { yield return GameController.StartCoroutine(e); }
+            else { GameController.ExhaustCoroutine(e); }
+
+            // If {BatteryCharacter} is {Charged}, she deals each non-hero target 2 melee damage.
+            if (this.IsCharged(CharacterCard))
             {
-                yield return base.GameController.StartCoroutine(singleCoroutine);
-            }
-            else
-            {
-                base.GameController.ExhaustCoroutine(singleCoroutine);
-            }
-            // "If {BatteryCharacter} is {Charged}, she deals each non-hero target 2 melee damage."
-            if (IsBatteryCharged())
-            {
-                IEnumerator massCoroutine = base.GameController.DealDamage(base.HeroTurnTakerController, base.CharacterCard, (Card c) => c.Is(this).NonHero().Target() && base.GameController.IsCardVisibleToCardSource(c, GetCardSource()), 2, DamageType.Melee, cardSource: GetCardSource());
-                if (base.UseUnityCoroutines)
-                {
-                    yield return base.GameController.StartCoroutine(massCoroutine);
-                }
-                else
-                {
-                    base.GameController.ExhaustCoroutine(massCoroutine);
-                }
+                e = DealDamage(
+                    CharacterCard,
+                    c => c.Is(this).NonHero().Target(),
+                    2,
+                    DamageType.Melee
+                );
+                if (UseUnityCoroutines) { yield return GameController.StartCoroutine(e); }
+                else { GameController.ExhaustCoroutine(e); }
             }
         }
     }

@@ -14,38 +14,26 @@ namespace Jp.ParahumansOfTheWormverse.Battery
         public PushingTheLimitsCardController(Card card, TurnTakerController turnTakerController)
             : base(card, turnTakerController)
         {
-            ShowBatteryChargedStatus();
+            this.ShowChargedStatus(SpecialStringMaker, CharacterCard);
         }
 
         public override IEnumerator Play()
         {
-            // "If {BatteryCharacter} is {Charged}, you may play up to 2 cards."
-            if (IsBatteryCharged())
+            // If {BatteryCharacter} is {Charged}, you may play up to 2 cards.
+            if (this.IsCharged(CharacterCard))
             {
-                IEnumerator playCoroutine = base.GameController.SelectAndPlayCardsFromHand(base.HeroTurnTakerController, 2, false, 0, cardSource: GetCardSource());
-                if (base.UseUnityCoroutines)
-                {
-                    yield return base.GameController.StartCoroutine(playCoroutine);
-                }
-                else
-                {
-                    base.GameController.ExhaustCoroutine(playCoroutine);
-                }
+                var e = SelectAndPlayCardsFromHand(HeroTurnTakerController, numberOfCards: 2);
+                if (UseUnityCoroutines) { yield return GameController.StartCoroutine(e); }
+                else { GameController.ExhaustCoroutine(e); }
             }
-            // "If {BatteryCharacter} is {Discharged}, draw 3 cards."
-            if (!IsBatteryCharged())
+
+            // If {BatteryCharacter} is {Discharged}, draw 3 cards.
+            if (!this.IsCharged(CharacterCard))
             {
-                IEnumerator drawCoroutine = base.GameController.DrawCards(base.HeroTurnTakerController, 3, cardSource: GetCardSource());
-                if (base.UseUnityCoroutines)
-                {
-                    yield return base.GameController.StartCoroutine(drawCoroutine);
-                }
-                else
-                {
-                    base.GameController.ExhaustCoroutine(drawCoroutine);
-                }
+                var e = DrawCards(HeroTurnTakerController, 3);
+                if (UseUnityCoroutines) { yield return GameController.StartCoroutine(e); }
+                else { GameController.ExhaustCoroutine(e); }
             }
-            yield break;
         }
     }
 }

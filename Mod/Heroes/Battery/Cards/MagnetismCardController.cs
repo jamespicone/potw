@@ -16,47 +16,44 @@ namespace Jp.ParahumansOfTheWormverse.Battery
         public MagnetismCardController(Card card, TurnTakerController turnTakerController)
             : base(card, turnTakerController)
         {
-            ShowBatteryChargedStatus();
-            base.SpecialStringMaker.ShowNumberOfCardsAtLocations(() => from httc in base.GameController.FindHeroTurnTakerControllers()
-                                                                       where !httc.IsIncapacitatedOrOutOfGame
-                                                                       select httc.TurnTaker.Trash, new LinqCardCriteria((Card c) => IsEquipment(c), "equipment"));
-        }
+            this.ShowChargedStatus(SpecialStringMaker, CharacterCard);
 
-        public override void AddTriggers()
-        {
-            base.AddTriggers();
+            SpecialStringMaker.ShowNumberOfCardsAtLocations(
+                () => from httc in GameController.FindHeroTurnTakerControllers() where !httc.IsIncapacitatedOrOutOfGame select httc.TurnTaker.Trash,
+                new LinqCardCriteria(c => IsEquipment(c), "equipment")
+            );
         }
 
         public override IEnumerator UsePower(int index = 0)
         {
-            // "If {BatteryCharacter} is {Charged}, destroy a non-character card Equipment or Device card."
-            if (IsBatteryCharged())
+            // If {BatteryCharacter} is {Charged}, destroy a non-character card Equipment or Device card.
+            if (this.IsCharged(CharacterCard))
             {
-                IEnumerator destroyCoroutine = base.GameController.SelectAndDestroyCard(base.HeroTurnTakerController, new LinqCardCriteria((Card c) => !c.IsCharacter && (c.Is(this).Equipment() || c.Is(this).WithKeyword("device")), "non-character Equipment or Device"), false, responsibleCard: base.Card, cardSource: GetCardSource());
-                if (base.UseUnityCoroutines)
-                {
-                    yield return base.GameController.StartCoroutine(destroyCoroutine);
-                }
-                else
-                {
-                    base.GameController.ExhaustCoroutine(destroyCoroutine);
-                }
+                var e = GameController.SelectAndDestroyCard(
+                    HeroTurnTakerController,
+                    new LinqCardCriteria(c => !c.IsCharacter && (c.Is(this).Equipment() || c.Is(this).WithKeyword("device")), "non-character Equipment or Device"),
+                    optional: false, 
+                    responsibleCard: CharacterCard,
+                    cardSource: GetCardSource()
+                );
+                if (UseUnityCoroutines) { yield return GameController.StartCoroutine(e); }
+                else { GameController.ExhaustCoroutine(e); }
             }
-            // "If {BatteryCharacter} is {Discharged}, put an Equipment card from a hero trash into play."
-            if (!IsBatteryCharged())
+
+            // If {BatteryCharacter} is {Discharged}, put an Equipment card from a hero trash into play.
+            if (! this.IsCharged(CharacterCard))
             {
                 // TODO: This should be cards from a hero trash, not hero cards from a trash
-                IEnumerator playCoroutine = base.GameController.SelectAndPlayCard(base.HeroTurnTakerController, (Card c) => c.Is(this).Hero().Equipment() && c.IsInTrash, false, true, cardSource: GetCardSource());
-                if (base.UseUnityCoroutines)
-                {
-                    yield return base.GameController.StartCoroutine(playCoroutine);
-                }
-                else
-                {
-                    base.GameController.ExhaustCoroutine(playCoroutine);
-                }
+                var e = GameController.SelectAndPlayCard(
+                    HeroTurnTakerController,
+                    c => IsEquipment(c) && c.Location.IsTrash && c.Location.OwnerTurnTaker.Is().Hero().AccordingTo(this),
+                    optional: false,
+                    isPutIntoPlay: true,
+                    cardSource: GetCardSource()
+                );
+                if (UseUnityCoroutines) { yield return GameController.StartCoroutine(e); }
+                else { GameController.ExhaustCoroutine(e); }
             }
-            yield break;
         }
     }
 }

@@ -30,7 +30,7 @@
       ],
       "incapacitatedAbilities": [
         "One player may play a card now.",
-        "One hero target deals 1 target 2 lightning damage.",
+        "Battery deals 1 target 2 lightning damage.",
         "Put an Equipment card from a player's trash into their hand."
       ],
       "flippedIcons": [
@@ -40,7 +40,7 @@
       ],
 
       "openingLines": {
-        "default": " Crime should have consequences."
+        "default": "Crime should have consequences."
       },
       "complexity": 2
     },
@@ -105,7 +105,7 @@
       ],
       "body": [
         "{BatteryCharacter} deals 1 target 2 lightning damage.",
-        "If {BatteryCharacter} is {Charged}, a non-character card target dealt damage this way loses all 'start of turn' and 'end of turn' effects on its card until the start of your next turn."
+        "If {BatteryCharacter} is {Charged}, a non-character target dealt damage this way loses all 'start of turn' and 'end of turn' effects on its card until the start of your next turn."
       ],
       "icons": [
         "DealDamageLightning"
@@ -289,18 +289,6 @@
       ],
       "flavorText": "Whatever those favors were,{BR}all she could do was hope she could{BR}do enough good to counterbalance any{BR}wrongs she'd have to commit.",
       "flavorReference": "Interlude 12.5"
-    },
-    {
-      "identifier": "ChargedIndicator",
-      "count": 10,
-      "title": "Charged",
-      "keywords": [
-        "indicator"
-      ],
-      "isReal": false,
-      "body": [
-        "The character this is next to is {Charged}."
-      ]
     }
   ],
   "promoCards": [
@@ -329,7 +317,7 @@
       ],
       "incapacitatedAbilities": [
         "One player may draw a card now.",
-        "One hero target deals 1 target 2 melee damage.",
+        "Battery deals 1 target 2 melee damage.",
         "Destroy a non-character card Equipment or Device card."
       ],
       "flippedIcons": [

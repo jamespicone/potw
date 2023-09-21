@@ -14,40 +14,42 @@ namespace Jp.ParahumansOfTheWormverse.Battery
         public StrengthCardController(Card card, TurnTakerController turnTakerController)
             : base(card, turnTakerController)
         {
-            ShowBatteryChargedStatus();
+            this.ShowChargedStatus(SpecialStringMaker, CharacterCard);
         }
 
         public override IEnumerator Play()
         {
-            // "{BatteryCharacter} deals 1 target 3 melee damage."
+            // {BatteryCharacter} deals 1 target 3 melee damage.
             List<DealDamageAction> storedResults = new List<DealDamageAction>();
-            IEnumerator firstDamageCoroutine = base.GameController.SelectTargetsAndDealDamage(base.HeroTurnTakerController, new DamageSource(base.GameController, base.CharacterCard), 3, DamageType.Melee, 1, false, 1, storedResultsDamage: storedResults, cardSource: GetCardSource());
-            if (base.UseUnityCoroutines)
+            var e = GameController.SelectTargetsAndDealDamage(
+                HeroTurnTakerController,
+                new DamageSource(GameController, CharacterCard),
+                3,
+                DamageType.Melee,
+                numberOfTargets: 1,
+                optional: false,
+                requiredTargets: 1,
+                storedResultsDamage: storedResults,
+                cardSource: GetCardSource()
+            );
+
+            if (UseUnityCoroutines) { yield return GameController.StartCoroutine(e); }
+            else { GameController.ExhaustCoroutine(e); }
+
+            // If {BatteryCharacter} is {Charged}, she deals the same target 2 more melee damage.
+            var target = storedResults.FirstOrDefault()?.Target;
+            if (target != null && this.IsCharged(CharacterCard))
             {
-                yield return base.GameController.StartCoroutine(firstDamageCoroutine);
+                e = DealDamage(
+                    CharacterCard,
+                    target,
+                    2,
+                    DamageType.Melee
+                );
+
+                if (UseUnityCoroutines) { yield return GameController.StartCoroutine(e); }
+                else { GameController.ExhaustCoroutine(e); }
             }
-            else
-            {
-                base.GameController.ExhaustCoroutine(firstDamageCoroutine);
-            }
-            // "If {BatteryCharacter} is {Charged}, she deals the same target 2 more melee damage."
-            if (IsBatteryCharged())
-            {
-                DealDamageAction dd = storedResults.FirstOrDefault();
-                if (dd != null && dd.Target != null)
-                {
-                    IEnumerator additionalDamageCoroutine = base.GameController.DealDamage(base.HeroTurnTakerController, base.CharacterCard, (Card c) => c == dd.Target, 2, DamageType.Melee, cardSource: GetCardSource());
-                    if (base.UseUnityCoroutines)
-                    {
-                        yield return base.GameController.StartCoroutine(additionalDamageCoroutine);
-                    }
-                    else
-                    {
-                        base.GameController.ExhaustCoroutine(additionalDamageCoroutine);
-                    }
-                }
-            }
-            yield break;
         }
     }
 }

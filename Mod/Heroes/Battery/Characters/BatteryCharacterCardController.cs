@@ -26,7 +26,7 @@ namespace Jp.ParahumansOfTheWormverse.Battery
 
             var ret = new List<Power>();
 
-            if (IsBatteryCharged())
+            if (this.IsCharged(Card))
             {
                 ret.Add(new Power(
                     cardController.HeroTurnTakerController,
@@ -56,210 +56,64 @@ namespace Jp.ParahumansOfTheWormverse.Battery
 
         private IEnumerator ChargePower()
         {
-            IEnumerator chargeCoroutine = Charge(base.Card);
-            if (base.UseUnityCoroutines)
-            {
-                yield return base.GameController.StartCoroutine(chargeCoroutine);
-            }
-            else
-            {
-                base.GameController.ExhaustCoroutine(chargeCoroutine);
-            }
-            IEnumerator drawCoroutine = base.GameController.DrawCard(base.HeroTurnTaker, cardSource: GetCardSource());
-            if (base.UseUnityCoroutines)
-            {
-                yield return base.GameController.StartCoroutine(drawCoroutine);
-            }
-            else
-            {
-                base.GameController.ExhaustCoroutine(drawCoroutine);
-            }
+            var e = this.ChargeCard(CharacterCard);
+            if (UseUnityCoroutines) { yield return GameController.StartCoroutine(e); }
+            else { GameController.ExhaustCoroutine(e); }
+
+            e = DrawCard(HeroTurnTaker);
+            if (UseUnityCoroutines) { yield return GameController.StartCoroutine(e); }
+            else { GameController.ExhaustCoroutine(e); }
         }
 
         private IEnumerator DischargePower()
         {
-            IEnumerator dischargeCoroutine = RemoveCharge(base.Card);
-            if (base.UseUnityCoroutines)
-            {
-                yield return base.GameController.StartCoroutine(dischargeCoroutine);
-            }
-            else
-            {
-                base.GameController.ExhaustCoroutine(dischargeCoroutine);
-            }
-            IEnumerator playCoroutine = base.GameController.SelectAndPlayCardFromHand(base.HeroTurnTakerController, true, cardSource: GetCardSource());
-            if (base.UseUnityCoroutines)
-            {
-                yield return base.GameController.StartCoroutine(playCoroutine);
-            }
-            else
-            {
-                base.GameController.ExhaustCoroutine(playCoroutine);
-            }
-        }
+            var e = this.DischargeCard(CharacterCard);
+            if (UseUnityCoroutines) { yield return GameController.StartCoroutine(e); }
+            else { GameController.ExhaustCoroutine(e); }
 
-
-        public override IEnumerator UsePower(int index = 0)
-        {
-            switch (index)
-            {
-                case 0:
-                    // "If {BatteryCharacter} is {Discharged}, {Charge} {BatteryCharacter} and draw a card."
-                    if (!IsBatteryCharged())
-                    {
-                        var e = ChargePower();
-                        if (UseUnityCoroutines)
-                        {
-                            yield return GameController.StartCoroutine(e);
-                        }
-                        else
-                        {
-                            GameController.ExhaustCoroutine(e);
-                        }
-                    }
-                    else
-                    {
-                        IEnumerator messageCoroutine = base.GameController.SendMessageAction(base.Card.Title + " is already {Charged}, so her Charge power has no effect.", Priority.Medium, GetCardSource(), showCardSource: true);
-                        if (base.UseUnityCoroutines)
-                        {
-                            yield return base.GameController.StartCoroutine(messageCoroutine);
-                        }
-                        else
-                        {
-                            base.GameController.ExhaustCoroutine(messageCoroutine);
-                        }
-                    }
-                    break;
-                case 1:
-                    // "If {BatteryCharacter} is {Charged}, {Discharge} {BatteryCharacter} and you may play a card."
-                    if (IsBatteryCharged())
-                    {
-                        var e = DischargePower();
-                        if (UseUnityCoroutines)
-                        {
-                            yield return GameController.StartCoroutine(e);
-                        }
-                        else
-                        {
-                            GameController.ExhaustCoroutine(e);
-                        }
-                    }
-                    else
-                    {
-                        IEnumerator messageCoroutine = base.GameController.SendMessageAction(base.Card.Title + " is already {Discharged}, so her Discharge power has no effect.", Priority.Medium, GetCardSource(), showCardSource: true);
-                        if (base.UseUnityCoroutines)
-                        {
-                            yield return base.GameController.StartCoroutine(messageCoroutine);
-                        }
-                        else
-                        {
-                            base.GameController.ExhaustCoroutine(messageCoroutine);
-                        }
-                    }
-                    break;
-            }
-            yield break;
+            e = SelectAndPlayCardFromHand(HeroTurnTakerController);
+            if (UseUnityCoroutines) { yield return GameController.StartCoroutine(e); }
+            else { GameController.ExhaustCoroutine(e); }
         }
 
         public override IEnumerator UseIncapacitatedAbility(int index)
         {
-            IEnumerator incapCoroutine;
+            IEnumerator e;
             switch (index)
             {
-                case 0:
-                    incapCoroutine = UseIncapOption1();
-                    if (base.UseUnityCoroutines)
-                    {
-                        yield return base.GameController.StartCoroutine(incapCoroutine);
-                    }
-                    else
-                    {
-                        base.GameController.ExhaustCoroutine(incapCoroutine);
-                    }
-                    break;
+                // One player may play a card now.
+                case 0: e = SelectHeroToPlayCard(HeroTurnTakerController); break;
+
+                // Battery deals 1 target 2 lightning damage
                 case 1:
-                    incapCoroutine = UseIncapOption2();
-                    if (base.UseUnityCoroutines)
-                    {
-                        yield return base.GameController.StartCoroutine(incapCoroutine);
-                    }
-                    else
-                    {
-                        base.GameController.ExhaustCoroutine(incapCoroutine);
-                    }
+                    e = GameController.SelectTargetsAndDealDamage(
+                        HeroTurnTakerController,
+                        new DamageSource(GameController, TurnTaker),
+                        2,
+                        DamageType.Lightning,
+                        numberOfTargets: 1,
+                        optional: false,
+                        requiredTargets: 1,
+                        cardSource: GetCardSource()
+                    );
                     break;
+
+                // Put an Equipment card from a player's trash into their hand.
                 case 2:
-                    incapCoroutine = UseIncapOption3();
-                    if (base.UseUnityCoroutines)
-                    {
-                        yield return base.GameController.StartCoroutine(incapCoroutine);
-                    }
-                    else
-                    {
-                        base.GameController.ExhaustCoroutine(incapCoroutine);
-                    }
+                    e = GameController.SelectHeroToMoveCardFromTrash(
+                        HeroTurnTakerController,
+                        htt => htt.HeroTurnTaker.Hand,
+                        optionalMoveCard: false,
+                        cardCriteria: new LinqCardCriteria(c => IsEquipment(c), "equipment"),
+                        cardSource: GetCardSource()
+                    );
                     break;
-            }
-            yield break;
-        }
 
-        private IEnumerator UseIncapOption1()
-        {
-            // "One player may play a card now."
-            IEnumerator playCoroutine = base.GameController.SelectHeroToPlayCard(base.HeroTurnTakerController, cardSource: GetCardSource());
-            if (base.UseUnityCoroutines)
-            {
-                yield return base.GameController.StartCoroutine(playCoroutine);
+                default: yield break;
             }
-            else
-            {
-                base.GameController.ExhaustCoroutine(playCoroutine);
-            }
-            yield break;
-        }
 
-        private IEnumerator UseIncapOption2()
-        {
-            // "One hero target deals 1 target 2 lightning damage."
-            List<SelectCardDecision> chooseHeroTarget = new List<SelectCardDecision>();
-            IEnumerator chooseHeroCoroutine = base.GameController.SelectCardAndStoreResults(base.HeroTurnTakerController, SelectionType.CardToDealDamage, new LinqCardCriteria((Card c) => c.IsInPlay && c.Is(this).Hero().Target(), "hero target", useCardsSuffix: false), chooseHeroTarget, false, cardSource: GetCardSource());
-            if (base.UseUnityCoroutines)
-            {
-                yield return base.GameController.StartCoroutine(chooseHeroCoroutine);
-            }
-            else
-            {
-                base.GameController.ExhaustCoroutine(chooseHeroCoroutine);
-            }
-            SelectCardDecision choice = chooseHeroTarget.FirstOrDefault();
-            if (choice != null && choice.SelectedCard != null)
-            {
-                IEnumerator damageCoroutine = base.GameController.SelectTargetsAndDealDamage(DecisionMaker, new DamageSource(base.GameController, choice.SelectedCard), 2, DamageType.Lightning, 1, false, 1, cardSource: GetCardSource());
-                if (base.UseUnityCoroutines)
-                {
-                    yield return base.GameController.StartCoroutine(damageCoroutine);
-                }
-                else
-                {
-                    base.GameController.ExhaustCoroutine(damageCoroutine);
-                }
-            }
-            yield break;
-        }
-
-        private IEnumerator UseIncapOption3()
-        {
-            // "Put an Equipment card from a player's trash into their hand."
-            IEnumerator playerMoveCoroutine = base.GameController.SelectHeroToMoveCardFromTrash(DecisionMaker, (HeroTurnTakerController httc) => httc.HeroTurnTaker.Hand, optionalSelectHero: false, optionalMoveCard: false, allowAutoDecide: false, toBottom: false, isPutIntoPlay: false, playIfMovingToPlayArea: true, null, new LinqCardCriteria((Card c) => IsEquipment(c), "equipment"), GetCardSource());
-            if (base.UseUnityCoroutines)
-            {
-                yield return base.GameController.StartCoroutine(playerMoveCoroutine);
-            }
-            else
-            {
-                base.GameController.ExhaustCoroutine(playerMoveCoroutine);
-            }
-            yield break;
+            if (UseUnityCoroutines) { yield return GameController.StartCoroutine(e); }
+            else { GameController.ExhaustCoroutine(e); }
         }
     }
 }

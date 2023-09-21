@@ -7,6 +7,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+using Jp.SOTMUtilities;
+
 namespace Jp.ParahumansOfTheWormverse.Battery
 {
     public class KnockoutPunchCardController : BatteryUtilityCardController
@@ -14,70 +16,56 @@ namespace Jp.ParahumansOfTheWormverse.Battery
         public KnockoutPunchCardController(Card card, TurnTakerController turnTakerController)
             : base(card, turnTakerController)
         {
-            ShowBatteryChargedStatus();
+            this.ShowChargedStatus(SpecialStringMaker, CharacterCard);
         }
 
         public override IEnumerator Play()
         {
-            // "{BatteryCharacter} deals 1 target 2 lightning damage."
-            List<DealDamageAction> damageActions = new List<DealDamageAction>();
-            IEnumerator damageCoroutine = base.GameController.SelectTargetsAndDealDamage(base.HeroTurnTakerController, new DamageSource(base.GameController, base.CharacterCard), 2, DamageType.Lightning, 1, false, 1, storedResultsDamage: damageActions, cardSource: GetCardSource());
-            if (base.UseUnityCoroutines)
+            // {BatteryCharacter} deals 1 target 2 lightning damage.
+            var damageActions = new List<DealDamageAction>();
+            var e = GameController.SelectTargetsAndDealDamage(
+                HeroTurnTakerController,
+                new DamageSource(GameController, CharacterCard),
+                2,
+                DamageType.Lightning,
+                numberOfTargets: 1,
+                optional: false,
+                requiredTargets: 1,
+                storedResultsDamage: damageActions,
+                cardSource: GetCardSource()
+            );
+            if (UseUnityCoroutines) { yield return GameController.StartCoroutine(e); }
+            else { GameController.ExhaustCoroutine(e); }
+
+            // If {BatteryCharacter} is {Charged}, a non-character target dealt damage this way loses
+            // all 'start of turn' and 'end of turn' effects on its card until the start of your next turn."
+            if (this.IsCharged(CharacterCard))
             {
-                yield return base.GameController.StartCoroutine(damageCoroutine);
-            }
-            else
-            {
-                base.GameController.ExhaustCoroutine(damageCoroutine);
-            }
-            // "If {BatteryCharacter} is {Charged}, a non-character card target dealt damage this way loses all 'start of turn' and 'end of turn' effects on its card until the start of your next turn."
-            if (IsBatteryCharged())
-            {
-                IEnumerable<Card> validChoices = (from dda in damageActions where dda.DidDealDamage && dda.Target != null && (! dda.Target.IsCharacter) select dda.Target).Distinct();
-                Card chosen = validChoices.FirstOrDefault();
-                if (validChoices.Count() > 0)
+                foreach (var dda in damageActions)
                 {
-                    List<SelectCardDecision> selected = new List<SelectCardDecision>();
-                    IEnumerator selectCoroutine = base.GameController.SelectCardAndStoreResults(base.HeroTurnTakerController, SelectionType.None, new LinqCardCriteria((Card c) => validChoices.Contains(c)), selected, false, cardSource: GetCardSource());
-                    if (base.UseUnityCoroutines)
+                    if (!dda.DidDealDamage || !dda.Target.Is().Noncharacter().Target()) continue;
+
                     {
-                        yield return base.GameController.StartCoroutine(selectCoroutine);
+                        var effect = new PreventPhaseEffectStatusEffect(Phase.Start);
+                        effect.UntilStartOfNextTurn(TurnTaker);
+                        effect.CardCriteria.IsSpecificCard = dda.Target;
+
+                        e = AddStatusEffect(effect);
+                        if (UseUnityCoroutines) { yield return GameController.StartCoroutine(e); }
+                        else { GameController.ExhaustCoroutine(e); }
                     }
-                    else
+
                     {
-                        base.GameController.ExhaustCoroutine(selectCoroutine);
-                    }
-                    if (selected != null && selected.Count() > 0)
-                    {
-                        if (selected.FirstOrDefault() != null && selected.FirstOrDefault().SelectedCard != null)
-                        {
-                            chosen = selected.FirstOrDefault().SelectedCard;
-                        }
-                    }
-                }
-                if (chosen != null)
-                {
-                    PreventPhaseEffectStatusEffect preventStart = new PreventPhaseEffectStatusEffect(Phase.Start);
-                    preventStart.UntilStartOfNextTurn(base.TurnTaker);
-                    preventStart.CardCriteria.IsSpecificCard = chosen;
-                    IEnumerator preventStartCoroutine = base.GameController.AddStatusEffect(preventStart, true, GetCardSource());
-                    PreventPhaseEffectStatusEffect preventEnd = new PreventPhaseEffectStatusEffect(Phase.End);
-                    preventEnd.UntilStartOfNextTurn(base.TurnTaker);
-                    preventEnd.CardCriteria.IsSpecificCard = chosen;
-                    IEnumerator preventEndCoroutine = base.GameController.AddStatusEffect(preventEnd, true, GetCardSource());
-                    if (base.UseUnityCoroutines)
-                    {
-                        yield return base.GameController.StartCoroutine(preventStartCoroutine);
-                        yield return base.GameController.StartCoroutine(preventEndCoroutine);
-                    }
-                    else
-                    {
-                        base.GameController.ExhaustCoroutine(preventStartCoroutine);
-                        base.GameController.ExhaustCoroutine(preventEndCoroutine);
+                        var effect = new PreventPhaseEffectStatusEffect(Phase.End);
+                        effect.UntilStartOfNextTurn(TurnTaker);
+                        effect.CardCriteria.IsSpecificCard = dda.Target;
+
+                        e = AddStatusEffect(effect);
+                        if (UseUnityCoroutines) { yield return GameController.StartCoroutine(e); }
+                        else { GameController.ExhaustCoroutine(e); }
                     }
                 }
             }
-            yield break;
         }
     }
 }
