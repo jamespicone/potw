@@ -16,7 +16,6 @@ namespace Jp.ParahumansOfTheWormverse.Labyrinth
 
     public class LabyrinthCharacterCardController : HeroCharacterCardController
     {
-        MethodInfo cachedAskAllCardControllersInList;
         bool currentlyChangingTurnOrder = false;
 
         public LabyrinthCharacterCardController(Card card, TurnTakerController controller) : base(card, controller)
