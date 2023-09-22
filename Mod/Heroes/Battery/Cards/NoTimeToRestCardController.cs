@@ -10,7 +10,7 @@ using System.Text;
 
 namespace Jp.ParahumansOfTheWormverse.Battery
 {
-    public class NoTimeToRestCardController : BatteryUtilityCardController
+    public class NoTimeToRestCardController : CardController
     {
         public NoTimeToRestCardController(Card card, TurnTakerController turnTakerController)
             : base(card, turnTakerController)

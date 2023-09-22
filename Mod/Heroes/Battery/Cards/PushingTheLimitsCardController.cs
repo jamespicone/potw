@@ -9,7 +9,7 @@ using System.Text;
 
 namespace Jp.ParahumansOfTheWormverse.Battery
 {
-    public class PushingTheLimitsCardController : BatteryUtilityCardController
+    public class PushingTheLimitsCardController : CardController
     {
         public PushingTheLimitsCardController(Card card, TurnTakerController turnTakerController)
             : base(card, turnTakerController)

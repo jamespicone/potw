@@ -11,7 +11,7 @@ using Jp.SOTMUtilities;
 
 namespace Jp.ParahumansOfTheWormverse.Battery
 {
-    public class MagnetismCardController : BatteryUtilityCardController
+    public class MagnetismCardController : CardController
     {
         public MagnetismCardController(Card card, TurnTakerController turnTakerController)
             : base(card, turnTakerController)
