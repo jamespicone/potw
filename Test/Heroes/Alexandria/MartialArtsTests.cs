@@ -112,6 +112,8 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.Alexandria
             SetHitPoints(target, 3);
             PlayCard("MartialArts");
 
+            RunCoroutine(GameController.CleanUpAllStatusEffects());
+
             AssertAtLocation(title, alexandria.CharacterCard.BelowLocation);
             AssertInTrash(target);
 
