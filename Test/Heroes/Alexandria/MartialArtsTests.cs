@@ -108,8 +108,8 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.Alexandria
 
             var title = PlayCard("TitleDeathCaller");
             var target = PlayCard("OrrimHiveminded");
-            
-            SetHitPoints(target, 3);           
+
+            SetHitPoints(target, 3);
             PlayCard("MartialArts");
 
             AssertAtLocation(title, alexandria.CharacterCard.BelowLocation);
@@ -124,6 +124,30 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.Alexandria
             DealDamage(alexandria, target2, 9, DamageType.Infernal);
             AssertNumberOfStatusEffectsInPlay(1);
             AssertInTrash(target2);
+        }
+
+        [Test()]
+        public void TestCantSelectCardBeingDestroyed()
+        {
+            SetupGameController("BaronBlade", "Jp.ParahumansOfTheWormverse.Alexandria", "InsulaPrimalis");
+
+            StartGame();
+
+            var platform = GetMobileDefensePlatform().Card;
+            SetHitPoints(platform, 3);
+
+            GameController.OnDidApplyActionChanges += (GameAction a) =>
+            {
+                if (a is DestroyCardAction)
+                {
+                    AssertNextDecisionChoices(notIncluded: new Card[] { platform });
+                }
+
+                return DoNothing();
+            };
+
+            PlayCard("MartialArts");
+            AssertInTrash(platform);
         }
     }
 }
