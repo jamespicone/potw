@@ -37,7 +37,7 @@ namespace Jp.ParahumansOfTheWormverse.Alexandria
         {
             // "When {AlexandriaCharacter} destroys a target select a target. Until the start of your next turn that target cannot deal damage"
             AddTrigger<DestroyCardAction>(
-                dca => Card.IsResponsible(dca) && dca.WasCardDestroyed && dca.CardToDestroy.Card.IsTarget,
+                dca => CharacterCard.IsResponsible(dca) && dca.WasCardDestroyed && dca.CardToDestroy.Card.IsTarget,
                 dca => PreventTargetDoingDamage(),
                 TriggerType.Other,
                 TriggerTiming.After
