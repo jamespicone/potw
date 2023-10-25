@@ -21,7 +21,7 @@ namespace Jp.ParahumansOfTheWormverse.Battery
         {
             // Whenever {BatteryCharacter} destroys a target
             AddTrigger<DestroyCardAction>(
-                dca => dca.WasCardDestroyed && dca.CardToDestroy.Card.IsTarget && Card.IsResponsible(dca),
+                dca => dca.WasCardDestroyed && dca.CardToDestroy.Card.IsTarget && TurnTaker.IsResponsible(dca),
                 DrawPlayResponse,
                 new TriggerType[] { TriggerType.DrawCard, TriggerType.PlayCard },
                 TriggerTiming.After
