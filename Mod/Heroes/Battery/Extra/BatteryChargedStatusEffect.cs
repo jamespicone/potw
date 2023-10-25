@@ -21,5 +21,10 @@ namespace Jp.ParahumansOfTheWormverse.Battery
         }
 
         public Card ChargedCard { get { return TargetLeavesPlayExpiryCriteria.IsOneOfTheseCards.FirstOrDefault(); } }
+
+        public override string ToString()
+        {
+            return Description;
+        }
     }
 }
