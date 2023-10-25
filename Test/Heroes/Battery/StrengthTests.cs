@@ -13,9 +13,57 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.Battery
     public class StrengthTests : ParahumanTest
     {
         [Test()]
-        public void TestModWorks()
+        public void TestUncharged()
         {
             SetupGameController("BaronBlade", "Jp.ParahumansOfTheWormverse.Battery", "InsulaPrimalis");
+
+            StartGame();
+
+            RemoveMobileDefensePlatform();
+
+            DecisionSelectTarget = baron.CharacterCard;
+
+            QuickHPStorage(baron);
+            PlayCard("Strength");
+            QuickHPCheck(-3);
+        }
+
+        [Test()]
+        public void TestChargedNormal()
+        {
+            SetupGameController("BaronBlade", "Jp.ParahumansOfTheWormverse.Battery", "InsulaPrimalis");
+
+            StartGame();
+
+            RemoveMobileDefensePlatform();
+
+            UsePower(battery);
+
+            DecisionSelectTarget = baron.CharacterCard;
+
+            QuickHPStorage(baron);
+            PlayCard("Strength");
+            QuickHPCheck(-5);
+        }
+
+        [Test()]
+        public void TestChargedDamagePlus()
+        {
+            SetupGameController("BaronBlade", "Jp.ParahumansOfTheWormverse.Battery", "InsulaPrimalis");
+
+            StartGame();
+
+            RemoveMobileDefensePlatform();
+
+            UsePower(battery);
+
+            PlayCard("ObsidianField");
+
+            DecisionSelectTarget = baron.CharacterCard;
+
+            QuickHPStorage(baron);
+            PlayCard("Strength");
+            QuickHPCheck(-7);
         }
     }
 }
