@@ -46,15 +46,15 @@ namespace Jp.ParahumansOfTheWormverse.Battery
 
         public bool HasBatteryUsedDischargeSinceStartOfLastTurn()
         {
+            
             var lastStart = Journal.PhaseChangeEntries()
-                .Where(pcje => pcje.ToPhase.IsStart && pcje.ToPhase.TurnTaker == TurnTaker)
+                .Where(pcje => pcje.ToPhase.IsStart && pcje.ToPhase.TurnTaker == TurnTaker && pcje.ToPhase != Game.ActiveTurnPhase)
                 .LastOrDefault();
 
             var lastStartIndex = Journal.GetEntryIndex(lastStart) ?? 0;
 
             return Journal.UsePowerEntries()
-                .Where(upje => GameController.IsDischargePower(upje, HeroTurnTaker) && Journal.GetEntryIndex(upje) >= lastStartIndex)
-                .Any();
+                .Any(upje => GameController.IsDischargePower(upje, HeroTurnTaker) && Journal.GetEntryIndex(upje) >= lastStartIndex);
         }
     }
 }
