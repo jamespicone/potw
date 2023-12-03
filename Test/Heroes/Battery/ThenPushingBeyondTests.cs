@@ -13,9 +13,34 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.Battery
     public class ThenPushingBeyondTests : ParahumanTest
     {
         [Test()]
-        public void TestModWorks()
+        public void TestPushingBeyond()
         {
-            SetupGameController("BaronBlade", "Jp.ParahumansOfTheWormverse.Battery", "InsulaPrimalis");
+            SetupGameController("AkashBhuta", "Jp.ParahumansOfTheWormverse.Battery", "InsulaPrimalis");
+
+            StartGame();
+
+            MoveAllCardsFromHandToDeck(battery);
+            var magnetism = GetCard("Magnetism");
+            var pushing = GetCard("ThenPushingBeyond");
+
+            MoveCard(battery, magnetism, battery.HeroTurnTaker.Hand);
+            MoveCard(battery, pushing, battery.HeroTurnTaker.Hand);
+
+            DecisionSelectCards = new Card[] { magnetism, null };
+            DecisionSelectPower = magnetism;
+
+            AssertDamageSource(battery.CharacterCard);
+            AssertDamageType(DamageType.Psychic);
+
+            QuickHandStorage(battery);
+            QuickHPStorage(battery.CharacterCard);
+            PlayCard(pushing);
+            // Battery -1 played pushing, -1 played magnetism
+            QuickHandCheck(-2);
+            QuickHPCheck(-3);
+
+            AssertIsInPlay(magnetism);
+            AssertNotUsablePower(battery, magnetism);
         }
     }
 }

@@ -13,9 +13,43 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.Battery
     public class KnockEmDownTests : ParahumanTest
     {
         [Test()]
-        public void TestModWorks()
+        public void TestUncharged()
         {
-            SetupGameController("BaronBlade", "Jp.ParahumansOfTheWormverse.Battery", "InsulaPrimalis");
+            SetupGameController("AkashBhuta", "Jp.ParahumansOfTheWormverse.Battery", "InsulaPrimalis");
+
+            StartGame();
+
+            var phalanges = PlayCard("ArborealPhalanges");
+            var slide = PlayCard("LivingRockslide");
+
+            DecisionSelectTargets = new Card[] { phalanges, phalanges, akash.CharacterCard, slide };
+
+            QuickHPStorage(phalanges, slide, akash.CharacterCard);
+            AssertDamageSource(battery.CharacterCard);
+            AssertDamageType(DamageType.Melee);
+            PlayCard("KnockEmDown");
+            QuickHPCheck(-2, 0, 0);
+        }
+
+        [Test()]
+        public void TestCharged()
+        {
+            SetupGameController("AkashBhuta", "Jp.ParahumansOfTheWormverse.Battery", "InsulaPrimalis");
+
+            StartGame();
+
+            UsePower(battery.CharacterCard);
+
+            var phalanges = PlayCard("ArborealPhalanges");
+            var slide = PlayCard("LivingRockslide");
+
+            DecisionSelectTargets = new Card[] { phalanges, phalanges, akash.CharacterCard, slide };
+
+            QuickHPStorage(phalanges, slide, akash.CharacterCard);
+            AssertDamageSource(battery.CharacterCard);
+            AssertDamageType(DamageType.Melee);
+            PlayCard("KnockEmDown");
+            QuickHPCheck(-4, -2, -2);
         }
     }
 }

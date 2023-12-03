@@ -13,9 +13,62 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.Battery
     public class ShockAndAweTests : ParahumanTest
     {
         [Test()]
-        public void TestModWorks()
+        public void TestUncharged()
         {
-            SetupGameController("BaronBlade", "Jp.ParahumansOfTheWormverse.Battery", "InsulaPrimalis");
+            SetupGameController("AkashBhuta", "Jp.ParahumansOfTheWormverse.Battery", "InsulaPrimalis");
+
+            StartGame();
+
+            var slide = PlayCard("LivingRockslide");
+
+            DecisionSelectTarget = akash.CharacterCard;
+
+            AssertDamageSource(battery.CharacterCard);
+            AssertDamageType(DamageType.Lightning);
+
+            QuickHPStorage(akash.CharacterCard, slide);
+            PlayCard("ShockAndAwe");
+            QuickHPCheck(-2, 0);
+        }
+
+        [Test()]
+        public void TestChargedCantRepeatTarget()
+        {
+            SetupGameController("AkashBhuta", "Jp.ParahumansOfTheWormverse.Battery", "InsulaPrimalis");
+
+            StartGame();
+
+            UsePower(battery);
+
+            AssertDamageSource(battery.CharacterCard);
+            AssertDamageType(DamageType.Lightning);
+
+            QuickHPStorage(akash.CharacterCard);
+            PlayCard("ShockAndAwe");
+            QuickHPCheck(-2);
+        }
+
+        [Test()]
+        public void TestCharged()
+        {
+            SetupGameController("AkashBhuta", "Jp.ParahumansOfTheWormverse.Battery", "InsulaPrimalis");
+
+            StartGame();
+
+            UsePower(battery);
+
+            var slide = PlayCard("LivingRockslide");
+            var slide2 = PlayCard("LivingRockslide");
+            var phalanges = PlayCard("ArborealPhalanges");
+
+            DecisionSelectTargets = new Card[] { akash.CharacterCard, slide, slide2, phalanges, battery.CharacterCard };
+
+            AssertDamageSource(battery.CharacterCard);
+            AssertDamageType(DamageType.Lightning);
+
+            QuickHPStorage(akash.CharacterCard, slide, slide2, phalanges, battery.CharacterCard);
+            PlayCard("ShockAndAwe");
+            QuickHPCheck(-2, -3, -3, -3, 0);
         }
     }
 }

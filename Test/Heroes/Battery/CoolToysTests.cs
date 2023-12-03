@@ -7,15 +7,72 @@ using System.Collections;
 using System.Collections.Generic;
 using Handelabra.Sentinels.UnitTest;
 
+using Jp.ParahumansOfTheWormverse.Battery;
+
 namespace Jp.ParahumansOfTheWormverse.UnitTest.Battery
 {
     [TestFixture()]
     public class CoolToysTests : ParahumanTest
     {
         [Test()]
-        public void TestModWorks()
+        public void TestUncharged()
         {
-            SetupGameController("BaronBlade", "Jp.ParahumansOfTheWormverse.Battery", "InsulaPrimalis");
+            SetupGameController("AkashBhuta", "Jp.ParahumansOfTheWormverse.Battery", "InsulaPrimalis");
+
+            StartGame();
+
+            PlayCard("GlowingThreads");
+
+            DecisionSelectCard = akash.CharacterCard;
+
+            QuickHPStorage(akash.CharacterCard);
+            PlayCard("CoolToys");
+            QuickHPCheck(0);
+        }
+
+        [Test()]
+        public void TestChargedOneEquip()
+        {
+            SetupGameController("AkashBhuta", "Jp.ParahumansOfTheWormverse.Battery", "InsulaPrimalis");
+
+            StartGame();
+
+            UsePower(battery.CharacterCard, 0);
+
+            PlayCard("GlowingThreads");
+
+            DecisionSelectCard = akash.CharacterCard;
+
+            QuickHPStorage(akash.CharacterCard);
+            AssertDamageSource(battery.CharacterCard);
+            AssertDamageType(DamageType.Lightning);
+            PlayCard("CoolToys");
+            QuickHPCheck(-1);
+
+            Assert.IsFalse(battery.CharacterCardController.IsCharged(battery.CharacterCard));
+        }
+
+        [Test()]
+        public void TestChargedOneEquipOneDevice()
+        {
+            SetupGameController("AkashBhuta", "Jp.ParahumansOfTheWormverse.Battery", "Luminary", "InsulaPrimalis");
+
+            StartGame();
+
+            UsePower(battery.CharacterCard, 0);
+
+            PlayCard("GlowingThreads");
+            PlayCard("RepairNanites");
+
+            DecisionSelectCard = akash.CharacterCard;
+
+            QuickHPStorage(akash.CharacterCard);
+            AssertDamageSource(battery.CharacterCard);
+            AssertDamageType(DamageType.Lightning);
+            PlayCard("CoolToys");
+            QuickHPCheck(-2);
+
+            Assert.IsFalse(battery.CharacterCardController.IsCharged(battery.CharacterCard));
         }
     }
 }

@@ -13,9 +13,41 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.Battery
     public class PushingTheLimitsTests : ParahumanTest
     {
         [Test()]
-        public void TestModWorks()
+        public void TestUncharged()
         {
-            SetupGameController("BaronBlade", "Jp.ParahumansOfTheWormverse.Battery", "InsulaPrimalis");
+            SetupGameController("AkashBhuta", "Jp.ParahumansOfTheWormverse.Battery", "InsulaPrimalis");
+
+            StartGame();
+
+            MoveAllCardsFromHandToDeck(battery);
+
+            QuickHandStorage(battery);
+
+            PlayCard("PushingTheLimits");
+
+            QuickHandCheck(3);
+        }
+
+        [Test()]
+        public void TestCharged()
+        {
+            SetupGameController("AkashBhuta", "Jp.ParahumansOfTheWormverse.Battery", "InsulaPrimalis");
+
+            StartGame();
+
+            UsePower(battery);
+
+            MoveAllCards(battery, battery.TurnTaker.Deck, battery.HeroTurnTaker.Hand);
+
+            var staticCharge = GetCardFromHand(battery, "StaticCharge");
+            var threads = GetCardFromHand(battery, "GlowingThreads");
+
+            DecisionSelectCards = new Card[] { staticCharge, threads };
+
+            PlayCard("PushingTheLimits");
+
+            AssertIsInPlay(staticCharge);
+            AssertIsInPlay(threads);
         }
     }
 }
