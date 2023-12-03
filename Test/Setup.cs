@@ -6,7 +6,6 @@ using Jp.ParahumansOfTheWormverse.Bitch;
 using Handelabra;
 
 [SetUpFixture]
-[Parallelizable(ParallelScope.Fixtures)]
 public class Setup
 {
     [OneTimeSetUp]
