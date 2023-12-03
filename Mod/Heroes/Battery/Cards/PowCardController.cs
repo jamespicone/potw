@@ -50,6 +50,9 @@ namespace Jp.ParahumansOfTheWormverse.Battery
                         cardSource: GetCardSource()
                     );
 
+                    if (UseUnityCoroutines) { yield return GameController.StartCoroutine(e); }
+                    else { GameController.ExhaustCoroutine(e); }
+
                     didMove = DidMoveCard(moves);
                 }
             }
