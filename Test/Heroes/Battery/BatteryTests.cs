@@ -22,11 +22,11 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.Battery
 
             AssertNumberOfUsablePowers(battery.CharacterCard, 1);
 
-            Assert.IsFalse(battery.CharacterCardController.IsCharged(battery.CharacterCard));
+            Assert.That(battery.CharacterCardController.IsCharged(battery.CharacterCard), Is.False);
             QuickHandStorage(battery);
             UsePower(battery.CharacterCard);
             QuickHandCheck(1);
-            Assert.IsTrue(battery.CharacterCardController.IsCharged(battery.CharacterCard));
+            Assert.That(battery.CharacterCardController.IsCharged(battery.CharacterCard), Is.True);
 
             AssertNumberOfUsablePowers(battery.CharacterCard, 1);
         }
@@ -40,9 +40,9 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.Battery
 
             AssertNumberOfUsablePowers(battery.CharacterCard, 1);
 
-            Assert.IsFalse(battery.CharacterCardController.IsCharged(battery.CharacterCard));
+            Assert.That(battery.CharacterCardController.IsCharged(battery.CharacterCard), Is.False);
             UsePower(battery.CharacterCard);
-            Assert.IsTrue(battery.CharacterCardController.IsCharged(battery.CharacterCard));
+            Assert.That(battery.CharacterCardController.IsCharged(battery.CharacterCard), Is.True);
 
             AssertNumberOfUsablePowers(battery.CharacterCard, 1);
 
@@ -52,7 +52,7 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.Battery
             UsePower(battery.CharacterCard);
             AssertIsInPlay(magnetism);
 
-            Assert.IsFalse(battery.CharacterCardController.IsCharged(battery.CharacterCard));
+            Assert.That(battery.CharacterCardController.IsCharged(battery.CharacterCard), Is.False);
             AssertNumberOfUsablePowers(battery.CharacterCard, 0);
         }
     }

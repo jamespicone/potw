@@ -42,7 +42,7 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.Echidna
             deckCardCount = echidna.TurnTaker.Deck.NumberOfCards;
             DestroyCard(raptor);
             var currentCount = echidna.TurnTaker.Deck.NumberOfCards;
-            Assert.Less(currentCount, deckCardCount);
+            Assert.That(currentCount, Is.LessThan(deckCardCount));
         }
     }
 }

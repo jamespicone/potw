@@ -19,15 +19,15 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.JessicaYamada
         {
             SetupGameController("BaronBlade", "Jp.ParahumansOfTheWormverse.JessicaYamada", "Tachyon", "Megalopolis");
 
-            Assert.AreEqual(4, GameController.TurnTakerControllers.Count());
+            Assert.That(GameController.TurnTakerControllers.Count(), Is.EqualTo(4));
 
-            Assert.IsNotNull(jessica);
-            Assert.IsInstanceOf(typeof(HeroTurnTakerController), jessica);
+            Assert.That(jessica, Is.Not.Null);
+            Assert.That(jessica, Is.InstanceOf<HeroTurnTakerController>());
 
-            Assert.IsNotNull(env);
+            Assert.That(env, Is.Not.Null);
 
             AssertHitPoints(jessica.CharacterCard, 12);
-            Assert.IsTrue(jessica.CharacterCard.IsHero);
+            Assert.That(IsHeroTarget(jessica.CharacterCard, new CardSource(jessica.CharacterCardController)), Is.True);
 
             StartGame();
 
@@ -53,15 +53,15 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.JessicaYamada
                 }
                 );
 
-            Assert.AreEqual(4, GameController.TurnTakerControllers.Count());
+            Assert.That(GameController.TurnTakerControllers.Count(), Is.EqualTo(4));
 
-            Assert.IsNotNull(jessica);
-            Assert.IsInstanceOf(typeof(HeroTurnTakerController), jessica);
+            Assert.That(jessica, Is.Not.Null);
+            Assert.That(jessica, Is.InstanceOf<HeroTurnTakerController>());
 
-            Assert.IsNotNull(env);
+            Assert.That(env, Is.Not.Null);
 
             AssertNotTarget(jessica.CharacterCard);
-            Assert.IsTrue(jessica.CharacterCard.IsHero);
+            Assert.That(IsHero(jessica.CharacterCard, new CardSource(jessica.CharacterCardController)), Is.True);
 
             StartGame();
 
@@ -87,14 +87,15 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.JessicaYamada
                 }
                 );
 
-            Assert.AreEqual(4, GameController.TurnTakerControllers.Count());
+            Assert.That(GameController.TurnTakerControllers.Count(), Is.EqualTo(4));
 
-            Assert.IsNotNull(jessica);
-            Assert.IsInstanceOf(typeof(HeroTurnTakerController), jessica);
+            Assert.That(jessica, Is.Not.Null);
+            Assert.That(jessica, Is.InstanceOf<HeroTurnTakerController>());
 
-            Assert.IsNotNull(env);
+            Assert.That(env, Is.Not.Null);
 
             AssertHitPoints(jessica.CharacterCard, 12);
+            Assert.That(jessica.CharacterCard.IsEnvironmentTarget, Is.True);
 
             StartGame();
 
@@ -175,11 +176,11 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.JessicaYamada
 
             StartGame();
 
-            Assert.IsTrue(jessica.CharacterCard.IsEnvironmentTarget);
-            Assert.IsTrue(IsHero(jessica.CharacterCard, new CardSource(jessica.CharacterCardController)));
+            Assert.That(jessica.CharacterCard.IsEnvironmentTarget, Is.True);
+            Assert.That(IsHero(jessica.CharacterCard, new CardSource(jessica.CharacterCardController)), Is.True);
 
-            Assert.IsFalse(jessica.CharacterCard.IsEnvironment);
-            Assert.IsFalse(IsHeroTarget(jessica.CharacterCard, new CardSource(jessica.CharacterCardController)));
+            Assert.That(jessica.CharacterCard.IsEnvironmentTarget, Is.False);
+            Assert.That(IsHeroTarget(jessica.CharacterCard, new CardSource(jessica.CharacterCardController)), Is.False);
         }
 
         #endregion

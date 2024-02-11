@@ -102,8 +102,8 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.Skitter
             var didMove = new List<bool>();
             RunCoroutine(skitter.CharacterCardController.MoveBugTokens(false, false, didMove));
 
-            Assert.AreEqual(didMove.Count(), 1);
-            Assert.IsFalse(didMove.FirstOrDefault());
+            Assert.That(didMove, Has.Exactly(1).Items);
+            Assert.That(didMove.FirstOrDefault(), Is.False);
         }
 
         [Test()]
@@ -124,8 +124,8 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.Skitter
             var didMove = new List<bool>();
             RunCoroutine(skitter.CharacterCardController.MoveBugTokens(false, false, didMove));
 
-            Assert.AreEqual(didMove.Count(), 1);
-            Assert.IsFalse(didMove.FirstOrDefault());
+            Assert.That(didMove, Has.Exactly(1).Items);
+            Assert.That(didMove.FirstOrDefault(), Is.False);
         }
     }
 }

@@ -37,13 +37,13 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.Labyrinth
             var battalion = PlayCard("BladeBattalion");
             ResetDecisions();
 
-            Assert.IsTrue(battalion.IsBlank);
-            Assert.IsTrue(GameController.IsInhibited(FindCardController(battalion)));
+            Assert.That(battalion.IsBlank, Is.True);
+            Assert.That(GameController.IsInhibited(FindCardController(battalion)), Is.True);
 
             GoToStartOfTurn(labyrinth);
 
-            Assert.IsFalse(battalion.IsBlank);
-            Assert.IsFalse(GameController.IsInhibited(FindCardController(battalion)));
+            Assert.That(battalion.IsBlank, Is.False);
+            Assert.That(GameController.IsInhibited(FindCardController(battalion)), Is.False);
         }
     }
 }

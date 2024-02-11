@@ -26,13 +26,13 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.Labyrinth
             MoveAllCards(baron, baron.TurnTaker.Deck, baron.TurnTaker.OutOfGame);
             StartGame();
 
-            Assert.AreEqual(GameController.ActiveTurnTaker, baron.TurnTaker);
+            Assert.That(GameController.ActiveTurnTaker, Is.EqualTo(baron.TurnTaker));
             GoToNextTurn();
-            Assert.AreEqual(GameController.ActiveTurnTaker, FindEnvironment().TurnTaker);
+            Assert.That(GameController.ActiveTurnTaker, Is.EqualTo(env.TurnTaker));
             GoToNextTurn();
-            Assert.AreEqual(GameController.ActiveTurnTaker, labyrinth.TurnTaker);
+            Assert.That(GameController.ActiveTurnTaker, Is.EqualTo(labyrinth.TurnTaker));
             GoToNextTurn();
-            Assert.AreEqual(GameController.ActiveTurnTaker, baron.TurnTaker);
+            Assert.That(GameController.ActiveTurnTaker, Is.EqualTo(baron.TurnTaker));
         }
 
         [Test()]
@@ -45,17 +45,17 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.Labyrinth
             MoveAllCards(baron, baron.TurnTaker.Deck, baron.TurnTaker.OutOfGame);
             StartGame();
 
-            Assert.AreEqual(GameController.ActiveTurnTaker, baron.TurnTaker);
+            Assert.That(GameController.ActiveTurnTaker, Is.EqualTo(baron.TurnTaker));
             GoToNextTurn();
-            Assert.AreEqual(GameController.ActiveTurnTaker, legacy.TurnTaker);
+            Assert.That(GameController.ActiveTurnTaker, Is.EqualTo(legacy.TurnTaker));
             GoToNextTurn();
-            Assert.AreEqual(GameController.ActiveTurnTaker, tachyon.TurnTaker);
+            Assert.That(GameController.ActiveTurnTaker, Is.EqualTo(tachyon.TurnTaker));
             GoToNextTurn();
-            Assert.AreEqual(GameController.ActiveTurnTaker, FindEnvironment().TurnTaker);
+            Assert.That(GameController.ActiveTurnTaker, Is.EqualTo(env.TurnTaker));
             GoToNextTurn();
-            Assert.AreEqual(GameController.ActiveTurnTaker, labyrinth.TurnTaker);
+            Assert.That(GameController.ActiveTurnTaker, Is.EqualTo(labyrinth.TurnTaker));
             GoToNextTurn();
-            Assert.AreEqual(GameController.ActiveTurnTaker, baron.TurnTaker);
+            Assert.That(GameController.ActiveTurnTaker, Is.EqualTo(baron.TurnTaker));
         }
 
         [Test()]
@@ -68,17 +68,17 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.Labyrinth
             MoveAllCards(baron, baron.TurnTaker.Deck, baron.TurnTaker.OutOfGame);
             StartGame();
 
-            Assert.AreEqual(GameController.ActiveTurnTaker, baron.TurnTaker);
+            Assert.That(GameController.ActiveTurnTaker, Is.EqualTo(baron.TurnTaker));
             GoToNextTurn();
-            Assert.AreEqual(GameController.ActiveTurnTaker, legacy.TurnTaker);
+            Assert.That(GameController.ActiveTurnTaker, Is.EqualTo(legacy.TurnTaker));
             GoToNextTurn();
-            Assert.AreEqual(GameController.ActiveTurnTaker, tachyon.TurnTaker);
+            Assert.That(GameController.ActiveTurnTaker, Is.EqualTo(tachyon.TurnTaker));
             GoToNextTurn();
-            Assert.AreEqual(GameController.ActiveTurnTaker, FindEnvironment().TurnTaker);
+            Assert.That(GameController.ActiveTurnTaker, Is.EqualTo(env.TurnTaker));
             GoToNextTurn();
-            Assert.AreEqual(GameController.ActiveTurnTaker, labyrinth.TurnTaker);
+            Assert.That(GameController.ActiveTurnTaker, Is.EqualTo(labyrinth.TurnTaker));
             GoToNextTurn();
-            Assert.AreEqual(GameController.ActiveTurnTaker, baron.TurnTaker);
+            Assert.That(GameController.ActiveTurnTaker, Is.EqualTo(baron.TurnTaker));
         }
 
         [Test()]
@@ -91,17 +91,17 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.Labyrinth
             MoveAllCards(baron, baron.TurnTaker.Deck, baron.TurnTaker.OutOfGame);
             StartGame();
 
-            Assert.AreEqual(GameController.ActiveTurnTaker, baron.TurnTaker);
+            Assert.That(GameController.ActiveTurnTaker, Is.EqualTo(baron.TurnTaker));
             GoToNextTurn();
-            Assert.AreEqual(GameController.ActiveTurnTaker, legacy.TurnTaker);
+            Assert.That(GameController.ActiveTurnTaker, Is.EqualTo(legacy.TurnTaker));
             GoToNextTurn();
-            Assert.AreEqual(GameController.ActiveTurnTaker, tachyon.TurnTaker);
+            Assert.That(GameController.ActiveTurnTaker, Is.EqualTo(tachyon.TurnTaker));
             GoToNextTurn();
-            Assert.AreEqual(GameController.ActiveTurnTaker, FindEnvironment().TurnTaker);
+            Assert.That(GameController.ActiveTurnTaker, Is.EqualTo(env.TurnTaker));
             GoToNextTurn();
-            Assert.AreEqual(GameController.ActiveTurnTaker, labyrinth.TurnTaker);
+            Assert.That(GameController.ActiveTurnTaker, Is.EqualTo(labyrinth.TurnTaker));
             GoToNextTurn();
-            Assert.AreEqual(GameController.ActiveTurnTaker, baron.TurnTaker);
+            Assert.That(GameController.ActiveTurnTaker, Is.EqualTo(baron.TurnTaker));
         }
 
         [Test()]
@@ -116,22 +116,22 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.Labyrinth
 
             PlayCard("PlayingDiceWithTheCosmos");
 
-            Assert.AreEqual(GameController.ActiveTurnTaker, wager.TurnTaker);
+            Assert.That(GameController.ActiveTurnTaker, Is.EqualTo(wager.TurnTaker));
             GoToNextTurn();
 
-            Assert.AreEqual(GameController.ActiveTurnTaker, tachyon.TurnTaker);
+            Assert.That(GameController.ActiveTurnTaker, Is.EqualTo(tachyon.TurnTaker));
             GoToNextTurn();
 
-            Assert.AreEqual(GameController.ActiveTurnTaker, legacy.TurnTaker);
-            GoToNextTurn();
-            
-            Assert.AreEqual(GameController.ActiveTurnTaker, FindEnvironment().TurnTaker);
+            Assert.That(GameController.ActiveTurnTaker, Is.EqualTo(legacy.TurnTaker));
             GoToNextTurn();
 
-            Assert.AreEqual(GameController.ActiveTurnTaker, labyrinth.TurnTaker);
+            Assert.That(GameController.ActiveTurnTaker, Is.EqualTo(env.TurnTaker));
             GoToNextTurn();
 
-            Assert.AreEqual(GameController.ActiveTurnTaker, wager.TurnTaker);
+            Assert.That(GameController.ActiveTurnTaker, Is.EqualTo(labyrinth.TurnTaker));
+            GoToNextTurn();
+
+            Assert.That(GameController.ActiveTurnTaker, Is.EqualTo(wager.TurnTaker));
         }
 
         [Test()]
@@ -146,22 +146,22 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.Labyrinth
 
             PlayCard("PlayingDiceWithTheCosmos");
 
-            Assert.AreEqual(GameController.ActiveTurnTaker, wager.TurnTaker);
+            Assert.That(GameController.ActiveTurnTaker, Is.EqualTo(wager.TurnTaker));
             GoToNextTurn();
 
-            Assert.AreEqual(GameController.ActiveTurnTaker, tachyon.TurnTaker);
+            Assert.That(GameController.ActiveTurnTaker, Is.EqualTo(tachyon.TurnTaker));
             GoToNextTurn();
 
-            Assert.AreEqual(GameController.ActiveTurnTaker, legacy.TurnTaker);
+            Assert.That(GameController.ActiveTurnTaker, Is.EqualTo(legacy.TurnTaker));
             GoToNextTurn();
 
-            Assert.AreEqual(GameController.ActiveTurnTaker, FindEnvironment().TurnTaker);
+            Assert.That(GameController.ActiveTurnTaker, Is.EqualTo(env.TurnTaker));
             GoToNextTurn();
 
-            Assert.AreEqual(GameController.ActiveTurnTaker, labyrinth.TurnTaker);
+            Assert.That(GameController.ActiveTurnTaker, Is.EqualTo(labyrinth.TurnTaker));
             GoToNextTurn();
 
-            Assert.AreEqual(GameController.ActiveTurnTaker, wager.TurnTaker);
+            Assert.That(GameController.ActiveTurnTaker, Is.EqualTo(wager.TurnTaker));
         }
 
         [Test()]
@@ -176,22 +176,22 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.Labyrinth
 
             PlayCard("PlayingDiceWithTheCosmos");
 
-            Assert.AreEqual(GameController.ActiveTurnTaker, wager.TurnTaker);
+            Assert.That(GameController.ActiveTurnTaker, Is.EqualTo(wager.TurnTaker));
             GoToNextTurn();
 
-            Assert.AreEqual(GameController.ActiveTurnTaker, tachyon.TurnTaker);
+            Assert.That(GameController.ActiveTurnTaker, Is.EqualTo(tachyon.TurnTaker));
             GoToNextTurn();
 
-            Assert.AreEqual(GameController.ActiveTurnTaker, legacy.TurnTaker);
+            Assert.That(GameController.ActiveTurnTaker, Is.EqualTo(legacy.TurnTaker));
             GoToNextTurn();
 
-            Assert.AreEqual(GameController.ActiveTurnTaker, FindEnvironment().TurnTaker);
+            Assert.That(GameController.ActiveTurnTaker, Is.EqualTo(env.TurnTaker));
             GoToNextTurn();
 
-            Assert.AreEqual(GameController.ActiveTurnTaker, labyrinth.TurnTaker);
+            Assert.That(GameController.ActiveTurnTaker, Is.EqualTo(labyrinth.TurnTaker));
             GoToNextTurn();
 
-            Assert.AreEqual(GameController.ActiveTurnTaker, wager.TurnTaker);
+            Assert.That(GameController.ActiveTurnTaker, Is.EqualTo(wager.TurnTaker));
         }
 
         [Test()]
@@ -215,23 +215,23 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.Labyrinth
             MoveAllCards(scionTwo, scionTwo.TurnTaker.Deck, scionTwo.TurnTaker.OutOfGame);
 
 
-            Assert.AreEqual(GameController.ActiveTurnTaker, oblivaeon.TurnTaker);
+            Assert.That(GameController.ActiveTurnTaker, Is.EqualTo(oblivaeon.TurnTaker));
             GoToNextTurn();
-            Assert.AreEqual(GameController.ActiveTurnTaker, legacy.TurnTaker);
+            Assert.That(GameController.ActiveTurnTaker, Is.EqualTo(legacy.TurnTaker));
             GoToNextTurn();
-            Assert.AreEqual(GameController.ActiveTurnTaker, tachyon.TurnTaker);
+            Assert.That(GameController.ActiveTurnTaker, Is.EqualTo(tachyon.TurnTaker));
             GoToNextTurn();
-            Assert.AreEqual(GameController.ActiveTurnTaker, envOne.TurnTaker);
+            Assert.That(GameController.ActiveTurnTaker, Is.EqualTo(envOne.TurnTaker));
             GoToNextTurn();
-            Assert.AreEqual(GameController.ActiveTurnTaker, labyrinth.TurnTaker);
+            Assert.That(GameController.ActiveTurnTaker, Is.EqualTo(labyrinth.TurnTaker));
             GoToNextTurn();
-            Assert.AreEqual(GameController.ActiveTurnTaker, scionOne.TurnTaker);
+            Assert.That(GameController.ActiveTurnTaker, Is.EqualTo(scionOne.TurnTaker));
             GoToNextTurn();
-            Assert.AreEqual(GameController.ActiveTurnTaker, envTwo.TurnTaker);
+            Assert.That(GameController.ActiveTurnTaker, Is.EqualTo(envTwo.TurnTaker));
             GoToNextTurn();
-            Assert.AreEqual(GameController.ActiveTurnTaker, scionTwo.TurnTaker);
+            Assert.That(GameController.ActiveTurnTaker, Is.EqualTo(scionTwo.TurnTaker));
             GoToNextTurn();
-            Assert.AreEqual(GameController.ActiveTurnTaker, oblivaeon.TurnTaker);
+            Assert.That(GameController.ActiveTurnTaker, Is.EqualTo(oblivaeon.TurnTaker));
         }
 
         [Test()]
@@ -255,23 +255,23 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.Labyrinth
             MoveAllCards(scionTwo, scionTwo.TurnTaker.Deck, scionTwo.TurnTaker.OutOfGame);
 
 
-            Assert.AreEqual(GameController.ActiveTurnTaker, oblivaeon.TurnTaker);
+            Assert.That(GameController.ActiveTurnTaker, Is.EqualTo(oblivaeon.TurnTaker));
             GoToNextTurn();
-            Assert.AreEqual(GameController.ActiveTurnTaker, legacy.TurnTaker);
+            Assert.That(GameController.ActiveTurnTaker, Is.EqualTo(legacy.TurnTaker));
             GoToNextTurn();
-            Assert.AreEqual(GameController.ActiveTurnTaker, tachyon.TurnTaker);
+            Assert.That(GameController.ActiveTurnTaker, Is.EqualTo(tachyon.TurnTaker));
             GoToNextTurn();
-            Assert.AreEqual(GameController.ActiveTurnTaker, envOne.TurnTaker);
+            Assert.That(GameController.ActiveTurnTaker, Is.EqualTo(envOne.TurnTaker));
             GoToNextTurn();
-            Assert.AreEqual(GameController.ActiveTurnTaker, labyrinth.TurnTaker);
+            Assert.That(GameController.ActiveTurnTaker, Is.EqualTo(labyrinth.TurnTaker));
             GoToNextTurn();
-            Assert.AreEqual(GameController.ActiveTurnTaker, scionOne.TurnTaker);
+            Assert.That(GameController.ActiveTurnTaker, Is.EqualTo(scionOne.TurnTaker));
             GoToNextTurn();
-            Assert.AreEqual(GameController.ActiveTurnTaker, envTwo.TurnTaker);
+            Assert.That(GameController.ActiveTurnTaker, Is.EqualTo(envTwo.TurnTaker));
             GoToNextTurn();
-            Assert.AreEqual(GameController.ActiveTurnTaker, scionTwo.TurnTaker);
+            Assert.That(GameController.ActiveTurnTaker, Is.EqualTo(scionTwo.TurnTaker));
             GoToNextTurn();
-            Assert.AreEqual(GameController.ActiveTurnTaker, oblivaeon.TurnTaker);
+            Assert.That(GameController.ActiveTurnTaker, Is.EqualTo(oblivaeon.TurnTaker));
         }
 
         [Test()]
@@ -295,23 +295,23 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.Labyrinth
             MoveAllCards(scionTwo, scionTwo.TurnTaker.Deck, scionTwo.TurnTaker.OutOfGame);
 
 
-            Assert.AreEqual(GameController.ActiveTurnTaker, oblivaeon.TurnTaker);
+            Assert.That(GameController.ActiveTurnTaker, Is.EqualTo(oblivaeon.TurnTaker));
             GoToNextTurn();
-            Assert.AreEqual(GameController.ActiveTurnTaker, legacy.TurnTaker);
+            Assert.That(GameController.ActiveTurnTaker, Is.EqualTo(legacy.TurnTaker));
             GoToNextTurn();
-            Assert.AreEqual(GameController.ActiveTurnTaker, tachyon.TurnTaker);
+            Assert.That(GameController.ActiveTurnTaker, Is.EqualTo(tachyon.TurnTaker));
             GoToNextTurn();
-            Assert.AreEqual(GameController.ActiveTurnTaker, envOne.TurnTaker);
+            Assert.That(GameController.ActiveTurnTaker, Is.EqualTo(envOne.TurnTaker));
             GoToNextTurn();
-            Assert.AreEqual(GameController.ActiveTurnTaker, labyrinth.TurnTaker);
+            Assert.That(GameController.ActiveTurnTaker, Is.EqualTo(labyrinth.TurnTaker));
             GoToNextTurn();
-            Assert.AreEqual(GameController.ActiveTurnTaker, scionOne.TurnTaker);
+            Assert.That(GameController.ActiveTurnTaker, Is.EqualTo(scionOne.TurnTaker));
             GoToNextTurn();
-            Assert.AreEqual(GameController.ActiveTurnTaker, envTwo.TurnTaker);
+            Assert.That(GameController.ActiveTurnTaker, Is.EqualTo(envTwo.TurnTaker));
             GoToNextTurn();
-            Assert.AreEqual(GameController.ActiveTurnTaker, scionTwo.TurnTaker);
+            Assert.That(GameController.ActiveTurnTaker, Is.EqualTo(scionTwo.TurnTaker));
             GoToNextTurn();
-            Assert.AreEqual(GameController.ActiveTurnTaker, oblivaeon.TurnTaker);
+            Assert.That(GameController.ActiveTurnTaker, Is.EqualTo(oblivaeon.TurnTaker));
         }
     }
 }

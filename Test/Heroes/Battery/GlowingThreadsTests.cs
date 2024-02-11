@@ -25,19 +25,22 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.Battery
 
             PlayCard("GlowingThreads");
 
-            QuickHPStorage(battery.CharacterCard);
-
             UsePower(battery, 0);
-            Assert.IsTrue(battery.CharacterCardController.IsCharged(battery.CharacterCard));
+            Assert.That(battery.CharacterCardController.IsCharged(battery.CharacterCard), Is.True);
 
             // Charge effect
             AssertNumberOfStatusEffectsInPlay(1);
 
+
+            QuickHPStorage(battery.CharacterCard);
+
             DealDamage(battery, battery, 2, DamageType.Infernal);
             QuickHPCheck(-2);
 
+            MoveAllCardsFromHandToDeck(battery);
+
             UsePower(battery, 0);
-            Assert.IsFalse(battery.CharacterCardController.IsCharged(battery.CharacterCard));
+            Assert.That(battery.CharacterCardController.IsCharged(battery.CharacterCard), Is.False);
 
             // - charge effect, + damage reduce effect
             AssertNumberOfStatusEffectsInPlay(1);
@@ -66,13 +69,13 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.Battery
             QuickHPStorage(battery.CharacterCard);
 
             UsePower(battery, 0);
-            Assert.IsFalse(battery.CharacterCardController.IsCharged(battery.CharacterCard));
+            Assert.That(battery.CharacterCardController.IsCharged(battery.CharacterCard), Is.False);
 
             DealDamage(battery, battery, 2, DamageType.Infernal);
             QuickHPCheck(-2);
 
             UsePower(battery, 1);
-            Assert.IsTrue(battery.CharacterCardController.IsCharged(battery.CharacterCard));
+            Assert.That(battery.CharacterCardController.IsCharged(battery.CharacterCard), Is.True);
 
             // + charge effect, + damage reduce effect, + delayed discharge effect
             AssertNumberOfStatusEffectsInPlay(3);
@@ -99,11 +102,11 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.Battery
             QuickHPStorage(battery.CharacterCard);
 
             UsePower(battery, 0);
-            Assert.IsTrue(battery.CharacterCardController.IsCharged(battery.CharacterCard));
+            Assert.That(battery.CharacterCardController.IsCharged(battery.CharacterCard), Is.True);
 
             PlayCard("CoolToys");
 
-            Assert.IsFalse(battery.CharacterCardController.IsCharged(battery.CharacterCard));
+            Assert.That(battery.CharacterCardController.IsCharged(battery.CharacterCard), Is.False);
 
             DealDamage(battery, battery, 2, DamageType.Infernal);
             QuickHPCheck(-2);

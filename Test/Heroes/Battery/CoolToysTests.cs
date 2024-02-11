@@ -49,7 +49,7 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.Battery
             PlayCard("CoolToys");
             QuickHPCheck(-1);
 
-            Assert.IsFalse(battery.CharacterCardController.IsCharged(battery.CharacterCard));
+            Assert.That(battery.CharacterCardController.IsCharged(battery.CharacterCard), Is.False);
         }
 
         [Test()]
@@ -72,7 +72,7 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.Battery
             PlayCard("CoolToys");
             QuickHPCheck(-2);
 
-            Assert.IsFalse(battery.CharacterCardController.IsCharged(battery.CharacterCard));
+            Assert.That(battery.CharacterCardController.IsCharged(battery.CharacterCard), Is.False);
         }
     }
 }

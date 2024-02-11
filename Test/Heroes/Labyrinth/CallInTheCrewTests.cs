@@ -38,7 +38,7 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.Labyrinth
             GoToNextTurn();
 
             var powers = GetUsablePowersThisTurn(labyrinth);
-            Assert.AreEqual(powers.Count(p => p.Index == 0 && p.CardSource.Card == crew), 0);
+            Assert.That(powers.Count(p => p.Index == 0 && p.CardSource.Card == crew), Is.EqualTo(0));
         }
 
         [Test()]
@@ -62,7 +62,7 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.Labyrinth
             GoToNextTurn();
 
             var powers = GetUsablePowersThisTurn(labyrinth);
-            Assert.AreEqual(powers.Count(p => p.Index == 1 && p.CardSource.Card == crew), 0);
+            Assert.That(powers.Count(p => p.Index == 1 && p.CardSource.Card == crew), Is.EqualTo(0));
         }
 
         [Test()]
@@ -93,7 +93,7 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.Labyrinth
             GoToNextTurn();
 
             var powers = GetUsablePowersThisTurn(labyrinth);
-            Assert.AreEqual(powers.Count(p => p.Index == 2 && p.CardSource.Card == crew), 0);
+            Assert.That(powers.Count(p => p.Index == 2 && p.CardSource.Card == crew), Is.EqualTo(0));
         }
 
         [Test()]
@@ -117,7 +117,7 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.Labyrinth
             GoToNextTurn();
 
             var powers = GetUsablePowersThisTurn(labyrinth);
-            Assert.AreEqual(powers.Count(p => p.Index == 3 && p.CardSource.Card == crew), 0);
+            Assert.That(powers.Count(p => p.Index == 3 && p.CardSource.Card == crew), Is.EqualTo(0));
         }
 
         [Test()]
@@ -138,7 +138,7 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.Labyrinth
             GoToNextTurn();
 
             var powers = GetUsablePowersThisTurn(labyrinth);
-            Assert.AreEqual(powers.Count(p => p.Index == 4 && p.CardSource.Card == crew), 0);
+            Assert.That(powers.Count(p => p.Index == 4 && p.CardSource.Card == crew), Is.EqualTo(0));
         }
     }
 }
