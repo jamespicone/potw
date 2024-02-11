@@ -61,7 +61,7 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest
             if (useHeroes == null) useHeroes = new List<string>();
             if (overrideVariants == null) overrideVariants = new Dictionary<string, string>();
 
-            Assert.Less(useHeroes.Count, 5);
+            Assert.That(useHeroes.Count, Is.LessThan(5));
 
             useHeroes.Add("Guise");
             overrideVariants["Guise"] = "GuiseCharacter";
@@ -89,7 +89,7 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest
             if (useHeroes == null) useHeroes = new List<string>();
             if (overrideVariants == null) overrideVariants = new Dictionary<string, string>();
 
-            Assert.Less(useHeroes.Count, 5);
+            Assert.That(useHeroes.Count, Is.LessThan(5));
 
             useHeroes.Add("Guise");
             overrideVariants["Guise"] = "CompletionistGuiseCharacter";
@@ -117,7 +117,7 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest
             if (useHeroes == null) useHeroes = new List<string>();
             if (overrideVariants == null) overrideVariants = new Dictionary<string, string>();
 
-            Assert.Less(useHeroes.Count, 5);
+            Assert.That(useHeroes.Count, Is.LessThan(5));
 
             useHeroes.Add("Tempest");
             overrideVariants["Tempest"] = "PrimeWardensTempestCharacter";
@@ -145,7 +145,7 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest
             if (useHeroes == null) useHeroes = new List<string>();
             if (overrideVariants == null) overrideVariants = new Dictionary<string, string>();
 
-            Assert.Less(useHeroes.Count, 5);
+            Assert.That(useHeroes.Count, Is.LessThan(5));
             useHeroes.Add("Jp.ParahumansOfTheWormverse.Labyrinth");
             overrideVariants["Jp.ParahumansOfTheWormverse.Labyrinth"] = "LabyrinthCharacter";
 

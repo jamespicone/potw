@@ -156,19 +156,19 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest
             {
                 if (expectedDamageType != null)
                 {
-                    Assert.AreEqual(dda.DamageType, expectedDamageType.Value, $"{expectedDamageType} was the expected damage type");
+                    Assert.That(dda.DamageType, Is.EqualTo(expectedDamageType.Value), $"{expectedDamageType} was the expected damage type");
                     expectedDamageType = null;
                 }
 
                 if (expectedDamageSource != null)
                 {
-                    Assert.AreEqual(dda.DamageSource.Card, expectedDamageSource, $"{expectedDamageSource.Title} was the expected damage source");
+                    Assert.That(dda.DamageSource.Card, Is.EqualTo(expectedDamageSource), $"{expectedDamageSource.Title} was the expected damage source");
                     expectedDamageSource = null;
                 }
 
                 if (expectedIrreducible != null)
                 {
-                    Assert.AreEqual(dda.IsIrreducible, expectedIrreducible.Value, $"{expectedIrreducible.Value} was the expected irreducible status");
+                    Assert.That(dda.IsIrreducible, Is.EqualTo(expectedIrreducible.Value), $"{expectedIrreducible.Value} was the expected irreducible status");
                     expectedIrreducible = null;
                 }
             }
@@ -178,7 +178,7 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest
 
         private void InstallObserver()
         {
-            if (!hasInstalledHandler)
+            if (! hasInstalledHandler)
             {
                 GameController.OnDidPerformAction += ObserveAction;
                 hasInstalledHandler = true;

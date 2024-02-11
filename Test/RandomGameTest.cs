@@ -274,7 +274,7 @@ namespace Handelabra.Sentinels.UnitTest
                 RunCoroutine(gameController.EnterNextTurnPhase());
 
                 var state = gameController.Game.ToStateString();
-                Assert.IsNotNull(state);
+                Assert.That(state, Is.Not.Null);
 
                 // Prevent infinite loops and let us know what happened.
                 int sanityCheck = 10;
@@ -287,7 +287,7 @@ namespace Handelabra.Sentinels.UnitTest
 
                         Log.Debug("PLAY CARD SANITY: " + sanityCheck);
                         sanityCheck -= 1;
-                        Assert.IsTrue(sanityCheck > 0, "Sanity check failed in " + gameController.ActiveTurnPhase);
+                        Assert.That(sanityCheck, Is.GreaterThan(0), "Sanity check failed in " + gameController.ActiveTurnPhase);
                     }
                 }
                 else if (gameController.ActiveTurnPhase.IsUsePower)
@@ -299,7 +299,7 @@ namespace Handelabra.Sentinels.UnitTest
 
                         Log.Debug("POWER SANITY: " + sanityCheck);
                         sanityCheck -= 1;
-                        Assert.IsTrue(sanityCheck > 0, "Sanity check failed in " + gameController.ActiveTurnPhase);
+                        Assert.That(sanityCheck, Is.GreaterThan(0), "Sanity check failed in " + gameController.ActiveTurnPhase);
                     }
                 }
                 else if (gameController.ActiveTurnPhase.IsDrawCard)
@@ -310,7 +310,7 @@ namespace Handelabra.Sentinels.UnitTest
 
                         Log.Debug("DRAW CARD SANITY: " + sanityCheck);
                         sanityCheck -= 1;
-                        Assert.IsTrue(sanityCheck > 0, "Sanity check failed in " + gameController.ActiveTurnPhase);
+                        Assert.That(sanityCheck, Is.GreaterThan(0), "Sanity check failed in " + gameController.ActiveTurnPhase);
                     }
                 }
                 else if (gameController.ActiveTurnPhase.IsUseIncapacitatedAbility)
@@ -321,7 +321,7 @@ namespace Handelabra.Sentinels.UnitTest
 
                         Log.Debug("INCAPACITATED SANITY: " + sanityCheck);
                         sanityCheck -= 1;
-                        Assert.IsTrue(sanityCheck > 0, "Sanity check failed in " + gameController.ActiveTurnPhase);
+                        Assert.That(sanityCheck, Is.GreaterThan(0), "Sanity check failed in " + gameController.ActiveTurnPhase);
                     }
                 }
             }
