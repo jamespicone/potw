@@ -32,9 +32,9 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.Coil
             var eyepiece = PlayCard("FleshOfTheSunGod");
             var stunbolt = PlayCard("ImbuedFire");
             
-            AssertNumberOfCardsInPlay(c => c.IsOngoing, 3);
+            AssertNumberOfCardsInPlay(c => GameController.DoesCardContainKeyword(c, "ongoing"), 3);
             PlayCard("IKnowAllYourTricks");
-            AssertNumberOfCardsInPlay(c => c.IsOngoing, 0);
+            AssertNumberOfCardsInPlay(c => GameController.DoesCardContainKeyword(c, "ongoing"), 0);
         }
     }
 }

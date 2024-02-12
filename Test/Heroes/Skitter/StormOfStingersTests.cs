@@ -88,7 +88,7 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.Skitter
             bugpool.AddTokens(2);
 
             MoveAllCards(skitter, skitter.TurnTaker.Deck, skitter.HeroTurnTaker.Hand);
-            var ongoings = FindCardsWhere(c => c.Location == skitter.HeroTurnTaker.Hand && c.IsOngoing);
+            var ongoings = FindCardsWhere(c => c.Location == skitter.HeroTurnTaker.Hand && GameController.DoesCardContainKeyword(c, "ongoing"));
 
             PlayCards(ongoings);
 
