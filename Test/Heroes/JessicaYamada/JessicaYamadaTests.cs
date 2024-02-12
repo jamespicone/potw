@@ -179,7 +179,7 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.JessicaYamada
             Assert.That(jessica.CharacterCard.IsEnvironmentTarget, Is.True);
             Assert.That(IsHero(jessica.CharacterCard, new CardSource(jessica.CharacterCardController)), Is.True);
 
-            Assert.That(jessica.CharacterCard.IsEnvironmentTarget, Is.False);
+            Assert.That(jessica.CharacterCard.IsEnvironment, Is.False);
             Assert.That(IsHeroTarget(jessica.CharacterCard, new CardSource(jessica.CharacterCardController)), Is.False);
         }
 
