@@ -34,7 +34,7 @@ namespace Jp.ParahumansOfTheWormverse.Battery
             else { GameController.ExhaustCoroutine(e); }
 
             // "You may use a power."
-            e = SelectAndUsePower(this);
+            e = SelectAndUsePower(CharacterCardController);
             if (UseUnityCoroutines) { yield return GameController.StartCoroutine(e); }
             else { GameController.ExhaustCoroutine(e); }
         }
