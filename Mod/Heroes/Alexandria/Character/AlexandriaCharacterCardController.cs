@@ -86,10 +86,21 @@ namespace Jp.ParahumansOfTheWormverse.Alexandria
             }
 
             // Return one of your cards in play to your hand
-            e = GameController.SelectAndMoveCard(
+            e = GameController.SelectAndReturnCards(
                 HeroTurnTakerController,
-                c => !c.IsCharacter && c.IsInPlay && c.Location == TurnTaker.PlayArea && c.Owner == TurnTaker,
-                HeroTurnTaker.Hand,
+                1,
+                new LinqCardCriteria(
+                    c => c.IsInPlay &&
+                        c.Location == TurnTaker.PlayArea &&
+                        c.Owner == TurnTaker &&
+                        ! c.IsCharacter &&
+                        ! c.IsOneShot &&
+                        ! GameController.IsCardIndestructible(c)
+                ),
+                toHand: true,
+                toDeck: false,
+                optional: false,
+                requiredDecisions: 1,
                 cardSource: GetCardSource()
             );
             if (UseUnityCoroutines)
