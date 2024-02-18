@@ -44,7 +44,7 @@ namespace Jp.ParahumansOfTheWormverse.Grue
                 pca => IsGruesNextTurn(pca)
             );
 
-            AddIfTheTargetThatThisCardIsNextToLeavesPlayDestroyThisCardTrigger();
+            AddIfTheCardThatThisCardIsNextToLeavesPlayMoveItToTheirPlayAreaTrigger(alsoRemoveTriggersFromThisCard: false);
 
             AddTrigger<MoveCardAction>(
                 mca => mca.CardToMove == Card && !mca.Destination.IsOutOfGame && !mca.Destination.IsInPlay,
@@ -107,7 +107,9 @@ namespace Jp.ParahumansOfTheWormverse.Grue
 
         private IEnumerator GoOutOfPlay(DestroyCardAction dca)
         {
-            dca.OverridePostDestroyDestination(TurnTaker.OutOfGame, cardSource: GetCardSource());
+            AddInhibitorException((GameAction ga) => ga is MoveCardAction);
+            dca.SetPostDestroyDestination(TurnTaker.OutOfGame, postDestroyDestinationCanBeChanged: false);
+            RemoveInhibitorException();
             yield break;
         }
 
