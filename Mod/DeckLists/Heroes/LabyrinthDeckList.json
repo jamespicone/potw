@@ -49,7 +49,7 @@
         "shaping"
       ],
       "body": [
-        "This is an environment card",
+        "This is an environment card.",
         "Play this on top of an environment card. Cards under this card have no text. If there are no cards under this card, destroy it.",
         "The first time an Environment card would deal damage to a hero target other than Labyrinth each turn prevent that damage.",
         "Environment cards cannot destroy hero cards."
@@ -196,7 +196,7 @@
         "shaping"
       ],
       "body": [
-        "This is an environment card",
+        "This is an environment card.",
         "Play this on top of an environment card. Cards under this card have no text. If there are no cards under this card, destroy it.",
         "When a noncharacter target enters play you may destroy an Environment card. If you do, that target has no game text until the start of your next turn."
       ],
@@ -340,7 +340,7 @@
         "shaping"
       ],
       "body": [
-        "This is an environment card",
+        "This is an environment card.",
         "Play this on top of an environment card. Cards under this card have no text. If there are no cards under this card, destroy it.",
         "At the end of {LabyrinthCharacter}'s turn pick a target. Until the start of Labyrinth's next turn, reduce damage dealt to that target by 1."
       ],
@@ -401,7 +401,7 @@
         "shaping"
       ],
       "body": [
-        "This is an environment card",
+        "This is an environment card.",
         "Play this on top of an environment card. Cards under this card have no text. If there are no cards under this card, destroy it.",
         "At the end of {LabyrinthCharacter}'s turn this card deals 2 psychic damage to all villain targets.",
         "At the end of {LabyrinthCharacter}'s turn this card deals 3 irreducible psychic damage to {LabyrinthCharacter}."
