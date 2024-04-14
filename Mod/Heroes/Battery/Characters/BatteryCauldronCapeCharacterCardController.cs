@@ -71,17 +71,8 @@ namespace Jp.ParahumansOfTheWormverse.Battery
 
         private IEnumerator DischargeBattery()
         {
-            // {Charge} {BatteryCharacter}...
-            var e = this.ChargeCard(CharacterCard);
-            if (UseUnityCoroutines) { yield return GameController.StartCoroutine(e); }
-            else { GameController.ExhaustCoroutine(e); }
-
-            // ... until the start of your next turn.
-            OnPhaseChangeStatusEffect chargeExpiration = new OnPhaseChangeStatusEffect(Card, nameof(ChargeExpiresResponse), "At the start of " + HeroTurnTakerController.Name + "'s next turn, {Discharge} " + Card.Title + ".", new TriggerType[] { TriggerType.ModifyStatusEffect }, Card);
-            chargeExpiration.BeforeOrAfter = BeforeOrAfter.After;
-            chargeExpiration.UntilStartOfNextTurn(TurnTaker);
-
-            e = GameController.AddStatusEffect(chargeExpiration, true, GetCardSource());
+            // {Charge} {BatteryCharacter} until the start of your next turn.
+            var e = this.ChargeCard(CharacterCard, true);
             if (UseUnityCoroutines) { yield return GameController.StartCoroutine(e); }
             else { GameController.ExhaustCoroutine(e); }
 

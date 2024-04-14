@@ -12,10 +12,10 @@ using Handelabra.Sentinels.Engine.Model;
 namespace Jp.ParahumansOfTheWormverse.Battery
 {
     [Serializable]
-    public class BatteryChargedStatusEffect : ReflectionStatusEffect
+    public class BatteryChargedStatusEffect : OnPhaseChangeStatusEffect
     {
-        public BatteryChargedStatusEffect(Card cardWithMethod, string nameOfMethod, Card cardSource, Card chargedCard)
-            : base(cardWithMethod, nameOfMethod, $"{chargedCard.Title} is charged", new TriggerType[] { TriggerType.Other }, cardSource)
+        public BatteryChargedStatusEffect(Card cardWithMethod, string nameOfMethod, Card cardSource, Card chargedCard, bool temporary)
+            : base(cardWithMethod, nameOfMethod, GetStatusEffectDescription(chargedCard, temporary), new TriggerType[] { TriggerType.Other }, cardSource)
         {
             TargetLeavesPlayExpiryCriteria.IsOneOfTheseCards = new List<Card> { chargedCard };
         }
@@ -25,6 +25,13 @@ namespace Jp.ParahumansOfTheWormverse.Battery
         public override string ToString()
         {
             return Description;
+        }
+
+        public static string GetStatusEffectDescription(Card chargedCard, bool temporary)
+        {
+            string ret = $"{chargedCard.Title} is charged";
+            if (temporary) ret += " until the start of their next turn.";
+            return ret;
         }
     }
 }
