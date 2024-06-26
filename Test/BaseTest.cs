@@ -506,7 +506,7 @@ namespace Handelabra.Sentinels.UnitTest
             var modDefs = ModHelper.GetAllPromoDefinitions();
 
             // Find all the playable hero character cards in the box (including other sizes of Sky-Scraper)
-            var availableHeroes = DeckDefinition.AvailableHeroes;
+            var availableHeroes = DeckDefinition.AvailableHeroes.Union(GameController.Game.HeroTurnTakers.Select(tt => tt.DeckDefinition.QualifiedIdentifier));
             foreach (var heroTurnTaker in availableHeroes.Where(turnTakerCriteria))
             {
                 var heroDefinition = DeckDefinitionCache.GetDeckDefinition(heroTurnTaker);

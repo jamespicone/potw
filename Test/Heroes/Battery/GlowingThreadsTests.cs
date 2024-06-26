@@ -77,8 +77,8 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.Battery
             UsePower(battery, 1);
             Assert.That(battery.CharacterCardController.IsCharged(battery.CharacterCard), Is.True);
 
-            // + charge effect, + damage reduce effect, + delayed discharge effect
-            AssertNumberOfStatusEffectsInPlay(3);
+            // + charge effect, + damage reduce effect
+            AssertNumberOfStatusEffectsInPlay(2);
 
             DealDamage(battery, battery, 2, DamageType.Infernal);
             QuickHPCheck(0);
