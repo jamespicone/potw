@@ -17,6 +17,39 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.Battery
     public class BatteryCauldronCapeTests : ParahumanTest
     {
         [Test()]
+        public void TestDischargeAtEndOfTurn()
+        {
+            SetupGameController(
+                new string[] { "BaronBlade", "Jp.ParahumansOfTheWormverse.Battery", "Megalopolis" },
+                promoIdentifiers: new Dictionary<string, string> { { "Jp.ParahumansOfTheWormverse.Battery", "BatteryCauldronCapeCharacter" } }
+            );
+
+            StartGame();
+
+            RemoveVillainCards();
+            RemoveVillainTriggers();
+
+            GoToUsePowerPhase(battery);
+
+            Assert.That(battery.CharacterCardController.IsCharged(battery.CharacterCard), Is.False);
+
+            AssertNumberOfStatusEffectsInPlay(0);
+            UsePower(battery, 1);
+            AssertNumberOfStatusEffectsInPlay(1);
+            Assert.That(battery.CharacterCardController.IsCharged(battery.CharacterCard), Is.True);
+
+            GoToEndOfTurn(battery);
+
+            AssertNumberOfStatusEffectsInPlay(1);
+            Assert.That(battery.CharacterCardController.IsCharged(battery.CharacterCard), Is.True);
+
+            GoToStartOfTurn(battery);
+
+            Assert.That(battery.CharacterCardController.IsCharged(battery.CharacterCard), Is.False);
+            AssertNumberOfStatusEffectsInPlay(0);
+        }
+
+        [Test()]
         public void TestFaceDownACard()
         {
             SetupGameController(
@@ -73,17 +106,29 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.Battery
 
             StartGame();
 
-            DestroyNonCharacterVillainCards();
+            RemoveVillainCards();
+            RemoveVillainTriggers();
+
             MoveAllCardsFromHandToDeck(battery);
 
             StackDeck("Strength");
 
             UsePower(battery, 0);
 
+            GoToUsePowerPhase(battery);
+
             DecisionSelectTarget = baron.CharacterCard;
             QuickHPStorage(baron);
             UsePower(battery, 1);
-            QuickHPCheck(-5);            
+            QuickHPCheck(-5);
+
+            Assert.That(battery.CharacterCardController.IsCharged(battery.CharacterCard), Is.True);
+            AssertNumberOfStatusEffectsInPlay(1);
+
+            GoToStartOfTurn(battery);
+
+            Assert.That(battery.CharacterCardController.IsCharged(battery.CharacterCard), Is.False);
+            AssertNumberOfStatusEffectsInPlay(0);
         }
 
         [Test()]
@@ -186,6 +231,23 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.Battery
             AssertNotFlipped(threadsOnDeck);
             AssertInTrash(threadsOnDeck);
             QuickHPCheck(-5);
+        }
+
+        [Test()]
+        public void TestSwitchingCharacterCardsDoesntUncharge()
+        {
+            SetupGameController("BaronBlade", "Jp.ParahumansOfTheWormverse.Battery/BatteryCauldronCapeCharacter", "Guise/CompletionistGuiseCharacter", "InsulaPrimalis");
+
+            StartGame();
+
+            UsePower(battery.CharacterCard, 1);
+            Assert.That(battery.CharacterCardController.IsCharged(battery.CharacterCard), Is.True);
+
+            DecisionSelectCards = new Card[] { battery.CharacterCard, battery.CharacterCard };
+            UsePower(guise);
+
+            Assert.That(battery.CharacterCardController.IsCharged(battery.CharacterCard), Is.True);
+            Assert.That(battery.CharacterCard.PromoIdentifierOrIdentifier, Is.EqualTo("BatteryCharacter"));
         }
     }
 }

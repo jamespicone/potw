@@ -10,9 +10,12 @@ namespace Jp.ParahumansOfTheWormverse.Battery
 
     public static class BatteryExtensions
     {
-        public static IEnumerator ChargeCard(this CardController source, Card toCharge)
+        public static IEnumerator ChargeCard(this CardController source, Card toCharge, bool expireNextTurn = false)
         {
-            var effect = new BatteryChargedStatusEffect(source.CardWithoutReplacements, "", source.Card, toCharge);
+            var effect = new BatteryChargedStatusEffect(source.CardWithoutReplacements, "", source.Card, toCharge, expireNextTurn);
+            if (expireNextTurn)
+                effect.UntilStartOfNextTurn(source.TurnTaker);
+
             var e = source.GameController.AddStatusEffect(effect, showMessage: true, cardSource: source.GetCardSource());
             if (source.UseUnityCoroutines) { yield return source.GameController.StartCoroutine(e); }
             else { source.GameController.ExhaustCoroutine(e); }
