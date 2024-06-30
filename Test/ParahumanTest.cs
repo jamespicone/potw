@@ -4,6 +4,7 @@ using Handelabra.Sentinels.UnitTest;
 using Handelabra.Sentinels.Engine.Model;
 using NUnit.Framework;
 using System.Collections;
+using System.Collections.Generic;
 
 namespace Jp.ParahumansOfTheWormverse.UnitTest
 {
@@ -142,6 +143,16 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest
             DealDamage(damageSource, character, 1, DamageType.Infernal, isIrreducible: true);
         }
 
+        protected void AssertNextRevealReveals(List<Card> cards)
+        {
+            InstallObserver();
+            expectedRevealedCards = cards;
+        }
+
+        protected void AssertNextRevealReveals(params Card[] cards)
+        {
+            AssertNextRevealReveals(cards.ToList());
+        }
 
         // Implementation
         private bool hasInstalledHandler = false;
@@ -149,6 +160,8 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest
         private DamageType? expectedDamageType = null;
         private Card expectedDamageSource = null;
         private bool? expectedIrreducible = null;
+
+        private List<Card> expectedRevealedCards = null;
 
         private IEnumerator ObserveAction(GameAction action)
         {
@@ -170,6 +183,15 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest
                 {
                     Assert.That(dda.IsIrreducible, Is.EqualTo(expectedIrreducible.Value), $"{expectedIrreducible.Value} was the expected irreducible status");
                     expectedIrreducible = null;
+                }
+            }
+
+            if (action is RevealCardsAction ra)
+            {
+                if (expectedRevealedCards != null)
+                {
+                    Assert.That(ra.RevealedCards, Is.EquivalentTo(expectedRevealedCards), $"Expected to see {string.Join(", ", expectedRevealedCards.Select(c => c.Title))} revealed but instead saw {string.Join(", ", ra.RevealedCards.Select(c => c.Title))}");
+                    expectedRevealedCards = null;
                 }
             }
 
