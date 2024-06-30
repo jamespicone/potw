@@ -13,9 +13,39 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.Alexandria
     public class ImperiousDemeanourTests : ParahumanTest
     {
         [Test()]
-        public void TestModWorks()
+        public void TestDraws()
         {
             SetupGameController("BaronBlade", "Jp.ParahumansOfTheWormverse.Alexandria", "InsulaPrimalis");
+
+            StartGame();
+
+            RemoveVillainTriggers();
+            RemoveVillainCards();
+
+            MoveAllCardsFromHandToDeck(alexandria);
+            QuickHandStorage(alexandria);
+            PlayCard("ImperiousDemeanour");
+            QuickHandCheck(1);
+        }
+
+        [Test()]
+        public void TestHealsOnPowerUse()
+        {
+            SetupGameController("BaronBlade", "Jp.ParahumansOfTheWormverse.Alexandria", "InsulaPrimalis");
+
+            StartGame();
+
+            RemoveVillainTriggers();
+            RemoveVillainCards();
+
+            PlayCard("ImperiousDemeanour");
+            MoveAllCardsFromHandToDeck(alexandria);
+
+            SetHitPoints(alexandria, 10);
+
+            QuickHPStorage(alexandria);
+            UsePower(alexandria);
+            QuickHPCheck(3);
         }
     }
 }

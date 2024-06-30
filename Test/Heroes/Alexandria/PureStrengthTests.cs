@@ -13,9 +13,28 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.Alexandria
     public class PureStrengthTests : ParahumanTest
     {
         [Test()]
-        public void TestModWorks()
+        public void TestDamage()
         {
-            SetupGameController("BaronBlade", "Jp.ParahumansOfTheWormverse.Alexandria", "InsulaPrimalis");
+            SetupGameController("BaronBlade", "Jp.ParahumansOfTheWormverse.Alexandria", "Legacy", "InsulaPrimalis");
+
+            StartGame();
+
+            RemoveVillainTriggers();
+            RemoveVillainCards();
+
+            DecisionSelectTarget = baron.CharacterCard;
+            AssertDamageType(DamageType.Projectile);
+            AssertDamageSource(alexandria.CharacterCard);
+            QuickHPStorage(baron.CharacterCard);
+            PlayCard("PureStrength");
+            QuickHPCheck(-4);
+
+            DecisionSelectTarget = legacy.CharacterCard;
+            AssertDamageType(DamageType.Projectile);
+            AssertDamageSource(alexandria.CharacterCard);
+            QuickHPStorage(legacy.CharacterCard);
+            PlayCard("PureStrength");
+            QuickHPCheck(-4);
         }
     }
 }

@@ -13,9 +13,21 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.Alexandria
     public class ColdReadingTests : ParahumanTest
     {
         [Test()]
-        public void TestModWorks()
+        public void TestRevealOnPlay()
         {
             SetupGameController("BaronBlade", "Jp.ParahumansOfTheWormverse.Alexandria", "InsulaPrimalis");
+
+            StartGame();
+
+            RemoveVillainCards();
+            RemoveVillainTriggers();
+
+            StackDeck("BacklashField", "ElementalRedistributor", "PoweredRemoteTurret");
+
+
+            AssertRevealed();
+
+            PlayCard("ColdReading");
         }
     }
 }
