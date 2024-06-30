@@ -184,8 +184,8 @@
 				"{SimurghDanger2}"
 			],
 			"body": [
-				"The Simurgh deals 1 projectile damage to all hero targets H-1 times.",
-				"The environment deals 1 irreducible melee damage to all hero targets H-2 times."
+				"The Simurgh deals 1 projectile damage to all hero targets {H - 1} times.",
+				"The environment deals 1 irreducible melee damage to all hero targets {H - 2} times."
 			],
 			"icons": [
 				"DealDamageProjectile",
