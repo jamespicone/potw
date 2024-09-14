@@ -13,9 +13,15 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.TheMerchants
     public class FestivalOfExcessTests : ParahumanTest
     {
         [Test()]
-        public void TestModWorks()
+        public void TestWorks()
         {
             SetupGameController("Jp.ParahumansOfTheWormverse.TheMerchants", "Tempest", "InsulaPrimalis");
+
+            StartGame();
+
+            PlayCard("FestivalOfExcess");
+
+            AssertSourceDamageModified(new Card[] { tempest.CharacterCard }, new int[] { -1 }, merchants.CharacterCard);
         }
     }
 }

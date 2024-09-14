@@ -13,9 +13,66 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.TheMerchants
     public class SquealerTests : ParahumanTest
     {
         [Test()]
-        public void TestModWorks()
+        public void PlaysEnvironmentCards()
         {
-            SetupGameController("Jp.ParahumansOfTheWormverse.TheMerchants", "Tempest", "InsulaPrimalis");
+            SetupGameController("Jp.ParahumansOfTheWormverse.TheMerchants", "Tempest", "Legacy", "Parse", "InsulaPrimalis");
+
+            StartGame();
+
+            RemoveVillainCards();
+            RemoveVillainTriggers();
+
+            GoToEndOfTurn(env);
+
+            PlayCard("Squealer");
+
+            var pack = StackDeck("VelociraptorPack");
+
+            GoToStartOfTurn(merchants);
+
+            AssertIsInPlay(pack);
+        }
+
+        [Test()]
+        public void MakesImmuneToEnvironmentDamage()
+        {
+            SetupGameController("Jp.ParahumansOfTheWormverse.TheMerchants", "Tempest", "Legacy", "Parse", "InsulaPrimalis");
+
+            StartGame();
+
+            RemoveVillainCards();
+            RemoveVillainTriggers();
+
+            GoToEndOfTurn(env);
+
+            var squealer = PlayCard("Squealer");
+
+            var pack = PlayCard("VelociraptorPack");
+
+            QuickHPStorage(squealer);
+            DealDamage(pack, squealer, 5, DamageType.Melee, isIrreducible: true);
+            QuickHPCheck(0);
+        }
+
+        [Test()]
+        public void MakesImmuneToEnvironmentDamageFromNontargets()
+        {
+            SetupGameController("Jp.ParahumansOfTheWormverse.TheMerchants", "Tempest", "Legacy", "Parse", "InsulaPrimalis");
+
+            StartGame();
+
+            RemoveVillainCards();
+            RemoveVillainTriggers();
+
+            GoToEndOfTurn(env);
+
+            var squealer = PlayCard("Squealer");
+
+            var field = PlayCard("ObsidianField");
+
+            QuickHPStorage(squealer);
+            DealDamage(field, squealer, 5, DamageType.Melee, isIrreducible: true);
+            QuickHPCheck(0);
         }
     }
 }

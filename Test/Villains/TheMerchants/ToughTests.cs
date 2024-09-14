@@ -13,9 +13,25 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.TheMerchants
     public class ToughTests : ParahumanTest
     {
         [Test()]
-        public void TestModWorks()
+        public void HitsHighest()
         {
-            SetupGameController("Jp.ParahumansOfTheWormverse.TheMerchants", "Tempest", "InsulaPrimalis");
+            SetupGameController("Jp.ParahumansOfTheWormverse.TheMerchants", "Tempest", "Legacy", "Parse", "InsulaPrimalis");
+
+            StartGame();
+
+            RemoveVillainCards();
+            RemoveVillainTriggers();
+
+            var tough = PlayCard("Tough");
+
+            SetHitPoints(tempest, 15);
+            SetHitPoints(legacy, 16);
+            SetHitPoints(parse, 14);
+            QuickHPStorage(parse, tempest, legacy);
+            AssertDamageSource(tough);
+            AssertDamageType(DamageType.Melee);
+            GoToEndOfTurn();
+            QuickHPCheck(0, -2, -2);
         }
     }
 }

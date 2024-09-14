@@ -13,9 +13,24 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.TheMerchants
     public class RevellerTests : ParahumanTest
     {
         [Test()]
-        public void TestModWorks()
+        public void HitsHighest()
         {
-            SetupGameController("Jp.ParahumansOfTheWormverse.TheMerchants", "Tempest", "InsulaPrimalis");
+            SetupGameController("Jp.ParahumansOfTheWormverse.TheMerchants", "Tempest", "Legacy", "InsulaPrimalis");
+
+            StartGame();
+
+            RemoveVillainCards();
+            RemoveVillainTriggers();
+
+            var reveller = PlayCard("Reveller");
+
+            SetHitPoints(tempest, 15);
+            SetHitPoints(legacy, 16);
+            QuickHPStorage(tempest, legacy);
+            AssertDamageSource(reveller);
+            AssertDamageType(DamageType.Melee);
+            GoToEndOfTurn();
+            QuickHPCheck(0, -1);
         }
     }
 }

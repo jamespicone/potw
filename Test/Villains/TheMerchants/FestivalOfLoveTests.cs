@@ -13,9 +13,28 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.TheMerchants
     public class FestivalOfLoveTests : ParahumanTest
     {
         [Test()]
-        public void TestModWorks()
+        public void TestWorks()
         {
             SetupGameController("Jp.ParahumansOfTheWormverse.TheMerchants", "Tempest", "InsulaPrimalis");
+
+            StartGame();
+
+            RemoveVillainCards();
+            RemoveVillainTriggers();
+
+            PlayCard("FestivalOfLove");
+
+            GoToEndOfTurn(env);
+            AssertNumberOfCardsInPlay(c => c.DoKeywordsContain("thug"), 0);
+
+            GoToStartOfTurn(merchants);
+            AssertNumberOfCardsInPlay(c => c.DoKeywordsContain("thug"), 1);
+
+            GoToEndOfTurn(env);
+            AssertNumberOfCardsInPlay(c => c.DoKeywordsContain("thug"), 1);
+
+            GoToStartOfTurn(merchants);
+            AssertNumberOfCardsInPlay(c => c.DoKeywordsContain("thug"), 2);
         }
     }
 }

@@ -7,15 +7,21 @@ using System.Collections;
 using System.Collections.Generic;
 using Handelabra.Sentinels.UnitTest;
 
-namespace Jp.ParahumansOfTheWormverse.UnitTest.TheSimurgh
+namespace Jp.ParahumansOfTheWormverse.UnitTest.TheMerchants
 {
     [TestFixture()]
     public class FestivalOfBloodTests : ParahumanTest
     {
         [Test()]
-        public void TestModWorks()
+        public void TestWorks()
         {
             SetupGameController("Jp.ParahumansOfTheWormverse.TheMerchants", "Tempest", "InsulaPrimalis");
+
+            StartGame();
+
+            PlayCard("FestivalOfBlood");
+
+            AssertSourceDamageModified(new Card[] { merchants.CharacterCard }, new int[] { 1 }, tempest.CharacterCard);
         }
     }
 }

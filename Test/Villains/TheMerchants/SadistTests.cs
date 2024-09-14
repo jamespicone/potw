@@ -13,9 +13,24 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.TheMerchants
     public class SadistTests : ParahumanTest
     {
         [Test()]
-        public void TestModWorks()
+        public void HitsLowest()
         {
-            SetupGameController("Jp.ParahumansOfTheWormverse.TheMerchants", "Tempest", "InsulaPrimalis");
+            SetupGameController("Jp.ParahumansOfTheWormverse.TheMerchants", "Tempest", "Legacy", "InsulaPrimalis");
+
+            StartGame();
+
+            RemoveVillainCards();
+            RemoveVillainTriggers();
+
+            var sadist = PlayCard("Sadist");
+
+            SetHitPoints(tempest, 15);
+            SetHitPoints(legacy, 16);
+            QuickHPStorage(tempest, legacy);
+            AssertDamageSource(sadist);
+            AssertDamageType(DamageType.Melee);
+            GoToEndOfTurn();
+            QuickHPCheck(-2, 0);
         }
     }
 }

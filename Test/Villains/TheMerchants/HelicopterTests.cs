@@ -13,9 +13,42 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.TheMerchants
     public class HelicopterTests : ParahumanTest
     {
         [Test()]
-        public void TestModWorks()
+        public void TestImmuneToMelee()
         {
             SetupGameController("Jp.ParahumansOfTheWormverse.TheMerchants", "Tempest", "InsulaPrimalis");
+
+            StartGame();
+
+            PlayCard("Helicopter");
+
+            QuickHPStorage(merchants.CharacterCard);
+            DealDamage(tempest, merchants.CharacterCard, 5, DamageType.Melee);
+            QuickHPCheck(0);
+        }
+
+        [Test()]
+        public void TestPlaysThugs()
+        {
+            SetupGameController("Jp.ParahumansOfTheWormverse.TheMerchants", "Tempest", "InsulaPrimalis");
+
+            StartGame();
+
+            RemoveVillainCards();
+            RemoveVillainTriggers();
+
+            PlayCard("Helicopter");
+
+            GoToPlayCardPhase(merchants);
+            AssertNumberOfCardsInPlay(c => c.DoKeywordsContain("thug"), 0);
+
+            GoToEndOfTurn(merchants);
+            AssertNumberOfCardsInPlay(c => c.DoKeywordsContain("thug"), 1);
+
+            GoToPlayCardPhase(merchants);
+            AssertNumberOfCardsInPlay(c => c.DoKeywordsContain("thug"), 1);
+
+            GoToEndOfTurn(merchants);
+            AssertNumberOfCardsInPlay(c => c.DoKeywordsContain("thug"), 2);
         }
     }
 }

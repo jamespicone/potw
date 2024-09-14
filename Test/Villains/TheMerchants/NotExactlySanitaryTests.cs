@@ -13,9 +13,31 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.TheMerchants
     public class NotExactlySanitaryTests : ParahumanTest
     {
         [Test()]
-        public void TestModWorks()
+        public void TestWorks()
         {
             SetupGameController("Jp.ParahumansOfTheWormverse.TheMerchants", "Tempest", "InsulaPrimalis");
+
+            StartGame();
+
+            PlayCard("NotExactlySanitary");
+
+            QuickHPStorage(tempest);
+            DealDamage(merchants, tempest, 1, DamageType.Melee);
+            QuickHPCheck(-2);
+        }
+
+        [Test()]
+        public void TestDoesntTriggerToxic()
+        {
+            SetupGameController("Jp.ParahumansOfTheWormverse.TheMerchants", "Tempest", "InsulaPrimalis");
+
+            StartGame();
+
+            PlayCard("NotExactlySanitary");
+
+            QuickHPStorage(tempest);
+            DealDamage(merchants, tempest, 1, DamageType.Toxic);
+            QuickHPCheck(-1);
         }
     }
 }
