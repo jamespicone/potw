@@ -95,5 +95,24 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.Alexandria
             );
             DealDamage(alexandria, omnitron, 1, DamageType.Melee);
         }
+
+        [Test()]
+        public void TestAgainstMerchants()
+        {
+            SetupGameController("Jp.ParahumansOfTheWormverse.TheMerchants", "Jp.ParahumansOfTheWormverse.Alexandria", "InsulaPrimalis");
+
+            StartGame();
+
+            var tough = PlayCard("Tough");
+            var sanitary = PlayCard("NotExactlySanitary");
+
+            DecisionSelectTarget = tough;
+            DecisionSelectCard = sanitary;
+
+            PlayCard("SupersonicFlight");
+            AssertNotInPlay(tough);
+            AssertNotInPlay(sanitary);
+            AssertInTrash(sanitary);
+        }
     }
 }
