@@ -139,14 +139,6 @@ namespace Jp.ParahumansOfTheWormverse.TheMerchants
             {
                 //Log.Debug("There's at least one active hero...");
                 IEnumerable<Card> activeVillainTargets = base.GameController.GetAllCards().Where((Card c) => c.IsInPlayAndHasGameText && c.Is(this).Villain().Target());
-                Log.Debug("activeVillainTargets.Count(): " + activeVillainTargets.Count().ToString());
-                if (activeVillainTargets.Count() > 0)
-                {
-                    foreach (Card c in activeVillainTargets)
-                    {
-                        Log.Debug("active villain target: " + c.Title);
-                    }
-                }
                 return !base.GameController.GetAllCards().Any((Card c) => c.IsInPlayAndHasGameText && c.Is(this).Villain().Target());
             }
             else
