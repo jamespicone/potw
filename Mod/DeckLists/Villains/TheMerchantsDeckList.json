@@ -237,7 +237,7 @@
 			],
 			"hitpoints": 8,
 			"body": [
-				"Environment cards ignore villain targets when dealing damage.",
+				"Villain targets are immune to damage from environment cards.",
 				"At the start of the villain turn, play the top card of the environment deck."
 			],
 			"icons": [
