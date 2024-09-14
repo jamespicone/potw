@@ -20,12 +20,12 @@
 				"MissMilitia"
 			],
 			"setup": [
-				"Put {SkidmarkCharacter} into play, 'Superpowered Drug Lord' side up. Shuffle all Thug cards and put them face down under this one as the Thug deck."
+				"Put {SkidmarkCharacter} into play, 'Superpowered Drug Lord' side up. Shuffle all Thug cards and put them aside as the Thug deck."
 			],
 			"gameplay": [
 				"At the start of the villain turn, if the Thug deck is empty, the Merchants have grown out of control. [b]GAME OVER.[/b]",
 				"At the end of the villain turn, play the top {H - 1} cards of the Thug deck.",
-				"When {SkidmarkCharacter} would be destroyed, flip {SkidmarkCharacter}'s villain character cards instead."
+				"When {SkidmarkCharacter} would be destroyed, flip {SkidmarkCharacter}'s character card instead."
 			],
 			"advanced": "Reduce damage dealt to villain targets by 1.",
 			"icons": [
@@ -171,46 +171,6 @@
 			"flavorReference": "Infestation 11.6"
 		},
 		{
-			"identifier": "Reveller",
-			"count": 4,
-			"title": "Reveller",
-			"keywords": [
-				"thug"
-			],
-			"hitpoints": 2,
-			"body": [
-				"When this card would be put into the villain trash or villain deck, shuffle it into the Thug deck instead.",
-				"At the end of the villain turn, this card deals the hero target with the highest HP 1 melee damage."
-			],
-			"icons": [
-				"Manipulate",
-				"EndOfTurnAction",
-				"DealDamageMelee"
-			],
-			"flavorText": "Countless Merchants had{BR}gathered, some perching on piles{BR}of trash or rubble as lookouts, and it{BR}seemed like everyone was striving to be{BR}heard over the music.",
-			"flavorReference": "Infestation 11.5"
-		},
-		{
-			"identifier": "Sadist",
-			"count": 2,
-			"title": "Sadist",
-			"keywords": [
-				"thug"
-			],
-			"hitpoints": 2,
-			"body": [
-				"When this card would be put into the villain trash or villain deck, shuffle it into the Thug deck instead.",
-				"At the end of the villain turn, this card deals the hero target with the lowest HP 2 melee damage."
-			],
-			"icons": [
-				"Manipulate",
-				"EndOfTurnAction",
-				"DealDamageMelee"
-			],
-			"flavorText": "A man who stood outside the{BR}ring grabbed a piece of rubble and{BR}threw it, striking a man who was{BR}crouching and trying to avoid the{BR}worst of the fighting.",
-			"flavorReference": "Infestation 11.6"
-		},
-		{
 			"identifier": "Scrub",
 			"count": 1,
 			"title": "Scrub",
@@ -246,26 +206,75 @@
 			],
 			"flavorText": "Squealer had apparently never{BR}grasped the concept of elegance in{BR}design. She went for size, augmentations{BR}and additions when she built her vehicles.",
 			"flavorReference": "Plague 12.2"
-		},
+		}
+	],
+	"subdecks": [
 		{
-			"identifier": "Tough",
-			"count": 4,
-			"title": "Tough",
-			"keywords": [
-				"thug"
-			],
-			"hitpoints": 2,
-			"body": [
-				"When this card would be put into the villain trash or villain deck, shuffle it into the Thug deck instead.",
-				"At the end of the villain turn, this card deals the 2 hero targets with the highest HP 2 melee damage each."
-			],
-			"icons": [
-				"Manipulate",
-				"EndOfTurnAction",
-				"DealDamageMelee"
-			],
-			"flavorText": "One of the Merchants in the ring had{BR}just bludgeoned someone with a length{BR}of pipe.",
-			"flavorReference": "Infestation 11.5"
+			"identifier": "ThugDeck",
+			"name": "Thug Deck",
+			"kind": "Villain",
+			"cards": [
+				{
+					"identifier": "Reveller",
+					"count": 4,
+					"title": "Reveller",
+					"keywords": [
+						"thug"
+					],
+					"hitpoints": 2,
+					"body": [
+						"When this card would be destroyed shuffle it into the Thug deck instead.",
+						"At the end of the villain turn, this card deals the hero target with the highest HP 1 melee damage."
+					],
+					"icons": [
+						"Manipulate",
+						"EndOfTurnAction",
+						"DealDamageMelee"
+					],
+					"flavorText": "Countless Merchants had{BR}gathered, some perching on piles{BR}of trash or rubble as lookouts, and it{BR}seemed like everyone was striving to be{BR}heard over the music.",
+					"flavorReference": "Infestation 11.5"
+				},
+				{
+					"identifier": "Sadist",
+					"count": 2,
+					"title": "Sadist",
+					"keywords": [
+						"thug"
+					],
+					"hitpoints": 2,
+					"body": [
+						"When this card would be destroyed shuffle it into the Thug deck instead.",
+						"At the end of the villain turn, this card deals the hero target with the lowest HP 2 melee damage."
+					],
+					"icons": [
+						"Manipulate",
+						"EndOfTurnAction",
+						"DealDamageMelee"
+					],
+					"flavorText": "A man who stood outside the{BR}ring grabbed a piece of rubble and{BR}threw it, striking a man who was{BR}crouching and trying to avoid the{BR}worst of the fighting.",
+					"flavorReference": "Infestation 11.6"
+				},
+				{
+					"identifier": "Tough",
+					"count": 4,
+					"title": "Tough",
+					"keywords": [
+						"thug"
+					],
+					"hitpoints": 2,
+					"body": [
+						"When this card would be destroyed shuffle it into the Thug deck instead.",
+						"At the end of the villain turn, this card deals the 2 hero targets with the highest HP 2 melee damage each."
+					],
+					"icons": [
+						"Manipulate",
+						"EndOfTurnAction",
+						"DealDamageMelee"
+					],
+					"flavorText": "One of the Merchants in the ring had{BR}just bludgeoned someone with a length{BR}of pipe.",
+					"flavorReference": "Infestation 11.5"
+				}
+			]
 		}
 	]
 }

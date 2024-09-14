@@ -11,36 +11,34 @@ using Jp.SOTMUtilities;
 
 namespace Jp.ParahumansOfTheWormverse.TheMerchants
 {
-    public class NotExactlySanitaryCardController : TheMerchantsUtilityCardController
+    public class NotExactlySanitaryCardController : CardController
     {
         public NotExactlySanitaryCardController(Card card, TurnTakerController turnTakerController)
             : base(card, turnTakerController)
         {
-
         }
 
         public override void AddTriggers()
         {
-            // "Whenever a villain target deals non-toxic damage to another target, that villain target also deals that target 1 toxic damage."
-            AddTrigger<DealDamageAction>((DealDamageAction dda) => dda.DamageSource != null && dda.DamageSource.IsCard && dda.DamageSource.Is(this).Villain().Target() && dda.Target != null && dda.Target != dda.DamageSource.Card && dda.DidDealDamage && dda.DamageType != DamageType.Toxic, ToxicDamageResponse, TriggerType.DealDamage, TriggerTiming.After);
-            base.AddTriggers();
+            // Whenever a villain target deals non-toxic damage to another target, that villain target also deals that target 1 toxic damage."
+            AddTrigger<DealDamageAction>(
+                dda => dda.DamageSource.Is(this).Villain().Target() &&
+                    dda.DamageSource.IsCard && 
+                    dda.Target != dda.DamageSource.Card &&
+                    dda.DidDealDamage &&
+                    dda.DamageType != DamageType.Toxic,
+                ToxicDamageResponse,
+                TriggerType.DealDamage,
+                TriggerTiming.After
+            );
         }
 
         public IEnumerator ToxicDamageResponse(DealDamageAction dda)
         {
             // "... that villain target also deals that target 1 toxic damage."
-            Card villainTarget = dda.DamageSource.Card;
-            Card damagedTarget = dda.Target;
-            IEnumerator toxicCoroutine = DealDamage(villainTarget, damagedTarget, 1, DamageType.Toxic, cardSource: GetCardSource());
-            if (base.UseUnityCoroutines)
-            {
-                yield return base.GameController.StartCoroutine(toxicCoroutine);
-            }
-            else
-            {
-                base.GameController.ExhaustCoroutine(toxicCoroutine);
-            }
-            yield break;
+            var e = DealDamage(dda.DamageSource.Card, dda.Target, 1, DamageType.Toxic, cardSource: GetCardSource());
+            if (UseUnityCoroutines) yield return GameController.StartCoroutine(e);
+            else GameController.ExhaustCoroutine(e);
         }
     }
 }

@@ -11,7 +11,7 @@ using Jp.SOTMUtilities;
 
 namespace Jp.ParahumansOfTheWormverse.TheMerchants
 {
-    public class RevellerCardController : TheMerchantsUtilityCardController
+    public class RevellerCardController : ThugCardController
     {
         public RevellerCardController(Card card, TurnTakerController turnTakerController)
             : base(card, turnTakerController)
@@ -19,11 +19,17 @@ namespace Jp.ParahumansOfTheWormverse.TheMerchants
             SpecialStringMaker.ShowHeroTargetWithHighestHP(ranking: 1, numberOfTargets: 1);
         }
 
-        public override void AddTriggers()
+        public override void AddDamageTriggers()
         {
             // "At the end of the villain turn, this card deals the hero target with the highest HP 1 melee damage."
-            AddEndOfTurnTrigger((TurnTaker tt) => tt == base.TurnTaker, (PhaseChangeAction pca) => DealDamageToHighestHP(base.Card, 1, (Card c) => c.Is(this).Hero().Target(), (Card c) => 1, DamageType.Melee), TriggerType.DealDamage);
-            base.AddTriggers();
+            AddDealDamageAtEndOfTurnTrigger(
+                TurnTaker,
+                Card,
+                c => c.Is(this).Hero().Target(),
+                TargetType.HighestHP,
+                1,
+                DamageType.Melee
+            );
         }
     }
 }

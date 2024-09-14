@@ -11,19 +11,17 @@ using Jp.SOTMUtilities;
 
 namespace Jp.ParahumansOfTheWormverse.TheMerchants
 {
-    public class FestivalOfExcessCardController : TheMerchantsUtilityCardController
+    public class FestivalOfExcessCardController : CardController
     {
         public FestivalOfExcessCardController(Card card, TurnTakerController turnTakerController)
             : base(card, turnTakerController)
         {
-
         }
 
         public override void AddTriggers()
         {
             // "Reduce damage dealt to villain targets by 1."
-            AddReduceDamageTrigger((Card c) => c.Is(this).Villain().Target(), 1);
-            base.AddTriggers();
+            AddReduceDamageTrigger((c) => c.Is(this).Villain().Target(), 1);
         }
     }
 }

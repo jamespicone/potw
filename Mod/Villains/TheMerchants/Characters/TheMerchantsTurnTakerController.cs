@@ -7,109 +7,102 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+using Jp.SOTMUtilities;
+
 namespace Jp.ParahumansOfTheWormverse.TheMerchants
 {
     public class TheMerchantsTurnTakerController : TurnTakerController
     {
         public TheMerchantsTurnTakerController(TurnTaker turnTaker, GameController gameController) : base(turnTaker, gameController)
         {
-
-        }
-
-        public override IEnumerator StartGame()
-        {
-            // Put all Thug cards under Skidmark and shuffle them
-            IEnumerable<Card> thugs = base.GameController.FindCardsWhere(new LinqCardCriteria((Card c) => c.Owner == base.TurnTaker && c.DoKeywordsContain("thug"), "thug"));
-            Log.Debug("thugs.Count(): " + thugs.Count().ToString());
-            IEnumerator deckCoroutine = base.GameController.BulkMoveCards(this, thugs, base.CharacterCard.UnderLocation, responsibleTurnTaker: base.TurnTaker, cardSource: FindCardController(base.CharacterCard).GetCardSource());
-            if (base.UseUnityCoroutines)
-            {
-                yield return base.GameController.StartCoroutine(deckCoroutine);
-            }
-            else
-            {
-                base.GameController.ExhaustCoroutine(deckCoroutine);
-            }
-            IEnumerator shuffleCoroutine = base.GameController.ShuffleLocation(base.CharacterCard.UnderLocation, cardSource: FindCardController(base.CharacterCard).GetCardSource());
-            if (base.UseUnityCoroutines)
-            {
-                yield return base.GameController.StartCoroutine(shuffleCoroutine);
-            }
-            else
-            {
-                base.GameController.ExhaustCoroutine(shuffleCoroutine);
-            }
-            yield break;
         }
 
         public override void AddTriggers()
         {
-            // If a Thug would be moved to the villain deck or trash, shuffle it into the Thug deck instead
-            CardSource cardSource = new CardSource(base.CharacterCardController);
-            Trigger<MoveCardAction> shuffleThugTrigger = new Trigger<MoveCardAction>(base.GameController, (MoveCardAction mca) => mca.CardToMove.Owner == base.TurnTaker && mca.CardToMove.DoKeywordsContain("thug") && (mca.Destination == base.TurnTaker.Deck || mca.Destination == base.TurnTaker.Trash), ShuffleThugResponse, new TriggerType[] { TriggerType.CancelAction, TriggerType.MoveCard }, TriggerTiming.Before, cardSource);
-            Trigger<BulkMoveCardsAction> shuffleThugsTrigger = new Trigger<BulkMoveCardsAction>(base.GameController, (BulkMoveCardsAction bmca) => bmca.CardsToMove.Any((Card c) => c.Owner == base.TurnTaker && c.DoKeywordsContain("thug")) && (bmca.Destination == base.TurnTaker.Deck || bmca.Destination == base.TurnTaker.Trash), ShuffleThugsResponse, new TriggerType[] { TriggerType.CancelAction, TriggerType.MoveCard }, TriggerTiming.Before, cardSource);
-            base.CharacterCardController.AddTrigger(shuffleThugTrigger);
-            base.CharacterCardController.AddTrigger(shuffleThugsTrigger);
-            base.AddTriggers();
+            if (CharacterCard.IsFlipped || ! CharacterCard.IsInPlay)
+            {
+                AddGameEndTrigger();
+            }
+            else
+            {
+                GameController.AddTrigger(new Trigger<FlipCardAction>(
+                    GameController,
+                    fca => fca.CardToFlip == CharacterCardController,
+                    fca => SkidmarkDefeated(),
+                    new TriggerType[] { TriggerType.GameOver, TriggerType.Hidden },
+                    TriggerTiming.After,
+                    CharacterCardController.GetCardSource()
+                ));
+
+                GameController.AddTrigger(new Trigger<MoveCardAction>(
+                    GameController,
+                    mca => mca.CardToMove == CharacterCard && !mca.Destination.IsInPlay,
+                    mca => SkidmarkDefeated(),
+                    new TriggerType[] { TriggerType.GameOver, TriggerType.Hidden },
+                    TriggerTiming.After,
+                    CharacterCardController.GetCardSource()
+                ));
+            }
         }
 
-        private IEnumerator ShuffleThugResponse(MoveCardAction mca)
+        private bool HeroesWon()
         {
-            // If a Thug would be moved to the villain deck or trash, shuffle it into the Thug deck instead
-            CardSource cardSource = new CardSource(base.CharacterCardController);
-            IEnumerator cancelCoroutine = base.GameController.CancelAction(mca, cardSource: cardSource);
-            if (base.UseUnityCoroutines)
-            {
-                yield return base.GameController.StartCoroutine(cancelCoroutine);
-            }
-            else
-            {
-                base.GameController.ExhaustCoroutine(cancelCoroutine);
-            }
-            IEnumerator shuffleCoroutine = base.GameController.ShuffleCardIntoLocation(base.FindDecisionMaker(), mca.CardToMove, base.CharacterCard.UnderLocation, false, cardSource: cardSource);
-            if (base.UseUnityCoroutines)
-            {
-                yield return base.GameController.StartCoroutine(shuffleCoroutine);
-            }
-            else
-            {
-                base.GameController.ExhaustCoroutine(shuffleCoroutine);
-            }
-            yield break;
+            return (CharacterCard.IsFlipped || ! CharacterCard.IsInPlayAndHasGameText) &&
+                ! GameController.GetAllCards().Any(c => c.IsInPlayAndHasGameText && c.Is(CharacterCardController).Villain().Target());
         }
 
-        private IEnumerator ShuffleThugsResponse(BulkMoveCardsAction bmca)
+        private IEnumerator MerchantsGameOver()
         {
-            // If a Thug would be moved to the villain deck or trash, shuffle it into the Thug deck instead
-            CardSource cardSource = new CardSource(base.CharacterCardController);
-            List<Card> thugs = bmca.CardsToMove.Where((Card c) => c.DoKeywordsContain("thug")).ToList();
-            if (bmca.CardsToMove.Any((Card c) => !thugs.Contains(c)))
+            var e = GameController.GameOver(
+                EndingResult.AlternateVictory, 
+                $"The heroes have defeated {CharacterCard.Title} and rounded up all of the Merchants!\nThe day is saved!",
+                showEndingTextAsMessage: true
+            );
+            if (UseUnityCoroutines) yield return GameController.StartCoroutine(e);
+            else GameController.ExhaustCoroutine(e);
+        }
+
+        private bool _destroyedMessageShown = false;
+
+        private IEnumerator SkidmarkDefeated()
+        {
+            if (_destroyedMessageShown) yield break;
+
+            if (HeroesWon())
             {
-                bmca.RemoveCardsFromMove(thugs);
+                var e = MerchantsGameOver();
+                if (UseUnityCoroutines) yield return GameController.StartCoroutine(e);
+                else GameController.ExhaustCoroutine(e);
             }
-            else
+
+            if (! GameController.IsGameOver)
             {
-                IEnumerator cancelCoroutine = base.GameController.CancelAction(bmca, cardSource: cardSource);
-                if (base.UseUnityCoroutines)
-                {
-                    yield return base.GameController.StartCoroutine(cancelCoroutine);
-                }
-                else
-                {
-                    base.GameController.ExhaustCoroutine(cancelCoroutine);
-                }
+                var e = GameController.SendMessageAction(
+                    $"{CharacterCard.Title} has been defeated, but his followers continue to rampage as long as there is a villain target in play!",
+                    Priority.Critical,
+                    CharacterCardController.GetCardSource(),
+                    GameController.FindCardsWhere(new LinqCardCriteria((Card c) => c.Is(CharacterCardController).Villain().Target() && c.IsInPlayAndHasGameText), visibleToCard: CharacterCardController.GetCardSource()),
+                    showCardSource: true
+                );
+                if (UseUnityCoroutines) yield return GameController.StartCoroutine(e);
+                else GameController.ExhaustCoroutine(e);
+
+                AddGameEndTrigger();
+
+                _destroyedMessageShown = true;
             }
-            IEnumerator shuffleCoroutine = base.GameController.ShuffleCardsIntoLocation(FindDecisionMaker(), thugs, base.CharacterCard.UnderLocation, cardSource: cardSource);
-            if (base.UseUnityCoroutines)
-            {
-                yield return base.GameController.StartCoroutine(shuffleCoroutine);
-            }
-            else
-            {
-                base.GameController.ExhaustCoroutine(shuffleCoroutine);
-            }
-            // ...
-            yield break;
+        }
+
+        private void AddGameEndTrigger()
+        {
+            GameController.AddTrigger(new Trigger<GameAction>(
+                GameController,
+                ga => HeroesWon() && ! (ga is GameOverAction) && ! (ga is MessageAction),
+                ga => MerchantsGameOver(),
+                new TriggerType[] { TriggerType.GameOver, TriggerType.Hidden },
+                TriggerTiming.After,
+                cardSource: CharacterCardController.GetCardSource()
+            ));
         }
     }
 }

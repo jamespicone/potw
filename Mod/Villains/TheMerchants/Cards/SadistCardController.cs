@@ -11,7 +11,7 @@ using Jp.SOTMUtilities;
 
 namespace Jp.ParahumansOfTheWormverse.TheMerchants
 {
-    public class SadistCardController : TheMerchantsUtilityCardController
+    public class SadistCardController : ThugCardController
     {
         public SadistCardController(Card card, TurnTakerController turnTakerController)
             : base(card, turnTakerController)
@@ -19,11 +19,17 @@ namespace Jp.ParahumansOfTheWormverse.TheMerchants
             SpecialStringMaker.ShowHeroTargetWithLowestHP(ranking: 1, numberOfTargets: 1);
         }
 
-        public override void AddTriggers()
+        public override void AddDamageTriggers()
         {
             // "At the end of the villain turn, this card deals the hero target with the lowest HP 2 melee damage."
-            AddEndOfTurnTrigger((TurnTaker tt) => tt == base.TurnTaker, (PhaseChangeAction pca) => DealDamageToLowestHP(base.Card, 1, (Card c) => c.Is(this).Hero().Target(), (Card c) => 2, DamageType.Melee), TriggerType.DealDamage);
-            base.AddTriggers();
+            AddDealDamageAtEndOfTurnTrigger(
+                TurnTaker,
+                Card,
+                c => c.Is(this).Hero().Target(),
+                TargetType.LowestHP,
+                2,
+                DamageType.Melee
+            );
         }
     }
 }

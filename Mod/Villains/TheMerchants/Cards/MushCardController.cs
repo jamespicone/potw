@@ -11,21 +11,30 @@ using Jp.SOTMUtilities;
 
 namespace Jp.ParahumansOfTheWormverse.TheMerchants
 {
-    public class MushCardController : TheMerchantsUtilityCardController
+    public class MushCardController : CardController
     {
         public MushCardController(Card card, TurnTakerController turnTakerController)
             : base(card, turnTakerController)
         {
-
         }
 
         public override void AddTriggers()
         {
             // "This card is immune to melee and projectile damage."
-            AddImmuneToDamageTrigger((DealDamageAction dda) => dda.Target == base.Card && (dda.DamageType == DamageType.Melee || dda.DamageType == DamageType.Projectile));
+            AddImmuneToDamageTrigger(
+                dda => dda.Target == Card &&
+                    (dda.DamageType == DamageType.Melee || dda.DamageType == DamageType.Projectile)
+            );
+
             // "At the end of the villain turn, this card deals each hero target 1 melee damage."
-            AddEndOfTurnTrigger((TurnTaker tt) => tt == base.TurnTaker, (PhaseChangeAction pca) => DealDamage(base.Card, (Card c) => c.Is(this).Hero().Target(), 1, DamageType.Melee), TriggerType.DealDamage);
-            base.AddTriggers();
+            AddDealDamageAtEndOfTurnTrigger(
+                TurnTaker,
+                Card,
+                c => c.Is().Hero().Target().AccordingTo(this),
+                TargetType.All,
+                1,
+                DamageType.Melee
+            );
         }
     }
 }
