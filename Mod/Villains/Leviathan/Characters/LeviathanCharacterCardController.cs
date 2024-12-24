@@ -58,7 +58,7 @@ namespace Jp.ParahumansOfTheWormverse.Leviathan
 
                 // When Leviathan is dealt {8 - H} or more damage put a Retaliation token on Leviathan.
                 AddSideTrigger(AddTrigger<DealDamageAction>(
-                    dda => dda.Target == CharacterCard && dda.DidDealDamage && dda.Amount >= 8 - H,
+                    dda => dda.Target == CharacterCard && dda.DidDealDamage && dda.FinalAmount >= 8 - H,
                     dda => GainRetaliationToken(dda),
                     TriggerType.AddTokensToPool,
                     TriggerTiming.After
@@ -125,7 +125,7 @@ namespace Jp.ParahumansOfTheWormverse.Leviathan
             if (pool.CurrentValue <= 0)
             {
                 e = GameController.SendMessageAction(
-                    $"{CharacterCard.Title} was dealt {dda.Amount} damage and will retaliate!",
+                    $"{CharacterCard.Title} was dealt {dda.FinalAmount} damage and will retaliate!",
                     Priority.Medium,
                     GetCardSource(),
                     showCardSource: true

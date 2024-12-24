@@ -21,7 +21,7 @@ namespace Jp.ParahumansOfTheWormverse.Leviathan
         {
             // Whenever Leviathan deals melee damage to a target...  
             AddTrigger<DealDamageAction>(
-                dda => dda.DamageType == DamageType.Melee && dda.DamageSource.Card == CharacterCard && dda.IsSuccessful && dda.Amount > 0,
+                dda => dda.DamageType == DamageType.Melee && dda.DamageSource.Card == CharacterCard && dda.IsSuccessful && dda.FinalAmount > 0,
                 dda => RespondToMeleeDamage(dda),
                 TriggerType.DealDamage,
                 TriggerTiming.After

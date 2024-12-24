@@ -40,7 +40,7 @@ namespace Jp.ParahumansOfTheWormverse.Kyushu
 			if (damageResults.Count() > 0)
 			{
 				List<HeroTurnTaker> heroDiscards = new List<HeroTurnTaker>();
-				IEnumerable<TurnTaker> damagedHeroes = from dd in damageResults where dd.Amount > 0 && dd.Target.Is(this).Hero().Target().Character() && dd.DidDealDamage select dd.Target.Owner;
+				IEnumerable<TurnTaker> damagedHeroes = from dd in damageResults where dd.FinalAmount > 0 && dd.Target.Is(this).Hero().Target().Character() && dd.DidDealDamage select dd.Target.Owner;
 				IEnumerator discardCoroutine = base.GameController.SelectTurnTakersAndDoAction(DecisionMaker, new LinqTurnTakerCriteria((TurnTaker tt) => tt.Is(this).Hero() && damagedHeroes.Contains(tt) && !heroDiscards.Contains(tt.ToHero())), SelectionType.DiscardCard, (TurnTaker tt) => base.GameController.SelectAndDiscardCard(FindHeroTurnTakerController(tt.ToHero()), selectionType: SelectionType.DiscardCard, cardSource: GetCardSource()), allowAutoDecide: true, cardSource: GetCardSource());
 				if (base.UseUnityCoroutines)
 				{

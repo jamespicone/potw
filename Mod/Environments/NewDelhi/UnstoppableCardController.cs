@@ -34,7 +34,7 @@ namespace Jp.ParahumansOfTheWormverse.NewDelhi
             // "Reduce damage dealt to the villain target with the highest HP by 1."
             ReduceDamageTrigger = AddTrigger((DealDamageAction dda) => CanCardBeConsideredHighestHitPoints(dda.Target, (Card c) => c.Is(this).Villain().Target()), MaybeReduceDamageResponse, TriggerType.ReduceDamage, TriggerTiming.Before);
             // "When the villain target with the highest HP is dealt 4 or more damage at once, destroy this card."
-            AddTrigger<DealDamageAction>((DealDamageAction dda) => CanCardBeConsideredHighestHitPoints(dda.Target, (Card c) => c.Is(this).Villain().Target()) && dda.Amount >= 4, (DealDamageAction dda) => base.GameController.DestroyCard(DecisionMaker, base.Card, actionSource: dda, responsibleCard: dda.CardSource.Card, cardSource: GetCardSource()), TriggerType.DestroySelf, TriggerTiming.After);
+            AddTrigger<DealDamageAction>((DealDamageAction dda) => CanCardBeConsideredHighestHitPoints(dda.Target, (Card c) => c.Is(this).Villain().Target()) && dda.FinalAmount >= 4, (DealDamageAction dda) => base.GameController.DestroyCard(DecisionMaker, base.Card, actionSource: dda, responsibleCard: dda.CardSource.Card, cardSource: GetCardSource()), TriggerType.DestroySelf, TriggerTiming.After);
             base.AddTriggers();
         }
 
