@@ -17,6 +17,19 @@ namespace Jp.ParahumansOfTheWormverse.TheMerchants
         {
         }
 
+        protected override IEnumerable<SpecialString> SpecialStrings
+        {
+            get
+            {
+                List<SpecialString> list = new List<SpecialString>();
+                if (CharacterCard.IsFlipped || !CharacterCard.IsInPlay)
+                {
+                    list.Add(new SpecialString(() => "Heroes cannot win until there are no villain targets in play.", CharacterCardController.GetCardSource(), () => true));
+                }
+                return list;
+            }
+        }
+
         public override void AddTriggers()
         {
             if (CharacterCard.IsFlipped || ! CharacterCard.IsInPlay)
