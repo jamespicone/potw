@@ -6,6 +6,7 @@ using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
 using Handelabra.Sentinels.UnitTest;
+using MathNet.Numerics.Integration;
 
 namespace Jp.ParahumansOfTheWormverse.UnitTest.Alexandria
 {
@@ -44,6 +45,7 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.Alexandria
 
             AssertNumberOfStatusEffectsInPlay(0);
             DecisionSelectCard = legacy.CharacterCard;
+            AssertNextDecisionChoices(notIncluded: new Card[] { alexandria.CharacterCard });
             GoToEndOfTurn(alexandria);
             AssertNumberOfStatusEffectsInPlay(1);
 
