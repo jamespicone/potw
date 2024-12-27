@@ -118,5 +118,28 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.Skitter
             GoToEndOfTurn(skitter);
             QuickHandCheck(0, 4);
         }
+
+        [Test()]
+        public void DrawIsOptional()
+        {
+            SetupGameController("BaronBlade", "Jp.ParahumansOfTheWormverse.Skitter", "Jp.ParahumansOfTheWormverse.Tattletale", "Megalopolis");
+
+            RemoveVillainTriggers();
+            StartGame();
+            RemoveMobileDefensePlatform();
+
+            PlayCard("DeliveryService");
+
+            GoToDrawCardPhase(skitter);
+
+            // Turn off autodraw so we can actually say no.
+            GameController.PlayerPolicies.AutoDrawCards = AlwaysSmartNever.Never;
+
+            QuickHandStorage(skitter, tattletale);
+            DecisionSelectTurnTaker = tattletale.TurnTaker;
+            DecisionYesNo = false;
+            GoToEndOfTurn(skitter);
+            QuickHandCheck(0, 0);
+        }
     }
 }

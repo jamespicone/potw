@@ -24,7 +24,7 @@ namespace Jp.ParahumansOfTheWormverse.Skitter
                     HeroTurnTakerController,
                     Math.Min(3, Card.BugTokenCount()) + 1,
                     optionalDrawCards: false,
-                    requiredDraws: 0,
+                    requiredDraws: -1, // There's an off-by-one error in SelectHeroToDrawCards
                     allowAutoDraw: true,
                     cardSource: GetCardSource()
                 ),
