@@ -234,5 +234,25 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.Alexandria
 
             AssertAtLocation(cardToDiscard, alexandria.TurnTaker.Trash);
         }
+
+        [Test()]
+        public void TestDamageWouldGoToZero()
+        {
+            SetupGameController("BaronBlade", "Jp.ParahumansOfTheWormverse.Alexandria", "Megalopolis");
+
+            StartGame();
+
+            PlayCard("Invincible");
+
+            DecisionYesNo = true;
+
+            QuickHPStorage(alexandria.CharacterCard);
+            QuickHandStorage(alexandria);
+
+            DealDamage(baron.CharacterCard, alexandria.CharacterCard, 1, DamageType.Melee);
+
+            QuickHPCheck(0);
+            QuickHandCheck(0);
+        }
     }
 }

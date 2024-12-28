@@ -23,7 +23,7 @@ namespace Jp.ParahumansOfTheWormverse.Alexandria
                 Card,
                 nameof(DiscardToPreventDamage),
                 $"{HeroTurnTaker.NameRespectingVariant} may discard a card to prevent being damaged",
-                new TriggerType[] { TriggerType.DiscardCard, TriggerType.CancelAction },
+                new TriggerType[] { TriggerType.WouldBeDealtDamage, TriggerType.CancelAction, TriggerType.DiscardCard },
                 TurnTaker,
                 Card
             );
