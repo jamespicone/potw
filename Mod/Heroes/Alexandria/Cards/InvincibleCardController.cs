@@ -1,4 +1,5 @@
- using Handelabra.Sentinels.Engine.Controller;
+using Handelabra;
+using Handelabra.Sentinels.Engine.Controller;
 using Handelabra.Sentinels.Engine.Model;
 using System.Collections;
 using System.Collections.Generic;
@@ -63,69 +64,40 @@ namespace Jp.ParahumansOfTheWormverse.Alexandria
                     extraInfo: () => "Discard a card to prevent the damage",
                     storedResults: discardResult
                 );
-                if (UseUnityCoroutines)
-                {
-                    yield return GameController.StartCoroutine(e);
-                }
-                else
-                {
-                    GameController.ExhaustCoroutine(e);
-                }
+                if (UseUnityCoroutines) { yield return GameController.StartCoroutine(e); }
+                else { GameController.ExhaustCoroutine(e); }
 
+                Card cardToDiscard = null;
                 if (DidDiscardCards(discardResult))
                 {
-                    Card cardToDiscard = null;
-                    if (discardResult.Any(dca => dca.IsPretend))
-                    {
-                        cardToDiscard = discardResult.First().CardToDiscard;
-                    }
+                    cardToDiscard = discardResult.First().CardToDiscard;
+                }
 
-                    preventInfo = new PreventInfo
-                    {
-                        toDiscard = cardToDiscard,
-                        identifier = dda.InstanceIdentifier
-                    };
-                }
-                else
+                preventInfo = new PreventInfo
                 {
-                    preventInfo = null;
-                }
+                    toDiscard = cardToDiscard,
+                    identifier = dda.InstanceIdentifier
+                };
             }
 
-            if (preventInfo.HasValue)
+            if (preventInfo?.toDiscard != null)
             {
-                IEnumerator e;
-                if (preventInfo.Value.toDiscard != null)
-                {
-                    e = GameController.DiscardCard(
-                        HeroTurnTakerController,
-                        preventInfo.Value.toDiscard,
-                        null,
-                        TurnTaker,
-                        cardSource: GetCardSource()
-                    );
-                    if (UseUnityCoroutines)
-                    {
-                        yield return GameController.StartCoroutine(e);
-                    }
-                    else
-                    {
-                        GameController.ExhaustCoroutine(e);
-                    }
-                }
+                var e = GameController.DiscardCard(
+                    HeroTurnTakerController,
+                    preventInfo.Value.toDiscard,
+                    null,
+                    TurnTaker,
+                    cardSource: GetCardSource()
+                );
+                if (UseUnityCoroutines) { yield return GameController.StartCoroutine(e); }
+                else { GameController.ExhaustCoroutine(e); }
 
                 e = GameController.CancelAction(dda, isPreventEffect: true, cardSource: GetCardSource());
-                if (UseUnityCoroutines)
-                {
-                    yield return GameController.StartCoroutine(e);
-                }
-                else
-                {
-                    GameController.ExhaustCoroutine(e);
-                }
+                if (UseUnityCoroutines) { yield return GameController.StartCoroutine(e); }
+                else { GameController.ExhaustCoroutine(e); }
             }
 
-            if (! GameController.PretendMode)
+            if (! dda.IsPretend)
             {
                 preventInfo = null;
             }
