@@ -28,17 +28,16 @@ namespace Jp.ParahumansOfTheWormverse.Bitch
             if (UseUnityCoroutines) { yield return GameController.StartCoroutine(e); }
             else { GameController.ExhaustCoroutine(e); }
 
-            ReduceDamageStatusEffect status = new ReduceDamageStatusEffect(2);
-            status.UntilStartOfNextTurn(TurnTaker);
-            status.TargetCriteria.IsOneOfTheseCards = new List<Card>();
-            foreach (var selected in storedResults.First().SelectCardDecisions)
+            if (DidSelectCards(storedResults))
             {
-                status.TargetCriteria.IsOneOfTheseCards.Add(selected.SelectedCard);
-            }
+                ReduceDamageStatusEffect status = new ReduceDamageStatusEffect(2);
+                status.UntilStartOfNextTurn(TurnTaker);
+                status.TargetCriteria.IsOneOfTheseCards = GetSelectedCards(storedResults).ToList();
 
-            e = GameController.AddStatusEffect(status, true, GetCardSource());
-            if (UseUnityCoroutines) { yield return GameController.StartCoroutine(e); }
-            else { GameController.ExhaustCoroutine(e); }
+                e = GameController.AddStatusEffect(status, true, GetCardSource());
+                if (UseUnityCoroutines) { yield return GameController.StartCoroutine(e); }
+                else { GameController.ExhaustCoroutine(e); }
+            }
 
             e = DrawCard(HeroTurnTaker, true);
             if (UseUnityCoroutines) { yield return GameController.StartCoroutine(e); }
