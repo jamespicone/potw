@@ -271,6 +271,7 @@ namespace Handelabra.Sentinels.UnitTest
 
             while (!gameController.IsGameOver && gameController.Game.Round <= roundLimit)
             {
+                Log.Debug("\n");
                 RunCoroutine(gameController.EnterNextTurnPhase());
 
                 var state = gameController.Game.ToStateString();
@@ -342,6 +343,8 @@ namespace Handelabra.Sentinels.UnitTest
             }
             else
             {
+                Log.Debug($"Top card of {taker.TurnTaker.Name} is {taker.TurnTaker.Deck.TopCard?.Identifier}");
+
                 // Otherwise play the top card of the deck.
                 RunCoroutine(taker.GameController.PlayTopCard(null, taker));
             }
@@ -350,11 +353,13 @@ namespace Handelabra.Sentinels.UnitTest
         protected IEnumerator MakeRandomDecisions(IDecision decision)
         {
             // Make random decisions!
+            Log.Debug($"Making decision {decision.ToStringForMultiplayerDebugging()}");
             if (decision.IsOptional)
             {
                 // 5% of the time skip optional decisions
                 if (GetRandomDecision(5))
                 {
+                    Log.Debug($"Skipping decision");
                     decision.Skip();
                     yield break;
                 }
@@ -369,69 +374,87 @@ namespace Handelabra.Sentinels.UnitTest
                     choices = choices.Where(c => GameController.CanPlayCard(FindCardController(c)) == CanPlayCardResult.CanPlay).ToList();
 
                 if (choices.Count() > 0)
+                {
                     selectCardDecision.SelectedCard = choices.ElementAtOrDefault(GetRandomNumber(choices.Count()));
+                    Log.Debug($"Selected card {selectCardDecision.SelectedCard.Identifier}");
+                }
                 else
+                {
                     selectCardDecision.Skip();
+                    Log.Debug($"Skipping selecting card");
+                }
             }
             else if (decision is YesNoDecision)
             {
                 var yesNo = decision as YesNoDecision;
                 yesNo.Answer = GetRandomNumber(1) == 1;
+                Log.Debug($"Selecting answer {yesNo.Answer}");
             }
             else if (decision is SelectDamageTypeDecision)
             {
                 var damage = decision as SelectDamageTypeDecision;
                 damage.SelectedDamageType = damage.Choices.ElementAtOrDefault(GetRandomNumber(damage.Choices.Count()));
+                Log.Debug($"Selected damage type {damage.SelectedDamageType}");
             }
             else if (decision is MoveCardDecision)
             {
                 var moveCard = decision as MoveCardDecision;
                 moveCard.Destination = moveCard.PossibleDestinations.ElementAtOrDefault(GetRandomNumber(moveCard.PossibleDestinations.Count()));
+                Log.Debug($"Selected destination {moveCard.Destination}");
             }
             else if (decision is UsePowerDecision)
             {
                 var power = decision as UsePowerDecision;
                 power.SelectedPower = power.Choices.ElementAtOrDefault(GetRandomNumber(power.Choices.Count()));
+                Log.Debug($"Selected power {power.SelectedPower}");
             }
             else if (decision is UseIncapacitatedAbilityDecision)
             {
                 var ability = decision as UseIncapacitatedAbilityDecision;
                 ability.SelectedAbility = ability.Choices.ElementAtOrDefault(GetRandomNumber(ability.Choices.Count()));
+                Log.Debug($"Selected ability {ability.SelectedAbility}");
             }
             else if (decision is SelectTurnTakerDecision)
             {
                 var turn = decision as SelectTurnTakerDecision;
                 turn.SelectedTurnTaker = turn.Choices.ElementAtOrDefault(GetRandomNumber(turn.Choices.Count()));
+                Log.Debug($"Selected turn taker {turn.SelectedTurnTaker.Name}");
             }
             else if (decision is SelectCardsDecision)
             {
                 var cards = decision as SelectCardsDecision;
                 cards.ReadyForNext = true;
+                Log.Debug("Ready for next");
             }
             else if (decision is SelectFunctionDecision)
             {
                 var function = decision as SelectFunctionDecision;
                 function.SelectedFunction = function.Choices.ElementAtOrDefault(GetRandomNumber(function.Choices.Count()));
+                Log.Debug($"Selected function {function.SelectedFunction}");
             }
             else if (decision is SelectNumberDecision)
             {
                 var number = decision as SelectNumberDecision;
                 number.SelectedNumber = number.Choices.ElementAtOrDefault(GetRandomNumber(number.Choices.Count()));
+                Log.Debug($"Selected number {number.SelectedNumber}");
             }
             else if (decision is SelectLocationDecision)
             {
                 var selectLocation = decision as SelectLocationDecision;
                 selectLocation.SelectedLocation = selectLocation.Choices.ElementAtOrDefault(GetRandomNumber(selectLocation.Choices.Count()));
+                Log.Debug($"Selected location {selectLocation.SelectedLocation}");
             }
             else if (decision is ActivateAbilityDecision)
             {
                 var activate = decision as ActivateAbilityDecision;
                 activate.SelectedAbility = activate.Choices.ElementAtOrDefault(GetRandomNumber(activate.Choices.Count()));
+                Log.Debug($"Selected ability {activate.SelectedAbility.AbilityKey} {activate.SelectedAbility.Index} on {activate.CardSource.Card.Identifier}");
             }
             else if (decision is SelectWordDecision)
             {
                 var word = decision as SelectWordDecision;
                 word.SelectedWord = word.Choices.ElementAtOrDefault(GetRandomNumber(word.Choices.Count()));
+                Log.Debug($"Selected word {word.SelectedWord}");
             }
             else if (decision is SelectFromBoxDecision)
             {
@@ -442,11 +465,13 @@ namespace Handelabra.Sentinels.UnitTest
                 var selectedPromo = promos.ElementAtOrDefault(GetRandomNumber(promos.Count()));
                 box.SelectedIdentifier = selectedPromo;
                 box.SelectedTurnTakerIdentifier = selectedTurnTaker;
+                Log.Debug($"Selected from box {box.SelectedIdentifier} {box.SelectedTurnTakerIdentifier}");
             }
             else if (decision is SelectTurnPhaseDecision)
             {
                 var selectPhase = decision as SelectTurnPhaseDecision;
                 selectPhase.SelectedPhase = selectPhase.Choices.ElementAtOrDefault(GetRandomNumber(selectPhase.Choices.Count()));
+                Log.Debug($"Selected phase {selectPhase.SelectedPhase}");
             }
             else
             {
@@ -521,6 +546,7 @@ namespace Handelabra.Sentinels.UnitTest
         protected IEnumerator MakeSomewhatReasonableDecisions(IDecision decision)
         {
             // Make random decisions!
+            Log.Debug($"Making decision {decision.ToStringForMultiplayerDebugging()}");
             if (decision is SelectCardDecision)
             {
                 var selectCardDecision = (SelectCardDecision)decision;
@@ -585,6 +611,7 @@ namespace Handelabra.Sentinels.UnitTest
                         if (actualChoices.Count() > 0)
                         {
                             selectCardDecision.SelectedCard = actualChoices.ElementAtOrDefault(GetRandomNumber(actualChoices.Count()));
+                            Log.Debug($"Choosing to play {selectCardDecision.SelectedCard.Identifier}");
                         }
                         else
                         {
@@ -598,66 +625,87 @@ namespace Handelabra.Sentinels.UnitTest
                     // Pick a random one
                     selectCardDecision.SelectedCard = selectCardDecision.Choices.ElementAtOrDefault(GetRandomNumber(selectCardDecision.Choices.Count()));
                 }
+
+                if (selectCardDecision.Skipped)
+                {
+                    Log.Debug($"Skipped selecting card");
+                }
+                else
+                {
+                    Log.Debug($"Selected card {selectCardDecision.SelectedCard}");
+                }
             }
             else if (decision is YesNoDecision)
             {
                 var yesNo = decision as YesNoDecision;
                 yesNo.Answer = GetRandomNumber(1) == 1;
+                Log.Debug($"Selected answer {yesNo.Answer}");
             }
             else if (decision is SelectDamageTypeDecision)
             {
                 var damage = decision as SelectDamageTypeDecision;
                 damage.SelectedDamageType = damage.Choices.ElementAtOrDefault(GetRandomNumber(damage.Choices.Count()));
+                Log.Debug($"Selected damage type {damage.SelectedDamageType}");
             }
             else if (decision is MoveCardDecision)
             {
                 var moveCard = decision as MoveCardDecision;
                 moveCard.Destination = moveCard.PossibleDestinations.ElementAtOrDefault(GetRandomNumber(moveCard.PossibleDestinations.Count()));
+                Log.Debug($"Selected destination {moveCard.Destination}");
             }
             else if (decision is UsePowerDecision)
             {
                 var power = decision as UsePowerDecision;
                 power.SelectedPower = power.Choices.ElementAtOrDefault(GetRandomNumber(power.Choices.Count()));
+                Log.Debug($"Selected power {power.SelectedPower}");
             }
             else if (decision is UseIncapacitatedAbilityDecision)
             {
                 var ability = decision as UseIncapacitatedAbilityDecision;
                 ability.SelectedAbility = ability.Choices.ElementAtOrDefault(GetRandomNumber(ability.Choices.Count()));
+                Log.Debug($"Selected ability {ability.SelectedAbility}");
             }
             else if (decision is SelectTurnTakerDecision)
             {
                 var turn = decision as SelectTurnTakerDecision;
                 turn.SelectedTurnTaker = turn.Choices.ElementAtOrDefault(GetRandomNumber(turn.Choices.Count()));
+                Log.Debug($"Selected turntaker {turn.SelectedTurnTaker}");
             }
             else if (decision is SelectCardsDecision)
             {
                 var cards = decision as SelectCardsDecision;
                 cards.ReadyForNext = true;
+                Log.Debug("Ready for next");
             }
             else if (decision is SelectFunctionDecision)
             {
                 var function = decision as SelectFunctionDecision;
                 function.SelectedFunction = function.Choices.ElementAtOrDefault(GetRandomNumber(function.Choices.Count()));
+                Log.Debug($"Selected function {function.SelectedFunction}");
             }
             else if (decision is SelectNumberDecision)
             {
                 var number = decision as SelectNumberDecision;
                 number.SelectedNumber = number.Choices.ElementAtOrDefault(GetRandomNumber(number.Choices.Count()));
+                Log.Debug($"Selected number {number.SelectedNumber}");
             }
             else if (decision is SelectLocationDecision)
             {
                 var selectLocation = decision as SelectLocationDecision;
                 selectLocation.SelectedLocation = selectLocation.Choices.ElementAtOrDefault(GetRandomNumber(selectLocation.Choices.Count()));
+                Log.Debug($"Selected location {selectLocation.SelectedLocation}");
             }
             else if (decision is ActivateAbilityDecision)
             {
                 var activateAbility = decision as ActivateAbilityDecision;
                 activateAbility.SelectedAbility = activateAbility.Choices.ElementAtOrDefault(GetRandomNumber(activateAbility.Choices.Count()));
+                Log.Debug($"Activated ability {activateAbility.SelectedAbility.AbilityKey} {activateAbility.SelectedAbility.Index} on {activateAbility.CardSource.Card.Identifier}");
             }
             else if (decision is SelectWordDecision)
             {
                 var selectWord = decision as SelectWordDecision;
                 selectWord.SelectedWord = selectWord.Choices.ElementAtOrDefault(GetRandomNumber(selectWord.Choices.Count()));
+                Log.Debug($"Selected word {selectWord.SelectedWord}");
             }
             else if (decision is SelectFromBoxDecision)
             {
@@ -666,11 +714,13 @@ namespace Handelabra.Sentinels.UnitTest
                 var selectedPair = heroes.ElementAtOrDefault(GetRandomNumber(heroes.Count()));
                 box.SelectedIdentifier = selectedPair.Value;
                 box.SelectedTurnTakerIdentifier = selectedPair.Key;
+                Log.Debug($"Selected from box {box.SelectedIdentifier} {box.SelectedTurnTakerIdentifier}");
             }
             else if (decision is SelectTurnPhaseDecision)
             {
                 var selectPhase = decision as SelectTurnPhaseDecision;
                 selectPhase.SelectedPhase = selectPhase.Choices.ElementAtOrDefault(GetRandomNumber(selectPhase.Choices.Count()));
+                Log.Debug($"Selected phase {selectPhase.SelectedPhase}");
             }
             else
             {
