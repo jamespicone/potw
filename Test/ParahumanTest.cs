@@ -117,9 +117,34 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest
         protected void AssertDamageSource(Card c)
         {
             InstallObserver();
+            expectedDamageSource = new Card[] { c };
+        }
+
+        protected void AssertDamageSource(IEnumerable<Card> c)
+        {
+            InstallObserver();
             expectedDamageSource = c;
         }
+
+        protected void AssertDamageSource(params Card[] c)
+        {
+            InstallObserver();
+            expectedDamageSource = c;
+        }
+
         protected void AssertDamageType(DamageType type)
+        {
+            InstallObserver();
+            expectedDamageType = new DamageType[] { type };
+        }
+
+        protected void AssertDamageType(IEnumerable<DamageType> type)
+        {
+            InstallObserver();
+            expectedDamageType = type;
+        }
+
+        protected void AssertDamageType(params DamageType[] type)
         {
             InstallObserver();
             expectedDamageType = type;
@@ -128,13 +153,13 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest
         protected void AssertIrreducible()
         {
             InstallObserver();
-            expectedIrreducible = true;
+            expectedIrreducible = new bool[] { true };
         }
 
         protected void AssertNotIrreducible()
         {
             InstallObserver();
-            expectedIrreducible = false;
+            expectedIrreducible = new bool[] { false };
         }
 
         protected void IncapacitateCharacter(Card character, Card damageSource)
@@ -157,9 +182,9 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest
         // Implementation
         private bool hasInstalledHandler = false;
 
-        private DamageType? expectedDamageType = null;
-        private Card expectedDamageSource = null;
-        private bool? expectedIrreducible = null;
+        private IEnumerable<DamageType> expectedDamageType = null;
+        private IEnumerable<Card> expectedDamageSource = null;
+        private IEnumerable<bool> expectedIrreducible = null;
 
         private List<Card> expectedRevealedCards = null;
 
@@ -169,20 +194,29 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest
             {
                 if (expectedDamageType != null)
                 {
-                    Assert.That(dda.DamageType, Is.EqualTo(expectedDamageType.Value), $"{expectedDamageType} was the expected damage type");
-                    expectedDamageType = null;
+                    var expected = expectedDamageType.First();
+                    expectedDamageType = expectedDamageType.Skip(1);
+                    if (expectedDamageType.Count() == 0) { expectedDamageType = null; }
+
+                    Assert.That(dda.DamageType, Is.EqualTo(expected), $"{expected} was the expected damage type");
                 }
 
                 if (expectedDamageSource != null)
                 {
-                    Assert.That(dda.DamageSource.Card, Is.EqualTo(expectedDamageSource), $"{expectedDamageSource.Title} was the expected damage source");
-                    expectedDamageSource = null;
+                    var expected = expectedDamageSource.First();
+                    expectedDamageSource = expectedDamageSource.Skip(1);
+                    if (expectedDamageSource.Count() == 0) { expectedDamageSource = null; }
+
+                    Assert.That(dda.DamageSource.Card, Is.EqualTo(expected), $"{expected.Title} was the expected damage source");
                 }
 
                 if (expectedIrreducible != null)
                 {
-                    Assert.That(dda.IsIrreducible, Is.EqualTo(expectedIrreducible.Value), $"{expectedIrreducible.Value} was the expected irreducible status");
-                    expectedIrreducible = null;
+                    var expected = expectedIrreducible.First();
+                    expectedIrreducible = expectedIrreducible.Skip(1);
+                    if (expectedIrreducible.Count() == 0) { expectedIrreducible = null; }
+
+                    Assert.That(dda.IsIrreducible, Is.EqualTo(expected), $"{expected} was the expected irreducible status");
                 }
             }
 
