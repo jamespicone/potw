@@ -1,4 +1,5 @@
-﻿using Handelabra.Sentinels.Engine.Controller;
+﻿using Handelabra;
+using Handelabra.Sentinels.Engine.Controller;
 using Handelabra.Sentinels.Engine.Model;
 using System;
 using System.Collections;
@@ -21,13 +22,14 @@ namespace Jp.ParahumansOfTheWormverse.Dragon
         {
             if(! Card.IsFlipped)
             {
-                AddSideTrigger(AddPhaseChangeTrigger(tt => tt == TurnTaker, p => p == Phase.Start, pca => true,
+                // Make sure we don't go trying to do token things if we're not in play or the representative of earth.
+                AddSideTrigger(AddPhaseChangeTrigger(tt => tt == TurnTaker && Card.IsInPlayAndNotUnderCard, p => p == Phase.Start, pca => true,
                     pca => AddFocusTokens(4, GetCardSource()), new TriggerType[] { TriggerType.FirstTrigger }, TriggerTiming.Before));
 
-                AddSideTrigger(AddPhaseChangeTrigger(tt => tt == TurnTaker, p => p == Phase.End, pca => true,
+                AddSideTrigger(AddPhaseChangeTrigger(tt => tt == TurnTaker && Card.IsInPlayAndNotUnderCard, p => p == Phase.End, pca => true,
                     pca => ResetFocus(), new TriggerType[] { TriggerType.FirstTrigger }, TriggerTiming.Before));
 
-                AddSideTrigger(AddPhaseChangeTrigger(tt => tt == TurnTaker, p => p == Phase.Unknown, 
+                AddSideTrigger(AddPhaseChangeTrigger(tt => tt == TurnTaker && Card.IsInPlayAndNotUnderCard && tt.IsHero, p => p == Phase.Unknown, 
                     pca => true, pca => DoFocusActions(), new TriggerType[] { TriggerType.UsePower }, TriggerTiming.Before ));
             }
         }
@@ -94,7 +96,7 @@ namespace Jp.ParahumansOfTheWormverse.Dragon
 
         private IEnumerator DoFocusActions()
         {
-            var pool = CharacterCard.FindTokenPool("FocusPool");
+            var pool = Card.FindTokenPool("FocusPool");
             if (pool == null) { yield break; }
 
             while (pool.CurrentValue > 0)
@@ -116,7 +118,7 @@ namespace Jp.ParahumansOfTheWormverse.Dragon
                     GameController.ExhaustCoroutine(e);
                 }
 
-                if (selectedAbility.Count() <= 0 || selectedAbility.First().Skipped) { break; }
+                if (selectedAbility.Count() <= 0 || selectedAbility.First().Skipped || selectedAbility.First().SelectedAbility == null) { break; }
 
                 e = GameController.RemoveTokensFromPool(pool, 1, cardSource: GetCardSource());
                 if (UseUnityCoroutines)
@@ -132,7 +134,7 @@ namespace Jp.ParahumansOfTheWormverse.Dragon
 
         public IEnumerator AddFocusTokens(int tokens, CardSource source)
         {
-            var pool = CharacterCard.FindTokenPool("FocusPool");
+            var pool = Card.FindTokenPool("FocusPool");
             if (pool == null) { yield break; }
 
             var e = GameController.AddTokensToPool(pool, tokens, source);
@@ -148,7 +150,7 @@ namespace Jp.ParahumansOfTheWormverse.Dragon
 
         public IEnumerator LoseFocusTokens(int tokens, CardSource source)
         {
-            var pool = CharacterCard.FindTokenPool("FocusPool");
+            var pool = Card.FindTokenPool("FocusPool");
             if (pool == null) { yield break; }
 
             var e = GameController.RemoveTokensFromPool(pool, tokens, cardSource: source);
@@ -164,7 +166,7 @@ namespace Jp.ParahumansOfTheWormverse.Dragon
 
         private IEnumerator ResetFocus()
         {
-            var pool = CharacterCard.FindTokenPool("FocusPool");
+            var pool = Card.FindTokenPool("FocusPool");
             if (pool == null) { yield break; }
 
             
@@ -181,7 +183,13 @@ namespace Jp.ParahumansOfTheWormverse.Dragon
 
         public override TurnPhase AskIfTurnPhaseShouldBeChanged(TurnPhase fromPhase, TurnPhase toPhase)
         {
+            // If we're next to Representative of Earth our turntaker is the environment and we should
+            // not change phases.
+            //
+            // Also make sure we're not under Guise or dead.
+            if (! TurnTaker.IsHero) { return null; }
             if (Card.IsFlipped) { return null; }
+            if (! Card.IsInPlayAndNotUnderCard) { return null; }
 
             if (fromPhase == null || toPhase == null) { return null; }
 
