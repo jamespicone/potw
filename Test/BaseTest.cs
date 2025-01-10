@@ -10,6 +10,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
 using Handelabra.Sentinels.Engine.Controller.PromoCardUnlockControllers;
 using NUnit.Framework.Legacy;
+using System.Reflection;
 
 namespace Handelabra.Sentinels.UnitTest
 {
@@ -501,15 +502,39 @@ namespace Handelabra.Sentinels.UnitTest
 
         IEnumerable<KeyValuePair<string, string>> HandleGetHeroCardsInBoxRequest(Func<string, bool> identifierCriteria, Func<string, bool> turnTakerCriteria)
         {
+            // Get the assemblies added to the mod helper
+            FieldInfo assemblyField = typeof(ModHelper).GetField("_assemblies", BindingFlags.NonPublic | BindingFlags.Static);
+            var modAssemblies = (Dictionary<string, Assembly>)assemblyField.GetValue(null);
+
+            var modDecks = new List<string>();
+            foreach (var assembly in modAssemblies)
+            {
+                var resourceNames = assembly.Value.GetManifestResourceNames();
+                foreach (var resource in resourceNames)
+                {
+                    var decklistName = resource;
+                    var index = decklistName.IndexOf("DeckList.json");
+                    if (index < 0) continue; // Not a decklist
+                    decklistName = decklistName.Remove(index);
+                    decklistName = decklistName.Replace(".DeckLists", "");
+
+                    string identifier;
+                    ModHelper.GetNamespaceFromQualifiedIdentifier(decklistName, out identifier);
+
+                    modDecks.Add($"{assembly.Key}.{identifier}");
+                }
+            }
+
             var result = new List<KeyValuePair<string, string>>();
 
             var modDefs = ModHelper.GetAllPromoDefinitions();
 
             // Find all the playable hero character cards in the box (including other sizes of Sky-Scraper)
-            var availableHeroes = DeckDefinition.AvailableHeroes.Union(GameController.Game.HeroTurnTakers.Select(tt => tt.DeckDefinition.QualifiedIdentifier));
+            var availableHeroes = DeckDefinition.AvailableHeroes.Union(modDecks);
             foreach (var heroTurnTaker in availableHeroes.Where(turnTakerCriteria))
             {
                 var heroDefinition = DeckDefinitionCache.GetDeckDefinition(heroTurnTaker);
+                if (! heroDefinition.IsHero) continue; // Only hero decks
 
                 var defs = heroDefinition.GetAllCardDefinitions();
 
@@ -521,7 +546,8 @@ namespace Handelabra.Sentinels.UnitTest
                     // Ignore non-real cards (Sentinels Intructions) and cards that do not start in play (Sky-Scraper sizes)
                     if (cardDef.IsCharacter
                         && cardDef.IsRealCard
-                        && identifierCriteria(cardDef.QualifiedPromoIdentifierOrIdentifier))
+                        && identifierCriteria(cardDef.QualifiedPromoIdentifierOrIdentifier)
+                    )
                     {
                         // It's in the box!
                         var kvp = new KeyValuePair<string, string>(heroTurnTaker, cardDef.QualifiedPromoIdentifierOrIdentifier);
