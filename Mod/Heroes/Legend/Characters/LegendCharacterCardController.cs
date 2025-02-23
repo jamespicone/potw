@@ -85,7 +85,7 @@ namespace Jp.ParahumansOfTheWormverse.Legend
             var damage = new List<DealDamageAction>();
             foreach (var effect in effects)
             {
-                damage.Add(effect.TypicalDamageAction(targets));
+                damage.Add(effect.TypicalDamageAction(targets, CharacterCardController, GetCardSource()));
             }
 
             var storedResult = new List<SelectCardDecision>();
@@ -121,19 +121,19 @@ namespace Jp.ParahumansOfTheWormverse.Legend
             }
         }
 
-        public DealDamageAction TypicalDamageAction(IEnumerable<Card> targets)
+        public DealDamageAction TypicalDamageAction(IEnumerable<Card> targets, CardController sourceCard, CardSource cardSource)
         {
-            return new DealDamageAction(GetCardSource(), new DamageSource(GameController, CharacterCard), null, 2, DamageType.Energy);
+            return new DealDamageAction(cardSource, new DamageSource(GameController, sourceCard.CharacterCard), null, 2, DamageType.Energy);
         }
 
-        public IEnumerator DoEffect(IEnumerable<Card> targets, CardSource cardSource, EffectTargetingOrdering ordering)
+        public IEnumerator DoEffect(IEnumerable<Card> targets, CardController sourceCard, CardSource cardSource, EffectTargetingOrdering ordering)
         {
             // "Legend deals 2 energy damage"
             return this.HandleEffectOrdering(
                  targets,
                  ordering,
                  t => GameController.DealDamageToTarget(
-                     new DamageSource(GameController, CharacterCard),
+                     new DamageSource(GameController, sourceCard.CharacterCard),
                      t,
                      2,
                      DamageType.Energy,
@@ -141,7 +141,7 @@ namespace Jp.ParahumansOfTheWormverse.Legend
                  ),
                  ts => GameController.DealDamage(
                      HeroTurnTakerController,
-                     CharacterCard,
+                     sourceCard.CharacterCard,
                      c => ts.Contains(c),
                      2,
                      DamageType.Energy,

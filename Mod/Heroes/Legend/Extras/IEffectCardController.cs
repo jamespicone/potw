@@ -14,8 +14,8 @@ namespace Jp.ParahumansOfTheWormverse.Legend
 
     public interface IEffectCardController
     {
-        DealDamageAction TypicalDamageAction(IEnumerable<Card> targets);
+        DealDamageAction TypicalDamageAction(IEnumerable<Card> targets, CardController sourceCard, CardSource cardSource);
 
-        IEnumerator DoEffect(IEnumerable<Card> targets, CardSource cardSourceToUse, EffectTargetingOrdering ordering = EffectTargetingOrdering.NeedsOrdering );
+        IEnumerator DoEffect(IEnumerable<Card> targets, CardController sourceCard, CardSource cardSourceToUse, EffectTargetingOrdering ordering = EffectTargetingOrdering.NeedsOrdering );
     }
 }

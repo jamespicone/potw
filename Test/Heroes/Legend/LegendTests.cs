@@ -13,9 +13,36 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.Legend
     public class LegendTests : ParahumanTest
     {
         [Test()]
-        public void TestModWorks()
+        public void TestGuiseEffects()
         {
-            SetupGameController("BaronBlade", "Jp.ParahumansOfTheWormverse.Legend", "InsulaPrimalis");
+            SetupGameController("BaronBlade", "Guise", "Jp.ParahumansOfTheWormverse.Legend", "InsulaPrimalis");
+
+            StartGame();
+
+            RemoveVillainCards();
+            RemoveVillainTriggers();
+
+            var kaleidoscope = PlayCard("Kaleidoscope");
+            var splitshot = PlayCard("Splitshot");
+
+            GoToPlayCardPhase(guise);
+
+            DecisionSelectTurnTaker = legend.TurnTaker;
+            var uyitg = PlayCard("UhYeahImThatGuy");
+            ResetDecisions();
+
+            DecisionSelectTargets = new Card[] { baron.CharacterCard, null };
+            DecisionSelectDamageType = DamageType.Infernal;
+
+            AssertDamageSource(guise.CharacterCard);
+            AssertDamageType(DamageType.Infernal);
+
+            QuickHPStorage(baron);
+            UsePower(uyitg);
+            QuickHPCheck(-2);
         }
+
+        // TODO: Guise copying Legend's powers crashes when accessing effects.
+        // Check CardWithoutReplacements on source or something?
     }
 }

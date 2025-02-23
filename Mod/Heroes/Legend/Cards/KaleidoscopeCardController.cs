@@ -12,11 +12,11 @@ namespace Jp.ParahumansOfTheWormverse.Legend
         public KaleidoscopeCardController(Card card, TurnTakerController controller) : base(card, controller)
         { }
 
-        public DealDamageAction TypicalDamageAction(IEnumerable<Card> targets)
+        public DealDamageAction TypicalDamageAction(IEnumerable<Card> targets, CardController sourceCard, CardSource cardSource)
         {
             var ret = new DealDamageAction(
-                GetCardSource(),
-                new DamageSource(GameController, CharacterCard),
+                cardSource,
+                new DamageSource(GameController, sourceCard.CharacterCard),
                 null,
                 2,
                 DamageType.Energy
@@ -26,28 +26,28 @@ namespace Jp.ParahumansOfTheWormverse.Legend
             return ret;
         }
 
-        public IEnumerator DoEffect(IEnumerable<Card> targets, CardSource cardSource, EffectTargetingOrdering ordering)
+        public IEnumerator DoEffect(IEnumerable<Card> targets, CardController sourceCard, CardSource cardSource, EffectTargetingOrdering ordering)
         {
             // Select a damage type. Legend deals 2 damage of that type
             return this.HandleEffectOrdering(
                 targets,
                 ordering,
-                t => SingleTargetEffect(t, cardSource),
-                ts => MultiTargetEffect(ts, cardSource)
+                t => SingleTargetEffect(t, sourceCard, cardSource),
+                ts => MultiTargetEffect(ts, sourceCard, cardSource)
             );
         }
 
-        private IEnumerator SingleTargetEffect(Card target, CardSource cardSource)
+        private IEnumerator SingleTargetEffect(Card target, CardController sourceCard, CardSource cardSource)
         {
-            var dda = TypicalDamageAction(new Card[] { target });
+            var dda = TypicalDamageAction(new Card[] { target }, sourceCard, cardSource);
             dda.Target = target;
 
             var storedResults = new List<SelectDamageTypeDecision>();
             var e = GameController.SelectDamageType(
-                HeroTurnTakerController,
+                sourceCard.HeroTurnTakerController,
                 storedResults,
                 gameAction: dda,
-                cardSource: GetCardSource()
+                cardSource: cardSource
             );
             if (UseUnityCoroutines)
             {
@@ -62,7 +62,7 @@ namespace Jp.ParahumansOfTheWormverse.Legend
             if (damageType == null) { yield break; }
 
             e = DealDamage(
-                CharacterCard,
+                sourceCard.CharacterCard,
                 target,
                 dda.Amount,
                 damageType.Value,
@@ -78,19 +78,19 @@ namespace Jp.ParahumansOfTheWormverse.Legend
             }
         }
 
-        private IEnumerator MultiTargetEffect(IEnumerable<Card> targets, CardSource cardSource)
+        private IEnumerator MultiTargetEffect(IEnumerable<Card> targets, CardController sourceCard, CardSource cardSource)
         {
-            var dda = TypicalDamageAction(targets);
+            var dda = TypicalDamageAction(targets, sourceCard, cardSource);
 
             // TODO: This doesn't work
             SelectTargetsDecision decision = new SelectTargetsDecision(
                 GameController,
-                HeroTurnTakerController,
+                sourceCard.HeroTurnTakerController,
                 c => targets.Contains(c),
                 allowAutoDecide: true,
                 numberOfCards: targets.Count(),
                 requiredDecisions: targets.Count(),
-                cardSource: GetCardSource(),
+                cardSource: cardSource,
                 damageSource: dda.DamageSource,
                 amount: dda.Amount,
                 selectTargetsEvenIfCannotPerformAction: true
@@ -98,7 +98,7 @@ namespace Jp.ParahumansOfTheWormverse.Legend
 
             var e = GameController.SelectCardsAndDoAction(
                 decision,
-                scd => SingleTargetEffect(scd.SelectedCard, cardSource),
+                scd => SingleTargetEffect(scd.SelectedCard, sourceCard, cardSource),
                 cardSource: GetCardSource()
             );
             if (UseUnityCoroutines)

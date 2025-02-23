@@ -12,11 +12,11 @@ namespace Jp.ParahumansOfTheWormverse.Legend
         public FreezeblastCardController(Card card, TurnTakerController controller) : base(card, controller)
         { }
 
-        public DealDamageAction TypicalDamageAction(IEnumerable<Card> targets)
+        public DealDamageAction TypicalDamageAction(IEnumerable<Card> targets, CardController sourceCard, CardSource cardSource)
         {
             return new DealDamageAction(
-                GetCardSource(),
-                new DamageSource(GameController, CharacterCard),
+                cardSource,
+                new DamageSource(GameController, sourceCard.CharacterCard),
                 null,
                 1,
                 DamageType.Cold,
@@ -24,14 +24,14 @@ namespace Jp.ParahumansOfTheWormverse.Legend
             );
         }
 
-        public IEnumerator DoEffect(IEnumerable<Card> targets, CardSource cardSource, EffectTargetingOrdering ordering)
+        public IEnumerator DoEffect(IEnumerable<Card> targets, CardController sourceCard, CardSource cardSource, EffectTargetingOrdering ordering)
         {
             // Legend deals 1 cold damage. Targets dealt damage in this way deal 1 less damage until the start of your next turn
             return this.HandleEffectOrdering(
                 targets,
                 ordering,
                 t => GameController.DealDamageToTarget(
-                    new DamageSource(GameController, CharacterCard),
+                    new DamageSource(GameController, sourceCard.CharacterCard),
                     t,
                     1,
                     DamageType.Cold,
@@ -40,7 +40,7 @@ namespace Jp.ParahumansOfTheWormverse.Legend
                 ),
                 ts => GameController.DealDamage(
                     HeroTurnTakerController,
-                    CharacterCard,
+                    sourceCard.CharacterCard,
                     c => ts.Contains(c),
                     1,
                     DamageType.Cold,

@@ -40,7 +40,7 @@ namespace Jp.ParahumansOfTheWormverse.Legend
 
                 if (selectedEffect.Count() <= 0) { break; }
 
-                var selected = selectedEffect.First().SelectedAbility?.CardController;
+                var selected = selectedEffect.First().SelectedAbility?.CopiedFromCardController ?? selectedEffect.First().SelectedAbility?.CardController;
                 if (selected == null) { break; }
 
                 selectedEffects.Add(selected);
@@ -60,7 +60,7 @@ namespace Jp.ParahumansOfTheWormverse.Legend
             // apply effects
             foreach (var effect in effects)
             {
-                var e = effect.DoEffect(targets, cardSourceToUse, ordering);
+                var e = effect.DoEffect(targets, co, cardSourceToUse, ordering);
                 if (co.UseUnityCoroutines)
                 {
                     yield return co.GameController.StartCoroutine(e);

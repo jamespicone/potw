@@ -130,7 +130,7 @@ namespace Jp.ParahumansOfTheWormverse.Legend
             var damage = new List<DealDamageAction>();
             foreach (var effect in effects)
             {
-                damage.Add(effect.TypicalDamageAction(targets));
+                damage.Add(effect.TypicalDamageAction(targets, this, GetCardSource()));
             }
 
             var storedResult = new List<SelectCardDecision>();
