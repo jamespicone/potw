@@ -179,6 +179,30 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest
             AssertNextRevealReveals(cards.ToList());
         }
 
+        protected IEnumerable<Card> StackDeckHandleDuplicates(params string[] identifiers)
+        {
+            var ret = new List<Card>();
+            var cardDict = new Dictionary<string, int> { };
+            foreach (var identifier in identifiers)
+            {
+                int counter = 0;
+                if (cardDict.ContainsKey(identifier))
+                {
+                    counter = cardDict[identifier];
+                }
+
+                var card = GetCard(identifier, counter);
+                ret.Add(card);
+                StackDeck(card);
+
+                counter++;
+
+                cardDict[identifier] = counter;
+            }
+
+            return ret;
+        }
+
         // Implementation
         private bool hasInstalledHandler = false;
 
