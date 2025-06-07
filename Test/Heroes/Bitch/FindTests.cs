@@ -162,5 +162,73 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.Bitch
             AssertInTrash(cards.ElementAt(0));
             AssertInDeck(cards.ElementAt(2)); // Whistle
         }
+
+        [Test()]
+        public void TestDiscardIsMarkedAsDiscard()
+        {
+            SetupGameController("BaronBlade", "Jp.ParahumansOfTheWormverse.Bitch", "Legacy", "InsulaPrimalis");
+            StartGame();
+
+            MoveAllCards(baron, baron.TurnTaker.Deck, baron.TurnTaker.OutOfGame);
+
+            PlayCard("Brutus"); // Add a dog to get more reveals
+
+            // Stack Baron's deck with multiple targets and other cards
+            var cards = StackDeckHandleDuplicates("BacklashField", "PoweredRemoteTurret", "BladeBattalion");
+            DecisionSelectLocation = new LocationChoice(baron.TurnTaker.Deck);
+
+            // Choose to discard both targets
+            DecisionSelectFunctions = new int?[] { 0, 0 }; // Discard both targets
+
+            // Set up to verify the discards
+            AssertWillBeDiscarded(cards.Skip(1).ToList());
+
+            PlayCard("Find");
+
+            AssertAllDiscardsDiscarded();
+
+            // Verify targets went to trash
+            AssertInTrash(cards.ElementAt(2)); // BladeBattalion
+            AssertInTrash(cards.ElementAt(1)); // PoweredRemoteTurret
+            AssertInDeck(cards.ElementAt(0)); // BacklashField
+        }
+
+        [Test()]
+        public void TestDiscardWithAdvancedChokepoint()
+        {
+            SetupGameController(new string[] {
+                "Chokepoint",
+                "Jp.ParahumansOfTheWormverse.Bitch",
+                "Legacy",
+                "InsulaPrimalis"
+            }, advanced: true);
+            StartGame();
+
+            // Flip Chokepoint to her Armored Animus side
+            Card chokepoint = GetCard("ChokepointCharacter");
+            FlipCard(chokepoint);
+
+            // Add a dog to get at least 3 reveals
+            PlayCard("Brutus");
+
+            // Stack Bitch's deck with dog cards and non-targets
+            var cards = StackDeckHandleDuplicates("Angelica", "Judas", "Whistle");
+            DecisionSelectLocation = new LocationChoice(bitch.TurnTaker.Deck);
+
+            // Choose to discard first dog
+            DecisionSelectFunction = 0; // "Discard" option
+
+            PlayCard("Find");
+
+            // First dog should be face-down in villain play area due to Chokepoint's advanced effect
+            AssertInPlayArea(FindVillain("Chokepoint"), cards.ElementAt(1)); // Angelica
+            Assert.That(cards.ElementAt(1).IsFaceUp, Is.False);
+
+            // Second dog should go to trash since Chokepoint's effect only happens once per turn
+            AssertInTrash(cards.ElementAt(0)); // Judas
+
+            // Non-target should be shuffled back
+            AssertInDeck(cards.ElementAt(2)); // Whistle
+        }
     }
 }

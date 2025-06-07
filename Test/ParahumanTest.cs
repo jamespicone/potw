@@ -174,6 +174,17 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest
             expectedRevealedCards = cards;
         }
 
+        protected void AssertWillBeDiscarded(List<Card> cards)
+        {
+            InstallObserver();
+            expectedDiscard = cards;
+        }
+
+        protected void AssertAllDiscardsDiscarded()
+        {
+            Assert.That(expectedDiscard, Is.Empty, $"Expected every card to be discarded; these cards weren't: {expectedDiscard}");
+        }
+
         protected void AssertNextRevealReveals(params Card[] cards)
         {
             AssertNextRevealReveals(cards.ToList());
@@ -209,6 +220,7 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest
         private IEnumerable<DamageType> expectedDamageType = null;
         private IEnumerable<Card> expectedDamageSource = null;
         private IEnumerable<bool> expectedIrreducible = null;
+        private List<Card> expectedDiscard = null;
 
         private List<Card> expectedRevealedCards = null;
 
@@ -250,6 +262,15 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest
                 {
                     Assert.That(ra.RevealedCards, Is.EquivalentTo(expectedRevealedCards), $"Expected to see {string.Join(", ", expectedRevealedCards.Select(c => c.Title))} revealed but instead saw {string.Join(", ", ra.RevealedCards.Select(c => c.Title))}");
                     expectedRevealedCards = null;
+                }
+            }
+
+            if (action is MoveCardAction mca)
+            {
+                if (expectedDiscard != null && expectedDiscard.Contains(mca.CardToMove) && mca.Destination.IsTrash)
+                {
+                    Assert.That(mca.IsDiscard, Is.True, $"Expected {mca.CardToMove.Title} to be discarded");
+                    expectedDiscard.Remove(mca.CardToMove);
                 }
             }
 

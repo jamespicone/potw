@@ -172,5 +172,35 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.Bitch
             AssertInTrash(cards.ElementAt(0));
             AssertNumberOfCardsInDeck(baron, 1); // Just BladeBattalion
         }
+
+        [Test()]
+        public void TestDiscardIsMarkedAsDiscard()
+        {
+            SetupGameController("BaronBlade", "Jp.ParahumansOfTheWormverse.Bitch", "Legacy", "InsulaPrimalis");
+            StartGame();
+
+            MoveAllCards(baron, baron.TurnTaker.Deck, baron.TurnTaker.OutOfGame);
+
+            PlayCard("Brutus"); // Add a dog to get more reveals
+
+            // Stack Bitch's deck with multiple targets and other cards
+            var cards = StackDeckHandleDuplicates("MobileDefensePlatform", "ElementalRedistributor", "BladeBattalion");
+            DecisionSelectLocation = new LocationChoice(baron.TurnTaker.Deck);
+
+            // Choose to discard both devices
+            DecisionSelectFunctions = new int?[] { 0, 0 }; // Discard both devices
+
+            // Set up to verify the discards
+            AssertWillBeDiscarded(cards.Take(2).ToList());
+
+            PlayCard("Fetch");
+
+            AssertAllDiscardsDiscarded();
+
+            // Verify targets went to trash
+            AssertInTrash(cards.ElementAt(0)); // MDP
+            AssertInTrash(cards.ElementAt(1)); // Elemental Redistributor
+            AssertInDeck(cards.ElementAt(2)); // Blade Battalion
+        }
     }
 }
