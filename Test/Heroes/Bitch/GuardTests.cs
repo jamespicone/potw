@@ -136,5 +136,34 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.Bitch
             DealDamage(baron, tempest, 3, DamageType.Melee);
             QuickHPCheck(-1, -1);
         }
+
+        [Test()]
+        public void EffectExpires_NextTurn()
+        {
+            SetupGameController("BaronBlade", "Jp.ParahumansOfTheWormverse.Bitch", "Legacy", "InsulaPrimalis");
+
+            StartGame();
+
+            RemoveVillainCards();
+            RemoveVillainTriggers();
+
+            PlayCard("Milk");
+
+            DecisionSelectCard = bitch.CharacterCard;
+            PlayCard("Guard");
+
+            // Damage reduced this turn
+            QuickHPStorage(bitch);
+            DealDamage(baron, bitch, 3, DamageType.Melee);
+            QuickHPCheck(-1);
+
+            // Advance to start of Bitch's next turn
+            GoToStartOfTurn(bitch);
+
+            // Damage no longer reduced
+            QuickHPStorage(bitch);
+            DealDamage(baron, bitch, 3, DamageType.Melee);
+            QuickHPCheck(-3);
+        }
     }
 }
