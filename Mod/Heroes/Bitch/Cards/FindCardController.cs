@@ -49,7 +49,7 @@ namespace Jp.ParahumansOfTheWormverse.Bitch
                 var theCard = new List<Card>() { c };
 
                 var decisions = new List<Function>();
-                decisions.Add(new Function(HeroTurnTakerController, "Discard", SelectionType.DiscardFromDeck, () => GameController.MoveCard(TurnTakerController, c, c.NativeTrash, cardSource: GetCardSource())));
+                decisions.Add(new Function(HeroTurnTakerController, "Discard", SelectionType.DiscardFromDeck, () => GameController.MoveCard(TurnTakerController, c, c.NativeTrash, isDiscard: true, cardSource: GetCardSource())));
                 decisions.Add(new Function(HeroTurnTakerController, "Put into play", SelectionType.PutIntoPlay, () => GameController.PlayCard(TurnTakerController, c, isPutIntoPlay: true, cardSource: GetCardSource())));
 
                 e = GameController.SelectAndPerformFunction(
