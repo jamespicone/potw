@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Target Name="RepackSOTMUtilities" AfterTargets="Build">
+    <Message Text="Calling ILRepack" Importance="high" />
+
+    <Copy SourceFiles="..\packages\JpSOTMUtilities.2.2.1\lib\net48\JpSOTMUtilities.dll"
+          DestinationFolder="$(TargetDir)"
+          SkipUnchangedFiles="true" />
+
+    <ItemGroup>
+      <InputAssemblies Include="$(TargetDir)ParahumansOfTheWormverseUnitTests.dll" />
+      <InputAssemblies Include="$(TargetDir)JpSOTMUtilities.dll" />
+      <InputAssemblies Include="$(TargetDir)ParahumansOfTheWormverse.dll" />
+    </ItemGroup>
+
+    <ILRepack
+      Parallel="true"
+      InputAssemblies="@(InputAssemblies)"
+      TargetKind="SameAsPrimaryAssembly"
+      OutputFile="$(TargetDir)$(TargetFileName)"
+      LibraryPath="$(TargetDir)"
+      Union="true"
+      />
+
+    <Message Text="ILRepack completed" Importance="high" />
+  </Target>
+</Project>

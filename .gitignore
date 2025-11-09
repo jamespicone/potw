@@ -1,7 +1,12 @@
 .vs/
+.vscode/
+.claude/
+.github/
 bin/
 obj/
 packages/
 ParahumansOfTheWormverse/*
 *.csproj.user
 ParahumansOfTheWormverse.zip
+tools/
+Mod/BaseGameDecklists/
