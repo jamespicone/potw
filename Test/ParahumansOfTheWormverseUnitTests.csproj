@@ -4,7 +4,6 @@
     <RootNamespace>Jp.ParahumansOfTheWormverse.UnitTest</RootNamespace>
     <AssemblyName>ParahumansOfTheWormverseUnitTests</AssemblyName>
     <OutputType>Library</OutputType>
-    <ResolveAssemblyReferenceIgnoreTargetFrameworkAttributeVersionMismatch>true</ResolveAssemblyReferenceIgnoreTargetFrameworkAttributeVersionMismatch>
   </PropertyGroup>
 
   <ItemGroup>
@@ -21,6 +20,9 @@
     </Reference>
     <Reference Include="SentinelsEngine">
       <HintPath>C:\Program Files (x86)\Steam\steamapps\common\Sentinels of the Multiverse\Sentinels_Data\Managed\SentinelsEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.ObjectPool">
+      <HintPath>C:\Program Files (x86)\Steam\steamapps\common\Sentinels of the Multiverse\Sentinels_Data\Managed\Microsoft.Extensions.ObjectPool.dll</HintPath>
     </Reference>
   </ItemGroup>
 
