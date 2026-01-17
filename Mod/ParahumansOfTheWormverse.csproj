@@ -6,6 +6,8 @@
     <RootNamespace>Jp.ParahumansOfTheWormverse</RootNamespace>
     <AssemblyName>ParahumansOfTheWormverse</AssemblyName>
     <LangVersion>latest</LangVersion>
+    <!-- Provide fallback for SolutionDir when building csproj directly without solution -->
+    <SolutionDir Condition="'$(SolutionDir)' == '' Or '$(SolutionDir)' == '*Undefined*'">$(MSBuildProjectDirectory)\..\</SolutionDir>
   </PropertyGroup>
 
   <ItemGroup>
