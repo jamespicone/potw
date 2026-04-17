@@ -1,4 +1,4 @@
-﻿using NUnit.Framework;
+using NUnit.Framework;
 using System;
 using Handelabra.Sentinels.Engine.Model;
 using Handelabra.Sentinels.Engine.Controller;
@@ -15,7 +15,34 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.Tattletale
         [Test()]
         public void TestModWorks()
         {
-            SetupGameController("BaronBlade", "Jp.ParahumansOfTheWormverse.Tattletale", "InsulaPrimalis");
+            SetupGameController("BaronBlade", "Jp.ParahumansOfTheWormverse.Tattletale", "Bunker", "InsulaPrimalis");
+            StartGame();
+        }
+
+        [Test()]
+        public void TestIsOngoing()
+        {
+            SetupGameController("BaronBlade", "Jp.ParahumansOfTheWormverse.Tattletale", "Bunker", "InsulaPrimalis");
+            StartGame();
+
+            var card = GetCard("MyEyeOnYou");
+            Assert.That(card.DoKeywordsContain("ongoing"), Is.True);
+        }
+
+        [Test()]
+        public void TestPowerHealsHeroTarget3HP()
+        {
+            SetupGameController("BaronBlade", "Jp.ParahumansOfTheWormverse.Tattletale", "Bunker", "InsulaPrimalis");
+            StartGame();
+
+            SetHitPoints(bunker, 20);
+
+            var card = PlayCard("MyEyeOnYou");
+            DecisionSelectCard = bunker.CharacterCard;
+
+            QuickHPStorage(bunker);
+            UsePower(card);
+            QuickHPCheck(3);
         }
     }
 }

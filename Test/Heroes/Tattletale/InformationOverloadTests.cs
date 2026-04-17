@@ -17,6 +17,23 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.Tattletale
     public class InformationOverloadTests : ParahumanTest
     {
         [Test()]
+        public void TestModWorks()
+        {
+            SetupGameController("BaronBlade", "Jp.ParahumansOfTheWormverse.Tattletale", "Bunker", "InsulaPrimalis");
+            StartGame();
+        }
+
+        [Test()]
+        public void TestIsOneShot()
+        {
+            SetupGameController("BaronBlade", "Jp.ParahumansOfTheWormverse.Tattletale", "Bunker", "InsulaPrimalis");
+            StartGame();
+
+            var card = GetCard("InformationOverload");
+            Assert.That(card.DoKeywordsContain("one-shot"), Is.True);
+        }
+
+        [Test()]
         public void TestSelfDamage()
         {
             SetupGameController(
