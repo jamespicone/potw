@@ -1,4 +1,4 @@
-﻿using NUnit.Framework;
+using NUnit.Framework;
 using System;
 using Handelabra.Sentinels.Engine.Model;
 using Handelabra.Sentinels.Engine.Controller;
@@ -16,6 +16,59 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.Legend
         public void TestModWorks()
         {
             SetupGameController("BaronBlade", "Jp.ParahumansOfTheWormverse.Legend", "InsulaPrimalis");
+        }
+
+        [Test()]
+        public void TestIsLaser()
+        {
+            SetupGameController("BaronBlade", "Jp.ParahumansOfTheWormverse.Legend", "InsulaPrimalis");
+            StartGame();
+
+            var card = GetCard("Kaleidoscope");
+            Assert.That(card.DoKeywordsContain("laser"), Is.True);
+            Assert.That(card.DoKeywordsContain("ongoing"), Is.True);
+        }
+
+        [Test()]
+        public void TestEffectDealsSelectedDamageType()
+        {
+            SetupGameController("BaronBlade", "Jp.ParahumansOfTheWormverse.Legend", "Bunker", "InsulaPrimalis");
+            StartGame();
+
+            RemoveMobileDefensePlatform();
+
+            var kaleidoscope = PlayCard("Kaleidoscope");
+
+            DecisionActivateAbilities = new Card[] { kaleidoscope };
+            DecisionSelectTarget = baron.CharacterCard;
+            DecisionSelectDamageType = DamageType.Fire;
+
+            AssertDamageType(DamageType.Fire);
+
+            QuickHPStorage(baron);
+            UsePower(legend);
+            QuickHPCheck(-2);
+        }
+
+        [Test()]
+        public void TestEffectDealsDifferentDamageType()
+        {
+            SetupGameController("BaronBlade", "Jp.ParahumansOfTheWormverse.Legend", "Bunker", "InsulaPrimalis");
+            StartGame();
+
+            RemoveMobileDefensePlatform();
+
+            var kaleidoscope = PlayCard("Kaleidoscope");
+
+            DecisionActivateAbilities = new Card[] { kaleidoscope };
+            DecisionSelectTarget = baron.CharacterCard;
+            DecisionSelectDamageType = DamageType.Cold;
+
+            AssertDamageType(DamageType.Cold);
+
+            QuickHPStorage(baron);
+            UsePower(legend);
+            QuickHPCheck(-2);
         }
     }
 }

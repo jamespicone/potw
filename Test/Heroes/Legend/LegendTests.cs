@@ -1,4 +1,4 @@
-﻿using NUnit.Framework;
+using NUnit.Framework;
 using System;
 using Handelabra.Sentinels.Engine.Model;
 using Handelabra.Sentinels.Engine.Controller;
@@ -12,6 +12,81 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.Legend
     [TestFixture()]
     public class LegendTests : ParahumanTest
     {
+        [Test()]
+        public void TestLegendHP()
+        {
+            SetupGameController("BaronBlade", "Jp.ParahumansOfTheWormverse.Legend", "InsulaPrimalis");
+            StartGame();
+
+            Assert.That(legend.CharacterCard.MaximumHitPoints, Is.EqualTo(28));
+        }
+
+        [Test()]
+        public void TestPowerDeals2EnergyDamage()
+        {
+            SetupGameController("BaronBlade", "Jp.ParahumansOfTheWormverse.Legend", "Bunker", "InsulaPrimalis");
+            StartGame();
+
+            RemoveMobileDefensePlatform();
+
+            // With only the character card's "effect" ability available, it auto-selects
+            DecisionSelectTarget = baron.CharacterCard;
+
+            AssertDamageSource(legend.CharacterCard);
+            AssertDamageType(DamageType.Energy);
+
+            QuickHPStorage(baron);
+            UsePower(legend);
+            QuickHPCheck(-2);
+        }
+
+        [Test()]
+        public void TestIncapDealsDamage()
+        {
+            SetupGameController("BaronBlade", "Jp.ParahumansOfTheWormverse.Legend", "Bunker", "InsulaPrimalis");
+            StartGame();
+
+            RemoveMobileDefensePlatform();
+            IncapacitateCharacter(legend.CharacterCard, baron.CharacterCard);
+
+            DecisionSelectTarget = baron.CharacterCard;
+
+            QuickHPStorage(baron);
+            UseIncapacitatedAbility(legend, 0);
+            QuickHPCheck(-1);
+        }
+
+        [Test()]
+        public void TestIncapUsePower()
+        {
+            SetupGameController("BaronBlade", "Jp.ParahumansOfTheWormverse.Legend", "Bunker", "InsulaPrimalis");
+            StartGame();
+
+            RemoveMobileDefensePlatform();
+            IncapacitateCharacter(legend.CharacterCard, baron.CharacterCard);
+
+            // Select Bunker to use a power
+            DecisionSelectTurnTaker = bunker.TurnTaker;
+
+            UseIncapacitatedAbility(legend, 1);
+        }
+
+        [Test()]
+        public void TestIncapDrawCard()
+        {
+            SetupGameController("BaronBlade", "Jp.ParahumansOfTheWormverse.Legend", "Bunker", "InsulaPrimalis");
+            StartGame();
+
+            IncapacitateCharacter(legend.CharacterCard, baron.CharacterCard);
+
+            // Select Bunker to draw
+            DecisionSelectTurnTaker = bunker.TurnTaker;
+
+            QuickHandStorage(bunker);
+            UseIncapacitatedAbility(legend, 2);
+            QuickHandCheck(1);
+        }
+
         [Test()]
         public void TestGuiseEffects()
         {
