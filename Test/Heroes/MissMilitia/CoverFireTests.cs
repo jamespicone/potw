@@ -17,5 +17,49 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.MissMilitia
         {
             SetupGameController("BaronBlade", "Jp.ParahumansOfTheWormverse.MissMilitia", "InsulaPrimalis");
         }
+
+        [Test()]
+        public void TestIsOneShot()
+        {
+            SetupGameController("BaronBlade", "Jp.ParahumansOfTheWormverse.MissMilitia", "InsulaPrimalis");
+            StartGame();
+
+            var card = GetCard("CoverFire");
+            Assert.That(card.IsOneShot, Is.True);
+        }
+
+        [Test()]
+        public void TestDeals2ProjectileDamage()
+        {
+            SetupGameController("BaronBlade", "Jp.ParahumansOfTheWormverse.MissMilitia", "Bunker", "InsulaPrimalis");
+            StartGame();
+
+            RemoveMobileDefensePlatform();
+
+            DecisionSelectTarget = baron.CharacterCard;
+            DecisionSelectCard = missmilitia.CharacterCard;
+
+            QuickHPStorage(baron);
+            PlayCard("CoverFire");
+            QuickHPCheck(-2);
+        }
+
+        [Test()]
+        public void TestHeals2HP()
+        {
+            SetupGameController("BaronBlade", "Jp.ParahumansOfTheWormverse.MissMilitia", "Bunker", "InsulaPrimalis");
+            StartGame();
+
+            RemoveMobileDefensePlatform();
+
+            SetHitPoints(missmilitia, 20);
+
+            DecisionSelectTarget = baron.CharacterCard;
+            DecisionSelectCard = missmilitia.CharacterCard;
+
+            QuickHPStorage(missmilitia);
+            PlayCard("CoverFire");
+            QuickHPCheck(2);
+        }
     }
 }
