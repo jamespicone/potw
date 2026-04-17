@@ -15,7 +15,54 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.Armsmaster
         [Test()]
         public void TestModWorks()
         {
-            SetupGameController("BaronBlade", "Jp.ParahumansOfTheWormverse.Armsmaster", "InsulaPrimalis");
+            SetupGameController("BaronBlade", "Jp.ParahumansOfTheWormverse.Armsmaster", "Bunker", "InsulaPrimalis");
+            StartGame();
+        }
+
+        [Test()]
+        public void TestIsOneShot()
+        {
+            SetupGameController("BaronBlade", "Jp.ParahumansOfTheWormverse.Armsmaster", "Bunker", "InsulaPrimalis");
+            StartGame();
+
+            var card = GetCard("DualWielding");
+            Assert.That(card.DoKeywordsContain("one-shot"), Is.True);
+        }
+
+        [Test()]
+        public void TestUsesHalberdPower()
+        {
+            SetupGameController("BaronBlade", "Jp.ParahumansOfTheWormverse.Armsmaster", "Bunker", "InsulaPrimalis");
+            StartGame();
+
+            RemoveMobileDefensePlatform();
+
+            var halberd = PlayCard("OriginalHalberd");
+
+            DecisionSelectPower = halberd;
+            DecisionSelectTarget = baron.CharacterCard;
+            DecisionDoNotActivatableAbility = true;
+
+            QuickHPStorage(baron);
+            PlayCard("DualWielding");
+            // Original Halberd deals 2 melee
+            QuickHPCheck(-2);
+        }
+
+        [Test()]
+        public void TestGoesToTrashAfterPlay()
+        {
+            SetupGameController("BaronBlade", "Jp.ParahumansOfTheWormverse.Armsmaster", "Bunker", "InsulaPrimalis");
+            StartGame();
+
+            var halberd = PlayCard("SurveyHalberd");
+
+            DecisionSelectPower = halberd;
+            DecisionDoNotActivatableAbility = true;
+
+            var dw = PlayCard("DualWielding");
+
+            AssertInTrash(dw);
         }
     }
 }
