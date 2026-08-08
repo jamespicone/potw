@@ -1,4 +1,4 @@
-﻿using NUnit.Framework;
+using NUnit.Framework;
 using System;
 using Handelabra.Sentinels.Engine.Model;
 using Handelabra.Sentinels.Engine.Controller;
@@ -10,12 +10,25 @@ using Handelabra.Sentinels.UnitTest;
 namespace Jp.ParahumansOfTheWormverse.UnitTest.Environment.BrocktonBay
 {
     [TestFixture()]
-    public class AttentionTests : ParahumanTest
+    public class AttentionTests : BrocktonBayTestBase
     {
         [Test()]
-        public void TestModWorks()
+        public void TestRevealsTargetsIntoPlayAndSelfDestructs()
         {
-            SetupGameController("BaronBlade", "Tempest", "Jp.ParahumansOfTheWormverse.BrocktonBay");
+            SetupBrocktonBayGame();
+
+            // Villain deck top is a target; environment deck top is a target;
+            // hero decks contain no targets and get shuffled back.
+            var battalion = StackDeck(baron, "BladeBattalion");
+            var squad = StackDeck("PRTSquad");
+
+            var attention = PlayCard("Attention");
+
+            GoToEndOfTurn(env);
+
+            AssertIsInPlay(battalion);
+            AssertIsInPlay(squad);
+            AssertInTrash(attention);
         }
     }
 }

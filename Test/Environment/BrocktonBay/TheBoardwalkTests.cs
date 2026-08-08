@@ -1,4 +1,4 @@
-﻿using NUnit.Framework;
+using NUnit.Framework;
 using System;
 using Handelabra.Sentinels.Engine.Model;
 using Handelabra.Sentinels.Engine.Controller;
@@ -10,12 +10,31 @@ using Handelabra.Sentinels.UnitTest;
 namespace Jp.ParahumansOfTheWormverse.UnitTest.Environment.BrocktonBay
 {
     [TestFixture()]
-    public class TheBoardwalkTests : ParahumanTest
+    public class TheBoardwalkTests : BrocktonBayTestBase
     {
         [Test()]
-        public void TestModWorks()
+        public void TestReducesDamageToEnvironmentTargets()
         {
-            SetupGameController("BaronBlade", "Tempest", "Jp.ParahumansOfTheWormverse.BrocktonBay");
+            SetupBrocktonBayGame();
+
+            PlayCard("TheBoardwalk");
+            var squad = PlayCard("PRTSquad");
+
+            QuickHPStorage(squad);
+            DealDamage(haka, squad, 3, DamageType.Melee);
+            QuickHPCheck(-2);
+        }
+
+        [Test()]
+        public void TestEnteringPlayDestroysOtherSuburbs()
+        {
+            SetupBrocktonBayGame();
+
+            var docks = PlayCard("TheDocks");
+            var boardwalk = PlayCard("TheBoardwalk");
+
+            AssertInTrash(docks);
+            AssertIsInPlay(boardwalk);
         }
     }
 }

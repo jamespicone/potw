@@ -1,4 +1,4 @@
-﻿using NUnit.Framework;
+using NUnit.Framework;
 using System;
 using Handelabra.Sentinels.Engine.Model;
 using Handelabra.Sentinels.Engine.Controller;
@@ -10,12 +10,20 @@ using Handelabra.Sentinels.UnitTest;
 namespace Jp.ParahumansOfTheWormverse.UnitTest.Environment.BrocktonBay
 {
     [TestFixture()]
-    public class TheOutskirtsTests : ParahumanTest
+    public class TheOutskirtsTests : BrocktonBayTestBase
     {
         [Test()]
-        public void TestModWorks()
+        public void TestEndOfTurnPlaysTopEnvironmentCard()
         {
-            SetupGameController("BaronBlade", "Tempest", "Jp.ParahumansOfTheWormverse.BrocktonBay");
+            SetupBrocktonBayGame();
+
+            var outskirts = PlayCard("TheOutskirts");
+            var squad = StackDeck("PRTSquad");
+
+            GoToEndOfTurn(env);
+
+            AssertIsInPlay(squad);
+            AssertIsInPlay(outskirts);
         }
     }
 }
