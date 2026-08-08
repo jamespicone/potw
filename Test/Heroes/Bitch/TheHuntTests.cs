@@ -1,4 +1,4 @@
-﻿using NUnit.Framework;
+using NUnit.Framework;
 using System;
 using Handelabra.Sentinels.Engine.Model;
 using Handelabra.Sentinels.Engine.Controller;
@@ -13,9 +13,24 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.Bitch
     public class TheHuntTests : ParahumanTest
     {
         [Test()]
-        public void TestModWorks()
+        public void TestDogsAttackAtStartOfTurn()
         {
             SetupGameController("BaronBlade", "Jp.ParahumansOfTheWormverse.Bitch", "InsulaPrimalis");
+            StartGame();
+            RemoveVillainCards();
+            RemoveVillainTriggers();
+
+            PlayCard("TheHunt");
+            var brutus = PlayCard("Brutus");
+
+            QuickHPStorage(baron);
+            AssertDamageType(DamageType.Melee);
+            AssertDamageSource(brutus);
+            DecisionSelectTarget = baron.CharacterCard;
+
+            GoToStartOfTurn(bitch);
+
+            QuickHPCheck(-1);
         }
     }
 }
