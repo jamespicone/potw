@@ -1,4 +1,4 @@
-﻿using NUnit.Framework;
+using NUnit.Framework;
 using System;
 using Handelabra.Sentinels.Engine.Model;
 using Handelabra.Sentinels.Engine.Controller;
@@ -10,12 +10,23 @@ using Handelabra.Sentinels.UnitTest;
 namespace Jp.ParahumansOfTheWormverse.UnitTest.Behemoth
 {
     [TestFixture()]
-    public class LeapTests : ParahumanTest
+    public class LeapTests : BehemothTestBase
     {
         [Test()]
-        public void TestModWorks()
+        public void TestMostCardsHeroGainsTwoNeighboursOne()
         {
-            SetupGameController("Jp.ParahumansOfTheWormverse.Behemoth", "Tempest", "InsulaPrimalis");
+            SetupBehemothGame();
+            ClearProximity();
+
+            // Legacy has the most cards in play.
+            PlayCard("DangerSense");
+            PlayCard("InspiringPresence");
+
+            PlayMovementCard("Leap");
+
+            Assert.That(Proximity(legacy).CurrentValue, Is.EqualTo(2));
+            Assert.That(Proximity(bunker).CurrentValue, Is.EqualTo(1));
+            Assert.That(Proximity(haka).CurrentValue, Is.EqualTo(1));
         }
     }
 }

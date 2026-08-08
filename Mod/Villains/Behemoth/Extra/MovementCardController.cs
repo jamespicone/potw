@@ -1,4 +1,4 @@
-﻿using Handelabra;
+using Handelabra;
 using Handelabra.Sentinels.Engine.Controller;
 using Handelabra.Sentinels.Engine.Model;
 using System;
@@ -19,20 +19,12 @@ namespace Jp.ParahumansOfTheWormverse.Behemoth
             // Show all Proximity pools?
         }
 
-        public override IEnumerator Play()
+        // Used movement cards go under the Movement Trash card, not the villain trash.
+        // (Moving the card during Play() doesn't work: the engine's one-shot cleanup
+        // moves it to the trash destination afterwards, so route that instead.)
+        public override MoveCardDestination GetTrashDestination()
         {
-            // After card is played, move it under MovementTrash
-            Log.Debug("MovementCardController.Play() activated");
-            IEnumerator trashCoroutine = base.GameController.MoveCard(base.TurnTakerController, base.Card, base.TurnTaker.FindCard(MovementTrashIdentifier, realCardsOnly: false).UnderLocation, playCardIfMovingToPlayArea: false, responsibleTurnTaker: base.TurnTaker, doesNotEnterPlay: true, cardSource: GetCardSource());
-            if (UseUnityCoroutines)
-            {
-                yield return GameController.StartCoroutine(trashCoroutine);
-            }
-            else
-            {
-                GameController.ExhaustCoroutine(trashCoroutine);
-            }
-            yield break;
+            return new MoveCardDestination(base.TurnTaker.FindCard(MovementTrashIdentifier, realCardsOnly: false).UnderLocation);
         }
     }
 }

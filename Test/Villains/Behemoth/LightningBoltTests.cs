@@ -1,4 +1,4 @@
-﻿using NUnit.Framework;
+using NUnit.Framework;
 using System;
 using Handelabra.Sentinels.Engine.Model;
 using Handelabra.Sentinels.Engine.Controller;
@@ -10,12 +10,23 @@ using Handelabra.Sentinels.UnitTest;
 namespace Jp.ParahumansOfTheWormverse.UnitTest.Behemoth
 {
     [TestFixture()]
-    public class LightningBoltTests : ParahumanTest
+    public class LightningBoltTests : BehemothTestBase
     {
         [Test()]
-        public void TestModWorks()
+        public void TestDamagesChosenHero()
         {
-            SetupGameController("Jp.ParahumansOfTheWormverse.Behemoth", "Tempest", "InsulaPrimalis");
+            SetupBehemothGame();
+            RemoveBehemothTriggers();
+            ClearProximity();
+
+            QuickHPStorage(legacy, bunker, haka);
+            AssertDamageType(DamageType.Lightning);
+            AssertDamageSource(behemoth.CharacterCard);
+            DecisionSelectTarget = bunker.CharacterCard;
+
+            PlayCard("LightningBolt");
+
+            QuickHPCheck(0, -5, 0);
         }
     }
 }
