@@ -70,6 +70,15 @@ namespace Jp.ParahumansOfTheWormverse.Leviathan
                     pca => MaybeFlip(pca),
                     new TriggerType[] { TriggerType.FlipCard, TriggerType.ModifyTokens }
                 ));
+
+                if (IsGameAdvanced)
+                {
+                    // Advanced: Reduce damage dealt to Leviathan by 1.
+                    AddSideTrigger(AddReduceDamageTrigger(
+                        c => c == CharacterCard,
+                        1
+                    ));
+                }
             }
         }
 

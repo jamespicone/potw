@@ -1,4 +1,4 @@
-﻿using NUnit.Framework;
+using NUnit.Framework;
 using System;
 using Handelabra.Sentinels.Engine.Model;
 using Handelabra.Sentinels.Engine.Controller;
@@ -10,12 +10,34 @@ using Handelabra.Sentinels.UnitTest;
 namespace Jp.ParahumansOfTheWormverse.UnitTest.Leviathan
 {
     [TestFixture()]
-    public class ImpossibleToughnessTests : ParahumanTest
+    public class ImpossibleToughnessTests : LeviathanTestBase
     {
         [Test()]
-        public void TestModWorks()
+        public void TestReducesDamageDealtToLeviathan()
         {
-            SetupGameController("Jp.ParahumansOfTheWormverse.Leviathan", "Tempest", "InsulaPrimalis");
+            SetupLeviathanGame();
+            RemoveVillainTriggers();
+            MoveTacticsToDeckBottom();
+
+            PlayCard("ImpossibleToughness");
+
+            QuickHPStorage(leviathan);
+            DealDamage(haka, leviathan, 3, DamageType.Melee);
+            QuickHPCheck(-2);
+        }
+
+        [Test()]
+        public void TestDoesNotReduceDamageToHeroes()
+        {
+            SetupLeviathanGame();
+            RemoveVillainTriggers();
+            MoveTacticsToDeckBottom();
+
+            PlayCard("ImpossibleToughness");
+
+            QuickHPStorage(haka);
+            DealDamage(leviathan.CharacterCard, haka.CharacterCard, 3, DamageType.Melee);
+            QuickHPCheck(-3);
         }
     }
 }

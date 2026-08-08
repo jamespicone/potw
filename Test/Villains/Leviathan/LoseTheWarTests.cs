@@ -1,4 +1,4 @@
-﻿using NUnit.Framework;
+using NUnit.Framework;
 using System;
 using Handelabra.Sentinels.Engine.Model;
 using Handelabra.Sentinels.Engine.Controller;
@@ -10,12 +10,63 @@ using Handelabra.Sentinels.UnitTest;
 namespace Jp.ParahumansOfTheWormverse.UnitTest.Leviathan
 {
     [TestFixture()]
-    public class LoseTheWarTests : ParahumanTest
+    public class LoseTheWarTests : LeviathanTestBase
     {
-        [Test()]
-        public void TestModWorks()
+        private Card SetupLoseTheWar()
         {
-            SetupGameController("Jp.ParahumansOfTheWormverse.Leviathan", "Tempest", "InsulaPrimalis");
+            RemoveVillainTriggers();
+            return PutTacticInPlay("LoseTheWar");
+        }
+
+        [Test()]
+        public void TestExilesTopOfEnvironmentDeck()
+        {
+            SetupLeviathanGame();
+            SetupLoseTheWar();
+
+            var pileup = StackDeck("TrafficPileup");
+
+            GoToStartOfTurn(leviathan);
+
+            AssertOutOfGame(pileup);
+        }
+
+        [Test()]
+        public void TestExilesEnvironmentCardInPlayWhenDeckAndTrashEmpty()
+        {
+            SetupLeviathanGame();
+            SetupLoseTheWar();
+
+            var pileup = PlayCard("TrafficPileup");
+            RemoveEnvironmentDeck();
+
+            GoToStartOfTurn(leviathan);
+
+            AssertOutOfGame(pileup);
+        }
+
+        [Test()]
+        public void TestHeroesLoseWhenNothingToRemove()
+        {
+            SetupLeviathanGame();
+            SetupLoseTheWar();
+
+            RemoveEnvironmentDeck();
+
+            GoToStartOfTurn(leviathan);
+
+            AssertGameOver(EndingResult.AlternateDefeat);
+        }
+
+        [Test()]
+        public void TestIndestructible()
+        {
+            SetupLeviathanGame();
+            var loseTheWar = SetupLoseTheWar();
+
+            DestroyCard(loseTheWar);
+
+            AssertIsInPlay(loseTheWar);
         }
     }
 }
