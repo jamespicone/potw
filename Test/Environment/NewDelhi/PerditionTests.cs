@@ -1,4 +1,4 @@
-﻿using NUnit.Framework;
+using NUnit.Framework;
 using System;
 using Handelabra.Sentinels.Engine.Model;
 using Handelabra.Sentinels.Engine.Controller;
@@ -10,12 +10,20 @@ using Handelabra.Sentinels.UnitTest;
 namespace Jp.ParahumansOfTheWormverse.UnitTest.Environment.NewDelhi
 {
     [TestFixture()]
-    public class PerditionTests : ParahumanTest
+    public class PerditionTests : NewDelhiTestBase
     {
         [Test()]
-        public void TestModWorks()
+        public void TestPlaysTopCardOfVillainTrash()
         {
-            SetupGameController("BaronBlade", "Tempest", "Jp.ParahumansOfTheWormverse.NewDelhi");
+            SetupNewDelhiGame();
+
+            PlayCard("Perdition");
+
+            var backlash = PutInTrash("BacklashField");
+
+            GoToStartOfTurn(env);
+
+            AssertIsInPlay(backlash);
         }
     }
 }

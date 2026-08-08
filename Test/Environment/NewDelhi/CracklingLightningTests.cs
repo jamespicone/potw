@@ -1,4 +1,4 @@
-﻿using NUnit.Framework;
+using NUnit.Framework;
 using System;
 using Handelabra.Sentinels.Engine.Model;
 using Handelabra.Sentinels.Engine.Controller;
@@ -10,12 +10,31 @@ using Handelabra.Sentinels.UnitTest;
 namespace Jp.ParahumansOfTheWormverse.UnitTest.Environment.NewDelhi
 {
     [TestFixture()]
-    public class CracklingLightningTests : ParahumanTest
+    public class CracklingLightningTests : NewDelhiTestBase
     {
         [Test()]
-        public void TestModWorks()
+        public void TestDamagesAllHeroesOnEnter()
         {
-            SetupGameController("BaronBlade", "Tempest", "Jp.ParahumansOfTheWormverse.NewDelhi");
+            SetupNewDelhiGame();
+
+            QuickHPStorage(legacy, bunker, haka);
+            AssertDamageType(DamageType.Lightning);
+
+            PlayCard("CracklingLightning");
+
+            QuickHPCheck(-3, -3, -3);
+        }
+
+        [Test()]
+        public void TestSelfDestructsAtEndOfTurn()
+        {
+            SetupNewDelhiGame();
+
+            var lightning = PlayCard("CracklingLightning");
+
+            GoToEndOfTurn(env);
+
+            AssertInTrash(lightning);
         }
     }
 }

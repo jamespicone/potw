@@ -1,4 +1,4 @@
-﻿using NUnit.Framework;
+using NUnit.Framework;
 using System;
 using Handelabra.Sentinels.Engine.Model;
 using Handelabra.Sentinels.Engine.Controller;
@@ -10,12 +10,36 @@ using Handelabra.Sentinels.UnitTest;
 namespace Jp.ParahumansOfTheWormverse.UnitTest.Environment.NewDelhi
 {
     [TestFixture()]
-    public class AChaoticEnvironmentTests : ParahumanTest
+    public class AChaoticEnvironmentTests : NewDelhiTestBase
     {
         [Test()]
-        public void TestModWorks()
+        public void TestEndOfTurnPlaysTopEnvironmentCard()
         {
-            SetupGameController("BaronBlade", "Tempest", "Jp.ParahumansOfTheWormverse.NewDelhi");
+            SetupNewDelhiGame();
+
+            var chaotic = PlayCard("AChaoticEnvironment");
+            // A second environment card so Chaotic doesn't self-destruct at the
+            // start of the environment turn.
+            PlayCard("LightningRod");
+
+            var sacrifice = StackDeck("HeroicSacrifice");
+
+            GoToEndOfTurn(env);
+
+            AssertIsInPlay(sacrifice);
+            AssertIsInPlay(chaotic);
+        }
+
+        [Test()]
+        public void TestSelfDestructsWhenAlone()
+        {
+            SetupNewDelhiGame();
+
+            var chaotic = PlayCard("AChaoticEnvironment");
+
+            GoToStartOfTurn(env);
+
+            AssertInTrash(chaotic);
         }
     }
 }
