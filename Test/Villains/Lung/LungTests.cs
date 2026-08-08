@@ -258,15 +258,26 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.Lung
         [Test()]
         public void TestFlippedAdvancedHeroesLose()
         {
-            // Note: in advanced mode the empty-deck flip can't be reached through the
-            // normal end of turn, because the advanced "discard the top card" trigger
-            // fires first and reshuffles the trash into the empty deck (that shuffle
-            // isn't "necessary to play a card", so it doesn't trigger the flip).
-            // Flip directly to test the flipped-advanced clause.
             SetupLungGame(advanced: true);
 
             FlipCard(lung.CharacterCard);
 
+            AssertGameOver(EndingResult.AlternateDefeat);
+        }
+
+        [Test()]
+        public void TestAdvancedFlipsWhenDiscardReshufflesTrash()
+        {
+            // With the deck empty, the advanced end-of-turn discard reshuffles the
+            // trash into the deck; that reshuffle flips Lung, which in advanced
+            // mode means the heroes lose.
+            SetupLungGame(advanced: true);
+
+            MoveCards(lung, lung.TurnTaker.Deck.Cards.ToList(), lung.TurnTaker.Trash);
+
+            GoToEndOfTurn();
+
+            AssertFlipped(lung.CharacterCard);
             AssertGameOver(EndingResult.AlternateDefeat);
         }
     }

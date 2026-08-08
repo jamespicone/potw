@@ -39,7 +39,10 @@ namespace Jp.ParahumansOfTheWormverse.Lung
             }
             else
             {
-                AddSideTrigger(AddTrigger<ShuffleTrashIntoDeckAction>(sta => sta.TurnTakerController == TurnTakerController && sta.NecessaryToPlayCard, sta => FlipLungAndBrute(sta), TriggerType.FlipCard, TriggerTiming.After));
+                // Any reshuffle of the villain trash into the deck flips Lung — including
+                // the advanced end-of-turn discard hitting an empty deck, which the engine
+                // performs with necessaryToPlayCard: false.
+                AddSideTrigger(AddTrigger<ShuffleTrashIntoDeckAction>(sta => sta.TurnTakerController == TurnTakerController, sta => FlipLungAndBrute(sta), TriggerType.FlipCard, TriggerTiming.After));
                 
                 if (IsGameAdvanced)
                 {

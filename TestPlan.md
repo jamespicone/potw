@@ -64,9 +64,10 @@ Suggested order, easiest first:
    character/Brute (flip, trash scaling, damage reduction, advanced).
    `LungTestBase` adds `FillLungTrash`, `RemoveLungTriggers`,
    `RemoveEnvironmentDeck`. Found & fixed a real bug: Bakuda's one-shot branch
-   used the revealed card as damage source, which always fizzles. Flagged
-   (not fixed): in advanced mode the discard-from-empty-deck reshuffle
-   prevents Lung's flip from ever triggering organically.
+   used the revealed card as damage source, which always fizzles. Also fixed
+   (2026-08-08): in advanced mode the discard-from-empty-deck reshuffle
+   prevented Lung's flip from ever triggering organically — the flip trigger
+   now fires on any villain-trash reshuffle, not just necessary-to-play ones.
 2. ~~**Leviathan**~~ DONE (2026-07-02): 37 behavioral tests across all 12 cards
    + character (retaliation tokens, flip cycle, tactics, advanced).
    `LeviathanTestBase` adds `PutTacticInPlay` / `MoveTacticsToDeckBottom` /
