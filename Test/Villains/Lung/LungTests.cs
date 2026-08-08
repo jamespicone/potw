@@ -266,6 +266,40 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.Lung
         }
 
         [Test()]
+        public void TestFlipsWhenGrowingAngerReshufflesTrash()
+        {
+            // Growing Anger discards the top 3 cards of the villain deck. If the deck
+            // runs out mid-discard, the trash is reshuffled into the deck, which flips
+            // Lung.
+            SetupLungGame();
+
+            MoveCards(lung, lung.TurnTaker.Deck.Cards.ToList(), lung.TurnTaker.Trash);
+            StackDeckHandleDuplicates("Wings", "WhiteHotFlame");
+
+            PlayCard(GetCardFromTrash(lung, "GrowingAnger"));
+
+            AssertFlipped(lung.CharacterCard);
+            AssertFlipped(brute);
+        }
+
+        [Test()]
+        public void TestFlipsWhenHeroDiscardReshufflesTrash()
+        {
+            // A hero discarding from an empty villain deck (K.N.Y.F.E.'s Wrecking
+            // Uppercut) reshuffles the trash into the deck, which flips Lung.
+            SetupGameController("Jp.ParahumansOfTheWormverse.Lung", "Knyfe", "Legacy", "Haka", "Megalopolis");
+            StartGame();
+
+            MoveCards(lung, lung.TurnTaker.Deck.Cards.ToList(), lung.TurnTaker.Trash);
+
+            DecisionSelectTarget = lung.CharacterCard;
+            PlayCard("WreckingUppercut");
+
+            AssertFlipped(lung.CharacterCard);
+            AssertFlipped(brute);
+        }
+
+        [Test()]
         public void TestAdvancedFlipsWhenDiscardReshufflesTrash()
         {
             // With the deck empty, the advanced end-of-turn discard reshuffles the
