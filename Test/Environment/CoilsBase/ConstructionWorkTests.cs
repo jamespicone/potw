@@ -1,4 +1,4 @@
-﻿using NUnit.Framework;
+using NUnit.Framework;
 using System;
 using Handelabra.Sentinels.Engine.Model;
 using Handelabra.Sentinels.Engine.Controller;
@@ -10,12 +10,21 @@ using Handelabra.Sentinels.UnitTest;
 namespace Jp.ParahumansOfTheWormverse.UnitTest.Environment.CoilsBase
 {
     [TestFixture()]
-    public class ConstructionWorkTests : ParahumanTest
+    public class ConstructionWorkTests : CoilsBaseTestBase
     {
         [Test()]
-        public void TestModWorks()
+        public void TestPutsThreeStructuresIntoPlayAndSelfDestructs()
         {
-            SetupGameController("BaronBlade", "Tempest", "Jp.ParahumansOfTheWormverse.CoilsBase");
+            SetupCoilsBaseGame();
+
+            var construction = PlayCard("ConstructionWork");
+
+            GoToEndOfTurn(env);
+
+            Assert.That(
+                FindCardsWhere(c => c.DoKeywordsContain("structure") && c.IsInPlay).Count(),
+                Is.EqualTo(3));
+            AssertInTrash(construction);
         }
     }
 }
