@@ -105,6 +105,12 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest
             MoveCards(echidna, twisted, twisted.First().Owner.OutOfGame);
         }
 
+        // Stop the environment from ever playing cards so multi-round tests stay deterministic.
+        public void RemoveEnvironmentDeck()
+        {
+            MoveCards(env, env.TurnTaker.Deck.Cards.ToList(), env.TurnTaker.OutOfGame);
+        }
+
         // If the Siberian is in play, puts her under the Nine card.
         public void ReturnSiberian()
         {

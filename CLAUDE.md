@@ -34,6 +34,8 @@ Note: The `build.ps1` Cake script may have compatibility issues. Use `dotnet` co
 **Game Engine**: Sentinels of the Multiverse modding API (Handelabra.Sentinels.Engine)
 **Key Dependencies**: JpSOTMUtilities (2.2.1), NUnit (4.0.1)
 
+**Game Source Reference**: Decompiled game source is available at `D:\Programming\src\new_extracted_sotm\extracted` (extracted via ILSpy). Use this to understand engine internals, find method signatures, or see how base game cards implement mechanics.
+
 ### Project Structure
 
 - **Mod/**: Main mod code
@@ -79,12 +81,32 @@ Tests inherit from `ParahumanTest` which provides:
 
 Base game decks (BaronBlade, InsulaPrimalis, etc.) can be used in tests for standard opponents/environments.
 
-### Card Definitions
+### Card Definitions (Deck Lists)
 
-Card metadata is defined in `DeckLists/` JSON files (e.g., `DeckLists/Heroes/Skitter/DeckList.json`). These define:
-- Card identifiers, titles, keywords
-- HP values, damage types
-- Card text and abilities
+**Mod deck lists** are in `Mod/DeckLists/`:
+- `DeckLists/Heroes/DauntlessDeckList.json`
+- `DeckLists/Villains/BehemothDeckList.json`
+- `DeckLists/Environments/BrocktonBayDeckList.json`
+
+**Base game deck lists** are in `Mod/BaseGameDecklists/` with full namespaced names:
+- `Handelabra.Sentinels.Engine.DeckLists.BaronBladeDeckList.json`
+- `Handelabra.Sentinels.Engine.DeckLists.InsulaPrimalisDeckList.json`
+
+These define card identifiers, titles, keywords, HP values, card text, and abilities.
+
+### Game Mechanics
+
+**Keywords vs Card Types**: In Sentinels, "Ongoing", "Equipment", and "One-Shot" are card types. Keywords like "Relic", "Limited", "Charge" are separate. A villain card that says "destroy all hero ongoing cards" won't affect a "Relic" card because Relic is a keyword, not a card type.
+
+**Card Visibility**: Cards can make themselves invisible to certain card sources by overriding `AskIfCardIsVisibleToCardSource`. When a card is invisible to a card source, that source's effects can't target, select, or affect the invisible card. Test visibility with:
+```csharp
+var cardSource = new CardSource(FindCardController(villainCard));
+Assert.That(GameController.IsCardVisibleToCardSource(targetCard, cardSource), Is.False);
+```
+
+**Status Effect Timing**: `UntilEndOfNextTurn(TurnTaker)` means the effect expires at the end of that turn taker's NEXT turn, not the current turn. If used during your turn, it lasts through the entire next round until the end of your following turn.
+
+**Damage Reduction Triggers**: To check if a specific status effect reduced damage, examine `DealDamageAction.DamageModifiers` for entries with matching `CardSource.StatusEffectSource.CardSource`.
 
 ## Testing Patterns
 
