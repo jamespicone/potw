@@ -1,4 +1,4 @@
-﻿using NUnit.Framework;
+using NUnit.Framework;
 using System;
 using Handelabra.Sentinels.Engine.Model;
 using Handelabra.Sentinels.Engine.Controller;
@@ -10,12 +10,33 @@ using Handelabra.Sentinels.UnitTest;
 namespace Jp.ParahumansOfTheWormverse.UnitTest.Environment.Kyushu
 {
     [TestFixture()]
-    public class TidalWaveKyushuTests : ParahumanTest
+    public class TidalWaveKyushuTests : KyushuTestBase
     {
         [Test()]
-        public void TestModWorks()
+        public void TestDamagesHeroesAndForcesDiscard()
         {
-            SetupGameController("BaronBlade", "Tempest", "Jp.ParahumansOfTheWormverse.Kyushu");
+            SetupKyushuGame();
+
+            QuickHPStorage(legacy, bunker, haka);
+            QuickHandStorage(legacy, bunker, haka);
+
+            PlayCard("TidalWaveKyushu", 0);
+
+            // 2 melee to each hero, then each damaged hero's player discards 1.
+            QuickHPCheck(-2, -2, -2);
+            QuickHandCheck(-1, -1, -1);
+        }
+
+        [Test()]
+        public void TestSelfDestructsAtEndOfTurn()
+        {
+            SetupKyushuGame();
+
+            var card = PlayCard("TidalWaveKyushu", 0);
+
+            GoToEndOfTurn(env);
+
+            AssertInTrash(card);
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿using NUnit.Framework;
+using NUnit.Framework;
 using System;
 using Handelabra.Sentinels.Engine.Model;
 using Handelabra.Sentinels.Engine.Controller;
@@ -10,12 +10,49 @@ using Handelabra.Sentinels.UnitTest;
 namespace Jp.ParahumansOfTheWormverse.UnitTest.Environment.Kyushu
 {
     [TestFixture()]
-    public class OnlyTheIndomitableRemainTests : ParahumanTest
+    public class OnlyTheIndomitableRemainTests : KyushuTestBase
     {
         [Test()]
-        public void TestModWorks()
+        public void TestReducesAllDamage()
         {
-            SetupGameController("BaronBlade", "Tempest", "Jp.ParahumansOfTheWormverse.Kyushu");
+            SetupKyushuGame();
+
+            PlayCard("OnlyTheIndomitableRemain");
+
+            QuickHPStorage(bunker);
+            DealDamage(haka, bunker, 4, DamageType.Melee);
+            QuickHPCheck(-3);
+        }
+
+        [Test()]
+        public void TestEndOfTurnHealsAllTargets()
+        {
+            SetupKyushuGame();
+
+            PlayCard("OnlyTheIndomitableRemain");
+
+            SetHitPoints(legacy, 20);
+            SetHitPoints(bunker, 10);
+            SetHitPoints(haka, 25);
+
+            QuickHPStorage(legacy, bunker, haka);
+
+            GoToEndOfTurn(env);
+
+            QuickHPCheck(1, 1, 1);
+        }
+
+        [Test()]
+        public void TestDestroyedWhenATargetIsDestroyed()
+        {
+            SetupKyushuGame();
+
+            var indomitable = PlayCard("OnlyTheIndomitableRemain");
+            var sentai = PlayCard("SentaiElite", 0);
+
+            DestroyCard(sentai);
+
+            AssertInTrash(indomitable);
         }
     }
 }

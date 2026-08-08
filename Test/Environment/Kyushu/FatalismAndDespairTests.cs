@@ -1,4 +1,4 @@
-﻿using NUnit.Framework;
+using NUnit.Framework;
 using System;
 using Handelabra.Sentinels.Engine.Model;
 using Handelabra.Sentinels.Engine.Controller;
@@ -10,12 +10,31 @@ using Handelabra.Sentinels.UnitTest;
 namespace Jp.ParahumansOfTheWormverse.UnitTest.Environment.Kyushu
 {
     [TestFixture()]
-    public class FatalismAndDespairTests : ParahumanTest
+    public class FatalismAndDespairTests : KyushuTestBase
     {
         [Test()]
-        public void TestModWorks()
+        public void TestEachHeroDealsSelfPsychic()
         {
-            SetupGameController("BaronBlade", "Tempest", "Jp.ParahumansOfTheWormverse.Kyushu");
+            SetupKyushuGame();
+
+            QuickHPStorage(legacy, bunker, haka);
+            AssertDamageType(DamageType.Psychic);
+
+            PlayCard("FatalismAndDespair", 0);
+
+            QuickHPCheck(-2, -2, -2);
+        }
+
+        [Test()]
+        public void TestSelfDestructsAtEndOfTurn()
+        {
+            SetupKyushuGame();
+
+            var card = PlayCard("FatalismAndDespair", 0);
+
+            GoToEndOfTurn(env);
+
+            AssertInTrash(card);
         }
     }
 }
