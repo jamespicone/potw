@@ -36,5 +36,24 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.TheMerchants
             GoToStartOfTurn(merchants);
             AssertNumberOfCardsInPlay(c => c.DoKeywordsContain("thug"), 2);
         }
+
+        [Test()]
+        public void TestEmptyThugDeckDoesNothing()
+        {
+            SetupGameController("Jp.ParahumansOfTheWormverse.TheMerchants", "Tempest", "InsulaPrimalis");
+
+            StartGame();
+
+            RemoveVillainCards();
+            RemoveVillainTriggers();
+
+            PlayCard("FestivalOfLove");
+
+            MoveAllCards(merchants, merchants.TurnTaker.FindSubDeck("ThugDeck"), merchants.TurnTaker.OffToTheSide);
+
+            GoToStartOfTurn(merchants);
+            AssertNumberOfCardsInPlay(c => c.DoKeywordsContain("thug"), 0);
+            AssertNotGameOver();
+        }
     }
 }

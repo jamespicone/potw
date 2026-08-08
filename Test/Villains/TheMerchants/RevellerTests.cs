@@ -32,5 +32,23 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.TheMerchants
             GoToEndOfTurn();
             QuickHPCheck(0, -1);
         }
+
+        [Test()]
+        public void ShufflesIntoThugDeckWhenKilled()
+        {
+            SetupGameController("Jp.ParahumansOfTheWormverse.TheMerchants", "Tempest", "Legacy", "InsulaPrimalis");
+
+            StartGame();
+
+            RemoveVillainCards();
+            RemoveVillainTriggers();
+
+            var reveller = PlayCard("Reveller");
+
+            DealDamage(tempest, reveller, 2, DamageType.Fire);
+
+            AssertNotInPlay(reveller);
+            AssertAtLocation(reveller, merchants.TurnTaker.FindSubDeck("ThugDeck"));
+        }
     }
 }

@@ -50,5 +50,38 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.TheMerchants
             GoToEndOfTurn(merchants);
             AssertNumberOfCardsInPlay(c => c.DoKeywordsContain("thug"), 2);
         }
+
+        [Test()]
+        public void TestOtherVillainTargetsNotImmuneToMelee()
+        {
+            SetupGameController("Jp.ParahumansOfTheWormverse.TheMerchants", "Tempest", "InsulaPrimalis");
+
+            StartGame();
+
+            RemoveVillainCards();
+            RemoveVillainTriggers();
+
+            var helicopter = PlayCard("Helicopter");
+            var reveller = PlayCard("Reveller");
+
+            QuickHPStorage(helicopter, reveller);
+            DealDamage(tempest, helicopter, 1, DamageType.Melee);
+            DealDamage(tempest, reveller, 1, DamageType.Melee);
+            QuickHPCheck(-1, -1);
+        }
+
+        [Test()]
+        public void TestSkidmarkNotImmuneToOtherDamageTypes()
+        {
+            SetupGameController("Jp.ParahumansOfTheWormverse.TheMerchants", "Tempest", "InsulaPrimalis");
+
+            StartGame();
+
+            PlayCard("Helicopter");
+
+            QuickHPStorage(merchants.CharacterCard);
+            DealDamage(tempest, merchants.CharacterCard, 2, DamageType.Fire);
+            QuickHPCheck(-2);
+        }
     }
 }

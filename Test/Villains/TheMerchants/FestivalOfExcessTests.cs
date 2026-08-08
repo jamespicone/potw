@@ -23,5 +23,51 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.TheMerchants
 
             AssertSourceDamageModified(new Card[] { tempest.CharacterCard }, new int[] { -1 }, merchants.CharacterCard);
         }
+
+        [Test()]
+        public void TestReducesDamageToThugs()
+        {
+            SetupGameController("Jp.ParahumansOfTheWormverse.TheMerchants", "Tempest", "InsulaPrimalis");
+
+            StartGame();
+
+            RemoveVillainCards();
+            RemoveVillainTriggers();
+
+            PlayCard("FestivalOfExcess");
+            var reveller = PlayCard("Reveller");
+
+            QuickHPStorage(reveller);
+            DealDamage(tempest, reveller, 2, DamageType.Fire);
+            QuickHPCheck(-1);
+            AssertIsInPlay(reveller);
+        }
+
+        [Test()]
+        public void TestDoesNotReduceDamageToHeroes()
+        {
+            SetupGameController("Jp.ParahumansOfTheWormverse.TheMerchants", "Tempest", "InsulaPrimalis");
+
+            StartGame();
+
+            PlayCard("FestivalOfExcess");
+
+            QuickHPStorage(tempest);
+            DealDamage(merchants, tempest, 2, DamageType.Melee);
+            QuickHPCheck(-2);
+        }
+
+        [Test()]
+        public void TestTwoCopiesStack()
+        {
+            SetupGameController("Jp.ParahumansOfTheWormverse.TheMerchants", "Tempest", "InsulaPrimalis");
+
+            StartGame();
+
+            PlayCard("FestivalOfExcess", 0);
+            PlayCard("FestivalOfExcess", 1);
+
+            AssertSourceDamageModified(new Card[] { tempest.CharacterCard }, new int[] { -2 }, merchants.CharacterCard);
+        }
     }
 }

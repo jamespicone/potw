@@ -32,5 +32,23 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.TheMerchants
             GoToEndOfTurn();
             QuickHPCheck(-2, 0);
         }
+
+        [Test()]
+        public void ShufflesIntoThugDeckWhenDestroyed()
+        {
+            SetupGameController("Jp.ParahumansOfTheWormverse.TheMerchants", "Tempest", "Legacy", "InsulaPrimalis");
+
+            StartGame();
+
+            RemoveVillainCards();
+            RemoveVillainTriggers();
+
+            var sadist = PlayCard("Sadist");
+
+            DestroyCard(sadist, tempest.CharacterCard);
+
+            AssertNotInPlay(sadist);
+            AssertAtLocation(sadist, merchants.TurnTaker.FindSubDeck("ThugDeck"));
+        }
     }
 }

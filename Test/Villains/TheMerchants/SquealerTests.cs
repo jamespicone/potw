@@ -74,5 +74,49 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.TheMerchants
             DealDamage(field, squealer, 5, DamageType.Melee, isIrreducible: true);
             QuickHPCheck(0);
         }
+
+        [Test()]
+        public void MakesOtherVillainTargetsImmune()
+        {
+            SetupGameController("Jp.ParahumansOfTheWormverse.TheMerchants", "Tempest", "Legacy", "Parse", "InsulaPrimalis");
+
+            StartGame();
+
+            RemoveVillainCards();
+            RemoveVillainTriggers();
+
+            GoToEndOfTurn(env);
+
+            PlayCard("Squealer");
+            var reveller = PlayCard("Reveller");
+
+            var pack = PlayCard("VelociraptorPack");
+
+            QuickHPStorage(merchants.CharacterCard, reveller);
+            DealDamage(pack, merchants.CharacterCard, 5, DamageType.Melee, isIrreducible: true);
+            DealDamage(pack, reveller, 5, DamageType.Melee, isIrreducible: true);
+            QuickHPCheck(0, 0);
+        }
+
+        [Test()]
+        public void DoesNotMakeHeroesImmune()
+        {
+            SetupGameController("Jp.ParahumansOfTheWormverse.TheMerchants", "Tempest", "Legacy", "Parse", "InsulaPrimalis");
+
+            StartGame();
+
+            RemoveVillainCards();
+            RemoveVillainTriggers();
+
+            GoToEndOfTurn(env);
+
+            PlayCard("Squealer");
+
+            var pack = PlayCard("VelociraptorPack");
+
+            QuickHPStorage(tempest);
+            DealDamage(pack, tempest.CharacterCard, 2, DamageType.Melee);
+            QuickHPCheck(-2);
+        }
     }
 }
