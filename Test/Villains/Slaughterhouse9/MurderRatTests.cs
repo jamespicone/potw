@@ -1,4 +1,4 @@
-﻿using NUnit.Framework;
+using NUnit.Framework;
 using System;
 using Handelabra.Sentinels.Engine.Model;
 using Handelabra.Sentinels.Engine.Controller;
@@ -10,12 +10,26 @@ using Handelabra.Sentinels.UnitTest;
 namespace Jp.ParahumansOfTheWormverse.UnitTest.Slaughterhouse9
 {
     [TestFixture()]
-    public class MurderRatTests : ParahumanTest
+    public class MurderRatTests : Slaughterhouse9TestBase
     {
         [Test()]
-        public void TestModWorks()
+        public void TestEndOfTurnDamagesLowestHero()
         {
-            SetupGameController("Jp.ParahumansOfTheWormverse.Slaughterhouse9", "Tempest", "InsulaPrimalis");
+            SetupAndStartNineGame();
+
+            var murderRat = PlayCard("MurderRat");
+
+            SetHitPoints(legacy, 20);
+            SetHitPoints(bunker, 10);
+            SetHitPoints(haka, 25);
+
+            QuickHPStorage(legacy, bunker, haka);
+            AssertDamageType(DamageType.Melee);
+            AssertDamageSource(murderRat);
+
+            GoToEndOfTurn();
+
+            QuickHPCheck(0, -2, 0);
         }
     }
 }

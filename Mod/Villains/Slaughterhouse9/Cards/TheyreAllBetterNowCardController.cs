@@ -20,8 +20,10 @@ namespace Jp.ParahumansOfTheWormverse.Slaughterhouse9
         {
             // Flip the most recently defeated Nine card and set their HP to 10. If no cards are flipped in this way play the top card of the villain deck
 
+            // An incapacitated member's flipped side has no keywords, so check the
+            // front-side definition for "nine" instead of the live keyword list.
             var deadNine = FindCardsWhere(new LinqCardCriteria(
-                c => c.DoKeywordsContain("nine") &&
+                c => c.Definition.Keywords.Contains("nine") &&
                     c.IsInPlayAndNotUnderCard &&
                     c.IsFlipped
             ));

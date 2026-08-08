@@ -1,4 +1,4 @@
-﻿using NUnit.Framework;
+using NUnit.Framework;
 using System;
 using Handelabra.Sentinels.Engine.Model;
 using Handelabra.Sentinels.Engine.Controller;
@@ -10,12 +10,20 @@ using Handelabra.Sentinels.UnitTest;
 namespace Jp.ParahumansOfTheWormverse.UnitTest.Slaughterhouse9
 {
     [TestFixture()]
-    public class SomeMoreFriendsTests : ParahumanTest
+    public class SomeMoreFriendsTests : Slaughterhouse9TestBase
     {
         [Test()]
-        public void TestModWorks()
+        public void TestDeploysMemberAndPlaysTopCard()
         {
-            SetupGameController("Jp.ParahumansOfTheWormverse.Slaughterhouse9", "Tempest", "InsulaPrimalis");
+            SetupAndStartNineGame();
+
+            int before = MembersInPlay.Count();
+            var legendary = StackDeck("Legendary");
+
+            PlayCard("SomeMoreFriends", 0);
+
+            Assert.That(MembersInPlay.Count(), Is.EqualTo(before + 1));
+            AssertIsInPlay(legendary);
         }
     }
 }

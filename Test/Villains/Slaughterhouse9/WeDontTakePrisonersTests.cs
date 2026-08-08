@@ -14,7 +14,7 @@ using Handelabra.Sentinels.Engine.Controller;
 namespace Jp.ParahumansOfTheWormverse.UnitTest.Slaughterhouse9
 {
     [TestFixture()]
-    public class WeDontTakePrisonersTests : ParahumanTest
+    public class WeDontTakePrisonersTests : Slaughterhouse9TestBase
     {
         [Test()]
         public void TestDestroyedByDamage()
@@ -28,7 +28,7 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.Slaughterhouse9
             );
 
             RemoveVillainCards();
-            PlayCard("BonesawCharacter");
+            PutMemberInPlay("BonesawCharacter");
             var raptors = PlayCard("VelociraptorPack");
             PlayCard("WeDontTakePrisoners");
 
@@ -49,7 +49,7 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.Slaughterhouse9
             );
 
             RemoveVillainCards();
-            PlayCard("BonesawCharacter");
+            PutMemberInPlay("BonesawCharacter");
             var raptors = PlayCard("VelociraptorPack");
             
             QuickHPStorage(alexandria, legacy, tachyon);
@@ -69,7 +69,7 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.Slaughterhouse9
             );
 
             RemoveVillainCards();
-            PlayCard("BonesawCharacter");
+            PutMemberInPlay("BonesawCharacter");
             var raptors = PlayCard("VelociraptorPack");
             PlayCard("WeDontTakePrisoners");
 

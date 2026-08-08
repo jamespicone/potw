@@ -14,8 +14,28 @@ using Handelabra.Sentinels.Engine.Controller;
 namespace Jp.ParahumansOfTheWormverse.UnitTest.Slaughterhouse9
 {
     [TestFixture()]
-    public class CherishTests : ParahumanTest
+    public class CherishTests : Slaughterhouse9TestBase
     {
+        [Test()]
+        public void TestDefenceMakesTheHeroWithTheMostCardsDiscard()
+        {
+            SetupGameController(
+                "Jp.ParahumansOfTheWormverse.Slaughterhouse9",
+                "Jp.ParahumansOfTheWormverse.Alexandria",
+                "Megalopolis"
+            );
+
+            StartGame();
+            PutMemberInPlay("CherishCharacter");
+            ReturnMembersExcept(cherish);
+
+            var lessThanHuman = PlayCard("LessThanHuman");
+
+            QuickHandStorage(alexandria);
+            DestroyCard(lessThanHuman);
+            QuickHandCheck(-2);
+        }
+
         [Test()]
         public void TestCounterStraightforward()
         {
@@ -25,7 +45,7 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.Slaughterhouse9
                 "Megalopolis"
             );
 
-            PlayCard("CherishCharacter");
+            PutMemberInPlay("CherishCharacter");
 
             QuickHPStorage(alexandria.CharacterCard);
 
@@ -43,7 +63,7 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.Slaughterhouse9
                 "Megalopolis"
             );
 
-            PlayCard("CherishCharacter");
+            PutMemberInPlay("CherishCharacter");
 
             QuickHPStorage(cherish);
 
@@ -61,7 +81,7 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.Slaughterhouse9
                 "TimeCataclysm"
             );
 
-            PlayCard("CherishCharacter");
+            PutMemberInPlay("CherishCharacter");
             PlayCard("FixedPoint");
 
             SetHitPoints(cherish, 0);
@@ -82,7 +102,7 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.Slaughterhouse9
                 "Megalopolis"
             );
 
-            PlayCard("CherishCharacter");
+            PutMemberInPlay("CherishCharacter");
 
             DealDamage(cherish, cherish, 30, DamageType.Melee);
 
@@ -102,8 +122,8 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.Slaughterhouse9
             RemoveVillainCards();
             ReturnSiberian();
 
-            PlayCard("CherishCharacter");
-            PlayCard("MannequinCharacter");
+            PutMemberInPlay("CherishCharacter");
+            PutMemberInPlay("MannequinCharacter");
 
             GoToStartOfTurn(alexandria);
 
@@ -131,8 +151,8 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.Slaughterhouse9
             RemoveVillainCards();
             ReturnSiberian();
 
-            PlayCard("CherishCharacter");
-            PlayCard("MannequinCharacter");
+            PutMemberInPlay("CherishCharacter");
+            PutMemberInPlay("MannequinCharacter");
 
             GoToStartOfTurn(sentinels);
 

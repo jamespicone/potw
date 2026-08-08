@@ -21,7 +21,7 @@ namespace Jp.ParahumansOfTheWormverse.Slaughterhouse9
             if (Card.IsFlipped)
             {
                 // At the end of the villain turn the villain target with the lowest HP regains 1 HP
-                AddSideTrigger(AddEndOfTurnTrigger(tt => tt.Is(this).Villain().Target(), pca => RestoreHP(), TriggerType.GainHP));
+                AddSideTrigger(AddEndOfTurnTrigger(tt => tt == TurnTaker, pca => RestoreHP(), TriggerType.GainHP));
             }
             else
             {

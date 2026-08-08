@@ -1,4 +1,4 @@
-﻿using NUnit.Framework;
+using NUnit.Framework;
 using System;
 using Handelabra.Sentinels.Engine.Model;
 using Handelabra.Sentinels.Engine.Controller;
@@ -10,12 +10,32 @@ using Handelabra.Sentinels.UnitTest;
 namespace Jp.ParahumansOfTheWormverse.UnitTest.Slaughterhouse9
 {
     [TestFixture()]
-    public class LegendaryTests : ParahumanTest
+    public class LegendaryTests : Slaughterhouse9TestBase
     {
         [Test()]
-        public void TestModWorks()
+        public void TestIncreasesVillainDamage()
         {
-            SetupGameController("Jp.ParahumansOfTheWormverse.Slaughterhouse9", "Tempest", "InsulaPrimalis");
+            SetupNineGame();
+
+            PutMemberInPlay("JackSlashCharacter");
+            PlayCard("Legendary", 0);
+
+            QuickHPStorage(haka);
+            DealDamage(jackslash, haka.CharacterCard, 2, DamageType.Melee);
+            QuickHPCheck(-3);
+        }
+
+        [Test()]
+        public void TestDoesNotIncreaseHeroDamage()
+        {
+            SetupNineGame();
+
+            PutMemberInPlay("JackSlashCharacter");
+            PlayCard("Legendary", 0);
+
+            QuickHPStorage(bunker);
+            DealDamage(haka, bunker, 2, DamageType.Melee);
+            QuickHPCheck(-2);
         }
     }
 }
