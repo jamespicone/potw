@@ -1,4 +1,4 @@
-﻿using NUnit.Framework;
+using NUnit.Framework;
 using System;
 using Handelabra.Sentinels.Engine.Model;
 using Handelabra.Sentinels.Engine.Controller;
@@ -10,12 +10,24 @@ using Handelabra.Sentinels.UnitTest;
 namespace Jp.ParahumansOfTheWormverse.UnitTest.Coil
 {
     [TestFixture()]
-    public class ABackupForEveryAssetTests : ParahumanTest
+    public class ABackupForEveryAssetTests : CoilTestBase
     {
         [Test()]
-        public void TestModWorks()
+        public void TestPutsTrashedOngoingsIntoPlay()
         {
-            SetupGameController("Jp.ParahumansOfTheWormverse.Coil", "Tempest", "InsulaPrimalis");
+            SetupCoilGame();
+            RemoveCoilTriggers();
+            CleanupSetupNoise();
+
+            var twoBites = PutInTrash("TwoBitesAtEveryCherry");
+            var plans = PutInTrash("PlansWithinPlans");
+            var mercs = PutInTrash("Mercenaries");
+
+            PlayCard("ABackupForEveryAsset");
+
+            AssertIsInPlay(twoBites);
+            AssertIsInPlay(plans);
+            AssertInTrash(mercs);
         }
     }
 }

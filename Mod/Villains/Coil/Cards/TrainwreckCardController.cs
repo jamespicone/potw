@@ -27,7 +27,7 @@ namespace Jp.ParahumansOfTheWormverse.Coil
             );
 
             //"At the start of the villain turn Trainwreck regains {H} HP."
-            AddEndOfTurnTrigger(
+            AddStartOfTurnTrigger(
                 tt => tt == TurnTaker,
                 pca => GameController.GainHP(Card, H, cardSource: GetCardSource()),
                 TriggerType.GainHP

@@ -1,4 +1,4 @@
-﻿using NUnit.Framework;
+using NUnit.Framework;
 using System;
 using Handelabra.Sentinels.Engine.Model;
 using Handelabra.Sentinels.Engine.Controller;
@@ -10,12 +10,50 @@ using Handelabra.Sentinels.UnitTest;
 namespace Jp.ParahumansOfTheWormverse.UnitTest.Coil
 {
     [TestFixture()]
-    public class TricksterTests : ParahumanTest
+    public class TricksterTests : CoilTestBase
     {
         [Test()]
-        public void TestModWorks()
+        public void TestFirstDamageEachRoundRedirected()
         {
-            SetupGameController("Jp.ParahumansOfTheWormverse.Coil", "Tempest", "InsulaPrimalis");
+            SetupCoilGame();
+            RemoveCoilTriggers();
+            CleanupSetupNoise();
+
+            var trickster = PlayCard("Trickster");
+
+            SetHitPoints(legacy, 20);
+            SetHitPoints(bunker, 10);
+            SetHitPoints(haka, 25);
+
+            QuickHPStorage(trickster, bunker.CharacterCard);
+
+            // First damage redirected to the lowest hero target.
+            DealDamage(haka, trickster, 3, DamageType.Melee);
+            QuickHPCheck(0, -3);
+
+            // Second damage in the same round sticks.
+            DealDamage(haka, trickster, 3, DamageType.Melee);
+            QuickHPCheck(-3, 0);
+        }
+
+        [Test()]
+        public void TestEndOfTurnDestroysCardOfBusiestPlayer()
+        {
+            SetupCoilGame();
+            RemoveCoilTriggers();
+            CleanupSetupNoise();
+
+            PlayCard("Trickster");
+
+            // Legacy has the most cards in play.
+            var sense = PlayCard("DangerSense");
+            PlayCard("InspiringPresence");
+
+            DecisionSelectCard = sense;
+
+            GoToEndOfTurn();
+
+            AssertInTrash(sense);
         }
     }
 }

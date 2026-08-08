@@ -1,4 +1,4 @@
-﻿using NUnit.Framework;
+using NUnit.Framework;
 using System;
 using Handelabra.Sentinels.Engine.Model;
 using Handelabra.Sentinels.Engine.Controller;
@@ -10,12 +10,39 @@ using Handelabra.Sentinels.UnitTest;
 namespace Jp.ParahumansOfTheWormverse.UnitTest.Coil
 {
     [TestFixture()]
-    public class TrainwreckTests : ParahumanTest
+    public class TrainwreckTests : CoilTestBase
     {
         [Test()]
-        public void TestModWorks()
+        public void TestRedirectsDamageFromOtherVillainTargets()
         {
-            SetupGameController("Jp.ParahumansOfTheWormverse.Coil", "Tempest", "InsulaPrimalis");
+            SetupCoilGame();
+            RemoveCoilTriggers();
+            CleanupSetupNoise();
+
+            var trainwreck = PlayCard("Trainwreck");
+
+            QuickHPStorage(trainwreck, scheming);
+
+            DealDamage(haka, scheming, 3, DamageType.Melee);
+
+            QuickHPCheck(-3, 0);
+        }
+
+        [Test()]
+        public void TestRegainsHPAtStartOfVillainTurn()
+        {
+            SetupCoilGame();
+            RemoveCoilTriggers();
+            CleanupSetupNoise();
+
+            var trainwreck = PlayCard("Trainwreck");
+            SetHitPoints(trainwreck, 5);
+
+            GoToEndOfTurn();
+            GoToStartOfTurn(coil);
+
+            // Regains H = 3 HP.
+            AssertHitPoints(trainwreck, 8);
         }
     }
 }
