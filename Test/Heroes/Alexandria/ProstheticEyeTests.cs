@@ -35,5 +35,31 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.Alexandria
             DecisionSelectLocation = new LocationChoice(baron.TurnTaker.Deck);
             GoToEndOfTurn(alexandria);
         }
+
+        [Test()]
+        public void TestPutsCardsBackInChosenOrder()
+        {
+            SetupGameController("BaronBlade", "Jp.ParahumansOfTheWormverse.Alexandria", "InsulaPrimalis");
+
+            StartGame();
+
+            RemoveVillainCards();
+            RemoveVillainTriggers();
+
+            PlayCard("ProstheticEye");
+
+            StackDeck(baron, new[] { "BacklashField", "ElementalRedistributor", "PoweredRemoteTurret" });
+            var topCards = baron.TurnTaker.Deck.GetTopCards(3).ToList();
+
+            // Put the three cards back in reverse order. Selection order
+            // becomes the final top-to-bottom order.
+            var reversed = new[] { topCards[2], topCards[1], topCards[0] };
+            DecisionSelectLocation = new LocationChoice(baron.TurnTaker.Deck);
+            DecisionSelectCards = reversed;
+
+            GoToEndOfTurn(alexandria);
+
+            Assert.That(baron.TurnTaker.Deck.GetTopCards(3).ToList(), Is.EqualTo(reversed));
+        }
     }
 }
