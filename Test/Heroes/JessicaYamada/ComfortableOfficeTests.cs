@@ -1,4 +1,4 @@
-﻿using NUnit.Framework;
+using NUnit.Framework;
 using System;
 using Handelabra.Sentinels.Engine.Model;
 using Handelabra.Sentinels.Engine.Controller;
@@ -13,9 +13,21 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.JessicaYamada
     public class ComfortableOfficeTests : ParahumanTest
     {
         [Test()]
-        public void TestModWorks()
+        public void TestHealsHeroAtStartOfTurn()
         {
-            SetupGameController("BaronBlade", "Jp.ParahumansOfTheWormverse.JessicaYamada", "InsulaPrimalis");
+            SetupGameController("BaronBlade", "Jp.ParahumansOfTheWormverse.JessicaYamada", "Legacy", "Megalopolis");
+            StartGame();
+            RemoveVillainCards();
+            RemoveVillainTriggers();
+
+            PlayCard("ComfortableOffice");
+
+            SetHitPoints(legacy, 20);
+            DecisionSelectCard = legacy.CharacterCard;
+
+            GoToStartOfTurn(jessica);
+
+            AssertHitPoints(legacy, 23);
         }
     }
 }

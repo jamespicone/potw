@@ -1,4 +1,4 @@
-﻿using NUnit.Framework;
+using NUnit.Framework;
 using System;
 using Handelabra.Sentinels.Engine.Model;
 using Handelabra.Sentinels.Engine.Controller;
@@ -13,9 +13,39 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.JessicaYamada
     public class PsychologicalTrainingTests : ParahumanTest
     {
         [Test()]
-        public void TestModWorks()
+        public void TestOneShotGoesToHand()
         {
-            SetupGameController("BaronBlade", "Jp.ParahumansOfTheWormverse.JessicaYamada", "InsulaPrimalis");
+            SetupGameController("BaronBlade", "Jp.ParahumansOfTheWormverse.JessicaYamada", "Legacy", "Megalopolis");
+            StartGame();
+            RemoveVillainCards();
+            RemoveVillainTriggers();
+
+            GoToPlayCardPhaseAndPlayCard(jessica, "PsychologicalTraining");
+
+            // GoToEndOfTurn skips phase actions entirely (no draw happens), so
+            // the stacked card is still on top when the end-of-turn reveal fires.
+            var clarity = StackDeck(jessica, "Clarity");
+
+            GoToEndOfTurn(jessica);
+
+            AssertInHand(clarity);
+        }
+
+        [Test()]
+        public void TestNonOneShotStaysOnDeck()
+        {
+            SetupGameController("BaronBlade", "Jp.ParahumansOfTheWormverse.JessicaYamada", "Legacy", "Megalopolis");
+            StartGame();
+            RemoveVillainCards();
+            RemoveVillainTriggers();
+
+            GoToPlayCardPhaseAndPlayCard(jessica, "PsychologicalTraining");
+
+            var support = StackDeck(jessica, "SupportAndStability");
+
+            GoToEndOfTurn(jessica);
+
+            AssertOnTopOfDeck(jessica, support);
         }
     }
 }

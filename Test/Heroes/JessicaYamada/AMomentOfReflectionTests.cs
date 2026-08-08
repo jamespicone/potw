@@ -1,4 +1,4 @@
-﻿using NUnit.Framework;
+using NUnit.Framework;
 using System;
 using Handelabra.Sentinels.Engine.Model;
 using Handelabra.Sentinels.Engine.Controller;
@@ -13,9 +13,21 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.JessicaYamada
     public class AMomentOfReflectionTests : ParahumanTest
     {
         [Test()]
-        public void TestModWorks()
+        public void TestOtherPlayerSearchesDeck()
         {
-            SetupGameController("BaronBlade", "Jp.ParahumansOfTheWormverse.JessicaYamada", "InsulaPrimalis");
+            SetupGameController("BaronBlade", "Jp.ParahumansOfTheWormverse.JessicaYamada", "Legacy", "Megalopolis");
+            StartGame();
+            RemoveVillainCards();
+            RemoveVillainTriggers();
+
+            var fortitude = GetCard("Fortitude");
+            DecisionSelectCard = fortitude;
+            QuickHandStorage(legacy);
+
+            PlayCard("AMomentOfReflection", 0);
+
+            AssertInHand(fortitude);
+            QuickHandCheck(1);
         }
     }
 }

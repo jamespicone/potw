@@ -1,4 +1,4 @@
-﻿using NUnit.Framework;
+using NUnit.Framework;
 using System;
 using Handelabra.Sentinels.Engine.Model;
 using Handelabra.Sentinels.Engine.Controller;
@@ -13,9 +13,41 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.JessicaYamada
     public class SupportAndStabilityTests : ParahumanTest
     {
         [Test()]
-        public void TestModWorks()
+        public void TestMayPreventFirstSelfDamageEachTurn()
         {
-            SetupGameController("BaronBlade", "Jp.ParahumansOfTheWormverse.JessicaYamada", "InsulaPrimalis");
+            SetupGameController("BaronBlade", "Jp.ParahumansOfTheWormverse.JessicaYamada", "Legacy", "Megalopolis");
+            StartGame();
+            RemoveVillainCards();
+            RemoveVillainTriggers();
+
+            PlayCard("SupportAndStability");
+
+            QuickHPStorage(legacy);
+            DecisionYesNo = true;
+
+            DealDamage(legacy, legacy, 3, DamageType.Melee);
+            QuickHPCheck(0);
+
+            // Second self-damage in the same turn is not prevented.
+            DealDamage(legacy, legacy, 3, DamageType.Melee);
+            QuickHPCheck(-3);
+        }
+
+        [Test()]
+        public void TestMayDeclineToPrevent()
+        {
+            SetupGameController("BaronBlade", "Jp.ParahumansOfTheWormverse.JessicaYamada", "Legacy", "Megalopolis");
+            StartGame();
+            RemoveVillainCards();
+            RemoveVillainTriggers();
+
+            PlayCard("SupportAndStability");
+
+            QuickHPStorage(legacy);
+            DecisionYesNo = false;
+
+            DealDamage(legacy, legacy, 3, DamageType.Melee);
+            QuickHPCheck(-3);
         }
     }
 }

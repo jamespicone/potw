@@ -1,4 +1,4 @@
-﻿using NUnit.Framework;
+using NUnit.Framework;
 using System;
 using Handelabra.Sentinels.Engine.Model;
 using Handelabra.Sentinels.Engine.Controller;
@@ -13,9 +13,23 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.JessicaYamada
     public class StrategyAndSuggestionTests : ParahumanTest
     {
         [Test()]
-        public void TestModWorks()
+        public void TestRevealsUntilOngoing()
         {
-            SetupGameController("BaronBlade", "Jp.ParahumansOfTheWormverse.JessicaYamada", "InsulaPrimalis");
+            SetupGameController("BaronBlade", "Jp.ParahumansOfTheWormverse.JessicaYamada", "Legacy", "Megalopolis");
+            StartGame();
+            RemoveVillainCards();
+            RemoveVillainTriggers();
+
+            // Top of Legacy's deck: Thokk (one-shot), then Fortitude (ongoing).
+            var fortitude = StackDeck(legacy, "Fortitude");
+            var thokk = StackDeck(legacy, "Thokk");
+
+            PlayCard("StrategyAndSuggestion", 0);
+
+            // The revealed ongoing was put into play (the default choice); the
+            // one-shot was shuffled back.
+            AssertIsInPlay(fortitude);
+            AssertInDeck(thokk);
         }
     }
 }

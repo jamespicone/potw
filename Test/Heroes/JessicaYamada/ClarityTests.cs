@@ -1,4 +1,4 @@
-﻿using NUnit.Framework;
+using NUnit.Framework;
 using System;
 using Handelabra.Sentinels.Engine.Model;
 using Handelabra.Sentinels.Engine.Controller;
@@ -13,9 +13,37 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.JessicaYamada
     public class ClarityTests : ParahumanTest
     {
         [Test()]
-        public void TestModWorks()
+        public void TestMayDiscardTopCard()
         {
-            SetupGameController("BaronBlade", "Jp.ParahumansOfTheWormverse.JessicaYamada", "InsulaPrimalis");
+            SetupGameController("BaronBlade", "Jp.ParahumansOfTheWormverse.JessicaYamada", "Legacy", "Megalopolis");
+            StartGame();
+            RemoveVillainCards();
+            RemoveVillainTriggers();
+
+            var fortitude = StackDeck(legacy, "Fortitude");
+
+            DecisionYesNo = true;
+
+            PlayCard("Clarity", 0);
+
+            AssertInTrash(fortitude);
+        }
+
+        [Test()]
+        public void TestMayKeepTopCard()
+        {
+            SetupGameController("BaronBlade", "Jp.ParahumansOfTheWormverse.JessicaYamada", "Legacy", "Megalopolis");
+            StartGame();
+            RemoveVillainCards();
+            RemoveVillainTriggers();
+
+            var fortitude = StackDeck(legacy, "Fortitude");
+
+            DecisionYesNo = false;
+
+            PlayCard("Clarity", 0);
+
+            AssertOnTopOfDeck(legacy, fortitude);
         }
     }
 }
