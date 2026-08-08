@@ -1,4 +1,4 @@
-﻿using NUnit.Framework;
+using NUnit.Framework;
 using System;
 using Handelabra.Sentinels.Engine.Model;
 using Handelabra.Sentinels.Engine.Controller;
@@ -7,15 +7,25 @@ using System.Collections;
 using System.Collections.Generic;
 using Handelabra.Sentinels.UnitTest;
 
-namespace Jp.ParahumansOfTheWormverse.UnitTest.Lung
+namespace Jp.ParahumansOfTheWormverse.UnitTest.TheSimurgh
 {
     [TestFixture()]
-    public class AnUnpleasantDiscoveryTests : ParahumanTest
+    public class AnUnpleasantDiscoveryTests : SimurghTestBase
     {
         [Test()]
-        public void TestModWorks()
+        public void TestDiscardedHeroCardCausesPsychicDamage()
         {
-            SetupGameController("Jp.ParahumansOfTheWormverse.TheSimurgh", "Tempest", "InsulaPrimalis");
+            SetupSimurghGame();
+            RemoveSimurghTriggers();
+
+            FlipTrapFaceUpDormant("AnUnpleasantDiscovery");
+
+            QuickHPStorage(legacy, bunker, haka);
+            AssertDamageType(DamageType.Psychic);
+
+            DiscardTopCards(legacy.TurnTaker, 1);
+
+            QuickHPCheck(-1, 0, 0);
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿using NUnit.Framework;
+using NUnit.Framework;
 using System;
 using Handelabra.Sentinels.Engine.Model;
 using Handelabra.Sentinels.Engine.Controller;
@@ -7,15 +7,29 @@ using System.Collections;
 using System.Collections.Generic;
 using Handelabra.Sentinels.UnitTest;
 
-namespace Jp.ParahumansOfTheWormverse.UnitTest.Lung
+namespace Jp.ParahumansOfTheWormverse.UnitTest.TheSimurgh
 {
     [TestFixture()]
-    public class AFateSelectedTests : ParahumanTest
+    public class AFateSelectedTests : SimurghTestBase
     {
         [Test()]
-        public void TestModWorks()
+        public void TestDamagesHeroWithFewestCardsInPlay()
         {
-            SetupGameController("Jp.ParahumansOfTheWormverse.TheSimurgh", "Tempest", "InsulaPrimalis");
+            SetupSimurghGame();
+            RemoveSimurghTriggers();
+
+            // Legacy and Haka each have a card in play; Bunker has none.
+            PlayCard("DangerSense");
+            PlayCard("Dominion");
+
+            QuickHPStorage(legacy, bunker, haka);
+            AssertDamageType(DamageType.Sonic);
+            AssertDamageSource(simurgh.CharacterCard);
+
+            PlayCard("AFateSelected");
+
+            // H = 3 sonic damage.
+            QuickHPCheck(0, -3, 0);
         }
     }
 }

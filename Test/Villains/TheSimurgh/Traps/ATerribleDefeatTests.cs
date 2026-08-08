@@ -1,4 +1,4 @@
-﻿using NUnit.Framework;
+using NUnit.Framework;
 using System;
 using Handelabra.Sentinels.Engine.Model;
 using Handelabra.Sentinels.Engine.Controller;
@@ -7,15 +7,27 @@ using System.Collections;
 using System.Collections.Generic;
 using Handelabra.Sentinels.UnitTest;
 
-namespace Jp.ParahumansOfTheWormverse.UnitTest.Lung
+namespace Jp.ParahumansOfTheWormverse.UnitTest.TheSimurgh
 {
     [TestFixture()]
-    public class ATerribleDefeatTests : ParahumanTest
+    public class ATerribleDefeatTests : SimurghTestBase
     {
         [Test()]
-        public void TestModWorks()
+        public void TestFlipDestroysBusiestHerosCards()
         {
-            SetupGameController("Jp.ParahumansOfTheWormverse.TheSimurgh", "Tempest", "InsulaPrimalis");
+            SetupSimurghGame();
+            RemoveSimurghTriggers();
+
+            // Legacy has the most cards in play.
+            var sense = PlayCard("DangerSense");
+            var presence = PlayCard("InspiringPresence");
+            var dominion = PlayCard("Dominion");
+
+            FlipTrapWithPlanEnacted("ATerribleDefeat");
+
+            AssertInTrash(sense);
+            AssertInTrash(presence);
+            AssertIsInPlay(dominion);
         }
     }
 }

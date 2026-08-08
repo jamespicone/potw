@@ -43,7 +43,7 @@ namespace Jp.ParahumansOfTheWormverse.TheSimurgh
             }
 
             // Play the revealed card with the lowest {SimurghDanger}.
-            var orderedCards = revealedCards.OrderBy(c => c.SimurghDanger(GameController)).Reverse();
+            var orderedCards = revealedCards.OrderBy(c => c.SimurghDanger(GameController));
 
             if (orderedCards.Count() > 0)
             {

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Collections;
 using System.Linq;
@@ -24,14 +24,45 @@ namespace Jp.ParahumansOfTheWormverse.TheSimurgh
         public override IEnumerator Play()
         {
             // {TheSimurghCharacter} deals the hero with the fewest cards in play {H} sonic damage.
-            return DealDamageToMostCardsInPlay(
-                CharacterCard,
-                1,
-                new LinqCardCriteria(c => c.Is(this).Hero().Character().Target(), "hero"),
-                H,
-                DamageType.Sonic,
-                mostFewestSelectionType: SelectionType.FewestCardsInPlay
-            );
+            // (Note DealDamageToMostCardsInPlay can't be used here: its mostFewestSelectionType
+            // parameter only changes the decision label, not the most/fewest logic.)
+            var storedResults = new List<TurnTaker>();
+            var e = FindHeroWithFewestCardsInPlay(storedResults, evenIfCannotDealDamage: true);
+            if (UseUnityCoroutines)
+            {
+                yield return GameController.StartCoroutine(e);
+            }
+            else
+            {
+                GameController.ExhaustCoroutine(e);
+            }
+
+            var victim = storedResults.FirstOrDefault();
+            if (victim == null) { yield break; }
+
+            var characterResults = new List<Card>();
+            e = FindCharacterCardToTakeDamage(victim, characterResults, CharacterCard, H, DamageType.Sonic);
+            if (UseUnityCoroutines)
+            {
+                yield return GameController.StartCoroutine(e);
+            }
+            else
+            {
+                GameController.ExhaustCoroutine(e);
+            }
+
+            var target = characterResults.FirstOrDefault();
+            if (target == null) { yield break; }
+
+            e = DealDamage(CharacterCard, target, H, DamageType.Sonic, cardSource: GetCardSource());
+            if (UseUnityCoroutines)
+            {
+                yield return GameController.StartCoroutine(e);
+            }
+            else
+            {
+                GameController.ExhaustCoroutine(e);
+            }
         }
     }
 }
