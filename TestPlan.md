@@ -196,7 +196,8 @@ Suggested order, easiest first:
 
 ### Phase 5 — Guardrail + optional deepening (2026-07-11)
 
-- ~~**Meta-test guardrail**~~ DONE: `Test/CoverageMetaTests.cs` fails if any card
+- ~~**Meta-test guardrail**~~ DONE, then dropped (2026-08-08) as not worth
+  keeping: `Test/CoverageMetaTests.cs` failed if any card
   in the mod decklists (enumerated from the embedded `DeckLists` resources,
   main deck + subdecks) has no fixture containing a non-`TestModWorks` test.
   Mapping rules: `<Identifier>Tests`; Twisted cards drop the `Twisted` suffix;
@@ -257,8 +258,7 @@ Suggested order, easiest first:
 ## Resume here (state as of 2026-07-11)
 
 **Milestone: ALL planned test work is done.** Phases 1–5 are complete: zero
-stub-only files, the `CoverageMetaTests` guardrail enforces per-card coverage
-going forward, the S9 character card and all eight members have behavioral
+stub-only files, the S9 character card and all eight members have behavioral
 tests (front and flipped sides), and the Echidna single-test files are
 deepened. Two more real mod bugs were found & fixed this session (flipped
 Bonesaw heal, flipped Jack Slash power damage) — see Phase 5. The final
@@ -290,13 +290,12 @@ the Phase 5 member deepening, not pre-existing.
 - **Committing this work** — nothing on the branch is committed yet.
 - The known random-seed flakes above remain (background task chip spawned).
 
-### Guardrail
+### Coverage check
 
-`Test/CoverageMetaTests.cs` (added 2026-07-11, see Phase 5) fails whenever a
-card in any mod decklist has no fixture with a real (non-`TestModWorks`) test,
-so new cards can't ship untested. Finished decks keep one `TestModWorks` load
-test in the deck's main test file. The old shell one-liner still works as a
-quick manual check for stub-only files:
+Finished decks keep one `TestModWorks` load test in the deck's main test file.
+The shell one-liner below is the quick manual check for stub-only files (a
+`CoverageMetaTests.cs` meta-test enforced this automatically for a while, but
+was dropped 2026-08-08 as not worth keeping):
 
 ```bash
 grep -rl TestModWorks Test/ | xargs grep -cE '\[Test\(\)?\]' | grep ':1$'
