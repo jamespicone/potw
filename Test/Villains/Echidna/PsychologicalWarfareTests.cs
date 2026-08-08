@@ -35,5 +35,26 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.Echidna
             StartGame();
             QuickHPCheck(0, -2, -2, -2);
         }
+
+        [Test()]
+        public void TestHitsNonCharacterHeroTargetsAndComesFromEchidna()
+        {
+            SetupGameController(
+                "Jp.ParahumansOfTheWormverse.Echidna",
+                "Jp.ParahumansOfTheWormverse.Alexandria",
+                "Jp.ParahumansOfTheWormverse.Bitch",
+                "Jp.ParahumansOfTheWormverse.Legend",
+                "Megalopolis"
+            );
+
+            RemoveAllTwisted();
+            PlayCard("PsychologicalWarfare");
+            var dog = PlayCard("Brutus");
+
+            AssertDamageSource(echidna.CharacterCard);
+            QuickHPStorage(dog);
+            StartGame();
+            QuickHPCheck(-2);
+        }
     }
 }

@@ -33,5 +33,32 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.Echidna
             DealDamage(echidna.CharacterCard, alexandria.CharacterCard, 1, DamageType.Radiant);
             QuickHPCheck(-2);
         }
+
+        [Test()]
+        public void TestDoesNotIncreaseNonVillainDamage()
+        {
+            SetupGameController(
+                "Jp.ParahumansOfTheWormverse.Echidna",
+                "Jp.ParahumansOfTheWormverse.Alexandria",
+                "Jp.ParahumansOfTheWormverse.Bitch",
+                "InsulaPrimalis"
+            );
+
+            StartGame();
+            ReturnAllTwisted();
+
+            PlayCard("SquadTactics");
+
+            // Hero damage is unchanged.
+            QuickHPStorage(bitch.CharacterCard);
+            DealDamage(alexandria.CharacterCard, bitch.CharacterCard, 1, DamageType.Melee);
+            QuickHPCheck(-1);
+
+            // Environment damage is unchanged.
+            var raptor = PlayCard("VelociraptorPack");
+            QuickHPStorage(alexandria.CharacterCard);
+            DealDamage(raptor, alexandria.CharacterCard, 1, DamageType.Melee);
+            QuickHPCheck(-1);
+        }
     }
 }

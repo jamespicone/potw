@@ -44,5 +44,30 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.Echidna
             var currentCount = echidna.TurnTaker.Deck.NumberOfCards;
             Assert.That(currentCount, Is.LessThan(deckCardCount));
         }
+
+        [Test()]
+        public void TestDoesNotTriggerOnNonEnvironmentTargets()
+        {
+            SetupGameController(
+                "Jp.ParahumansOfTheWormverse.Echidna",
+                "Jp.ParahumansOfTheWormverse.Alexandria",
+                "Jp.ParahumansOfTheWormverse.Bitch",
+                "InsulaPrimalis"
+            );
+
+            StartGame();
+            ReturnAllTwisted();
+
+            PlayCard("ChimaericalNightmare");
+
+            var dog = PlayCard("Brutus");
+
+            var decider = AssertNoDecision();
+            var deckCardCount = echidna.TurnTaker.Deck.NumberOfCards;
+            DestroyCard(dog);
+            RestoreOnMakeDecisions(decider);
+
+            AssertNumberOfCardsInDeck(echidna, deckCardCount);
+        }
     }
 }

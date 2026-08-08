@@ -46,5 +46,26 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.Echidna
 
             QuickHPCheck(0, -3, -3, 0);
         }
+
+        [Test()]
+        public void TestDealsNoDamageWhenNoOneIsEngulfed()
+        {
+            SetupGameController(
+                "Jp.ParahumansOfTheWormverse.Echidna",
+                "Jp.ParahumansOfTheWormverse.Alexandria",
+                "Jp.ParahumansOfTheWormverse.Bitch",
+                "Jp.ParahumansOfTheWormverse.Legend",
+                "Megalopolis"
+            );
+
+            RemoveAllTwisted();
+            StartGame();
+
+            QuickHPStorage(echidna.CharacterCard, alexandria.CharacterCard, bitch.CharacterCard, legend.CharacterCard);
+
+            PlayCard("Crush");
+
+            QuickHPCheck(0, 0, 0, 0);
+        }
     }
 }

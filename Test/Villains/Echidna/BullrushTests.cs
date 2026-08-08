@@ -9,6 +9,8 @@ using Handelabra.Sentinels.UnitTest;
 using Handelabra.Sentinels.Engine.Model;
 using Handelabra.Sentinels.Engine.Controller;
 
+using Jp.ParahumansOfTheWormverse.Echidna;
+
 namespace Jp.ParahumansOfTheWormverse.UnitTest.Echidna
 {
     [TestFixture()]
@@ -50,6 +52,34 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.Echidna
             QuickHPStorage(alexandria.CharacterCard, bitch.CharacterCard);
             PlayCard("Bullrush");
             QuickHPCheck(0, -4);
+        }
+
+        [Test()]
+        public void TestSearchesTheVillainDeckForAnEngulfedCard()
+        {
+            SetupGameController(
+                "Jp.ParahumansOfTheWormverse.Echidna",
+                "Jp.ParahumansOfTheWormverse.Alexandria",
+                "Jp.ParahumansOfTheWormverse.Bitch",
+                "Megalopolis"
+            );
+
+            StartGame();
+            ReturnAllTwisted();
+
+            var engulfedInDeck = echidna.TurnTaker.Deck.Cards.Count(c => c.IsAnEngulfedCard());
+            Assert.That(engulfedInDeck, Is.GreaterThan(0));
+
+            DecisionSelectCard = alexandria.CharacterCard;
+
+            PlayCard("Bullrush");
+
+            var engulfed = FindCard(c => c.IsAnEngulfedCard() && c.IsInPlay);
+            Assert.That(engulfed, Is.Not.Null);
+            AssertNextToCard(engulfed, alexandria.CharacterCard);
+            Assert.That(
+                echidna.TurnTaker.Deck.Cards.Count(c => c.IsAnEngulfedCard()),
+                Is.EqualTo(engulfedInDeck - 1));
         }
     }
 }
