@@ -19,9 +19,8 @@ namespace Jp.ParahumansOfTheWormverse.Behemoth
             // Show all Proximity pools?
         }
 
-        // Used movement cards go under the Movement Trash card, not the villain trash.
-        // (Moving the card during Play() doesn't work: the engine's one-shot cleanup
-        // moves it to the trash destination afterwards, so route that instead.)
+        // Can't move the card under Movement Trash during Play(): the engine's one-shot
+        // cleanup moves it to its trash destination afterwards, so route that instead.
         public override MoveCardDestination GetTrashDestination()
         {
             return new MoveCardDestination(base.TurnTaker.FindCard(MovementTrashIdentifier, realCardsOnly: false).UnderLocation);

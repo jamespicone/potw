@@ -33,8 +33,6 @@ namespace Jp.ParahumansOfTheWormverse.Slaughterhouse9
 
         private IEnumerator AttackHero(UsePowerAction upa)
         {
-            // "deals that hero 1 melee damage" — the hero who used the power,
-            // who isn't necessarily the active turn taker.
             var hero = upa.HeroUsingPower?.TurnTaker ?? GameController.ActiveTurnTaker;
             var selectedCard = new List<Card>();
             var e = FindCharacterCardToTakeDamage(hero, selectedCard, Card, 1, DamageType.Melee);

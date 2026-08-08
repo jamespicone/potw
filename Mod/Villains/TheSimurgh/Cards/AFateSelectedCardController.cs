@@ -24,8 +24,8 @@ namespace Jp.ParahumansOfTheWormverse.TheSimurgh
         public override IEnumerator Play()
         {
             // {TheSimurghCharacter} deals the hero with the fewest cards in play {H} sonic damage.
-            // (Note DealDamageToMostCardsInPlay can't be used here: its mostFewestSelectionType
-            // parameter only changes the decision label, not the most/fewest logic.)
+            // DealDamageToMostCardsInPlay can't be used here: its mostFewestSelectionType
+            // parameter only changes the decision label, not the most/fewest logic.
             var storedResults = new List<TurnTaker>();
             var e = FindHeroWithFewestCardsInPlay(storedResults, evenIfCannotDealDamage: true);
             if (UseUnityCoroutines)
