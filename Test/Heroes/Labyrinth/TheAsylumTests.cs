@@ -31,7 +31,33 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.Labyrinth
             PlayCard("TheAsylum");
 
             QuickHPStorage(labyrinth.CharacterCard, baron.CharacterCard, battalion);
-            GoToEndOfTurn(labyrinth);            
+            GoToEndOfTurn(labyrinth);
+            QuickHPCheck(-3, -2, -2);
+        }
+
+        [Test()]
+        public void TestSelfDamageIsIrreducible()
+        {
+            SetupGameController("BaronBlade", "Jp.ParahumansOfTheWormverse.Labyrinth", "InsulaPrimalis");
+
+            StartGame();
+            GoToUsePowerPhase(labyrinth);
+
+            RemoveVillainCards();
+            var battalion = PlayCard("BladeBattalion");
+
+            PlayCard("ObsidianField");
+            PlayCard("TheAsylum");
+
+            // Defensive Buttress reduces damage dealt to hero targets by 1, but
+            // The Asylum's self-damage is irreducible so Labyrinth still takes 3.
+            StackDeck("RiverOfLava"); // harmless card for Buttress's environment play
+            DecisionDoNotSelectCard = SelectionType.DestroyCard;
+            PlayCard("DefensiveButtress");
+            ResetDecisions();
+
+            QuickHPStorage(labyrinth.CharacterCard, baron.CharacterCard, battalion);
+            GoToEndOfTurn(labyrinth);
             QuickHPCheck(-3, -2, -2);
         }
     }

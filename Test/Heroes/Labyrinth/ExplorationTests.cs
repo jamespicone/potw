@@ -44,5 +44,9 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.Labyrinth
             AssertUnderCard(labyrinth.CharacterCard, raptor);
             AssertIsInPlay(field);
         }
+
+        // Note: the "may" on the draw can't be declined in tests — the engine's
+        // Smart auto-draw policy answers the optional draw yes whenever no draw
+        // triggers are in play, so the decline path never produces a decision.
     }
 }

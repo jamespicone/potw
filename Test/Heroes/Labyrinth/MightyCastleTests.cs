@@ -39,5 +39,33 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.Labyrinth
             DealDamage(labyrinth, c => c.IsHeroCharacterCard, 2, DamageType.Infernal);
             QuickHPCheck(-2, -1);
         }
+
+        [Test()]
+        public void TestReductionExpiresAtStartOfLabyrinthsTurn()
+        {
+            SetupGameController("BaronBlade", "Jp.ParahumansOfTheWormverse.Labyrinth", "Legacy", "InsulaPrimalis");
+
+            StartGame();
+            GoToUsePowerPhase(labyrinth);
+
+            RemoveVillainCards();
+            RemoveVillainTriggers();
+
+            PlayCard("ObsidianField");
+            PlayCard("MightyCastle");
+
+            DecisionSelectCard = legacy.CharacterCard;
+            GoToEndOfTurn(labyrinth);
+
+            AssertNumberOfStatusEffectsInPlay(1);
+
+            GoToStartOfTurn(labyrinth);
+
+            AssertNumberOfStatusEffectsInPlay(0);
+
+            QuickHPStorage(legacy);
+            DealDamage(labyrinth, legacy, 2, DamageType.Infernal);
+            QuickHPCheck(-2);
+        }
     }
 }

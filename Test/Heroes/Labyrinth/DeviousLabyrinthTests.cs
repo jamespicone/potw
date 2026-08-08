@@ -45,5 +45,30 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.Labyrinth
             Assert.That(battalion.IsBlank, Is.False);
             Assert.That(GameController.IsInhibited(FindCardController(battalion)), Is.False);
         }
+
+        [Test()]
+        public void TestMayDeclineToDestroyAndBlank()
+        {
+            SetupGameController("BaronBlade", "Jp.ParahumansOfTheWormverse.Labyrinth", "Legacy", "InsulaPrimalis");
+
+            StartGame();
+            GoToUsePowerPhase(labyrinth);
+
+            RemoveVillainCards();
+            RemoveVillainTriggers();
+
+            var field = PlayCard("ObsidianField");
+            var raptors = PlayCard("VelociraptorPack");
+            DecisionSelectCard = field;
+            PlayCard("DeviousLabyrinth");
+            ResetDecisions();
+
+            DecisionDoNotSelectCard = SelectionType.DestroyCard;
+            var battalion = PlayCard("BladeBattalion");
+
+            AssertIsInPlay(raptors);
+            Assert.That(battalion.IsBlank, Is.False);
+            Assert.That(GameController.IsInhibited(FindCardController(battalion)), Is.False);
+        }
     }
 }

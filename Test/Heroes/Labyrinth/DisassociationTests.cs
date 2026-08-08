@@ -14,7 +14,7 @@ using Handelabra.Sentinels.Engine.Controller;
 namespace Jp.ParahumansOfTheWormverse.UnitTest.Labyrinth
 {
     [TestFixture()]
-    public class DissassoctionTests : ParahumanTest
+    public class DisassociationTests : ParahumanTest
     {
         [Test()]
         public void TestPower()
