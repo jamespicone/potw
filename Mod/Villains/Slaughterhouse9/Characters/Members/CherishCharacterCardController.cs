@@ -79,8 +79,10 @@ namespace Jp.ParahumansOfTheWormverse.Slaughterhouse9
                 GameController.ExhaustCoroutine(e);
             }
 
-            if (selectedTurnTaker.Count <= 0) { yield break; }
-            var selectedHeroController = FindHeroTurnTakerController(selectedTurnTaker.First() as HeroTurnTaker);
+            var selectedHero = selectedTurnTaker.FirstOrDefault() as HeroTurnTaker;
+            if (selectedHero == null) { yield break; }
+
+            var selectedHeroController = FindHeroTurnTakerController(selectedHero);
             if (selectedHeroController == null) { yield break; }
 
             e = GameController.SelectAndDiscardCards(

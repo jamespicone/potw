@@ -32,9 +32,9 @@ namespace Jp.ParahumansOfTheWormverse.Behemoth
             {
                 GameController.ExhaustCoroutine(findCoroutine);
             }
-            if (mostCardsResults.Count() > 0)
+            TurnTaker mostCardsTT = mostCardsResults.FirstOrDefault();
+            if (mostCardsTT != null)
             {
-                TurnTaker mostCardsTT = mostCardsResults.First();
                 // Get their neighbors in turn order
                 TurnTaker[] activeHeroTurnOrder = base.GameController.FindTurnTakersWhere((TurnTaker tt) => tt.Is(this).Hero() && !tt.IsIncapacitatedOrOutOfGame).ToArray();
                 int mostCardsIndex = Array.IndexOf(activeHeroTurnOrder, mostCardsTT);

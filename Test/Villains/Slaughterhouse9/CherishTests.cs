@@ -37,6 +37,36 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.Slaughterhouse9
         }
 
         [Test()]
+        public void TestDefenceSurvivesUndecidableHeroChoice()
+        {
+            SetupGameController(
+                "Jp.ParahumansOfTheWormverse.Slaughterhouse9",
+                "Jp.ParahumansOfTheWormverse.Alexandria",
+                "Legacy",
+                "Megalopolis"
+            );
+
+            StartGame();
+            PutMemberInPlay("CherishCharacter");
+            ReturnMembersExcept(cherish);
+
+            var lessThanHuman = PlayCard("LessThanHuman");
+
+            // Equal hands, so picking one needs a decision - which an inhibited card
+            // source can't make.
+            MoveAllCardsFromHandToDeck(alexandria);
+            MoveAllCardsFromHandToDeck(legacy);
+            DrawCard(alexandria, 3);
+            DrawCard(legacy, 3);
+
+            GameController.AddInhibitor(FindCardController(cherish));
+
+            QuickHandStorage(alexandria, legacy);
+            DestroyCard(lessThanHuman);
+            QuickHandCheck(0, 0);
+        }
+
+        [Test()]
         public void TestCounterStraightforward()
         {
             SetupGameController(
