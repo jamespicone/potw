@@ -50,6 +50,35 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.Echidna
         }
 
         [Test()]
+        public void TestSurvivesGuiseCopyingIt()
+        {
+            // Guise's "Uh, Yeah, I'm That Guy!" reruns the Play() of every ongoing in
+            // the high-fived hero's play area, with Guise substituted for the card.
+            SetupGameController(
+                "Jp.ParahumansOfTheWormverse.Echidna",
+                "Guise",
+                "Jp.ParahumansOfTheWormverse.Bitch",
+                "Megalopolis"
+            );
+
+            RemoveAllTwisted();
+            StartGame();
+
+            DecisionSelectCard = bitch.CharacterCard;
+            PlayCard("Engulfed", 0);
+            ResetDecisions();
+
+            DecisionSelectTurnTaker = bitch.TurnTaker;
+            PlayCard("UhYeahImThatGuy");
+            ResetDecisions();
+
+            // Guise's copy has no hero next to it, so a power in his play area hurts nobody.
+            QuickHPStorage(guise.CharacterCard, bitch.CharacterCard);
+            UsePower("GuiseCharacter");
+            QuickHPCheck(0, 0);
+        }
+
+        [Test()]
         public void TestHurtsOnPowers()
         {
             SetupGameController(

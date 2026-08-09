@@ -45,7 +45,10 @@ namespace Jp.ParahumansOfTheWormverse.Echidna
         public override IEnumerator Play()
         {
             // If you do play the top card of the Twisted deck.
-            return GameController.PlayTopCardOfLocation(TurnTakerController, TurnTaker.FindSubDeck("TwistedDeck"));
+            var twistedDeck = CardWithoutReplacements.Owner.FindSubDeck("TwistedDeck");
+            if (twistedDeck == null) { return DoNothing(); }
+
+            return GameController.PlayTopCardOfLocation(TurnTakerController, twistedDeck);
         }
 
         public override void AddTriggers()
@@ -55,7 +58,7 @@ namespace Jp.ParahumansOfTheWormverse.Echidna
 
             // Whenever a power in this play area is used the target this card is next to deals themselves 2 psychic damage
             AddTrigger<UsePowerAction>(
-                upa => upa.IsSuccessful && upa.Power.CardController.Card.Location.HighestRecursiveLocation == Card.Location.HighestRecursiveLocation,
+                upa => upa.IsSuccessful && GetCardThisCardIsNextTo() != null && upa.Power.CardController.Card.Location.HighestRecursiveLocation == Card.Location.HighestRecursiveLocation,
                 upa => DealDamage(GetCardThisCardIsNextTo(), GetCardThisCardIsNextTo(), 2, DamageType.Psychic),
                 TriggerType.DealDamage,
                 TriggerTiming.After
