@@ -1,4 +1,4 @@
-# Test Coverage Plan
+﻿# Test Coverage Plan
 
 Branch `claude_dauntless_tests`.
 
@@ -273,11 +273,88 @@ Last full-suite run (after the Merchants deepening and the S9 flake fix):
 
 ### Known pre-existing flakiness (NOT caused by this work)
 
-Roughly 1 in 3 full-suite runs shows a failure from the seeded random tests —
-`TestEnvRandomWithGuise`, `TestEnvRandomWithCompletionistGuise`,
-`TestRandomWithPWTempest`, `TestRandomWithTribunal`, and the two `TestLimited`
-tests (`BatteryCauldronCapeTests`, `CarryTheChargeTests`). Each passes on
-rerun. A background task chip was spawned to make these deterministic.
+Roughly 1 in 3 full-suite runs showed a failure from the seeded random tests.
+Investigated 2026-08-08 by stress-running the random suite and deterministically
+replaying failing games (`RunParticularGame` + the seed from the failure log).
+Each fix has a test in the relevant card's own test file. Root causes:
+
+**Fixed mod bugs:**
+- Behemoth: `ProximityPool()` returns null for a hero whose marker has left play,
+  which happens when they are incapacitated - including part-way through a card's
+  own effect. Incinerate and the character card's end-of-turn damage dereferenced
+  it unguarded. `BehemothTestBase.RemoveProximityMarker` sets this state up.
+- Echidna: Guise's "Uh, Yeah, I'm That Guy!" reruns the `Play()` of ongoings in
+  the high-fived hero's play area with the TurnTaker property replaced by Guise.
+  Engulfed (attached next to a hero) looked up the Twisted subdeck through
+  `TurnTaker` — null for Guise — and passed it to the engine. Its power-punish
+  trigger is also cloned by Guise and needed a null next-to guard. Note its
+  `Play()` must *return* the coroutine rather than driving it inline with
+  `ExhaustCoroutine`: Engulfed plays the top Twisted card, which can be another
+  Engulfed, so inline driving adds a stack frame per level and overflows on some
+  seeds — which kills the test host silently and hangs the whole run.
+- Legend: `ChooseEffects` cast every controller offering an "effect" activatable
+  ability to `IEffectCardController`. The Celestial Tribunal's Called to Judgement
+  puts a hero character card into play from the box and lets a hero use its power,
+  registering in `ReplacesCards`/`ReplacesTurnTakerController`/`ReplacesCardSource`
+  for as long as that power resolves. Inside that window the boxed card's
+  controller reports Legend's character card as its own (`Card` resolves to
+  `LegendCharacter` while `CardWithoutReplacements` is `FanaticCharacter`), so it
+  offers Legend's own "effect" ability. Prime Wardens Fanatic's power ends with
+  "one hero may use a power", which is how a Legend power came to run inside the
+  window. The blind cast threw. `ChooseEffects` no longer uses
+  `SelectAndActivateAbility`, because its only filter is a `LinqCardCriteria` and
+  both copies report the same Card: it now gathers the abilities itself
+  (`GetActivatableAbilitiesInPlayEx`), keeps only those whose controller is one of
+  ours, and runs its own `ActivateAbilityDecision`. That matters for play, not
+  just for crashes - otherwise the player is offered two identical "Legend"
+  entries and picking the borrowed one silently does nothing. `CurveshotTests`
+  builds this with Character Witness, whose power-lending happens on a turn
+  trigger rather than during its own play, so the borrowed power can be set up
+  separately; the test swaps in its own `OnMakeDecisions` handler to take the
+  borrowed ability if it is ever offered, and asserts only one is.
+- `CarryTheChargeTests.TestLimited`: when the random opening hand contained all
+  copies of Carry the Charge, both `PutInHand` calls returned the same card
+  (GetCard prefers deck/trash, falls back to hand). Fixed by returning the hand
+  to the deck first. `BatteryCauldronCapeTests.TestLimitedBecomesUnplayable`
+  already does this; if it flakes again, look for a different cause.
+
+**Engine bugs (not fixable mod-side, will still fail random tests rarely):**
+Reproductions are kept in an uncommitted `Test/EngineBugRepros.cs` (they fail by
+design, so they are deliberately not part of the suite). Decision (2026-08-09):
+the Power Overwhelming and Shocking Animation ones are worth reporting upstream;
+the tie-break one can't be reached with base game content alone, so we guard our
+own cards against it instead (see below).
+
+The tie-break bug's real shape: `DetermineTurnTakersWithMostOrFewest` stores
+`selectTurnTakerDecision.SelectedTurnTaker` without checking the decision
+completed, so a **refused** decision puts a null in the results list. It is
+refused whenever `CanPerformAction` says no, which covers three cases: the card
+source is inhibited, the source card flipped since its CardSource was captured
+(`IsCardOnWrongSide`), or the game is over. Note `Count() > 0` does not protect
+callers — the list has one null element. Check `FirstOrDefault() != null`, which
+is what most base game cards do. The HP equivalent
+(`DetermineTargetWithLowestOrHighestHitPoints`) guards correctly, so
+`FindTargetWith{Lowest,Highest}HitPoints` call sites are fine.
+
+Audit of our seven most/fewest call sites (2026-08-09): Trickster,
+A Terrible Defeat, Bakuda and A Fate Selected already null-check. Cherish was
+crash-safe only via a second guard (`FindHeroTurnTakerController(null)` returns
+null) — now checks explicitly. Leap used `Count() > 0` then `.First()`, which
+would have handed `Array.IndexOf` a null and given proximity tokens to the
+wrong two heroes; it only runs during the card's own `Play()`, where a card is
+never inhibited (`PlayCardAction` removes the inhibitor before `Play()`), so
+that one is defensive only.
+- `GameController.DetermineTurnTakersWithMostOrFewest`: if the tie-break
+  `SelectTurnTakerDecision` is cancelled ("cannot do anything else", e.g. all
+  tied heroes currently undamageable), it adds a null TurnTaker to the results
+  and `TargetInfo.GetTargets` NREs on it. Seen via Citizen Summer's end-of-turn
+  most-cards damage.
+- Hades' Power Overwhelming: `ShouldIncreasePhaseActionCount` assumes the card
+  sits in a hero play area; NREs mid-move (seen with Tempest's Into the
+  Stratosphere relocating it).
+- Chokepoint's Shocking Animation × Guise's "Uh, Yeah, I'm That Guy!":
+  the rerun `Play()` calls `MakeTargettable(GetCardThisCardIsNextTo())` with a
+  null next-to card and `MakeTargetAction.ToString()` NREs.
 
 A second flake source — the started-game S9 member tests dying whenever the
 random deployment pre-deployed the member under test (via the
@@ -288,7 +365,9 @@ the Phase 5 member deepening, not pre-existing.
 ### What's left
 
 - **Committing this work** — nothing on the branch is committed yet.
-- The known random-seed flakes above remain (background task chip spawned).
+- The random-test crashes were investigated and the mod-side ones fixed
+  (2026-08-08, see the flakiness section); three engine-side bugs remain and
+  can still fail a random test on rare seeds.
 
 ### Coverage check
 
