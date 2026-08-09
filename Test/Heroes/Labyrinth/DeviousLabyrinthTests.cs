@@ -70,5 +70,32 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.Labyrinth
             Assert.That(battalion.IsBlank, Is.False);
             Assert.That(GameController.IsInhibited(FindCardController(battalion)), Is.False);
         }
+
+        [Test()]
+        public void TestDestroyingItselfDoesNotStrandTheBlank()
+        {
+            SetupGameController("BaronBlade", "Jp.ParahumansOfTheWormverse.Labyrinth", "Legacy", "InsulaPrimalis");
+
+            StartGame();
+            GoToUsePowerPhase(labyrinth);
+
+            RemoveVillainCards();
+            RemoveVillainTriggers();
+
+            var field = PlayCard("ObsidianField");
+            DecisionSelectCard = field;
+            var board = PlayCard("DeviousLabyrinth");
+            ResetDecisions();
+
+            // This card sits in the environment play area, so it can pay for its own
+            // effect by destroying itself.
+            DecisionSelectCards = new Card[] { board, null };
+            var battalion = PlayCard("BladeBattalion");
+            ResetDecisions();
+
+            AssertInTrash(board);
+            Assert.That(battalion.IsBlank, Is.False);
+            Assert.That(GameController.IsInhibited(FindCardController(battalion)), Is.False);
+        }
     }
 }

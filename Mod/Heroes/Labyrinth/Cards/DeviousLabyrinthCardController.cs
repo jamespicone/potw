@@ -1,4 +1,4 @@
-using Handelabra.Sentinels.Engine.Controller;
+﻿using Handelabra.Sentinels.Engine.Controller;
 using Handelabra.Sentinels.Engine.Model;
 using System.Collections;
 using System.Collections.Generic;
@@ -90,11 +90,14 @@ namespace Jp.ParahumansOfTheWormverse.Labyrinth
             effect.TurnPhaseCriteria.TurnTaker = TurnTaker;
             effect.TurnPhaseCriteria.Phase = Phase.Start;
 
-            BlankCard(target);
-
             e = AddStatusEffect(effect);
             if (UseUnityCoroutines) { yield return GameController.StartCoroutine(e); }
             else { GameController.ExhaustCoroutine(e); }
+
+            // We do this here in case we're inhibited and the status effect is blocked.
+            if (! WeAreBlanking(target)) { yield break; }
+
+            BlankCard(target);
         }
 
         private void BlankCard(Card c)
