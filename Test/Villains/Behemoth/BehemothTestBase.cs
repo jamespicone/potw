@@ -42,6 +42,17 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.Behemoth
             Proximity(hero).SetNumberOfTokens(value);
         }
 
+        // A hero's proximity marker leaves play when they are incapacitated, so their
+        // cards can outlive their pool - including part-way through a card's effect.
+        protected void RemoveProximityMarker(TurnTakerController hero)
+        {
+            var marker = FindCardsWhere(
+                c => c.Identifier == "Proximity" && c.Location == hero.TurnTaker.PlayArea,
+                realCardsOnly: false).First();
+            // The marker is a non-real card, so it needs the model-level move.
+            MoveCard(behemoth, marker, behemoth.TurnTaker.OutOfGame, overrideIndestructible: true);
+        }
+
         protected void ClearProximity()
         {
             SetProximity(legacy, 0);

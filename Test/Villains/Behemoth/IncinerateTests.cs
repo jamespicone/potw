@@ -1,4 +1,4 @@
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using System;
 using Handelabra.Sentinels.Engine.Model;
 using Handelabra.Sentinels.Engine.Controller;
@@ -35,6 +35,24 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.Behemoth
 
             Assert.That(Proximity(legacy).CurrentValue, Is.EqualTo(1));
             Assert.That(Proximity(bunker).CurrentValue, Is.EqualTo(1));
+        }
+
+        [Test()]
+        public void TestDestroyingCardOfHeroWithNoProximityPool()
+        {
+            SetupBehemothGame();
+            RemoveBehemothTriggers();
+            ClearProximity();
+            SetProximity(bunker, 2);
+
+            var sense = PlayCard("DangerSense");
+
+            RemoveProximityMarker(legacy);
+
+            PlayCard("Incinerate");
+
+            AssertInTrash(sense);
+            Assert.That(Proximity(bunker).CurrentValue, Is.EqualTo(2));
         }
     }
 }

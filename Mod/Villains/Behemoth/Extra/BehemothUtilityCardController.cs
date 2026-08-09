@@ -246,7 +246,7 @@ namespace Jp.ParahumansOfTheWormverse.Behemoth
 
         public IEnumerator AddProximityTokens(TurnTaker tt, int numTokens, CardSource cardSource = null, bool showUpdatedValue = false)
         {
-            if (tt == null || !tt.Is(this).Hero() || tt.IsIncapacitatedOrOutOfGame)
+            if (tt == null || !tt.Is(this).Hero() || tt.IsIncapacitatedOrOutOfGame || ProximityPool(tt) == null)
             {
                 yield break;
             }
@@ -321,7 +321,7 @@ namespace Jp.ParahumansOfTheWormverse.Behemoth
 
         public IEnumerator RemoveProximityTokens(TurnTaker tt, int numTokens, CardSource cardSource = null, bool showUpdatedValue = false, List<RemoveTokensFromPoolAction> storedResults = null)
         {
-            if (tt == null || !tt.Is(this).Hero() || tt.IsIncapacitatedOrOutOfGame)
+            if (tt == null || !tt.Is(this).Hero() || tt.IsIncapacitatedOrOutOfGame || ProximityPool(tt) == null)
             {
                 yield break;
             }

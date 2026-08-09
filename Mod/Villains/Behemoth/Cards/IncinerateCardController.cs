@@ -46,7 +46,7 @@ namespace Jp.ParahumansOfTheWormverse.Behemoth
             if (DidDestroyCard(results))
             {
                 IEnumerable<TurnTaker> playersWhoDestroyed = (from DestroyCardAction dca in results select dca.CardToDestroy.Card.Owner).Distinct();
-                IEnumerable<TurnTaker> destroyedAndCanPass = playersWhoDestroyed.Where((TurnTaker tt) => ProximityPool(tt).CurrentValue > 0);
+                IEnumerable<TurnTaker> destroyedAndCanPass = playersWhoDestroyed.Where((TurnTaker tt) => ProximityPool(tt) != null && ProximityPool(tt).CurrentValue > 0);
                 if (destroyedAndCanPass.Count() > 0)
                 {
                     TurnTaker passingTT = null;

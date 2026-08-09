@@ -1,4 +1,4 @@
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using System;
 using Handelabra.Sentinels.Engine.Model;
 using Handelabra.Sentinels.Engine.Controller;
@@ -54,6 +54,24 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.Behemoth
             GoToEndOfTurn();
 
             QuickHPCheck(-1, -2, -3);
+        }
+
+        [Test()]
+        public void TestEndOfTurnProximityDamageSkipsHeroWithNoPool()
+        {
+            SetupBehemothGame();
+
+            SetProximity(legacy, 1);
+            SetProximity(bunker, 2);
+            SetProximity(haka, 3);
+
+            RemoveProximityMarker(haka);
+
+            QuickHPStorage(legacy, bunker, haka);
+
+            GoToEndOfTurn();
+
+            QuickHPCheck(-1, -2, 0);
         }
 
         [Test()]

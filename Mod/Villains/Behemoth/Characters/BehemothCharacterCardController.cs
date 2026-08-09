@@ -191,6 +191,7 @@ namespace Jp.ParahumansOfTheWormverse.Behemoth
             foreach(HeroTurnTakerController player in heroControllers)
             {
                 TokenPool playerProximity = ProximityPool(player.TurnTaker);
+                if (playerProximity == null) { continue; }
                 Log.Debug(player.Name + "'s proximity pool has " + playerProximity.CurrentValue.ToString() + " tokens.");
                 //Log.Debug("Finding hero character card for " + player.Name + "...");
                 if (player.HasMultipleCharacterCards)
