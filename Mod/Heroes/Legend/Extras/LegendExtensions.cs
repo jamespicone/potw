@@ -16,37 +16,48 @@ namespace Jp.ParahumansOfTheWormverse.Legend
             var areWeBursting = co.GameController.StatusEffectManager.StatusEffectControllers.Select(sec => sec.StatusEffect as LegendBurstStatusEffect)
                 .Where(se => se != null && se.AffectedTurnTaker == co.TurnTaker).Count() > 0;
 
-            var selectedEffects = new List<CardController>();
+            var selectedEffects = new List<IEffectCardController>();
 
-            do
+            while (co.Card.IsInPlayAndHasGameText)
             {
-                var selectedEffect = new List<ActivateAbilityDecision>();
-                var e = co.GameController.SelectAndActivateAbility(
+                // Other controllers can answer for our card and report our ability as
+                // theirs, so offer only the effects that are ours. SelectAndActivateAbility
+                // can't do this: it only filters by Card, which is the same for both.
+                var choices = co.GameController
+                    .GetActivatableAbilitiesInPlayEx(co.HeroTurnTakerController, "effect", cardSource: co.GetCardSource())
+                    .Where(a => EffectFor(a) != null && ! selectedEffects.Contains(EffectFor(a)));
+                if (! choices.Any()) { break; }
+
+                var decision = new ActivateAbilityDecision(
+                    co.GameController,
                     co.HeroTurnTakerController,
                     "effect",
-                    new LinqCardCriteria(c => selectedEffects.Count(cc => cc.Card == c) <= 0),
-                    storedResults: selectedEffect,
-                    cardSource: co.GetCardSource(),
-                    optional: selectedEffects.Count() > 0
+                    choices,
+                    optional: selectedEffects.Count() > 0,
+                    co.GetCardSource()
                 );
-                if (co.UseUnityCoroutines)
-                {
-                    yield return co.GameController.StartCoroutine(e);
-                }
-                else
-                {
-                    co.GameController.ExhaustCoroutine(e);
-                }
 
-                if (selectedEffect.Count() <= 0) { break; }
+                var e = co.GameController.MakeDecisionAction(decision);
+                if (co.UseUnityCoroutines) { yield return co.GameController.StartCoroutine(e); }
+                else { co.GameController.ExhaustCoroutine(e); }
 
-                var selected = selectedEffect.First().SelectedAbility?.CopiedFromCardController ?? selectedEffect.First().SelectedAbility?.CardController;
-                if (selected == null) { break; }
+                if (! decision.Completed || decision.SelectedAbility == null) { break; }
 
-                selectedEffects.Add(selected);
-            } while (areWeBursting);
+                e = co.GameController.ActivateAbility(decision.SelectedAbility, co.GetCardSource());
+                if (co.UseUnityCoroutines) { yield return co.GameController.StartCoroutine(e); }
+                else { co.GameController.ExhaustCoroutine(e); }
 
-            effects.AddRange(selectedEffects.Cast<IEffectCardController>());
+                selectedEffects.Add(EffectFor(decision.SelectedAbility));
+
+                if (! areWeBursting) { break; }
+            }
+
+            effects.AddRange(selectedEffects);
+        }
+
+        private static IEffectCardController EffectFor(ActivatableAbility ability)
+        {
+            return (ability?.CopiedFromCardController ?? ability?.CardController) as IEffectCardController;
         }
 
         public static IEnumerator ApplyEffects(
