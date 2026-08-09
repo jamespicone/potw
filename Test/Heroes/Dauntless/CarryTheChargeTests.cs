@@ -303,6 +303,10 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.Dauntless
             SetupGameController("BaronBlade", "Jp.ParahumansOfTheWormverse.Dauntless", "InsulaPrimalis");
             StartGame();
 
+            // If the opening hand contains every copy, both PutInHand calls
+            // return the same card. Return the hand to the deck first.
+            MoveAllCardsFromHandToDeck(dauntless);
+
             var carryTheCharge1 = PutInHand("CarryTheCharge");
             var carryTheCharge2 = PutInHand("CarryTheCharge");
 
