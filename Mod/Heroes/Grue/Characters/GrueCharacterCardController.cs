@@ -98,7 +98,9 @@ namespace Jp.ParahumansOfTheWormverse.Grue
         private IEnumerator PutDarknessesIntoPlay()
         {
             // Put a Darkness card into play next to {GrueCharacter}. Put a Darkness card into play next to another target.
-            var e = this.PutDarknessIntoPlay(CharacterCard);
+            var grueCard = Card;
+
+            var e = this.PutDarknessIntoPlay(grueCard);
             if (UseUnityCoroutines)
             {
                 yield return GameController.StartCoroutine(e);
@@ -112,7 +114,7 @@ namespace Jp.ParahumansOfTheWormverse.Grue
             e = GameController.SelectCardAndStoreResults(
                 HeroTurnTakerController,
                 SelectionType.MoveCardNextToCard,
-                new LinqCardCriteria(c => c.IsTarget && c.IsInPlay && c != CharacterCard, "target"),
+                new LinqCardCriteria(c => c.IsTarget && c.IsInPlay && c != grueCard, "target"),
                 storedResults: selectedTarget,
                 optional: false,
                 cardSource: GetCardSource()

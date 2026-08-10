@@ -305,5 +305,58 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.Grue
 
             AssertInTrash(ongoing);
         }
+
+        // The Celestial Tribunal's Representative of Earth brings a hero character card in from
+        // the box on its own, without its deck, so there are no Darkness cards anywhere in the
+        // game - not even one to copy a definition from. Bunker rather than Legacy so Baron
+        // Blade's nemesis bonus stays out of the damage numbers.
+        [Test()]
+        public void TestBroughtInByRepresentativeOfEarthWithNoDeck()
+        {
+            SetupGameController("BaronBlade", "Bunker", "TheCelestialTribunal");
+            StartGame();
+
+            DecisionSelectFromBoxIdentifiers = new string[] { "Jp.ParahumansOfTheWormverse.GrueCharacter" };
+            DecisionSelectFromBoxTurnTakerIdentifier = "Jp.ParahumansOfTheWormverse.Grue";
+            PlayCard("RepresentativeOfEarth");
+            ResetDecisions();
+
+            var grueCard = GameController.FindCardsWhere(
+                c => c.IsInPlayAndHasGameText && c.IsHeroCharacterCard && c.Owner.IsEnvironment,
+                realCardsOnly: false).FirstOrDefault();
+            Assert.That(grueCard, Is.Not.Null, "Representative of Earth did not bring in Grue");
+            Assert.That(GameController.FindCardsWhere(c => c.IsGrueDarkness(), realCardsOnly: false), Is.Empty);
+
+            DecisionSelectCard = bunker.CharacterCard;
+            UsePower(grueCard, 0);
+
+            // Both Darkness cards get built from the deck definition, and get real controllers
+            // rather than the plain CardController the factory falls back to.
+            var darknesses = GameController.FindCardsWhere(c => c.IsGrueDarkness(), realCardsOnly: false).ToList();
+            Assert.That(darknesses.Count, Is.EqualTo(2));
+            Assert.That(darknesses.All(d => GameController.FindCardController(d) is DarknessCardController));
+            Assert.That(darknesses.Select(d => d.Location.OwnerCard),
+                Is.EquivalentTo(new Card[] { grueCard, bunker.CharacterCard }));
+
+            // Grue's own damage is never reduced, so this also leaves the once-per-turn
+            // reduction unspent for the check below.
+            QuickHPStorage(bunker.CharacterCard);
+            DealDamage(grueCard, bunker.CharacterCard, 3, DamageType.Melee);
+            QuickHPCheck(-3);
+
+            QuickHPStorage(bunker.CharacterCard);
+            DealDamage(baron, bunker, 3, DamageType.Melee);
+            QuickHPCheck(-2);
+
+            // "At the end of {GrueCharacter}'s next turn remove this card from the game" never
+            // comes due, because he is not a player and never takes a turn.
+            for (var i = 0; i < 3; i++)
+            {
+                GoToStartOfTurn(env);
+                GoToEndOfTurn(env);
+            }
+
+            Assert.That(darknesses.All(d => d.IsInPlayAndHasGameText), "The Darkness cards should never leave play");
+        }
     }
 }
