@@ -249,5 +249,122 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.Battery
             Assert.That(battery.CharacterCardController.IsCharged(battery.CharacterCard), Is.True);
             Assert.That(battery.CharacterCard.PromoIdentifierOrIdentifier, Is.EqualTo("BatteryCharacter"));
         }
+
+        // Every card that can use a power on a Representative of Earth summon (Called to
+        // Judgement, Character Witness, Guise's "I Can Do That Too!" and Completionist Guise -
+        // the only four with allowAnyHeroPower) replaces the turn taker controller for the
+        // duration, so "your deck" and "your play area" are the borrowing hero's.
+        [Test()]
+        public void TestPowerLentByCalledToJudgement()
+        {
+            SetupGameController("BaronBlade", "Legacy", "Bunker", "TheCelestialTribunal");
+            StartGame();
+
+            DecisionSelectFromBoxIdentifiers = new string[] { "Jp.ParahumansOfTheWormverse.BatteryCauldronCapeCharacter" };
+            DecisionSelectFromBoxTurnTakerIdentifier = "Jp.ParahumansOfTheWormverse.Battery";
+            PlayCard("RepresentativeOfEarth");
+            ResetDecisions();
+
+            // An ongoing, so it is still in play to look at once the discharge plays it.
+            var legacyTop = PutOnDeck("InspiringPresence");
+
+            // Legacy is chosen to use the power, so DecisionSelectPower is his card - inside the
+            // window the summoned controller reports Legacy's character card as its own.
+            DecisionSelectCard = legacy.CharacterCard;
+            DecisionSelectPower = legacy.CharacterCard;
+            DecisionSelectPowerIndex = 0;
+            PlayCard("CalledToJudgement");
+
+            // "Put the top card of your deck into play face down" used Legacy's deck and play area.
+            AssertInPlayArea(legacy, legacyTop);
+            AssertFlipped(legacyTop);
+
+            // And the charge power charges Legacy, not the summoned card.
+            DecisionSelectCard = legacy.CharacterCard;
+            DecisionSelectPower = legacy.CharacterCard;
+            DecisionSelectPowerIndex = 1;
+            PlayCard("CalledToJudgement");
+
+            var effect = GameController.StatusEffectControllers
+                .Select(sc => sc.StatusEffect)
+                .OfType<BatteryChargedStatusEffect>()
+                .Single();
+            Assert.That(effect.ChargedCard, Is.EqualTo(legacy.CharacterCard));
+
+            // The face-down card was revealed and put into play, again from Legacy's play area.
+            AssertNotFlipped(legacyTop);
+            AssertIsInPlay(legacyTop);
+
+            // "{Charge} {BatteryCharacter} until the start of your next turn" expires off the
+            // borrowing hero's turn too - ChargeCard hangs UntilStartOfNextTurn on TurnTaker,
+            // which follows the replacement to Legacy, not the summoned card's environment.
+            GoToEndOfTurn(baron);
+            Assert.That(legacy.CharacterCardController.IsCharged(legacy.CharacterCard), Is.True);
+            AssertNumberOfStatusEffectsInPlay(1);
+
+            GoToStartOfTurn(legacy);
+
+            Assert.That(legacy.CharacterCardController.IsCharged(legacy.CharacterCard), Is.False);
+            AssertNumberOfStatusEffectsInPlay(0);
+        }
+
+        // Using a power on the summoned card with no replacement in place is not something the
+        // base game can produce, but it is how the sweep for these crashes drives them and it is
+        // the state the null CharacterCard lives in, so keep it guarded.
+        [Test()]
+        public void TestBroughtInByRepresentativeOfEarth()
+        {
+            SetupGameController("BaronBlade", "Legacy", "TheCelestialTribunal");
+            StartGame();
+
+            DecisionSelectFromBoxIdentifiers = new string[] { "Jp.ParahumansOfTheWormverse.BatteryCauldronCapeCharacter" };
+            DecisionSelectFromBoxTurnTakerIdentifier = "Jp.ParahumansOfTheWormverse.Battery";
+            PlayCard("RepresentativeOfEarth");
+            ResetDecisions();
+
+            var cape = GameController.FindCardsWhere(
+                c => c.IsInPlayAndHasGameText && c.IsHeroCharacterCard && c.Owner.IsEnvironment,
+                realCardsOnly: false).FirstOrDefault();
+            Assert.That(cape, Is.Not.Null, "Representative of Earth did not bring in the promo character card");
+            Assert.That(cape.Title, Is.EqualTo("Battery: Cauldron Cape"));
+
+            var capeController = FindCardController(cape);
+            Assert.That(capeController.IsCharged(cape), Is.False);
+
+            // "Your" deck and play area are the environment's here, so the powers work on those.
+            var adjudicator = PutOnDeck("CelestialAdjudicator");
+
+            UsePower(cape, 0);
+
+            AssertInPlayArea(env, adjudicator);
+            AssertFlipped(adjudicator);
+
+            UsePower(cape, 1);
+
+            Assert.That(capeController.IsCharged(cape), Is.True);
+            AssertNumberOfStatusEffectsInPlay(1);
+            AssertNotFlipped(adjudicator);
+            AssertIsInPlay(adjudicator);
+
+            // It charges the card in play, not the hero's absent character card.
+            var effect = GameController.StatusEffectControllers
+                .Select(sc => sc.StatusEffect)
+                .OfType<BatteryChargedStatusEffect>()
+                .Single();
+            Assert.That(effect.ChargedCard, Is.EqualTo(cape));
+
+            // "Until the start of your next turn" is the environment's turn here, since that is
+            // who owns him - so it survives the intervening hero turn and expires on the
+            // Tribunal's. Without a turn taker that ever takes a turn this would never come due,
+            // the way Grue's Darkness cards don't.
+            GoToStartOfTurn(legacy);
+            Assert.That(capeController.IsCharged(cape), Is.True);
+            AssertNumberOfStatusEffectsInPlay(1);
+
+            GoToStartOfTurn(env);
+
+            Assert.That(capeController.IsCharged(cape), Is.False);
+            AssertNumberOfStatusEffectsInPlay(0);
+        }
     }
 }

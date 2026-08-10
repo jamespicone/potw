@@ -44,7 +44,7 @@ namespace Jp.ParahumansOfTheWormverse.Battery
             if (top.IsMissionCard)
             {
                 // We know from Santa Guise that playing an OA Mission "face down" from your deck results in it entering play Reward side up.
-                var e = GameController.SendMessageAction(CharacterCard.Title + "'s Charge produces a Reward!", Priority.Low, GetCardSource(), new Card[] { top }, true);
+                var e = GameController.SendMessageAction(Card.Title + "'s Charge produces a Reward!", Priority.Low, GetCardSource(), new Card[] { top }, true);
                 if (UseUnityCoroutines) { yield return GameController.StartCoroutine(e); }
                 else { GameController.ExhaustCoroutine(e); }
             }
@@ -72,7 +72,7 @@ namespace Jp.ParahumansOfTheWormverse.Battery
         private IEnumerator DischargeBattery()
         {
             // {Charge} {BatteryCharacter} until the start of your next turn.
-            var e = this.ChargeCard(CharacterCard, true);
+            var e = this.ChargeCard(Card, true);
             if (UseUnityCoroutines) { yield return GameController.StartCoroutine(e); }
             else { GameController.ExhaustCoroutine(e); }
 
@@ -138,12 +138,6 @@ namespace Jp.ParahumansOfTheWormverse.Battery
 
             if (UseUnityCoroutines) { yield return GameController.StartCoroutine(e); }
             else { GameController.ExhaustCoroutine(e); }
-        }
-
-        public IEnumerator ChargeExpiresResponse(PhaseChangeAction pca, OnPhaseChangeStatusEffect effect)
-        {
-            // It's the start of Battery's next turn, so remove Battery's Charge
-            return this.DischargeCard(CharacterCard);
         }
 
         public override IEnumerator UseIncapacitatedAbility(int index)

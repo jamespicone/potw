@@ -194,5 +194,81 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.Battery
             );
             RunCoroutine(e);
         }
+
+        // Every card that can use a power on a Representative of Earth summon (Called to
+        // Judgement, Character Witness, Guise's "I Can Do That Too!" and Completionist Guise -
+        // the only four with allowAnyHeroPower) replaces the turn taker controller for the
+        // duration, so "you" is the borrowing hero: their deck, their hand, their character card.
+        [Test()]
+        public void TestPowerLentByCalledToJudgement()
+        {
+            SetupGameController("BaronBlade", "Legacy", "Bunker", "TheCelestialTribunal");
+            StartGame();
+
+            DecisionSelectFromBoxIdentifiers = new string[] { "Jp.ParahumansOfTheWormverse.BatteryCharacter" };
+            DecisionSelectFromBoxTurnTakerIdentifier = "Jp.ParahumansOfTheWormverse.Battery";
+            PlayCard("RepresentativeOfEarth");
+            ResetDecisions();
+
+            // Legacy is chosen to use the power, so DecisionSelectPower is his card - inside the
+            // window the summoned controller reports Legacy's character card as its own.
+            QuickHandStorage(legacy);
+            DecisionSelectCard = legacy.CharacterCard;
+            DecisionSelectPower = legacy.CharacterCard;
+            PlayCard("CalledToJudgement");
+
+            // "{Charge} {BatteryCharacter} and draw a card" drew from Legacy's deck...
+            QuickHandCheck(1);
+
+            // ...and charged Legacy, not the summoned card.
+            var effect = GameController.StatusEffectControllers
+                .Select(sc => sc.StatusEffect)
+                .OfType<BatteryChargedStatusEffect>()
+                .Single();
+            Assert.That(effect.ChargedCard, Is.EqualTo(legacy.CharacterCard));
+        }
+
+        // Using a power on the summoned card with no replacement in place is not something the
+        // base game can produce, but it is how the sweep for these crashes drives them and it is
+        // the state the null CharacterCard lives in, so keep it guarded.
+        [Test()]
+        public void TestBroughtInByRepresentativeOfEarth()
+        {
+            SetupGameController("BaronBlade", "Legacy", "TheCelestialTribunal");
+            StartGame();
+
+            DecisionSelectFromBoxIdentifiers = new string[] { "Jp.ParahumansOfTheWormverse.BatteryCharacter" };
+            DecisionSelectFromBoxTurnTakerIdentifier = "Jp.ParahumansOfTheWormverse.Battery";
+            PlayCard("RepresentativeOfEarth");
+            ResetDecisions();
+
+            var batteryCard = GameController.FindCardsWhere(
+                c => c.IsInPlayAndHasGameText && c.IsHeroCharacterCard && c.Owner.IsEnvironment,
+                realCardsOnly: false).FirstOrDefault();
+            Assert.That(batteryCard, Is.Not.Null, "Representative of Earth did not bring in Battery");
+
+            var batteryController = FindCardController(batteryCard);
+            Assert.That(batteryController.IsCharged(batteryCard), Is.False);
+
+            // "{Charge} {BatteryCharacter} and draw a card" - there is no deck to draw from.
+            UsePower(batteryCard, 0);
+
+            Assert.That(batteryController.IsCharged(batteryCard), Is.True);
+            AssertNumberOfStatusEffectsInPlay(1);
+
+            var effect = GameController.StatusEffectControllers
+                .Select(sc => sc.StatusEffect)
+                .OfType<BatteryChargedStatusEffect>()
+                .Single();
+            Assert.That(effect.ChargedCard, Is.EqualTo(batteryCard));
+
+            // Now charged, the only contributed power is "{Discharge} {BatteryCharacter} and you
+            // may play a card" - there is no hand to play from. Index 0 because the card has no
+            // printed powers of its own, so the contributed one is the whole list.
+            UsePower(batteryCard, 0);
+
+            Assert.That(batteryController.IsCharged(batteryCard), Is.False);
+            AssertNumberOfStatusEffectsInPlay(0);
+        }
     }
 }

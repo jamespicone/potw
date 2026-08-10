@@ -56,18 +56,18 @@ namespace Jp.ParahumansOfTheWormverse.Battery
 
         private IEnumerator ChargePower()
         {
-            var e = this.ChargeCard(CharacterCard);
+            var e = this.ChargeCard(Card);
             if (UseUnityCoroutines) { yield return GameController.StartCoroutine(e); }
             else { GameController.ExhaustCoroutine(e); }
 
-            e = DrawCard(HeroTurnTaker);
+            e = DrawCard();
             if (UseUnityCoroutines) { yield return GameController.StartCoroutine(e); }
             else { GameController.ExhaustCoroutine(e); }
         }
 
         private IEnumerator DischargePower()
         {
-            var e = this.DischargeCard(CharacterCard);
+            var e = this.DischargeCard(Card);
             if (UseUnityCoroutines) { yield return GameController.StartCoroutine(e); }
             else { GameController.ExhaustCoroutine(e); }
 
