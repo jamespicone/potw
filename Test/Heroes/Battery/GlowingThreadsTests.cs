@@ -113,5 +113,40 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.Battery
 
             AssertNumberOfStatusEffectsInPlay(0);
         }
+
+        [Test()]
+        public void TestPowerWithNoHeroUsingIt()
+        {
+            SetupGameController("BaronBlade", "Jp.ParahumansOfTheWormverse.Battery", "TheCelestialTribunal");
+
+            StartGame();
+
+            RemoveMobileDefensePlatform();
+
+            PlayCard("GlowingThreads");
+
+            DecisionSelectFromBoxIdentifiers = new string[] { "HakaCharacter" };
+            DecisionSelectFromBoxTurnTakerIdentifier = "Haka";
+            PlayCard("RepresentativeOfEarth");
+            ResetDecisions();
+
+            var representative = FindCardInPlay("HakaCharacter");
+            Assert.That(representative, Is.Not.Null, "Representative of Earth did not bring in a hero character card");
+            Assert.That(representative.Owner.IsEnvironment, Is.True);
+
+            // Haka's power: "Haka deals 1 target 2 melee damage."
+            DecisionSelectTarget = baron.CharacterCard;
+            QuickHPStorage(baron.CharacterCard, battery.CharacterCard);
+            UsePower(representative, 0);
+            ResetDecisions();
+            QuickHPCheck(-2, 0);
+
+            // Not Battery's Discharge, so no damage reduction.
+            AssertNumberOfStatusEffectsInPlay(0);
+
+            QuickHPStorage(battery.CharacterCard);
+            DealDamage(baron, battery, 3, DamageType.Melee);
+            QuickHPCheck(-3);
+        }
     }
 }

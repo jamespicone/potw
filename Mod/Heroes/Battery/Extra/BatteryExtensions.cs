@@ -59,7 +59,7 @@ namespace Jp.ParahumansOfTheWormverse.Battery
 
         public static bool IsDischargePower(this GameController gc, UsePowerAction action, HeroTurnTaker expectedUser)
         {
-            if (action.HeroUsingPower.HeroTurnTaker != expectedUser) return false;
+            if (action.HeroUsingPower?.HeroTurnTaker != expectedUser) return false;
 
             var powerBaseCard = gc.FindCardController(action.Power.CardController.CardWithoutReplacements);
             var batteryBase = powerBaseCard as BatteryUtilityCharacterCardController;
