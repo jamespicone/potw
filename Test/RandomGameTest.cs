@@ -459,13 +459,19 @@ namespace Handelabra.Sentinels.UnitTest
             else if (decision is SelectFromBoxDecision)
             {
                 var box = decision as SelectFromBoxDecision;
-                var heroes = DeckDefinition.AvailableHeroes;
-                var selectedTurnTaker = heroes.ElementAtOrDefault(GetRandomNumber(heroes.Count()));
-                var promos = DeckDefinitionCache.GetDeckDefinition(selectedTurnTaker).PromoCardDefinitions.Select(cd => cd.PromoIdentifier);
-                var selectedPromo = promos.ElementAtOrDefault(GetRandomNumber(promos.Count()));
-                box.SelectedIdentifier = selectedPromo;
-                box.SelectedTurnTakerIdentifier = selectedTurnTaker;
-                Log.Debug($"Selected from box {box.SelectedIdentifier} {box.SelectedTurnTakerIdentifier}");
+                var choices = box.Choices;
+                if (choices.Count() > 0)
+                {
+                    var selectedPair = choices.ElementAtOrDefault(GetRandomNumber(choices.Count()));
+                    box.SelectedIdentifier = selectedPair.Value;
+                    box.SelectedTurnTakerIdentifier = selectedPair.Key;
+                    Log.Debug($"Selected from box {box.SelectedIdentifier} {box.SelectedTurnTakerIdentifier}");
+                }
+                else
+                {
+                    box.Skip();
+                    Log.Debug($"Skipping selecting from box");
+                }
             }
             else if (decision is SelectTurnPhaseDecision)
             {
