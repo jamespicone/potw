@@ -204,5 +204,31 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.MissMilitia
             UseIncapacitatedAbility(missmilitia, 2);
             QuickHPCheck(2);
         }
+
+        [Test()]
+        public void TestPromoBroughtInByRepresentativeOfEarth()
+        {
+            SetupGameController("BaronBlade", "Jp.ParahumansOfTheWormverse.MissMilitia", "Legacy", "TheCelestialTribunal");
+            StartGame();
+
+            var machete = PlayCard("Machete");
+
+            DecisionSelectFromBoxIdentifiers = new string[] { "Jp.ParahumansOfTheWormverse.MissMilitiaProtectorateCaptainCharacter" };
+            DecisionSelectFromBoxTurnTakerIdentifier = "Jp.ParahumansOfTheWormverse.MissMilitia";
+            PlayCard("RepresentativeOfEarth");
+            ResetDecisions();
+
+            var captain = GameController.FindCardsWhere(
+                c => c.IsInPlayAndHasGameText && c.IsHeroCharacterCard && c.Owner.IsEnvironment,
+                realCardsOnly: false).FirstOrDefault();
+            Assert.That(captain, Is.Not.Null, "Representative of Earth did not bring in the promo character card");
+            Assert.That(captain.Title, Is.EqualTo("Miss Militia: Protectorate Captain"));
+
+            // "Return that card to your hand" and "you may play a Weapon card" have no hand to
+            // work with here, so the power has to skip them rather than crash.
+            UsePower(captain, 0);
+
+            AssertIsInPlay(machete);
+        }
     }
 }

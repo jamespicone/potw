@@ -17,7 +17,10 @@ namespace Jp.ParahumansOfTheWormverse.MissMilitia
             : base(card, turnTakerController)
         {
             SpecialStringMaker.ShowListOfCardsInPlay(WeaponCard()).Condition = () => ! Card.IsFlipped;
-            SpecialStringMaker.ShowListOfCardsAtLocation(HeroTurnTaker.Hand, WeaponCard()).Condition = () => ! Card.IsFlipped;
+            if (TurnTaker.IsPlayer)
+            {
+                SpecialStringMaker.ShowListOfCardsAtLocation(HeroTurnTaker.Hand, WeaponCard()).Condition = () => ! Card.IsFlipped;
+            }
         }
 
         private bool activateAllWeaponEffects = false;
@@ -50,7 +53,7 @@ namespace Jp.ParahumansOfTheWormverse.MissMilitia
             activateAllWeaponEffects = false;
 
             // "Return that card to your hand."
-            if (WasPowerUsed(results))
+            if (WasPowerUsed(results) && HeroTurnTakerController != null)
             {
                 var selectedWeapon = results.FirstOrDefault().SelectedPower.CardController.Card;
                 e = GameController.MoveCard(TurnTakerController, selectedWeapon, HeroTurnTaker.Hand, responsibleTurnTaker: TurnTaker, cardSource: GetCardSource());
@@ -65,7 +68,7 @@ namespace Jp.ParahumansOfTheWormverse.MissMilitia
             }
             
             // "You may play a Weapon card."
-            e = GameController.SelectAndPlayCardFromHand(HeroTurnTakerController, optional: true, cardCriteria: WeaponCard(), cardSource: GetCardSource());
+            e = SelectAndPlayCardFromHand(HeroTurnTakerController, optional: true, cardCriteria: WeaponCard());
             if (UseUnityCoroutines)
             {
                 yield return GameController.StartCoroutine(e);
