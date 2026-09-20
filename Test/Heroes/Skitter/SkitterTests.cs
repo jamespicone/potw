@@ -127,5 +127,48 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.Skitter
             Assert.That(didMove, Has.Exactly(1).Items);
             Assert.That(didMove.FirstOrDefault(), Is.False);
         }
+
+        // The Celestial Tribunal's Representative of Earth puts our character card into play
+        // owned by the environment: no HeroTurnTakerController, no CharacterCard, and no deck,
+        // hand or trash.
+        [Test()]
+        public void TestBroughtInByRepresentativeOfEarth()
+        {
+            SetupGameController("BaronBlade", "Legacy", "TheCelestialTribunal");
+            StartGame();
+
+            var skitterCard = SummonRepresentativeOfEarth("Skitter", "SkitterCharacter");
+
+            GoToStartOfTurn(legacy);
+            GoToStartOfTurn(env);
+            GoToStartOfTurn(baron);
+            AssertIsInPlay(skitterCard);
+
+            // No hand to play a Strategy from, so the Bug token goes on the summoned card - the
+            // Bug pool lives there, not on the absent character card.
+            var pool = skitterCard.FindTokenPool("BugPool");
+            Assert.That(pool, Is.Not.Null);
+            AssertTokenPoolCount(pool, 0);
+
+            UsePower(skitterCard, 0);
+
+            AssertTokenPoolCount(pool, 1);
+        }
+
+        [Test()]
+        public void TestPowerLentByCalledToJudgement()
+        {
+            SetupGameController("BaronBlade", "Legacy", "TheCelestialTribunal");
+            StartGame();
+
+            var skitterCard = SummonRepresentativeOfEarth("Skitter", "SkitterCharacter");
+            var pool = skitterCard.FindTokenPool("BugPool");
+
+            // Legacy has no Bug pool of his own, so the token has nowhere to go and the power
+            // quietly does nothing rather than crashing - the same as Guise borrowing it.
+            UsePowerLentByCalledToJudgement(legacy.CharacterCard);
+
+            AssertTokenPoolCount(pool, 0);
+        }
     }
 }

@@ -153,5 +153,40 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.Bitch
             DealDamage(raptor, legacy, 3, DamageType.Melee);
             QuickHPCheck(-3); // Full damage
         }
+
+        // The Celestial Tribunal's Representative of Earth puts our character card into play
+        // owned by the environment: no HeroTurnTakerController, no CharacterCard, and no deck,
+        // hand or trash - so there can never be a Dog in play for her power to command.
+        [Test()]
+        public void TestBroughtInByRepresentativeOfEarth()
+        {
+            SetupGameController("BaronBlade", "Legacy", "TheCelestialTribunal");
+            StartGame();
+
+            var bitchCard = SummonRepresentativeOfEarth("Bitch", "BitchCharacter");
+
+            GoToStartOfTurn(legacy);
+            GoToStartOfTurn(env);
+            GoToStartOfTurn(baron);
+            AssertIsInPlay(bitchCard);
+
+            QuickHPStorage(baron.CharacterCard, legacy.CharacterCard, bitchCard);
+            UsePower(bitchCard, 0);
+            QuickHPCheckZero();
+        }
+
+        [Test()]
+        public void TestPowerLentByCalledToJudgement()
+        {
+            SetupGameController("BaronBlade", "Legacy", "TheCelestialTribunal");
+            StartGame();
+
+            SummonRepresentativeOfEarth("Bitch", "BitchCharacter");
+
+            // Legacy has no Dogs either, so the power still finds nothing to command.
+            QuickHPStorage(baron.CharacterCard, legacy.CharacterCard);
+            UsePowerLentByCalledToJudgement(legacy.CharacterCard);
+            QuickHPCheckZero();
+        }
     }
 }

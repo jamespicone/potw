@@ -38,6 +38,12 @@ namespace Jp.ParahumansOfTheWormverse.Labyrinth
             if (currentlyChangingTurnOrder)
                 return null;
 
+            // The Celestial Tribunal's Representative of Earth can put Labyrinth into play owned
+            // by the environment. Not exactly clear what "should" happen in that case but the safest
+            // option by far is "nothing".
+            if (! TurnTaker.IsPlayer)
+                return null;
+
             var env = GameController.AllTurnTakers.First(tt => tt.Is().Environment());
 
             currentlyChangingTurnOrder = true;

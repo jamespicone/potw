@@ -358,5 +358,26 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.Grue
 
             Assert.That(darknesses.All(d => d.IsInPlayAndHasGameText), "The Darkness cards should never leave play");
         }
+
+        // The no-replacement counterpart is TestBroughtInByRepresentativeOfEarthWithNoDeck above.
+        [Test()]
+        public void TestPowerLentByCalledToJudgement()
+        {
+            SetupGameController("BaronBlade", "Legacy", "Bunker", "TheCelestialTribunal");
+            StartGame();
+
+            SummonRepresentativeOfEarth("Grue", "GrueCharacter");
+
+            // "Put a Darkness card into play next to {GrueCharacter}" resolves through Card, which
+            // follows the replacement - so the first one lands on Legacy, not the summoned card.
+            DecisionSelectCard = bunker.CharacterCard;
+
+            UsePowerLentByCalledToJudgement(legacy.CharacterCard);
+
+            var darknesses = GameController.FindCardsWhere(c => c.IsGrueDarkness(), realCardsOnly: false).ToList();
+            Assert.That(darknesses.Count, Is.EqualTo(2));
+            Assert.That(darknesses.Select(d => d.Location.OwnerCard),
+                Is.EquivalentTo(new Card[] { legacy.CharacterCard, bunker.CharacterCard }));
+        }
     }
 }

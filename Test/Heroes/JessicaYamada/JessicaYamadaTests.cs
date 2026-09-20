@@ -507,5 +507,104 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.JessicaYamada
         }
 
         #endregion
+
+        #region Celestial Tribunal
+
+        // The Celestial Tribunal's Representative of Earth offers Jessica's three real character
+        // cards - not the Instructions cards, which are not real cards and are never in the box
+        // list. The summoned copy is owned by the environment: no HeroTurnTakerController, no
+        // CharacterCard, and no deck, hand or trash. Her Instructions half is not created either,
+        // and her power does not need it.
+        [Test()]
+        [TestCase("JessicaYamadaCharacterTarget")]
+        [TestCase("JessicaYamadaCharacterEnvironment")]
+        [TestCase("JessicaYamadaCharacterNotTarget")]
+        public void TestBroughtInByRepresentativeOfEarth(string identifier)
+        {
+            SetupGameController("BaronBlade", "Legacy", "TheCelestialTribunal");
+            StartGame();
+
+            var jessicaCard = SummonRepresentativeOfEarth("JessicaYamada", identifier);
+
+            GoToStartOfTurn(legacy);
+            GoToStartOfTurn(env);
+            GoToStartOfTurn(baron);
+            AssertIsInPlay(jessicaCard);
+
+            // "Another hero either regains 2 HP or draws a card." Our turn taker is the
+            // environment, so every hero in the game counts as another one.
+            DealDamage(baron.CharacterCard, legacy.CharacterCard, 3, DamageType.Melee);
+
+            DecisionSelectTurnTaker = legacy.TurnTaker;
+            DecisionSelectFunction = 0;
+
+            QuickHPStorage(legacy);
+            UsePower(jessicaCard, 0);
+            QuickHPCheck(2);
+        }
+
+        [Test()]
+        public void TestPowerLentByCalledToJudgement()
+        {
+            SetupGameController("BaronBlade", "Legacy", "Bunker", "TheCelestialTribunal");
+            StartGame();
+
+            SummonRepresentativeOfEarth("JessicaYamada", "JessicaYamadaCharacterTarget");
+
+            DealDamage(baron.CharacterCard, bunker.CharacterCard, 3, DamageType.Melee);
+
+            // "Another hero" is measured against Legacy under the replacement, so he cannot pick
+            // himself - Bunker is the only other hero.
+            DecisionSelectTurnTaker = bunker.TurnTaker;
+            DecisionSelectFunction = 0;
+
+            QuickHPStorage(bunker);
+            UsePowerLentByCalledToJudgement(legacy.CharacterCard);
+            QuickHPCheck(2);
+        }
+
+
+        // Representative of Earth calls SetMaximumHP(10, alsoSetHP: true) on whatever it summons,
+        // so even the variant that is deliberately not a target in her own deck becomes a real
+        // 10 HP target - and killing it is a loss for the heroes the normal Tribunal way.
+        [Test()]
+        public void TestNotTargetVariantIsATargetAsRepresentative()
+        {
+            SetupGameController("BaronBlade", "Legacy", "TheCelestialTribunal");
+            StartGame();
+
+            var jessicaCard = SummonRepresentativeOfEarth("JessicaYamada", "JessicaYamadaCharacterNotTarget");
+
+            Assert.That(jessicaCard.IsTarget, Is.True);
+            Assert.That(jessicaCard.MaximumHitPoints, Is.EqualTo(10));
+            Assert.That(jessicaCard.HitPoints, Is.EqualTo(10));
+
+            DealDamage(baron.CharacterCard, jessicaCard, 50, DamageType.Melee, isIrreducible: true);
+
+            AssertGameOver(EndingResult.EnvironmentDefeat);
+        }
+
+        // Her Target variant redirects damage from non-hero sources to the lowest-HP hero, and as
+        // a Representative that inverts the Tribunal's usual pressure: hitting the representative
+        // hurts the real heroes instead. Rules as written - she is a therapist, not a combatant -
+        // and she cannot redirect to herself because the summoned card is not a real card.
+        [Test()]
+        public void TestTargetVariantRedirectsDamageAsRepresentative()
+        {
+            SetupGameController("BaronBlade", "Legacy", "TheCelestialTribunal");
+            StartGame();
+
+            var jessicaCard = SummonRepresentativeOfEarth("JessicaYamada", "JessicaYamadaCharacterTarget");
+
+            QuickHPStorage(legacy.CharacterCard);
+            DealDamage(baron.CharacterCard, jessicaCard, 3, DamageType.Melee);
+
+            // 4, not 3 - once it lands on Legacy it is Baron Blade hitting his nemesis.
+            QuickHPCheck(-4);
+            Assert.That(jessicaCard.HitPoints, Is.EqualTo(10));
+            AssertNotGameOver();
+        }
+
+        #endregion
     }
 }

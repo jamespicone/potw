@@ -16,7 +16,7 @@ namespace Jp.ParahumansOfTheWormverse.Legend
         {
             return new DealDamageAction(
                 cardSource,
-                new DamageSource(GameController, sourceCard.CharacterCard),
+                new DamageSource(GameController, sourceCard.FindLegendCharacterCard()),
                 null,
                 1,
                 DamageType.Cold,
@@ -31,7 +31,7 @@ namespace Jp.ParahumansOfTheWormverse.Legend
                 targets,
                 ordering,
                 t => GameController.DealDamageToTarget(
-                    new DamageSource(GameController, sourceCard.CharacterCard),
+                    new DamageSource(GameController, sourceCard.FindLegendCharacterCard()),
                     t,
                     1,
                     DamageType.Cold,
@@ -40,7 +40,7 @@ namespace Jp.ParahumansOfTheWormverse.Legend
                 ),
                 ts => GameController.DealDamage(
                     HeroTurnTakerController,
-                    sourceCard.CharacterCard,
+                    sourceCard.FindLegendCharacterCard(),
                     c => ts.Contains(c),
                     1,
                     DamageType.Cold,

@@ -230,5 +230,45 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.MissMilitia
 
             AssertIsInPlay(machete);
         }
+
+        // The base character card, alongside the Protectorate Captain promo covered above.
+        [Test()]
+        public void TestBroughtInByRepresentativeOfEarth()
+        {
+            SetupGameController("BaronBlade", "Legacy", "TheCelestialTribunal");
+            StartGame();
+
+            var militiaCard = SummonRepresentativeOfEarth("MissMilitia", "MissMilitiaCharacter");
+
+            GoToStartOfTurn(legacy);
+            GoToStartOfTurn(env);
+            GoToStartOfTurn(baron);
+            AssertIsInPlay(militiaCard);
+
+            // "Reveal the top 2 cards of your deck" has no deck, and there is no Weapon card in
+            // play to use a power on afterwards.
+            UsePower(militiaCard, 0);
+
+            AssertIsInPlay(militiaCard);
+        }
+
+        [Test()]
+        public void TestPowerLentByCalledToJudgement()
+        {
+            SetupGameController("BaronBlade", "Legacy", "TheCelestialTribunal");
+            StartGame();
+
+            SummonRepresentativeOfEarth("MissMilitia", "MissMilitiaCharacter");
+
+            // Legacy's deck is "your deck" under the replacement. None of his cards are Weapons,
+            // so both revealed cards are discarded.
+            var top = PutOnDeck("Fortitude");
+            var second = PutOnDeck("DangerSense");
+
+            UsePowerLentByCalledToJudgement(legacy.CharacterCard);
+
+            AssertInTrash(legacy, top);
+            AssertInTrash(legacy, second);
+        }
     }
 }

@@ -16,7 +16,7 @@ namespace Jp.ParahumansOfTheWormverse.Legend
         {
             var ret = new DealDamageAction(
                 cardSource,
-                new DamageSource(GameController, sourceCard.CharacterCard),
+                new DamageSource(GameController, sourceCard.FindLegendCharacterCard()),
                 null,
                 2,
                 DamageType.Energy
@@ -62,7 +62,7 @@ namespace Jp.ParahumansOfTheWormverse.Legend
             if (damageType == null) { yield break; }
 
             e = DealDamage(
-                sourceCard.CharacterCard,
+                sourceCard.FindLegendCharacterCard(),
                 target,
                 dda.Amount,
                 damageType.Value,

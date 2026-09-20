@@ -17,6 +17,24 @@ namespace Jp.ParahumansOfTheWormverse.Legend
             AddThisCardControllerToList(CardControllerListType.CanCauseDamageOutOfPlay);
         }
 
+        // Fix interaction with replacement effects by using CardWithoutReplacements.
+        public override IEnumerable<ActivatableAbility> GetActivatableAbilities(string key = null, TurnTakerController activatingTurnTaker = null)
+        {
+            return CardWithoutReplacements.Definition.ActivatableAbilities
+                .Where(aa => key == null || aa.Name == key)
+                .Select((aa, index) => new ActivatableAbility(
+                    TurnTakerController,
+                    this,
+                    aa,
+                    () => ActivateAbilityEx(aa),
+                    index,
+                    null,
+                    activatingTurnTaker,
+                    GetCardSource()
+                ))
+                .ToList();
+        }
+
         public override IEnumerator UseIncapacitatedAbility(int index)
         {
             IEnumerator e;
@@ -85,7 +103,7 @@ namespace Jp.ParahumansOfTheWormverse.Legend
             var damage = new List<DealDamageAction>();
             foreach (var effect in effects)
             {
-                damage.Add(effect.TypicalDamageAction(targets, CharacterCardController, GetCardSource()));
+                damage.Add(effect.TypicalDamageAction(targets, this, GetCardSource()));
             }
 
             var storedResult = new List<SelectCardDecision>();
@@ -123,7 +141,7 @@ namespace Jp.ParahumansOfTheWormverse.Legend
 
         public DealDamageAction TypicalDamageAction(IEnumerable<Card> targets, CardController sourceCard, CardSource cardSource)
         {
-            return new DealDamageAction(cardSource, new DamageSource(GameController, sourceCard.CharacterCard), null, 2, DamageType.Energy);
+            return new DealDamageAction(cardSource, new DamageSource(GameController, sourceCard.FindLegendCharacterCard()), null, 2, DamageType.Energy);
         }
 
         public IEnumerator DoEffect(IEnumerable<Card> targets, CardController sourceCard, CardSource cardSource, EffectTargetingOrdering ordering)
@@ -133,7 +151,7 @@ namespace Jp.ParahumansOfTheWormverse.Legend
                  targets,
                  ordering,
                  t => GameController.DealDamageToTarget(
-                     new DamageSource(GameController, sourceCard.CharacterCard),
+                     new DamageSource(GameController, sourceCard.FindLegendCharacterCard()),
                      t,
                      2,
                      DamageType.Energy,
@@ -141,7 +159,7 @@ namespace Jp.ParahumansOfTheWormverse.Legend
                  ),
                  ts => GameController.DealDamage(
                      HeroTurnTakerController,
-                     sourceCard.CharacterCard,
+                     sourceCard.FindLegendCharacterCard(),
                      c => ts.Contains(c),
                      2,
                      DamageType.Energy,

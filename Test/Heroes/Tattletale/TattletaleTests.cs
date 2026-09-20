@@ -266,5 +266,119 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.Tattletale
         }
 
         #endregion
+
+        #region Celestial Tribunal
+
+        // The Celestial Tribunal's Representative of Earth puts a character card into play owned
+        // by the environment: no HeroTurnTakerController, no CharacterCard, and no deck, hand or
+        // trash. All three of Tattletale's variants can be chosen out of the box.
+        [Test()]
+        public void TestBroughtInByRepresentativeOfEarth()
+        {
+            SetupGameController("BaronBlade", "Legacy", "TheCelestialTribunal");
+            StartGame();
+
+            var tattletaleCard = SummonRepresentativeOfEarth("Tattletale", "TattletaleCharacter");
+
+            GoToStartOfTurn(legacy);
+            GoToStartOfTurn(env);
+            GoToStartOfTurn(baron);
+            AssertIsInPlay(tattletaleCard);
+
+            // "1 player draws 2 cards, then discards 1 card" - the player is a real hero, so it
+            // works normally even though we have no hand of our own.
+            var handSize = GetNumberOfCardsInHand(legacy);
+            DecisionSelectTurnTaker = legacy.TurnTaker;
+            DecisionSelectCard = legacy.HeroTurnTaker.Hand.Cards.First();
+
+            UsePower(tattletaleCard, 0);
+
+            Assert.That(GetNumberOfCardsInHand(legacy), Is.EqualTo(handSize + 1));
+        }
+
+        [Test()]
+        public void TestRulerOfBrocktonBayBroughtInByRepresentativeOfEarth()
+        {
+            SetupGameController("BaronBlade", "Legacy", "TheCelestialTribunal");
+            StartGame();
+
+            var rulerCard = SummonRepresentativeOfEarth("Tattletale", "TattletaleRulerOfBrocktonBayCharacter");
+
+            GoToStartOfTurn(legacy);
+            GoToStartOfTurn(env);
+            GoToStartOfTurn(baron);
+            AssertIsInPlay(rulerCard);
+
+            // "You may use a power. You may use a power." has no hero to offer powers to.
+            UsePower(rulerCard, 0);
+
+            AssertIsInPlay(rulerCard);
+        }
+
+        [Test()]
+        public void TestHunterOfSecretsBroughtInByRepresentativeOfEarth()
+        {
+            SetupGameController("BaronBlade", "Legacy", "TheCelestialTribunal");
+            StartGame();
+            RemoveMobileDefensePlatform();
+
+            var hunterCard = SummonRepresentativeOfEarth("Tattletale", "TattletaleHunterOfSecretsCharacter");
+
+            GoToStartOfTurn(legacy);
+            GoToStartOfTurn(env);
+            GoToStartOfTurn(baron);
+            AssertIsInPlay(hunterCard);
+
+            // The token pool is on the summoned card, not on the absent character card.
+            var pool = hunterCard.FindTokenPool("TattletaleHunterOfSecretsPool");
+            Assert.That(pool, Is.Not.Null);
+            AssertTokenPoolCount(pool, 0);
+
+            // "Reveal the top card of your deck" has no deck, so no token is ever gained...
+            UsePower(hunterCard, 0);
+            AssertTokenPoolCount(pool, 0);
+
+            // ...and "if there are any tokens on this card" is therefore never true.
+            QuickHPStorage(baron);
+            UsePower(hunterCard, 1);
+            QuickHPCheckZero();
+        }
+
+        [Test()]
+        public void TestPowerLentByCalledToJudgement()
+        {
+            SetupGameController("BaronBlade", "Legacy", "TheCelestialTribunal");
+            StartGame();
+
+            SummonRepresentativeOfEarth("Tattletale", "TattletaleCharacter");
+
+            var handSize = GetNumberOfCardsInHand(legacy);
+            DecisionSelectTurnTaker = legacy.TurnTaker;
+            DecisionSelectCard = legacy.HeroTurnTaker.Hand.Cards.First();
+
+            UsePowerLentByCalledToJudgement(legacy.CharacterCard);
+
+            Assert.That(GetNumberOfCardsInHand(legacy), Is.EqualTo(handSize + 1));
+        }
+
+        [Test()]
+        public void TestHunterOfSecretsPowerLentByCalledToJudgement()
+        {
+            SetupGameController("BaronBlade", "Legacy", "TheCelestialTribunal");
+            StartGame();
+
+            SummonRepresentativeOfEarth("Tattletale", "TattletaleHunterOfSecretsCharacter");
+
+            // The token pool this power counts lives on Tattletale's own card, and under the
+            // replacement both Card and CharacterCard are the borrower's - so the power finds no
+            // pool and does nothing at all, exactly as it already does when Guise borrows it.
+            var ongoing = PutOnDeck("Fortitude");
+
+            UsePowerLentByCalledToJudgement(legacy.CharacterCard, 0);
+
+            AssertOnTopOfDeck(ongoing);
+        }
+
+        #endregion
     }
 }

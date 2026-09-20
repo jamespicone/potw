@@ -120,6 +120,69 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest
             }
         }
 
+        // Celestial Tribunal
+        //
+        // Representative of Earth pulls a hero character card out of the box and puts it into play
+        // owned by the environment. That copy has no HeroTurnTakerController, no CharacterCard, and
+        // no deck, hand or trash - only the character card itself exists.
+        protected Card SummonRepresentativeOfEarth(string deck, string characterCard)
+        {
+            SelectFromBoxForNextDecision(
+                "Jp.ParahumansOfTheWormverse." + characterCard,
+                "Jp.ParahumansOfTheWormverse." + deck);
+            var rep = PlayCard("RepresentativeOfEarth");
+            ResetDecisions();
+
+            var summoned = rep.NextToLocation.Cards.FirstOrDefault(c => c.IsHeroCharacterCard);
+            Assert.That(summoned, Is.Not.Null, "Representative of Earth did not bring in " + characterCard);
+            Assert.That(summoned.PromoIdentifierOrIdentifier, Is.EqualTo(characterCard));
+            return summoned;
+        }
+
+        // Called to Judgement lends a power on the summoned card to `borrower`. It registers in
+        // ReplacesCards and ReplacesTurnTakerController for the duration, so inside the power the
+        // borrower's deck, play area and character card are the ones the power sees - which is the
+        // only way a summoned hero's power can be used in a real game.
+        //
+        // DecisionSelectPower is the borrower's own character card, because inside that window the
+        // summoned controller reports the borrower's card as its own.
+        protected void UsePowerLentByCalledToJudgement(Card borrower, int powerIndex = 0)
+        {
+            tribunalPowerUser = borrower;
+            GameController.OnMakeDecisions -= MakeDecisions;
+            GameController.OnMakeDecisions += LendTribunalPower;
+
+            try
+            {
+                DecisionSelectPower = borrower;
+                DecisionSelectPowerIndex = powerIndex;
+                PlayCard("CalledToJudgement");
+            }
+            finally
+            {
+                GameController.OnMakeDecisions -= LendTribunalPower;
+                GameController.OnMakeDecisions += MakeDecisions;
+                tribunalPowerUser = null;
+            }
+        }
+
+        private Card tribunalPowerUser;
+
+        // Answer Called to Judgement's own "select a hero to use the power" and nothing else -
+        // whatever the borrowed power itself selects goes to the normal handler, so tests set
+        // those up with the usual Decision properties.
+        private IEnumerator LendTribunalPower(IDecision decision)
+        {
+            if (decision is SelectCardDecision select && select.SelectionType == SelectionType.UsePowerOnCard)
+            {
+                select.SelectedCard = tribunalPowerUser;
+                yield break;
+            }
+
+            GameController.ExhaustCoroutine(MakeDecisions(decision));
+            yield break;
+        }
+
         protected void AssertDamageSource(Card c)
         {
             InstallObserver();

@@ -356,5 +356,40 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.Dragon
             // Power doesn't consume focus - only Focus Phase does
             AssertTokenPoolCount(tokenPool, 4);
         }
+
+        // TestRepOfEarth above covers the Focus pool over a summoned turn; this covers the power.
+        [Test()]
+        public void TestPowerBroughtInByRepresentativeOfEarth()
+        {
+            SetupGameController("BaronBlade", "Legacy", "TheCelestialTribunal");
+            StartGame();
+
+            var dragonCard = SummonRepresentativeOfEarth("Dragon", "DragonCharacter");
+
+            GoToStartOfTurn(legacy);
+            GoToStartOfTurn(env);
+            GoToStartOfTurn(baron);
+            AssertIsInPlay(dragonCard);
+
+            // "Activate a Focus effect" - none of her Mechs or the ROM are in play, so there is
+            // no Focus effect to activate.
+            UsePower(dragonCard, 0);
+
+            AssertIsInPlay(dragonCard);
+        }
+
+        [Test()]
+        public void TestPowerLentByCalledToJudgement()
+        {
+            SetupGameController("BaronBlade", "Legacy", "TheCelestialTribunal");
+            StartGame();
+
+            SummonRepresentativeOfEarth("Dragon", "DragonCharacter");
+
+            // Legacy has no Focus effects of his own either.
+            UsePowerLentByCalledToJudgement(legacy.CharacterCard);
+
+            AssertNumberOfCardsInPlay(legacy, 1);
+        }
     }
 }

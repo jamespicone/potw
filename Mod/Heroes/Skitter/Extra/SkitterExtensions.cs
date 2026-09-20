@@ -29,7 +29,9 @@ namespace Jp.ParahumansOfTheWormverse.Skitter
 
         public static IEnumerator AddBugTokenToSkitter(this CardController co, int tokensToAdd)
         {
-            var pool = co.CharacterCard.FindBugPool();
+            // CharacterCard is null when the Celestial Tribunal's Representative of Earth owns
+            // us, and then the only card that can be asking is Skitter.
+            var pool = (co.CharacterCard ?? co.Card).FindBugPool();
             if (pool == null) { yield break; } // sorry guise
 
             var e = co.GameController.AddTokensToPool(pool, tokensToAdd, co.GetCardSource());

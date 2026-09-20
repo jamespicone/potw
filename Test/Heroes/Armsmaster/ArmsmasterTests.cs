@@ -107,5 +107,43 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.Armsmaster
 
             AssertInHand(flakCannon);
         }
+
+        // The Celestial Tribunal's Representative of Earth puts our character card into play
+        // owned by the environment: no HeroTurnTakerController, no CharacterCard, and no deck,
+        // hand or trash.
+        [Test()]
+        public void TestBroughtInByRepresentativeOfEarth()
+        {
+            SetupGameController("BaronBlade", "Legacy", "TheCelestialTribunal");
+            StartGame();
+
+            var armsmasterCard = SummonRepresentativeOfEarth("Armsmaster", "ArmsmasterCharacter");
+
+            GoToStartOfTurn(legacy);
+            GoToStartOfTurn(env);
+            GoToStartOfTurn(baron);
+            AssertIsInPlay(armsmasterCard);
+
+            // "Reveal the top card of your deck" has no deck to reveal from.
+            UsePower(armsmasterCard, 0);
+
+            AssertIsInPlay(armsmasterCard);
+        }
+
+        [Test()]
+        public void TestPowerLentByCalledToJudgement()
+        {
+            SetupGameController("BaronBlade", "Legacy", "TheCelestialTribunal");
+            StartGame();
+
+            SummonRepresentativeOfEarth("Armsmaster", "ArmsmasterCharacter");
+
+            // Legacy's deck, and his one Equipment card.
+            var ring = PutOnDeck("TheLegacyRing");
+
+            UsePowerLentByCalledToJudgement(legacy.CharacterCard);
+
+            AssertInHand(legacy, ring);
+        }
     }
 }

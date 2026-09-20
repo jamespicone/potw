@@ -119,5 +119,53 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.Legend
 
         // TODO: Guise copying Legend's powers crashes when accessing effects.
         // Check CardWithoutReplacements on source or something?
+
+        // The Celestial Tribunal's Representative of Earth puts our character card into play
+        // owned by the environment: no HeroTurnTakerController, no CharacterCard, and no deck,
+        // hand or trash. Legend's character card is the only Effect provider that can be in play
+        // there, so it is chosen automatically.
+        [Test()]
+        public void TestBroughtInByRepresentativeOfEarth()
+        {
+            SetupGameController("BaronBlade", "Legacy", "TheCelestialTribunal");
+            StartGame();
+            RemoveMobileDefensePlatform();
+
+            var legendCard = SummonRepresentativeOfEarth("Legend", "LegendCharacter");
+
+            GoToStartOfTurn(legacy);
+            GoToStartOfTurn(env);
+            GoToStartOfTurn(baron);
+            AssertIsInPlay(legendCard);
+
+            // The damage comes from the summoned card - CharacterCard is null here, so the effects
+            // fall back to the card providing them, which is Legend himself.
+            DecisionSelectTarget = baron.CharacterCard;
+            AssertDamageSource(legendCard);
+            AssertDamageType(DamageType.Energy);
+
+            QuickHPStorage(baron);
+            UsePower(legendCard, 0);
+            QuickHPCheck(-2);
+        }
+
+        [Test()]
+        public void TestPowerLentByCalledToJudgement()
+        {
+            SetupGameController("BaronBlade", "Legacy", "TheCelestialTribunal");
+            StartGame();
+            RemoveMobileDefensePlatform();
+
+            SummonRepresentativeOfEarth("Legend", "LegendCharacter");
+
+            // CharacterCard follows the replacement, so the damage comes from Legacy - and Legacy
+            // is Baron Blade's nemesis, so his 2 damage lands as 3.
+            DecisionSelectTarget = baron.CharacterCard;
+            AssertDamageSource(legacy.CharacterCard);
+
+            QuickHPStorage(baron);
+            UsePowerLentByCalledToJudgement(legacy.CharacterCard);
+            QuickHPCheck(-3);
+        }
     }
 }

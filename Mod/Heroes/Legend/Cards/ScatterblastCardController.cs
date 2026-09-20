@@ -18,7 +18,7 @@ namespace Jp.ParahumansOfTheWormverse.Legend
             // This is used when a new target hasn't been picked yet, so targets is off by 1
             return new DealDamageAction(
                 cardSource,
-                new DamageSource(GameController, sourceCard.CharacterCard),
+                new DamageSource(GameController, sourceCard.FindLegendCharacterCard()),
                 null,
                 c => Math.Max(1, 4 - targets.Count()),
                 DamageType.Energy
@@ -32,7 +32,7 @@ namespace Jp.ParahumansOfTheWormverse.Legend
                 targets,
                 ordering,
                 t => GameController.DealDamageToTarget(
-                    new DamageSource(GameController, sourceCard.CharacterCard),
+                    new DamageSource(GameController, sourceCard.FindLegendCharacterCard()),
                     t,
                     c => Math.Max(1, 5 - targets.Count()),
                     DamageType.Energy,
@@ -40,7 +40,7 @@ namespace Jp.ParahumansOfTheWormverse.Legend
                 ),
                 ts => GameController.SelectTargetsAndDealDamage(
                     sourceCard.HeroTurnTakerController,
-                    new DamageSource(GameController, sourceCard.CharacterCard),
+                    new DamageSource(GameController, sourceCard.FindLegendCharacterCard()),
                     amount: c => Math.Max(1, 5 - targets.Count()),
                     damageType: DamageType.Energy,
                     dynamicNumberOfTargets: () => ts.Count(),

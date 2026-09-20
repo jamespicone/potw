@@ -313,5 +313,50 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.Labyrinth
             GoToNextTurn();
             Assert.That(GameController.ActiveTurnTaker, Is.EqualTo(oblivaeon.TurnTaker));
         }
+
+        // The Celestial Tribunal's Representative of Earth puts our character card into play
+        // owned by the environment: no HeroTurnTakerController, no CharacterCard, and no deck,
+        // hand or trash.
+        //
+        // Labyrinth's "takes her turn immediately after the first Environment turn" reorder is the
+        // thing at risk here - our TurnTaker is the environment once it owns her, so leaving it on
+        // would skip the environment's turn forever.
+        [Test()]
+        public void TestBroughtInByRepresentativeOfEarth()
+        {
+            SetupGameController("BaronBlade", "Legacy", "TheCelestialTribunal");
+            StartGame();
+
+            var labyrinthCard = SummonRepresentativeOfEarth("Labyrinth", "LabyrinthCharacter");
+
+            // The environment still gets its turns, in the normal order.
+            GoToStartOfTurn(legacy);
+            GoToStartOfTurn(env);
+            GoToStartOfTurn(baron);
+            GoToStartOfTurn(legacy);
+            GoToStartOfTurn(env);
+            AssertIsInPlay(labyrinthCard);
+
+            // "You may play a Shaping card. If you don't, draw a card." has neither hand nor deck.
+            UsePower(labyrinthCard, 0);
+
+            AssertIsInPlay(labyrinthCard);
+        }
+
+        [Test()]
+        public void TestPowerLentByCalledToJudgement()
+        {
+            SetupGameController("BaronBlade", "Legacy", "TheCelestialTribunal");
+            StartGame();
+
+            SummonRepresentativeOfEarth("Labyrinth", "LabyrinthCharacter");
+
+            // Legacy has no Shaping cards, so he draws from his own deck instead.
+            var toDraw = PutOnDeck("Fortitude");
+
+            UsePowerLentByCalledToJudgement(legacy.CharacterCard);
+
+            AssertInHand(legacy, toDraw);
+        }
     }
 }

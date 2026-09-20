@@ -1,381 +1,366 @@
-﻿# Test Coverage Plan
+# Test Coverage Plan
 
-Branch `claude_dauntless_tests`.
+**Status:** the deck-by-deck coverage campaign (every card in every deck gets
+behavioural tests) is **done** — see [History](#history) — as is the
+[Celestial Tribunal power sweep](#celestial-tribunal-power-sweep-2026-08-10---done).
+Last full-suite run: 1791 passed, 0 failed, 6 skipped.
 
-> **Picking this up fresh? Jump to [Resume here](#resume-here-state-as-of-2026-07-11)
-> at the bottom.** Phases 1–5 are complete; the baseline audit and summary
-> table below are the *original* survey and are kept only as a historical
-> record of where things started.
+---
 
-## How coverage was measured (original audit)
+## Celestial Tribunal power sweep (2026-08-10) - DONE
 
-Every deck has a test file per card, but ~149 of ~250 test files contain only a
-`TestModWorks` stub (loads a game, asserts nothing). "Real tests" below counts
-`[Test]` methods excluding those stubs. The randomized game tests
-(`RandomHeroTests`, `RandomVillainTests`, `RandomEnvironmentTests`,
-`RandomGameTest`) give every deck crash/smoke coverage, but no behavioral
-assertions — a card whose effect silently does the wrong thing passes them.
+Three hero decks had been fixed one at a time for the same class of bug (Miss
+Militia `ad38769`, Grue `ed1df6d`, Battery `c00ff3b`, plus Battery's
+`IsDischargePower` in `5a8810c`). Rather than keep finding these one random-test
+crash at a time, every hero character card is now driven through the Tribunal
+deliberately. Branch `claude_celestial_tribunal_hero_powers`.
 
-## Coverage summary (as of the original audit — now outdated, see Resume here)
+### Scope: what the Tribunal can actually reach
 
-| Deck | Real tests | State |
-|---|---|---|
-| **Heroes** | | |
-| Dauntless | 148 | Done |
-| Dragon | 158 | Done |
-| Grue | 143 | Done |
-| Armsmaster | 76 | Done |
-| Legend | 72 | Done |
-| Labyrinth | 71 | Done (4 single-test files, see below) |
-| Skitter | 65 | Done |
-| Miss Militia | 60 | Done |
-| Tattletale | 59 | Done |
-| Battery | 47 | Done |
-| Alexandria | 44 | Mostly done (4 single-test files) |
-| Bitch | 39 | Partial — dogs + 4 stub cards |
-| Jessica Yamada | 28 | Partial — 10 of 12 card files are stubs |
-| **Villains** | | |
-| Echidna | 39 | Partial — 4 Twisted cards have no test file |
-| The Merchants | 26 | Thin — 1–3 tests per card |
-| Slaughterhouse 9 | 19 | Partial — 11 stub files |
-| Coil | 3 | Effectively untested |
-| Behemoth | 0 | Untested |
-| Leviathan | 0 | Untested |
-| Lung | 0 | Untested |
-| The Simurgh | 0 | Untested |
-| **Environments** | | |
-| Coil's Base | 2 | Effectively untested (only Mercenaries) |
-| Brockton Bay | 0 | Untested |
-| Kyushu | 0 | Untested |
-| New Delhi | 0 | Untested |
+**Only powers on a hero *character* card.** Verified against engine source:
+Representative of Earth is the only way one of our cards ends up owned by a
+non-hero, and it summons a hero character card (plus its shared-identifier
+siblings) and nothing else - no deck, hand or trash. Reaching that card's powers
+needs `allowAnyHeroPower: true`, and exactly four cards in the whole game pass
+it, each filtering to a character card:
 
-## Plan
+| Card | Power filter |
+|---|---|
+| Called to Judgement | `power.CardSource.Card == _representative` |
+| Character Witness | `power.CardSource.Card == _representative` |
+| Guise, "I Can Do That Too!" | `p.CardController.Card.IsHeroCharacterCard` |
+| Completionist Guise | `p.CardController.Card == selectedHero` (a character card) |
 
-Continue the established pattern: one branch per deck, one test file per card,
-character-card behavior in `<Deck>Tests.cs`, using the decklist JSON card text
-as the spec. Replace each `TestModWorks` stub as its file gains real tests
-(keep one load-test per deck in the `<Deck>Tests.cs` file).
+So the ~30 powers on our non-character cards (halberds, Legend's shot cards,
+Skitter's and Tattletale's ongoing/equipment, Labyrinth's, Alexandria's Cape,
+Grue's Martial Talent, Battery's Magnetism, Dauntless's Arcshield/Arcstep,
+Miss Militia's Weapons) **cannot be lent by the Tribunal** and are out of scope.
+They are still reached *indirectly* where a character power says "use a power on
+a Weapon card" (Protectorate Captain) or "you may use a power" (Ruler of
+Brockton Bay) - those paths get exercised through the character card test.
 
-### Phase 1 — Untested villains (highest risk: they drive whole games)
+### The 19 summonable character cards
 
-Suggested order, easiest first:
+`GameController.GetHeroCardsInBox` is the authority on what Representative of
+Earth can offer, and it is implemented app-side, so it was settled empirically
+rather than from the decklists: it lists **Jessica's three real character cards**
+(`JessicaYamadaCharacterTarget` / `...Environment` / `...NotTarget`) and **not**
+her Instructions cards, which are `isReal: false` - the same shape as The
+Sentinels' and The Ennead's instructions cards, which are likewise absent. So her
+summoned copy is a plain character card with a self-contained power, and the
+multi-character-hero setup the base game mishandles never comes into it.
 
-1. ~~**Lung**~~ DONE (2026-07-02): 30 behavioral tests across all 11 cards +
-   character/Brute (flip, trash scaling, damage reduction, advanced).
-   `LungTestBase` adds `FillLungTrash`, `RemoveLungTriggers`,
-   `RemoveEnvironmentDeck`. Found & fixed a real bug: Bakuda's one-shot branch
-   used the revealed card as damage source, which always fizzles. Also fixed
-   (2026-08-08): in advanced mode the discard-from-empty-deck reshuffle
-   prevented Lung's flip from ever triggering organically — the flip trigger
-   now fires on any villain-trash reshuffle, not just necessary-to-play ones.
-2. ~~**Leviathan**~~ DONE (2026-07-02): 37 behavioral tests across all 12 cards
-   + character (retaliation tokens, flip cycle, tactics, advanced).
-   `LeviathanTestBase` adds `PutTacticInPlay` / `MoveTacticsToDeckBottom` /
-   `MoveTacticToDeckTop`. Found & fixed a real bug: the advanced-mode
-   "Reduce damage dealt to Leviathan by 1" was not implemented on the front
-   side. Note: never round-trip an in-play card out of play and replay it in
-   tests — its triggers stay dead (AreTriggersActive guard); use
-   `ResetTriggers` (see PutTacticInPlay).
-3. ~~**Behemoth**~~ DONE (2026-07-02): 34 behavioral tests across the character,
-   Hero Tactics (new `HeroTacticsTests.cs`), all villain cards and all six
-   movement cards. `BehemothTestBase` adds `Proximity`/`SetProximity`/
-   `ClearProximity`, `StackMovementDeck`, `PlayMovementCard`,
-   `RemoveBehemothTriggers`. Found & fixed a real bug: played movement cards
-   went to the villain trash instead of under Movement Trash (the in-Play()
-   move is overridden by the engine's one-shot cleanup; fixed by overriding
-   `GetTrashDestination()`), which meant the movement deck could never
-   reshuffle and spent movement cards would eventually shuffle into the
-   villain deck.
-4. ~~**Coil**~~ DONE (2026-07-02): 43 tests — Scheming/Acting magic-text
-   thresholds, flip-instead-of-destroy, heroes-win detection, advanced HP
-   equalisation/revive, and all cards. `CoilTestBase` adds
-   `CleanupSetupNoise` (turn-1 start triggers put a random parahuman and
-   environment card into play) and `RemoveCoilTriggers`. Found & fixed a
-   real bug: Trainwreck's regeneration was implemented at the END of the
-   villain turn but the card says START.
-5. ~~**The Simurgh**~~ DONE (2026-07-02): 41 tests — character both sides
-   (flip cycle, scream tokens, advanced), all traps (via organic
-   A-Plan-Enacted flips), all conditions, play-when-revealed cards, Thinker
-   Countermeasures. `SimurghTestBase` adds `PutTrapFaceDownInPlay`,
-   `FlipTrapFaceUpDormant` (harness flip + ResetTriggers),
-   `FlipTrapWithPlanEnacted` (unique-choice organic flip, no decision
-   pollution), `RemoveCountermeasures`. Found & fixed two real bugs:
-   A Fate Selected hit the hero with the MOST cards in play (the engine's
-   `mostFewestSelectionType` param only changes the decision label), and
-   A Countermeasure Defeated played the HIGHEST-danger trash card instead of
-   the lowest (`OrderBy(...).Reverse()`).
+Two consequences of Representative of Earth calling `SetMaximumHP(10,
+alsoSetHP: true)` on whatever it summons, both covered by tests in
+`JessicaYamadaTests`:
 
-### Phase 2 — Environments
+- Her `...NotTarget` variant, which is deliberately not a target in her own deck,
+  becomes a real 10 HP target as a Representative - so killing it is an ordinary
+  `EnvironmentDefeat`.
+- Her `...Target` variant keeps its "redirect damage from non-hero sources to the
+  lowest-HP hero" trigger, which inverts the Tribunal's usual pressure: hitting
+  the Representative hurts the real heroes instead, and she never takes the hit.
+  Rules as written - she is a therapist, not a combatant - and she cannot redirect
+  to herself because the summoned card is not a real card. Left alone, same call
+  as Grue's Darkness below.
 
-- ~~**Brockton Bay**~~ DONE (2026-07-02): 19 tests — Uber/Leet duo synergy
-  (damage boost + mutual heal), Suburb destroy-others behaviour, Scum scaling,
-  Attention reveal-into-play, Civilians/Rooftops discard-to-destroy, damage
-  modifiers. `BrocktonBayTestBase` adds `SetupBrocktonBayGame` (Baron Blade
-  with MDP/triggers removed as a stable 40 HP top target).
-- ~~**Coil's Base**~~ DONE (2026-07-02): 27 tests — structure damage-reduction
-  + ablation chains, Blast Doors escalating reduction, Parahuman Prison
-  jail/free mechanics, Sealed Chamber game-over + skip-to-heal, Stranger &
-  Master Protocols cross-hero isolation, Trapped Chamber, Laser Rifles type
-  change. `CoilsBaseTestBase` mirrors the Brockton Bay setup helper.
-- ~~**Kyushu**~~ DONE (2026-07-02): 22 tests — Black Kaze stalking/redirect,
-  Slide into the Sea (deck attrition, destroy-other-instead, island-sinks
-  game over), Collapsing Building discard-to-destroy, environment Lung,
-  Sentai scaling, Only the Indomitable Remain, one-shot self-destruct
-  pattern. `KyushuTestBase` mirrors the other environment setup helpers.
-- ~~**New Delhi**~~ DONE (2026-07-02): 29 tests — Chevalier/Lightning Rod
-  redirects, Heroic Sacrifice redirect amplification (nemesis-aware),
-  Irradiated token lifecycle (must be played mid-environment-turn or it dies
-  at the start-of-turn check before gaining a token — matches real play),
-  Phir Se time bomb, Scion lockdown/self-removal, Thanda parahuman removal,
-  Unstoppable, Wildfires, Yangban's four typed damages, Accord's Plan,
-  Devastation, Perdition, A Chaotic Environment.
+The full list, all now covered: Alexandria, Armsmaster, Battery x2 (base +
+Cauldron Cape), Bitch, Dauntless, Dragon, Grue, Jessica x3, Labyrinth, Legend,
+Miss Militia x2 (base + Protectorate Captain), Skitter, Tattletale x3 (base +
+Ruler of Brockton Bay + Hunter of Secrets).
 
-### Phase 3 — Fill partial villains
+### Two shapes, both tested per card
 
-- ~~**Slaughterhouse 9**~~ DONE (2026-07-02): all 11 stub files replaced (16
-  new tests). `Slaughterhouse9TestBase` adds `SetupNineGame` (board-only, no
-  StartGame — the existing member-test convention) and
-  `SetupAndStartNineGame` (random deployment + triggers removed). Found &
-  fixed a real bug: They're All Better Now could never revive anyone —
-  incapacitated members' flipped sides have no keywords, so
-  `DoKeywordsContain("nine")` never matched (fixed via
-  `Definition.Keywords`). Test gotchas: the journal doesn't record without
-  StartGame (the revive looks up flips in the journal), and deployed
-  Bonesaw/Siberian add heal/immunity noise (`ReturnSiberian` +
-  post-incap `RemoveVillainTriggers`). Member files deepened 2026-07-11 —
-  see Phase 5.
-- ~~**Echidna**~~ Twisted gap CLOSED (2026-07-02): new test files for
-  `PropagandaTwisted`, `ResistanceTwisted`, `RoutTwisted`,
-  `SpearpointTwisted` (8 tests, following the existing
-  `ReturnAllTwisted`/`DestroyNonCharacterVillainCards` convention).
-  Single-test files for `Bullrush`/`ChimaericalNightmare`/`CloneArmy`/
-  `Crush`/`PsychologicalWarfare`/`SquadTactics` remain — optional deepening.
-- ~~**The Merchants**~~ DONE (2026-07-11): +19 edge-case tests (45 total).
-  Festivals: thug damage boosted/reduced, wrong-direction checks (Blood
-  doesn't boost heroes, Excess doesn't shield them), two copies stack,
-  Festival of Love on an empty Thug deck is a safe no-op. Not Exactly
-  Sanitary: no toxic on self-damage, hero damage, or fully-prevented damage
-  (`DidDealDamage` guard), thug end-of-turn damage triggers the rider.
-  Immunity scopes: Helicopter protects only Skidmark and only from melee;
-  Squealer's environment immunity covers all villain targets but not heroes.
-  Thugs: each of Reveller/Sadist/Tough shuffles into the Thug deck when
-  destroyed (verified via `AssertAtLocation(card,
-  TurnTaker.FindSubDeck("ThugDeck"))`); Tough hits a lone surviving hero
-  once for 2 (not twice). No mod bugs found.
+**Summoned and used directly** (`TestBroughtInByRepresentativeOfEarth`) - summon,
+run a round of turns, then use each power. Here `CharacterCard` is null,
+`HeroTurnTakerController` is null, and there is no deck, hand or trash. Not
+reachable from base game content, but it is the state the null `CharacterCard`
+lives in and it is where every crash was found. Bar: must not crash, and must
+degrade sanely.
 
-### Phase 4 — Hero gaps
+**Lent by Called to Judgement** (`TestPowerLentByCalledToJudgement`) - the only
+shape reachable in real play. The lender substitutes the borrowing hero in for
+the duration, so `TurnTaker.Deck`, `TurnTaker.PlayArea`, `HeroTurnTaker`, `Card`
+and `CharacterCard` are all theirs; the tests assert the effect lands on *their*
+resources.
 
-- ~~**Jessica Yamada**~~ DONE (2026-07-10). All 10 stub files replaced with real
-  tests; the 4 failing tests fixed. Root causes (both test-side):
-  `ResilienceAndRespect` targeted Jessica's character card, but the default
-  variant isn't a target — fixed by having Legacy hit himself (the
-  `SupportAndStability` pattern, which also sidesteps Baron's nemesis bonus).
-  `PsychologicalTraining` stacked a filler card for the draw phase to consume,
-  but `GoToEndOfTurn`/`GoToPhase` only advance phases and never perform phase
-  actions — nothing is ever drawn, so stack ONLY the card under test.
-- ~~**Bitch**~~ DONE (2026-07-02): stubs for `Heel`, `Hold`, `TheHunt`,
-  `Whistle` replaced (6 tests). Gotcha: `RemoveVillainCards()` must come
-  **after** `StartGame()` — Baron Blade's Mobile Defense Platform only enters
-  play during StartGame, and otherwise makes him immune. `DogTests` still has
-  one shared test covering all 11 dogs — each dog's unique text could use its
-  own test (optional deepening).
-- ~~**Alexandria**~~ DONE (2026-07-10): deepened `AndTheyKnowMe` (highest-HP
-  target selection + effect expiry), `ColdReading` (start-of-turn
-  discard/return via `DecisionMoveCardDestination`), `ProstheticEye`
-  (reorder — selection order becomes final top-to-bottom order).
-  `PureStrength`'s single test already covers its whole card text.
-- ~~**Labyrinth**~~ DONE (2026-07-10): deepened `DeviousLabyrinth` (decline
-  path), `MightyCastle` (reduction expiry), `TheAsylum` (irreducible
-  self-damage vs Defensive Buttress). `Exploration`'s optional draw can't be
-  declined in tests — the engine's Smart auto-draw policy answers the optional
-  draw yes whenever no draw triggers are in play.
-- ~~**Skitter**~~ DONE (2026-07-10): `SweepTheArea` non-target reveal path +
-  multi-villain-target damage. Its "return in any order" decision arrives
-  pre-`AutoDecided` from the engine, so tests can't choose the order — assert
-  contents with `Is.EquivalentTo`, not order.
+Two helpers in `ParahumanTest` drive both: `SummonRepresentativeOfEarth(deck,
+characterCard)` and `UsePowerLentByCalledToJudgement(borrower, powerIndex)`. The
+latter installs its own `OnMakeDecisions` hook so that only Called to Judgement's
+"select a hero" (`SelectionType.UsePowerOnCard`) is answered for the caller -
+everything the borrowed power itself selects still goes through the normal
+Decision properties.
 
-### Phase 5 — Guardrail + optional deepening (2026-07-11)
+### Bugs found and fixed
 
-- ~~**Meta-test guardrail**~~ DONE, then dropped (2026-08-08) as not worth
-  keeping: `Test/CoverageMetaTests.cs` failed if any card
-  in the mod decklists (enumerated from the embedded `DeckLists` resources,
-  main deck + subdecks) has no fixture containing a non-`TestModWorks` test.
-  Mapping rules: `<Identifier>Tests`; Twisted cards drop the `Twisted` suffix;
-  character cards may use `<Deck>Tests` or drop a `Character` suffix (team
-  members like `JackSlashCharacter` → `JackSlashTests`); dogs map to `DogTests`
-  via the `SharedFixtures` dictionary; board pieces (`isReal: false`,
-  non-character) are skipped. It immediately caught the one real gap: the
-  Slaughterhouse 9 character card itself had no tests. Also surfaced two
-  misspelled fixtures, renamed: `ContinousCrackleTests` →
-  `ContinuousCrackleTests`, `DissassoctionTests` → `DisassociationTests`.
-- ~~**Slaughterhouse 9 character card**~~ DONE: new `Slaughterhouse9Tests.cs`
-  (setup deploys H members with the rest under the Nine, flip-instead-of-
-  destroy, heroes win when no villain targets — the engine reports
-  `EndingResult.VillainDestroyedVictory` — and advanced end-of-turn
-  deployment).
-- ~~**Bitch per-dog tests**~~ MOOT: all dogs share `BaseDogCardController`
-  (identical end-of-turn 1 psychic self-damage; Bastard has no text and 8 HP)
-  — there is no unique per-dog text, and `DogTests.TestSelfDamage` already
-  covers every dog including Bastard's exemption. Dropped from the to-do.
-- ~~**Echidna single-test files**~~ DONE: +6 tests — Bullrush's Engulfed deck
-  search, Chimaerical Nightmare ignoring non-environment targets, Clone Army
-  villain-turn-only timing (and empty-Twisted-deck grace), Crush with no one
-  engulfed, Psychological Warfare hitting non-character hero targets with
-  Echidna as source, Squad Tactics not boosting hero/environment damage.
-- ~~**Slaughterhouse 9 members**~~ DONE: +19 tests covering every member's
-  front-side reactions and flipped sides (JackSlash special/once-per-turn/
-  flipped power-punisher, Bonesaw defence-heal/special-toxic/flipped heal,
-  Crawler adaptive immunity/attack/regen/flipped, Burnscar special environment
-  burn/attack/flipped, Mannequin damage reduction/defence-destroy/flipped,
-  Shatterbird H−1 highest attack/flipped, Siberian adjacency immunity/flipped
-  melee immunity, Cherish defence-discard). Found & fixed two real bugs:
-  flipped **Bonesaw's** end-of-turn heal could never fire (the trigger applied
-  a target criteria to the turn taker — `tt.Is(this).Villain().Target()`
-  instead of `tt == TurnTaker`), and flipped **Jack Slash** damaged
-  `GameController.ActiveTurnTaker` instead of the hero who used the power
-  (now `upa.HeroUsingPower`, so out-of-turn power use is punished correctly;
-  the test covers the common in-turn path).
-- **S9 test gotchas** (new helpers in `Slaughterhouse9TestBase`):
-  `ReturnMembersExcept(keep)` puts deployed members back under the Nine,
-  `RemoveVillainDeck()` empties deck+trash for deterministic turn crossing,
-  and `PutMemberInPlay(id)` (added 2026-07-11) replaces `PlayCard` for member
-  character cards. `BaseTest.PlayCard(string)` strips a card's triggers before
-  playing it, expecting the play to re-add them; if the random start-of-game
-  deployment already put that member into play, the engine refuses the replay
-  and the member is left in play with its triggers permanently dead. This made
-  every started-game member test flaky (~1 in 5 for CherishTests'
-  TestDefenceMakesTheHeroWithTheMostCardsDiscard, seed -380216145 reproduces).
-  All 53 member-character `PlayCard` calls in the S9 tests now use
-  `PutMemberInPlay`.
-  CRITICAL: the heroes-win trigger ends the game on the next real action
-  whenever zero villain targets are in play — always play the member under
-  test *before* returning the others, and keep a second villain target
-  (Spiderbots, or Hatchet Face for end-of-turn tests since he has no
-  end-of-turn action) in play before flipping the last member. Crawler's
-  adaptive immunity is tracked via card properties, which only record in a
-  started game's journal.
+- **Labyrinth - the environment's turn disappeared from the game.** Her
+  `AskIfTurnTakerOrderShouldBeChanged` implements "takes her turn immediately
+  after the first Environment turn". Once the environment owns her, `TurnTaker`
+  *is* the environment, so "if we are going to our turn and the previous turn
+  taker wasn't the environment, skip our turn" skipped the environment's turn,
+  every round, forever. Guarded with `TurnTaker.IsPlayer`. Much the worst of the
+  five - it silently breaks the whole game rather than throwing.
+- **Legend - null `CharacterCard` handed to a `DamageSource`.** All 11
+  `sourceCard.CharacterCard` sites across the character card, Freezeblast,
+  Kaleidoscope and Scatterblast now go through
+  `LegendExtensions.FindLegendCharacterCard` (`CharacterCard ?? Card`).
+  `UsePower` also passed `CharacterCardController`, which comes from the turn
+  taker controller and is therefore null when the environment owns us; it passes
+  `this` now, matching what `ApplyEffects` already did.
+- **Legend - the lent power silently did nothing.** Separate from the above, and
+  only visible in the lent shape. `CardController.GetActivatableAbilities` reads
+  `Card.Definition`, and inside the replacement window `Card` is the *borrower's*
+  character card - so Legend's own "effect" ability was invisible to the very
+  power being lent, `ChooseEffects` found no choices, and the power resolved to
+  nothing at all. `LegendCharacterCardController` now overrides
+  `GetActivatableAbilities` to read `CardWithoutReplacements.Definition`. This
+  also fixes Guise borrowing the power.
+- **Skitter - null `CharacterCard` in `AddBugTokenToSkitter`.** Now
+  `(co.CharacterCard ?? co.Card).FindBugPool()`, which folds into the existing
+  null-pool "sorry guise" guard.
+- **Tattletale: Hunter of Secrets - null `CharacterCard.FindTokenPool`.** Same
+  shape, same fix.
 
-## Resume here (state as of 2026-07-11)
+### Known limitation, deliberately left
 
-**Milestone: ALL planned test work is done.** Phases 1–5 are complete: zero
-stub-only files, the S9 character card and all eight members have behavioral
-tests (front and flipped sides), and the Echidna single-test files are
-deepened. Two more real mod bugs were found & fixed this session (flipped
-Bonesaw heal, flipped Jack Slash power damage) — see Phase 5. The final
-optional item — The Merchants edge-case deepening — is also done (+19 tests,
-see Phase 3), leaving committing the branch as the only remaining task.
+**Hunter of Secrets' powers do nothing when lent.** The token pool they count
+lives on Tattletale's own card, and under the replacement both `Card` and
+`CharacterCard` are the borrower's, so the existing null-pool guard bails out.
+That is the pre-existing "power doesn't work if guise uses it. TODO: Better fix?"
+behaviour, not a Tribunal regression - reaching our own pool would need
+`CardWithoutReplacements`, which would change Guise's behaviour too. The test
+asserts the current no-op rather than silently changing it. Worth deciding
+separately.
 
-Everything is uncommitted on branch `claude_dauntless_tests` (~200 changed/new
-files). Nothing has been pushed.
+## Reference: Celestial Tribunal mechanics
 
-Last full-suite run (after the Merchants deepening and the S9 flake fix):
-**1748 passed, 0 failed, 1 skipped (1749 total)**.
+The Celestial Tribunal's **Representative of Earth** pulls a hero character card
+out of the box and puts it into play *for the environment*:
 
-### Known pre-existing flakiness (NOT caused by this work)
+```csharp
+cardController = CardControllerFactory.CreateInstance(modelCard, turnTakerController, overrideNamespace);
+```
 
-Roughly 1 in 3 full-suite runs showed a failure from the seeded random tests.
-Investigated 2026-08-08 by stress-running the random suite and deterministically
-replaying failing games (`RunParticularGame` + the seed from the failure log).
-Each fix has a test in the relevant card's own test file. Root causes:
+`turnTakerController` is the Tribunal's, so for that copy of the card:
 
-**Fixed mod bugs:**
-- Behemoth: `ProximityPool()` returns null for a hero whose marker has left play,
-  which happens when they are incapacitated - including part-way through a card's
-  own effect. Incinerate and the character card's end-of-turn damage dereferenced
-  it unguarded. `BehemothTestBase.RemoveProximityMarker` sets this state up.
-- Echidna: Guise's "Uh, Yeah, I'm That Guy!" reruns the `Play()` of ongoings in
-  the high-fived hero's play area with the TurnTaker property replaced by Guise.
-  Engulfed (attached next to a hero) looked up the Twisted subdeck through
-  `TurnTaker` — null for Guise — and passed it to the engine. Its power-punish
-  trigger is also cloned by Guise and needed a null next-to guard. Note its
-  `Play()` must *return* the coroutine rather than driving it inline with
-  `ExhaustCoroutine`: Engulfed plays the top Twisted card, which can be another
-  Engulfed, so inline driving adds a stack frame per level and overflows on some
-  seeds — which kills the test host silently and hangs the whole run.
-- Legend: `ChooseEffects` cast every controller offering an "effect" activatable
-  ability to `IEffectCardController`. The Celestial Tribunal's Called to Judgement
-  puts a hero character card into play from the box and lets a hero use its power,
-  registering in `ReplacesCards`/`ReplacesTurnTakerController`/`ReplacesCardSource`
-  for as long as that power resolves. Inside that window the boxed card's
-  controller reports Legend's character card as its own (`Card` resolves to
-  `LegendCharacter` while `CardWithoutReplacements` is `FanaticCharacter`), so it
-  offers Legend's own "effect" ability. Prime Wardens Fanatic's power ends with
-  "one hero may use a power", which is how a Legend power came to run inside the
-  window. The blind cast threw. `ChooseEffects` no longer uses
-  `SelectAndActivateAbility`, because its only filter is a `LinqCardCriteria` and
-  both copies report the same Card: it now gathers the abilities itself
-  (`GetActivatableAbilitiesInPlayEx`), keeps only those whose controller is one of
-  ours, and runs its own `ActivateAbilityDecision`. That matters for play, not
-  just for crashes - otherwise the player is offered two identical "Legend"
-  entries and picking the borrowed one silently does nothing. `CurveshotTests`
-  builds this with Character Witness, whose power-lending happens on a turn
-  trigger rather than during its own play, so the borrowed power can be set up
-  separately; the test swaps in its own `OnMakeDecisions` handler to take the
-  borrowed ability if it is ever offered, and asserts only one is.
-- `CarryTheChargeTests.TestLimited`: when the random opening hand contained all
-  copies of Carry the Charge, both `PutInHand` calls returned the same card
-  (GetCard prefers deck/trash, falls back to hand). Fixed by returning the hand
-  to the deck first. `BatteryCauldronCapeTests.TestLimitedBecomesUnplayable`
-  already does this; if it flakes again, look for a different cause.
+- `CardController.HeroTurnTakerController` is **null** (the turn taker isn't a
+  hero), and `CardController.HeroTurnTaker` is
+  `HeroTurnTakerController.HeroTurnTaker`, so touching it NREs.
+- `CardController.CharacterCard` is **null** — it resolves to
+  `TurnTaker.CharacterCard`, and environments have no character card.
+- The hero's **deck, hand and trash are not in the game at all**. Only the
+  character card is created, plus its shared-identifier siblings.
 
-**Engine bugs (not fixable mod-side, will still fail random tests rarely):**
+**The borrowing hero is substituted in while a lent power runs.** All four
+`allowAnyHeroPower: true` cards register in `ReplacesTurnTakerController` and
+`ReplacesCards` for the duration, so inside the power `TurnTakerController` is
+the borrowing hero's: `TurnTaker.Deck`, `TurnTaker.PlayArea` and `HeroTurnTaker`
+are theirs, `HeroTurnTakerController` is not null, and both `Card` and
+`CharacterCard` resolve to *their* character card. That is the rules-as-written
+reading of "you", and it is what the mod should do. The null `CharacterCard`
+therefore only exists **outside** that window. Guard it anyway: the constructor
+and trigger crashes are real regardless of how a power is used, and `Card` is the
+right hero-self reference either way because it follows replacement.
+
+This is *not* the same shape as the Legend/Called to Judgement bug in
+[Known engine and flakiness issues](#reference-known-engine-bugs): that one is a
+boxed card temporarily *replacing* one of ours; this one is our card being
+permanently owned by a non-hero.
+
+### Already fixed
+
+- **Battery**: `IsDischargePower` assumed `UsePowerAction.HeroUsingPower` was
+  non-null; powers on these cards have no hero using them at all
+  (`GlowingThreadsTests`). Both character cards charged/discharged
+  `CharacterCard`, so `BatteryChargedStatusEffect`'s constructor NREd on
+  `chargedCard.Title` — they use `Card` now. The base card's charge power also
+  passed `HeroTurnTaker` to `DrawCard`; `DrawCard()` with no argument reports
+  "has no cards to draw" instead. The discharge power's
+  `SelectAndPlayCardFromHand` was already the `CardController` wrapper, which
+  null-checks the hero on its own. (`BatteryTests`, `BatteryCauldronCapeTests`)
+- **Miss Militia**: the Protectorate Captain **constructor** dereferenced
+  `HeroTurnTaker.Hand` for a special string. Base game guards the same call with
+  `if (TurnTaker.IsPlayer)` (see `PrimeWardensHakaCharacterCardController`,
+  `SkyScraperTinyCharacterCardController`). Its power also called
+  `GameController.SelectAndPlayCardFromHand` directly — only the `CardController`
+  wrapper of that name null-checks the hero, so use that one. (`MissMilitiaTests`)
+- **Grue**: `PutDarknessIntoPlay` synthesises a Darkness by copying an existing
+  one's definition, and there are none when the deck isn't in the game. It now
+  falls back to the deck definition reached through
+  `CardWithoutReplacements.Definition.ParentDeck`. Three things that took getting
+  right:
+  - `CardControllerFactory` resolves the controller under
+    `turnTakerController.TurnTaker.DeckDefinition.Identifier` — the
+    *environment's* — so it silently falls back to a plain `CardController` with
+    no triggers. Pass `overrideNamespace` (`"<card ns>.<deck identifier>"`) and
+    write the same `"OverrideTurnTaker"` card-property journal entry
+    Representative of Earth writes, so a reload rebuilds it the same way. On
+    *every* synthesis, not just the first — the second finds the first card and
+    copies its definition, and would otherwise lose the namespace.
+  - `PutDarknessesIntoPlay` passed `CharacterCard` (null) as the card to attach
+    to. It uses `Card` now, which is how base game reads a character card's
+    reference to its own hero (`TheWraithCharacterCardController` points its
+    damage-reduction status effect at `base.Card`). `Card` also follows card
+    replacement, so Completionist Guise borrowing the power resolves to Guise's
+    card; `CharacterCard` would not.
+  - Darkness is a different card, so it can't use `Card` to find him —
+    `GrueExtensionMethods.FindGrueCharacterCard` does it: our turn taker's
+    character card normally, otherwise the Grue character card in our owner's
+    play area.
+  - Darkness's "at the end of Grue's next turn remove this from the game" trigger
+    is keyed on `tt == TurnTaker`, which is the *environment's* turn once it owns
+    him — it would have been removed at the end of every round. Guarded with
+    `TurnTaker.IsPlayer` so it never comes due.
+
+  **Decision (2026-08-10): the Darkness cards stay in play forever, rules as
+  written. Do not "fix" this.** Grue is not a player and never takes a turn, so
+  the end-of-turn condition never happens. There is no base game precedent to
+  borrow — a summoned hero has no deck, so base game can never put one of that
+  hero's non-character cards into play, and Sky-Scraper's size cards (which
+  Representative of Earth does handle) are character cards resolved by
+  replacement. The consequence is known and accepted: Character Witness lends
+  this power at the start of every environment turn, each use places two Darkness
+  that never leave, and multiple Darkness next to the same card each reduce
+  separately. It is left in because it is exactly what the card says, it crashes
+  nothing, and it is not game-crushing — Darkness reduces the first damage dealt
+  *by* the card it is next to as well as the first dealt *to* it, so stacking
+  them on a villain shields that villain from the heroes' opening hit each turn
+  by the same amount. Treating the environment turn as Grue's turn was considered
+  and rejected as not what the card says. (`GrueTests`)
+
+---
+
+## Reference: known engine bugs
+
 Reproductions are kept in an uncommitted `Test/EngineBugRepros.cs` (they fail by
 design, so they are deliberately not part of the suite). Decision (2026-08-09):
 the Power Overwhelming and Shocking Animation ones are worth reporting upstream;
 the tie-break one can't be reached with base game content alone, so we guard our
-own cards against it instead (see below).
+own cards against it instead.
 
-The tie-break bug's real shape: `DetermineTurnTakersWithMostOrFewest` stores
-`selectTurnTakerDecision.SelectedTurnTaker` without checking the decision
-completed, so a **refused** decision puts a null in the results list. It is
-refused whenever `CanPerformAction` says no, which covers three cases: the card
-source is inhibited, the source card flipped since its CardSource was captured
-(`IsCardOnWrongSide`), or the game is over. Note `Count() > 0` does not protect
-callers — the list has one null element. Check `FirstOrDefault() != null`, which
-is what most base game cards do. The HP equivalent
-(`DetermineTargetWithLowestOrHighestHitPoints`) guards correctly, so
-`FindTargetWith{Lowest,Highest}HitPoints` call sites are fine.
-
-Audit of our seven most/fewest call sites (2026-08-09): Trickster,
-A Terrible Defeat, Bakuda and A Fate Selected already null-check. Cherish was
-crash-safe only via a second guard (`FindHeroTurnTakerController(null)` returns
-null) — now checks explicitly. Leap used `Count() > 0` then `.First()`, which
-would have handed `Array.IndexOf` a null and given proximity tokens to the
-wrong two heroes; it only runs during the card's own `Play()`, where a card is
-never inhibited (`PlayCardAction` removes the inhibitor before `Play()`), so
-that one is defensive only.
-- `GameController.DetermineTurnTakersWithMostOrFewest`: if the tie-break
-  `SelectTurnTakerDecision` is cancelled ("cannot do anything else", e.g. all
-  tied heroes currently undamageable), it adds a null TurnTaker to the results
-  and `TargetInfo.GetTargets` NREs on it. Seen via Citizen Summer's end-of-turn
-  most-cards damage.
-- Hades' Power Overwhelming: `ShouldIncreasePhaseActionCount` assumes the card
-  sits in a hero play area; NREs mid-move (seen with Tempest's Into the
+- **`GameController.DetermineTurnTakersWithMostOrFewest`** stores
+  `selectTurnTakerDecision.SelectedTurnTaker` without checking the decision
+  completed, so a **refused** decision puts a null in the results list. It is
+  refused whenever `CanPerformAction` says no: the card source is inhibited, the
+  source card flipped since its CardSource was captured (`IsCardOnWrongSide`), or
+  the game is over. `Count() > 0` does **not** protect callers — the list has one
+  null element. Check `FirstOrDefault() != null`, which is what most base game
+  cards do. The HP equivalent (`DetermineTargetWithLowestOrHighestHitPoints`)
+  guards correctly, so `FindTargetWith{Lowest,Highest}HitPoints` call sites are
+  fine. Seen via Citizen Summer's end-of-turn most-cards damage.
+  *Our seven call sites were audited 2026-08-09* — Trickster, A Terrible Defeat,
+  Bakuda and A Fate Selected already null-check; Cherish was crash-safe only via
+  a second guard and now checks explicitly; Leap used `Count() > 0` then
+  `.First()` (would have given proximity tokens to the wrong two heroes) but only
+  runs during its own `Play()` where a card is never inhibited, so that one is
+  defensive only.
+- **Hades' Power Overwhelming**: `ShouldIncreasePhaseActionCount` assumes the
+  card sits in a hero play area; NREs mid-move (seen with Tempest's Into the
   Stratosphere relocating it).
-- Chokepoint's Shocking Animation × Guise's "Uh, Yeah, I'm That Guy!":
-  the rerun `Play()` calls `MakeTargettable(GetCardThisCardIsNextTo())` with a
-  null next-to card and `MakeTargetAction.ToString()` NREs.
+- **Chokepoint's Shocking Animation × Guise's "Uh, Yeah, I'm That Guy!"**: the
+  rerun `Play()` calls `MakeTargettable(GetCardThisCardIsNextTo())` with a null
+  next-to card and `MakeTargetAction.ToString()` NREs.
 
-A second flake source — the started-game S9 member tests dying whenever the
-random deployment pre-deployed the member under test (via the
-`BaseTest.PlayCard` trigger-strip, see the S9 gotchas in Phase 5) — was
-identified and FIXED on 2026-07-11 (`PutMemberInPlay`). It was introduced with
-the Phase 5 member deepening, not pre-existing.
+### Mod bugs found by the random suite (all fixed 2026-08-08)
 
-### What's left
+- **Behemoth**: `ProximityPool()` returns null for a hero whose marker has left
+  play, which happens when they are incapacitated — including part-way through a
+  card's own effect. Incinerate and the character card's end-of-turn damage
+  dereferenced it unguarded. `BehemothTestBase.RemoveProximityMarker` sets this
+  state up.
+- **Echidna**: Guise's "Uh, Yeah, I'm That Guy!" reruns the `Play()` of ongoings
+  in the high-fived hero's play area with the TurnTaker property replaced by
+  Guise. Engulfed (attached next to a hero) looked up the Twisted subdeck through
+  `TurnTaker` — null for Guise. Its power-punish trigger is also cloned by Guise
+  and needed a null next-to guard. Its `Play()` must *return* the coroutine
+  rather than driving it inline with `ExhaustCoroutine`: Engulfed plays the top
+  Twisted card, which can be another Engulfed, so inline driving adds a stack
+  frame per level and overflows on some seeds — which kills the test host
+  silently and hangs the whole run.
+- **Legend**: `ChooseEffects` cast every controller offering an "effect"
+  activatable ability to `IEffectCardController`. Inside a Called to Judgement
+  window a boxed card's controller reports Legend's character card as its own
+  (`Card` resolves to `LegendCharacter` while `CardWithoutReplacements` is
+  `FanaticCharacter`), so it offers Legend's own "effect" ability and the blind
+  cast threw. `ChooseEffects` no longer uses `SelectAndActivateAbility` — its only
+  filter is a `LinqCardCriteria` and both copies report the same Card — it gathers
+  the abilities itself (`GetActivatableAbilitiesInPlayEx`), keeps only those whose
+  controller is one of ours, and runs its own `ActivateAbilityDecision`. That
+  matters for play, not just crashes: otherwise the player is offered two
+  identical "Legend" entries and picking the borrowed one silently does nothing.
+  `CurveshotTests` builds this with Character Witness, whose power-lending happens
+  on a turn trigger rather than during its own play, so the borrowed power can be
+  set up separately.
+- **`CarryTheChargeTests.TestLimited`**: when the random opening hand contained
+  all copies of Carry the Charge, both `PutInHand` calls returned the same card
+  (`GetCard` prefers deck/trash, falls back to hand). Fixed by returning the hand
+  to the deck first.
 
-- **Committing this work** — nothing on the branch is committed yet.
-- The random-test crashes were investigated and the mod-side ones fixed
-  (2026-08-08, see the flakiness section); three engine-side bugs remain and
-  can still fail a random test on rare seeds.
+---
 
-### Coverage check
+## Reference: test-harness gotchas
+
+Collected from the deck-by-deck campaign; all still apply.
+
+- **`GoToEndOfTurn` / `GoToPhase` only advance phases — they never perform phase
+  actions.** Nothing is ever drawn or played by them, so stack ONLY the card
+  under test.
+- **Never round-trip an in-play card out of play and replay it.** Its triggers
+  stay dead (`AreTriggersActive` guard). Use `ResetTriggers` — see
+  `LeviathanTestBase.PutTacticInPlay`.
+- **`BaseTest.PlayCard(string)` strips a card's triggers before playing it**,
+  expecting the play to re-add them. If the card is already in play the engine
+  refuses the replay and the triggers stay permanently dead. For character cards
+  that a random setup may already have deployed, use a put-in-play helper instead
+  (`Slaughterhouse9TestBase.PutMemberInPlay`).
+- **`RemoveVillainCards()` must come after `StartGame()`** — Baron Blade's Mobile
+  Defense Platform only enters play during StartGame, and otherwise makes him
+  immune.
+- **Optional draws can't be declined in tests**: the engine's Smart auto-draw
+  policy answers them yes whenever no draw triggers are in play (Labyrinth's
+  Exploration).
+- **Some decisions arrive pre-`AutoDecided`** (Skitter's Sweep the Area "return
+  in any order"), so tests can't choose the order — assert contents with
+  `Is.EquivalentTo`.
+- **`mostFewestSelectionType` only changes the decision label**, not which target
+  is selected (caught A Fate Selected hitting the hero with the *most* cards).
+- **The journal doesn't record without `StartGame`** — anything that reads card
+  properties or looks up flips needs a started game.
+- **Default hero variants' character cards are not targets.** To damage one, have
+  another hero hit themselves instead (also sidesteps Baron's nemesis bonus).
+- **The engine's one-shot cleanup overrides a move made inside `Play()`** —
+  override `GetTrashDestination()` instead (Behemoth's movement cards).
+
+---
+
+## History
+
+The original goal — every card in every deck gets behavioural tests, replacing
+the ~149 `TestModWorks` stubs — is complete. Phases and outcomes:
+
+| Phase | Scope | Outcome |
+|---|---|---|
+| 1 | Untested villains: Lung, Leviathan, Behemoth, Coil, The Simurgh | 185 tests; 6 real mod bugs found & fixed |
+| 2 | Environments: Brockton Bay, Coil's Base, Kyushu, New Delhi | 97 tests |
+| 3 | Partial villains: Slaughterhouse 9, Echidna Twisted cards, The Merchants | 43 tests; 1 real bug (They're All Better Now could never revive) |
+| 4 | Hero gaps: Jessica Yamada, Bitch, Alexandria, Labyrinth, Skitter | all stubs replaced |
+| 5 | Deepening: S9 character + members, Echidna single-test files | +25 tests; 2 real bugs (flipped Bonesaw's heal, flipped Jack Slash's power damage) |
+
+A `CoverageMetaTests.cs` guardrail (fail if any decklist card lacks a
+non-`TestModWorks` fixture) was added in Phase 5 and dropped 2026-08-08 as not
+worth keeping. It caught one real gap — the Slaughterhouse 9 character card had
+no tests — and two misspelled fixtures.
 
 Finished decks keep one `TestModWorks` load test in the deck's main test file.
-The shell one-liner below is the quick manual check for stub-only files (a
-`CoverageMetaTests.cs` meta-test enforced this automatically for a while, but
-was dropped 2026-08-08 as not worth keeping):
+The quick manual check for stub-only files:
 
 ```bash
 grep -rl TestModWorks Test/ | xargs grep -cE '\[Test\(\)?\]' | grep ':1$'
 ```
+
+### Note on flakiness
+
+Roughly 1 in 3 full-suite runs used to fail from the seeded random tests. All
+mod-side causes were fixed 2026-08-08 (see
+[mod bugs found by the random suite](#mod-bugs-found-by-the-random-suite-all-fixed-2026-08-08));
+the three engine-side bugs above can still fail a random test on rare seeds.

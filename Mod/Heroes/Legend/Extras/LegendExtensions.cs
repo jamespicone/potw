@@ -11,6 +11,12 @@ namespace Jp.ParahumansOfTheWormverse.Legend
 {
     public static class LegendExtensions
     {
+        // If we've been put into play by Celestial Tribunal CharacterCard is null and the card has to be Legend.
+        public static Card FindLegendCharacterCard(this CardController co)
+        {
+            return co.CharacterCard ?? co.Card;
+        }
+
         public static IEnumerator ChooseEffects(this CardController co, List<IEffectCardController> effects)
         {
             var areWeBursting = co.GameController.StatusEffectManager.StatusEffectControllers.Select(sec => sec.StatusEffect as LegendBurstStatusEffect)

@@ -317,5 +317,52 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.Dauntless
             DestroyCard(flakCannon);
             AssertInTrash(flakCannon);
         }
+
+        // The Celestial Tribunal's Representative of Earth puts our character card into play
+        // owned by the environment: no HeroTurnTakerController, no CharacterCard, and no deck,
+        // hand or trash.
+        [Test()]
+        public void TestBroughtInByRepresentativeOfEarth()
+        {
+            SetupGameController("BaronBlade", "Legacy", "TheCelestialTribunal");
+            StartGame();
+            RemoveMobileDefensePlatform();
+
+            var dauntlessCard = SummonRepresentativeOfEarth("Dauntless", "DauntlessCharacter");
+
+            GoToStartOfTurn(legacy);
+            GoToStartOfTurn(env);
+            GoToStartOfTurn(baron);
+            AssertIsInPlay(dauntlessCard);
+
+            // No Charge cards can be attached, so X is 1. The damage comes from the summoned card,
+            // which is what Card resolves to with no hero of ours in the game.
+            DecisionSelectTarget = baron.CharacterCard;
+            AssertDamageSource(dauntlessCard);
+            AssertDamageType(DamageType.Energy);
+
+            QuickHPStorage(baron);
+            UsePower(dauntlessCard, 0);
+            QuickHPCheck(-1);
+        }
+
+        [Test()]
+        public void TestPowerLentByCalledToJudgement()
+        {
+            SetupGameController("BaronBlade", "Legacy", "TheCelestialTribunal");
+            StartGame();
+            RemoveMobileDefensePlatform();
+
+            SummonRepresentativeOfEarth("Dauntless", "DauntlessCharacter");
+
+            // Card follows the replacement, so the damage comes from Legacy - and Legacy is Baron
+            // Blade's nemesis, so his 1 damage lands as 2.
+            DecisionSelectTarget = baron.CharacterCard;
+            AssertDamageSource(legacy.CharacterCard);
+
+            QuickHPStorage(baron);
+            UsePowerLentByCalledToJudgement(legacy.CharacterCard);
+            QuickHPCheck(-2);
+        }
     }
 }

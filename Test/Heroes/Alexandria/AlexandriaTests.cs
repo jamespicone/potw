@@ -84,5 +84,47 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.Alexandria
             AssertIsInPlay(cape1);
             AssertIsInPlay(cape2);
         }
+
+        // The Celestial Tribunal's Representative of Earth puts our character card into play
+        // owned by the environment: no HeroTurnTakerController, no CharacterCard, and no deck,
+        // hand or trash.
+        [Test()]
+        public void TestBroughtInByRepresentativeOfEarth()
+        {
+            SetupGameController("BaronBlade", "Legacy", "TheCelestialTribunal");
+            StartGame();
+
+            var alexandriaCard = SummonRepresentativeOfEarth("Alexandria", "AlexandriaCharacter");
+
+            GoToStartOfTurn(legacy);
+            GoToStartOfTurn(env);
+            GoToStartOfTurn(baron);
+            AssertIsInPlay(alexandriaCard);
+
+            // "You may play a card" has no hand to play from and "return one of your noncharacter
+            // cards in play to your hand" has no cards of ours in play, so both no-op.
+            UsePower(alexandriaCard, 0);
+
+            AssertIsInPlay(alexandriaCard);
+        }
+
+        [Test()]
+        public void TestPowerLentByCalledToJudgement()
+        {
+            SetupGameController("BaronBlade", "Legacy", "TheCelestialTribunal");
+            StartGame();
+
+            SummonRepresentativeOfEarth("Alexandria", "AlexandriaCharacter");
+
+            var inPlay = PlayCard("MotivationalCharge");
+            var inHand = PutInHand("Fortitude");
+            DecisionSelectCards = new Card[] { inHand, inPlay };
+
+            UsePowerLentByCalledToJudgement(legacy.CharacterCard);
+
+            // Both halves used Legacy's hand and play area, not the environment's.
+            AssertIsInPlay(inHand);
+            AssertInHand(inPlay);
+        }
     }
 }

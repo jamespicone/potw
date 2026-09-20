@@ -20,7 +20,8 @@ namespace Jp.ParahumansOfTheWormverse.Tattletale
         public override IEnumerator UsePower(int index = 0)
         {
             // power doesn't work if guise uses it. TODO: Better fix?
-            TokenPool infoPool = base.CharacterCard.FindTokenPool("TattletaleHunterOfSecretsPool");
+            // CharacterCard is also null when we're Representative of Earth
+            TokenPool infoPool = (base.CharacterCard ?? base.Card).FindTokenPool("TattletaleHunterOfSecretsPool");
             if (infoPool == null) { yield break; }
 
             switch (index)
