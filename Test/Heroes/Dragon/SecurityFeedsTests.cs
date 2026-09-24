@@ -105,7 +105,7 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.Dragon
 
             var card = GetCard("SecurityFeeds");
 
-            Assert.That(card.IsOngoing, Is.True, "Security Feeds should be an Ongoing");
+            Assert.That(card.DoKeywordsContain("ongoing"), Is.True, "Security Feeds should be an Ongoing");
         }
     }
 }

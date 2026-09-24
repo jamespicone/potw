@@ -105,7 +105,7 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.Dragon
 
             var card = GetCard("PRTDatabase");
 
-            Assert.That(card.IsOngoing, Is.True, "PRT Database should be an Ongoing");
+            Assert.That(card.DoKeywordsContain("ongoing"), Is.True, "PRT Database should be an Ongoing");
         }
     }
 }

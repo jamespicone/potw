@@ -110,7 +110,7 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.Dragon
 
             var card = GetCard("Archives");
 
-            Assert.That(card.IsOngoing, Is.True, "Archives should be an Ongoing");
+            Assert.That(card.DoKeywordsContain("ongoing"), Is.True, "Archives should be an Ongoing");
         }
     }
 }

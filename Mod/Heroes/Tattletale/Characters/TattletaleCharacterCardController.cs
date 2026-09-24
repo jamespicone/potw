@@ -159,7 +159,7 @@ namespace Jp.ParahumansOfTheWormverse.Tattletale
         private IEnumerator UseIncapOption3()
         {
             // "Destroy an Ongoing card."
-            IEnumerator destroyCoroutine = base.GameController.SelectAndDestroyCard(base.HeroTurnTakerController, new LinqCardCriteria((Card c) => c.DoKeywordsContain("ongoing")), false, responsibleCard: base.Card, cardSource: GetCardSource());
+            IEnumerator destroyCoroutine = base.GameController.SelectAndDestroyCard(base.HeroTurnTakerController, new LinqCardCriteria((Card c) => IsOngoing(c)), false, responsibleCard: base.Card, cardSource: GetCardSource());
             if (UseUnityCoroutines)
             {
                 yield return GameController.StartCoroutine(destroyCoroutine);

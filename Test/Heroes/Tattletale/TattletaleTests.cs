@@ -99,6 +99,39 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.Tattletale
             AssertInTrash(ongoing);
         }
 
+        [Test()]
+        public void TestIncap2IgnoresImprintsStrippedOfOngoingByAdvancedArgo()
+        {
+            SetupGameController(new string[] {
+                "Argo",
+                "Jp.ParahumansOfTheWormverse.Tattletale",
+                "Legacy",
+                "Bunker",
+                "InsulaPrimalis"
+            }, advanced: true);
+            StartGame();
+
+            IncapacitateCharacter(tattletale.CharacterCard, argo.CharacterCard);
+
+            // Argo starts with a random Ongoing imprint in play; H + 1 imprints flips him, and
+            // advanced flipped Argo says "Imprints with the ongoing keyword do not have the
+            // ongoing keyword."
+            var imprint = FindCardsWhere(c => c.IsImprint && c.IsInPlay).Single();
+            PlayCard("ArrowLauncher", 0);
+            PlayCard("ArrowLauncher", 1);
+            PlayCard("GravityLance");
+            AssertFlipped(argo.CharacterCard);
+            Assert.That(imprint.DoKeywordsContain("ongoing"), Is.True);
+            Assert.That(GameController.IsOngoing(imprint), Is.False);
+
+            var fortitude = PlayCard("Fortitude");
+            AssertNextDecisionChoices(new Card[] { fortitude }, new Card[] { imprint });
+            DecisionSelectCard = fortitude;
+            UseIncapacitatedAbility(tattletale, 2);
+            AssertInTrash(fortitude);
+            AssertIsInPlay(imprint);
+        }
+
         #endregion
 
         #region Ruler of Brockton Bay Variant

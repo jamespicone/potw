@@ -167,7 +167,7 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.Dragon
 
             var card = GetCard("CommandAndControl");
 
-            Assert.That(card.IsOngoing, Is.True, "Command and Control should be an Ongoing");
+            Assert.That(card.DoKeywordsContain("ongoing"), Is.True, "Command and Control should be an Ongoing");
         }
     }
 }

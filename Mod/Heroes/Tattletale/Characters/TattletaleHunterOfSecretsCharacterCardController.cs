@@ -41,7 +41,7 @@ namespace Jp.ParahumansOfTheWormverse.Tattletale
                     if (revealed.Count() > 0)
                     {
                         Card revealedCard = revealed.First();
-                        if (!revealedCard.DoKeywordsContain("ongoing"))
+                        if (!IsOngoing(revealedCard))
                         {
                             // "... If it's not an Ongoing card, discard it."
                             IEnumerator discardCoroutine = base.GameController.MoveCard(base.TurnTakerController, revealedCard, base.TurnTaker.Trash, responsibleTurnTaker: base.TurnTaker, isDiscard: true, cardSource: GetCardSource());

@@ -42,7 +42,7 @@ namespace Jp.ParahumansOfTheWormverse.Behemoth
                 GameController.ExhaustCoroutine(destroyEnvCoroutine);
             }
             // "Destroy all Ongoing cards."
-            IEnumerator destroyOngCoroutine = base.GameController.DestroyCards(DecisionMaker, new LinqCardCriteria((Card c) => c.DoKeywordsContain("ongoing"), "ongoing"), cardSource: GetCardSource());
+            IEnumerator destroyOngCoroutine = base.GameController.DestroyCards(DecisionMaker, new LinqCardCriteria((Card c) => IsOngoing(c), "ongoing"), cardSource: GetCardSource());
             if (UseUnityCoroutines)
             {
                 yield return GameController.StartCoroutine(destroyOngCoroutine);
