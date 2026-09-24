@@ -424,7 +424,7 @@
       "hitpoints": 26,
       "gameplay": [
         "Damage dealt by 'the swarm' is environment damage.",
-        "The first time you play a Strategy card each round, another player may play a card."
+        "The first time one of your Strategy cards enters play each round, another player may play a card."
       ],
       "powers": [
         "Either another player draws a card or place a Bug token on up to 2 Strategy cards."
@@ -470,7 +470,7 @@
       "hitpoints": 24,
       "gameplay": [
         "Damage dealt by 'the swarm' is environment damage.",
-        "Whenever you play a Bug card, draw a card."
+        "Whenever one of your Bug cards enters play, draw a card."
       ],
       "powers": [
         "Draw a card. You may discard any number of cards. Place a Bug token on {SkitterCharacter} for each card discarded this way."
@@ -537,7 +537,7 @@
       ],
       "flippedIcons": [
         "UsePowerNow",
-        "DestroyCard",
+        "Destroy",
         "DrawCardNow",
         "CancelledDamageGreen",
         "DealDamageMelee",

@@ -50,8 +50,9 @@ namespace Jp.ParahumansOfTheWormverse.Skitter
             var hero = GetSelectedTurnTaker(selectedHero);
 
             // "Then either remove a Bug token from one of your cards or remove one of your non-character cards in play from the game."
-            Func<Card, bool> hasTokens = c => c.IsInPlay && c.Owner == skitter.Owner && c.BugTokenCount() > 0;
-            Func<Card, bool> removable = c => c.IsInPlay && c.Owner == skitter.Owner && !c.IsCharacter;
+            Func<Card, bool> isYours = c => skitter.Owner.IsPlayer ? c.Owner == skitter.Owner : c == skitter;
+            Func<Card, bool> hasTokens = c => c.IsInPlay && isYours(c) && c.BugTokenCount() > 0;
+            Func<Card, bool> removable = c => c.IsInPlay && isYours(c) && !c.IsCharacter;
 
             var removedCard = new List<Card>();
             var functions = new List<Function>
@@ -128,7 +129,7 @@ namespace Jp.ParahumansOfTheWormverse.Skitter
             var e = GameController.SelectCardAndStoreResults(
                 DecisionMaker,
                 SelectionType.RemoveCardFromGame,
-                new LinqCardCriteria(removable, "non-character card"),
+                new LinqCardCriteria(removable, "non-character"),
                 selected,
                 optional: false,
                 cardSource: GetCardSource()
@@ -172,29 +173,13 @@ namespace Jp.ParahumansOfTheWormverse.Skitter
                 case 1:
                 {
                     // "One player may destroy one of their non-character cards. If they do, they draw a card and prevent the next damage that would be dealt to a hero target."
-                    var selected = new List<SelectTurnTakerDecision>();
-                    e = GameController.SelectHeroTurnTaker(
-                        DecisionMaker,
-                        SelectionType.DestroyCard,
-                        optional: false,
-                        allowAutoDecide: false,
-                        selected,
-                        heroCriteria: new LinqTurnTakerCriteria(tt => FindCardsWhere(c => c.IsInPlay && c.Owner == tt && !c.IsCharacter).Any()),
-                        cardSource: GetCardSource()
-                    );
-                    if (UseUnityCoroutines) { yield return GameController.StartCoroutine(e); }
-                    else { GameController.ExhaustCoroutine(e); }
-
-                    var player = GetSelectedTurnTaker(selected);
-                    if (player == null) { yield break; }
-                    var playerController = FindHeroTurnTakerController(player.ToHero());
-
                     var destroyed = new List<DestroyCardAction>();
-                    e = GameController.SelectAndDestroyCard(
-                        playerController,
-                        new LinqCardCriteria(c => c.IsInPlay && c.Owner == player && !c.IsCharacter, "non-character"),
-                        optional: true,
-                        storedResultsAction: destroyed,
+                    e = GameController.SelectHeroToDestroyTheirCard(
+                        DecisionMaker,
+                        new LinqCardCriteria(c => !c.IsCharacter, "non-character"),
+                        optionalSelectHero: false,
+                        optionalDestroyCard: true,
+                        storedResults: destroyed,
                         responsibleCard: Card,
                         cardSource: GetCardSource()
                     );
@@ -203,7 +188,7 @@ namespace Jp.ParahumansOfTheWormverse.Skitter
 
                     if (!DidDestroyCard(destroyed)) { yield break; }
 
-                    e = DrawCard(player.ToHero());
+                    e = DrawCard(destroyed.First().CardToDestroy.Card.Owner.ToHero());
                     if (UseUnityCoroutines) { yield return GameController.StartCoroutine(e); }
                     else { GameController.ExhaustCoroutine(e); }
 

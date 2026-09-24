@@ -21,11 +21,10 @@ namespace Jp.ParahumansOfTheWormverse.Skitter
         {
             if (!Card.IsFlipped)
             {
-                // "Whenever you play a Bug card, draw a card."
-                AddSideTrigger(AddTrigger<PlayCardAction>(
-                    pca => pca.WasCardPlayed && !pca.IsPutIntoPlay && pca.CardToPlay.Owner == TurnTaker &&
-                        pca.CardToPlay.Is().WithKeyword("bug").AccordingTo(this),
-                    pca => DrawCards(HeroTurnTakerController, 1),
+                // "Whenever one of your Bug cards enters play, draw a card."
+                AddSideTrigger(AddTrigger<CardEntersPlayAction>(
+                    cep => cep.CardEnteringPlay.Owner == TurnTaker && cep.CardEnteringPlay.Is().WithKeyword("bug").AccordingTo(this),
+                    cep => DrawCards(HeroTurnTakerController, 1),
                     TriggerType.DrawCard,
                     TriggerTiming.After
                 ));
@@ -67,23 +66,25 @@ namespace Jp.ParahumansOfTheWormverse.Skitter
                 case 0:
                 {
                     // "The environment deals each target 1 toxic damage."
-                    var source = new DamageSource(GameController, FindEnvironment().TurnTaker);
-                    foreach (var target in GameController.FindTargetsInPlay().ToList())
-                    {
-                        if (!target.IsInPlayAndHasGameText || !target.IsTarget) { continue; }
-
-                        e = GameController.DealDamageToTarget(source, target, 1, DamageType.Toxic, cardSource: GetCardSource());
-                        if (UseUnityCoroutines) { yield return GameController.StartCoroutine(e); }
-                        else { GameController.ExhaustCoroutine(e); }
-                    }
-                    yield break;
+                    e = GameController.SelectTargetsAndDealDamage(
+                        DecisionMaker,
+                        new DamageSource(GameController, FindEnvironment().TurnTaker),
+                        1,
+                        DamageType.Toxic,
+                        numberOfTargets: null,
+                        optional: false,
+                        requiredTargets: null,
+                        allowAutoDecide: true,
+                        cardSource: GetCardSource()
+                    );
+                    break;
                 }
                 case 1:
                 {
                     // "Destroy an Ongoing card."
                     e = GameController.SelectAndDestroyCard(
                         DecisionMaker,
-                        new LinqCardCriteria(c => c.IsOngoing, "ongoing"),
+                        new LinqCardCriteria(c => IsOngoing(c), "ongoing"),
                         optional: false,
                         cardSource: GetCardSource()
                     );
@@ -92,31 +93,20 @@ namespace Jp.ParahumansOfTheWormverse.Skitter
                 case 2:
                 {
                     // "One player may discard a card. If they do, they may draw 2 cards."
-                    var selected = new List<SelectTurnTakerDecision>();
-                    e = GameController.SelectHeroTurnTaker(
+                    var discards = new List<DiscardCardAction>();
+                    e = GameController.SelectHeroToDiscardCard(
                         DecisionMaker,
-                        SelectionType.DiscardCard,
-                        optional: false,
-                        allowAutoDecide: false,
-                        selected,
-                        heroCriteria: new LinqTurnTakerCriteria(tt => tt.ToHero().HasCardsInHand),
+                        optionalSelectHero: false,
+                        optionalDiscardCard: true,
+                        storedResultsDiscard: discards,
                         cardSource: GetCardSource()
                     );
                     if (UseUnityCoroutines) { yield return GameController.StartCoroutine(e); }
                     else { GameController.ExhaustCoroutine(e); }
 
-                    var player = GetSelectedTurnTaker(selected);
-                    if (player == null) { yield break; }
-                    var playerController = FindHeroTurnTakerController(player.ToHero());
-
-                    var discards = new List<DiscardCardAction>();
-                    e = SelectAndDiscardCards(playerController, 1, optional: true, storedResults: discards, responsibleTurnTaker: player);
-                    if (UseUnityCoroutines) { yield return GameController.StartCoroutine(e); }
-                    else { GameController.ExhaustCoroutine(e); }
-
                     if (!DidDiscardCards(discards)) { yield break; }
 
-                    e = DrawCards(playerController, 2, optional: true);
+                    e = DrawCards(discards.First().HeroTurnTakerController, 2, optional: true);
                     break;
                 }
                 default:

@@ -20,8 +20,8 @@ namespace Jp.ParahumansOfTheWormverse.Skitter
         {
             SpecialStringMaker.ShowIfElseSpecialString(
                 () => HasBeenSetToTrueThisRound(FirstStrategyThisRound),
-                () => $"{TurnTaker.Name} has played a Strategy card this round.",
-                () => $"{TurnTaker.Name} has not played a Strategy card this round."
+                () => $"One of {TurnTaker.Name}'s Strategy cards has entered play this round.",
+                () => $"None of {TurnTaker.Name}'s Strategy cards have entered play this round."
             ).Condition = () => !Card.IsFlipped;
         }
 
@@ -29,10 +29,10 @@ namespace Jp.ParahumansOfTheWormverse.Skitter
         {
             if (!Card.IsFlipped)
             {
-                // "The first time you play a Strategy card each round, another player may play a card."
-                AddSideTrigger(AddTrigger<PlayCardAction>(
-                    pca => pca.WasCardPlayed && !pca.IsPutIntoPlay && pca.CardToPlay.Owner == TurnTaker &&
-                        pca.CardToPlay.Is().WithKeyword("strategy").AccordingTo(this) &&
+                // "The first time one of your Strategy cards enters play each round, another player may play a card."
+                AddSideTrigger(AddTrigger<CardEntersPlayAction>(
+                    cep => cep.CardEnteringPlay.Owner == TurnTaker &&
+                        cep.CardEnteringPlay.Is().WithKeyword("strategy").AccordingTo(this) &&
                         !HasBeenSetToTrueThisRound(FirstStrategyThisRound),
                     FirstStrategyResponse,
                     TriggerType.PlayCard,
@@ -41,7 +41,7 @@ namespace Jp.ParahumansOfTheWormverse.Skitter
             }
         }
 
-        private IEnumerator FirstStrategyResponse(PlayCardAction pca)
+        private IEnumerator FirstStrategyResponse(CardEntersPlayAction cep)
         {
             SetCardPropertyToTrueIfRealAction(FirstStrategyThisRound);
 
@@ -49,7 +49,7 @@ namespace Jp.ParahumansOfTheWormverse.Skitter
                 DecisionMaker,
                 optionalSelectHero: false,
                 optionalPlayCard: true,
-                additionalCriteria: new LinqTurnTakerCriteria(tt => tt != TurnTaker, "another player"),
+                additionalCriteria: new LinqTurnTakerCriteria(tt => tt != TurnTaker, "other players"),
                 cardSource: GetCardSource()
             );
             if (UseUnityCoroutines) { yield return GameController.StartCoroutine(e); }
@@ -59,7 +59,7 @@ namespace Jp.ParahumansOfTheWormverse.Skitter
         public override IEnumerator UsePower(int index = 0)
         {
             // "Either another player draws a card or place a Bug token on up to 2 Strategy cards."
-            var otherPlayers = new LinqTurnTakerCriteria(tt => tt != TurnTaker && tt.IsPlayer && !tt.IsIncapacitatedOrOutOfGame, "another player");
+            var otherPlayers = new LinqTurnTakerCriteria(tt => tt != TurnTaker && tt.IsPlayer && !tt.IsIncapacitatedOrOutOfGame, "other players");
             Func<Card, bool> strategyWithPool = c => c.IsInPlayAndHasGameText && c.Is().WithKeyword("strategy").AccordingTo(this) && c.FindBugPool() != null;
 
             var functions = new List<Function>

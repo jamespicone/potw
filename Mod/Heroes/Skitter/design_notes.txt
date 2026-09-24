@@ -74,7 +74,7 @@ TODO:
 Planned variants:
 	- Skitter: flexible.
 	- Weaver: strategies and teamwork; slow and inflexible but benefits the team.
-		Gameplay: The first time you play a Strategy card each round, another player may play a card.
+		Gameplay: The first time one of your Strategy cards enters play each round, another player may play a card.
 			("each round" rather than "each turn" so heroes that make other heroes play cards can't trigger it repeatedly.)
 		Power: Either another player draws a card or place a Bug token on up to 2 Strategy cards.
 		Incaps:
@@ -83,7 +83,7 @@ Planned variants:
 			- Reveal the top card of a deck. Discard it or replace it. (Bug surveillance; RevealCard_DiscardItOrPutItOnDeck.)
 			No damage incap - deliberate, Weaver doesn't go for the throat. Avoided "one hero uses a power" to keep that Khepri's thing.
 	- Taylor Hebert: Cauldron period; Bug cards and bug generation; a little self-destructive.
-		Gameplay: Whenever you play a Bug card, draw a card.
+		Gameplay: Whenever one of your Bug cards enters play, draw a card.
 		Power: Draw a card. You may discard any number of cards. Place a Bug token on {SkitterCharacter} for each card discarded this way.
 		Incaps:
 			- The environment deals each target 1 toxic damage. (Self-destructive; hits heroes too. Keep "all targets" - non-hero only would be stronger than any base incap.)
