@@ -410,5 +410,152 @@
       "flavorReference": "Glenn Chambers, Drone 23.3",
       "count": 2
     }
+  ],
+  "promoCards": [
+    {
+      "identifier": "SkitterCharacter",
+      "promoIdentifier": "SkitterWeaverCharacter",
+      "count": 1,
+      "title": "Skitter",
+      "promoTitle": "Weaver",
+      "body": "Swarm",
+      "backgroundColor": "a8a08a",
+      "character": true,
+      "hitpoints": 26,
+      "gameplay": [
+        "Damage dealt by 'the swarm' is environment damage.",
+        "The first time you play a Strategy card each round, another player may play a card."
+      ],
+      "powers": [
+        "Either another player draws a card or place a Bug token on up to 2 Strategy cards."
+      ],
+      "icons": [
+        "PlayCardNow",
+        "DrawCardNow",
+        "AddTokens"
+      ],
+      "incapacitatedAbilities": [
+        "Select a target. Reduce the next damage dealt by that target by 2.",
+        "One player may play a card.",
+        "Reveal the top card of a deck, then replace it or discard it."
+      ],
+      "flippedIcons": [
+        "ReduceDamageDealt",
+        "PlayCardNow",
+        "Manipulate"
+      ],
+      "complexity": 3,
+      "openingLines": {
+        "default": "Let's do this properly."
+      },
+      "tokenPools": [
+        {
+          "identifier": "BugPool",
+          "name": "Bug pool",
+          "initialValue": 0,
+          "minimumValue": 0,
+          "color": "000000"
+        }
+      ]
+    },
+    {
+      "identifier": "SkitterCharacter",
+      "promoIdentifier": "SkitterTaylorHebertCharacter",
+      "count": 1,
+      "title": "Skitter",
+      "promoTitle": "Taylor Hebert",
+      "body": "Swarm",
+      "backgroundColor": "8fa3b8",
+      "character": true,
+      "hitpoints": 24,
+      "gameplay": [
+        "Damage dealt by 'the swarm' is environment damage.",
+        "Whenever you play a Bug card, draw a card."
+      ],
+      "powers": [
+        "Draw a card. You may discard any number of cards. Place a Bug token on {SkitterCharacter} for each card discarded this way."
+      ],
+      "icons": [
+        "DrawCardNow",
+        "Discard",
+        "AddTokens"
+      ],
+      "incapacitatedAbilities": [
+        "The environment deals each target 1 toxic damage.",
+        "Destroy an Ongoing card.",
+        "One player may discard a card. If they do, they may draw 2 cards."
+      ],
+      "flippedIcons": [
+        "DealDamageToxic",
+        "DestroyOngoing",
+        "Discard",
+        "DrawCardNow"
+      ],
+      "complexity": 3,
+      "openingLines": {
+        "default": "I'll do what I have to."
+      },
+      "tokenPools": [
+        {
+          "identifier": "BugPool",
+          "name": "Bug pool",
+          "initialValue": 0,
+          "minimumValue": 0,
+          "color": "000000"
+        }
+      ]
+    },
+    {
+      "identifier": "SkitterCharacter",
+      "promoIdentifier": "SkitterKhepriCharacter",
+      "count": 1,
+      "title": "Skitter",
+      "promoTitle": "Khepri",
+      "body": "Swarm",
+      "backgroundColor": "d4b24c",
+      "character": true,
+      "hitpoints": 23,
+      "gameplay": [
+        "Damage dealt by 'the swarm' is environment damage.",
+        "At the start of your turn, place a Bug token on {SkitterCharacter}."
+      ],
+      "powers": [
+        "Select a hero other than {SkitterCharacter}. That hero uses a power. Then either remove a Bug token from one of your cards or remove one of your non-character cards in play from the game. If you remove a card this way, {SkitterCharacter} deals that hero 2 irreducible psychic damage."
+      ],
+      "icons": [
+        "StartOfTurnAction",
+        "AddTokens",
+        "UsePowerNow",
+        "RemoveTokens",
+        "RemoveFromGame",
+        "DealDamagePsychic"
+      ],
+      "incapacitatedAbilities": [
+        "One hero may use a power.",
+        "One player may destroy one of their non-character cards. If they do, they draw a card and prevent the next damage that would be dealt to a hero target.",
+        "Select a non-hero, non-character target. That target deals 1 other target 1 melee damage, then deals itself 1 irreducible psychic damage."
+      ],
+      "flippedIcons": [
+        "UsePowerNow",
+        "DestroyCard",
+        "DrawCardNow",
+        "CancelledDamageGreen",
+        "DealDamageMelee",
+        "DealDamagePsychic"
+      ],
+      "complexity": 3,
+      "openingLines": {
+        "default": "Eeeeuunnh!"
+      },
+      "tokenPools": [
+        {
+          "identifier": "BugPool",
+          "name": "Bug pool",
+          "initialValue": 0,
+          "minimumValue": 0,
+          "color": "000000"
+        }
+      ]
+    }
   ]
 }

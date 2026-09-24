@@ -37,6 +37,9 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.Hero
             yield return TestData("MissMilitia", "MissMilitiaCharacter", "Miss Militia");
             yield return TestData("MissMilitia", "MissMilitiaProtectorateCaptainCharacter", "Miss Militia Protectorate Captain");
             yield return TestData("Skitter", "SkitterCharacter", "Skitter");
+            yield return TestData("Skitter", "SkitterWeaverCharacter", "Skitter Weaver");
+            yield return TestData("Skitter", "SkitterTaylorHebertCharacter", "Skitter Taylor Hebert");
+            yield return TestData("Skitter", "SkitterKhepriCharacter", "Skitter Khepri");
             yield return TestData("Tattletale", "TattletaleCharacter", "Tattletale");
             yield return TestData("Tattletale", "TattletaleRulerOfBrocktonBayCharacter", "Tattletale Ruler");
             yield return TestData("Tattletale", "TattletaleHunterOfSecretsCharacter", "Tattletale Hunter");

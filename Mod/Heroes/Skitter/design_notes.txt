@@ -71,7 +71,29 @@ TODO:
 	- unit tests :'(
 	- 
 
-Variant thoughts:
-	- weaver: gain 2 bugs, move * tokens from card to card? play a bug somewhere in there? put a bug on up to 2 strategies?
-	- khepri: up to three other heroes use a power; for each power use lose a token or take 3 irreducible psychic? if no heroes gain a bug?
-	- "taylor hebert" variant maybe repping the period where she was sort of working for cauldron before khepri? maybe the "play a bug" goes in here?
+Planned variants:
+	- Skitter: flexible.
+	- Weaver: strategies and teamwork; slow and inflexible but benefits the team.
+		Gameplay: The first time you play a Strategy card each round, another player may play a card.
+			("each round" rather than "each turn" so heroes that make other heroes play cards can't trigger it repeatedly.)
+		Power: Either another player draws a card or place a Bug token on up to 2 Strategy cards.
+		Incaps:
+			- Select a target. Reduce the next damage dealt by that target by 2. (Tying silk to everything while stunned vs. the NY Wards.)
+			- One player may play a card. (Contrast with base Skitter's draw.)
+			- Reveal the top card of a deck. Discard it or replace it. (Bug surveillance; RevealCard_DiscardItOrPutItOnDeck.)
+			No damage incap - deliberate, Weaver doesn't go for the throat. Avoided "one hero uses a power" to keep that Khepri's thing.
+	- Taylor Hebert: Cauldron period; Bug cards and bug generation; a little self-destructive.
+		Gameplay: Whenever you play a Bug card, draw a card.
+		Power: Draw a card. You may discard any number of cards. Place a Bug token on {SkitterCharacter} for each card discarded this way.
+		Incaps:
+			- The environment deals each target 1 toxic damage. (Self-destructive; hits heroes too. Keep "all targets" - non-hero only would be stronger than any base incap.)
+			- Destroy an ongoing card. (Standard; mandatory, so can hit a hero ongoing.)
+			- One player may discard a card. If they do, they may draw 2 cards. (The always-good option; echoes the discard-as-fuel power. Cf. Luminary.)
+	- Khepri: focuses on her power; rest of the deck exists but isn't driven as much; very self-destructive.
+		Gameplay: At the start of your turn, place a Bug token on {SkitterCharacter}.
+		Power: Select a hero other than {SkitterCharacter}. That hero uses a power. Then either remove a Bug token from one of your cards or remove one of your non-character cards in play from the game. If you remove a card this way, {SkitterCharacter} deals that hero 2 irreducible psychic damage.
+		Incaps:
+			- One hero may use a power. (Controlling the heroes.)
+			- One player may destroy one of their non-character cards. If they do, they draw a card and prevent the next damage that would be dealt to a hero target. (Sacrifice. The draw refunds the cost - cf. Guise's discard incap. Considered "until start of next turn, prevent all damage to that hero" but rejected: repeatable every turn, so a hero with cheap cards in play could never die to damage. "Non-character" is needed - destroying a hero character card incapacitates it.)
+			- Select a non-hero, non-character target. That target deals 1 other target 1 melee damage, then deals itself 1 irreducible psychic damage. (Controlling enemies. Other target first so self-damage can't kill the puppet before it attacks.)
+	- Incaps TBD for all variants.
