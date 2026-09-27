@@ -15,8 +15,37 @@ namespace Handelabra.Sentinels.UnitTest
     [TestFixture]
     public class RandomGameTest : ParahumanTest
     {
-        private RandomSource rng = new MersenneTwister();
+        private RandomSource rng;
         private Random seededRng;
+
+        // The seed for the setup RNG - the one that picks the villain, the environment,
+        // the heroes, their variants, the advanced flag, and the game's own seed. Fixing
+        // it makes a whole random test replayable, which the game seed alone does not:
+        // the game seed is drawn from this generator, after the line-up is chosen.
+        // Set POTW_SETUP_SEED to replay the seed a failing run printed.
+        protected int SetupSeed { get; private set; }
+
+        [SetUp]
+        public void InitRandomSeed()
+        {
+            int seed;
+            var fromEnvironment = Environment.GetEnvironmentVariable("POTW_SETUP_SEED");
+            if (fromEnvironment == null || ! int.TryParse(fromEnvironment, out seed))
+            {
+                seed = new MersenneTwister().Next();
+            }
+
+            UseSetupSeed(seed);
+        }
+
+        // Call before SetupRandom...() to replay a particular run.
+        protected void UseSetupSeed(int seed)
+        {
+            SetupSeed = seed;
+            rng = new MersenneTwister(seed);
+            seededRng = null;
+            Console.WriteLine($"Setup seed: {seed} (replay with POTW_SETUP_SEED={seed})");
+        }
 
         protected IEnumerable<string> PreferredCardsToPlay = null;
 
@@ -387,7 +416,7 @@ namespace Handelabra.Sentinels.UnitTest
             else if (decision is YesNoDecision)
             {
                 var yesNo = decision as YesNoDecision;
-                yesNo.Answer = GetRandomNumber(1) == 1;
+                yesNo.Answer = GetRandomNumber(2) == 1;
                 Log.Debug($"Selecting answer {yesNo.Answer}");
             }
             else if (decision is SelectDamageTypeDecision)
@@ -644,7 +673,7 @@ namespace Handelabra.Sentinels.UnitTest
             else if (decision is YesNoDecision)
             {
                 var yesNo = decision as YesNoDecision;
-                yesNo.Answer = GetRandomNumber(1) == 1;
+                yesNo.Answer = GetRandomNumber(2) == 1;
                 Log.Debug($"Selected answer {yesNo.Answer}");
             }
             else if (decision is SelectDamageTypeDecision)
