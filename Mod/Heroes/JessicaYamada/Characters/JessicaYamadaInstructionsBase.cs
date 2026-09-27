@@ -24,16 +24,16 @@ namespace Jp.ParahumansOfTheWormverse.JessicaYamada
                 AddSideTrigger(AddCannotDealDamageTrigger(c => c == CharacterCard));
 
                 AddSideTrigger(AddTrigger<GameAction>(
-                    (ga) => ((ga is FlipCardAction || ga is BulkRemoveTargetsAction || ga is MoveCardAction) && !CharacterCard.IsFlipped),
+                    (ga) => (IsOutermostAction(ga) && !CharacterCard.IsFlipped),
                     (ga) => IncapacitateIfShouldBeIncapped(),
                     TriggerType.FirstTrigger,
                     TriggerTiming.After,
                     priority: TriggerPriority.High
                 ));
 
-                AddSideTrigger(AddTrigger<GameAction>(
-                    (ga) => ((ga is FlipCardAction || ga is BulkRemoveTargetsAction || ga is MoveCardAction) && CharacterCard.IsFlipped),
-                    (ga) => IncapInstructionCard(),
+                AddSideTrigger(AddTrigger<FlipCardAction>(
+                    (fc) => (fc.CardToFlip.Card == CharacterCard && CharacterCard.IsFlipped),
+                    (fc) => IncapInstructionCard(),
                     TriggerType.FirstTrigger,
                     TriggerTiming.After,
                     priority: TriggerPriority.High
@@ -126,6 +126,18 @@ namespace Jp.ParahumansOfTheWormverse.JessicaYamada
             {
                 GameController.ExhaustCoroutine(e);
             }
+        }
+
+        // Engine trap: cards that hold cards underneath them return them with
+        // "while (cards under me) move the top one to its trash" (concepts, Guise's Uh,
+        // Yeah, I'm That Guy!), and every action is refused once the game is over.
+        // Incapacitating Jessica usually ends the game, so doing it from inside one of those
+        // loops leaves the loop spinning forever. Only act once nothing else is resolving.
+        // Pretend actions never enter UnresolvedActions, hence the explicit identity check.
+        private bool IsOutermostAction(GameAction ga)
+        {
+            var unresolved = GameController.UnresolvedActions;
+            return ! ga.IsPretend && unresolved.Count == 1 && unresolved[0] == ga;
         }
 
         public IEnumerator IncapacitateIfShouldBeIncapped()

@@ -606,5 +606,69 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.JessicaYamada
         }
 
         #endregion
+        #region Incapacitation timing
+
+        // Regression test for a hang found by the randomized game tests: the test host spun
+        // at 100% CPU with no progress.
+        //
+        // Cards that hold other cards underneath them clean up with a loop shaped like
+        // "while (there are cards under me) move the top one to its owner's trash" - see
+        // VoidGuardTheIdealist.ConceptCardController and Guise's Uh, Yeah, I'm That Guy!.
+        // Every game action is refused once the game is over, so if the game ends part way
+        // through that loop the count never drops and the loop never ends.
+        //
+        // Jessica used to re-check her incapacitation after every MoveCardAction, including
+        // the ones inside that loop. Incapacitating the last other hero leaves her the only
+        // hero target, so she incapacitated herself from inside the loop, all the heroes were
+        // then defeated, and the game ended with cards still under the concept. She now waits
+        // until the outermost action has finished before checking.
+        [Test()]
+        public void TestIncapDuringUnderCardCleanupDoesNotHang()
+        {
+            SetupGameController(
+                new[] { "BaronBlade", "Jp.ParahumansOfTheWormverse.JessicaYamada", "VoidGuardTheIdealist", "Megalopolis" },
+                promoIdentifiers: new Dictionary<string, string>
+                {
+                    { "Jp.ParahumansOfTheWormverse.JessicaYamada", "Jp.ParahumansOfTheWormverse.JessicaYamadaInstructionsEnvironment" }
+                }
+            );
+            StartGame();
+
+            var idealist = FindHero("VoidGuardTheIdealist");
+            var concept = PlayCard("KarateRobot");
+
+            // Two cards, so the cleanup loop has to come back around at least once after the
+            // game would have ended.
+            MoveCards(idealist, new[] { GetCard("VividThoughts"), GetCard("SparkOfInspiration") }, concept.UnderLocation);
+            AssertNumberOfCardsUnderCard(concept, 2);
+
+            DealDamage(baron.CharacterCard, idealist.CharacterCard, 50, DamageType.Melee);
+
+            AssertIncapacitated(idealist);
+            AssertIncapacitated(jessica);
+            AssertGameOver(EndingResult.HeroesDestroyedDefeat);
+            AssertNumberOfCardsUnderCard(concept, 0);
+        }
+
+        // The last other hero target can go away without leaving play or flipping. Jessica
+        // used to watch only for flips, moves out of play and bulk target removal, so she
+        // missed this until something unrelated happened.
+        [Test()]
+        public void TestIncapWhenLastHeroTargetStopsBeingATarget()
+        {
+            SetupGameController("BaronBlade", "Jp.ParahumansOfTheWormverse.JessicaYamada", "Tachyon", "Megalopolis");
+            StartGame();
+
+            AssertNotIncapacitatedOrOutOfGame(jessica);
+
+            RunCoroutine(GameController.RemoveTarget(tachyon.CharacterCard, leavesPlayIfInPlay: false));
+
+            AssertIsInPlay(tachyon.CharacterCard);
+            AssertIncapacitated(jessica);
+            AssertFlipped(jessicaCharacter);
+            AssertFlipped(jessicaInstructions);
+        }
+
+        #endregion
     }
 }
