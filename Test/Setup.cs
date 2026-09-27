@@ -24,6 +24,5 @@ public class Setup
     protected void Output(string message)
     {
         TestContext.Out.WriteLine(message);
-        TestContext.Progress.WriteLine(message);
     }
 }

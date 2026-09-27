@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RunSettings>
+  <NUnit>
+    <!-- Keep each test's output (the engine log) attached to its result instead of also echoing it into the run output. -->
+    <ConsoleOut>0</ConsoleOut>
+  </NUnit>
+</RunSettings>

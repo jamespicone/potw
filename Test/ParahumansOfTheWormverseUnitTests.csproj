@@ -4,6 +4,7 @@
     <RootNamespace>Jp.ParahumansOfTheWormverse.UnitTest</RootNamespace>
     <AssemblyName>ParahumansOfTheWormverseUnitTests</AssemblyName>
     <OutputType>Library</OutputType>
+    <RunSettingsFilePath>$(MSBuildProjectDirectory)\ParahumansOfTheWormverseUnitTests.runsettings</RunSettingsFilePath>
   </PropertyGroup>
 
   <ItemGroup>
