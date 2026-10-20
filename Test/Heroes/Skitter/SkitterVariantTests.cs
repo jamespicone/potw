@@ -117,6 +117,8 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.Skitter
             SetupGameController("BaronBlade", Weaver, "Bunker", "Megalopolis");
             StartGame();
 
+            // Bunker's free play could otherwise be Turret Mode, which blocks the draw.
+            DecisionDoNotSelectCard = SelectionType.PlayCard;
             PlayCard("DeliveryService");
 
             DecisionSelectFunction = 0;
@@ -311,6 +313,54 @@ namespace Jp.ParahumansOfTheWormverse.UnitTest.Skitter
             UsePower(skitter);
             QuickHandCheck(1);
             AssertTokenPoolCount(skitter.CharacterCard.FindBugPool(), 0);
+        }
+
+        [Test()]
+        public void TestPowerPicksUpBugFromTrash()
+        {
+            SetupGameController("BaronBlade", Taylor, "Bunker", "Megalopolis");
+            StartGame();
+
+            var storm = PutInTrash("StormOfStingers");
+            var regroup = PutInTrash("Regroup");
+            AssertNextDecisionChoices(included: new Card[] { storm }, notIncluded: new Card[] { regroup });
+            DecisionSelectCards = new Card[] { storm, null };
+
+            QuickHandStorage(skitter);
+            UsePower(skitter);
+            QuickHandCheck(2);
+            AssertInHand(storm);
+            AssertInTrash(regroup);
+        }
+
+        [Test()]
+        public void TestPowerDeclinePickup()
+        {
+            SetupGameController("BaronBlade", Taylor, "Bunker", "Megalopolis");
+            StartGame();
+
+            var storm = PutInTrash("StormOfStingers");
+            DecisionSelectCards = new Card[] { null, null };
+
+            QuickHandStorage(skitter);
+            UsePower(skitter);
+            QuickHandCheck(1);
+            AssertInTrash(storm);
+        }
+
+        [Test()]
+        public void TestPowerCantPickUpBugDiscardedThisWay()
+        {
+            SetupGameController("BaronBlade", Taylor, "Bunker", "Megalopolis");
+            StartGame();
+
+            // If the pickup came after the discard, the last entry would pick Storm back up.
+            var storm = PutInHand("StormOfStingers");
+            DecisionSelectCards = new Card[] { storm, null, storm };
+
+            UsePower(skitter);
+            AssertInTrash(storm);
+            AssertTokenPoolCount(skitter.CharacterCard.FindBugPool(), 1);
         }
 
         [Test()]

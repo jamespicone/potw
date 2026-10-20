@@ -473,10 +473,11 @@
         "Whenever one of your Bug cards enters play, draw a card."
       ],
       "powers": [
-        "Draw a card. You may discard any number of cards. Place a Bug token on {SkitterCharacter} for each card discarded this way."
+        "Draw a card. You may put a Bug card from your trash into your hand. You may discard any number of cards. Place a Bug token on {SkitterCharacter} for each card discarded this way."
       ],
       "icons": [
         "DrawCardNow",
+        "Search",
         "Discard",
         "AddTokens"
       ],

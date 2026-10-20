@@ -41,6 +41,18 @@ namespace Jp.ParahumansOfTheWormverse.Skitter
             // No hand when the Celestial Tribunal's Representative of Earth owns us.
             if (HeroTurnTakerController == null) { yield break; }
 
+            // "You may put a Bug card from your trash into your hand."
+            e = GameController.SelectCardFromLocationAndMoveIt(
+                DecisionMaker,
+                HeroTurnTaker.Trash,
+                new LinqCardCriteria(c => c.Is().WithKeyword("bug").AccordingTo(this), "Bug"),
+                new[] { new MoveCardDestination(HeroTurnTaker.Hand) },
+                optional: true,
+                cardSource: GetCardSource()
+            );
+            if (UseUnityCoroutines) { yield return GameController.StartCoroutine(e); }
+            else { GameController.ExhaustCoroutine(e); }
+
             // "You may discard any number of cards."
             var discards = new List<DiscardCardAction>();
             e = SelectAndDiscardCards(DecisionMaker, null, optional: false, requiredDecisions: 0, storedResults: discards);
