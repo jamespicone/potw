@@ -10,7 +10,9 @@ namespace Jp.ParahumansOfTheWormverse.Legend
     public class BounceBackCardController : CardController
     {
         public BounceBackCardController(Card card, TurnTakerController controller) : base(card, controller)
-        { }
+        {
+            RunModifyDamageAmountSimulationForThisCard = false;
+        }
 
         public override bool AllowFastCoroutinesDuringPretend { get => ! HasChargeTokens(); }
 

@@ -14,6 +14,7 @@ namespace Jp.ParahumansOfTheWormverse.Slaughterhouse9
     {
         public MannequinCharacterCardController(Card card, TurnTakerController controller) : base(card, controller)
         {
+            RunModifyDamageAmountSimulationForThisCard = false;
         }
 
         public override bool AllowFastCoroutinesDuringPretend => IsLowestHitPointsUnique((c) => c.Is(this).Villain().Target());
